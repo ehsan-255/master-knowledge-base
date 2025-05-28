@@ -1,0 +1,13 @@
+registry_id: "AUDIENCE"
+title: "Intended Audience"
+version: "0.1.0-draft"
+entries:
+  - id: "AUTHOR"
+    preferred_label: "Author"
+    description: "Primary content producers and maintainers."
+  - id: "ENGINEER"
+    preferred_label: "Engineer"
+    description: "Technical stakeholders integrating or tooling the KB."
+  - id: "REVIEWER"
+    preferred_label: "Reviewer"
+    description: "Subject‑matter or governance reviewers." 

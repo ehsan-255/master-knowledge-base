@@ -1,0 +1,42 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: "Knowledge‑Base Controlled Vocabulary Registry Schema"
+description: >
+  Governs structure and constraints for all registry YAML files
+  located under /vocab/. Version: 0.1.0‑draft
+type: object
+required: [registry_id, title, version, entries]
+additionalProperties: false
+properties:
+  registry_id:
+    type: string
+    pattern: "^[A-Z0-9_]{3,30}$"
+  title:
+    type: string
+    minLength: 5
+  version:
+    description: "SemVer with optional -draft/-rc suffix"
+    type: string
+    pattern: "^\\d+\\.\\d+\\.\\d+(-[a-z]+\\d*)?$"
+  description:
+    type: string
+  entries:
+    type: array
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: object
+      required: [id, preferred_label, description]
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          pattern: "^[A-Z0-9_]{2,12}$"
+        preferred_label:
+          type: string
+          minLength: 3
+        description:
+          type: string
+        alt_labels:
+          type: array
+          items:
+            type: string 
