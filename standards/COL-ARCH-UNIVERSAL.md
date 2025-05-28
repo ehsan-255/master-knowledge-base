@@ -4,16 +4,36 @@ aliases: ['Universal Architecture Standards', 'COL-ARCH-UNIVERSAL']
 tags:
   - kb-id/standards
   - content-type/standards-collection
-  - status/final
+  - status/deprecated # Updated status
   - topic/architecture
   - topic/structure
 kb-id: standards
-info-type: standards-collection
-primary-topic: 'Collection of universal standards governing overall KB architecture and fundamental document/section structure.'
-related-standards: "N/A"
-version: '0.3.1'
+info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+primary-topic: 'DEPRECATED Collection of universal standards governing overall KB architecture and fundamental document/section structure. Superseded by atomic standards.'
+related-standards: ["AS-STRUCTURE-KB-ROOT", "AS-STRUCTURE-MASTER-KB-INDEX", "AS-STRUCTURE-KB-PART", "AS-STRUCTURE-DOC-CHAPTER", "CS-POLICY-LAYERED-INFORMATION", "SF-CONVENTIONS-NAMING"] # Listing some of the new standards
+version: '0.4.0' # Increment version due to significant change (deprecation)
 date-created: '2025-05-15'
-date-modified: '2025-05-22'
+date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+---
+
+**<font color="red">IMPORTANT: This document is deprecated.</font>**
+
+The standards and guidelines previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory, particularly those with `AS-` (Architectural Standards) and related `CS-` (Content Standards/Policies) prefixes.
+
+Key new standards that supersede content from this collection include:
+- [[AS-STRUCTURE-KB-ROOT]]
+- [[CS-POLICY-KB-ROOT]]
+- [[AS-STRUCTURE-MASTER-KB-INDEX]]
+- [[CS-POLICY-KB-IDENTIFICATION]]
+- [[AS-STRUCTURE-KB-PART]]
+- [[CS-POLICY-KB-PART-CONTENT]]
+- [[AS-STRUCTURE-DOC-CHAPTER]]
+- [[CS-POLICY-DOC-CHAPTER-CONTENT]]
+- [[CS-POLICY-LAYERED-INFORMATION]]
+- [[SF-CONVENTIONS-NAMING]]
+
+For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
+
 ---
 
 # Universal Architecture and Structure Standards

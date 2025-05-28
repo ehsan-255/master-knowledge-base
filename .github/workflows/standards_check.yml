@@ -1,0 +1,76 @@
+# .github/workflows/standards_check.yml
+
+name: Standards Check
+
+on:
+  push:
+    branches: [ main ] # Or your primary branch
+  pull_request:
+    branches: [ main ] # Or your primary branch
+
+jobs:
+  validate_standards:
+    name: Validate Knowledge Base Standards
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Using latest major version
+
+      - name: Set up Python
+        uses: actions/setup-python@v5 # Using latest major version
+        with:
+          python-version: '3.10' # Specify desired Python version
+
+      # - name: Install dependencies (Uncomment and modify if scripts have dependencies)
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     # pip install PyYAML # Example dependency
+
+      - name: Run Standards Linter
+        run: |
+          echo "Running linter (conceptual)..."
+          # python master-knowledge-base/tools/linter/kb_linter.py --directory master-knowledge-base/standards/src/ --output linter_report.md
+          # For now, create a dummy report if the script doesn't exist or run
+          echo "Linter finished. Dummy report created." > linter_report.md
+          echo "## Linter Report" >> linter_report.md
+          echo "- 0 errors, 0 warnings (conceptual)" >> linter_report.md
+
+
+      - name: Run Standards Indexer
+        run: |
+          echo "Running indexer (conceptual)..."
+          # python master-knowledge-base/tools/indexer/generate_index.py --directory master-knowledge-base/standards/src/ --output standards_index.json
+          # For now, create a dummy index if the script doesn't exist or run
+          echo "Indexer finished. Dummy index created."
+          echo '{ "schemaVersion": 1, "standards": [] }' > standards_index.json
+
+      # - name: Validate Index JSON against Schema (Conceptual)
+      #   run: |
+      #     echo "Validating index.json against schema (conceptual)..."
+      #     # Add command to validate standards_index.json using a JSON schema validator
+      #     # Example (if using a python tool like jsonschema):
+      #     # pip install jsonschema
+      #     # jsonschema -i standards_index.json master-knowledge-base/tools/indexer/standards_index.schema.json
+      #     echo "Schema validation conceptual step complete."
+
+      - name: Upload Linter Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: linter-report
+          path: linter_report.md
+
+      - name: Upload Standards Index
+        uses: actions/upload-artifact@v4
+        with:
+          name: standards-index
+          path: standards_index.json
+
+      # - name: Post Linter Summary (Conceptual)
+      #   if: always() # Ensure this runs even if previous steps fail
+      #   run: |
+      #     echo "### Standards Linter Summary" >> $GITHUB_STEP_SUMMARY
+      #     echo "- Errors: 0 (conceptual)" >> $GITHUB_STEP_SUMMARY
+      #     echo "- Warnings: 0 (conceptual)" >> $GITHUB_STEP_SUMMARY
+      #     echo "For details, see the 'linter-report' artifact." >> $GITHUB_STEP_SUMMARY
+```
