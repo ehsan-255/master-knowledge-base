@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Standards Index Schema",
+  "description": "Defines the structure for the standards_index.json file, which contains an index of key metadata from standard documents.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "description": "Version of this schema definition.",
+      "type": "integer",
+      "examples": [1]
+    },
+    "standards": {
+      "description": "An array of standard document metadata objects.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "standard_id": {
+            "description": "Unique identifier for the standard document.",
+            "type": "string",
+            "pattern": "^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\\-]+$"
+          },
+          "title": {
+            "description": "The official title of the standard document.",
+            "type": "string"
+          },
+          "primary_domain": {
+            "description": "The primary domain code this standard belongs to (e.g., AS, CS).",
+            "type": "string"
+          },
+          "sub_domain": {
+            "description": "The sub-domain code within the primary domain (e.g., STRUCTURE, POLICY).",
+            "type": "string"
+          },
+          "info-type": {
+            "description": "The info-type of the document, indicating its structural role or content type.",
+            "type": "string"
+            # Consider adding enum if info-types are strictly controlled from U-METADATA-FRONTMATTER-RULES-001.md
+          },
+          "version": {
+            "description": "The semantic version of the standard (e.g., \"0.1.0\", \"1.2.3\").",
+            "type": "string"
+            # "pattern": "^\\d+\\.\\d+\\.\\d+$" # Example for strict SemVer, if needed
+          },
+          "status": {
+            "description": "The current lifecycle status of the standard (e.g., \"draft\", \"approved\").",
+            "type": "string"
+            # Consider adding enum based on status tags in tag-glossary-definition.md
+          },
+          "filepath": {
+            "description": "Relative path to the standard document from the repository root, using POSIX separators.",
+            "type": "string"
+            # "pattern": "^master-knowledge-base\\/standards\\/src\\/.*\\.md$" # Example pattern
+          },
+          "date-modified": {
+            "description": "The date and time the document was last significantly modified, in ISO-8601 format.",
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+          }
+        },
+        "required": [
+          "standard_id",
+          "title",
+          "primary_domain",
+          "sub_domain",
+          "info-type",
+          "version",
+          "status",
+          "filepath",
+          "date-modified"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "standards"
+  ]
+}
+```
