@@ -4,16 +4,32 @@ aliases: ['Universal Content Standards', 'COL-CONTENT-UNIVERSAL']
 tags:
   - kb-id/standards
   - content-type/standards-collection
-  - status/draft
+  - status/deprecated # Updated status
   - topic/content-guidelines
   - topic/schemas
 kb-id: standards
-info-type: standards-collection
-primary-topic: 'Collection of universal standards for content creation, schemas, tone, scope, and digital abstraction.'
-related-standards: "N/A"
-version: '0.2.1'
+info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+primary-topic: 'DEPRECATED: Collection of universal standards for content creation, schemas, tone, scope, and digital abstraction.'
+related-standards: ["AS-SCHEMA-METHODOLOGY-DESCRIPTION", "AS-SCHEMA-CONCEPT-DEFINITION", "CS-POLICY-TONE-LANGUAGE", "CS-POLICY-SCOPE-INCLUSION", "CS-POLICY-SCOPE-EXCLUSION", "CS-POLICY-DIGITAL-ABSTRACTION"]
+version: '0.3.0' # Incremented version
 date-created: '2025-05-15'
-date-modified: '2025-05-22'
+date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+---
+
+**<font color="red">IMPORTANT: This document is deprecated.</font>**
+
+The standards and guidelines previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory.
+
+Key new standards that supersede content from this collection include:
+*   `[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]`
+*   `[[AS-SCHEMA-CONCEPT-DEFINITION]]`
+*   `[[CS-POLICY-TONE-LANGUAGE]]`
+*   `[[CS-POLICY-SCOPE-INCLUSION]]`
+*   `[[CS-POLICY-SCOPE-EXCLUSION]]`
+*   `[[CS-POLICY-DIGITAL-ABSTRACTION]]`
+
+For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
+
 ---
 
 # Universal Content and Schemas Standards

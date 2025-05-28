@@ -4,16 +4,33 @@ aliases: ['Universal Governance Standards', 'COL-GOVERNANCE-UNIVERSAL']
 tags:
   - kb-id/standards
   - content-type/standards-collection
-  - status/draft
+  - status/deprecated # Updated status
   - topic/governance
   - topic/support-docs
 kb-id: standards
-info-type: standards-collection
-primary-topic: 'Collection of universal standards for versioning, governance, deprecation, onboarding, glossaries, templates, and file hygiene.'
-related-standards: "N/A"
-version: '0.2.2'
+info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+primary-topic: 'DEPRECATED: Collection of universal standards for versioning, governance, deprecation, onboarding, glossaries, templates, and file hygiene.'
+related-standards: ["OM-VERSIONING-CHANGELOGS", "OM-POLICY-STANDARDS-GOVERNANCE", "OM-POLICY-STANDARDS-DEPRECATION", "GM-MANDATE-KB-USAGE-GUIDE", "GM-MANDATE-STANDARDS-GLOSSARY", "AS-STRUCTURE-TEMPLATES-DIRECTORY", "SF-FORMATTING-FILE-HYGIENE"]
+version: '0.3.0' # Incremented version
 date-created: '2025-05-15'
-date-modified: '2025-05-22'
+date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+---
+
+**<font color="red">IMPORTANT: This document is deprecated.</font>**
+
+The standards and guidelines previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory.
+
+Key new standards that supersede content from this collection include:
+*   `[[OM-VERSIONING-CHANGELOGS]]`
+*   `[[OM-POLICY-STANDARDS-GOVERNANCE]]`
+*   `[[OM-POLICY-STANDARDS-DEPRECATION]]`
+*   `[[GM-MANDATE-KB-USAGE-GUIDE]]` (which mandates [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]])
+*   `[[GM-MANDATE-STANDARDS-GLOSSARY]]` (which mandates [[GM-GLOSSARY-STANDARDS-TERMS_ID_PLACEHOLDER]])
+*   `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]`
+*   `[[SF-FORMATTING-FILE-HYGIENE]]`
+
+For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
+
 ---
 
 # Universal Governance and Support Standards
