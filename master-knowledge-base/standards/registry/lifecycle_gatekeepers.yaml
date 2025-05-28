@@ -1,0 +1,26 @@
+# master-knowledge-base/standards/registry/lifecycle_gatekeepers.yaml
+# Defines controlled vocabulary for 'Lifecycle_Gatekeeper' metadata.
+
+- gatekeeper: Architect-Review
+  name: Architect Review
+  description: Requires review and approval from a designated system/solution architect or architectural body.
+
+- gatekeeper: SME-Consensus
+  name: Subject Matter Expert (SME) Consensus
+  description: Requires consensus agreement from a defined group of subject matter experts.
+
+- gatekeeper: Automated-Validation
+  name: Automated Validation
+  description: Requires passing automated checks, linters, or validation scripts.
+
+- gatekeeper: Peer-Review
+  name: Peer Review
+  description: Requires review and feedback from peers or team members.
+
+- gatekeeper: Editorial-Board-Approval
+  name: Editorial Board Approval
+  description: Requires approval from a designated editorial board or governance committee.
+
+- gatekeeper: No-Formal-Gatekeeper
+  name: No Formal Gatekeeper
+  description: Does not require a formal gatekeeper for progression; may rely on author discretion or informal review.
