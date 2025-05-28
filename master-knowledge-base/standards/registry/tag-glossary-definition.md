@@ -22,11 +22,12 @@ This document defines the official tags used across all knowledge bases, their i
 ## Tag Categories
 
 ### Status Tags (`status/*`)
-- `status/idea`: Initial concept, not yet drafted.
-- `status/draft`: Content is actively being written or revised.
-- `status/review-needed`: Content is complete but requires peer or SME review.
-- `status/final`: Content is reviewed, approved, and considered complete for the current version.
-- `status/archived`: Content is outdated or superseded but kept for historical reference.
+- `status/draft`: Content is in initial draft stage, subject to significant change.
+- `status/in-review`: Content is under review by subject matter experts or stakeholders.
+- `status/approved`: Content has been formally approved and is considered stable.
+- `status/published`: Content has been formally published (if applicable to workflow).
+- `status/deprecated`: Content is no longer current or recommended for use.
+- `status/archived`: Content is preserved for historical reference but is not actively maintained.
 
 ### KB Identification Tags (`kb-id/*`)
 - `kb-id/standards`: For notes belonging to the Standards KB.
@@ -65,28 +66,13 @@ This document defines the official tags used across all knowledge bases, their i
 - `topic/linking`: Documents focused on interlinking content.
 
 ### Content Type Tags (`content-type/*`)
-- `content-type/standard-document`: Defines a specific standard.
-- `content-type/standards-collection`: Groups or collects standards.
-- `content-type/standards-guide`: Provides guidance on standards or processes.
-- `content-type/kb-specific-standard-document`: KB-specific standard definition.
-- `content-type/llm-recipe`: LLM content generation recipe.
-- `content-type/llm-cookbook-standard-document`: LLM cookbook-specific standard.
-- `content-type/kb-definition-map`: Defines the structure of a KB.
-- `content-type/kb-root-document`: Root entry point for a KB.
-- `content-type/kb-part-overview`: Overview for a KB "Part".
-- `content-type/kb-master-index`: Master index for all KBs.
-- `content-type/content-template`: Template for content creation.
-- `content-type/utility-script-documentation`: Script documentation.
-- `content-type/key-definition-set`: Keyref definition set.
-- `content-type/task-guide`: Task or process guide.
-- `content-type/tag-glossary`: Tag glossary document.
-- `content-type/assembly-manifest`: Assembly manifest for monoliths.
-- `content-type/resolver-script-documentation`: Documentation for resolver script.
-- `content-type/export-script-documentation`: Documentation for export script.
-- `content-type/update-script-documentation`: Documentation for update script.
-- `content-type/generic-document`: Generic content, use sparingly.
-- `content-type/script-documentation`: Documentation for scripts.
-- `content-type/script-guide`: Guide for scripts.
+(Align with `info-type` where sensible, but can be more granular)
+- `content-type/technical-standard`: Describes technical rules, specifications.
+- `content-type/procedural-guideline`: Outlines steps for a process.
+- `content-type/conceptual-explanation`: Explains concepts or principles.
+- `content-type/reference-material`: Provides data or information for lookup.
+- `content-type/troubleshooting-guide`: Helps resolve issues.
+- `content-type/example-code`: Provides code examples.
 
 ### Standards KB Tags (`standards-kb/*`)
 - `standards-kb/core`: Core standards and meta-structure documents.

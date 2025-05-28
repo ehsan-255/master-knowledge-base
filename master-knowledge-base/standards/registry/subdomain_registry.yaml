@@ -1,0 +1,81 @@
+# master-knowledge-base/standards/registry/subdomain_registry.yaml
+# Defines SUB_DOMAIN_CODEs for each DOMAIN_CODE
+
+AS: # Architectural Standards
+  - code: STRUCTURE
+    name: Structural Standards
+    description: Standards related to the overall organization and structure of knowledge bases.
+  - code: INDEXING
+    name: Indexing and Mapping
+    description: Standards for creating and managing indexes, maps, and tables of contents.
+
+CS: # Content Standards
+  - code: POLICY
+    name: Content Policies
+    description: Policies governing the creation, style, and lifecycle of content.
+  - code: PROFILING
+    name: Content Profiling
+    description: Standards for conditionalizing or targeting content to specific audiences or conditions.
+
+MT: # Metadata & Tagging Standards
+  - code: FRONTMATTER
+    name: Frontmatter Metadata
+    description: Standards for metadata included in the frontmatter of documents.
+  - code: TAGGING
+    name: Tagging Standards
+    description: Standards and glossaries for applying tags.
+  - code: REGISTRY
+    name: Registry Management
+    description: Standards related to the creation and maintenance of controlled vocabularies.
+
+
+SF: # Syntax & Formatting Standards
+  - code: MARKDOWN
+    name: Markdown Syntax
+    description: Standards for the use of Markdown syntax elements.
+  - code: LINKS
+    name: Linking Syntax
+    description: Standards for internal and external linking.
+  - code: TRANSCLUSION
+    name: Transclusion Syntax
+    description: Standards for transcluding content.
+  - code: CALLOUTS
+    name: Callout/Admonition Syntax
+    description: Standards for callouts, admonitions, and similar block elements.
+  - code: CONDITIONAL
+    name: Conditional Text Syntax
+    description: Standards for syntax used in conditional text rendering.
+
+
+OM: # Operational & Management Standards (Placeholder - refine as needed)
+  - code: LIFECYCLE
+    name: Lifecycle Management
+    description: Standards related to content lifecycle, versioning, and governance.
+
+GM: # General & Miscellaneous Standards
+  - code: CONVENTIONS
+    name: Naming and ID Conventions
+    description: General naming conventions and identifier rules.
+  - code: GUIDE
+    name: Guidance Documents
+    description: General guides and instructional materials for using the KB and standards.
+  - code: GLOSSARY
+    name: Glossaries
+    description: General glossaries and term definitions.
+
+
+UA: # User & Audience Standards (Placeholder - refine as needed)
+  - code: ACCESSIBILITY
+    name: Accessibility Standards
+    description: Standards for ensuring content accessibility.
+  - code: KEYDEFS
+    name: Key Definitions
+    description: Global key definitions.
+
+
+QM: # Quality Management Standards (Placeholder - refine as needed)
+  - code: VALIDATION
+    name: Validation and Linting
+    description: Standards and rules for content validation and linting.
+
+# Add other domain codes (e.g., OM, GM, UA, QM) and their sub-domains as they become clearer.
