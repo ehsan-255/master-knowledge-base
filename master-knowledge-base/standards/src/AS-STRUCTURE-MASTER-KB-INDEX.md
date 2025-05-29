@@ -68,7 +68,7 @@ This directory provides an overview and access points to all active Knowledge Ba
 - [[CS-POLICY-KB-IDENTIFICATION]] - Policy for unique KB identification and naming.
 - [[AS-KB-DIRECTORY-STRUCTURE]] - Defines the broader repository and `master-knowledge-base` directory structures.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (to be updated with actual ID, relevant for KB folder names).
+- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for KB folder names).
 
 ---
 *This standard (AS-STRUCTURE-MASTER-KB-INDEX) is based on rules 2.1, 2.3, and 2.4 previously defined in U-ARCH-002 from COL-ARCH-UNIVERSAL.md.*

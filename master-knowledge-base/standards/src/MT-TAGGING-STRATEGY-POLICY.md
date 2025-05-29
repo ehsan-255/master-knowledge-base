@@ -9,10 +9,10 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Core Tagging Strategy" # As per prompt
-related-standards: ["MT-TAGS-IMPLEMENTATION", "MT-REGISTRY-TAG-GLOSSARY", "U-METADATA-FRONTMATTER-RULES-001"]
+related-standards: ["MT-TAGS-IMPLEMENTATION", "MT-REGISTRY-TAG-GLOSSARY", "MT-SCHEMA-FRONTMATTER"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-29T16:10:25Z"
 primary_domain: "MT" # Metadata & Tagging
 sub_domain: "POLICY" # As per prompt
 scope_application: "Governs the strategic application of mandatory and recommended tag categories across all knowledge base documents."
@@ -54,7 +54,7 @@ Specific tags MUST be used to identify key structural documents within the knowl
 
 ### Rule 2.4: `content-type/*` Tag (Derived from U-TAG-001, Rule 1.8)
 Every document MUST include at least one `content-type/*` tag that describes its nature or format.
-*   **Guidance:** The controlled vocabulary for the `{type}` part of `content-type/{type}` (e.g., `standard-document`, `policy-document`, `guide-document`) is defined in the `tag-glossary-definition.md` file, referenced as [[MT-REGISTRY-TAG-GLOSSARY]]. This aligns with, but is distinct from, the `info-type` frontmatter key detailed in [[U-METADATA-FRONTMATTER-RULES-001]].
+*   **Guidance:** The controlled vocabulary for the `{type}` part of `content-type/{type}` (e.g., `standard-document`, `policy-document`, `guide-document`) is defined in the `tag-glossary-definition.md` file, referenced as [[MT-REGISTRY-TAG-GLOSSARY]]. This aligns with, but is distinct from, the `info-type` frontmatter key detailed in [[MT-SCHEMA-FRONTMATTER]].
 *   **Example:** `content-type/technical-standard`, `content-type/conceptual-explanation`
 *   **Rationale:** Allows users and systems to filter content based on its type, facilitating easier access to specific kinds of information.
 
@@ -80,7 +80,7 @@ This policy applies to all documents within the knowledge base ecosystem that ut
 ## 6. Cross-References
 - [[MT-TAGS-IMPLEMENTATION]] - Defines the syntax and declaration rules for tags.
 - [[MT-REGISTRY-TAG-GLOSSARY]] - The official glossary of all approved tags, their hierarchies, and definitions.
-- [[U-METADATA-FRONTMATTER-RULES-001]] - Defines the `info-type` key and overall frontmatter structure.
+- [[MT-SCHEMA-FRONTMATTER]] - Defines the `info-type` key and overall frontmatter structure.
 
 ---
 *This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*

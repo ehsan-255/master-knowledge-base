@@ -62,7 +62,7 @@ If relevant cross-references exist, a section titled "See Also" and formatted as
     ```markdown
     ## See Also
     - [[AS-STRUCTURE-KB-PART]]
-    - [[ANOTHER-RELEVANT-STANDARD_ID_PLACEHOLDER]]
+    - [[EXAMPLE-STANDARD-ID]]
     ```
 *   **Content:** This section should contain a list of links to related documents, standards, or sections that provide further context or information.
 *   **Notes:** Links MUST use the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX]]. If no relevant cross-references exist, this section may be omitted.
@@ -97,7 +97,7 @@ This chapter provided an overview of research methodology, defined key terms, an
 
 ## See Also
 - [[CS-POLICY-DOC-CHAPTER-CONTENT]]
-- [[CORE-CONCEPT-RESEARCH_ID_PLACEHOLDER]]
+- [[CONCEPT-CORE-RESEARCH-METHODOLOGY]]
 ```
 
 ## 3. Cross-References

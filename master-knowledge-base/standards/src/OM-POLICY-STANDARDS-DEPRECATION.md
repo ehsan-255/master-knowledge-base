@@ -48,7 +48,7 @@ The body of a deprecated standard document MUST be prefaced with a prominent and
 *   **Example using a standard callout format (syntax defined in [[SF-CALLOUTS-SYNTAX]]):**
     ```markdown
     > [!WARNING] DEPRECATED: This Standard is No Longer Active
-    > **Reason for Deprecation:** This standard has been superseded by [[NEW-STANDARD-ID_PLACEHOLDER]].
+    > **Reason for Deprecation:** This standard has been superseded by [[XX-REPLACEMENT-STANDARD-ID]].
     > **Effective Date:** YYYY-MM-DD
     > Please refer to the new standard for current guidelines. This document is retained for historical purposes only.
     ```

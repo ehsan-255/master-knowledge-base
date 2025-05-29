@@ -40,8 +40,8 @@ related-standards: [
     "SF-CONDITIONAL-SYNTAX-ATTRIBUTES",
     "AS-SCHEMA-METHODOLOGY-DESCRIPTION",
     "AS-SCHEMA-CONCEPT-DEFINITION",
-    "U-SCHEMA-REFERENCE-001",
-    "U-SCHEMA-TASK-001",
+    "AS-SCHEMA-REFERENCE",
+    "AS-SCHEMA-TASK",
     "CS-LINKING-INTERNAL-POLICY",
     "MT-TAGS-IMPLEMENTATION",
     "SF-TRANSCLUSION-SYNTAX",
@@ -56,7 +56,7 @@ related-standards: [
     ]
 version: "0.1.0"
 date-created: "2025-05-29T11:51:19Z" # Placeholder
-date-modified: "2025-05-29T11:51:19Z" # Placeholder
+date-modified: "2025-05-29T15:53:52Z"
 primary_domain: "GM"
 sub_domain: "GUIDE"
 scope_application: "Provides guidance for all users and contributors on utilizing the knowledge base and its standards."
@@ -178,8 +178,8 @@ Every document requires YAML frontmatter with 10 canonical keys in a specific or
 Certain document types have specific structural requirements defined by their respective schema standards:
 -   Methodology/Technique Descriptions: `[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]`
 -   Concept Definitions: `[[AS-SCHEMA-CONCEPT-DEFINITION]]`
--   Reference Topics: `[[U-SCHEMA-REFERENCE-001]]`
--   Task Topics: `[[U-SCHEMA-TASK-001]]`
+-   Reference Topics: `[[AS-SCHEMA-REFERENCE]]`
+-   Task Topics: `[[AS-SCHEMA-TASK]]`
 -   Consult these standards and use templates from `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]` when creating such documents.
 
 ## 6. Using Obsidian (Obsidian User Specific)
