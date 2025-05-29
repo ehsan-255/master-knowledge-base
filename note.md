@@ -217,3 +217,36 @@ The following placeholder IDs were found in files within `/master-knowledge-base
         -   Frontmatter populated according to `tpl-canonical-frontmatter.md`.
         -   Content migrated from `U-KEYREF-SYNTAX-001`, defining the `{{key.name}}` syntax, camelCase recommendation for key names, and no whitespace rule.
         -   Cross-references updated to point to anticipated new standard IDs like `[[MT-KEYREF-MANAGEMENT]]` and `[[UA-KEYDEFS-GLOBAL]]`.
+### Decision ID DECISION_002: Refactor KB Standards (Continued)
+
+**Phase 2: Standalone Document Refactoring - Part 2 (Continuing Roadmap Step 2.2)**
+
+-   **Process `standards/M-CONDITIONAL-TEXT-SYNTAX-001.md`**:
+    -   Read the file `standards/M-CONDITIONAL-TEXT-SYNTAX-001.md`.
+    -   Verified that its content regarding conditional text syntax and usage is fully covered and superseded by the combination of existing atomic standards:
+        -   `SF-CALLOUTS-SYNTAX.md` (defines the `[!IF]` callout type)
+        -   `SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md` (defines the `attribute=value` syntax for conditions)
+        -   `CS-CONTENT-PROFILING-POLICY.md` (defines the overall policy, manages attributes/values, and references the syntax standards; explicitly supersedes `U-PROFILING-ATTRIBUTES-001.md` which was related to `M-CONDITIONAL-TEXT-SYNTAX-001.md`).
+    -   No new file creation is needed from `M-CONDITIONAL-TEXT-SYNTAX-001.md` as its rules have been appropriately refactored. This file is now fully superseded.
+-   **Process `standards/M-SYNTAX-TODO-001.md`**:
+    -   The original standard defined two methods for TODOs: HTML comments and an Obsidian callout alternative.
+    -   The `[!TODO]` callout aspect is covered by `SF-CALLOUTS-SYNTAX.md`.
+    -   To preserve the distinct HTML comment-based TODO syntax (for non-rendering, script-parsable tasks), created new atomic standard `/master-knowledge-base/standards/src/SF-SYNTAX-COMMENT-TODO.md` (standard_id: `SF-SYNTAX-COMMENT-TODO`).
+    -   `info-type` set to `standard-definition`.
+    -   Frontmatter populated according to `tpl-canonical-frontmatter.md`.
+    -   Content migrated and adapted from `M-SYNTAX-TODO-001` (Rules 1.1-1.7), focusing on the `<!-- TODO ... -->` syntax.
+    -   The original `M-SYNTAX-TODO-001.md` is now considered superseded by the combination of `SF-CALLOUTS-SYNTAX.md` (for visible TODOs) and `SF-SYNTAX-COMMENT-TODO.md` (for hidden, scriptable TODOs).
+-   **Process `standards/U-ARCH-003-Directory-Structure-Source-Render.md`**:
+    -   Read the file `standards/U-ARCH-003-Directory-Structure-Source-Render.md`.
+    -   Verified that its content regarding source directory structure (`master-knowledge-base/`) and the concept of a rendered output directory are substantially covered and evolved by the existing atomic standard `master-knowledge-base/standards/src/AS-KB-DIRECTORY-STRUCTURE.md`.
+    -   `AS-KB-DIRECTORY-STRUCTURE.md` details the primary `master-knowledge-base/` root and its internal organization (including `/standards/src`, `/standards/registry`, `/standards/templates`, `/tools`, `/assets`). It also proposes a `/dist/` or `/build/` directory (typically gitignored) for generated outputs, which serves a similar purpose to `master-knowledge-base-rendered/` but with a more common build artifact handling approach.
+    -   `U-ARCH-003-Directory-Structure-Source-Render.md` is considered superseded by `AS-KB-DIRECTORY-STRUCTURE.md`. No new file creation needed from `U-ARCH-003`.
+-   **Process `standards/U-KEYREF-MANAGEMENT-001.md`**:
+    -   Created new atomic standard `/master-knowledge-base/standards/src/MT-KEYREF-MANAGEMENT.md` (standard_id: `MT-KEYREF-MANAGEMENT`).
+    -   `info-type` set to `standard-definition`.
+    -   Frontmatter populated according to `tpl-canonical-frontmatter.md` and specific requirements for this standard (domain MT, subdomain REGISTRY).
+    -   Content migrated and adapted from `U-KEYREF-MANAGEMENT-001`, defining storage (`_key_definitions.md` identified as `[[UA-KEYDEFS-GLOBAL]]`), structure (YAML `keys:` dictionary), key naming conventions, documentation within `_key_definitions.md`, and the policy for triggering content resolution upon changes.
+    -   Cross-references updated to `[[SF-SYNTAX-KEYREF]]`, `[[SF-SYNTAX-YAML-FRONTMATTER]]`, and `[[UA-KEYDEFS-GLOBAL]]`.
+    -   The original `standards/U-KEYREF-MANAGEMENT-001.md` is now considered superseded.
+
+[end of note.md]
