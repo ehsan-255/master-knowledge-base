@@ -116,3 +116,32 @@ This file contains updates that were intended for `CONTRIBUTOR_GUIDE.md`. Due to
     -   **Task 1.4.2 (Mark `COL-LINKING-UNIVERSAL.md` for deprecation):**
         -   Verified that `standards/COL-LINKING-UNIVERSAL.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its atomic replacements.
         -   No further modifications were needed to deprecate this file.
+
+### Decision ID DECISION_002: Refactor KB Standards (Continued)
+
+**Phase 1: Atomic Decomposition, Splitting & Metadata Enrichment (In Progress)**
+
+-   **Step 1.5: Process `standards/COL-SYNTAX-MARKDOWN.md`**
+    -   **Overall:** All 15 concepts (M-SYNTAX-YAML-001 through M-SYNTAX-DIAGRAMS-001) from `COL-SYNTAX-MARKDOWN.md` have been processed.
+    -   The collection file `standards/COL-SYNTAX-MARKDOWN.md` is already marked as deprecated and correctly lists its atomic replacements (generally `SF-SYNTAX-*` or `SF-FORMATTING-*` files).
+    -   Verification confirmed that corresponding atomic standards for all 15 concepts exist in `/master-knowledge-base/standards/src/` and accurately reflect the content of their source concepts from the collection file. The specific files verified are:
+        -   `SF-SYNTAX-YAML-FRONTMATTER.md`
+        -   `SF-SYNTAX-HEADINGS.md`
+        -   `SF-SYNTAX-LISTS.md`
+        -   `SF-SYNTAX-LINKS-GENERAL.md` (covering general link syntax aspects from M-SYNTAX-LINKS-001)
+        -   `SF-SYNTAX-EMPHASIS.md`
+        -   `SF-SYNTAX-BLOCKQUOTES.md`
+        -   `SF-SYNTAX-CODE.md`
+        -   `SF-SYNTAX-TABLES.md`
+        -   `SF-FORMATTING-MARKDOWN-GENERAL.md`
+        -   `SF-SYNTAX-IMAGES.md`
+        -   `SF-SYNTAX-ESCAPING-CHARACTERS.md`
+        -   `SF-SYNTAX-DEFINITION-LISTS.md`
+        -   `SF-SYNTAX-FOOTNOTES.md`
+        -   `SF-SYNTAX-MATH-EQUATIONS.md`
+        -   `SF-SYNTAX-DIAGRAMS-MERMAID.md`
+    -   No new file creation or modifications were needed for these standards as part of this step, as they were found to be pre-existing and correctly refactored.
+-   **Step 1.5: Process `standards/COL-SYNTAX-MARKDOWN.md` (Continued)**
+    -   **Task 1.5.2 (Mark `COL-SYNTAX-MARKDOWN.md` for deprecation):**
+        -   Verified that `standards/COL-SYNTAX-MARKDOWN.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its atomic replacements.
+        -   No further modifications were needed to deprecate this file.
