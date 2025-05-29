@@ -1,140 +1,113 @@
 # generate_index.py
-# Core functionality for Standards Index Generator
+# Standards Index Generator with Schema Validation and Enhanced Reporting
 
 import json
 import os
 import datetime
-import yaml # Using PyYAML or ruamel.yaml
+import yaml 
+import jsonschema # For JSON schema validation
+from jsonschema import validate
 
-# Specifications:
-# 1. Input: Path to the /standards/src/ directory.
-# 2. Parsing: Read and parse YAML frontmatter from all .md files in the directory.
-# 3. Data Extraction: Extract key metadata.
-# 4. Output: Generate `standards_index.json` in a specified output directory.
-# 5. Schema: The output MUST conform to `standards_index.schema.json`.
+# Fields required by standards_index.schema.json for each standard entry
+# These must be present and non-null in the frontmatter for a standard to be indexed.
+INDEX_REQUIRED_FIELDS = [
+    "standard_id", "title", "primary_domain", "sub_domain", 
+    "info-type", "version", "status", "filepath", "date-modified"
+]
 
 def get_frontmatter_from_content(file_content):
-    """
-    Extracts YAML frontmatter string from file content.
-    Returns frontmatter_string or None if not found.
-    """
+    """Extracts YAML frontmatter string from file content."""
     lines = file_content.splitlines(True)
     if not lines or not lines[0].startswith("---"):
         return None
-
     fm_end_index = -1
     for i, line in enumerate(lines[1:], start=1):
         if line.startswith("---"):
             fm_end_index = i
             break
-    
-    if fm_end_index == -1:
-        return None
-        
+    if fm_end_index == -1: return None
     return "".join(lines[1:fm_end_index])
 
 def get_status_from_tags(tags_list):
-    """
-    Extracts status (e.g., 'draft') from a list of tags.
-    Example: "status/draft" -> "draft"
-    Returns the status string or None if no status tag is found.
-    """
-    if not isinstance(tags_list, list):
-        return None
+    """Extracts status (e.g., 'draft') from a list of tags."""
+    if not isinstance(tags_list, list): return None
     for tag in tags_list:
         if isinstance(tag, str) and tag.startswith("status/"):
             return tag.split("/", 1)[1]
-    return None
+    return None # If no status tag found
 
-def extract_metadata(filepath, file_content):
+def extract_metadata(filepath_rel_to_repo, file_content):
     """
-    Extracts specified metadata from the file's frontmatter.
-    filepath should be relative to the repository root.
+    Extracts metadata required for the index.
+    Returns a dictionary or None if essential data for schema compliance is missing or invalid.
     """
     frontmatter_str = get_frontmatter_from_content(file_content)
     if not frontmatter_str:
-        print(f"Warning: No frontmatter found in {filepath}. Skipping.")
-        return None
+        return None, "No frontmatter found"
 
     try:
         frontmatter_data = yaml.safe_load(frontmatter_str)
         if not isinstance(frontmatter_data, dict):
-            print(f"Warning: Frontmatter in {filepath} is not a valid dictionary. Skipping.")
-            return None
+            return None, "Frontmatter is not a valid dictionary"
     except yaml.YAMLError as e:
-        print(f"Warning: Invalid YAML syntax in frontmatter for {filepath}: {e}. Skipping.")
-        return None
+        return None, f"Invalid YAML in frontmatter: {e.problem}"
 
-    # Required fields for the index. If any of these are missing, we skip the file.
-    required_index_fields = ["standard_id", "title", "info-type", "version", "date-modified"]
+    metadata = {"filepath": filepath_rel_to_repo.replace(os.sep, '/')}
     
-    # Fields like primary_domain and sub_domain are required for standards, but might be
-    # missing in other general documents if this indexer were to process them.
-    # For now, we'll fetch them but not make them strictly required for a basic entry to exist.
-    # The JSON schema can enforce if they must always be present.
-    
-    standard_id = frontmatter_data.get("standard_id")
-    title = frontmatter_data.get("title")
+    direct_fields = ["standard_id", "title", "primary_domain", "sub_domain", 
+                     "info-type", "version", "date-modified"]
+    for field in direct_fields:
+        metadata[field] = frontmatter_data.get(field)
+        if isinstance(metadata[field], (int, float)) and field == "version":
+            metadata[field] = str(metadata[field])
 
-    if not standard_id or not title:
-        print(f"Warning: Missing 'standard_id' or 'title' in {filepath}. Skipping.")
-        return None
-
-    # Extract other fields, allowing for them to be potentially None if not present
-    # The JSON schema will ultimately determine if None is allowed for these non-core fields.
-    primary_domain = frontmatter_data.get("primary_domain")
-    sub_domain = frontmatter_data.get("sub_domain")
-    info_type = frontmatter_data.get("info-type")
-    version = frontmatter_data.get("version")
-    date_modified = frontmatter_data.get("date-modified")
-    
     tags = frontmatter_data.get("tags", [])
-    status = get_status_from_tags(tags)
+    metadata["status"] = get_status_from_tags(tags)
 
-    # Check if essential fields (for indexing logic) are present
-    if not all([info_type, version, date_modified, status is not None]):
-         print(f"Warning: Missing one or more of info-type, version, date-modified, or valid status tag in {filepath}. Skipping.")
-         return None
-
-
-    metadata = {
-        "standard_id": standard_id,
-        "title": title,
-        "primary_domain": primary_domain, # Can be None if not present
-        "sub_domain": sub_domain,       # Can be None if not present
-        "info-type": info_type,
-        "version": str(version), # Ensure version is string
-        "status": status,
-        "filepath": filepath.replace(os.sep, '/'), # Ensure POSIX paths relative to repo root
-        "date-modified": date_modified
-    }
-    
-    # Validate required fields are not None before returning for this iteration
-    for req_field in required_index_fields:
-        if metadata.get(req_field) is None:
-            print(f"Warning: Required field '{req_field}' ended up as None for {filepath} after extraction. Skipping.")
-            return None
+    # Check if all fields required by the index schema are present and not None
+    missing_or_empty_fields = []
+    for req_field in INDEX_REQUIRED_FIELDS:
+        if metadata.get(req_field) is None: # Also catches if key was missing from frontmatter_data
+            missing_or_empty_fields.append(req_field)
             
-    return metadata
+    if missing_or_empty_fields:
+        return None, f"Missing/empty required field(s) for index: {', '.join(missing_or_empty_fields)}"
+            
+    return metadata, None # metadata, error_reason
+
+def load_json_schema(schema_filepath_abs):
+    try:
+        with open(schema_filepath_abs, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"CRITICAL ERROR: JSON Schema file not found at {schema_filepath_abs}.")
+    except json.JSONDecodeError:
+        print(f"CRITICAL ERROR: Could not parse JSON Schema file at {schema_filepath_abs}.")
+    return None
 
 def main():
-    # Assuming script is run from the repository root.
-    # For SWE-bench, current working directory is /app (which is the repo root).
-    repo_base_dir = "." # Current directory is repo root
-
+    repo_base_dir = "." 
     standards_src_dir_rel = os.path.join("master-knowledge-base", "standards", "src")
-    standards_src_dir_abs = os.path.abspath(standards_src_dir_rel)
+    standards_src_dir_abs = os.path.abspath(os.path.join(repo_base_dir, standards_src_dir_rel))
     
     output_dir_rel = os.path.join("master-knowledge-base", "dist")
-    output_dir_abs = os.path.abspath(output_dir_rel)
+    output_dir_abs = os.path.abspath(os.path.join(repo_base_dir, output_dir_rel))
     
     output_file_rel = os.path.join(output_dir_rel, "standards_index.json")
     output_file_abs = os.path.abspath(output_file_rel)
+
+    schema_file_rel = os.path.join("master-knowledge-base", "tools", "indexer", "standards_index.schema.json")
+    schema_file_abs = os.path.abspath(os.path.join(repo_base_dir, schema_file_rel))
 
     if not os.path.isdir(standards_src_dir_abs):
         print(f"Error: Standards source directory not found at {standards_src_dir_abs}")
         return
     
+    index_schema = load_json_schema(schema_file_abs)
+    if not index_schema:
+        print("Exiting due to failure to load index schema.")
+        return
+
     index_data = {
         "schemaVersion": "1.0.0", 
         "generatedDate": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -142,39 +115,77 @@ def main():
     }
 
     print(f"Scanning for Markdown files in: {standards_src_dir_abs}...")
+    total_files_found = 0
+    files_indexed_count = 0
+    skipped_file_details = []
+
     for root, _, files in os.walk(standards_src_dir_abs):
         for file in files:
             if file.endswith(".md"):
+                total_files_found += 1
                 filepath_abs = os.path.join(root, file)
-                # Create filepath relative to repo_base_dir for the index
-                # Assumes repo_base_dir is a parent of filepath_abs
                 filepath_for_index = os.path.relpath(filepath_abs, start=os.path.abspath(repo_base_dir))
                 
+                file_content = ""
                 try:
                     with open(filepath_abs, 'r', encoding='utf-8') as f_content:
                         file_content = f_content.read()
-                    
-                    parsed_meta = extract_metadata(filepath_for_index, file_content)
-                    if parsed_meta:
-                        index_data["standards"].append(parsed_meta)
                 except Exception as e:
-                    print(f"Error processing file {filepath_abs}: {e}")
+                    reason = f"Error reading file: {e}"
+                    print(f"  SKIP: {filepath_for_index} ({reason})")
+                    skipped_file_details.append((filepath_for_index, reason))
+                    continue # Skip to next file
+                    
+                parsed_meta, reason = extract_metadata(filepath_for_index, file_content)
+                if parsed_meta:
+                    index_data["standards"].append(parsed_meta)
+                    files_indexed_count += 1
+                else:
+                    skipped_file_details.append((filepath_for_index, reason))
 
-    if not index_data["standards"]:
-        print("Warning: No standards were successfully indexed.")
-    else:
-        print(f"Successfully extracted metadata for {len(index_data['standards'])} standard(s).")
+    print(f"\n--- Index Generation Summary ---")
+    print(f"Total .md files found: {total_files_found}")
+    print(f"Successfully indexed: {files_indexed_count}")
+    skipped_count = len(skipped_file_details)
+    print(f"Skipped (due to errors/missing fields): {skipped_count}")
+    if skipped_file_details:
+        print("Skipped file details:")
+        for filepath, reason_text in skipped_file_details:
+            print(f"  - {filepath}: {reason_text}")
 
-    os.makedirs(output_dir_abs, exist_ok=True)
-    print(f"Writing index to: {output_file_abs}...")
+    # Validate generated index data against the schema
+    validation_passed = False
     try:
-        with open(output_file_abs, 'w', encoding='utf-8') as f:
-            json.dump(index_data, f, indent=2)
-        print(f"Successfully generated {output_file_rel}")
-    except IOError as e:
-        print(f"Error writing index file: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred during file writing: {e}")
+        validate(instance=index_data, schema=index_schema)
+        print("\nGenerated index successfully validated against schema.")
+        validation_passed = True
+    except jsonschema.ValidationError as ve: # More specific catch
+        print(f"\nERROR: Generated index is NOT VALID against schema {schema_file_rel}:")
+        # Show simplified error path and message
+        error_path = " -> ".join(str(p) for p in ve.path)
+        print(f"  Error Path: {error_path}")
+        print(f"  Error Message: {ve.message}")
+        # To get more details if needed:
+        # print(f"  Schema offending part: {ve.schema_path}")
+        # print(f"  Instance offending part: {ve.instance}")
+        print("Index will NOT be written due to schema validation errors.")
+    except Exception as e: 
+        print(f"\nERROR: An unexpected error occurred during JSON schema validation: {e}")
+        print("Index will NOT be written due to validation error.")
+
+    if validation_passed:
+        os.makedirs(output_dir_abs, exist_ok=True)
+        print(f"\nWriting index to: {output_file_abs}...")
+        try:
+            with open(output_file_abs, 'w', encoding='utf-8') as f:
+                json.dump(index_data, f, indent=2)
+            print(f"Successfully generated {output_file_rel}")
+        except IOError as e:
+            print(f"Error writing index file: {e}")
+        except Exception as e:
+            print(f"An unexpected error occurred during file writing: {e}")
+    else:
+        print("No index file written due to schema validation failures.")
 
 
 if __name__ == "__main__":
