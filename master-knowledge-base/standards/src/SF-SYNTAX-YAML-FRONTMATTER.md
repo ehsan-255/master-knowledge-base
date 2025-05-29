@@ -28,7 +28,7 @@ change_log_url: "./SF-SYNTAX-YAML-FRONTMATTER-changelog.md" # Placeholder
 
 This standard defines the mandatory YAML syntax conventions for frontmatter blocks used in all Markdown documents within the knowledge base. Adherence to these syntax rules is essential for ensuring reliable metadata parsing, supporting content validation, maintaining authoring consistency, and ensuring interoperability with various processing tools.
 
-While this standard governs the *syntax* of the YAML block itself, the *schema and content rules* for the frontmatter (e.g., allowed keys, specific value formats like ISO dates for `date-created`, mandatory fields) are defined in [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]]. File encoding (UTF-8 without BOM) and line endings (LF) are governed by [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]].
+While this standard governs the *syntax* of the YAML block itself, the *schema and content rules* for the frontmatter (e.g., allowed keys, specific value formats like ISO dates for `date-created`, mandatory fields) are defined in [[MT-SCHEMA-FRONTMATTER]]. File encoding (UTF-8 without BOM) and line endings (LF) are governed by [[SF-FORMATTING-FILE-HYGIENE]].
 
 ## 2. Core YAML Syntax Rules for Frontmatter
 
@@ -111,8 +111,8 @@ This section illustrates the start of the Markdown content, immediately followin
 This standard applies to the YAML frontmatter block of all Markdown documents within the knowledge base repository.
 
 ## 5. Cross-References
-- [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]] - Defines the schema, allowed keys, specific value formats, and overall content rules for frontmatter.
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - Defines file encoding (UTF-8 no BOM) and line ending (LF) requirements applicable to the entire file, including the frontmatter.
+- [[MT-SCHEMA-FRONTMATTER]] - Defines the schema, allowed keys, specific value formats, and overall content rules for frontmatter.
+- [[SF-FORMATTING-FILE-HYGIENE]] - Defines file encoding (UTF-8 no BOM) and line ending (LF) requirements applicable to the entire file, including the frontmatter.
 
 ---
 *This standard (SF-SYNTAX-YAML-FRONTMATTER) is based on rules 1.1 through 1.5 previously defined in M-SYNTAX-YAML-001 from COL-SYNTAX-MARKDOWN.md.*

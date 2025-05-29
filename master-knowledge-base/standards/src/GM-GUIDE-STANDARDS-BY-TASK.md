@@ -21,7 +21,7 @@ related-standards: [
     "CS-POLICY-KB-ROOT",
     "SF-CONVENTIONS-NAMING",
     "SF-SYNTAX-YAML-FRONTMATTER",
-    "U-METADATA-FRONTMATTER-RULES-001",
+    "MT-SCHEMA-FRONTMATTER",
     "MT-TAGGING-STRATEGY-POLICY",
     "MT-TAGS-IMPLEMENTATION",
     "CS-POLICY-SCOPE-INCLUSION",
@@ -43,7 +43,7 @@ related-standards: [
     "AS-SCHEMA-METHODOLOGY-DESCRIPTION",
     "AS-SCHEMA-CONCEPT-DEFINITION",
     "SF-FORMATTING-FILE-HYGIENE",
-    "U-KEYREF-SYNTAX-001",
+    "SF-SYNTAX-KEYREF",
     "SF-CONDITIONAL-SYNTAX-ATTRIBUTES",
     "CS-CONTENT-PROFILING-POLICY",
     "CS-LINKING-INTERNAL-POLICY",
@@ -69,7 +69,7 @@ related-standards: [
     "AS-STRUCTURE-ASSET-ORGANIZATION",
     "OM-POLICY-STANDARDS-GOVERNANCE",
     "MT-REGISTRY-TAG-GLOSSARY",
-    "U-KEYREF-MANAGEMENT-001",
+    "MT-KEYREF-MANAGEMENT",
     "UA-KEYDEFS-GLOBAL",
     "OM-VERSIONING-CHANGELOGS",
     "OM-POLICY-STANDARDS-DEPRECATION",
@@ -128,7 +128,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 -   `[[SF-SYNTAX-YAML-FRONTMATTER]]`: Markdown YAML Frontmatter.
     * Mandates YAML structure for `root.md` and any initial overview files.
     * *Task Priority Rationale*: Essential for metadata processing and tooling for foundational KB files.
--   `[[U-METADATA-FRONTMATTER-RULES-001]]`: Frontmatter Structure and Content Rules.
+-   `[[MT-SCHEMA-FRONTMATTER]]`: Frontmatter Structure and Content Rules.
     * Defines the canonical list of keys, order, and population rules for all frontmatter.
     * *Task Priority Rationale*: Critical for ensuring consistent and valid metadata from the outset.
 -   `[[MT-TAGGING-STRATEGY-POLICY]]`: Core Tagging Strategy.
@@ -188,7 +188,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 -   `[[SF-SYNTAX-YAML-FRONTMATTER]]`: Markdown YAML Frontmatter.
     * All new content files require correctly structured YAML for metadata.
     * *Task Priority Rationale*: Essential for metadata processing, discoverability, and status tracking.
--   `[[U-METADATA-FRONTMATTER-RULES-001]]`: Frontmatter Structure and Content Rules.
+-   `[[MT-SCHEMA-FRONTMATTER]]`: Frontmatter Structure and Content Rules.
     * Ensures the new document's frontmatter adheres to the canonical structure and rules.
     * *Task Priority Rationale*: Foundational for metadata consistency and validity.
 -   `[[MT-TAGGING-STRATEGY-POLICY]]`: Core Tagging Strategy.
@@ -215,7 +215,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 -   `[[SF-FORMATTING-FILE-HYGIENE]]`: File Hygiene.
     * Ensures LF line endings, no trailing whitespace, and single newline at EOF for the new file.
     * *Task Priority Rationale*: Critical for cross-platform compatibility and version control.
--   `[[U-KEYREF-SYNTAX-001]]`:
+-   `[[SF-SYNTAX-KEYREF]]`:
     * Defines the syntax for key-based referencing (keyrefs) in content.
     * *Task Priority Rationale*: Ensures authors use keyrefs correctly for maintainability and automation.
 -   `[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]`:
@@ -332,7 +332,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 -   `[[OM-VERSIONING-CHANGELOGS]]`: Versioning and Changelogs for Standard Files (if applying to content docs).
     * Update version number in YAML and add entry to changelog for significant revisions.
     * *Task Priority Rationale*: Tracks evolution of content, especially for important documents.
--   `[[U-KEYREF-SYNTAX-001]]`:
+-   `[[SF-SYNTAX-KEYREF]]`:
     * If edits involve keyrefs, ensures continued correct usage and maintainability.
     * *Task Priority Rationale*: Maintains automation compatibility and content integrity.
 -   `[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]`:
@@ -443,7 +443,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 -   `[[LLM-PROMPT-LIBRARY-001]]`:
     * Governs the management and use of versioned LLM prompt templates.
     * *Task Priority Rationale*: Ensures LLMs are prompted with tested, standards-aligned templates.
--   `[[U-KEYREF-SYNTAX-001]]` and `[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]`:
+-   `[[SF-SYNTAX-KEYREF]]` and `[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]`:
     * LLM prompts should instruct the use of keyrefs and conditional text where appropriate.
     * *Task Priority Rationale*: Maintains maintainability and profiling in LLM-generated content.
     * See also: `[[CS-CONTENT-PROFILING-POLICY]]`
@@ -493,7 +493,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 -   `[[MT-TAGGING-STRATEGY-POLICY]]`: Core Tagging Strategy.
     * Specifically, maintaining the `tag-glossary.md` (linked as `[[MT-REGISTRY-TAG-GLOSSARY]]`) if new global tags are officialized or existing ones change.
     * *Task Priority Rationale*: Keeps the master list of tags and their meanings current.
--   `[[U-KEYREF-MANAGEMENT-001]]`:
+-   `[[MT-KEYREF-MANAGEMENT]]`:
     * Governs the management and updating of `[[UA-KEYDEFS-GLOBAL]]`.
     * *Task Priority Rationale*: Ensures a single source of truth for keyrefs and triggers automation updates.
 

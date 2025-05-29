@@ -28,14 +28,14 @@ related-standards: [
     "SF-LINKS-INTERNAL-SYNTAX", 
     "MT-TAGGING-STRATEGY-POLICY", 
     "MT-REGISTRY-TAG-GLOSSARY",
-    "U-METADATA-FRONTMATTER-RULES-001",
+    "MT-SCHEMA-FRONTMATTER",
     "CS-POLICY-TONE-LANGUAGE",
     "SF-SYNTAX-HEADINGS",
     "SF-SYNTAX-LISTS",
     "SF-SYNTAX-LINKS-GENERAL",
     "UA-KEYDEFS-GLOBAL",
-    "U-KEYREF-SYNTAX-001",
-    "U-KEYREF-MANAGEMENT-001",
+    "SF-SYNTAX-KEYREF",
+    "MT-KEYREF-MANAGEMENT",
     "CS-CONTENT-PROFILING-POLICY",
     "SF-CONDITIONAL-SYNTAX-ATTRIBUTES",
     "AS-SCHEMA-METHODOLOGY-DESCRIPTION",
@@ -94,7 +94,7 @@ Our KB system utilizes a "Source-and-Render" model.
 ### 2.1 Navigating the Knowledge Bases
 -   **Master KB Directory:** Start at `[[AS-INDEX-KB-MASTER]]` to see a list of all available knowledge bases, their descriptions, and links to their main entry points.
 -   **KB Root Files:** Each individual KB (e.g., "Standards KB," "LLM Cookbook KB") has a `root.md` file (e.g., `[[AS-ROOT-STANDARDS-KB]]`) that serves as its master table of contents and entry point.
--   **Part Overview Files:** Larger KBs are divided into "Parts." Each Part typically has an `_overview.md` file (e.g., `[[PLACEHOLDER_KB_SPECIFIC_OVERVIEW]]`) that provides a table of contents for the chapters within that part.
+-   **Part Overview Files:** Larger KBs are divided into "Parts." Each Part typically has an `_overview.md` file that provides a table of contents for the chapters within that part.
 
 ### 2.2 Finding Relevant Standards
 -   **Standards KB Root:** The `[[AS-ROOT-STANDARDS-KB]]` provides a master table of contents for all universal and specific standards.
@@ -108,7 +108,7 @@ This section guides you through creating a typical content document.
 ### 3.1 Creating a New Content Document
 1.  **Choose a Template (Recommended):** Navigate to the `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]` and copy an appropriate template (e.g., `[[master-knowledge-base/templates/tpl-chapter-template.md|Chapter Template]]`) to your target KB location. 
 2.  **File Naming:** Name your new file according to `[[SF-CONVENTIONS-NAMING]]` (lowercase kebab-case, descriptive, optional numerical prefix for sequencing).
-3.  **Initial Frontmatter:** Populate all 10 canonical YAML frontmatter keys as defined in `[[U-METADATA-FRONTMATTER-RULES-001]]`. Pay close attention to `title`, `kb-id`, `content-type` tag, `info-type`, `status/draft` tag, and `topic/*` tags.
+3.  **Initial Frontmatter:** Populate all 10 canonical YAML frontmatter keys as defined in `[[MT-SCHEMA-FRONTMATTER]]`. Pay close attention to `title`, `kb-id`, `content-type` tag, `info-type`, `status/draft` tag, and `topic/*` tags.
 
 ### 3.2 Understanding and Applying Document Structure (`AS-STRUCTURE-DOC-CHAPTER`)
 All core content documents ("chapters") MUST follow `[[AS-STRUCTURE-DOC-CHAPTER]]`:
@@ -127,15 +127,15 @@ Adhere to `[[CS-POLICY-TONE-LANGUAGE]]`:
 -   Prefer active voice.
 
 ### 3.4 Essential Markdown Syntax
-Consistently use the following Markdown syntax as defined in `[[PLACEHOLDER_FOR_COL_SYNTAX_MARKDOWN_OVERVIEW_OR_RELEVANT_SF_STANDARDS]]`:
+Consistently use the following Markdown syntax as defined in `[[SF-FORMATTING-MARKDOWN-GENERAL]]`:
 -   Headings: `[[SF-SYNTAX-HEADINGS]]` (ATX style, single space, no skipped levels).
 -   Lists: `[[SF-SYNTAX-LISTS]]` (hyphen for unordered, `1.` for ordered, 2-space indent for nesting).
 -   Links: `[[SF-SYNTAX-LINKS-GENERAL]]` and Obsidian-specific `[[SF-LINKS-INTERNAL-SYNTAX]]`.
 
 ## 4. Metadata and Tagging (How-To Style)
 
-### 4.1 Populating Canonical Frontmatter (`U-METADATA-FRONTMATTER-RULES-001`)
-Every document requires YAML frontmatter with 10 canonical keys in a specific order. Refer to `[[U-METADATA-FRONTMATTER-RULES-001]]` for detailed rules on each key:
+### 4.1 Populating Canonical Frontmatter (`MT-SCHEMA-FRONTMATTER`)
+Every document requires YAML frontmatter with 10 canonical keys in a specific order. Refer to `[[MT-SCHEMA-FRONTMATTER]]` for detailed rules on each key:
 1.  `title`
 2.  `aliases`
 3.  `tags`
@@ -149,7 +149,7 @@ Every document requires YAML frontmatter with 10 canonical keys in a specific or
 
 ### 4.2 Understanding `info-type` vs. `content-type`
 -   **`content-type/*` (Tag):** A hierarchical tag for broad categorization, filtering, and navigation (e.g., `content-type/standard-document`). Values from `[[MT-REGISTRY-TAG-GLOSSARY]]`.
--   **`info-type` (YAML Key):** A specific, non-hierarchical kebab-case string mapping to a processing instruction or schema (e.g., `standard-document`). Critical for automation. Vocabulary in `[[U-METADATA-FRONTMATTER-RULES-001]]`.
+-   **`info-type` (YAML Key):** A specific, non-hierarchical kebab-case string mapping to a processing instruction or schema (e.g., `standard-document`). Critical for automation. Vocabulary in `[[MT-SCHEMA-FRONTMATTER]]`.
 
 ### 4.3 Applying Tags Effectively (`MT-TAGGING-STRATEGY-POLICY`)
 -   Tags are defined in YAML frontmatter under the `tags:` key.
@@ -163,10 +163,10 @@ Every document requires YAML frontmatter with 10 canonical keys in a specific or
 
 ## 5. Advanced Authoring Features (How-To Style)
 
-### 5.1 Using Keyrefs (`U-KEYREF-SYNTAX-001`)
+### 5.1 Using Keyrefs (`SF-SYNTAX-KEYREF`)
 -   Keyrefs allow you to insert reusable text snippets (e.g., product names, URLs) defined in `[[UA-KEYDEFS-GLOBAL]]`.
 -   Syntax: `{{key.yourKeyName}}` (e.g., `{{key.productName}}`).
--   Refer to `[[U-KEYREF-SYNTAX-001]]` and `[[U-KEYREF-MANAGEMENT-001]]`.
+-   Refer to `[[SF-SYNTAX-KEYREF]]` and `[[MT-KEYREF-MANAGEMENT]]`.
 
 ### 5.2 Implementing Conditional Content (`SF-CONDITIONAL-SYNTAX-ATTRIBUTES`)
 -   Mark text blocks for specific audiences or platforms using Obsidian callouts: `> [!IF attribute=value AND attribute2=value2]`.

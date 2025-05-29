@@ -73,6 +73,28 @@ This document defines the official tags used across all knowledge bases, their i
 - `content-type/reference-material`: Provides data or information for lookup.
 - `content-type/troubleshooting-guide`: Helps resolve issues.
 - `content-type/example-code`: Provides code examples.
+- `content-type/standard-definition`: For documents that define a standard.
+- `content-type/policy-document`: For documents that define a policy.
+- `content-type/guide-document`: For documents that provide guidance.
+- `content-type/glossary-document`: For documents that define terms (like this one).
+- `content-type/template-document`: For documents that serve as templates.
+- `content-type/registry-document`: For documents that act as registries.
+- `content-type/schema-document`: For documents that define a schema.
+
+### Criticality Tags (`criticality/*`)
+(Used for both the `tags` array and as the controlled vocabulary for the `criticality` field)
+- `criticality/P0-Critical`: Essential for system operation, core understanding, or carries significant regulatory/compliance implications. Failure to adhere poses immediate and severe risk.
+- `criticality/P1-High`: Important for system operation, key processes, or best practices. Failure to adhere poses a high risk of negative impact.
+- `criticality/P2-Medium`: Useful for consistency, best practices, or operational efficiency. Failure to adhere may lead to minor issues or inefficiencies.
+- `criticality/P3-Low`: Optional or advisory content. Non-adherence is unlikely to cause significant issues.
+- `criticality/P4-Informational`: Purely informational content with no direct operational impact.
+
+### Lifecycle Gatekeeper Tags (`lifecycle_gatekeeper/*`)
+(Used for both the `tags` array and as the controlled vocabulary for the `lifecycle_gatekeeper` field)
+- `lifecycle_gatekeeper/Architect-Review`: Requires review and approval by the architecture review board or designated architects.
+- `lifecycle_gatekeeper/Security-Team-Approval`: Requires review and approval by the security team.
+- `lifecycle_gatekeeper/Stakeholder-Review`: Requires review and approval by defined business or technical stakeholders.
+- `lifecycle_gatekeeper/No-Gatekeeper`: Lifecycle managed by the author or immediate team; no formal external gatekeeper.
 
 ### Standards KB Tags (`standards-kb/*`)
 - `standards-kb/core`: Core standards and meta-structure documents.
@@ -98,3 +120,7 @@ This document defines the official tags used across all knowledge bases, their i
 ### KB-Specific Tags
 - `research-methodology`: Used for the Research Methodology KB and related standards.
 - `llm-cookbook`: Used for the LLM Content Generation Cookbook KB and related standards.
+
+### Topic Tags (`topic/*`) - Additional from MT-SCHEMA-FRONTMATTER
+- `topic/frontmatter`: Documents related to YAML frontmatter.
+- `topic/schema`: Documents related to schema definitions.
