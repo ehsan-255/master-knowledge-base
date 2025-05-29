@@ -12,7 +12,7 @@ primary-topic: "TBD: Concise description of the document's main subject or purpo
 related-standards: [] # Optional: e.g., ["YY-ZZZZ-OTHER-STANDARD"]
 version: "0.1.0" # Initial version
 date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for ISO-8601 date-time
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for ISO-8601 date-time
+date-modified: "2025-05-29T16:30:41Z" # Updated
 primary_domain: "XX" # e.g., AS, CS, MT, SF, OM, GM, UA, QM. Mandatory for standards. Must exist in [[domain_codes.yaml]]
 sub_domain: "YYYY" # e.g., STRUCTURE, POLICY, MARKDOWN. Mandatory for standards. Must exist in [[subdomain_registry.yaml]]
 scope_application: "TBD: Define scope" # Mandatory. e.g., "All knowledge base documents"

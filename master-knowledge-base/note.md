@@ -174,5 +174,112 @@ Refactored Root and Navigational Files (Roadmap Step 2.4):
 **Recommendation:**
 A human reviewer should systematically go through all identified Standard/Policy pairs and other standalone standards (especially those in `AS`, `SF`, `MT` vs. `CS`, `OM`, `GM` domains) to ensure adherence to the Standard Definition (HOW/WHERE) vs. Policy Document (WHAT/WHEN/WHY) separation principle. Particular attention should be paid to ensuring policy documents articulate mandates and rationale, while definition documents focus on technical specifications and syntax.
 
+---
+**Update Summary (2025-05-29T16:30:41Z):**
+
+Finalized Template Files & Created README (Roadmap Task 3.1.1 & 3.1.2):
+
+1.  **`tpl-canonical-frontmatter.md`**:
+    *   Reviewed content. Internal links in comments (e.g., to `[[MT-REGISTRY-TAG-GLOSSARY]]`, `[[domain_codes.yaml]]`) are appropriate for their purpose.
+    *   Alignment with `[[MT-SCHEMA-FRONTMATTER]]` re-verified.
+    *   `date-modified` updated to `2025-05-29T16:30:41Z`.
+
+2.  **`/master-knowledge-base/standards/templates/README.md`**:
+    *   Created this new file.
+    *   Content explains the purpose of the templates directory, lists available templates (currently `tpl-canonical-frontmatter.md`), describes their purpose, and notes they should be kept aligned with core standards.
+
+**Note on Link Style Enforcement (Roadmap Task 3.2.1):**
+*   A full, systematic scan and enforcement of `[[STANDARD_ID]]` link styles across all documents will be more effectively performed once linting tools (Roadmap Step 8) are further developed or as part of a final system validation phase (Roadmap Step 10). Current refactoring efforts focus on updating known incorrect links and using the correct style in new/refactored documents.
+
+---
+**Update Summary (2025-05-29T16:30:41Z):**
+
+Develop Specifications and Python Skeletons for Linter and Indexer Tools (Roadmap Task 0.5):
+
+1.  **Linter - `kb_linter.py` & `README.md`**:
+    *   `/master-knowledge-base/tools/linter/kb_linter.py`: Overwritten with specified skeleton code including specifications for checks (frontmatter, file hygiene, key validation, link styles, etc.) and basic function structure.
+    *   `/master-knowledge-base/tools/linter/README.md`: Created, explaining the linter's purpose, planned features, and usage.
+
+2.  **Indexer - `generate_index.py` & `README.md`**:
+    *   `/master-knowledge-base/tools/indexer/generate_index.py`: Overwritten with specified skeleton code including specifications for metadata extraction (standard_id, title, domain, status, etc.) and outputting `standards_index.json`.
+    *   `/master-knowledge-base/tools/indexer/README.md`: Created, explaining the indexer's purpose.
+
+3.  **Indexer Schema - `standards_index.schema.json`**:
+    *   `/master-knowledge-base/tools/indexer/standards_index.schema.json`: Overwritten with the specified JSON schema defining the structure for `standards_index.json`.
+
+---
+**Update Summary (2025-05-29T16:30:41Z):**
+
+Design Specifications and Python Skeleton for Derived "Collection" View Generation (Roadmap Task 4.1):
+
+1.  **Collection View Generator - `generate_collections.py`**:
+    *   Created `/master-knowledge-base/tools/builder/generate_collections.py` with Python skeleton code.
+    *   Skeleton includes specifications for input (standards index, collection definitions), logic (filtering, content aggregation, ToC generation, link resolution), and output (Markdown collection files).
+    *   Basic function structure and example logic/simulation provided.
+
+2.  **README for Builder**:
+    *   Created `/master-knowledge-base/tools/builder/README.md`, explaining the purpose, planned features, and conceptual usage of the collection generator.
+
+3.  **Example Collection Definitions**:
+    *   Created `/master-knowledge-base/tools/builder/collection_definitions.yaml` with sample definitions for "Architecture & Structure Standards" and "Syntax & Formatting Standards" to guide development.
+
+---
+**Phase 4, Step 10: Full System Validation Planning (2025-05-29T16:30:41Z):**
+
+This section outlines the planned process for Full System Validation (Roadmap Task 5.1), which is crucial for ensuring the integrity, consistency, and functionality of the entire refactored knowledge base ecosystem.
+
+**A. Prerequisite Tool Completion:**
+The execution of full system validation is contingent upon the production-ready implementation of the following key automation tools:
+1.  **`kb_linter.py` (Linter - Roadmap Task 0.5.1):**
+    *   Must comprehensively parse all standards in `/master-knowledge-base/standards/src/`.
+    *   Must validate frontmatter against all rules in `[[MT-SCHEMA-FRONTMATTER]]` (key presence, order, data types, controlled vocabularies, regex patterns, ISO date formats, `change_log_url` checks).
+    *   Must validate YAML syntax against `[[SF-SYNTAX-YAML-FRONTMATTER]]`.
+    *   Must validate file hygiene (UTF-8 no BOM, LF line endings) against `[[SF-FORMATTING-FILE-HYGIENE]]`.
+    *   Must check for `[[STANDARD_ID]]` link styles and attempt to resolve/flag broken links using `standards_index.json`.
+    *   Must check that filenames (sans `.md`) match the `standard_id` field where applicable.
+    *   Must generate a comprehensive error/warning report.
+2.  **`generate_index.py` (Indexer - Roadmap Task 0.5.2):**
+    *   Must be production-ready, accurately parsing all standard documents and generating a complete and correct `standards_index.json` file as per `[[standards_index.schema.json]]`.
+3.  **`generate_collections.py` (Collection Builder - Roadmap Task 4.1):**
+    *   Must be production-ready, capable of parsing `collection_definitions.yaml` and generating all defined derived collection views with correct content aggregation, Table of Contents, and resolved internal links.
+
+**B. Validation Steps - Source File Validation (Roadmap Task 5.1.1):**
+1.  **Generate Index:** Execute the production-ready `generate_index.py` to ensure `standards_index.json` is current and accurate.
+2.  **Run Linter:** Execute the production-ready `kb_linter.py` across all Markdown files in `/master-knowledge-base/standards/src/` and any other relevant content directories (e.g., `/master-knowledge-base/standards/registry/` if Markdown files there are to be linted).
+3.  **Analyze Linter Report:**
+    *   All reported **errors** MUST be investigated and fixed.
+    *   All reported **warnings** SHOULD be reviewed and addressed to ensure best practices.
+4.  **Manual Spot-Checks:**
+    *   Select a diverse sample of 10-15 atomic standards.
+    *   Manually review for clarity, correctness of content, and proper adherence to the Standard Definition (HOW/WHERE) vs. Policy (WHAT/WHEN/WHY) separation principle. This follows up on the initial review preparation (Phase 2, Step 6).
+    *   Verify that cross-references (`related-standards` and in-text links) are logical and point to the correct current standards.
+
+**C. Validation Steps - Derived View Validation (Roadmap Task 5.1.2):**
+1.  **Generate Collections:** Execute the production-ready `generate_collections.py` to build all derived collection views defined in `collection_definitions.yaml`.
+2.  **Review Each Collection View:**
+    *   **Content Accuracy:** Confirm that the correct set of standards is included in each collection based on its definition.
+    *   **Structural Integrity:** Verify that each collection document has a working Table of Contents. Check that content from aggregated standards is presented clearly and in a logical order.
+    *   **Link Integrity:**
+        *   Links to standards *within the same collection* should function as internal anchor links.
+        *   Links to standards *not in the current collection* should either remain as `[[STANDARD_ID]]` (for later processing by a site generator) or be valid relative links to other generated collection files if such a linking scheme is implemented.
+    *   **Formatting & Readability:** Spot-check for major formatting issues or problems with readability that might have arisen during aggregation.
+
+**D. Validation Steps - Navigational Pathway Testing (Roadmap Task 5.1.3):**
+1.  **Master Navigation:**
+    *   Start from `[[AS-INDEX-KB-MASTER]]`. Verify links to individual Knowledge Base root files (e.g., `[[AS-ROOT-STANDARDS-KB]]`).
+2.  **KB-Level Navigation:**
+    *   From each KB root file (e.g., `[[AS-ROOT-STANDARDS-KB]]`), test links to its major sections, parts, or collections.
+3.  **Collection Navigation:**
+    *   Within generated collection views, test the generated Table of Contents links.
+4.  **Cross-Standard Linking:**
+    *   From a sample of atomic standards, test links in their `related-standards` frontmatter field and a few key in-text `[[STANDARD_ID]]` links to ensure they point to the correct current documents.
+5.  **Discoverability:**
+    *   Assess if key standards and policies are reasonably discoverable through the main navigational pathways.
+
+**Execution Note:**
+The actual *execution* of this Full System Validation is pending the full implementation and stabilization of the `kb_linter.py`, `generate_index.py`, and `generate_collections.py` tools. This plan will guide that future validation effort.
+
 **Immediate Next Step:**
-*   Finalize Template Files & Link Style Enforcement (Roadmap Phase 3, Step 7).
+*   Final Peer Review & System Documentation (Roadmap Phase 5, Step 11).
+
+[end of master-knowledge-base/note.md]
