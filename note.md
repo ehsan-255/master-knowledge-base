@@ -87,3 +87,32 @@ This file contains updates that were intended for `CONTRIBUTOR_GUIDE.md`. Due to
     -   **Task 1.3.2 (Mark `COL-GOVERNANCE-UNIVERSAL.md` for deprecation):**
         -   Verified that `standards/COL-GOVERNANCE-UNIVERSAL.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its atomic replacements.
         -   No further modifications were needed to deprecate this file.
+
+### Decision ID DECISION_002: Refactor KB Standards (Continued)
+
+**Phase 1: Atomic Decomposition, Splitting & Metadata Enrichment (In Progress)**
+
+-   **Step 1.4: Process `standards/COL-LINKING-UNIVERSAL.md`**
+    -   **Overall:** All concepts (U-INTERLINK-001, U-TAG-001, U-CITE-001, U-MODULAR-001, U-ACCESSIBILITY-001, U-ASSETS-001) from `COL-LINKING-UNIVERSAL.md` have been processed.
+    -   The collection file `standards/COL-LINKING-UNIVERSAL.md` is already marked as deprecated and correctly lists its atomic replacements.
+    -   Verification confirmed that the following atomic standards exist in `/master-knowledge-base/standards/src/` and accurately reflect the content of their corresponding concepts from the collection file, with tool-specific references appropriately generalized:
+        -   `SF-LINKS-INTERNAL-SYNTAX.md` and `CS-LINKING-INTERNAL-POLICY.md` (from U-INTERLINK-001)
+        -   `MT-TAGS-IMPLEMENTATION.md` and `MT-TAGGING-STRATEGY-POLICY.md` (from U-TAG-001)
+        -   `SF-FORMATTING-CITATIONS.md` (from U-CITE-001)
+        -   `SF-TRANSCLUSION-SYNTAX.md` and `CS-MODULARITY-TRANSCLUSION-POLICY.md` (from U-MODULAR-001)
+        -   `SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md` and `CS-POLICY-ACCESSIBILITY.md` (from U-ACCESSIBILITY-001)
+        -   `AS-STRUCTURE-ASSET-ORGANIZATION.md` (from U-ASSETS-001)
+    -   No new file creation or modifications were needed for these standards as part of this step.
+-   **Step 1.4: Process `standards/COL-LINKING-UNIVERSAL.md` (Continued)**
+    -   **Review of Roadmap Step 1.7 (Specific Merging/Refactoring Decisions) in context of COL-LINKING-UNIVERSAL and related concepts:**
+        -   Task 1.7.1 (Internal Linking): Verified `SF-LINKS-INTERNAL-SYNTAX.md` and `CS-LINKING-INTERNAL-POLICY.md` correctly refactor U-INTERLINK-001.
+        -   Task 1.7.2 (ToC): `SF-TOC-SYNTAX.md` was created and `CS-TOC-POLICY.md` verified (related to U-STRUC-002 from COL-ARCH-UNIVERSAL).
+        -   Task 1.7.3 (Part Overview): `AS-STRUCTURE-KB-PART.md` and `CS-POLICY-PART-OVERVIEW.md` verified (related to U-STRUC-001 from COL-ARCH-UNIVERSAL).
+        -   Task 1.7.4 (Transclusion): Verified `SF-TRANSCLUSION-SYNTAX.md` and `CS-MODULARITY-TRANSCLUSION-POLICY.md` correctly refactor U-MODULAR-001.
+        -   Task 1.7.5 (Callouts): Verified `SF-CALLOUTS-SYNTAX.md` and `CS-ADMONITIONS-POLICY.md` correctly implement requirements, generalizing from O-USAGE-CALLOUTS-001.
+        -   Task 1.7.6 (Tagging): Verified `MT-TAGS-IMPLEMENTATION.md` and `MT-TAGGING-STRATEGY-POLICY.md` correctly refactor U-TAG-001.
+        -   Task 1.7.7 (Conditional Text): Verified `SF-CALLOUTS-SYNTAX.md` (includes IF type), `SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md`, and `CS-CONTENT-PROFILING-POLICY.md` correctly implement requirements.
+        -   All sub-tasks of Roadmap Step 1.7 appear to be addressed by existing (and now verified or created) atomic standards.
+    -   **Task 1.4.2 (Mark `COL-LINKING-UNIVERSAL.md` for deprecation):**
+        -   Verified that `standards/COL-LINKING-UNIVERSAL.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its atomic replacements.
+        -   No further modifications were needed to deprecate this file.
