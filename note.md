@@ -68,3 +68,22 @@ This file contains updates that were intended for `CONTRIBUTOR_GUIDE.md`. Due to
     -   **Task 1.2.2 (Mark `COL-CONTENT-UNIVERSAL.md` for deprecation):**
         -   Verified that `standards/COL-CONTENT-UNIVERSAL.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body.
         -   No further modifications were needed to deprecate this file.
+-   **Step 1.3: Process `standards/COL-GOVERNANCE-UNIVERSAL.md`**
+    -   **Overall:** All concepts (U-VERSIONING-001, U-GOVERNANCE-001, U-DEPRECATION-001, U-ONBOARDING-001, U-GLOSSARY-001, U-TEMPLATES-DIR-001, U-FILEHYGIENE-001) from `COL-GOVERNANCE-UNIVERSAL.md` have been processed.
+    -   The collection file `standards/COL-GOVERNANCE-UNIVERSAL.md` is already marked as deprecated and correctly lists its atomic replacements.
+    -   Verification confirmed that the following atomic standards exist in `/master-knowledge-base/standards/src/` and accurately reflect the content of their corresponding concepts from the collection file:
+        -   `OM-VERSIONING-CHANGELOGS.md` (from U-VERSIONING-001)
+        -   `OM-POLICY-STANDARDS-GOVERNANCE.md` (from U-GOVERNANCE-001)
+        -   `OM-POLICY-STANDARDS-DEPRECATION.md` (from U-DEPRECATION-001)
+        -   `GM-MANDATE-KB-USAGE-GUIDE.md` (mandate derived from U-ONBOARDING-001)
+        -   `GM-MANDATE-STANDARDS-GLOSSARY.md` (mandate derived from U-GLOSSARY-001)
+        -   `AS-STRUCTURE-TEMPLATES-DIRECTORY.md` (from U-TEMPLATES-DIR-001)
+        -   `SF-FORMATTING-FILE-HYGIENE.md` (from U-FILEHYGIENE-001)
+    -   No new file creation or modifications were needed for these specific standards as part of this step.
+    -   **Note:** The actual guide document (`GM-GUIDE-KB-USAGE.md`) and glossary document (`GM-GLOSSARY-STANDARDS-TERMS.md`) are covered by later roadmap tasks (1.8.1 and 2.3.1 respectively) and will involve renaming/moving and updating existing files from the root `standards/` directory.
+-   **Step 1.3: Process `standards/COL-GOVERNANCE-UNIVERSAL.md` (Continued)**
+    -   **Review of Roadmap Step 1.7 (Specific Merging/Refactoring Decisions):**
+        -   No specific tasks from Roadmap Step 1.7 were found to directly overlap with or require further action based on the concepts within `COL-GOVERNANCE-UNIVERSAL.md`. The refactoring of this collection's concepts into their atomic counterparts (e.g., `OM-VERSIONING-CHANGELOGS`, `OM-POLICY-STANDARDS-GOVERNANCE`, etc.) was direct and did not involve complex merges with other old standards that are covered by Step 1.7.
+    -   **Task 1.3.2 (Mark `COL-GOVERNANCE-UNIVERSAL.md` for deprecation):**
+        -   Verified that `standards/COL-GOVERNANCE-UNIVERSAL.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its atomic replacements.
+        -   No further modifications were needed to deprecate this file.
