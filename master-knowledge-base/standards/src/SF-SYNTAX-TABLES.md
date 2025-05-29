@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown Table Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"] # For blank line rules around blocks
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules around blocks
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,7 +26,7 @@ change_log_url: "./SF-SYNTAX-TABLES-changelog.md" # Placeholder
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for creating tables to structure and present data within all knowledge base documents. Consistent and correct table syntax is essential for readability, clear data presentation, and reliable parsing by Markdown processors. Adherence to [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around block elements is also important for tables.
+This standard defines the mandatory Markdown syntax for creating tables to structure and present data within all knowledge base documents. Consistent and correct table syntax is essential for readability, clear data presentation, and reliable parsing by Markdown processors. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also important for tables.
 
 ## 2. Core Table Syntax Rules
 
@@ -84,7 +84,7 @@ Outer pipes (`|`) at the beginning and end of each row are optional in many Mark
 *   **Rationale:** Including outer pipes makes the table structure more explicit and visually organized in the raw Markdown text, reducing ambiguity.
 
 ### Rule 2.5: Blank Lines Around Tables
-A single blank line MUST precede and a single blank line MUST follow every table block to separate it from surrounding paragraphs or other block elements, as per [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]].
+A single blank line MUST precede and a single blank line MUST follow every table block to separate it from surrounding paragraphs or other block elements, as per [[SF-FORMATTING-FILE-HYGIENE]].
 *   **Rationale:** Ensures correct table parsing and rendering.
 
 ## 3. Illustrative Example (Comprehensive)
@@ -127,7 +127,7 @@ This is a paragraph after the table.
 This standard applies to all Markdown documents within the knowledge base repository where tabular data is presented.
 
 ## 7. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines around block elements like tables.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements like tables.
 
 ---
 *This standard (SF-SYNTAX-TABLES) is based on common Markdown table syntax conventions.*

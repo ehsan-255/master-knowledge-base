@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Document Chapter Structure"
-related-standards: ["CS-POLICY-DOC-CHAPTER-CONTENT", "SF-SYNTAX-HEADINGS_ID_PLACEHOLDER", "SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER"]
+related-standards: ["CS-POLICY-DOC-CHAPTER-CONTENT", "SF-SYNTAX-HEADINGS", "SF-LINKS-INTERNAL-SYNTAX"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -31,7 +31,7 @@ This standard defines the mandatory internal structure for primary content docum
 ### Rule 1.1: Single H1 Heading (Derived from U-STRUC-002, Rule 2.1)
 Every "Chapter" document MUST begin with an H1 heading, which serves as the document title. This MUST be the only H1 heading within the document.
 *   **Example:** `# My Chapter Title`
-*   **Notes:** This rule is fundamental for semantic structure and document parsing. Adherence to [[SF-SYNTAX-HEADINGS_ID_PLACEHOLDER]] is required.
+*   **Notes:** This rule is fundamental for semantic structure and document parsing. Adherence to [[SF-SYNTAX-HEADINGS]] is required.
 
 ### Rule 1.2: Topic Abstract (Derived from U-STRUC-002, Rule 2.2)
 An introductory "Topic Abstract," typically 1-3 paragraphs long, MUST immediately follow the H1 heading.
@@ -49,7 +49,7 @@ A Table of Contents (ToC) MUST follow the Topic Abstract. This ToC should link t
     ```
 *   **Notes:**
     *   Manual creation of the ToC or the use of a user's chosen authoring tool/plugin is acceptable. The key is the presence and accuracy of the ToC.
-    *   Links MUST use the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]].
+    *   Links MUST use the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX]].
 
 ### Rule 1.4: Concluding "Summary" Section (Derived from U-STRUC-002, Rule 2.6)
 A concluding section, typically titled "Summary" and formatted as an H2 heading, MUST be included at the end of the main content.
@@ -65,7 +65,7 @@ If relevant cross-references exist, a section titled "See Also" and formatted as
     - [[ANOTHER-RELEVANT-STANDARD_ID_PLACEHOLDER]]
     ```
 *   **Content:** This section should contain a list of links to related documents, standards, or sections that provide further context or information.
-*   **Notes:** Links MUST use the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]]. If no relevant cross-references exist, this section may be omitted.
+*   **Notes:** Links MUST use the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX]]. If no relevant cross-references exist, this section may be omitted.
 
 ## 2. Illustrative Example
 
@@ -102,9 +102,9 @@ This chapter provided an overview of research methodology, defined key terms, an
 
 ## 3. Cross-References
 - [[CS-POLICY-DOC-CHAPTER-CONTENT]] - Policy for content organization and heading usage within Chapters.
-- [[SF-SYNTAX-HEADINGS_ID_PLACEHOLDER]] - Standard for Markdown Heading Syntax.
-- [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] - Standard for Internal Linking Syntax.
-- [[U-FORMAT-NAMING_ID_PLACEHOLDER]] - File and Folder Naming Conventions (if relevant to chapter file naming).
+- [[SF-SYNTAX-HEADINGS]] - Standard for Markdown Heading Syntax.
+- [[SF-LINKS-INTERNAL-SYNTAX]] - Standard for Internal Linking Syntax.
+- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (if relevant to chapter file naming).
 
 ---
 *This standard (AS-STRUCTURE-DOC-CHAPTER) is based on rules 2.1, 2.2, 2.3, 2.6, and 2.7 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md.*

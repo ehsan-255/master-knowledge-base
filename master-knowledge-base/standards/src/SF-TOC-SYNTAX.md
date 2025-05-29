@@ -83,7 +83,7 @@ Authors should verify that ToC links correctly navigate to the intended sections
 - [[CS-TOC-POLICY]] - Policy regarding ToC mandate, content depth, and generation.
 - [[AS-STRUCTURE-DOC-CHAPTER]] - Defines the placement of ToCs within chapter documents.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Governs general internal link syntax.
-- [[SF-SYNTAX-HEADINGS_ID_PLACEHOLDER]] - Governs heading syntax, which impacts anchor generation.
+- [[SF-SYNTAX-HEADINGS]] - Governs heading syntax, which impacts anchor generation.
 
 ---
 *This standard (SF-TOC-SYNTAX) formalizes the Markdown structure for Tables of Contents, supporting policies outlined in CS-TOC-POLICY and structural requirements in AS-STRUCTURE-DOC-CHAPTER. It derives from examples and implicit requirements in U-STRUC-002.*

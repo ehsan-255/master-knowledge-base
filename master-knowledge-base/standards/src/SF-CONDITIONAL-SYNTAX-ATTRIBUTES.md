@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Conditional Attribute Syntax" # As per prompt
-related-standards: ["SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER", "CS-CONTENT-PROFILING-POLICY_ID_PLACEHOLDER"]
+related-standards: ["SF-CALLOUTS-SYNTAX", "CS-CONTENT-PROFILING-POLICY"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,9 +26,9 @@ change_log_url: "./SF-CONDITIONAL-SYNTAX-ATTRIBUTES-changelog.md" # Placeholder
 
 ## 1. Standard Statement
 
-This standard defines the specific syntax for the `condition` string used within `[!IF condition]` callout blocks. The general syntax for callouts, including the `[!IF ...]` type, is defined in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]]. This document focuses solely on the structure and format of the `condition` part itself. Adherence to this syntax is crucial for consistent parsing and application of content profiling rules.
+This standard defines the specific syntax for the `condition` string used within `[!IF condition]` callout blocks. The general syntax for callouts, including the `[!IF ...]` type, is defined in [[SF-CALLOUTS-SYNTAX]]. This document focuses solely on the structure and format of the `condition` part itself. Adherence to this syntax is crucial for consistent parsing and application of content profiling rules.
 
-The actual list of permissible attributes and their corresponding values for use in conditions is defined and managed by the [[CS-CONTENT-PROFILING-POLICY_ID_PLACEHOLDER]].
+The actual list of permissible attributes and their corresponding values for use in conditions is defined and managed by the [[CS-CONTENT-PROFILING-POLICY]].
 
 ## 2. Core Syntax Rules for Condition Strings
 
@@ -79,7 +79,7 @@ Attribute names and their assigned values MUST NOT contain spaces.
 
 ## 4. Management of Attributes and Values
 
-The list of approved profiling attributes (e.g., `audience`, `platform`) and their permissible values (e.g., `expert`, `novice` for `audience`) is defined and managed by the [[CS-CONTENT-PROFILING-POLICY_ID_PLACEHOLDER]]. This standard only defines the syntax for how these attribute-value pairs are expressed within a condition string.
+The list of approved profiling attributes (e.g., `audience`, `platform`) and their permissible values (e.g., `expert`, `novice` for `audience`) is defined and managed by the [[CS-CONTENT-PROFILING-POLICY]]. This standard only defines the syntax for how these attribute-value pairs are expressed within a condition string.
 
 ## 5. Importance of Consistent Condition Syntax
 
@@ -92,8 +92,8 @@ The list of approved profiling attributes (e.g., `audience`, `platform`) and the
 This standard applies to the condition string within all `[!IF condition]` callout blocks used in Markdown documents across the knowledge base.
 
 ## 7. Cross-References
-- [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]] - Defines the general syntax for callout blocks, including the `[!IF ...]` type.
-- [[CS-CONTENT-PROFILING-POLICY_ID_PLACEHOLDER]] - Defines the approved list of profiling attributes and their values, and the overall policy for content profiling.
+- [[SF-CALLOUTS-SYNTAX]] - Defines the general syntax for callout blocks, including the `[!IF ...]` type.
+- [[CS-CONTENT-PROFILING-POLICY]] - Defines the approved list of profiling attributes and their values, and the overall policy for content profiling.
 
 ---
 *This standard (SF-CONDITIONAL-SYNTAX-ATTRIBUTES) is based on rules 1.2 and 1.3 previously defined in M-CONDITIONAL-TEXT-SYNTAX-001.*

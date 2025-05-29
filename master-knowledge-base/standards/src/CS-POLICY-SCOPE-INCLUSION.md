@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Content Inclusion Principles"
-related-standards: ["CS-POLICY-SCOPE-EXCLUSION_ID_PLACEHOLDER", "U-CITE-001_ID_PLACEHOLDER"]
+related-standards: ["CS-POLICY-SCOPE-EXCLUSION", "SF-FORMATTING-CITATIONS", "AS-STRUCTURE-MASTER-KB-INDEX"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -32,14 +32,14 @@ This policy outlines the universal principles governing the inclusion of content
 
 ### Rule 2.1: Relevance to KB Scope (Derived from U-SCOPE-INCLUDE-001, Rule 1.1)
 All content included in any Knowledge Base (KB) MUST be directly relevant to the stated scope and purpose of that specific KB.
-*   **Guidance:** The scope and purpose of each KB are typically defined in its `root.md` file and its entry in the `kb-directory.md` (see [[AS-STRUCTURE-MASTER-KB-INDEX_ID_PLACEHOLDER]]). Content that falls outside this defined scope should not be included in that particular KB, though it may be relevant for a different KB.
+*   **Guidance:** The scope and purpose of each KB are typically defined in its `root.md` file and its entry in the `kb-directory.md` (see [[AS-STRUCTURE-MASTER-KB-INDEX]]). Content that falls outside this defined scope should not be included in that particular KB, though it may be relevant for a different KB.
 *   **Rationale:** This ensures that KBs remain focused and do not become diluted with irrelevant information, making it easier for users to find what they need.
 
 ### Rule 2.2: Verifiability and Citability (Derived from U-SCOPE-INCLUDE-001, Rule 1.2)
 Content MUST be verifiable or derived from citable sources for KBs that deal with factual information. For KBs focusing on conceptual or philosophical topics, content should be based on logical reasoning and established schools of thought.
 *   **Guidance:**
     *   Factual claims, data, and significant assertions should be supported by evidence.
-    *   Citations for external sources MUST adhere to [[U-CITE-001_ID_PLACEHOLDER]].
+    *   Citations for external sources MUST adhere to [[SF-FORMATTING-CITATIONS]].
 *   **Rationale:** Requiring verifiability and proper citation builds trust in the KB's content and allows users to explore source material for deeper understanding or validation.
 
 ### Rule 2.3: Focus on Actionable and Evergreen Knowledge (Derived from U-SCOPE-INCLUDE-001, Rule 1.3)
@@ -66,9 +66,9 @@ Upholding these content inclusion principles is vital for:
 This policy applies to all individuals involved in planning, creating, contributing, or curating content for any Knowledge Base within the repository.
 
 ## 5. Cross-References
-- [[CS-POLICY-SCOPE-EXCLUSION_ID_PLACEHOLDER]] - Policy detailing what content MUST NOT be included.
-- [[U-CITE-001_ID_PLACEHOLDER]] - Standard for Citing External Sources.
-- [[AS-STRUCTURE-MASTER-KB-INDEX_ID_PLACEHOLDER]] - For understanding how KB scope is documented.
+- [[CS-POLICY-SCOPE-EXCLUSION]] - Policy detailing what content MUST NOT be included.
+- [[SF-FORMATTING-CITATIONS]] - Standard for Citing External Sources.
+- [[AS-STRUCTURE-MASTER-KB-INDEX]] - For understanding how KB scope is documented.
 
 ---
 *This policy (CS-POLICY-SCOPE-INCLUSION) is based on rules 1.1 through 1.3 previously defined in U-SCOPE-INCLUDE-001 from COL-CONTENT-UNIVERSAL.md.*

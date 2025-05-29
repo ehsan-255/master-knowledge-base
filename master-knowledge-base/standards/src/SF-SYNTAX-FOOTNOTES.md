@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown Footnote Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"] # For blank line rules
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -28,7 +28,7 @@ change_log_url: "./SF-SYNTAX-FOOTNOTES-changelog.md" # Placeholder
 
 This standard defines the recommended syntax for creating footnotes within Markdown documents. Footnotes are used to provide supplementary information, explanations, or citations without disrupting the main flow of the text. While not part of the core CommonMark specification, footnote syntax is a common extension supported by many Markdown processors.
 
-Adherence to [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around block elements (like the footnote definition block) is also important.
+Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements (like the footnote definition block) is also important.
 
 ## 2. Core Footnote Syntax (Common Extension)
 
@@ -119,7 +119,7 @@ Here's a concept that requires some clarification.<sup>3</sup> We also need to c
 This standard applies to all Markdown documents within the knowledge base repository where footnotes are used for supplementary information, explanations, or citations.
 
 ## 7. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines around block elements like footnote definition blocks.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements like footnote definition blocks.
 
 ---
 *This standard (SF-SYNTAX-FOOTNOTES) is based on common Markdown extension syntax for footnotes.*

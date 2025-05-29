@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "File Hygiene and Line Endings" # As per prompt
-related-standards: ["U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER"]
+related-standards: ["U-METADATA-FRONTMATTER-RULES-001"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -30,10 +30,10 @@ This standard defines mandatory file hygiene and formatting rules for all text-b
 
 ## 2. Core File Hygiene Rules
 
-### Rule 2.1: UTF-8 Encoding (Consistent with [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]])
+### Rule 2.1: UTF-8 Encoding (Consistent with [[U-METADATA-FRONTMATTER-RULES-001]])
 All text-based files (e.g., `.md`, `.yaml`, `.json`, `.py`) MUST use **UTF-8 (Unicode Transformation Format—8-bit) encoding**.
 *   **Byte Order Mark (BOM):** A Byte Order Mark (BOM) MUST NOT be used at the beginning of files.
-*   **Rationale:** UTF-8 is a universal character encoding standard that supports a wide range of characters and symbols, ensuring broad compatibility. Avoiding BOM prevents potential issues with some tools and parsers, particularly in Unix-like environments. This rule aligns with the frontmatter encoding specified in [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]].
+*   **Rationale:** UTF-8 is a universal character encoding standard that supports a wide range of characters and symbols, ensuring broad compatibility. Avoiding BOM prevents potential issues with some tools and parsers, particularly in Unix-like environments. This rule aligns with the frontmatter encoding specified in [[U-METADATA-FRONTMATTER-RULES-001]].
 
 ### Rule 2.2: Line Feed (LF) Line Endings (Derived from U-FILEHYGIENE-001, Rule 1.1)
 All text-based files MUST use **Line Feed (LF) line endings (Unix-style)**.
@@ -76,7 +76,7 @@ Binary files (e.g., images, PDFs) are exempt from these specific rules (though t
 It is highly recommended to configure text editors and Integrated Development Environments (IDEs) to automatically enforce these file hygiene rules (e.g., by setting default line endings to LF, removing trailing whitespace on save, ensuring a final newline). Project-level configuration files like `.editorconfig` can also be used to help standardize these settings across different editors. Automated linters or pre-commit hooks may also be employed to check for and enforce compliance.
 
 ## 6. Cross-References
-- [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]] - For specific encoding rules related to YAML frontmatter.
+- [[U-METADATA-FRONTMATTER-RULES-001]] - For specific encoding rules related to YAML frontmatter.
 
 ---
 *This standard (SF-FORMATTING-FILE-HYGIENE) is based on rules 1.1 through 1.3 previously defined in U-FILEHYGIENE-001 from COL-GOVERNANCE-UNIVERSAL.md, and incorporates a general UTF-8 encoding rule.*

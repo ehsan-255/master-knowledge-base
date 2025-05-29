@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition" # Defines a standard for document structure
 primary-topic: "Schema for Methodology/Technique Descriptions"
-related-standards: ["AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER", "CS-POLICY-LAYERED-INFORMATION_ID_PLACEHOLDER"]
+related-standards: ["AS-STRUCTURE-DOC-CHAPTER", "CS-POLICY-LAYERED-INFORMATION"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -34,7 +34,7 @@ This schema MUST be applied to all documents that describe a specific methodolog
 
 ## 2. Mandatory Document Structure
 
-Documents following this schema MUST adhere to the general internal structure for "Chapters" as defined in [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]]. This includes:
+Documents following this schema MUST adhere to the general internal structure for "Chapters" as defined in [[AS-STRUCTURE-DOC-CHAPTER]]. This includes:
 
 ### Rule 2.1: H1 Title (Derived from U-SCHEMA-METHOD-001, Rule 1.2)
 The H1 title of the document MUST be the specific name of the methodology or technique being described.
@@ -42,11 +42,11 @@ The H1 title of the document MUST be the specific name of the methodology or tec
 
 ### Rule 2.2: Introductory Abstract (Derived from U-SCHEMA-METHOD-001, Rule 1.3)
 An introductory abstract that summarizes the method, its purpose, and key outcomes MUST be included immediately after the H1 title.
-*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] for details on abstract content.
+*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER]] for details on abstract content.
 
 ### Rule 2.3: Table of Contents (ToC) (Derived from U-SCHEMA-METHOD-001, Rule 1.4)
 A Table of Contents (ToC) MUST follow the abstract, linking to all H2 sections and significant H3 sections.
-*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] for ToC requirements.
+*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER]] for ToC requirements.
 
 ## 3. Required Sections (H2 Level) (Derived from U-SCHEMA-METHOD-001, Rule 1.5)
 
@@ -148,13 +148,13 @@ To identify, appraise, and synthesize all relevant studies on a particular topic
 (Summary of the systematic literature review process...)
 
 ## See Also
-- [[CS-POLICY-LAYERED-INFORMATION_ID_PLACEHOLDER]]
-- [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]]
+- [[CS-POLICY-LAYERED-INFORMATION]]
+- [[AS-STRUCTURE-DOC-CHAPTER]]
 ```
 
 ## 6. Cross-References
-- [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] - For general chapter structure requirements (H1, abstract, ToC, summary, see also).
-- [[CS-POLICY-LAYERED-INFORMATION_ID_PLACEHOLDER]] - For principles of presenting information from general to specific.
+- [[AS-STRUCTURE-DOC-CHAPTER]] - For general chapter structure requirements (H1, abstract, ToC, summary, see also).
+- [[CS-POLICY-LAYERED-INFORMATION]] - For principles of presenting information from general to specific.
 
 ---
 *This standard (AS-SCHEMA-METHODOLOGY-DESCRIPTION) is based on rules 1.1 through 1.7 previously defined in U-SCHEMA-METHOD-001 from COL-CONTENT-UNIVERSAL.md.*

@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Content Profiling Strategy" # As per prompt
-related-standards: ["SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER", "SF-CONDITIONAL-SYNTAX-ATTRIBUTES_ID_PLACEHOLDER"]
+related-standards: ["SF-CALLOUTS-SYNTAX", "SF-CONDITIONAL-SYNTAX-ATTRIBUTES"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -39,22 +39,22 @@ Content profiling and conditional text serve several key purposes:
 ## 3. Implementation of Conditional Text
 
 ### Rule 3.1: Use of `[!IF condition]` Callouts (Derived from M-CONDITIONAL-TEXT-SYNTAX-001, Rule 1.1)
-Conditional text blocks MUST be implemented using the `[!IF condition]` callout syntax as defined in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]].
+Conditional text blocks MUST be implemented using the `[!IF condition]` callout syntax as defined in [[SF-CALLOUTS-SYNTAX]].
 *   **Syntax Reminder:** `> [!IF condition]`
 *   **Rationale:** Provides a standardized and visually distinct way to mark conditional content.
 
 ### Rule 3.2: Condition String Syntax
-The `condition` string within the `[!IF condition]` callout MUST adhere to the syntax defined in [[SF-CONDITIONAL-SYNTAX-ATTRIBUTES_ID_PLACEHOLDER]].
+The `condition` string within the `[!IF condition]` callout MUST adhere to the syntax defined in [[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]].
 *   **Syntax Reminder:** Conditions are `attribute=value` pairs, combinable with `AND` (case-insensitive). `OR` logic requires separate blocks. Attribute names and values must not contain spaces; values should use kebab-case for multiple words.
 *   **Rationale:** Ensures conditions are parsable and consistently interpreted.
 
 ### Rule 3.3: Content Indentation and Structure (Derived from M-CONDITIONAL-TEXT-SYNTAX-001, Rules 1.4 & 1.5)
-All content that is conditional upon the `IF` statement MUST be correctly indented under the callout, following standard callout content rules as specified in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]].
+All content that is conditional upon the `IF` statement MUST be correctly indented under the callout, following standard callout content rules as specified in [[SF-CALLOUTS-SYNTAX]].
 *   **Guidance:** Conditional blocks can span multiple paragraphs, lists, or other Markdown elements, as long as each line of the conditional content starts with the callout marker (`> `) and appropriate indentation for nested elements within the callout.
 *   **Rationale:** Ensures correct rendering and association of content with its condition.
 
 ### Rule 3.4: Blank Lines Around Conditional Blocks (Derived from M-CONDITIONAL-TEXT-SYNTAX-001, Rule 1.6)
-A blank line SHOULD precede and follow a conditional block for readability, unless it is immediately followed by another related conditional block (e.g., a series of mutually exclusive conditions). This aligns with [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]].
+A blank line SHOULD precede and follow a conditional block for readability, unless it is immediately followed by another related conditional block (e.g., a series of mutually exclusive conditions). This aligns with [[SF-FORMATTING-FILE-HYGIENE]].
 *   **Rationale:** Improves visual separation and parsing reliability.
 
 ## 4. Profiling Attributes and Values (Authoritative Source)
@@ -95,7 +95,7 @@ The following attributes and example values are initially approved for use. Valu
 ### Rule 4.2: Process for Managing Attributes and Values
 *   **Proposal:** New attributes or values, or changes to existing ones, MUST be proposed to the designated governance body (e.g., Editorial Board, Standards Committee).
 *   **Review:** Proposals will be reviewed for clarity, necessity, potential overlap, and impact on the overall profiling strategy.
-*   **Approval & Documentation:** Approved attributes and values will be formally added to this policy document (Rule 4.1). Changes to this section MUST follow the standard versioning and changelog process for this policy document itself, as defined in [[OM-VERSIONING-CHANGELOGS_ID_PLACEHOLDER]].
+*   **Approval & Documentation:** Approved attributes and values will be formally added to this policy document (Rule 4.1). Changes to this section MUST follow the standard versioning and changelog process for this policy document itself, as defined in [[OM-VERSIONING-CHANGELOGS]].
 *   **Rationale:** Ensures that the set of profiling attributes and values remains controlled, consistent, and aligned with the evolving needs of the knowledge base.
 
 ## 5. Illustrative Examples of Conditional Text Usage
@@ -145,9 +145,9 @@ To install the software:
 This policy applies to all content within the knowledge base where conditional text is used for profiling or selective display. All authors and editors MUST adhere to this policy when implementing conditional content.
 
 ## 8. Cross-References
-- [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]] - Defines the general syntax for callout blocks, including the `[!IF ...]` type.
-- [[SF-CONDITIONAL-SYNTAX-ATTRIBUTES_ID_PLACEHOLDER]] - Defines the specific syntax for the condition string within `[!IF ...]` callouts.
-- [[OM-VERSIONING-CHANGELOGS_ID_PLACEHOLDER]] - For versioning this policy document when attributes/values are updated.
+- [[SF-CALLOUTS-SYNTAX]] - Defines the general syntax for callout blocks, including the `[!IF ...]` type.
+- [[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]] - Defines the specific syntax for the condition string within `[!IF ...]` callouts.
+- [[OM-VERSIONING-CHANGELOGS]] - For versioning this policy document when attributes/values are updated.
 
 ---
 *This policy (CS-CONTENT-PROFILING-POLICY) is based on rules 1.1, 1.4, 1.5, and 1.6 previously defined in M-CONDITIONAL-TEXT-SYNTAX-001. It also establishes itself as the new authoritative source for profiling attributes and values, superseding U-PROFILING-ATTRIBUTES-001.*

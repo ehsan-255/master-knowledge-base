@@ -10,10 +10,10 @@ kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Content Modularity and Transclusion" # As per prompt
 related-standards: [
-  "SF-TRANSCLUSION-SYNTAX_ID_PLACEHOLDER",
-  "AS-SCHEMA-METHODOLOGY-DESCRIPTION_ID_PLACEHOLDER",
-  "AS-SCHEMA-CONCEPT-DEFINITION_ID_PLACEHOLDER",
-  "CS-LINKING-INTERNAL-POLICY_ID_PLACEHOLDER"
+  "SF-TRANSCLUSION-SYNTAX",
+  "AS-SCHEMA-METHODOLOGY-DESCRIPTION",
+  "AS-SCHEMA-CONCEPT-DEFINITION",
+  "CS-LINKING-INTERNAL-POLICY"
 ]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
@@ -31,7 +31,7 @@ change_log_url: "./CS-MODULARITY-TRANSCLUSION-POLICY-changelog.md" # Placeholder
 
 ## 1. Policy Statement
 
-This policy promotes the design of content for modularity and governs the appropriate use of transclusion (content embedding) as defined in [[SF-TRANSCLUSION-SYNTAX_ID_PLACEHOLDER]]. The goal is to foster content reusability, improve maintainability, ensure consistency, and adhere to the "Don't Repeat Yourself" (DRY) principle.
+This policy promotes the design of content for modularity and governs the appropriate use of transclusion (content embedding) as defined in [[SF-TRANSCLUSION-SYNTAX]]. The goal is to foster content reusability, improve maintainability, ensure consistency, and adhere to the "Don't Repeat Yourself" (DRY) principle.
 
 ## 2. Core Policies for Modularity and Transclusion
 
@@ -39,12 +39,12 @@ This policy promotes the design of content for modularity and governs the approp
 Content pertaining to distinct concepts, methodologies, processes, or key steps SHOULD be designed to be as atomic and self-contained as possible.
 *   **Guidance:**
     *   Each document or major section should focus on a specific, well-defined topic.
-    *   Minimize "context bleeding" from unrelated surrounding topics within the same content chunk. If context from other documents is needed, prefer linking using [[CS-LINKING-INTERNAL-POLICY_ID_PLACEHOLDER]] rather than extensive repetition.
-    *   This aligns with the principles behind specific content schemas like [[AS-SCHEMA-METHODOLOGY-DESCRIPTION_ID_PLACEHOLDER]] and [[AS-SCHEMA-CONCEPT-DEFINITION_ID_PLACEHOLDER]], which encourage focused content.
+    *   Minimize "context bleeding" from unrelated surrounding topics within the same content chunk. If context from other documents is needed, prefer linking using [[CS-LINKING-INTERNAL-POLICY]] rather than extensive repetition.
+    *   This aligns with the principles behind specific content schemas like [[AS-SCHEMA-METHODOLOGY-DESCRIPTION]] and [[AS-SCHEMA-CONCEPT-DEFINITION]], which encourage focused content.
 *   **Rationale:** Atomic content is easier to understand in isolation, reuse in different contexts (including via transclusion), and maintain independently.
 
 ### Rule 2.2: Use Transclusion to Avoid Duplication (Derived from U-MODULAR-001, Rule 1.2)
-Transclusion, using the syntax defined in [[SF-TRANSCLUSION-SYNTAX_ID_PLACEHOLDER]], MUST be used instead of duplicating substantial, identical blocks of common content across multiple documents.
+Transclusion, using the syntax defined in [[SF-TRANSCLUSION-SYNTAX]], MUST be used instead of duplicating substantial, identical blocks of common content across multiple documents.
 *   **Examples of "substantial common content":**
     *   Sets of core principles applicable to multiple methodologies.
     *   Standard disclaimers, warnings, or introductory paragraphs.
@@ -57,14 +57,14 @@ Transclusion, using the syntax defined in [[SF-TRANSCLUSION-SYNTAX_ID_PLACEHOLDE
 Choosing between transclusion and simple linking requires judgment. Here are some guidelines:
 
 ### Rule 3.1: Linking for Contextual Navigation
-Use standard internal links (see [[CS-LINKING-INTERNAL-POLICY_ID_PLACEHOLDER]]) when:
+Use standard internal links (see [[CS-LINKING-INTERNAL-POLICY]]) when:
 *   Referring to a related but distinct topic that the user might want to explore for more comprehensive understanding.
 *   Pointing to prerequisite knowledge or subsequent steps in a larger workflow.
 *   The referenced content is substantial enough to be its own document or major section, and embedding it would disrupt the flow of the current document.
 *   **Example:** A document on "Advanced Data Analysis" might link to a document defining "Statistical Significance" rather than transcluding the entire definition.
 
 ### Rule 3.2: Transclusion for Seamless Integration of Reusable Content
-Use transclusion (see [[SF-TRANSCLUSION-SYNTAX_ID_PLACEHOLDER]]) when:
+Use transclusion (see [[SF-TRANSCLUSION-SYNTAX]]) when:
 *   A specific, relatively small piece of content (e.g., a definition, a set of principles, a specific instruction set, a warning notice) needs to appear *as if it's part of the current document* for clarity or completeness.
 *   The transcluded content is truly identical and intended to be reused verbatim in multiple locations.
 *   The flow of the current document benefits from having that piece of information directly embedded, rather than requiring the user to navigate away.
@@ -88,11 +88,11 @@ While transclusion is powerful for reuse, overuse can lead to documents that are
 This policy applies to all content creators and editors within the knowledge base. It guides decisions on how to structure content for reusability and when to employ transclusion.
 
 ## 6. Cross-References
-- [[SF-TRANSCLUSION-SYNTAX_ID_PLACEHOLDER]] - Defines the syntax for embedding content.
-- [[CS-LINKING-INTERNAL-POLICY_ID_PLACEHOLDER]] - Policy for general internal linking.
-- [[AS-SCHEMA-METHODOLOGY-DESCRIPTION_ID_PLACEHOLDER]] - Example of a content type that can benefit from modular design.
-- [[AS-SCHEMA-CONCEPT-DEFINITION_ID_PLACEHOLDER]] - Another example of a content type that can be designed for modularity.
+- [[SF-TRANSCLUSION-SYNTAX]] - Defines the syntax for embedding content.
+- [[CS-LINKING-INTERNAL-POLICY]] - Policy for general internal linking.
+- [[AS-SCHEMA-METHODOLOGY-DESCRIPTION]] - Example of a content type that can benefit from modular design.
+- [[AS-SCHEMA-CONCEPT-DEFINITION]] - Another example of a content type that can be designed for modularity.
 
 ---
-*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 from COL-LINKING-UNIVERSAL.md, and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX_ID_PLACEHOLDER]].*
+*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 from COL-LINKING-UNIVERSAL.md, and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX]].*
 ```

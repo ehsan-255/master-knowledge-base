@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "General Markdown Link Syntax" # As per prompt
-related-standards: ["SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER", "CS-LINKING-INTERNAL-POLICY_ID_PLACEHOLDER"]
+related-standards: ["SF-LINKS-INTERNAL-SYNTAX", "CS-LINKING-INTERNAL-POLICY", "AS-STRUCTURE-ASSET-ORGANIZATION"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,7 +26,7 @@ change_log_url: "./SF-SYNTAX-LINKS-GENERAL-changelog.md" # Placeholder
 
 ## 1. Standard Statement
 
-This standard defines the general Markdown syntax for creating hyperlinks, primarily focusing on external links and internal links using relative paths (e.g., to assets or non-standard documents). It complements [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]], which specifically governs the `[[STANDARD_ID]]` syntax for linking between standard documents. Adherence to these syntactical rules is essential for link integrity, readability, and consistent parsing.
+This standard defines the general Markdown syntax for creating hyperlinks, primarily focusing on external links and internal links using relative paths (e.g., to assets or non-standard documents). It complements [[SF-LINKS-INTERNAL-SYNTAX]], which specifically governs the `[[STANDARD_ID]]` syntax for linking between standard documents. Adherence to these syntactical rules is essential for link integrity, readability, and consistent parsing.
 
 ## 2. Core Link Syntax Rules
 
@@ -54,7 +54,7 @@ Internal links to non-standard documents (e.g., supplementary materials not gove
     ```markdown
     Refer to the [detailed setup guide](./supplementary-docs/detailed-setup.md).
     ```
-*   **Important Distinction for Standard Documents:** For linking *between standard documents* (i.e., documents that have a `standard_id`), the mandatory convention is `[[STANDARD_ID]]` as defined in [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]]. The relative path method described here is NOT for linking standard documents to each other.
+*   **Important Distinction for Standard Documents:** For linking *between standard documents* (i.e., documents that have a `standard_id`), the mandatory convention is `[[STANDARD_ID]]` as defined in [[SF-LINKS-INTERNAL-SYNTAX]]. The relative path method described here is NOT for linking standard documents to each other.
 *   **Rationale:** Relative paths provide a robust way to link to local files within the repository structure, ensuring links remain valid as long as the relative positions of files are maintained.
 
 ### Rule 2.3: Prohibition of Reference-Style Links (Derived from M-SYNTAX-LINKS-001, Rule 1.3)
@@ -75,7 +75,7 @@ To display a raw URL or email address as a clickable link, it MUST be enclosed i
 
 ## 3. Link Display Text (General Guidance)
 
-While [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] provides specific guidance on display text for `[[STANDARD_ID]]` links (Rule 1.5 from M-SYNTAX-LINKS-001 regarding no escaping pipes for `[[STANDARD_ID|Display Text]]` is best suited there), the general principle of descriptive link text applies to all links created using the syntax in this standard:
+While [[SF-LINKS-INTERNAL-SYNTAX]] provides specific guidance on display text for `[[STANDARD_ID]]` links (Rule 1.5 from M-SYNTAX-LINKS-001 regarding no escaping pipes for `[[STANDARD_ID|Display Text]]` is best suited there), the general principle of descriptive link text applies to all links created using the syntax in this standard:
 *   Link display text SHOULD clearly indicate the content or purpose of the link's destination.
 *   Avoid generic link text like "click here" or "more info."
 
@@ -88,13 +88,13 @@ While [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] provides specific guidance on 
 
 ## 5. Scope of Application
 
-This standard applies to all Markdown documents within the knowledge base repository when creating external links or internal links to non-standard documents or assets using relative paths. For linking between standard documents, [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] MUST be followed.
+This standard applies to all Markdown documents within the knowledge base repository when creating external links or internal links to non-standard documents or assets using relative paths. For linking between standard documents, [[SF-LINKS-INTERNAL-SYNTAX]] MUST be followed.
 
 ## 6. Cross-References
-- [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] - Defines the mandatory `[[STANDARD_ID]]` syntax for linking between standard documents.
-- [[CS-LINKING-INTERNAL-POLICY_ID_PLACEHOLDER]] - Outlines the strategy and best practices for internal linking.
-- [[AS-STRUCTURE-ASSET-ORGANIZATION_ID_PLACEHOLDER]] - For guidance on organizing and linking to assets.
+- [[SF-LINKS-INTERNAL-SYNTAX]] - Defines the mandatory `[[STANDARD_ID]]` syntax for linking between standard documents.
+- [[CS-LINKING-INTERNAL-POLICY]] - Outlines the strategy and best practices for internal linking.
+- [[AS-STRUCTURE-ASSET-ORGANIZATION]] - For guidance on organizing and linking to assets.
 
 ---
-*This standard (SF-SYNTAX-LINKS-GENERAL) is based on rules 1.1 (partially), 1.2, 1.3, and 1.4 previously defined in M-SYNTAX-LINKS-001 from COL-SYNTAX-MARKDOWN.md. It clarifies the use of relative path Markdown links for non-standard documents/assets and defers standard-to-standard linking to [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]]. Rule 1.5 regarding pipe escaping is primarily relevant to the wikilink/STANDARD_ID syntax.*
+*This standard (SF-SYNTAX-LINKS-GENERAL) is based on rules 1.1 (partially), 1.2, 1.3, and 1.4 previously defined in M-SYNTAX-LINKS-001 from COL-SYNTAX-MARKDOWN.md. It clarifies the use of relative path Markdown links for non-standard documents/assets and defers standard-to-standard linking to [[SF-LINKS-INTERNAL-SYNTAX]]. Rule 1.5 regarding pipe escaping is primarily relevant to the wikilink/STANDARD_ID syntax.*
 ```

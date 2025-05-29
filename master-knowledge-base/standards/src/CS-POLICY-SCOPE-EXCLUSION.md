@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Content Exclusion Principles"
-related-standards: ["CS-POLICY-SCOPE-INCLUSION_ID_PLACEHOLDER"]
+related-standards: ["CS-POLICY-SCOPE-INCLUSION", "SF-FORMATTING-CITATIONS", "SF-LINKS-INTERNAL-SYNTAX"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -44,13 +44,13 @@ Sensitive Personally Identifiable Information (PII) MUST NOT be included in publ
 ### Rule 2.3: Respect for Intellectual Property (Derived from U-SCOPE-EXCLUDE-001, Rule 1.3)
 Proprietary information, copyrighted material, or other intellectual property from third parties to which the organization does not hold explicit rights or a valid license for use and distribution within the KB MUST NOT be included.
 *   **Guidance:** This includes verbatim copying of large text sections from copyrighted books, articles, or websites; use of unlicensed images, software code, or trade secrets.
-*   **Alternative:** Instead of copying, summarize and cite the original source according to [[U-CITE-001_ID_PLACEHOLDER]].
+*   **Alternative:** Instead of copying, summarize and cite the original source according to [[SF-FORMATTING-CITATIONS]].
 *   **Rationale:** Ensures legal compliance with copyright laws and respects the intellectual property rights of others.
 
 ### Rule 2.4: Avoidance of Unnecessary Redundancy (Derived from U-SCOPE-EXCLUDE-001, Rule 1.4)
 Redundant information that is already well-covered and adequately explained elsewhere within the *same Knowledge Base section or its direct conceptual hierarchy* MUST NOT be included if it does not add significant new value, perspective, or context.
 *   **Guidance:**
-    *   Prefer linking to the authoritative source of the information within the KB using [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]].
+    *   Prefer linking to the authoritative source of the information within the KB using [[SF-LINKS-INTERNAL-SYNTAX]].
     *   This rule does not prohibit summaries or syntheses that draw upon multiple sources to create new insights, but rather discourages simple repetition of existing content.
 *   **Rationale:** Improves maintainability (updates only need to happen in one place), reduces KB clutter, and ensures users are directed to the most current and authoritative information on a topic.
 
@@ -70,9 +70,9 @@ Strict adherence to these content exclusion principles is critical for:
 This policy applies to all individuals involved in planning, creating, contributing, curating, or reviewing content for any Knowledge Base within the repository.
 
 ## 5. Cross-References
-- [[CS-POLICY-SCOPE-INCLUSION_ID_PLACEHOLDER]] - Policy detailing what content SHOULD be included.
-- [[U-CITE-001_ID_PLACEHOLDER]] - Standard for Citing External Sources (relevant for avoiding IP issues).
-- [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] - Standard for Internal Linking Syntax (relevant for avoiding redundancy).
+- [[CS-POLICY-SCOPE-INCLUSION]] - Policy detailing what content SHOULD be included.
+- [[SF-FORMATTING-CITATIONS]] - Standard for Citing External Sources (relevant for avoiding IP issues).
+- [[SF-LINKS-INTERNAL-SYNTAX]] - Standard for Internal Linking Syntax (relevant for avoiding redundancy).
 
 ---
 *This policy (CS-POLICY-SCOPE-EXCLUSION) is based on rules 1.1 through 1.4 previously defined in U-SCOPE-EXCLUDE-001 from COL-CONTENT-UNIVERSAL.md.*

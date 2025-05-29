@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "General Markdown Formatting" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"]
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,7 +26,7 @@ change_log_url: "./SF-FORMATTING-MARKDOWN-GENERAL-changelog.md" # Placeholder
 
 ## 1. Standard Statement
 
-This standard defines general Markdown formatting conventions for paragraphs, line breaks, horizontal rules, and the use of blank lines. Adherence to these conventions is important for ensuring the readability, consistency, and correct parsing of Markdown documents across the knowledge base. These rules complement the file-level hygiene rules defined in [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]].
+This standard defines general Markdown formatting conventions for paragraphs, line breaks, horizontal rules, and the use of blank lines. Adherence to these conventions is important for ensuring the readability, consistency, and correct parsing of Markdown documents across the knowledge base. These rules complement the file-level hygiene rules defined in [[SF-FORMATTING-FILE-HYGIENE]].
 
 ## 2. Core General Formatting Rules
 
@@ -77,7 +77,7 @@ Horizontal rules are used to create a thematic break between sections of content
 *   **Consistency:** For consistency across the knowledge base, **three or more hyphens (`---`) ARE THE PREFERRED STYLE.**
 *   **Spacing:**
     *   The characters forming the rule MAY be separated by spaces.
-    *   A blank line MUST precede and follow a horizontal rule, as per [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]].
+    *   A blank line MUST precede and follow a horizontal rule, as per [[SF-FORMATTING-FILE-HYGIENE]].
 *   **Example (Preferred):**
     ```markdown
     Some content above.
@@ -114,7 +114,7 @@ The use of more than one consecutive blank line to separate content elements (e.
 This standard applies to all Markdown documents within the knowledge base repository.
 
 ## 5. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For file-level hygiene rules including blank lines around block elements and EOF characters.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For file-level hygiene rules including blank lines around block elements and EOF characters.
 
 ---
 *This standard (SF-FORMATTING-MARKDOWN-GENERAL) is based on common Markdown conventions for paragraphs, line breaks, horizontal rules, and blank line usage.*

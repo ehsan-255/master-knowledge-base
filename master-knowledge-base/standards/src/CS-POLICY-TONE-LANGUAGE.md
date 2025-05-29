@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Tone and Language Standards"
-related-standards: ["GM-GLOSSARY-STANDARDS-TERMS_ID_PLACEHOLDER"] # Placeholder for a potential glossary standard
+related-standards: ["GM-GLOSSARY-STANDARDS-TERMS"] # Placeholder for a potential glossary standard
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -41,7 +41,7 @@ The tone of content MUST be objective, academic (where appropriate to the subjec
 *   **Rationale:** An objective tone builds trust and credibility. It ensures that the information is presented factually, allowing users to form their own conclusions.
 
 ### Rule 2.3: Consistent Use of Terminology (Derived from U-TONE-LANG-001, Rule 1.3)
-Terminology specific to a domain or subject MUST be used consistently throughout all related documents. If a term has multiple meanings, the intended meaning MUST be clarified upon its first use within a document, or the term should be linked to its definition in a relevant glossary (e.g., [[GM-GLOSSARY-STANDARDS-TERMS_ID_PLACEHOLDER]]).
+Terminology specific to a domain or subject MUST be used consistently throughout all related documents. If a term has multiple meanings, the intended meaning MUST be clarified upon its first use within a document, or the term should be linked to its definition in a relevant glossary (e.g., [[GM-GLOSSARY-STANDARDS-TERMS]]).
 *   **Example:** If "Systematic Review" is chosen as the standard term, it should be used consistently instead of interchanging it with "structured review" or "comprehensive literature survey" without clarification.
 *   **Rationale:** Consistent terminology prevents confusion and ensures that all readers share a common understanding of key terms. This is vital for precise communication, especially in technical or specialized fields.
 
@@ -66,7 +66,7 @@ This policy applies to all textual content within all Knowledge Bases, including
 *   Content of `primary-topic`, `scope_application`, and similar metadata fields
 
 ## 4. Cross-References
-- [[GM-GLOSSARY-STANDARDS-TERMS_ID_PLACEHOLDER]] - For definitions of standard terms used across the knowledge base (if such a glossary exists).
+- [[GM-GLOSSARY-STANDARDS-TERMS]] - For definitions of standard terms used across the knowledge base (if such a glossary exists).
 
 ---
 *This policy (CS-POLICY-TONE-LANGUAGE) is based on rules 1.1 through 1.5 previously defined in U-TONE-LANG-001 from COL-CONTENT-UNIVERSAL.md.*

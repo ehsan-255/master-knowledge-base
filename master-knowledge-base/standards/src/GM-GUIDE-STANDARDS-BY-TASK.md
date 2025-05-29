@@ -631,5 +631,5 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 ---
 *This document provides a task-based entry point to the standards knowledge base. It is intended to complement the [[GM-GUIDE-KB-USAGE]].*
 *It replaces the older `standards/GUIDE-TASK-BASED.md`.*
-*For the overall refactoring project context, refer to the roadmap.*
+*For the overall refactoring project context, refer to [[Refactor Roadmap.md]].*
 *Note: The `[[CONTRIBUTOR_GUIDE.md]]` tracks key decisions and progress of the refactoring effort.*

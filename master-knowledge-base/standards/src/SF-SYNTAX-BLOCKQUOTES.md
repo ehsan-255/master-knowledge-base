@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown Blockquote Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"] # For blank line rules
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,7 +26,7 @@ change_log_url: "./SF-SYNTAX-BLOCKQUOTES-changelog.md" # Placeholder
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for creating blockquotes within all knowledge base documents. Consistent use of blockquote syntax is important for visually distinguishing quoted text, ensuring correct rendering, and maintaining readability. Adherence to [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around block elements is also critical.
+This standard defines the mandatory Markdown syntax for creating blockquotes within all knowledge base documents. Consistent use of blockquote syntax is important for visually distinguishing quoted text, ensuring correct rendering, and maintaining readability. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also critical.
 
 ## 2. Core Blockquote Syntax Rules
 
@@ -72,7 +72,7 @@ A single blank line MUST precede and a single blank line MUST follow every block
 
     This is a paragraph after the blockquote.
     ```
-*   **Rationale:** Ensures correct parsing and rendering of the blockquote as a distinct block element, separating it visually and structurally from surrounding content. This aligns with general file hygiene rules for block elements (see [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]]).
+*   **Rationale:** Ensures correct parsing and rendering of the blockquote as a distinct block element, separating it visually and structurally from surrounding content. This aligns with general file hygiene rules for block elements (see [[SF-FORMATTING-FILE-HYGIENE]]).
 
 ## 3. Importance of Correct Blockquote Syntax
 
@@ -86,7 +86,7 @@ A single blank line MUST precede and a single blank line MUST follow every block
 This standard applies to all Markdown documents within the knowledge base repository where text is quoted from external sources or other documents.
 
 ## 5. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines and file formatting that apply to block elements.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines and file formatting that apply to block elements.
 
 ---
 *This standard (SF-SYNTAX-BLOCKQUOTES) is based on rules 1.1 through 1.3 previously defined in M-SYNTAX-BLOCKQUOTE-001 from COL-SYNTAX-MARKDOWN.md.*

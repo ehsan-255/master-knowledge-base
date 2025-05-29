@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Mermaid Diagram Syntax in Markdown" # As per prompt
-related-standards: ["SF-SYNTAX-CODE_ID_PLACEHOLDER", "SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"] # Uses code block syntax
+related-standards: ["SF-SYNTAX-CODE", "SF-FORMATTING-FILE-HYGIENE"] # Uses code block syntax
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -28,7 +28,7 @@ change_log_url: "./SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md" # Placeholder
 
 This standard defines the mandatory syntax for embedding Mermaid diagrams within Markdown documents. Mermaid is a JavaScript-based diagramming and charting tool that uses a Markdown-inspired text definition to create and modify diagrams dynamically. Utilizing Mermaid allows for diagrams to be version-controlled and treated as code.
 
-This standard specifies how to embed Mermaid definitions within Markdown. The full syntax for Mermaid diagram types themselves is defined by the official Mermaid documentation. Adherence to [[SF-SYNTAX-CODE_ID_PLACEHOLDER]] for fenced code blocks and [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around block elements is also important.
+This standard specifies how to embed Mermaid definitions within Markdown. The full syntax for Mermaid diagram types themselves is defined by the official Mermaid documentation. Adherence to [[SF-SYNTAX-CODE]] for fenced code blocks and [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also important.
 
 ## 2. Core Mermaid Diagram Embedding Rule
 
@@ -45,7 +45,7 @@ Mermaid diagrams MUST be embedded within a standard Markdown fenced code block, 
     ```
     ````
 *   **Content:** The content within this fenced code block MUST be valid Mermaid diagram syntax.
-*   **Blank Lines:** A blank line MUST precede and follow the ` ```mermaid ` block to ensure correct parsing and rendering, as per [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]].
+*   **Blank Lines:** A blank line MUST precede and follow the ` ```mermaid ` block to ensure correct parsing and rendering, as per [[SF-FORMATTING-FILE-HYGIENE]].
 *   **Rationale:** Using a fenced code block with a specific language identifier (`mermaid`) is the common and recognized method for embedding Mermaid diagrams, allowing Markdown processors and rendering tools to identify and process the diagram definition correctly.
 
 ## 3. Mermaid Diagram Content
@@ -108,8 +108,8 @@ This demonstrates a basic flowchart with a start, a process step, a decision poi
 This standard applies to all Markdown documents within the knowledge base repository where diagrams are embedded using the Mermaid syntax.
 
 ## 8. Cross-References
-- [[SF-SYNTAX-CODE_ID_PLACEHOLDER]] - For the general rules regarding fenced code blocks.
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines around block elements.
+- [[SF-SYNTAX-CODE]] - For the general rules regarding fenced code blocks.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements.
 - [Official Mermaid Documentation](https://mermaid.js.org/intro/syntax-reference.html) (External Resource) - For the full syntax of Mermaid diagram types.
 
 ---

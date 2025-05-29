@@ -253,5 +253,5 @@ Certain document types have specific structural requirements defined by their re
 
 ---
 *This guide is intended to be the primary onboarding document for all users of the Knowledge Base. It replaces and expands upon the original `GUIDE-KB-USAGE-AND-STANDARDS.md`.*
-*Refer to the [[_temp/Refactor Roadmap.md]] for the overall refactoring project context.*
+*Refer to the [[Refactor Roadmap.md]] for the overall refactoring project context.*
 *For a task-oriented view of standards, see [[GM-GUIDE-STANDARDS-BY-TASK]].*

@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Tag Syntax and Declaration" # As per prompt
-related-standards: ["MT-TAGGING-STRATEGY-POLICY_ID_PLACEHOLDER", "U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER", "MT-REGISTRY-TAG-GLOSSARY_ID_PLACEHOLDER"]
+related-standards: ["MT-TAGGING-STRATEGY-POLICY", "U-METADATA-FRONTMATTER-RULES-001", "MT-REGISTRY-TAG-GLOSSARY"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -31,7 +31,7 @@ This standard defines the mandatory syntax and declaration rules for all tags us
 ### Rule 1.1: Declaration in YAML Frontmatter (Derived from U-TAG-001, Rule 1.1)
 All tags associated with a document MUST be declared within the YAML frontmatter block at the beginning of the document.
 *   **Rationale:** Centralizes metadata, making it easily parsable by automated tools and consistently accessible to authors.
-*   **Reference:** General frontmatter structure is defined in [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]].
+*   **Reference:** General frontmatter structure is defined in [[U-METADATA-FRONTMATTER-RULES-001]].
 
 ### Rule 1.2: `tags` Key and Block List Format (Derived from U-TAG-001, Rule 1.2)
 Within the YAML frontmatter, tags MUST be listed under a key named exactly `tags`. The value of this key MUST be a block list of strings (each string being a single tag).
@@ -61,15 +61,15 @@ Tags MAY use forward slashes (`/`) to indicate an internal hierarchy or categori
 ## 2. Tag Glossary Requirement (Derived from U-TAG-001, Rule 1.9 - part)
 
 A dedicated Tag Glossary document MUST exist and be maintained. This glossary serves as the single source of truth for all officially recognized tags.
-*   **Identification:** This glossary is identified by the standard ID [[MT-REGISTRY-TAG-GLOSSARY_ID_PLACEHOLDER]].
+*   **Identification:** This glossary is identified by the standard ID [[MT-REGISTRY-TAG-GLOSSARY]].
 *   **Purpose:** The Tag Glossary lists all official tags, defines their intended meaning and scope, and illustrates their correct hierarchy and usage.
-*   **Mandate for Conformance:** All tags used in any document's frontmatter MUST conform to a tag defined in the [[MT-REGISTRY-TAG-GLOSSARY_ID_PLACEHOLDER]]. The strategic application of these tags is further defined in [[MT-TAGGING-STRATEGY-POLICY_ID_PLACEHOLDER]].
+*   **Mandate for Conformance:** All tags used in any document's frontmatter MUST conform to a tag defined in the [[MT-REGISTRY-TAG-GLOSSARY]]. The strategic application of these tags is further defined in [[MT-TAGGING-STRATEGY-POLICY]].
 *   **Rationale:** Ensures that tags are used consistently and meaningfully across the entire knowledge base, preventing tag proliferation and ambiguity.
 
 ## 3. Cross-References
-- [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]] - Defines general YAML frontmatter structure and rules.
-- [[MT-TAGGING-STRATEGY-POLICY_ID_PLACEHOLDER]] - Outlines the strategic application of different tag categories.
-- [[MT-REGISTRY-TAG-GLOSSARY_ID_PLACEHOLDER]] - The official glossary of all approved tags and their definitions.
+- [[U-METADATA-FRONTMATTER-RULES-001]] - Defines general YAML frontmatter structure and rules.
+- [[MT-TAGGING-STRATEGY-POLICY]] - Outlines the strategic application of different tag categories.
+- [[MT-REGISTRY-TAG-GLOSSARY]] - The official glossary of all approved tags and their definitions.
 
 ---
 *This standard (MT-TAGS-IMPLEMENTATION) is based on rules 1.1, 1.2, 1.3, 1.4, and part of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*

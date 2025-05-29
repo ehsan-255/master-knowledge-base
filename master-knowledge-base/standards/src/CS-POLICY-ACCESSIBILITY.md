@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Content Accessibility Principles" # As per prompt
-related-standards: ["SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER", "SF-SYNTAX-HEADINGS_ID_PLACEHOLDER"]
+related-standards: ["SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "SF-SYNTAX-HEADINGS"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -35,8 +35,8 @@ All content creators, editors, and curators MUST strive to ensure that content m
 *   **Rationale:** Ensures a consistent and high-quality experience for all users, regardless of ability.
 
 ### Rule 2.2: Image Accessibility (Reference to Specific Standard)
-All images that convey information MUST be made accessible through the provision of descriptive alternative text (alt text), as mandated by [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]].
-*   **Summary of [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]]:**
+All images that convey information MUST be made accessible through the provision of descriptive alternative text (alt text), as mandated by [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]].
+*   **Summary of [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]:**
     *   Informational images require descriptive alt text.
     *   Alt text must be concise yet convey the image's purpose and meaning.
     *   Purely decorative images should use empty alt text (`alt=""`) to be ignored by assistive technologies.
@@ -48,7 +48,7 @@ Headings (H1-H6) MUST be used semantically to structure content logically and se
     *   The H1 is reserved for the main document title.
     *   Subsequent headings (H2-H6) must follow a correct hierarchical order (e.g., an H2 followed by H3, not H4). Do not skip heading levels for styling purposes.
     *   Use headings to break up long blocks of text and clearly delineate topics and subtopics.
-*   **Reference:** The specific Markdown syntax for headings is defined in [[SF-SYNTAX-HEADINGS_ID_PLACEHOLDER]].
+*   **Reference:** The specific Markdown syntax for headings is defined in [[SF-SYNTAX-HEADINGS]].
 *   **Rationale:** Proper heading structure is critical for screen reader users, allowing them to navigate documents efficiently and understand their organization. It also benefits all users by making content more scannable and readable.
 
 ## 3. Future Expansion
@@ -73,8 +73,8 @@ This policy will be expanded over time to incorporate additional accessibility g
 This policy applies to all content within the Knowledge Base and to all individuals involved in its creation, editing, and maintenance.
 
 ## 6. Cross-References
-- [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]] - Specific standard for image alt text.
-- [[SF-SYNTAX-HEADINGS_ID_PLACEHOLDER]] - Standard defining the syntax and semantic use of headings.
+- [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]] - Specific standard for image alt text.
+- [[SF-SYNTAX-HEADINGS]] - Standard defining the syntax and semantic use of headings.
 
 ---
 *This policy (CS-POLICY-ACCESSIBILITY) incorporates Rule 1.3 from U-ACCESSIBILITY-001 (regarding headings) and sets a general framework for content accessibility, referencing the specific standard created for image alt text.*

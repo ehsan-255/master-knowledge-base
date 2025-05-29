@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Knowledge Base Identification"
-related-standards: ["AS-STRUCTURE-MASTER-KB-INDEX", "SF-CONVENTIONS-NAMING_ID_PLACEHOLDER"]
+related-standards: ["AS-STRUCTURE-MASTER-KB-INDEX", "SF-CONVENTIONS-NAMING"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -35,7 +35,7 @@ Each Knowledge Base (KB) primary folder name MUST be globally unique within the 
 *   **Example:** `research-methodology-kb`, `prompt-engineering-kb`
 *   **Notes:**
     *   This primary folder name acts as the de facto unique identifier for the KB at the file system level.
-    *   Folder naming conventions (e.g., case, separators) MUST adhere to the global file and folder naming standard: [[SF-CONVENTIONS-NAMING_ID_PLACEHOLDER]].
+    *   Folder naming conventions (e.g., case, separators) MUST adhere to the global file and folder naming standard: [[SF-CONVENTIONS-NAMING]].
     *   Uniqueness prevents naming conflicts and ambiguity, ensuring that each KB can be distinctly referenced.
 
 ### Rule 2.2: Consistent KB Identity in `root.md` (Derived from U-ARCH-002, Rule 2.5)
@@ -61,7 +61,7 @@ This policy applies to all Knowledge Bases developed and maintained within the o
 
 ## 5. Cross-References
 - [[AS-STRUCTURE-MASTER-KB-INDEX]] - Defines the structure of the master KB directory and the `kb-directory.md` index file.
-- [[SF-CONVENTIONS-NAMING_ID_PLACEHOLDER]] - File and Folder Naming Conventions (to be updated with actual ID).
+- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (to be updated with actual ID).
 
 ---
 *This policy (CS-POLICY-KB-IDENTIFICATION) is based on rules 2.2 and 2.5 previously defined in U-ARCH-002 from COL-ARCH-UNIVERSAL.md.*
