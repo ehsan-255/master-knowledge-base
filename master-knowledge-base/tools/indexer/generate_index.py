@@ -1,101 +1,181 @@
 # generate_index.py
-# Placeholder for Standards Index Generator
+# Core functionality for Standards Index Generator
 
 import json
-import os # For future file walking
-import datetime # For date handling
+import os
+import datetime
+import yaml # Using PyYAML or ruamel.yaml
 
 # Specifications:
 # 1. Input: Path to the /standards/src/ directory.
 # 2. Parsing: Read and parse YAML frontmatter from all .md files in the directory.
-# 3. Data Extraction: Extract key metadata:
-#    - standard_id
-#    - title
-#    - primary_domain
-#    - sub_domain
-#    - info-type
-#    - version
-#    - status (derived from tags, e.g., the part of status/* tag)
-#    - filepath (relative to repo root)
-#    - date-modified
-# 4. Output: Generate `standards_index.json` in a specified output directory (e.g., /dist/ or /tools/indexer/).
-#    - Include a root-level "schemaVersion": "1.0.0" (or similar semantic version for the index structure itself).
-#    - Include a "generatedDate": current ISO-8601 datetime.
-#    - The main content should be a list of objects, each representing a standard.
+# 3. Data Extraction: Extract key metadata.
+# 4. Output: Generate `standards_index.json` in a specified output directory.
 # 5. Schema: The output MUST conform to `standards_index.schema.json`.
 
-def extract_metadata(filepath, base_dir):
-    # TODO: Implement robust frontmatter parsing from filepath
-    # This function should:
-    # 1. Read the file content.
-    # 2. Parse the YAML frontmatter.
-    # 3. Extract the required fields.
-    # 4. Derive 'status' from the 'tags' list (e.g., find 'status/draft' -> 'draft').
-    # 5. Construct the relative filepath from the base_dir.
+def get_frontmatter_from_content(file_content):
+    """
+    Extracts YAML frontmatter string from file content.
+    Returns frontmatter_string or None if not found.
+    """
+    lines = file_content.splitlines(True)
+    if not lines or not lines[0].startswith("---"):
+        return None
+
+    fm_end_index = -1
+    for i, line in enumerate(lines[1:], start=1):
+        if line.startswith("---"):
+            fm_end_index = i
+            break
     
-    # Example data structure (replace with actual extracted data)
-    # metadata = {
-    #     "standard_id": "XX-YYYY-ZZZZ", "title": "Example Standard",
-    #     "primary_domain": "XX", "sub_domain": "YYYY",
-    #     "info-type": "standard-definition", "version": "1.0.0",
-    #     "status": "draft", 
-    #     "filepath": os.path.relpath(filepath, start=base_dir).replace(os.sep, '/'), # Ensure POSIX paths
-    #     "date-modified": "YYYY-MM-DDTHH:MM:SSZ"
-    # }
-    # return metadata
-    return None # Placeholder
+    if fm_end_index == -1:
+        return None
+        
+    return "".join(lines[1:fm_end_index])
+
+def get_status_from_tags(tags_list):
+    """
+    Extracts status (e.g., 'draft') from a list of tags.
+    Example: "status/draft" -> "draft"
+    Returns the status string or None if no status tag is found.
+    """
+    if not isinstance(tags_list, list):
+        return None
+    for tag in tags_list:
+        if isinstance(tag, str) and tag.startswith("status/"):
+            return tag.split("/", 1)[1]
+    return None
+
+def extract_metadata(filepath, file_content):
+    """
+    Extracts specified metadata from the file's frontmatter.
+    filepath should be relative to the repository root.
+    """
+    frontmatter_str = get_frontmatter_from_content(file_content)
+    if not frontmatter_str:
+        print(f"Warning: No frontmatter found in {filepath}. Skipping.")
+        return None
+
+    try:
+        frontmatter_data = yaml.safe_load(frontmatter_str)
+        if not isinstance(frontmatter_data, dict):
+            print(f"Warning: Frontmatter in {filepath} is not a valid dictionary. Skipping.")
+            return None
+    except yaml.YAMLError as e:
+        print(f"Warning: Invalid YAML syntax in frontmatter for {filepath}: {e}. Skipping.")
+        return None
+
+    # Required fields for the index. If any of these are missing, we skip the file.
+    required_index_fields = ["standard_id", "title", "info-type", "version", "date-modified"]
+    
+    # Fields like primary_domain and sub_domain are required for standards, but might be
+    # missing in other general documents if this indexer were to process them.
+    # For now, we'll fetch them but not make them strictly required for a basic entry to exist.
+    # The JSON schema can enforce if they must always be present.
+    
+    standard_id = frontmatter_data.get("standard_id")
+    title = frontmatter_data.get("title")
+
+    if not standard_id or not title:
+        print(f"Warning: Missing 'standard_id' or 'title' in {filepath}. Skipping.")
+        return None
+
+    # Extract other fields, allowing for them to be potentially None if not present
+    # The JSON schema will ultimately determine if None is allowed for these non-core fields.
+    primary_domain = frontmatter_data.get("primary_domain")
+    sub_domain = frontmatter_data.get("sub_domain")
+    info_type = frontmatter_data.get("info-type")
+    version = frontmatter_data.get("version")
+    date_modified = frontmatter_data.get("date-modified")
+    
+    tags = frontmatter_data.get("tags", [])
+    status = get_status_from_tags(tags)
+
+    # Check if essential fields (for indexing logic) are present
+    if not all([info_type, version, date_modified, status is not None]):
+         print(f"Warning: Missing one or more of info-type, version, date-modified, or valid status tag in {filepath}. Skipping.")
+         return None
+
+
+    metadata = {
+        "standard_id": standard_id,
+        "title": title,
+        "primary_domain": primary_domain, # Can be None if not present
+        "sub_domain": sub_domain,       # Can be None if not present
+        "info-type": info_type,
+        "version": str(version), # Ensure version is string
+        "status": status,
+        "filepath": filepath.replace(os.sep, '/'), # Ensure POSIX paths relative to repo root
+        "date-modified": date_modified
+    }
+    
+    # Validate required fields are not None before returning for this iteration
+    for req_field in required_index_fields:
+        if metadata.get(req_field) is None:
+            print(f"Warning: Required field '{req_field}' ended up as None for {filepath} after extraction. Skipping.")
+            return None
+            
+    return metadata
 
 def main():
-    # Determine paths relative to the script's location or a known base
-    # For this example, assuming script is run from repo root or paths are adjusted.
-    repo_base_dir = "master-knowledge-base" # This might need to be determined more robustly
-    standards_src_dir = os.path.join(repo_base_dir, "standards", "src")
-    # Outputting to the same directory as the script for simplicity in this skeleton
-    script_dir = os.path.dirname(__file__) 
-    output_file = os.path.join(script_dir, "standards_index.json")
+    # Assuming script is run from the repository root.
+    # For SWE-bench, current working directory is /app (which is the repo root).
+    repo_base_dir = "." # Current directory is repo root
+
+    standards_src_dir_rel = os.path.join("master-knowledge-base", "standards", "src")
+    standards_src_dir_abs = os.path.abspath(standards_src_dir_rel)
+    
+    output_dir_rel = os.path.join("master-knowledge-base", "dist")
+    output_dir_abs = os.path.abspath(output_dir_rel)
+    
+    output_file_rel = os.path.join(output_dir_rel, "standards_index.json")
+    output_file_abs = os.path.abspath(output_file_rel)
+
+    if not os.path.isdir(standards_src_dir_abs):
+        print(f"Error: Standards source directory not found at {standards_src_dir_abs}")
+        return
     
     index_data = {
-        "schemaVersion": "1.0.0", # Version of this index's schema
+        "schemaVersion": "1.0.0", 
         "generatedDate": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "standards": []
     }
 
-    # TODO: Replace simulation with actual file walking and processing
-    # current_script_path = os.path.dirname(os.path.abspath(__file__))
-    # repo_root = os.path.abspath(os.path.join(current_script_path, "..", "..")) # Example: if tools/indexer is two levels down
-    # standards_src_abs_dir = os.path.join(repo_root, standards_src_dir)
-    # if not os.path.isdir(standards_src_abs_dir):
-    #    print(f"Error: Standards source directory not found at {standards_src_abs_dir}")
-    #    return
+    print(f"Scanning for Markdown files in: {standards_src_dir_abs}...")
+    for root, _, files in os.walk(standards_src_dir_abs):
+        for file in files:
+            if file.endswith(".md"):
+                filepath_abs = os.path.join(root, file)
+                # Create filepath relative to repo_base_dir for the index
+                # Assumes repo_base_dir is a parent of filepath_abs
+                filepath_for_index = os.path.relpath(filepath_abs, start=os.path.abspath(repo_base_dir))
+                
+                try:
+                    with open(filepath_abs, 'r', encoding='utf-8') as f_content:
+                        file_content = f_content.read()
+                    
+                    parsed_meta = extract_metadata(filepath_for_index, file_content)
+                    if parsed_meta:
+                        index_data["standards"].append(parsed_meta)
+                except Exception as e:
+                    print(f"Error processing file {filepath_abs}: {e}")
 
-    # for root, dirs, files in os.walk(standards_src_abs_dir):
-    #     for file in files:
-    #         if file.endswith(".md"):
-    #             filepath_abs = os.path.join(root, file)
-    #             # Pass repo_root to allow creation of relative paths from that point
-    #             parsed_meta = extract_metadata(filepath_abs, repo_root) 
-    #             if parsed_meta:
-    #                 index_data["standards"].append(parsed_meta)
-    
-    # Simulate adding one item for now
-    print(f"Simulating metadata extraction for index generation...")
-    example_meta = {
-        "standard_id": "MT-SCHEMA-FRONTMATTER", "title": "Standard: Frontmatter Schema Definition",
-        "primary_domain": "MT", "sub_domain": "FRONTMATTER",
-        "info-type": "standard-definition", "version": "0.1.0",
-        "status": "draft", # Assuming this was parsed from "status/draft" tag
-        "filepath": "master-knowledge-base/standards/src/MT-SCHEMA-FRONTMATTER.md", # Relative to repo root
-        "date-modified": "2025-05-29T15:53:52Z" # Example, use actual from file
-    }
-    index_data["standards"].append(example_meta)
+    if not index_data["standards"]:
+        print("Warning: No standards were successfully indexed.")
+    else:
+        print(f"Successfully extracted metadata for {len(index_data['standards'])} standard(s).")
 
-    # Ensure output directory exists
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    os.makedirs(output_dir_abs, exist_ok=True)
+    print(f"Writing index to: {output_file_abs}...")
+    try:
+        with open(output_file_abs, 'w', encoding='utf-8') as f:
+            json.dump(index_data, f, indent=2)
+        print(f"Successfully generated {output_file_rel}")
+    except IOError as e:
+        print(f"Error writing index file: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred during file writing: {e}")
 
-    with open(output_file, 'w') as f:
-        json.dump(index_data, f, indent=2)
-    
-    print(f"Generated {output_file}")
 
 if __name__ == "__main__":
     main()

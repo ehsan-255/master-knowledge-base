@@ -279,7 +279,143 @@ The execution of full system validation is contingent upon the production-ready 
 **Execution Note:**
 The actual *execution* of this Full System Validation is pending the full implementation and stabilization of the `kb_linter.py`, `generate_index.py`, and `generate_collections.py` tools. This plan will guide that future validation effort.
 
+---
+**Phase 4, Step 11: Final Peer Review & System Documentation Planning (2025-05-29T16:30:41Z):**
+
+This step outlines the creation of comprehensive workflow documentation and the items to be covered in a final human peer review.
+
+**1. Development and Maintenance Workflow Documentation Outline (Roadmap Task 5.2.2)**
+This documentation will guide contributors and maintainers. It should eventually reside in a dedicated guide (e.g., `GM-GUIDE-STANDARDS-MAINTENANCE.md`). The outline includes:
+    *   **1. Introduction:**
+        *   Purpose of the workflow documentation.
+        *   Overview of the Single-Source Multi-View Standards Architecture (referencing `[[AS-KB-DIRECTORY-STRUCTURE]]` and other relevant architectural docs).
+    *   **2. Managing Atomic Standards (`/master-knowledge-base/standards/src/`):**
+        *   Proposing new standards/policies (ref: `[[OM-POLICY-STANDARDS-GOVERNANCE]]`).
+        *   Choosing `standard_id` and filename (ref: `[[SF-CONVENTIONS-NAMING]]`, `[[MT-SCHEMA-FRONTMATTER]]`).
+        *   Using templates (ref: `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]`, `[[tpl-canonical-frontmatter.md]]`).
+        *   Populating frontmatter (ref: `[[MT-SCHEMA-FRONTMATTER]]`).
+        *   Writing content: Standard Definitions (HOW/WHERE) vs. Policy Documents (WHAT/WHEN/WHY).
+        *   Linking to other standards (ref: `[[SF-LINKS-INTERNAL-SYNTAX]]`, `[[CS-LINKING-INTERNAL-POLICY]]`).
+        *   Versioning (ref: `[[OM-VERSIONING-CHANGELOGS]]`) and `change_log_url`.
+    *   **3. Managing Registries (`/master-knowledge-base/standards/registry/`):**
+        *   Process for updating controlled vocabularies (e.g., `[[domain_codes.yaml]]`, `[[MT-REGISTRY-TAG-GLOSSARY]]`).
+        *   Referencing `[[GM-REGISTRY-GOVERNANCE]]`.
+    *   **4. Using Automation Tools (once fully developed):**
+        *   Linter (`kb_linter.py`): Purpose, basic command, interpreting output.
+        *   Indexer (`generate_index.py`): Purpose, basic command.
+        *   Collection Builder (`generate_collections.py`): Purpose, basic command, managing `collection_definitions.yaml`.
+    *   **5. CI/CD Pipeline Overview (if applicable):**
+        *   Brief explanation of automated checks during PRs or merges.
+    *   **6. Deprecating a Standard:**
+        *   Process (ref: `[[OM-POLICY-STANDARDS-DEPRECATION]]`).
+    *   **7. Getting Help:**
+        *   Links to key architectural documents (e.g., `[[AS-INDEX-KB-MASTER]]`, `[[AS-ROOT-STANDARDS-KB]]`, `[[AS-MAP-STANDARDS-KB]]`).
+        *   Contact points or channels.
+
+**2. Scope for Final Peer Review (Roadmap Task 5.2.1)**
+The final human peer review should encompass a holistic assessment of the refactored system:
+    *   **Overall Structure:** Review the organization of atomic standards in `/master-knowledge-base/standards/src/` and registry files in `/master-knowledge-base/standards/registry/`.
+    *   **Core Schema Documents:** Thoroughly review `[[MT-SCHEMA-FRONTMATTER]]`, `[[SF-SYNTAX-YAML-FRONTMATTER]]`, and `[[SF-FORMATTING-FILE-HYGIENE]]` for clarity, correctness, and completeness, as they are foundational.
+    *   **Standard vs. Policy Separation:** Verify the correct distinction between Standard Definition content (HOW/WHERE) and Policy Document content (WHAT/WHEN/WHY) across a significant sample of paired and standalone documents.
+    *   **Content Clarity & Accuracy:** Review the actual content of key standards and policies for accuracy, clarity, and actionable guidance.
+    *   **Navigational Integrity:** Review `[[AS-INDEX-KB-MASTER]]`, `[[AS-ROOT-STANDARDS-KB]]`, and `[[AS-MAP-STANDARDS-KB]]` for clarity and correctness of navigation.
+    *   **Derived Views (once tools are production-ready):** Review sample generated collection documents for accuracy, completeness, and usability.
+    *   **Automation Scripts (once implemented):** Code review of `kb_linter.py`, `generate_index.py`, and `generate_collections.py` for logic, correctness, and efficiency.
+    *   **Workflow Documentation:** Review the "Development and Maintenance Workflow Documentation" (outlined above) for clarity, accuracy, and completeness.
+    *   **Glossaries:** Review `[[GM-GLOSSARY-STANDARDS-TERMS]]` and `[[MT-REGISTRY-TAG-GLOSSARY]]` for accuracy and completeness.
+
+---
+**Update Summary (2025-05-29T16:30:41Z):**
+
+Linter Core Functionality Implemented (Roadmap Task 0.5.1 - Initial):
+*Note: This entry reflects the *initial* core functionality as requested in a previous step with the same timestamp. Subsequent steps will enhance this.*
+
+1.  **`kb_linter.py` Enhancements**:
+    *   Implemented file reading with `FileNotFoundError` handling.
+    *   Added frontmatter parsing using `yaml.safe_load()`, with error handling for missing frontmatter or invalid YAML.
+    *   Implemented check for **LF line endings** (warns for CRLF or CR).
+    *   Implemented check for **UTF-8 BOM** (warns if BOM is present).
+    *   Implemented check for **Mandatory Keys** (currently `title`, `info-type`, `version`, `date-created`, `date-modified`). Adds errors if missing.
+    *   Implemented basic **Key Order** check for the specified subset of keys. Adds warnings for deviations.
+    *   Implemented **`standard_id` Regex Validation** (`^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$`). Adds errors if non-compliant.
+    *   Implemented **Date Format Validation** for `date-created` and `date-modified` (ISO-8601 `YYYY-MM-DDTHH:MM:SSZ`). Adds errors if non-compliant.
+    *   Reporting includes filepath, message, and line number (approximated for some errors like missing keys or whole-block issues).
+
+2.  **`main()` Function Updated for Testing**:
+    *   The `main` function in `kb_linter.py` now lints `MT-SCHEMA-FRONTMATTER.md`, `AS-SCHEMA-CONCEPT-DEFINITION.md`, and a dynamically created `dummy_lint_test.md` file containing known errors to demonstrate linter output.
+    *   Results (errors, warnings, infos) are printed to the console for each file.
+    *   The dummy file is cleaned up after the run.
+
+---
+**Update Summary (2025-05-29T16:30:41Z):**
+
+Indexer Core Functionality Implemented (Roadmap Task 0.5.2):
+
+1.  **`generate_index.py` Enhancements**:
+    *   `extract_metadata(filepath, file_content)` function enhanced to parse YAML frontmatter from `file_content`.
+    *   Extracts `standard_id`, `title`, `primary_domain`, `sub_domain`, `info-type`, `version`, `status` (derived from tags via new `get_status_from_tags` helper), `filepath` (relative to repo root), and `date-modified`.
+    *   Skips files if `standard_id` or `title` are missing, or if other essential fields for indexing logic (like `info-type`, `version`, `date-modified`, `status`) are not found.
+    *   `main()` function implements directory traversal for `/master-knowledge-base/standards/src/` using `os.walk()`.
+    *   Processes only `.md` files.
+    *   Calls `extract_metadata` for each file and appends valid results to the index.
+    *   Includes `schemaVersion` and `generatedDate` in the output.
+    *   Writes the index to `/master-knowledge-base/dist/standards_index.json`, creating the `/dist/` directory if needed.
+    *   Basic error handling for file operations included.
+
+---
+**Update Summary (2025-05-29T16:30:41Z):**
+
+Linter Enhancements - Vocabulary, Filename, and Link Validation:
+
+1.  **Vocabulary Loading:**
+    *   Added helper `load_yaml_vocab` to load `domain_codes.yaml` and `subdomain_registry.yaml`.
+    *   Added helper `load_standards_index` to load `standards_index.json`.
+    *   Hardcoded representative lists for `info-type` (from `MT-SCHEMA-FRONTMATTER.md`) and `criticality` values, and `tag_categories` (from `MT-REGISTRY-TAG-GLOSSARY.md`) with TODOs for dynamic parsing.
+2.  **Extended Validation Checks in `lint_file`:**
+    *   **Controlled Vocabularies:**
+        *   `primary_domain`: Validated against loaded `domain_codes_list`.
+        *   `sub_domain`: Validated against loaded `subdomain_registry_data` based on `primary_domain`.
+        *   `info-type`: Validated against `HARDCODED_INFO_TYPES`.
+        *   `criticality`: Validated against `HARDCODED_CRITICALITY_VALUES`.
+        *   `tags`: Validated for kebab-case syntax and against `HARDCODED_TAG_CATEGORIES` prefixes.
+    *   **`change_log_url` Validity:**
+        *   If relative (`./`), checks for file existence.
+        *   If absolute (`http(s)://`), checks for basic URL syntax.
+    *   **Filename Matches `standard_id`:** If `standard_id` exists, warns if filename base doesn't match.
+    *   **Internal Link Style and Existence:**
+        *   Scans body content for `[[LINK]]` patterns.
+        *   Warns if `LINK` appears to be a path rather than a `STANDARD_ID`.
+        *   If `LINK` appears to be a `STANDARD_ID`, checks for its existence in the loaded `standards_index_data`. Warns if not found (potentially broken link).
+3.  **`main()` Function Updated:**
+    *   Loads vocabularies and index at the start.
+    *   `dummy_lint_test.md` updated with test cases for new validation rules.
+    *   Linter is called with loaded vocabularies and index.
+
+---
+**Update Summary (2025-05-29T16:30:41Z):**
+
+Collection View Generator - Advanced Link Resolution:
+
+1.  **Enhanced `generate_single_collection` function:**
+    *   **Identify Included Standard IDs:** Creates a set of `standard_id`s for standards included in the current collection (derived from `filter_standards` result).
+    *   **Anchor Generation:** Uses a refined `generate_anchor_for_standard(standard_id)` (using the ID itself for the anchor, making it unique and simple) for H2 headings (`<a id="anchor-id"></a>`) and ToC links.
+    *   **Link Processing in Content Body:**
+        *   A new `resolve_internal_links(body_content, current_collection_standard_ids, all_standards_map)` function is implemented.
+        *   Uses regex `r"\[\[([A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+)(\#[A-Za-z0-9\-]+)?((\|)([^\]]+))?\]\]"` to find `[[STANDARD_ID]]`, `[[STANDARD_ID#anchor]]`, and aliased versions.
+        *   If `LINKED_STANDARD_ID` is in `current_collection_standard_ids`:
+            *   Replaces with an anchor link `[Display Text](#generated-anchor-for-LINKED_STANDARD_ID)`. The display text is the alias if present, otherwise the title of the target standard (from `all_standards_map`), or finally the `LINKED_STANDARD_ID` itself. Original sub-anchors (e.g., `#section`) are currently dropped for intra-collection links, which now point to the H2 of the standard's section.
+        *   If `LINKED_STANDARD_ID` is NOT in the current collection:
+            *   The link remains as `[[LINKED_STANDARD_ID#optional-anchor|OptionalAlias]]` or `[[LINKED_STANDARD_ID#optional-anchor]]` or `[[LINKED_STANDARD_ID|OptionalAlias]]` or `[[LINKED_STANDARD_ID]]` for downstream processing.
+    *   The `resolve_internal_links` function is called on the body content of each standard before aggregation.
+2.  **Refined H2 Heading and ToC Anchors:**
+    *   Ensured `generate_anchor_for_standard(standard_id)` is used consistently for H2 `id` attributes and ToC `href` values, using the `standard_id` directly for anchor generation.
+3.  **`main()` Function Notes:**
+    *   `load_standards_index` updated to return a dictionary keyed by `standard_id` for efficient lookups.
+    *   `filter_standards` adapted to work with the standards map.
+    *   The `main` function structure is suitable for testing these enhancements assuming the input `standards_index.json` and `collection_definitions.yaml` are appropriately populated with inter-linking standards. (Actual content of these data files is outside this script's direct modification).
+    *   Added print statements to log link resolution actions.
+
 **Immediate Next Step:**
-*   Final Peer Review & System Documentation (Roadmap Phase 5, Step 11).
+*   Testing and Iteration.
 
 [end of master-knowledge-base/note.md]
