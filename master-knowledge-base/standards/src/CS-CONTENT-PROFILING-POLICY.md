@@ -110,7 +110,7 @@ General introduction to the feature.
 > - `thread_pool_count`
 
 > [!IF audience=novice]
-> If you are new to this feature, we recommend starting with the default settings. You can learn more about configuration in the [[Advanced Settings Guide_ID_PLACEHOLDER]].
+> If you are new to this feature, we recommend starting with the default settings. You can learn more about configuration in the [[GUIDE-FEATURE-ADVANCED-SETTINGS]].
 
 This concludes the feature description.
 ```

@@ -82,7 +82,7 @@ This part lays the groundwork for understanding the core principles and initial 
 - [[AS-STRUCTURE-KB-ROOT]] - Defines the overall structure for KB root files and how Parts are organized.
 - [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for `_overview.md` and Part folder names).
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
-- [[AS-STRUCTURE-DOC-CHAPTER]] - Standard for Content Document ("Chapter") Internal Structure (to be updated with actual ID).
+- [[AS-STRUCTURE-DOC-CHAPTER]] - Standard for Content Document ("Chapter") Internal Structure.
 
 ---
 *This standard (AS-STRUCTURE-KB-PART) is based on rules 1.1, 1.2, 1.3, and 1.4 previously defined in U-STRUC-001 from COL-ARCH-UNIVERSAL.md.*

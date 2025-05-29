@@ -103,8 +103,8 @@ A new drug is tested against a placebo. Statistical significance helps determine
 (Summary of statistical significance...)
 
 ## See Also
-- [[HYPOTHESIS-TESTING_ID_PLACEHOLDER]]
-- [[P-VALUE_ID_PLACEHOLDER]]
+- [[CONCEPT-HYPOTHESIS-TESTING]]
+- [[CONCEPT-P-VALUE]]
 ```
 
 ## 5. Cross-References

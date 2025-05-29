@@ -9,10 +9,10 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Tag Syntax and Declaration" # As per prompt
-related-standards: ["MT-TAGGING-STRATEGY-POLICY", "U-METADATA-FRONTMATTER-RULES-001", "MT-REGISTRY-TAG-GLOSSARY"]
+related-standards: ["MT-TAGGING-STRATEGY-POLICY", "MT-SCHEMA-FRONTMATTER", "MT-REGISTRY-TAG-GLOSSARY"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-29T16:10:25Z"
 primary_domain: "MT" # Metadata & Tagging
 sub_domain: "TAGGING" # As per prompt
 scope_application: "Defines the syntax and declaration rules for all tags used within the knowledge base frontmatter."
@@ -31,7 +31,7 @@ This standard defines the mandatory syntax and declaration rules for all tags us
 ### Rule 1.1: Declaration in YAML Frontmatter (Derived from U-TAG-001, Rule 1.1)
 All tags associated with a document MUST be declared within the YAML frontmatter block at the beginning of the document.
 *   **Rationale:** Centralizes metadata, making it easily parsable by automated tools and consistently accessible to authors.
-*   **Reference:** General frontmatter structure is defined in [[U-METADATA-FRONTMATTER-RULES-001]].
+*   **Reference:** General frontmatter structure is defined in [[MT-SCHEMA-FRONTMATTER]].
 
 ### Rule 1.2: `tags` Key and Block List Format (Derived from U-TAG-001, Rule 1.2)
 Within the YAML frontmatter, tags MUST be listed under a key named exactly `tags`. The value of this key MUST be a block list of strings (each string being a single tag).
@@ -67,7 +67,7 @@ A dedicated Tag Glossary document MUST exist and be maintained. This glossary se
 *   **Rationale:** Ensures that tags are used consistently and meaningfully across the entire knowledge base, preventing tag proliferation and ambiguity.
 
 ## 3. Cross-References
-- [[U-METADATA-FRONTMATTER-RULES-001]] - Defines general YAML frontmatter structure and rules.
+- [[MT-SCHEMA-FRONTMATTER]] - Defines general YAML frontmatter structure and rules.
 - [[MT-TAGGING-STRATEGY-POLICY]] - Outlines the strategic application of different tag categories.
 - [[MT-REGISTRY-TAG-GLOSSARY]] - The official glossary of all approved tags and their definitions.
 

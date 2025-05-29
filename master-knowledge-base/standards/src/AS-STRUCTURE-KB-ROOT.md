@@ -80,9 +80,9 @@ This knowledge base provides comprehensive guidance on research methodologies...
 ## 3. Cross-References
 - [[CS-POLICY-KB-ROOT]] - Policy for consistent application of KB root structures.
 - [[AS-KB-DIRECTORY-STRUCTURE]] - Defines overall repository and master knowledge base directory structures.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (to be updated with actual ID).
+- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
-- [[AS-STRUCTURE-KB-PART]] - Primary KB Section ("Part") Structure (to be updated with actual ID).
+- [[AS-STRUCTURE-KB-PART]] - Primary KB Section ("Part") Structure.
 
 ---
 *This standard (AS-STRUCTURE-KB-ROOT) is based on rules 1.1-1.5 previously defined in U-ARCH-001 from COL-ARCH-UNIVERSAL.md.*

@@ -1,23 +1,34 @@
 ---
-title: 'Tag Glossary'
-aliases: ["N/A"]
+title: "Master Tag Glossary and Registry" # Updated title
+standard_id: "MT-REGISTRY-TAG-GLOSSARY"
+aliases: ["Tag Glossary", "Controlled Vocabulary for Tags"]
 tags:
-  - kb-id/global
-  - content-type/tag-glossary
+  - kb-id/standards # Updated kb-id
+  - content-type/registry-document # More specific content-type
+  - content-type/glossary-document
   - status/draft
   - topic/tagging
-kb-id: global
-info-type: tag-glossary-document
-primary-topic: 'Defines the official tags used across all knowledge bases, their intended meaning, and hierarchy.'
-related-standards: ["N/A"]
-version: '0.1.5'
-date-created: '2025-05-15'
-date-modified: '2025-05-23'
+  - topic/metadata
+  - topic/registry
+kb-id: "kb-id/standards" # Updated kb-id
+info-type: "registry-document" # Changed from tag-glossary-document to registry-document as it's a core registry
+primary-topic: 'Defines all official tags, their meanings, hierarchy, and usage guidelines. Serves as the master registry for tags.'
+related-standards: ["MT-TAGGING-STRATEGY-POLICY", "GM-REGISTRY-GOVERNANCE", "MT-SCHEMA-FRONTMATTER"]
+version: '1.0.0' # Resetting version as it becomes a formal standard
+date-created: '2025-05-15' # Keep original creation date
+date-modified: '2025-05-29T16:04:35Z' # Updated
+primary_domain: "MT"
+sub_domain: "REGISTRY"
+scope_application: "Applies to all knowledge bases and documents for tag usage and frontmatter validation."
+criticality: "P0-Critical" # This is a critical registry
+lifecycle_gatekeeper: "Architect-Review"
+impact_areas: ["Metadata consistency", "Content discoverability", "Automation", "Search accuracy"]
+change_log_url: "./MT-REGISTRY-TAG-GLOSSARY-changelog.md" # Added changelog
 ---
 
-# Tag Glossary
+# Master Tag Glossary and Registry (MT-REGISTRY-TAG-GLOSSARY)
 
-This document defines the official tags used across all knowledge bases, their intended meaning, and hierarchy. Refer to standard [[standards/COL-LINKING-UNIVERSAL#standard-core-tagging-strategy-for-kb-content-u-tag-001|U-TAG-001]] for core tagging strategy.
+This document defines all official tags used across knowledge bases, their intended meaning, hierarchy, and usage guidelines. It serves as the master registry for tags. Refer to `[[MT-TAGGING-STRATEGY-POLICY]]` for the core tagging strategy and `[[GM-REGISTRY-GOVERNANCE]]` for how this registry is managed. This glossary is referenced by `[[MT-SCHEMA-FRONTMATTER]]` for validating tags in document frontmatter.
 
 ## Tag Categories
 
