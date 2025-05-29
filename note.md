@@ -145,3 +145,27 @@ This file contains updates that were intended for `CONTRIBUTOR_GUIDE.md`. Due to
     -   **Task 1.5.2 (Mark `COL-SYNTAX-MARKDOWN.md` for deprecation):**
         -   Verified that `standards/COL-SYNTAX-MARKDOWN.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its atomic replacements.
         -   No further modifications were needed to deprecate this file.
+
+### Decision ID DECISION_002: Refactor KB Standards (Continued)
+
+**Phase 1: Atomic Decomposition, Splitting & Metadata Enrichment (In Progress)**
+
+-   **Step 1.6: Process `standards/COL-TOOLING-OBSIDIAN.md`**
+    -   **Overall:** All concepts (O-USAGE-LINKS-001, O-USAGE-TAGS-001, O-USAGE-FOLDERS-NOTES-001, O-USAGE-TOC-MANDATE-001, O-USAGE-TRANSCLUSION-001, O-USAGE-CALLOUTS-001, O-USAGE-TOC-PLUGIN-001) from `COL-TOOLING-OBSIDIAN.md` have been processed.
+    -   The collection file `standards/COL-TOOLING-OBSIDIAN.md` is already marked as deprecated and correctly lists its generalized atomic replacements.
+    -   Verification confirmed that the following atomic standards exist in `/master-knowledge-base/standards/src/` and accurately reflect and generalize the functionalities previously described in an Obsidian-specific context. These include:
+        -   `SF-LINKS-INTERNAL-SYNTAX.md` and `CS-LINKING-INTERNAL-POLICY.md` (for linking)
+        -   `MT-TAGS-IMPLEMENTATION.md` and `MT-TAGGING-STRATEGY-POLICY.md` (for tagging)
+        -   `AS-STRUCTURE-KB-PART.md` and `CS-POLICY-PART-OVERVIEW.md` (for part overviews, generalizing folder notes)
+        -   `SF-TOC-SYNTAX.md` and `CS-TOC-POLICY.md` (for table of contents, generalizing plugin usage to recommendations for tools producing standard Markdown)
+        -   `SF-TRANSCLUSION-SYNTAX.md` and `CS-MODULARITY-TRANSCLUSION-POLICY.md` (for transclusion, generalizing to ID-based targets)
+        -   `SF-CALLOUTS-SYNTAX.md` and `CS-ADMONITIONS-POLICY.md` (for callouts, standardizing the syntax for the KB)
+    -   No new file creation or modifications were needed for these standards as part of this step, as they were found to be pre-existing and correctly refactored/generalized.
+-   **Step 1.6: Process `standards/COL-TOOLING-OBSIDIAN.md` (Continued)**
+    -   **Explicit Re-verification of Roadmap Step 1.7 (Specific Merging/Refactoring Decisions):**
+        -   A full review of Roadmap Step 1.7 tasks (1.7.1 through 1.7.7) confirms that all specified atomic standards have been previously verified as existing or were created (i.e., `SF-TOC-SYNTAX.md`).
+        -   The concepts from `COL-TOOLING-OBSIDIAN.md` (linking, tagging, folder notes/part overviews, ToC, transclusion, callouts) have been successfully generalized into their respective tool-agnostic atomic standards (SF-LINKS-INTERNAL-SYNTAX, CS-LINKING-INTERNAL-POLICY, MT-TAGS-IMPLEMENTATION, MT-TAGGING-STRATEGY-POLICY, AS-STRUCTURE-KB-PART, CS-POLICY-PART-OVERVIEW, SF-TOC-SYNTAX, CS-TOC-POLICY, SF-TRANSCLUSION-SYNTAX, CS-MODULARITY-TRANSCLUSION-POLICY, SF-CALLOUTS-SYNTAX, CS-ADMONITIONS-POLICY).
+        -   No further actions are required for Roadmap Step 1.7 based on the processing of `COL-TOOLING-OBSIDIAN.md` and prior collection files.
+    -   **Task 1.6.2 (Mark `COL-TOOLING-OBSIDIAN.md` for deprecation):**
+        -   Verified that `standards/COL-TOOLING-OBSIDIAN.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its generalized atomic replacements.
+        -   No further modifications were needed to deprecate this file.
