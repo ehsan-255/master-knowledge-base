@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown Definition List Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"] # For blank line rules
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -28,7 +28,7 @@ change_log_url: "./SF-SYNTAX-DEFINITION-LISTS-changelog.md" # Placeholder
 
 This standard defines the recommended syntax for creating definition lists within Markdown documents. Definition lists are used to present a series of terms, each followed by one or more definitions or descriptions. While not part of the core CommonMark specification, definition list syntax is a common extension supported by many Markdown processors.
 
-Adherence to [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around block elements is also important for definition lists.
+Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also important for definition lists.
 
 ## 2. Core Definition List Syntax (Common Extension)
 
@@ -115,7 +115,7 @@ Parser
 This standard applies to all Markdown documents within the knowledge base repository where definition lists are used to present terms and their corresponding definitions or descriptions.
 
 ## 7. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines around block elements.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements.
 
 ---
 *This standard (SF-SYNTAX-DEFINITION-LISTS) is based on common Markdown extension syntax for definition lists.*

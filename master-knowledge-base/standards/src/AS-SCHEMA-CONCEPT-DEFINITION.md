@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition" # Defines a standard for document structure
 primary-topic: "Schema for Concept Definitions"
-related-standards: ["AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER"]
+related-standards: ["AS-STRUCTURE-DOC-CHAPTER"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -33,7 +33,7 @@ This schema MUST be applied to all documents that primarily define a core concep
 
 ## 2. Mandatory Document Structure
 
-Documents following this schema MUST adhere to the general internal structure for "Chapters" as defined in [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]]. This includes:
+Documents following this schema MUST adhere to the general internal structure for "Chapters" as defined in [[AS-STRUCTURE-DOC-CHAPTER]]. This includes:
 
 ### Rule 2.1: H1 Title (Derived from U-SCHEMA-CONCEPT-001, Rule 1.2)
 The H1 title of the document MUST be the specific name of the concept or term being defined.
@@ -41,11 +41,11 @@ The H1 title of the document MUST be the specific name of the concept or term be
 
 ### Rule 2.2: Introductory Abstract (Derived from U-SCHEMA-CONCEPT-001, Rule 1.3)
 An introductory abstract that summarizes the concept's meaning and significance MUST be included immediately after the H1 title.
-*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] for details on abstract content.
+*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER]] for details on abstract content.
 
 ### Rule 2.3: Table of Contents (ToC) (Derived from U-SCHEMA-CONCEPT-001, Rule 1.4)
 A Table of Contents (ToC) MUST follow the abstract, linking to all H2 sections and significant H3 sections.
-*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] for ToC requirements.
+*   **Reference:** See [[AS-STRUCTURE-DOC-CHAPTER]] for ToC requirements.
 
 ## 3. Required Sections (H2 Level) (Derived from U-SCHEMA-CONCEPT-001, Rule 1.5)
 
@@ -108,7 +108,7 @@ A new drug is tested against a placebo. Statistical significance helps determine
 ```
 
 ## 5. Cross-References
-- [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] - For general chapter structure requirements (H1, abstract, ToC, summary, see also).
+- [[AS-STRUCTURE-DOC-CHAPTER]] - For general chapter structure requirements (H1, abstract, ToC, summary, see also).
 
 ---
 *This standard (AS-SCHEMA-CONCEPT-DEFINITION) is based on rules 1.1 through 1.7 previously defined in U-SCHEMA-CONCEPT-001 from COL-CONTENT-UNIVERSAL.md.*

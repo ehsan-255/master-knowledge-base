@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown List Syntax" # As per prompt
-related-standards: ["SF-SYNTAX-TABLES_ID_PLACEHOLDER", "SF-SYNTAX-CODE-BLOCKS_ID_PLACEHOLDER", "SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"]
+related-standards: ["SF-SYNTAX-TABLES", "SF-SYNTAX-CODE", "SF-FORMATTING-FILE-HYGIENE"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,7 +26,7 @@ change_log_url: "./SF-SYNTAX-LISTS-changelog.md" # Placeholder
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for creating ordered (numbered) and unordered (bulleted) lists. Consistent and correct list syntax is essential for document structure, readability, accessibility, and reliable parsing by Markdown processors. Adherence to [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around list blocks is also critical.
+This standard defines the mandatory Markdown syntax for creating ordered (numbered) and unordered (bulleted) lists. Consistent and correct list syntax is essential for document structure, readability, accessibility, and reliable parsing by Markdown processors. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around list blocks is also critical.
 
 ## 2. Core List Syntax Rules
 
@@ -82,7 +82,7 @@ A single blank line MUST precede and a single blank line MUST follow every list 
 *   **Rationale:** Ensures correct list parsing and rendering, preventing adjacent paragraphs from being unintentionally absorbed into list items or lists from merging.
 
 ### Rule 2.5: Prohibited Content Directly Inside List Items (Derived from M-SYNTAX-LISTS-001, Rule 1.5)
-Complex block elements such as tables (see [[SF-SYNTAX-TABLES_ID_PLACEHOLDER]]) or fenced code blocks (see [[SF-SYNTAX-CODE-BLOCKS_ID_PLACEHOLDER]]) MUST NOT be placed directly inside list items without proper separation or advanced list continuation syntax.
+Complex block elements such as tables (see [[SF-SYNTAX-TABLES]]) or fenced code blocks (see [[SF-SYNTAX-CODE]]) MUST NOT be placed directly inside list items without proper separation or advanced list continuation syntax.
 *   **Guidance:**
     *   For simple cases, such elements should be placed outside the list, separated by blank lines.
     *   If a table or code block logically belongs *within* a list item's content, it typically requires an additional level of indentation (usually 4 spaces or 1 tab, depending on the parser, beyond the list item's own indentation) and often a blank line between the list item's text and the complex block. However, for maximum compatibility and simplicity, placing them outside the list is preferred. This standard primarily discourages direct, unindented embedding that breaks list flow.
@@ -120,9 +120,9 @@ Paragraph after list.
 This standard applies to all Markdown documents within the knowledge base repository where ordered or unordered lists are used.
 
 ## 6. Cross-References
-- [[SF-SYNTAX-TABLES_ID_PLACEHOLDER]] - For syntax rules related to tables.
-- [[SF-SYNTAX-CODE-BLOCKS_ID_PLACEHOLDER]] - For syntax rules related to code blocks.
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines and file formatting.
+- [[SF-SYNTAX-TABLES]] - For syntax rules related to tables.
+- [[SF-SYNTAX-CODE]] - For syntax rules related to code blocks.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines and file formatting.
 
 ---
 *This standard (SF-SYNTAX-LISTS) is based on rules 1.1 through 1.5 and the illustrative example previously defined in M-SYNTAX-LISTS-001 from COL-SYNTAX-MARKDOWN.md.*

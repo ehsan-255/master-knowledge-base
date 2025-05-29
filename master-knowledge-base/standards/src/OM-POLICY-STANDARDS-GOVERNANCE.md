@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Standards Governance Process"
-related-standards: ["GM-GUIDE-KB-USAGE_ID_PLACEHOLDER", "MT-REGISTRY-TAG-GLOSSARY_ID_PLACEHOLDER"] # Updated placeholders
+related-standards: ["GM-GUIDE-KB-USAGE", "MT-REGISTRY-TAG-GLOSSARY", "OM-VERSIONING-CHANGELOGS", "OM-POLICY-STANDARDS-DEPRECATION"] # Updated placeholders
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -32,7 +32,7 @@ This policy establishes the governance framework for proposing, reviewing, updat
 
 ### Rule 2.1: Documented Proposal and Change Process (Derived from U-GOVERNANCE-001, Rule 1.1)
 A defined and documented process for proposing new standards or initiating changes to existing standards MUST be established and maintained.
-*   **Guidance:** This process should be clearly outlined in a readily accessible location, such as the primary "How to Use These Standards" guide (expected to be [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]]) or a dedicated governance document. The process should specify how proposals are submitted (e.g., issue tracker, formal document submission), what information a proposal must contain, and the initial steps for consideration.
+*   **Guidance:** This process should be clearly outlined in a readily accessible location, such as the primary "How to Use These Standards" guide (expected to be [[GM-GUIDE-KB-USAGE]]) or a dedicated governance document. The process should specify how proposals are submitted (e.g., issue tracker, formal document submission), what information a proposal must contain, and the initial steps for consideration.
 *   **Importance:** A documented process ensures transparency and provides a clear pathway for all stakeholders to contribute to the evolution of standards. It prevents ad-hoc changes and promotes systematic development.
 
 ### Rule 2.2: Mandatory Review Process (Derived from U-GOVERNANCE-001, Rule 1.2)
@@ -43,7 +43,7 @@ All proposed new standards and any proposed substantive changes to existing stan
 ### Rule 2.3: Prompt Updates to Registries and Navigational Aids (Derived from U-GOVERNANCE-001, Rule 1.3)
 Upon the addition, significant modification, or deprecation of any standard, all relevant registries and navigational aids MUST be updated promptly.
 *   **Guidance:** This includes, but is not limited to:
-    *   The Tag Glossary (expected to be [[MT-REGISTRY-TAG-GLOSSARY_ID_PLACEHOLDER]]) if tags are added, changed, or deprecated as part of the standard's lifecycle.
+    *   The Tag Glossary (expected to be [[MT-REGISTRY-TAG-GLOSSARY]]) if tags are added, changed, or deprecated as part of the standard's lifecycle.
     *   Any master Table of Contents documents, such as `kb-directory.md` or collection documents (e.g., `COL-ARCH-UNIVERSAL.md` before its deprecation).
     *   Automated indices or search databases.
 *   **Importance:** Keeping registries and navigational aids up-to-date is crucial for maintaining the consistency, discoverability, and usability of the standards ecosystem. Outdated information can lead to confusion and hinder the effective application of standards.
@@ -64,10 +64,10 @@ A formal governance process for standards offers several key benefits:
 This policy applies to all standard documents within the knowledge base ecosystem and to all individuals or groups involved in their creation, maintenance, and management.
 
 ## 5. Cross-References
-- [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] - Expected location for detailed procedures on proposing and updating standards.
-- [[MT-REGISTRY-TAG-GLOSSARY_ID_PLACEHOLDER]] - For definitions of tags used in standards, which must be kept current.
-- [[OM-VERSIONING-CHANGELOGS_ID_PLACEHOLDER]] - Defines how changes to standards are versioned and logged.
-- [[OM-POLICY-STANDARDS-DEPRECATION_ID_PLACEHOLDER]] - Policy for deprecating standards, which is part of the governance lifecycle.
+- [[GM-GUIDE-KB-USAGE]] - Expected location for detailed procedures on proposing and updating standards.
+- [[MT-REGISTRY-TAG-GLOSSARY]] - For definitions of tags used in standards, which must be kept current.
+- [[OM-VERSIONING-CHANGELOGS]] - Defines how changes to standards are versioned and logged.
+- [[OM-POLICY-STANDARDS-DEPRECATION]] - Policy for deprecating standards, which is part of the governance lifecycle.
 
 ---
 *This policy (OM-POLICY-STANDARDS-GOVERNANCE) is based on rules 1.1 through 1.3 previously defined in U-GOVERNANCE-001 from COL-GOVERNANCE-UNIVERSAL.md.*

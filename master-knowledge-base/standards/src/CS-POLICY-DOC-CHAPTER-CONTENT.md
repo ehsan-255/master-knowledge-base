@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Document Chapter Content Organization"
-related-standards: ["AS-STRUCTURE-DOC-CHAPTER", "SF-SYNTAX-HEADINGS_ID_PLACEHOLDER"]
+related-standards: ["AS-STRUCTURE-DOC-CHAPTER", "SF-SYNTAX-HEADINGS"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -42,7 +42,7 @@ Content within a "Chapter" document MUST be organized using hierarchical Markdow
     ```
 *   **Notes:**
     *   The H1 heading is reserved for the document title as per [[AS-STRUCTURE-DOC-CHAPTER]].
-    *   Adherence to the specific Markdown syntax for headings defined in [[SF-SYNTAX-HEADINGS_ID_PLACEHOLDER]] is mandatory.
+    *   Adherence to the specific Markdown syntax for headings defined in [[SF-SYNTAX-HEADINGS]] is mandatory.
 
 ### Rule 2.2: H2 Sections as Major Sub-Topics (Derived from U-STRUC-002, Rule 2.5)
 Each H2 section within a "Chapter" document MUST represent a major sub-topic of that chapter.
@@ -70,7 +70,7 @@ This policy applies to all "Chapter" documents (as defined in [[AS-STRUCTURE-DOC
 
 ## 5. Cross-References
 - [[AS-STRUCTURE-DOC-CHAPTER]] - Defines the overall internal structure for Chapter documents.
-- [[SF-SYNTAX-HEADINGS_ID_PLACEHOLDER]] - Standard for Markdown Heading Syntax.
+- [[SF-SYNTAX-HEADINGS]] - Standard for Markdown Heading Syntax.
 
 ---
 *This policy (CS-POLICY-DOC-CHAPTER-CONTENT) is based on rules 2.4 and 2.5 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md.*

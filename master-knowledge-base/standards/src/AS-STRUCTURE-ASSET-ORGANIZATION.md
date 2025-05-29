@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Asset File Organization" # As per prompt
-related-standards: ["SF-CONVENTIONS-NAMING_ID_PLACEHOLDER", "SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER", "AS-KB-DIRECTORY-STRUCTURE_ID_PLACEHOLDER"]
+related-standards: ["SF-CONVENTIONS-NAMING", "SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "AS-KB-DIRECTORY-STRUCTURE"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -33,7 +33,7 @@ This standard defines the requirements for organizing, categorizing, naming, and
 ### Rule 2.1: Top-Level `assets` Folder (Derived from U-ASSETS-001, Rule 1.1)
 All non-Markdown assets associated with a specific Knowledge Base MUST reside in a dedicated top-level folder named `assets` directly within that KB's primary folder.
 *   **Example:** If a KB's primary folder is `my-awesome-kb/`, then all its assets MUST be placed within `my-awesome-kb/assets/`.
-*   **Rationale:** Centralizes all non-Markdown resources for a KB, making them easy to locate and manage. This is consistent with the overall KB directory structure outlined in [[AS-KB-DIRECTORY-STRUCTURE_ID_PLACEHOLDER]].
+*   **Rationale:** Centralizes all non-Markdown resources for a KB, making them easy to locate and manage. This is consistent with the overall KB directory structure outlined in [[AS-KB-DIRECTORY-STRUCTURE]].
 
 ## 3. Asset Categorization
 
@@ -46,13 +46,13 @@ Within the `assets` folder, sub-folders SHOULD be used to categorize assets base
     *   `code-snippets/` (for external code files like `.py`, `.js`, `.sql` that are referenced or meant to be downloadable, not for embedded code in Markdown)
     *   Other categories as needed (e.g., `data/` for CSV files, `audio/` for audio clips).
 *   **Example:** `my-awesome-kb/assets/images/user-interface-screenshot.png`, `my-awesome-kb/assets/pdfs/annual-report-2023.pdf`
-*   **Folder Naming:** Sub-folder names MUST adhere to the folder naming conventions defined in [[SF-CONVENTIONS-NAMING_ID_PLACEHOLDER]] (all lowercase kebab-case).
+*   **Folder Naming:** Sub-folder names MUST adhere to the folder naming conventions defined in [[SF-CONVENTIONS-NAMING]] (all lowercase kebab-case).
 *   **Rationale:** Categorization improves the organization of the `assets` folder, making it easier to find and manage specific types of assets, especially in KBs with many assets.
 
 ## 4. Asset File Naming
 
 ### Rule 4.1: Descriptive Kebab-Case Names (Derived from U-ASSETS-001, Rule 1.3)
-Asset file names MUST be descriptive of the asset's content or purpose and MUST adhere to the general file naming conventions (all lowercase kebab-case) defined in [[SF-CONVENTIONS-NAMING_ID_PLACEHOLDER]].
+Asset file names MUST be descriptive of the asset's content or purpose and MUST adhere to the general file naming conventions (all lowercase kebab-case) defined in [[SF-CONVENTIONS-NAMING]].
 *   **Example:** `q1-sales-report.pdf`, `user-flow-diagram.svg`, `api-request-example.py`
 *   **Avoid:** Generic names like `image1.png`, `document.pdf`, or names with spaces or special characters (other than hyphens).
 *   **Rationale:** Descriptive names make assets easier to identify and manage. Consistent kebab-casing ensures cross-platform compatibility and predictability.
@@ -86,9 +86,9 @@ The following image formats are permitted for use within the knowledge base:
 This standard applies to all non-Markdown files that are part of a Knowledge Base and are stored within its designated `assets` folder.
 
 ## 8. Cross-References
-- [[SF-CONVENTIONS-NAMING_ID_PLACEHOLDER]] - For general file and folder naming conventions.
-- [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]] - For requirements related to the accessibility of images.
-- [[AS-KB-DIRECTORY-STRUCTURE_ID_PLACEHOLDER]] - For the overall KB directory structure, including the location of the KB-specific `assets` folder.
+- [[SF-CONVENTIONS-NAMING]] - For general file and folder naming conventions.
+- [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]] - For requirements related to the accessibility of images.
+- [[AS-KB-DIRECTORY-STRUCTURE]] - For the overall KB directory structure, including the location of the KB-specific `assets` folder.
 
 ---
 *This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 from COL-LINKING-UNIVERSAL.md.*

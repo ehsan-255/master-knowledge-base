@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Internal Linking Strategy and Best Practices" # As per prompt
-related-standards: ["SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER", "AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER"]
+related-standards: ["SF-LINKS-INTERNAL-SYNTAX", "AS-STRUCTURE-DOC-CHAPTER"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,7 +26,7 @@ change_log_url: "./CS-LINKING-INTERNAL-POLICY-changelog.md" # Placeholder
 
 ## 1. Policy Statement
 
-This policy outlines the strategy and best practices for creating internal links within documents in the Knowledge Base (KB). Effective internal linking is crucial for knowledge discovery, enhancing navigability, creating content cohesion, and improving the overall user experience. All internal links MUST adhere to the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]].
+This policy outlines the strategy and best practices for creating internal links within documents in the Knowledge Base (KB). Effective internal linking is crucial for knowledge discovery, enhancing navigability, creating content cohesion, and improving the overall user experience. All internal links MUST adhere to the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX]].
 
 ## 2. Core Linking Policies
 
@@ -37,11 +37,11 @@ Internal links between documents, notes, and specific sections within the same K
 ### Rule 2.2: Descriptive Link Text (Derived from U-INTERLINK-001, Rule 1.3)
 Link text MUST be descriptive and clearly indicate the nature of the target content.
 *   **Guidance for `[[STANDARD_ID]]` or `[[filename]]` style links:** If the raw `STANDARD_ID` or filename (used as link text by default in some syntaxes) is not sufficiently descriptive for the context, an alias or display text MUST be used.
-    *   **Example:** Instead of just `See [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]].`, prefer `For detailed syntax rules, see the [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER|Internal Linking Syntax Standard]].`
+    *   **Example:** Instead of just `See [[SF-LINKS-INTERNAL-SYNTAX]].`, prefer `For detailed syntax rules, see the [[SF-LINKS-INTERNAL-SYNTAX|Internal Linking Syntax Standard]].`
 *   **Rationale:** Descriptive link text improves scannability, accessibility (for screen reader users), and helps users decide whether to follow a link by providing clear context about the destination.
 
 ### Rule 2.3: "See Also" Sections for Grouped Links (Derived from U-INTERLINK-001, Rule 1.4)
-"See Also" sections, as defined in [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]], ARE a primary and mandatory mechanism for grouping links to related documents, standards, or external resources at the end of a document.
+"See Also" sections, as defined in [[AS-STRUCTURE-DOC-CHAPTER]], ARE a primary and mandatory mechanism for grouping links to related documents, standards, or external resources at the end of a document.
 *   **Rationale:** Provides a dedicated and consistent location for users to find further relevant information, acting as a curated list of related readings or next steps.
 
 ### Rule 2.4: Contextual Relevance and Avoidance of Over-Linking (Derived from U-INTERLINK-001, Rule 1.5)
@@ -54,7 +54,7 @@ Links embedded within the main body of the text MUST be contextually relevant to
 
 ## 3. Adherence to Link Syntax Standard
 
-All internal links, regardless of the specific linking strategy employed, MUST strictly adhere to the syntactical rules defined in [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]]. This ensures consistency, maintainability, and allows for potential automated processing or validation of links.
+All internal links, regardless of the specific linking strategy employed, MUST strictly adhere to the syntactical rules defined in [[SF-LINKS-INTERNAL-SYNTAX]]. This ensures consistency, maintainability, and allows for potential automated processing or validation of links.
 
 ## 4. Rationale for Linking Policy
 
@@ -71,9 +71,9 @@ A coherent internal linking strategy provides significant benefits:
 This policy applies to all content creators, editors, and curators working within any Knowledge Base in the repository. It governs the creation and maintenance of all internal links.
 
 ## 6. Cross-References
-- [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] - Defines the mandatory syntax for internal links.
-- [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] - Defines the requirement for "See Also" sections in documents.
+- [[SF-LINKS-INTERNAL-SYNTAX]] - Defines the mandatory syntax for internal links.
+- [[AS-STRUCTURE-DOC-CHAPTER]] - Defines the requirement for "See Also" sections in documents.
 
 ---
-*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 from COL-LINKING-UNIVERSAL.md. Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]].*
+*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 from COL-LINKING-UNIVERSAL.md. Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*
 ```

@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Citation of External Sources" # As per prompt
-related-standards: ["SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER"] # For linking syntax in references (though these are external)
+related-standards: ["SF-LINKS-INTERNAL-SYNTAX"] # For linking syntax in references (though these are external)
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -65,7 +65,7 @@ A dedicated section titled "References," formatted as an H2 heading, MUST be inc
 
 When citing online sources, the following specific guidelines apply within the APA 7th Edition framework:
 *   **Hyperlinks:** If the source is publicly available online, a direct and stable hyperlink (URL or DOI) MUST be included in the "References" list entry.
-    *   **Syntax for links:** Standard Markdown link syntax can be used within the reference entry if desired for active links, e.g., `[https://doi.org/xxxx/xxxx](https://doi.org/xxxx/xxxx)` or simply the URL/DOI text which might be auto-linked by renderers. Adherence to [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] is for internal links, but general good practice for link clarity applies.
+    *   **Syntax for links:** Standard Markdown link syntax can be used within the reference entry if desired for active links, e.g., `[https://doi.org/xxxx/xxxx](https://doi.org/xxxx/xxxx)` or simply the URL/DOI text which might be auto-linked by renderers. Adherence to [[SF-LINKS-INTERNAL-SYNTAX]] is for internal links, but general good practice for link clarity applies.
 *   **Retrieval Dates:** According to APA 7th Edition, retrieval dates are generally NOT required for most online sources if the content is stable (e.g., journal articles with DOIs, final versions of web pages). However, a retrieval date MAY be included if the source material is expected to change over time and there is no archive URL (e.g., a frequently updated webpage that is not a formal publication).
     *   **Example (with retrieval date, if necessary):** Author, A. A. (Year, Month Day). *Title of work*. Site Name. Retrieved Month Day, Year, from https://xxxx
 *   **Rationale:** Facilitates direct access to online sources and addresses the dynamic nature of web content.
@@ -83,7 +83,7 @@ When citing online sources, the following specific guidelines apply within the A
 This standard applies to all documents within any Knowledge Base that incorporate information from external sources, whether through direct quotation, paraphrase, data presentation, or summarization.
 
 ## 9. Cross-References
-- [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] - For general Markdown link syntax (though external links are primarily governed by APA 7th style for the URL/DOI presentation itself).
+- [[SF-LINKS-INTERNAL-SYNTAX]] - For general Markdown link syntax (though external links are primarily governed by APA 7th style for the URL/DOI presentation itself).
 - Official APA 7th Edition Style and Grammar Guidelines (External Resource).
 
 ---

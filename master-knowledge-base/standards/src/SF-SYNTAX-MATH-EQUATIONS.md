@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown Math Equation Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"] # For blank lines around blocks
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules around blocks
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -28,7 +28,7 @@ change_log_url: "./SF-SYNTAX-MATH-EQUATIONS-changelog.md" # Placeholder
 
 This standard defines the recommended syntax for embedding mathematical equations (both inline and as display blocks) within Markdown documents. The internal content of these equations SHOULD generally be expressed using LaTeX syntax. Consistent application of this standard facilitates the clear and accurate representation of mathematical formulas.
 
-Adherence to [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around block-level math equations is also important.
+Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block-level math equations is also important.
 
 ## 2. Core Math Syntax Rules (Common Extensions)
 
@@ -109,7 +109,7 @@ The content within the math delimiters (e.g., between `$`...`$`, or `$$`...`$$`)
 This standard applies to all Markdown documents within the knowledge base repository where mathematical equations are included.
 
 ## 6. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines around block elements, which applies to display math blocks.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements, which applies to display math blocks.
 
 ---
 *This standard (SF-SYNTAX-MATH-EQUATIONS) is based on common Markdown extension syntaxes for embedding LaTeX mathematical equations.*

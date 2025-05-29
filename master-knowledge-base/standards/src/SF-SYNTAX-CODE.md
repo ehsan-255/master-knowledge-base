@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown Code Syntax" # As per assumed keyword
-related-standards: ["SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"] # For blank line rules around blocks
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules around blocks
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,7 +26,7 @@ change_log_url: "./SF-SYNTAX-CODE-changelog.md" # Placeholder
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for representing inline code snippets and extended code blocks within all knowledge base documents. Consistent and correct code syntax is essential for readability, accuracy, and proper rendering, including syntax highlighting where applicable. Adherence to [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] regarding blank lines around block elements is also important for code blocks.
+This standard defines the mandatory Markdown syntax for representing inline code snippets and extended code blocks within all knowledge base documents. Consistent and correct code syntax is essential for readability, accuracy, and proper rendering, including syntax highlighting where applicable. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also important for code blocks.
 
 ## 2. Core Code Syntax Rules
 
@@ -59,7 +59,7 @@ Fenced code blocks MUST be used for multi-line code examples or longer code snip
         ```
         ````
     *   **Common Language Identifiers:** `python`, `javascript`, `java`, `csharp`, `bash`, `yaml`, `json`, `html`, `css`, `sql`, `markdown`, `text` (for plain text).
-*   **Blank Lines:** A blank line SHOULD precede and follow the fenced code block for readability and to ensure correct parsing, as per [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]].
+*   **Blank Lines:** A blank line SHOULD precede and follow the fenced code block for readability and to ensure correct parsing, as per [[SF-FORMATTING-FILE-HYGIENE]].
 *   **Rationale:** Fenced code blocks are the most common and robust method for displaying code, offering clear delimitation and support for language-specific syntax highlighting, which significantly improves readability and comprehension.
 
 ### Rule 2.3: Indented Code Blocks (Alternative, Less Preferred)
@@ -92,7 +92,7 @@ Indented code blocks, created by indenting each line of the code block by four (
 This standard applies to all Markdown documents within the knowledge base repository where inline code or code blocks are used.
 
 ## 5. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER]] - For rules on blank lines around block elements.
+- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements.
 
 ---
 *This standard (SF-SYNTAX-CODE) is based on common Markdown conventions for inline code and code blocks, emphasizing the preference for fenced code blocks with language identifiers.*

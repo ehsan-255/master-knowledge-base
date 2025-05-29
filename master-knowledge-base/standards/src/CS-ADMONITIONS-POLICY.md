@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Admonition and Callout Usage Policy" # As per prompt
-related-standards: ["SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER"]
+related-standards: ["SF-CALLOUTS-SYNTAX"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -26,16 +26,16 @@ change_log_url: "./CS-ADMONITIONS-POLICY-changelog.md" # Placeholder
 
 ## 1. Policy Statement
 
-This policy governs the appropriate and semantic use of admonition/callout blocks, whose syntax is defined in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]]. Admonitions are designed to draw the reader's attention to specific pieces of information that are ancillary or supplementary to the main text, or that require special emphasis (e.g., warnings, tips). Proper and consistent use of admonitions enhances readability and user experience.
+This policy governs the appropriate and semantic use of admonition/callout blocks, whose syntax is defined in [[SF-CALLOUTS-SYNTAX]]. Admonitions are designed to draw the reader's attention to specific pieces of information that are ancillary or supplementary to the main text, or that require special emphasis (e.g., warnings, tips). Proper and consistent use of admonitions enhances readability and user experience.
 
 ## 2. Core Usage Policies for Admonitions/Callouts
 
 ### Rule 2.1: Semantic Use of `TYPE`
-Admonition blocks MUST be used semantically, meaning the chosen `[!TYPE]` keyword (as defined in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]]) MUST accurately reflect the nature and purpose of the information being highlighted.
+Admonition blocks MUST be used semantically, meaning the chosen `[!TYPE]` keyword (as defined in [[SF-CALLOUTS-SYNTAX]]) MUST accurately reflect the nature and purpose of the information being highlighted.
 *   **Rationale:** Semantic usage ensures that the visual cues (colors, icons, etc.) provided by the rendered callout align with the content's intent, creating a consistent and predictable experience for the user.
 
 ### Rule 2.2: Guidance on Common `TYPE` Keywords
-The following provides guidance on when to use the common `TYPE` keywords defined in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]]:
+The following provides guidance on when to use the common `TYPE` keywords defined in [[SF-CALLOUTS-SYNTAX]]:
 
 *   **`[!NOTE]`**: For supplementary information that is relevant but tangential to the main text. Useful for elaborations, side comments, or additional context.
 *   **`[!IMPORTANT]`**: For information that users must not overlook due to its significance for understanding or correct application of the main content.
@@ -59,7 +59,7 @@ If an optional title is used after the `[!TYPE]` specifier, it SHOULD be concise
 *   **Rationale:** A good title provides immediate context for the callout's content.
 
 ### Rule 2.4: Content Indentation
-All content within a callout block, including multiple paragraphs, lists, or other Markdown elements, MUST be correctly indented to align under the callout's initial `>` marker, as specified in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]] and [[SF-SYNTAX-BLOCKQUOTES_ID_PLACEHOLDER]].
+All content within a callout block, including multiple paragraphs, lists, or other Markdown elements, MUST be correctly indented to align under the callout's initial `>` marker, as specified in [[SF-CALLOUTS-SYNTAX]] and [[SF-SYNTAX-BLOCKQUOTES]].
 *   **Rationale:** Ensures correct rendering of the callout as a single, cohesive block.
 
 ### Rule 2.5: Avoid Overuse
@@ -80,9 +80,9 @@ Admonition blocks SHOULD be used judiciously and only when information genuinely
 This policy applies to all authors and editors creating or modifying content within the knowledge base. It guides the decision-making process for when and how to use admonition/callout blocks.
 
 ## 5. Cross-References
-- [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]] - Defines the Markdown syntax for creating callout/admonition blocks.
-- [[SF-SYNTAX-BLOCKQUOTES_ID_PLACEHOLDER]] - Defines the base blockquote syntax.
+- [[SF-CALLOUTS-SYNTAX]] - Defines the Markdown syntax for creating callout/admonition blocks.
+- [[SF-SYNTAX-BLOCKQUOTES]] - Defines the base blockquote syntax.
 
 ---
-*This policy (CS-ADMONITIONS-POLICY) provides guidance on the semantic and appropriate use of the callout/admonition syntax defined in [[SF-CALLOUTS-SYNTAX_ID_PLACEHOLDER]], generalizing concepts from previous tool-specific standards like O-USAGE-CALLOUTS-001.*
+*This policy (CS-ADMONITIONS-POLICY) provides guidance on the semantic and appropriate use of the callout/admonition syntax defined in [[SF-CALLOUTS-SYNTAX]], generalizing concepts from previous tool-specific standards like O-USAGE-CALLOUTS-001.*
 ```

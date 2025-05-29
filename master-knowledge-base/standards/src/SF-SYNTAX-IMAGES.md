@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Markdown Image Syntax" # As per prompt
-related-standards: ["SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER", "AS-STRUCTURE-ASSET-ORGANIZATION_ID_PLACEHOLDER"]
+related-standards: ["SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "AS-STRUCTURE-ASSET-ORGANIZATION"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -45,7 +45,7 @@ An image link is prefixed with an exclamation mark (`!`).
 Alternative text (alt text) is enclosed in square brackets (`[]`).
 *   **Requirement:** Alt text is **mandatory** for all informational images.
 *   **Purpose:** Provides a textual description of the image for users who cannot see it (e.g., users with screen readers, or if the image fails to load). It is critical for accessibility.
-*   **Detailed Guidelines:** For comprehensive rules on how to write effective and descriptive alt text, refer to [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]].
+*   **Detailed Guidelines:** For comprehensive rules on how to write effective and descriptive alt text, refer to [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]].
 *   **Example:** `![Architectural diagram showing user authentication flow]`
 *   **Rationale:** Essential for accessibility (WCAG compliance) and provides context when images are unavailable.
 
@@ -54,7 +54,7 @@ The URL or path to the image file is enclosed in parentheses (`()`).
 *   **Content:** This can be:
     *   A relative path to an image file stored within the knowledge base repository (preferred for internal assets).
     *   An absolute URL to an image hosted externally.
-*   **Asset Organization:** For images stored internally, the path SHOULD adhere to the conventions defined in [[AS-STRUCTURE-ASSET-ORGANIZATION_ID_PLACEHOLDER]] (e.g., pointing to a file within the `assets/images/` directory of the respective KB).
+*   **Asset Organization:** For images stored internally, the path SHOULD adhere to the conventions defined in [[AS-STRUCTURE-ASSET-ORGANIZATION]] (e.g., pointing to a file within the `assets/images/` directory of the respective KB).
 *   **Example (Relative Path):** `(./assets/images/my-diagram.png)`
 *   **Example (Absolute URL):** `(https://example.com/path/to/image.jpg)`
 *   **Rationale:** Specifies the source from which the browser or Markdown renderer should fetch and display the image.
@@ -84,7 +84,7 @@ An optional title for the image can be included in quotes after the URL/path, se
 ```
 
 ### Example 3.4: Purely Decorative Image (Use Sparingly)
-As per [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]], if an image is purely decorative and adds no informational value:
+As per [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]], if an image is purely decorative and adds no informational value:
 ```markdown
 ![](./assets/images/decorative-border.png) 
 ```
@@ -103,8 +103,8 @@ As per [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]], if an image is purely
 This standard applies to all Markdown documents within the knowledge base repository where images are embedded.
 
 ## 6. Cross-References
-- [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT_ID_PLACEHOLDER]] - For detailed guidelines on writing effective alternative text.
-- [[AS-STRUCTURE-ASSET-ORGANIZATION_ID_PLACEHOLDER]] - For rules on storing and organizing image files and other assets.
+- [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]] - For detailed guidelines on writing effective alternative text.
+- [[AS-STRUCTURE-ASSET-ORGANIZATION]] - For rules on storing and organizing image files and other assets.
 
 ---
 *This standard (SF-SYNTAX-IMAGES) is based on common Markdown image syntax conventions and emphasizes integration with accessibility and asset organization standards.*

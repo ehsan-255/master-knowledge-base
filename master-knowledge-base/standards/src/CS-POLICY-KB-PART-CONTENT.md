@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "KB Part Content Organization"
-related-standards: ["AS-STRUCTURE-KB-PART", "AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER"]
+related-standards: ["AS-STRUCTURE-KB-PART", "AS-STRUCTURE-DOC-CHAPTER", "SF-CONVENTIONS-NAMING"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -34,7 +34,7 @@ This policy mandates that "Chapters" (individual documents or major H2 sections 
 "Chapters" within a "Part" of a Knowledge Base MUST be arranged in a logical sequence.
 *   **Guidance:**
     *   The sequence should support a progressive understanding of the Part's subject matter. This might involve, for example, moving from foundational concepts to more advanced topics, or following a chronological or procedural order where appropriate.
-    *   Sequencing is typically managed by numerical prefixes in filenames (e.g., `01-introduction.md`, `02-core-concepts.md`) as defined in [[SF-CONVENTIONS-NAMING_ID_PLACEHOLDER]], or by the order of H2 headings if Chapters are sections within a single document (e.g., within `_overview.md` for a very small Part).
+    *   Sequencing is typically managed by numerical prefixes in filenames (e.g., `01-introduction.md`, `02-core-concepts.md`) as defined in [[SF-CONVENTIONS-NAMING]], or by the order of H2 headings if Chapters are sections within a single document (e.g., within `_overview.md` for a very small Part).
     *   The Table of Contents within the Part's overview (defined in [[AS-STRUCTURE-KB-PART]]) MUST reflect this logical sequence.
 
 ### Rule 2.2: Distinct and Coherent Topic per "Chapter" (Derived from U-STRUC-001, Rule 1.6)
@@ -42,7 +42,7 @@ Each "Chapter" file or document (or H2 section if Chapters are not separate file
 *   **Guidance:**
     *   A Chapter should have a clear focus and not attempt to cover too many disparate subjects.
     *   If a topic becomes too large or complex for a single Chapter, it should be broken down into multiple, more focused Chapters.
-    *   The scope of each Chapter should be clearly articulated, often in its introductory section, as per [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]].
+    *   The scope of each Chapter should be clearly articulated, often in its introductory section, as per [[AS-STRUCTURE-DOC-CHAPTER]].
 
 ## 3. Rationale and Importance
 
@@ -61,8 +61,8 @@ This policy applies to the organization of "Chapters" within all "Parts" of all 
 
 ## 5. Cross-References
 - [[AS-STRUCTURE-KB-PART]] - Defines the overall structure of KB Parts and their overviews.
-- [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] - Standard for Content Document ("Chapter") Internal Structure (to be updated with actual ID).
-- [[SF-CONVENTIONS-NAMING_ID_PLACEHOLDER]] - File and Folder Naming Conventions (relevant for Chapter sequencing).
+- [[AS-STRUCTURE-DOC-CHAPTER]] - Standard for Content Document ("Chapter") Internal Structure (to be updated with actual ID).
+- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for Chapter sequencing).
 
 ---
 *This policy (CS-POLICY-KB-PART-CONTENT) is based on rules 1.5 and 1.6 previously defined in U-STRUC-001 from COL-ARCH-UNIVERSAL.md.*

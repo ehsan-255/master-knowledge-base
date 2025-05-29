@@ -184,7 +184,7 @@ This file contains updates that were intended for `CONTRIBUTOR_GUIDE.md`. Due to
         -   Updated references to glossaries, templates directory, and other key architectural files to their new standard IDs.
         -   Added notes to the "Using Obsidian" section to clarify that these are now generalized standards.
 -   **Step 1.8: Refactor Guide Documents (Continued)**
-    -   **Task 1.8.2: Refactor `GUIDE-TASK-BASED.md`**
+    -   **Task 1.8.2: Refactor `GUIDE-TASK-BAED.md`**
         -   Created new guide `/master-knowledge-base/standards/src/GM-GUIDE-STANDARDS-BY-TASK.md` (standard_id: `GM-GUIDE-STANDARDS-BY-TASK`).
         -   Populated frontmatter using `tpl-canonical-frontmatter.md` as a base, with `info-type: guide-document`.
         -   Migrated content from `standards/GUIDE-TASK-BASED.md`.
@@ -193,3 +193,27 @@ This file contains updates that were intended for `CONTRIBUTOR_GUIDE.md`. Due to
 -   **Step 1.8: Refactor Guide Documents (Completed)**
     -   The original guide files `standards/GUIDE-KB-USAGE-AND-STANDARDS.md` and `standards/GUIDE-TASK-BASED.md` have been successfully refactored into `master-knowledge-base/standards/src/GM-GUIDE-KB-USAGE.md` and `master-knowledge-base/standards/src/GM-GUIDE-STANDARDS-BY-TASK.md` respectively.
     -   The original files in the `standards/` directory are now considered superseded and are candidates for deletion or archival in a later cleanup phase. No direct modifications (like adding deprecation notices) will be made to these old files at this time, as their replacements are now the authoritative versions.
+
+## Unresolved/Unmapped Placeholders Encountered During Link Updates (Phase 2.1)
+
+The following placeholder IDs were found in files within `/master-knowledge-base/standards/src/` but were not included in the provided replacement mapping. They have been left unchanged for now and require further investigation:
+
+-   `HYPOTHESIS-TESTING_ID_PLACEHOLDER` (found in `AS-SCHEMA-CONCEPT-DEFINITION.md`)
+-   `P-VALUE_ID_PLACEHOLDER` (found in `AS-SCHEMA-CONCEPT-DEFINITION.md`)
+-   `ANOTHER-RELEVANT-STANDARD_ID_PLACEHOLDER` (found in `AS-STRUCTURE-DOC-CHAPTER.md`)
+-   `CORE-CONCEPT-RESEARCH_ID_PLACEHOLDER` (found in `AS-STRUCTURE-DOC-CHAPTER.md`)
+-   `FILENAME_ID_PLACEHOLDER` (found in comments in `AS-STRUCTURE-KB-PART.md`, `AS-STRUCTURE-KB-ROOT.md`, `AS-STRUCTURE-MASTER-KB-INDEX.md` - likely not actual links)
+-   `Advanced Settings Guide_ID_PLACEHOLDER` (found in `CS-CONTENT-PROFILING-POLICY.md`)
+-   `NEW-STANDARD-ID_PLACEHOLDER` (found in `OM-POLICY-STANDARDS-DEPRECATION.md` example)
+
+### Decision ID DECISION_002: Refactor KB Standards (Continued)
+
+**Phase 2: Governance Review & Standalone Document Refactoring (In Progress)**
+
+-   **Step 2.2: Refactor Existing Standalone Standard Files**
+    -   **Processed `standards/U-KEYREF-SYNTAX-001.md`**:
+        -   Created new atomic standard `/master-knowledge-base/standards/src/SF-SYNTAX-KEYREF.md` (standard_id: `SF-SYNTAX-KEYREF`).
+        -   `info-type` set to `standard-definition`.
+        -   Frontmatter populated according to `tpl-canonical-frontmatter.md`.
+        -   Content migrated from `U-KEYREF-SYNTAX-001`, defining the `{{key.name}}` syntax, camelCase recommendation for key names, and no whitespace rule.
+        -   Cross-references updated to point to anticipated new standard IDs like `[[MT-KEYREF-MANAGEMENT]]` and `[[UA-KEYDEFS-GLOBAL]]`.

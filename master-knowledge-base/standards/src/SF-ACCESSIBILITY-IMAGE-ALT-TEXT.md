@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Image Alt Text" # As per prompt
-related-standards: ["CS-POLICY-ACCESSIBILITY_ID_PLACEHOLDER", "SF-SYNTAX-MARKDOWN-IMAGES_ID_PLACEHOLDER"] # Placeholder for image syntax
+related-standards: ["CS-POLICY-ACCESSIBILITY", "SF-SYNTAX-IMAGES"] # Placeholder for image syntax
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -34,7 +34,7 @@ This standard mandates the use of descriptive alternative text (alt text) for al
 All images embedded in content that convey information relevant to understanding the content MUST include descriptive alternative text.
 *   **Syntax:** Alt text is provided using the standard Markdown image syntax: `![Alt text description here](path/to/image.png "Optional Title")`
     *   The "Optional Title" part of the Markdown syntax (hover text) is not a replacement for alt text and should be used sparingly, if at all, as its accessibility support varies. Primary focus MUST be on the alt text.
-*   **Reference:** The specific Markdown syntax for images should align with a general Markdown syntax standard, if available (e.g., [[SF-SYNTAX-MARKDOWN-IMAGES_ID_PLACEHOLDER]]).
+*   **Reference:** The specific Markdown syntax for images should align with a general Markdown syntax standard, if available (e.g., [[SF-SYNTAX-IMAGES]]).
 *   **Rationale:** Alt text provides a textual alternative to visual information, making image content accessible to screen readers and search engines, and providing context if images are disabled or fail to load.
 
 ### Rule 2.2: Concise and Sufficiently Descriptive Alt Text (Derived from U-ACCESSIBILITY-001, Rule 1.2)
@@ -76,8 +76,8 @@ If an image is purely decorative and provides no informational value (e.g., a st
 This standard applies to all images (e.g., PNG, JPG, SVG, GIF) embedded within any Markdown document in the knowledge base.
 
 ## 6. Cross-References
-- [[CS-POLICY-ACCESSIBILITY_ID_PLACEHOLDER]] - The overarching policy on content accessibility.
-- [[SF-SYNTAX-MARKDOWN-IMAGES_ID_PLACEHOLDER]] - (If it exists) Standard defining the precise Markdown syntax for images. If not, refer to a general Markdown syntax guide.
+- [[CS-POLICY-ACCESSIBILITY]] - The overarching policy on content accessibility.
+- [[SF-SYNTAX-IMAGES]] - (If it exists) Standard defining the precise Markdown syntax for images. If not, refer to a general Markdown syntax guide.
 
 ---
 *This standard (SF-ACCESSIBILITY-IMAGE-ALT-TEXT) is based on rules 1.1 and 1.2 previously defined in U-ACCESSIBILITY-001 from COL-LINKING-UNIVERSAL.md.*

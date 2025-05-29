@@ -9,7 +9,7 @@ tags:
 kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Table of Contents Policy" # As per prompt
-related-standards: ["SF-TOC-SYNTAX", "AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER"]
+related-standards: ["SF-TOC-SYNTAX", "AS-STRUCTURE-DOC-CHAPTER"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
 date-modified: "2024-07-15T12:00:00Z"
@@ -31,8 +31,8 @@ This policy defines requirements and recommendations for the inclusion, content,
 ## 2. Core ToC Requirements and Recommendations
 
 ### Rule 2.1: ToC Mandate for "Chapter" Documents
-As mandated by [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] (Rule 1.3), all "Chapter" documents (primary content documents) MUST include a Table of Contents.
-*   **Placement:** The ToC typically follows the introductory abstract, as specified in [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]].
+As mandated by [[AS-STRUCTURE-DOC-CHAPTER]] (Rule 1.3), all "Chapter" documents (primary content documents) MUST include a Table of Contents.
+*   **Placement:** The ToC typically follows the introductory abstract, as specified in [[AS-STRUCTURE-DOC-CHAPTER]].
 *   **Rationale:** Essential for navigating longer content documents and understanding their structure at a glance.
 
 ### Rule 2.2: Content of ToC - Heading Levels
@@ -68,7 +68,7 @@ This policy applies to all documents within the knowledge base, particularly "Ch
 
 ## 5. Cross-References
 - [[SF-TOC-SYNTAX]] - Defines the mandatory Markdown syntax for manually created ToCs (and the target output for automated tools).
-- [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] - Mandates the inclusion of a ToC in "Chapter" documents and specifies its typical placement.
+- [[AS-STRUCTURE-DOC-CHAPTER]] - Mandates the inclusion of a ToC in "Chapter" documents and specifies its typical placement.
 
 ---
 *This policy (CS-TOC-POLICY) generalizes previous mandates (like O-USAGE-TOC-MANDATE-001) and tool-specific recommendations (like O-USAGE-TOC-PLUGIN-001) into a tool-agnostic policy framework, emphasizing standard Markdown output for ToCs while recommending automation.*
