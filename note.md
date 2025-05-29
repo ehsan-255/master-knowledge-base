@@ -169,3 +169,27 @@ This file contains updates that were intended for `CONTRIBUTOR_GUIDE.md`. Due to
     -   **Task 1.6.2 (Mark `COL-TOOLING-OBSIDIAN.md` for deprecation):**
         -   Verified that `standards/COL-TOOLING-OBSIDIAN.md` is already comprehensively marked as deprecated. This includes appropriate frontmatter updates (status, primary-topic, related-standards, version) and a clear deprecation notice at the top of the document body listing its generalized atomic replacements.
         -   No further modifications were needed to deprecate this file.
+
+### Decision ID DECISION_002: Refactor KB Standards (Continued)
+
+**Phase 1: Atomic Decomposition, Splitting & Metadata Enrichment (In Progress)**
+
+-   **Step 1.8: Refactor Guide Documents**
+    -   **Task 1.8.1: Refactor `GUIDE-KB-USAGE-AND-STANDARDS.md`**
+        -   Created new guide `/master-knowledge-base/standards/src/GM-GUIDE-KB-USAGE.md` (standard_id: `GM-GUIDE-KB-USAGE`).
+        -   Populated frontmatter using `tpl-canonical-frontmatter.md` as a base, with `info-type: guide-document`.
+        -   Migrated content from `standards/GUIDE-KB-USAGE-AND-STANDARDS.md`.
+        -   Thoroughly revised content, updating internal links to use the new `[[STANDARD_ID]]` format, pointing to the refactored atomic standards.
+        -   Updated references to the TODO system to align with `SF-CALLOUTS-SYNTAX.md` (`[!TODO]` callouts).
+        -   Updated references to glossaries, templates directory, and other key architectural files to their new standard IDs.
+        -   Added notes to the "Using Obsidian" section to clarify that these are now generalized standards.
+-   **Step 1.8: Refactor Guide Documents (Continued)**
+    -   **Task 1.8.2: Refactor `GUIDE-TASK-BASED.md`**
+        -   Created new guide `/master-knowledge-base/standards/src/GM-GUIDE-STANDARDS-BY-TASK.md` (standard_id: `GM-GUIDE-STANDARDS-BY-TASK`).
+        -   Populated frontmatter using `tpl-canonical-frontmatter.md` as a base, with `info-type: guide-document`.
+        -   Migrated content from `standards/GUIDE-TASK-BASED.md`.
+        -   Thoroughly revised content, updating internal links from old U-xxx/M-xxx/O-xxx IDs to use the new `[[STANDARD_ID]]` format, pointing to the refactored atomic standards.
+        -   Updated the "Working within Obsidian" section to reference generalized standards.
+-   **Step 1.8: Refactor Guide Documents (Completed)**
+    -   The original guide files `standards/GUIDE-KB-USAGE-AND-STANDARDS.md` and `standards/GUIDE-TASK-BASED.md` have been successfully refactored into `master-knowledge-base/standards/src/GM-GUIDE-KB-USAGE.md` and `master-knowledge-base/standards/src/GM-GUIDE-STANDARDS-BY-TASK.md` respectively.
+    -   The original files in the `standards/` directory are now considered superseded and are candidates for deletion or archival in a later cleanup phase. No direct modifications (like adding deprecation notices) will be made to these old files at this time, as their replacements are now the authoritative versions.
