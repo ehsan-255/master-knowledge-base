@@ -4,24 +4,23 @@ standard_id: "OM-POLICY-STANDARDS-GOVERNANCE"
 aliases: ["Standards Governance Policy", "Change Management for Standards"]
 tags:
   - status/draft
-  - criticality/P1-High # Governance is crucial
+  - criticality/P1-High
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
 primary-topic: "Standards Governance Process"
-related-standards: ["GM-GUIDE-KB-USAGE", "MT-REGISTRY-TAG-GLOSSARY", "OM-VERSIONING-CHANGELOGS", "OM-POLICY-STANDARDS-DEPRECATION"] # Updated placeholders
-version: "1.0.0"
+related-standards: ["GM-GUIDE-KB-USAGE", "MT-REGISTRY-TAG-GLOSSARY", "OM-VERSIONING-CHANGELOGS", "OM-POLICY-STANDARDS-DEPRECATION"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "OM" # Operational & Management
-sub_domain: "POLICY" # As per prompt
+date-modified: "2025-05-30T14:00:00Z"
+primary_domain: "OM"
+sub_domain: "POLICY"
 scope_application: "The lifecycle of all standard documents, including their proposal, review, approval, update, and deprecation."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Governance-Board-Approval" # Specific gatekeeper for governance policies
+lifecycle_gatekeeper: "Governance-Board-Approval"
 impact_areas: ["Standards quality", "Consistency across KB", "Change management", "Community involvement", "User trust in standards"]
-change_log_url: "./OM-POLICY-STANDARDS-GOVERNANCE-changelog.md" # Placeholder
+change_log_url: "./OM-POLICY-STANDARDS-GOVERNANCE-changelog.md"
 ---
-
 # Policy: Governance for Proposing and Updating Standards (OM-POLICY-STANDARDS-GOVERNANCE)
 
 ## 1. Policy Statement
@@ -71,4 +70,3 @@ This policy applies to all standard documents within the knowledge base ecosyste
 
 ---
 *This policy (OM-POLICY-STANDARDS-GOVERNANCE) is based on rules 1.1 through 1.3 previously defined in U-GOVERNANCE-001 from COL-GOVERNANCE-UNIVERSAL.md.*
-```

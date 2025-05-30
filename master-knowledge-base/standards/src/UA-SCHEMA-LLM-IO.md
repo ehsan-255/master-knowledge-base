@@ -3,22 +3,21 @@ title: "Standard: LLM Automation Input/Output Schema"
 standard_id: "UA-SCHEMA-LLM-IO"
 aliases: ["LLM IO Schema", "Schema for LLM Automation Data Exchange"]
 tags: ["status/draft", "criticality/P1-High", "content-type/schema-document", "topic/llm", "topic/automation", "topic/schemas", "topic/data-interchange", "kb-id/standards"]
-kb-id: "kb-id/standards"
+kb-id: "standards"
 info-type: "schema-document"
 primary-topic: "Defines the standard input and output data structures (schemas) for scripts and services involved in LLM-based content generation and automation."
-related-standards: ["MT-SCHEMA-FRONTMATTER", "OM-POLICY-STANDARDS-GOVERNANCE"] # May also relate to specific LLM workflow standards
-version: "0.1.0"
+related-standards: ["MT-SCHEMA-FRONTMATTER", "OM-POLICY-STANDARDS-GOVERNANCE"]
+version: '0.1.0'
 date-created: "2025-05-29T15:55:50Z"
-date-modified: "2025-05-29T15:55:50Z"
-primary_domain: "UA" # Utility & Assets - for automation-related data definitions
-sub_domain: "AUTOMATION" # Schemas supporting automation
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "UA"
+sub_domain: "AUTOMATION"
 scope_application: "Applies to all automated processes and scripts that interact with Large Language Models (LLMs) for tasks such as content generation, analysis, or modification within the knowledge base ecosystem."
-criticality: "P1-High" # Consistent data exchange is crucial for reliable automation.
+criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["LLM integration", "Automation reliability", "Data consistency", "Developer workflow for LLM scripts"]
 change_log_url: "./UA-SCHEMA-LLM-IO-changelog.md"
 ---
-
 # Standard: LLM Automation Input/Output Schema (UA-SCHEMA-LLM-IO)
 
 ## 1. Standard Statement

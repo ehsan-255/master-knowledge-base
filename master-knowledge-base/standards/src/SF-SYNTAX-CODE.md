@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-CODE"
 aliases: ["Code Syntax", "Markdown Code Blocks", "Inline Code Syntax"]
 tags:
   - status/draft
-  - criticality/p1-high # Correct code representation is vital
+  - criticality/p1-high
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Code Syntax" # As per assumed keyword
-related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules around blocks
-version: "1.0.0"
+primary-topic: "Markdown Code Syntax"
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "MARKDOWN" # Changed from SYNTAX
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "MARKDOWN"
 scope_application: "Defines the mandatory Markdown syntax for representing inline code and code blocks (both fenced and indented) in all knowledge base documents."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Readability of technical content", "Accuracy of code representation", "Authoring consistency", "Syntax highlighting in rendered views"]
-change_log_url: "./SF-SYNTAX-CODE-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-CODE-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Code (Inline and Blocks) (SF-SYNTAX-CODE)
 
 ## 1. Standard Statement
@@ -96,4 +95,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-CODE) is based on common Markdown conventions for inline code and code blocks, emphasizing the preference for fenced code blocks with language identifiers.*
-```

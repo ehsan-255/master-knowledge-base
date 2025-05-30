@@ -6,22 +6,21 @@ tags:
   - status/draft
   - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # This standard is intended to be part of the global standards
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Directory Structure" # More descriptive primary topic
-related-standards: [] # Optional: e.g., ["SF-CONVENTIONS-NAMING"]
-version: "0.1.0"
-date-created: "2024-07-15T10:00:00Z" # Placeholder for actual creation date
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "AS" # Architectural Standards
-sub_domain: "STRUCTURE" # Structural Standards
+primary-topic: "Directory Structure"
+related-standards: []
+version: '0.1.0'
+date-created: "2024-07-15T10:00:00Z"
+date-modified: "2025-05-30T21:00:00Z"
+primary_domain: "AS"
+sub_domain: "STRUCTURE"
 scope_application: "Overall repository and knowledge base file organization."
-criticality: "P1-High" # As specified in tags
-lifecycle_gatekeeper: "Architect-Review" # Standard gatekeeper for technical standards
+criticality: "P1-High"
+lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Authoring workflow", "Build process", "Navigation"]
-change_log_url: "./AS-KB-DIRECTORY-STRUCTURE-changelog.md" # Placeholder for changelog file
+change_log_url: "./AS-KB-DIRECTORY-STRUCTURE-changelog.md"
 ---
-
 # AS-KB-DIRECTORY-STRUCTURE: Knowledge Base Directory Structure Standard
 
 ## 1. Overview

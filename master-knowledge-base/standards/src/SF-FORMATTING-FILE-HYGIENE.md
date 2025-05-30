@@ -4,22 +4,22 @@ standard_id: "SF-FORMATTING-FILE-HYGIENE"
 aliases: ["File Formatting Standard", "Line Endings", "UTF-8 Encoding Standard"]
 tags:
   - status/draft
-  - criticality/p2-medium # Important for consistency and technical integrity
+  - criticality/p2-medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "File Hygiene and Line Endings" # As per prompt
-related-standards: ["MT-SCHEMA-FRONTMATTER"]
-version: "1.0.0"
+primary-topic: "File Hygiene and Line Endings"
+related-standards: ["[[MT-SCHEMA-FRONTMATTER]]"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "MARKDOWN" # Changed from FORMATTING
+date-modified: "2025-05-30T18:00:00Z"
+primary_domain: "SF"
+sub_domain: "MARKDOWN"
 scope_application: "All text-based files within the knowledge base repository, especially Markdown (.md), YAML (.yaml), JSON (.json), and script files (.py, .sh, etc.)."
 criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review" # Or automated linting
+lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Version control consistency", "Cross-platform compatibility", "File integrity", "Readability", "Automated processing"]
-change_log_url: "./SF-FORMATTING-FILE-HYGIENE-changelog.md" # Placeholder
+change_log_url: "./SF-FORMATTING-FILE-HYGIENE-changelog.md"
 ---
 
 # Standard: File Hygiene and Formatting (SF-FORMATTING-FILE-HYGIENE)
@@ -30,7 +30,7 @@ This standard defines mandatory file hygiene and formatting rules for all text-b
 
 ## 2. Core File Hygiene Rules
 
-### Rule 2.1: UTF-8 Encoding (Consistent with [[U-METADATA-FRONTMATTER-RULES-001]])
+### Rule 2.1: UTF-8 Encoding (Consistent with [[MT-SCHEMA-FRONTMATTER]])
 All text-based files (e.g., `.md`, `.yaml`, `.json`, `.py`) MUST use **UTF-8 (Unicode Transformation Format—8-bit) encoding**.
 *   **Byte Order Mark (BOM):** A Byte Order Mark (BOM) MUST NOT be used at the beginning of files.
 *   **Rationale:** UTF-8 is a universal character encoding standard that supports a wide range of characters and symbols, ensuring broad compatibility. Avoiding BOM prevents potential issues with some tools and parsers, particularly in Unix-like environments. This rule aligns with the frontmatter encoding specified in [[MT-SCHEMA-FRONTMATTER]].

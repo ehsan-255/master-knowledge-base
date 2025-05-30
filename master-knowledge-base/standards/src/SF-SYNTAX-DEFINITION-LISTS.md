@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-DEFINITION-LISTS"
 aliases: ["Definition List Syntax", "Markdown DL Syntax"]
 tags:
   - status/draft
-  - criticality/P3-Low # Definition lists are less common than other elements
+  - criticality/P3-Low
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Definition List Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules
-version: "1.0.0"
+primary-topic: "Markdown Definition List Syntax"
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T14:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the syntax for creating definition lists in Markdown documents, intended for term-definition pairs such as glossaries or descriptive itemizations."
 criticality: "P3-Low"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Structured content (glossaries, etc.)", "Readability", "Authoring consistency", "Semantic representation of definitions"]
-change_log_url: "./SF-SYNTAX-DEFINITION-LISTS-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-DEFINITION-LISTS-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Definition Lists (SF-SYNTAX-DEFINITION-LISTS)
 
 ## 1. Standard Statement
@@ -119,4 +118,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-DEFINITION-LISTS) is based on common Markdown extension syntax for definition lists.*
-```

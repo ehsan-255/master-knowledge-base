@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-BLOCKQUOTES"
 aliases: ["Blockquote Syntax", "Markdown Quoting"]
 tags:
   - status/draft
-  - criticality/p2-medium # Basic but important for clear quoting
+  - criticality/p2-medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Blockquote Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules
-version: "1.0.0"
+primary-topic: "Markdown Blockquote Syntax"
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "MARKDOWN" # Changed from SYNTAX
+date-modified: "2025-05-30T18:00:00Z"
+primary_domain: "SF"
+sub_domain: "MARKDOWN"
 scope_application: "Defines the mandatory Markdown syntax for creating blockquotes in all knowledge base documents."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Readability", "Authoring consistency", "Correct rendering of quoted text", "Accessibility"]
-change_log_url: "./SF-SYNTAX-BLOCKQUOTES-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-BLOCKQUOTES-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Blockquotes (SF-SYNTAX-BLOCKQUOTES)
 
 ## 1. Standard Statement
@@ -90,4 +89,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-BLOCKQUOTES) is based on rules 1.1 through 1.3 previously defined in M-SYNTAX-BLOCKQUOTE-001 from COL-SYNTAX-MARKDOWN.md.*
-```

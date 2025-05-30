@@ -4,24 +4,23 @@ standard_id: "AS-SCHEMA-CONCEPT-DEFINITION"
 aliases: ["Concept Definition Schema", "Terminology Schema"]
 tags:
   - status/draft
-  - criticality/p1-high # Schemas are important for consistency
-  - content-type/technical-standard # It's a standard defining a schema
-kb-id: "" # Global standard
-info-type: "standard-definition" # Defines a standard for document structure
+  - criticality/p1-high
+  - content-type/technical-standard
+kb-id: "standards"
+info-type: "standard-definition"
 primary-topic: "Schema for Concept Definitions"
 related-standards: ["AS-STRUCTURE-DOC-CHAPTER"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
+date-modified: "2025-05-30T12:00:00Z"
 primary_domain: "AS"
-sub_domain: "STRUCTURE" # Changed from SCHEMA
+sub_domain: "STRUCTURE"
 scope_application: "Defines the mandatory content structure (schema) for documents that primarily define a core concept or term."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Content consistency", "Clarity of definitions", "User understanding of terminology", "Knowledge base coherence"]
-change_log_url: "./AS-SCHEMA-CONCEPT-DEFINITION-changelog.md" # Placeholder
+change_log_url: "./AS-SCHEMA-CONCEPT-DEFINITION-changelog.md"
 ---
-
 # Standard: Content Schema for Concept Definitions (AS-SCHEMA-CONCEPT-DEFINITION)
 
 This standard defines the mandatory content structure (schema) for documents whose primary purpose is to define a core concept or term. Adherence to this schema ensures that concepts are explained clearly, consistently, and comprehensively.
@@ -112,4 +111,3 @@ A new drug is tested against a placebo. Statistical significance helps determine
 
 ---
 *This standard (AS-SCHEMA-CONCEPT-DEFINITION) is based on rules 1.1 through 1.7 previously defined in U-SCHEMA-CONCEPT-001 from COL-CONTENT-UNIVERSAL.md.*
-```

@@ -4,24 +4,23 @@ standard_id: "CS-CONTENT-PROFILING-POLICY"
 aliases: ["Conditional Text Policy", "Content Profiling Strategy", "Audience Targeting"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Profiling is a powerful but potentially complex feature
+  - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Content Profiling Strategy" # As per prompt
+primary-topic: "Content Profiling Strategy"
 related-standards: ["SF-CALLOUTS-SYNTAX", "SF-CONDITIONAL-SYNTAX-ATTRIBUTES"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "CS" # Content Standard
-sub_domain: "POLICY" # As per prompt
+date-modified: "2025-05-30T14:00:00Z"
+primary_domain: "CS"
+sub_domain: "POLICY"
 scope_application: "Governs the strategy, implementation, and management of content profiling and conditional text display within knowledge base documents."
 criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval" # Profiling strategy needs governance
+lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Personalized content delivery", "Content relevance", "Authoring complexity", "Maintenance of profiled content", "User experience"]
-change_log_url: "./CS-CONTENT-PROFILING-POLICY-changelog.md" # Placeholder
+change_log_url: "./CS-CONTENT-PROFILING-POLICY-changelog.md"
 ---
-
 # Policy: Content Profiling and Conditional Text (CS-CONTENT-PROFILING-POLICY)
 
 ## 1. Policy Statement
@@ -151,4 +150,3 @@ This policy applies to all content within the knowledge base where conditional t
 
 ---
 *This policy (CS-CONTENT-PROFILING-POLICY) is based on rules 1.1, 1.4, 1.5, and 1.6 previously defined in M-CONDITIONAL-TEXT-SYNTAX-001. It also establishes itself as the new authoritative source for profiling attributes and values, superseding U-PROFILING-ATTRIBUTES-001.*
-```

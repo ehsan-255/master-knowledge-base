@@ -1,23 +1,24 @@
 ---
 title: "Standard: Primary Topic Keyword Strategy"
 standard_id: "MT-STRATEGY-PRIMARY-TOPIC-KEYWORD"
+aliases:
+  - "Primary Topic Strategy"
 tags: ["status/draft", "criticality/P2-Medium", "content-type/standard-definition", "topic/metadata", "topic/keywords", "topic/tagging"]
-kb-id: "kb-id/standards"
+kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "Defines the strategy for selecting and using the primary-topic keyword in YAML frontmatter for enhanced content discovery and metadata consistency."
 related-standards: ["MT-SCHEMA-FRONTMATTER"]
-version: "0.1.0"
+version: '0.1.0'
 date-created: "2025-05-29T15:42:28Z"
-date-modified: "2025-05-29T15:42:28Z"
+date-modified: "2025-05-30T19:00:00Z"
 primary_domain: "MT"
-sub_domain: "TAGGING" 
+sub_domain: "TAGGING"
 scope_application: "Applies to the `primary-topic` field in the YAML frontmatter of all documents across all knowledge bases where this field is utilized."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Content discovery", "Metadata consistency", "Automated indexing", "Searchability"]
 change_log_url: "./MT-STRATEGY-PRIMARY-TOPIC-KEYWORD-changelog.md"
 ---
-
 # Standard: Primary Topic Keyword Strategy
 
 ## 1. Standard Statement

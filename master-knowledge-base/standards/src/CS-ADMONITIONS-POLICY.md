@@ -4,24 +4,23 @@ standard_id: "CS-ADMONITIONS-POLICY"
 aliases: ["Callout Usage Policy", "Admonition Policy"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Guiding usage is important for consistency
+  - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Admonition and Callout Usage Policy" # As per prompt
+primary-topic: "Admonition and Callout Usage Policy"
 related-standards: ["SF-CALLOUTS-SYNTAX"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "CS" # Content Standard
-sub_domain: "POLICY" # As per prompt
+date-modified: "2025-05-30T14:00:00Z"
+primary_domain: "CS"
+sub_domain: "POLICY"
 scope_application: "Governs the appropriate and semantic use of admonition/callout blocks (as defined in SF-CALLOUTS-SYNTAX) across all knowledge base documents."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Content readability", "User experience", "Consistent highlighting of information", "Authoring practices"]
-change_log_url: "./CS-ADMONITIONS-POLICY-changelog.md" # Placeholder
+change_log_url: "./CS-ADMONITIONS-POLICY-changelog.md"
 ---
-
 # Policy: Usage of Admonitions and Callouts (CS-ADMONITIONS-POLICY)
 
 ## 1. Policy Statement
@@ -37,7 +36,7 @@ Admonition blocks MUST be used semantically, meaning the chosen `[!TYPE]` keywor
 ### Rule 2.2: Guidance on Common `TYPE` Keywords
 The following provides guidance on when to use the common `TYPE` keywords defined in [[SF-CALLOUTS-SYNTAX]]:
 
-*   **`[!NOTE]`**: For supplementary information that is relevant but tangential to the main text. Useful for elaborations, side comments, or additional context.
+*   **`[!NOTE]`**: For general supplementary information that is relevant but tangential to the main text. Useful for elaborations, side comments, or additional context.
 *   **`[!IMPORTANT]`**: For information that users must not overlook due to its significance for understanding or correct application of the main content.
 *   **`[!WARNING]`**: For potential dangers, pitfalls, critical cautionary advice, or actions that could lead to negative consequences (e.g., data loss, security risks).
 *   **`[!TIP]`**: For helpful hints, suggestions, best practices, or optional advice that can improve user experience or outcomes.
@@ -85,4 +84,3 @@ This policy applies to all authors and editors creating or modifying content wit
 
 ---
 *This policy (CS-ADMONITIONS-POLICY) provides guidance on the semantic and appropriate use of the callout/admonition syntax defined in [[SF-CALLOUTS-SYNTAX]], generalizing concepts from previous tool-specific standards like O-USAGE-CALLOUTS-001.*
-```

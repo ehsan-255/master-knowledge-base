@@ -7,15 +7,13 @@ tags:
   - content-type/standard-definition
   - topic/keyref
   - topic/metadata-management
-  - primary_domain/MT
-  - sub_domain/REGISTRY
 kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "Defines the storage, structure, and management process for global key definitions used in key-based referencing (keyrefs)."
 related-standards: ["SF-SYNTAX-KEYREF", "SF-SYNTAX-YAML-FRONTMATTER", "UA-KEYDEFS-GLOBAL"]
-version: "1.0.0"
-date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
+version: '1.0.0'
+date-created: "2025-05-30T12:00:00Z"
+date-modified: "2025-05-30T21:00:00Z"
 primary_domain: "MT"
 sub_domain: "REGISTRY"
 scope_application: "Governs the management of the central _key_definitions.md file (identified as [[UA-KEYDEFS-GLOBAL]]) and the structure of its content."
@@ -24,7 +22,6 @@ lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Content consistency", "Maintainability", "Automation (keyref resolution)", "Authoring workflow"]
 change_log_url: "./MT-KEYREF-MANAGEMENT-changelog.md"
 ---
-
 # Standard: Key Definition Management and Storage (MT-KEYREF-MANAGEMENT)
 
 This document defines the universal standard for how and where key-based referencing (keyref) definitions are stored and managed. This ensures a single source of truth for all reusable key values, primarily through the `_key_definitions.md` file (see [[UA-KEYDEFS-GLOBAL]]).

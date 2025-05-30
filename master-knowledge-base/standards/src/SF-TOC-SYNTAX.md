@@ -12,9 +12,9 @@ kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "Defines the standard Markdown syntax for creating Tables of Contents (ToCs)."
 related-standards: ["CS-TOC-POLICY", "AS-STRUCTURE-DOC-CHAPTER", "SF-LINKS-INTERNAL-SYNTAX"]
-version: "0.1.0" # Initial version
-date-created: "2024-02-23T15:00:00Z" # Placeholder for ISO-8601 date-time
-date-modified: "2024-02-23T15:00:00Z" # Placeholder for ISO-8601 date-time
+version: '0.1.0'
+date-created: "2024-02-23T15:00:00Z"
+date-modified: "2025-05-30T20:00:00Z"
 primary_domain: "SF"
 sub_domain: "SYNTAX"
 scope_application: "Applies to all manually created or automatically generated Tables of Contents within Markdown documents."
@@ -23,7 +23,6 @@ lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Document navigation", "Authoring consistency", "Automated ToC validation/generation"]
 change_log_url: "./SF-TOC-SYNTAX-changelog.md"
 ---
-
 # Standard: Table of Contents (ToC) Markdown Syntax (SF-TOC-SYNTAX)
 
 This standard defines the mandatory Markdown syntax for Tables of Contents (ToCs) within knowledge base documents. Adherence to this syntax ensures consistency, proper rendering, and compatibility with potential future tooling.

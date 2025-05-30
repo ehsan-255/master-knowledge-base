@@ -2,28 +2,27 @@
 title: "Global Key Definitions Set"
 standard_id: "UA-KEYDEFS-GLOBAL"
 aliases: ["Key Definitions", "Global Keys", "Keyref Definitions"]
-tags: ["status/draft", "criticality/P0-Critical", "content-type/key-definition-set", "topic/keyrefs", "topic/structured-data", "kb-id/global", "kb-id/standards"] # Global but managed within standards KB
-kb-id: "kb-id/standards" # It's a standard defining global keys
+tags: ["status/draft", "criticality/P0-Critical", "content-type/key-definition-set", "topic/keyrefs", "topic/structured-data", "kb-id/global", "kb-id/standards"]
+kb-id: "standards"
 info-type: "key-definition-set"
 primary-topic: "Defines the centrally managed set of global keys and their corresponding text expansions for use with the keyref system across all knowledge bases."
 related-standards: ["MT-KEYREF-MANAGEMENT", "SF-SYNTAX-KEYREF", "GM-REGISTRY-GOVERNANCE"]
-version: "0.1.0"
+version: '0.1.0'
 date-created: "2025-05-29T16:04:35Z"
-date-modified: "2025-05-29T16:04:35Z"
-primary_domain: "UA" # Utility & Assets
-sub_domain: "KEYDEFS" # As per subdomain_registry.yaml
+date-modified: "2025-05-30T16:00:00Z"
+primary_domain: "UA"
+sub_domain: "KEYDEFS"
 scope_application: "Applies to all knowledge bases and documents utilizing key-based references (keyrefs) for content reuse and standardization."
-criticality: "P0-Critical" # Keyrefs are fundamental for content reuse and consistency.
-lifecycle_gatekeeper: "Architect-Review" # Or a "Keyref Governance Board"
+criticality: "P0-Critical"
+lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Content reuse", "Maintainability", "Consistency", "Reducing redundancy", "Single-sourcing of terms"]
 change_log_url: "./UA-KEYDEFS-GLOBAL-changelog.md"
-keys: # This is where the actual key definitions would go in YAML format
+keys:
   placeholder-key: "This is an example placeholder value. Replace with actual keys."
   product-name-alpha: "Project AlphaX"
   company-name-full: "Global Knowledge Systems Inc."
   support-email: "support@globalknowledge.example.com"
 ---
-
 # Global Key Definitions Set (UA-KEYDEFS-GLOBAL)
 
 ## 1. Standard Statement

@@ -4,24 +4,23 @@ standard_id: "SF-CALLOUTS-SYNTAX"
 aliases: ["Admonition Syntax", "Markdown Callout Syntax", "Blockquote Callouts"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for highlighting information
+  - criticality/P2-Medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Callout/Admonition Syntax" # As per prompt
+primary-topic: "Callout/Admonition Syntax"
 related-standards: ["CS-ADMONITIONS-POLICY", "SF-SYNTAX-BLOCKQUOTES", "SF-FORMATTING-FILE-HYGIENE"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines a generalized Markdown syntax for creating callout/admonition blocks, intended to highlight specific types of information."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Content presentation", "Readability", "Authoring consistency", "Semantic highlighting of information"]
-change_log_url: "./SF-CALLOUTS-SYNTAX-changelog.md" # Placeholder
+change_log_url: "./SF-CALLOUTS-SYNTAX-changelog.md"
 ---
-
 # Standard: Callout/Admonition Block Syntax (SF-CALLOUTS-SYNTAX)
 
 ## 1. Standard Statement
@@ -123,4 +122,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-CALLOUTS-SYNTAX) generalizes the Obsidian callout syntax to provide a tool-agnostic method for declaring admonition blocks in Markdown, building upon standard blockquote syntax.*
-```

@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-EMPHASIS"
 aliases: ["Emphasis Syntax", "Bold Italic Syntax", "Markdown Text Styling"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for readability and consistent styling
+  - criticality/P2-Medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Emphasis Syntax (Bold, Italic)" # As per prompt
-related-standards: [] # No direct dependencies listed for this basic syntax
-version: "1.0.0"
+primary-topic: "Markdown Emphasis Syntax (Bold, Italic)"
+related-standards: []
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T14:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the mandatory Markdown syntax for applying emphasis (italic, bold, bold italic) to text within all knowledge base documents."
 criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review" # Basic syntax standards are foundational
+lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Readability", "Authoring consistency", "Accessibility (semantic emphasis)", "Markdown parsing"]
-change_log_url: "./SF-SYNTAX-EMPHASIS-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-EMPHASIS-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Emphasis (SF-SYNTAX-EMPHASIS)
 
 ## 1. Standard Statement
@@ -77,4 +76,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-EMPHASIS) is based on rules 1.1 through 1.3 previously defined in M-SYNTAX-EMPHASIS-001 from COL-SYNTAX-MARKDOWN.md.*
-```

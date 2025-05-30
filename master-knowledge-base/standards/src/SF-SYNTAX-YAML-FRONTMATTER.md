@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-YAML-FRONTMATTER"
 aliases: ["YAML Frontmatter Syntax", "Frontmatter Syntax Standard"]
 tags:
   - status/draft
-  - criticality/P1-High # Correct syntax is essential for parsing
+  - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "YAML Frontmatter Syntax" # As per prompt
+primary-topic: "YAML Frontmatter Syntax"
 related-standards: ["[[MT-SCHEMA-FRONTMATTER]]", "[[SF-FORMATTING-FILE-HYGIENE]]"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the mandatory YAML syntax conventions for frontmatter blocks in all Markdown documents within the knowledge base."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Metadata parsing", "Content validation", "Authoring consistency", "Interoperability with tools"]
-change_log_url: "./SF-SYNTAX-YAML-FRONTMATTER-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-YAML-FRONTMATTER-changelog.md"
 ---
-
 # Standard: Markdown YAML Frontmatter Syntax (SF-SYNTAX-YAML-FRONTMATTER)
 
 ## 1. Standard Statement
@@ -116,4 +115,3 @@ This standard applies to the YAML frontmatter block of all Markdown documents wi
 
 ---
 *This standard (SF-SYNTAX-YAML-FRONTMATTER) is based on rules 1.1 through 1.5 previously defined in M-SYNTAX-YAML-001 from COL-SYNTAX-MARKDOWN.md.*
-```

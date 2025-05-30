@@ -6,22 +6,21 @@ tags:
   - status/draft
   - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
 primary-topic: "KB Part Content Organization"
 related-standards: ["AS-STRUCTURE-KB-PART", "AS-STRUCTURE-DOC-CHAPTER", "SF-CONVENTIONS-NAMING"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T12:00:00Z"
 primary_domain: "CS"
 sub_domain: "POLICY"
 scope_application: "Governs the logical sequencing and topical coherence of 'Chapters' (individual documents or H2 sections) within a Knowledge Base 'Part'."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Content clarity", "User navigation", "Learning pathways", "Information architecture"]
-change_log_url: "./CS-POLICY-KB-PART-CONTENT-changelog.md" # Placeholder
+change_log_url: "./CS-POLICY-KB-PART-CONTENT-changelog.md"
 ---
-
 # Policy: Content Organization within Knowledge Base Parts (CS-POLICY-KB-PART-CONTENT)
 
 ## 1. Policy Statement
@@ -66,4 +65,3 @@ This policy applies to the organization of "Chapters" within all "Parts" of all 
 
 ---
 *This policy (CS-POLICY-KB-PART-CONTENT) is based on rules 1.5 and 1.6 previously defined in U-STRUC-001 from COL-ARCH-UNIVERSAL.md.*
-```

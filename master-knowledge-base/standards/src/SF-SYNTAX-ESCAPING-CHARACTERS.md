@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-ESCAPING-CHARACTERS"
 aliases: ["Markdown Escaping", "Character Escaping Syntax"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for accurate rendering of literal characters
+  - criticality/P2-Medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Escaping Special Markdown Characters" # As per prompt
-related-standards: [] # No direct dependencies beyond general Markdown knowledge
-version: "1.0.0"
+primary-topic: "Escaping Special Markdown Characters"
+related-standards: []
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the method for escaping special Markdown characters to ensure they are displayed literally rather than interpreted as formatting syntax."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Accurate content rendering", "Authoring precision", "Technical documentation clarity"]
-change_log_url: "./SF-SYNTAX-ESCAPING-CHARACTERS-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-ESCAPING-CHARACTERS-changelog.md"
 ---
-
 # Standard: Escaping Special Markdown Characters (SF-SYNTAX-ESCAPING-CHARACTERS)
 
 ## 1. Standard Statement
@@ -87,4 +86,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-ESCAPING-CHARACTERS) is based on common Markdown conventions for escaping special characters using a backslash.*
-```

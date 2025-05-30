@@ -4,24 +4,23 @@ standard_id: "CS-POLICY-PART-OVERVIEW"
 aliases: ["Part Overview Policy", "KB Section Overview Policy"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for navigation and understanding Part scope
+  - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Policy for KB Part Overviews" # As per prompt
+primary-topic: "Policy for KB Part Overviews"
 related-standards: ["AS-STRUCTURE-KB-PART", "AS-STRUCTURE-KB-ROOT"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "CS" # Content Standard
-sub_domain: "POLICY" # As per prompt
+date-modified: "2025-05-30T18:00:00Z"
+primary_domain: "CS"
+sub_domain: "POLICY"
 scope_application: "Governs the mandatory use and purpose of overview documents for each major 'Part' (primary section) of a Knowledge Base."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["KB navigability", "User experience", "Content discoverability", "Clarity of KB structure", "Authoring consistency"]
-change_log_url: "./CS-POLICY-PART-OVERVIEW-changelog.md" # Placeholder
+change_log_url: "./CS-POLICY-PART-OVERVIEW-changelog.md"
 ---
-
 # Policy: Knowledge Base Part Overviews (CS-POLICY-PART-OVERVIEW)
 
 ## 1. Policy Statement
@@ -61,4 +60,3 @@ This policy applies to all Knowledge Bases and their constituent "Parts." All in
 
 ---
 *This policy (CS-POLICY-PART-OVERVIEW) mandates the use of Part Overviews, generalizing concepts previously associated with tool-specific features like Obsidian's folder notes (formerly U-USAGE-FOLDERS-NOTES-001) into a tool-agnostic architectural requirement.*
-```

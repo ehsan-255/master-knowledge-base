@@ -4,28 +4,27 @@ standard_id: "SF-TRANSCLUSION-SYNTAX"
 aliases: ["Content Embedding Syntax", "Transclusion Standard"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Syntax for an advanced feature
+  - criticality/P2-Medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Transclusion Syntax" # As per prompt
+primary-topic: "Transclusion Syntax"
 related-standards: [
   "[[CS-MODULARITY-TRANSCLUSION-POLICY]]",
   "[[SF-LINKS-INTERNAL-SYNTAX]]",
   "[[MT-SCHEMA-FRONTMATTER]]"
 ]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "TRANSCLUSION" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "TRANSCLUSION"
 scope_application: "Defines a generalized syntax for declaring the intent to transclude (embed) content from one document into another within the knowledge base."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Content reusability", "Maintainability", "Authoring tools", "KB rendering systems"]
-change_log_url: "./SF-TRANSCLUSION-SYNTAX-changelog.md" # Placeholder
+change_log_url: "./SF-TRANSCLUSION-SYNTAX-changelog.md"
 ---
-
 # Standard: Transclusion Syntax for Content Embedding (SF-TRANSCLUSION-SYNTAX)
 
 ## 1. Standard Statement
@@ -90,4 +89,3 @@ This standard applies to all authors creating or editing content within the know
 
 ---
 *This standard (SF-TRANSCLUSION-SYNTAX) generalizes concepts from O-USAGE-TRANSCLUSION-001 and aims to provide a tool-agnostic syntax for declaring content embedding intent.*
-```

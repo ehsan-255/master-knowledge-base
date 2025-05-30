@@ -6,22 +6,21 @@ tags:
   - status/draft
   - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "Master KB Directory and Index"
 related-standards: ["CS-POLICY-KB-IDENTIFICATION", "AS-KB-DIRECTORY-STRUCTURE"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T12:00:00Z"
 primary_domain: "AS"
-sub_domain: "STRUCTURE" # Using STRUCTURE as it defines the structure of the master index
+sub_domain: "STRUCTURE"
 scope_application: "Defines the structure for the master directory housing all KBs and the requirements for the `kb-directory.md` master index file."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["KB discovery", "Repository organization", "Automated KB listing", "Inter-KB navigation"]
-change_log_url: "./AS-STRUCTURE-MASTER-KB-INDEX-changelog.md" # Placeholder
+change_log_url: "./AS-STRUCTURE-MASTER-KB-INDEX-changelog.md"
 ---
-
 # Standard: Master Knowledge Base Directory and Index Structure (AS-STRUCTURE-MASTER-KB-INDEX)
 
 This standard defines the structural requirements for the master directory that houses all Knowledge Bases (KBs) and the specific requirements for the `kb-directory.md` master index file.
@@ -72,4 +71,3 @@ This directory provides an overview and access points to all active Knowledge Ba
 
 ---
 *This standard (AS-STRUCTURE-MASTER-KB-INDEX) is based on rules 2.1, 2.3, and 2.4 previously defined in U-ARCH-002 from COL-ARCH-UNIVERSAL.md.*
-```

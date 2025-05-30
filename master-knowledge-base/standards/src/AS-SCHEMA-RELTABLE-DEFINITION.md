@@ -1,35 +1,34 @@
 ---
 title: "Standard: Relationship Table (Reltable) Definition"
-standard_id: AS-SCHEMA-RELTABLE-DEFINITION
+standard_id: "AS-SCHEMA-RELTABLE-DEFINITION"
 aliases: ["Reltable Standard", "Semantic Linking Definition"]
 tags:
   - status/draft
-  - criticality/p2-medium # Corrected case
+  - criticality/p2-medium
   - content-type/standard-definition
   - topic/linking
   - topic/semantics
   - topic/yaml
   - topic/data-structure
   - kb-id/standards
-kb-id: "kb-id/standards"
-info-type: "standard-definition" # Changed from schema-document in placeholder
+kb-id: "standards"
+info-type: "standard-definition"
 primary-topic: "Defines the standard structure for 'Relationship Tables' (reltables) used to explicitly define typed, non-hierarchical relationships between topics."
-related-standards: # Placeholder IDs, actual new IDs TBD
-  - "AS-STRUCTURE-KB-ROOT" # Was U-ARCH-001
-  - "SF-LINKS-INTERNAL-SYNTAX" # Was O-USAGE-LINKS-001
-  - "SF-SYNTAX-YAML-FRONTMATTER" # Was M-SYNTAX-YAML-001
-version: '0.1.2' # From original U-RELTABLE-DEFINITION-001
-date-created: "2025-05-19T00:00:00Z" # From original, standardized
-date-modified: "2025-05-30T00:00:00Z" # Current date for refactoring
+related-standards:
+  - "[[AS-STRUCTURE-KB-ROOT]]"
+  - "[[SF-LINKS-INTERNAL-SYNTAX]]"
+  - "[[SF-SYNTAX-YAML-FRONTMATTER]]"
+version: '0.1.2'
+date-created: "2025-05-19T00:00:00Z"
+date-modified: "2025-05-30T20:00:00Z"
 primary_domain: "AS"
-sub_domain: "STRUCTURE" # Changed from SCHEMA
+sub_domain: "STRUCTURE"
 scope_application: "Defines the standard structure for 'Relationship Tables' (reltables) using YAML to define typed, non-hierarchical relationships between topics."
-criticality: "P2-Medium" # Value itself is okay, tag was fixed
+criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Semantic linking", "Knowledge graph generation", "Content navigability"]
 change_log_url: "./AS-SCHEMA-RELTABLE-DEFINITION-changelog.md"
 ---
-
 # Standard: Relationship Table (Reltable) Definition (AS-SCHEMA-RELTABLE-DEFINITION)
 
 > [!TODO] This standard's content has been migrated from `U-RELTABLE-DEFINITION-001`. However, the overall concept of Reltables, their precise implementation details (especially the defined relationship types and their YAML structure), and their integration with other architectural and schema standards require further review and refinement. The relationship types listed are initial suggestions and need validation against broader use cases and semantic consistency.

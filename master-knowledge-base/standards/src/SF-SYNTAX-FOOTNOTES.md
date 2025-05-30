@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-FOOTNOTES"
 aliases: ["Footnote Syntax", "Markdown Footnote Usage"]
 tags:
   - status/draft
-  - criticality/P3-Low # Footnotes are less common than core elements
+  - criticality/P3-Low
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Footnote Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules
-version: "1.0.0"
+primary-topic: "Markdown Footnote Syntax"
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T14:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the syntax for creating footnotes in Markdown documents, intended for providing supplementary information, citations, or explanations."
 criticality: "P3-Low"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Academic writing", "Detailed annotations", "Readability", "Authoring consistency"]
-change_log_url: "./SF-SYNTAX-FOOTNOTES-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-FOOTNOTES-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Footnotes (SF-SYNTAX-FOOTNOTES)
 
 ## 1. Standard Statement
@@ -123,4 +122,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-FOOTNOTES) is based on common Markdown extension syntax for footnotes.*
-```

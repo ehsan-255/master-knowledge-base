@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-TABLES"
 aliases: ["Table Syntax", "Markdown Table Formatting"]
 tags:
   - status/draft
-  - criticality/P1-High # Tables are common and need correct syntax
+  - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Table Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules around blocks
-version: "1.0.0"
+primary-topic: "Markdown Table Syntax"
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the mandatory Markdown syntax for creating tables in all knowledge base documents."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Data presentation", "Readability", "Authoring consistency", "Markdown parsing"]
-change_log_url: "./SF-SYNTAX-TABLES-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-TABLES-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Tables (SF-SYNTAX-TABLES)
 
 ## 1. Standard Statement
@@ -131,4 +130,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-TABLES) is based on common Markdown table syntax conventions.*
-```

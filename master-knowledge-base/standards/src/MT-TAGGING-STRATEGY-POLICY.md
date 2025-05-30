@@ -4,24 +4,23 @@ standard_id: "MT-TAGGING-STRATEGY-POLICY"
 aliases: ["Tagging Strategy", "Metadata Tagging Policy"]
 tags:
   - status/draft
-  - criticality/P1-High # A coherent strategy is vital
+  - criticality/P1-High
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Core Tagging Strategy" # As per prompt
+primary-topic: "Core Tagging Strategy"
 related-standards: ["MT-TAGS-IMPLEMENTATION", "MT-REGISTRY-TAG-GLOSSARY", "MT-SCHEMA-FRONTMATTER"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-29T16:10:25Z"
-primary_domain: "MT" # Metadata & Tagging
-sub_domain: "POLICY" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "MT"
+sub_domain: "POLICY"
 scope_application: "Governs the strategic application of mandatory and recommended tag categories across all knowledge base documents."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Editorial-Board-Approval" # Tagging strategy is often a governance decision
+lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Content discoverability", "Faceted search and filtering", "Semantic understanding of content", "Automation capabilities", "KB organization"]
-change_log_url: "./MT-TAGGING-STRATEGY-POLICY-changelog.md" # Placeholder
+change_log_url: "./MT-TAGGING-STRATEGY-POLICY-changelog.md"
 ---
-
 # Policy: Core Tagging Strategy (MT-TAGGING-STRATEGY-POLICY)
 
 ## 1. Policy Statement
@@ -84,4 +83,3 @@ This policy applies to all documents within the knowledge base ecosystem that ut
 
 ---
 *This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*
-```
