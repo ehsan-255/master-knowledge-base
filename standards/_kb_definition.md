@@ -1,19 +1,19 @@
 ---
-title: "KB Definition: Universal Knowledge Base Standards"
+title: "KB Definition: Universal Knowledge Base Standards - DEPRECATED"
 aliases:
   - N/A
 tags:
   - kb-id/standards
   - content-type/kb-definition-map
-  - status/final
+  - status/deprecated # Changed from status/final
   - topic/governance
 kb-id: standards
 info-type: kb-definition-map
 primary-topic: 'Machine-readable and human-readable definition for the Standards KB.'
-related-standards: N/A
+related-standards: ["AS-MAP-STANDARDS-KB"] # Points to new standard
 version: '0.1.1'
-date-created: 2025-05-15
-date-modified: '2025-05-22'
+date-created: "2025-05-15T00:00:00Z" # Standardized
+date-modified: "2025-05-30T00:00:00Z" # Deprecation date
 parts:
   - entry_file: Standards/root.md
     part_id: overview_meta
@@ -41,6 +41,10 @@ parts:
     title: KB-Specific Standards Overview
 root_file: Standards/root.md
 ---
+
+> [!WARNING] DEPRECATED: This Document is No Longer Active
+> **Reason for Deprecation:** This document has been superseded by [[AS-MAP-STANDARDS-KB]], which defines the structure of the Standards Knowledge Base.
+> Please refer to the new map document for current information. This document is retained for historical purposes only.
 
 # KB Definition: Universal Knowledge Base Standards
 

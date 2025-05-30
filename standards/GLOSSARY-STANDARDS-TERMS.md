@@ -1,20 +1,24 @@
 ---
-title: 'Glossary of Standards Terminology'
+title: 'Glossary of Standards Terminology - DEPRECATED'
 aliases: ['Standards Glossary', 'Terminology for Standards']
 tags:
   - kb-id/standards
   - content-type/standards-guide 
-  - status/draft
+  - status/deprecated # Changed from status/draft
   - topic/standards-governance
   - topic/glossary
 kb-id: standards
 info-type: standards-glossary 
 primary-topic: 'Defines key terms used within the Universal Knowledge Base Standards documents themselves to ensure consistent understanding.'
-related-standards: ['U-GLOSSARY-001']
+related-standards: ["GM-GLOSSARY-STANDARDS-TERMS"] # Points to new standard
 version: '0.1.0'
-date-created: '2025-05-22'
-date-modified: '2025-05-22'
+date-created: '2025-05-22T00:00:00Z' # Standardized
+date-modified: '2025-05-30T00:00:00Z' # Deprecation date
 ---
+
+> [!WARNING] DEPRECATED: This Document is No Longer Active
+> **Reason for Deprecation:** This document has been superseded by [[GM-GLOSSARY-STANDARDS-TERMS]].
+> Please refer to the new glossary for current definitions. This document is retained for historical purposes only.
 
 # Glossary of Standards Terminology
 

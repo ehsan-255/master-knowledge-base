@@ -1,25 +1,27 @@
 ---
-title: 'Standard: Metadata Value Validation (U-VALIDATION-METADATA-001)'
+title: 'Standard: Metadata Value Validation (U-VALIDATION-METADATA-001) - DEPRECATED'
 tags:
   - standards-kb/universal
   - utility-standards
   - metadata
   - validation
   - data-integrity
-  - status/draft
+  - status/deprecated # Changed from status/draft
   - kb-id/standards
   - content-type/standard-document
-date-created: 2025-05-19
-date-modified: 2025-05-23
+date-created: "2025-05-19T00:00:00Z" # Standardized
+date-modified: "2025-05-30T00:00:00Z" # Deprecation date
 version: '0.1.2'
 info-type: standard-document
 primary-topic: Defines rules for validating the semantic values of specific metadata fields
 related-standards:
-  - M-SYNTAX-YAML-001
-  - U-TAG-001
-  - U-PROFILING-ATTRIBUTES-001
+  - QM-VALIDATION-METADATA # Points to new standard
 aliases: [Metadata Validation Standard, YAML Value Validation]
 ---
+
+> [!WARNING] DEPRECATED: This Standard is No Longer Active
+> **Reason for Deprecation:** This standard has been superseded by [[QM-VALIDATION-METADATA]].
+> Please refer to the new standard for current guidelines. This document is retained for historical purposes only.
 
 # Standard: Metadata Value Validation (U-VALIDATION-METADATA-001)
 

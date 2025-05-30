@@ -51,6 +51,9 @@ OM: # Operational & Management Standards (Placeholder - refine as needed)
   - code: LIFECYCLE
     name: Lifecycle Management
     description: Standards related to content lifecycle, versioning, and governance.
+  - code: AUTOMATION
+    name: Automation Standards
+    description: Standards related to automated processes, workflows, and tooling integration.
 
 GM: # General & Miscellaneous Standards
   - code: CONVENTIONS

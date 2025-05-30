@@ -10,16 +10,24 @@ tags:
   - status/live
   - topic/automation
   - topic/content-management
+standard_id: UA-KEYDEFS-GLOBAL
 kb-id: global
 info-type: key-definition-set
 primary-topic: Central repository for globally reusable key-value pairs (keyrefs) used for content consistency and automation.
+primary_domain: UA
+sub_domain: KEYDEFS
 related-standards:
-  - U-KEYREF-MANAGEMENT-001
-  - U-KEYREF-SYNTAX-001
-  - U-METADATA-FRONTMATTER-RULES-001
+  - MT-KEYREF-MANAGEMENT
+  - SF-SYNTAX-KEYREF
+  - MT-SCHEMA-FRONTMATTER
 version: 0.2.4
-date-created: 2025-05-19
-date-modified: 2025-05-23
+date-created: "2025-05-19T00:00:00Z"
+date-modified: "2025-05-30T00:00:00Z"
+scope_application: "Global key definitions for use across all knowledge bases to ensure content consistency and support automation."
+criticality: P1-High
+lifecycle_gatekeeper: Architect-Review
+impact_areas: ["Content consistency", "Automation", "Branding", "Link management"]
+change_log_url: ./UA-KEYDEFS-GLOBAL-changelog.md
 keys:
   productName: Knowledge Base System X
   productVersionMajor: "1"
@@ -28,9 +36,9 @@ keys:
   productReleaseName: Orion
   officialCompanyName: Ehsan Solutions Inc.
   companyWebsiteUrl: https://www.example.com
-  mainDocsUrl: "[[master-knowledge-base/kb-directory]]"
+  mainDocsUrl: "[[AS-INDEX-KB-MASTER]]"
   supportPageUrl: https://support.example.com
-  apiReferenceUrl: "[[standards/U-SCHEMA-REFERENCE-001|API Reference Standard]]"
+  apiReferenceUrl: "[[AS-SCHEMA-REFERENCE]]"
   betaFeatureDisclaimer: This feature is currently in beta and subject to change.
   confidentialityNotice: This document contains confidential information.
   defaultStatusDraft: status/draft
@@ -40,7 +48,7 @@ keys:
 
 # Key Definitions (`_key_definitions.md`)
 
-This file serves as the central repository for all globally reusable key-value pairs (keyrefs) used throughout the `master-knowledge-base` and its rendered outputs. It adheres to standard `U-KEYREF-MANAGEMENT-001`.
+This file serves as the central repository for all globally reusable key-value pairs (keyrefs) used throughout the `master-knowledge-base` and its rendered outputs. It adheres to standard [[MT-KEYREF-MANAGEMENT]].
 
 ## Purpose
 
@@ -51,7 +59,7 @@ This file serves as the central repository for all globally reusable key-value p
 
 ## Structure
 
-All keys are defined within the YAML frontmatter of this document, under the `keys:` dictionary. See `U-KEYREF-MANAGEMENT-001` for structural rules.
+All keys are defined within the YAML frontmatter of this document, under the `keys:` dictionary. See [[MT-KEYREF-MANAGEMENT]] for structural rules.
 
 ## Categories of Keys (Examples)
 
@@ -82,7 +90,7 @@ All keys are defined within the YAML frontmatter of this document, under the `ke
 
 ## Usage
 
-In source Markdown documents, use the syntax `{{key.keyName}}` (defined in `U-KEYREF-SYNTAX-001`) to insert the value of a key. For example, `{{key.productName}}` will be replaced by "Knowledge Base System X" (or its current value) in the rendered output.
+In source Markdown documents, use the syntax `{{key.keyName}}` (defined in [[SF-SYNTAX-KEYREF]]) to insert the value of a key. For example, `{{key.productName}}` will be replaced by "Knowledge Base System X" (or its current value) in the rendered output.
 
 ## Maintenance
 
