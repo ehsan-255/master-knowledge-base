@@ -1,24 +1,26 @@
 ---
-title: 'Standard: Publishing Pipeline Overview (U-PUBLISHING-PIPELINE-OVERVIEW-001)'
+title: 'Standard: Publishing Pipeline Overview (U-PUBLISHING-PIPELINE-OVERVIEW-001) - DEPRECATED'
 tags:
   - standards-kb/universal
   - utility-standards
   - publishing
   - automation
-  - status/draft
+  - status/deprecated # Changed from status/draft
   - kb-id/standards
   - content-type/standard-document
-date-created: 2025-05-19
-date-modified: 2025-05-23
+date-created: "2025-05-19T00:00:00Z" # Standardized format
+date-modified: "2025-05-30T00:00:00Z" # Updated to current date
 version: '0.1.1'
 info-type: standard-document
 primary-topic: Describes the conceptual overview of the automated publishing workflow
 related-standards:
-  - U-ARCH-003-Directory-Structure-Source-Render
-  - U-KEYREF-SYNTAX-001
-  - M-CONDITIONAL-TEXT-SYNTAX-001
+  - OM-OVERVIEW-PUBLISHING-PIPELINE # Points to new standard
 aliases: [Publishing Workflow Standard, KB Export Process]
 ---
+
+> [!WARNING] DEPRECATED: This Standard is No Longer Active
+> **Reason for Deprecation:** This standard has been superseded by [[OM-OVERVIEW-PUBLISHING-PIPELINE]].
+> Please refer to the new standard for current guidelines. This document is retained for historical purposes only.
 
 # Standard: Publishing Pipeline Overview (U-PUBLISHING-PIPELINE-OVERVIEW-001)
 

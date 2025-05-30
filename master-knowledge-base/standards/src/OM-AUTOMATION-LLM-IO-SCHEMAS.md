@@ -1,26 +1,32 @@
 ---
-title: 'Standard: LLM Automation Input/Output Schemas (LLM-AUTOMATION-IO-SCHEMA-001) - DEPRECATED'
+title: "Standard: LLM Automation Input/Output Schemas"
+standard_id: OM-AUTOMATION-LLM-IO-SCHEMAS
+aliases: ["LLM IO Schemas", "LLM Automation Schemas"]
 tags:
-  - standards-kb/universal
-  - content-type/standard-document
+  - status/draft
+  - criticality/P2-Medium
+  - content-type/standard-definition
   - llm-integration
   - automation
   - schemas
-  - status/deprecated # Changed from status/draft
-  - kb-id/standards
-date-created: 2025-05-19
-date-modified: "2025-05-29T00:00:00Z" # Updated to current date
-version: '0.1.2'
-info-type: standard-document
-primary-topic: 'Governs the definition and management of JSON schemas for LLM inputs and outputs.'
+kb-id: "kb-id/om"
+info-type: "standard-definition"
+primary-topic: "LLM Automation I/O Schemas"
 related-standards:
-  - OM-AUTOMATION-LLM-IO-SCHEMAS # Points to the new standard
-aliases: [LLM IO Schemas, LLM Automation Schemas]
+  - OM-AUTOMATION-LLM-PROMPT-LIBRARY
+version: '0.1.2' # Retained original version
+date-created: "2025-05-19T00:00:00Z"
+date-modified: "2025-05-22T00:00:00Z" # Will be updated upon actual modification
+primary_domain: "OM"
+sub_domain: "AUTOMATION"
+scope_application: "Defines the standard for creating, documenting, and managing JSON schemas used for structured input to and output from Large Language Models (LLMs) in automated knowledge base workflows."
+criticality: "P2-Medium"
+lifecycle_gatekeeper: "Architect-Review"
+impact_areas: ["LLM workflow reliability", "Automation consistency", "Developer efficiency"]
+change_log_url: "./OM-AUTOMATION-LLM-IO-SCHEMAS-changelog.md"
 ---
 
-> **DEPRECATED**: This standard has been superseded by [[OM-AUTOMATION-LLM-IO-SCHEMAS]].
-
-# Standard: LLM Automation Input/Output Schemas (LLM-AUTOMATION-IO-SCHEMA-001)
+# Standard: LLM Automation Input/Output Schemas
 
 This document defines the standard for creating, documenting, and managing JSON schemas used for structured input to and output from Large Language Models (LLMs) in automated knowledge base workflows.
 
