@@ -4,25 +4,25 @@ standard_id: OM-AUTOMATION-LLM-IO-SCHEMAS
 aliases: ["LLM IO Schemas", "LLM Automation Schemas"]
 tags:
   - status/draft
-  - criticality/P2-Medium
+  - criticality/p2-medium
   - content-type/standard-definition
-  - llm-integration
-  - automation
-  - schemas
-kb-id: "kb-id/om"
+  - topic/llm-integration
+  - topic/automation
+  - topic/schemas
+kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "LLM Automation I/O Schemas"
 related-standards:
-  - OM-AUTOMATION-LLM-PROMPT-LIBRARY
-version: '0.1.2' # Retained original version
+  - "[[OM-AUTOMATION-LLM-PROMPT-LIBRARY]]"
+version: "0.1.2"
 date-created: "2025-05-19T00:00:00Z"
-date-modified: "2025-05-22T00:00:00Z" # Will be updated upon actual modification
+date-modified: "2025-05-30T23:00:00Z"
 primary_domain: "OM"
 sub_domain: "AUTOMATION"
-scope_application: "Defines the standard for creating, documenting, and managing JSON schemas used for structured input to and output from Large Language Models (LLMs) in automated knowledge base workflows."
+scope_application: "Defines the standard for creating, documenting, and managing JSON schemas used for LLM input/output in automated workflows."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["LLM workflow reliability", "Automation consistency", "Developer efficiency"]
+impact_areas: ["LLM automation", "Data interchange", "Schema validation", "Workflow integration"]
 change_log_url: "./OM-AUTOMATION-LLM-IO-SCHEMAS-changelog.md"
 ---
 

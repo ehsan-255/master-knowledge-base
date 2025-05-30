@@ -1,24 +1,24 @@
 ---
-title: "Standard: Callout/Admonition Block Syntax"
+title: "Standard: Callout and Admonition Syntax"
 standard_id: "SF-CALLOUTS-SYNTAX"
-aliases: ["Admonition Syntax", "Markdown Callout Syntax", "Blockquote Callouts"]
+aliases: ["Callouts", "Admonitions", "Alert Boxes"]
 tags:
   - status/draft
-  - criticality/P2-Medium
+  - criticality/p2-medium
   - content-type/technical-standard
 kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Callout/Admonition Syntax"
-related-standards: ["CS-ADMONITIONS-POLICY", "SF-SYNTAX-BLOCKQUOTES", "SF-FORMATTING-FILE-HYGIENE"]
+primary-topic: "Callout and Admonition Syntax"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "SF"
-sub_domain: "SYNTAX"
-scope_application: "Defines a generalized Markdown syntax for creating callout/admonition blocks, intended to highlight specific types of information."
+sub_domain: "CALLOUTS"
+scope_application: "Defines the syntax and usage rules for callouts, admonitions, and alert boxes in knowledge base documents."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Content presentation", "Readability", "Authoring consistency", "Semantic highlighting of information"]
+impact_areas: ["Content presentation", "User attention", "Information hierarchy"]
 change_log_url: "./SF-CALLOUTS-SYNTAX-changelog.md"
 ---
 # Standard: Callout/Admonition Block Syntax (SF-CALLOUTS-SYNTAX)

@@ -1,24 +1,24 @@
 ---
-title: "Standard: Tag Implementation and Syntax"
+title: "Standard: Tag Implementation Guidelines"
 standard_id: "MT-TAGS-IMPLEMENTATION"
-aliases: ["Tag Syntax", "Tag Declaration Standard"]
+aliases: ["Tag Implementation", "Tagging Guidelines"]
 tags:
   - status/draft
-  - criticality/P1-High
+  - criticality/p1-high
   - content-type/technical-standard
-kb-id: "standards" # MODIFIED
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Tag Syntax and Declaration"
-related-standards: ["MT-TAGGING-STRATEGY-POLICY", "MT-SCHEMA-FRONTMATTER", "MT-REGISTRY-TAG-GLOSSARY"]
-version: "1.0.0"
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z" # MODIFIED
+primary-topic: "Tag Implementation Guidelines"
+related-standards: ["MT-SCHEMA-FRONTMATTER", "MT-TAGGING-STRATEGY-POLICY"]
+version: '1.0.0'
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "MT"
 sub_domain: "TAGGING"
-scope_application: "Defines the syntax and declaration rules for all tags used within the knowledge base frontmatter."
+scope_application: "Defines the implementation guidelines for tags in frontmatter across all knowledge base documents."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Metadata consistency", "Automated processing of tags", "Content discoverability", "Authoring accuracy"]
+impact_areas: ["Content categorization", "Metadata consistency", "Search optimization"]
 change_log_url: "./MT-TAGS-IMPLEMENTATION-changelog.md"
 ---
 # Standard: Tag Implementation and Syntax (MT-TAGS-IMPLEMENTATION)

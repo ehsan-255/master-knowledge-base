@@ -1,24 +1,24 @@
 ---
-title: "Standard: Markdown Syntax for Images"
+title: "Standard: Image Syntax"
 standard_id: "SF-SYNTAX-IMAGES"
-aliases: ["Image Syntax", "Markdown Image Embedding"]
+aliases: ["Images", "Image Embedding"]
 tags:
   - status/draft
-  - criticality/P1-High
+  - criticality/p1-high
   - content-type/technical-standard
 kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Image Syntax"
-related-standards: ["SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "AS-STRUCTURE-ASSET-ORGANIZATION"]
+primary-topic: "Image Syntax"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T14:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "SF"
-sub_domain: "SYNTAX"
-scope_application: "Defines the mandatory Markdown syntax for embedding images in all knowledge base documents."
+sub_domain: "MARKDOWN"
+scope_application: "Defines the syntax for embedding images in knowledge base documents."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Visual content presentation", "Accessibility", "Authoring consistency", "Markdown parsing", "Asset management"]
+impact_areas: ["Image display", "Content presentation", "Accessibility"]
 change_log_url: "./SF-SYNTAX-IMAGES-changelog.md"
 ---
 # Standard: Markdown Syntax for Images (SF-SYNTAX-IMAGES)

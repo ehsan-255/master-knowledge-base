@@ -25,3 +25,5 @@ data-model-definition
 security-standard
 compliance-guideline
 collection-document
+mandate-document
+changelog

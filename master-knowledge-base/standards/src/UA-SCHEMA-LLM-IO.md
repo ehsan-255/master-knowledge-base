@@ -1,21 +1,29 @@
 ---
-title: "Standard: LLM Automation Input/Output Schema"
+title: "Schema: LLM Input/Output Data Structures"
 standard_id: "UA-SCHEMA-LLM-IO"
-aliases: ["LLM IO Schema", "Schema for LLM Automation Data Exchange"]
-tags: ["status/draft", "criticality/P1-High", "content-type/schema-document", "topic/llm", "topic/automation", "topic/schemas", "topic/data-interchange", "kb-id/standards"]
+aliases: ["LLM IO Schema", "LLM Data Schema"]
+tags:
+  - status/draft
+  - criticality/p1-high
+  - content-type/schema-document
+  - topic/llm
+  - topic/automation
+  - topic/schemas
+  - topic/data-interchange
+  - kb-id/standards
 kb-id: "standards"
 info-type: "schema-document"
-primary-topic: "Defines the standard input and output data structures (schemas) for scripts and services involved in LLM-based content generation and automation."
-related-standards: ["MT-SCHEMA-FRONTMATTER", "OM-POLICY-STANDARDS-GOVERNANCE"]
-version: '0.1.0'
-date-created: "2025-05-29T15:55:50Z"
-date-modified: "2025-05-30T12:00:00Z"
+primary-topic: "LLM Input/Output Data Structures"
+related-standards: []
+version: '1.0.0'
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "UA"
-sub_domain: "AUTOMATION"
-scope_application: "Applies to all automated processes and scripts that interact with Large Language Models (LLMs) for tasks such as content generation, analysis, or modification within the knowledge base ecosystem."
+sub_domain: "KEYDEFS"
+scope_application: "Defines the data structures and schemas for LLM input and output in automated workflows."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["LLM integration", "Automation reliability", "Data consistency", "Developer workflow for LLM scripts"]
+impact_areas: ["LLM integration", "Data consistency", "Automation reliability"]
 change_log_url: "./UA-SCHEMA-LLM-IO-changelog.md"
 ---
 # Standard: LLM Automation Input/Output Schema (UA-SCHEMA-LLM-IO)
@@ -70,61 +78,4 @@ This section outlines common fields for data sent *from* an LLM automation scrip
 -   `response_id` (String, UUID, Mandatory): A unique identifier for this specific response.
 -   `status` (String, Mandatory): Indicates the outcome of the LLM task.
     -   Allowed values: `"success"`, `"partial_success"`, `"failure"`, `"error"`.
--   `timestamp` (String, ISO-8601 DateTime, Mandatory): Timestamp of when the response was generated.
-
-### 5.2. Content Output (Conditional on Success)
--   `generated_text_content` (String, Conditional): The primary text output from the LLM if the task was successful and produced text.
--   `generated_data_payload` (Object, Conditional): Structured data output from the LLM if the task was successful and produced structured data. The schema of this object would be task-specific.
-
-### 5.3. Error Details (Conditional on Failure/Error)
--   `error_code` (String, Optional): A specific error code if the task failed or an error occurred.
--   `error_message` (String, Optional): A human-readable description of the error.
--   `error_details` (Object, Optional): Additional structured information about the error.
-
-### 5.4. Metadata and Metrics (Optional)
--   `llm_model_used` (String, Optional): The actual LLM model that processed the request.
--   `tokens_prompt` (Integer, Optional): Number of tokens in the input prompt.
--   `tokens_completion` (Integer, Optional): Number of tokens in the LLM's completion.
--   `processing_time_ms` (Integer, Optional): Time taken to process the request in milliseconds.
--   `confidence_score` (Float, Optional): If applicable, a score indicating the LLM's confidence in its response (0.0 to 1.0).
--   `warnings` (List of Strings, Optional): Any non-critical warnings encountered during processing.
-
-## 6. Schema Validation
-
--   Both input to and output from LLM automation scripts SHOULD be validated against their defined schemas.
--   JSON Schema or similar schema definition languages can be used for this purpose.
--   Strict validation should be enforced for mandatory fields and data types.
-
-## 7. Examples
-
-### Example 1: Input for "generate-abstract" task
-
-```json
-{
-  "request_id": "c7a3b9e0-4f1d-4a8a-9c3e-0d7f1b3e4c5d",
-  "source_document_id": "AS-STRUCTURE-DOC-CHAPTER",
-  "task_type": "generate-abstract",
-  "input_text_content": "Long document text here...",
-  "llm_model_preference": "claude-3-sonnet",
-  "output_format_hint": "single_paragraph_markdown"
-}
-```
-
-### Example 2: Output for a successful "generate-abstract" task
-
-```json
-{
-  "request_id": "c7a3b9e0-4f1d-4a8a-9c3e-0d7f1b3e4c5d",
-  "response_id": "e1b8c4a2-9d3e-4f1a-8c7b-0a9f8e7d6c5b",
-  "status": "success",
-  "timestamp": "2025-05-29T16:00:00Z",
-  "generated_text_content": "This document defines the standard internal structure for core content documents, known as 'chapters'. It outlines mandatory sections such as an H1 title, abstract, table of contents, hierarchically organized content sections, a summary, and a 'See Also' section for related links, ensuring consistency and usability.",
-  "llm_model_used": "claude-3-sonnet-20240229",
-  "tokens_prompt": 1500,
-  "tokens_completion": 85,
-  "processing_time_ms": 3500
-}
-```
-
-## 8. Scope of Application
-This standard applies to all developers and teams creating or maintaining LLM automation scripts and services within the knowledge base ecosystem. It also applies to any system components that invoke these LLM services.
+-   `

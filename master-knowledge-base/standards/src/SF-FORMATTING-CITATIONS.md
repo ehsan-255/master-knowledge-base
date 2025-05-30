@@ -1,24 +1,24 @@
 ---
-title: "Standard: Citing External Sources (APA 7th Edition)"
+title: "Standard: Citation Formatting Guidelines"
 standard_id: "SF-FORMATTING-CITATIONS"
-aliases: ["Citation Standard", "APA 7th Edition Citation", "External Source Citation"]
+aliases: ["Citations", "Reference Formatting"]
 tags:
   - status/draft
-  - criticality/P1-High
+  - criticality/p1-high
   - content-type/technical-standard
 kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Citation of External Sources"
-related-standards: ["SF-LINKS-INTERNAL-SYNTAX"]
+primary-topic: "Citation Formatting Guidelines"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T17:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "SF"
-sub_domain: "FORMATTING"
-scope_application: "All documents within the knowledge base that reference, quote, or derive information from external published or citable sources."
+sub_domain: "MARKDOWN"
+scope_application: "Defines the formatting standards for citations and references in knowledge base documents."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Academic integrity", "Content verifiability", "User trust", "Legal compliance (copyright)", "Consistency in referencing"]
+lifecycle_gatekeeper: "Architect-Review"
+impact_areas: ["Citation consistency", "Reference formatting", "Academic standards"]
 change_log_url: "./SF-FORMATTING-CITATIONS-changelog.md"
 ---
 # Standard: Citing External Sources (APA 7th Edition) (SF-FORMATTING-CITATIONS)

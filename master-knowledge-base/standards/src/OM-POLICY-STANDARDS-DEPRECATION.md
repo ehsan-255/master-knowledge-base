@@ -1,24 +1,24 @@
 ---
-title: "Policy: Deprecation of Standards"
+title: "Policy: Standards Deprecation Process"
 standard_id: "OM-POLICY-STANDARDS-DEPRECATION"
-aliases: ["Standards Deprecation Policy", "Archiving Standards"]
+aliases: ["Deprecation Policy", "Standards Retirement"]
 tags:
   - status/draft
-  - criticality/P2-Medium
+  - criticality/p2-medium
   - content-type/policy-document
 kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Standards Deprecation Policy"
-related-standards: ["MT-REGISTRY-TAG-GLOSSARY", "SF-CALLOUTS-SYNTAX", "OM-VERSIONING-CHANGELOGS", "OM-POLICY-STANDARDS-GOVERNANCE"]
+primary-topic: "Standards Deprecation Process"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T17:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "OM"
-sub_domain: "POLICY"
-scope_application: "The process of deprecating and archiving standard documents that are superseded or no longer relevant."
+sub_domain: "LIFECYCLE"
+scope_application: "Defines the process and criteria for deprecating standards within the knowledge base."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Governance-Board-Approval"
-impact_areas: ["Standards lifecycle management", "Historical record keeping", "User awareness of outdated standards", "KB organization"]
+impact_areas: ["Standards lifecycle", "Change management", "Documentation integrity"]
 change_log_url: "./OM-POLICY-STANDARDS-DEPRECATION-changelog.md"
 ---
 # Policy: Deprecation of Standards (OM-POLICY-STANDARDS-DEPRECATION)

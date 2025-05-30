@@ -1,24 +1,24 @@
 ---
-title: "Policy: Core Tagging Strategy"
+title: "Policy: Tagging Strategy and Implementation"
 standard_id: "MT-TAGGING-STRATEGY-POLICY"
-aliases: ["Tagging Strategy", "Metadata Tagging Policy"]
+aliases: ["Tagging Policy", "Tag Strategy"]
 tags:
   - status/draft
-  - criticality/P1-High
+  - criticality/p1-high
   - content-type/policy-document
 kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Core Tagging Strategy"
-related-standards: ["MT-TAGS-IMPLEMENTATION", "MT-REGISTRY-TAG-GLOSSARY", "MT-SCHEMA-FRONTMATTER"]
+primary-topic: "Tagging Strategy and Implementation"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "MT"
-sub_domain: "POLICY"
-scope_application: "Governs the strategic application of mandatory and recommended tag categories across all knowledge base documents."
+sub_domain: "TAGGING"
+scope_application: "Defines the strategy and implementation approach for tagging across the knowledge base."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Content discoverability", "Faceted search and filtering", "Semantic understanding of content", "Automation capabilities", "KB organization"]
+lifecycle_gatekeeper: "Architect-Review"
+impact_areas: ["Content organization", "Searchability", "Metadata consistency"]
 change_log_url: "./MT-TAGGING-STRATEGY-POLICY-changelog.md"
 ---
 # Policy: Core Tagging Strategy (MT-TAGGING-STRATEGY-POLICY)

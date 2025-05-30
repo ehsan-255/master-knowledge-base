@@ -1,31 +1,31 @@
 ---
-title: "Standard: Markdown YAML Frontmatter Syntax"
+title: "Standard: YAML Frontmatter Syntax"
 standard_id: "SF-SYNTAX-YAML-FRONTMATTER"
-aliases: ["YAML Frontmatter Syntax", "Frontmatter Syntax Standard"]
+aliases: ["YAML Frontmatter", "Frontmatter Syntax"]
 tags:
   - status/draft
-  - criticality/P1-High
+  - criticality/p1-high
   - content-type/technical-standard
 kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "YAML Frontmatter Syntax"
-related-standards: ["[[MT-SCHEMA-FRONTMATTER]]", "[[SF-FORMATTING-FILE-HYGIENE]]"]
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "SF"
-sub_domain: "SYNTAX"
-scope_application: "Defines the mandatory YAML syntax conventions for frontmatter blocks in all Markdown documents within the knowledge base."
+sub_domain: "MARKDOWN"
+scope_application: "Defines the syntax for YAML frontmatter in knowledge base documents."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Metadata parsing", "Content validation", "Authoring consistency", "Interoperability with tools"]
+impact_areas: ["Frontmatter syntax", "Metadata structure", "Document parsing"]
 change_log_url: "./SF-SYNTAX-YAML-FRONTMATTER-changelog.md"
 ---
 # Standard: Markdown YAML Frontmatter Syntax (SF-SYNTAX-YAML-FRONTMATTER)
 
 ## 1. Standard Statement
 
-This standard defines the mandatory YAML syntax conventions for frontmatter blocks used in all Markdown documents within the knowledge base. Adherence to these syntax rules is essential for ensuring reliable metadata parsing, supporting content validation, maintaining authoring consistency, and ensuring interoperability with various processing tools.
+This standard defines the syntax for YAML frontmatter in knowledge base documents. Adherence to these syntax rules is essential for ensuring reliable metadata parsing, supporting content validation, maintaining authoring consistency, and ensuring interoperability with various processing tools.
 
 While this standard governs the *syntax* of the YAML block itself, the *schema and content rules* for the frontmatter (e.g., allowed keys, specific value formats like ISO dates for `date-created`, mandatory fields) are defined in [[MT-SCHEMA-FRONTMATTER]]. File encoding (UTF-8 without BOM) and line endings (LF) are governed by [[SF-FORMATTING-FILE-HYGIENE]].
 

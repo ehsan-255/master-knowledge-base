@@ -1,27 +1,27 @@
 ---
-title: "Policy: Governance for Proposing and Updating Standards"
+title: "Policy: Standards Governance Framework"
 standard_id: "OM-POLICY-STANDARDS-GOVERNANCE"
-aliases: ["Standards Governance Policy", "Change Management for Standards"]
+aliases: ["Governance Policy", "Standards Management"]
 tags:
   - status/draft
-  - criticality/P1-High
+  - criticality/p1-high
   - content-type/policy-document
 kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Standards Governance Process"
-related-standards: ["GM-GUIDE-KB-USAGE", "MT-REGISTRY-TAG-GLOSSARY", "OM-VERSIONING-CHANGELOGS", "OM-POLICY-STANDARDS-DEPRECATION"]
+primary-topic: "Standards Governance Framework"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T14:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "OM"
-sub_domain: "POLICY"
-scope_application: "The lifecycle of all standard documents, including their proposal, review, approval, update, and deprecation."
+sub_domain: "LIFECYCLE"
+scope_application: "Defines the governance framework for creating, maintaining, and managing standards within the knowledge base."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Governance-Board-Approval"
-impact_areas: ["Standards quality", "Consistency across KB", "Change management", "Community involvement", "User trust in standards"]
+impact_areas: ["Standards governance", "Quality assurance", "Change control"]
 change_log_url: "./OM-POLICY-STANDARDS-GOVERNANCE-changelog.md"
 ---
-# Policy: Governance for Proposing and Updating Standards (OM-POLICY-STANDARDS-GOVERNANCE)
+# Policy: Standards Governance Framework (OM-POLICY-STANDARDS-GOVERNANCE)
 
 ## 1. Policy Statement
 

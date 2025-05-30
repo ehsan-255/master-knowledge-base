@@ -5,7 +5,8 @@
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
-  - [L1] No YAML frontmatter block found.
+  - [L3] 'standard_id' ('AS-KB-DIRECTORY-STRUCTURE-changelog') fails regex: '^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\-]+$'.
+  - [L10] 'info-type' ('changelog') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document']
 
 ## File: `master-knowledge-base/standards/src/AS-KB-DIRECTORY-STRUCTURE.md`
 ### Warnings:
@@ -889,7 +890,6 @@
 ## File: `master-knowledge-base/standards/src/GM-MANDATE-KB-USAGE-GUIDE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
   - [L33] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L38] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L45] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
@@ -904,7 +904,7 @@
   - [L75] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
   - [L76] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('MANDATE') not valid for domain 'GM'. Valid: ['CONVENTIONS', 'GUIDE', 'GLOSSARY']
+  - [L10] 'info-type' ('mandate-document') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document']
 
 ## File: `master-knowledge-base/standards/src/GM-MANDATE-STANDARDS-GLOSSARY-changelog.md`
 ### Warnings:
@@ -915,7 +915,6 @@
 ## File: `master-knowledge-base/standards/src/GM-MANDATE-STANDARDS-GLOSSARY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
   - [L28] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
   - [L33] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
   - [L39] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
@@ -923,7 +922,7 @@
   - [L58] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
   - [L59] Potentially broken link: Standard ID '[[CS-POLICY-TONE-LANGUAGE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('MANDATE') not valid for domain 'GM'. Valid: ['CONVENTIONS', 'GUIDE', 'GLOSSARY']
+  - [L10] 'info-type' ('mandate-document') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document']
 
 ## File: `master-knowledge-base/standards/src/GM-REGISTRY-GOVERNANCE-changelog.md`
 ### Warnings:
@@ -934,13 +933,10 @@
 ## File: `master-knowledge-base/standards/src/GM-REGISTRY-GOVERNANCE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
-  - [L32] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
-  - [L34] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
-  - [L43] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
-  - [L48] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
-### Errors:
-  - [L14] 'sub_domain' ('POLICY') not valid for domain 'GM'. Valid: ['CONVENTIONS', 'GUIDE', 'GLOSSARY']
+  - [L35] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+  - [L37] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+  - [L46] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+  - [L51] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
 
 ## File: `master-knowledge-base/standards/src/MT-KEYREF-MANAGEMENT-changelog.md`
 ### Warnings:
@@ -965,7 +961,8 @@
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
-  - [L1] No YAML frontmatter block found.
+  - [L3] 'standard_id' ('MT-SCHEMA-FRONTMATTER-changelog') fails regex: '^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\-]+$'.
+  - [L11] 'info-type' ('changelog') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document']
 
 ## File: `master-knowledge-base/standards/src/MT-SCHEMA-FRONTMATTER.md`
 ### Warnings:
@@ -1003,7 +1000,6 @@
 ## File: `master-knowledge-base/standards/src/MT-TAGGING-STRATEGY-POLICY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
   - [L28] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
   - [L28] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L42] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
@@ -1013,8 +1009,6 @@
   - [L80] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
   - [L81] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L82] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('POLICY') not valid for domain 'MT'. Valid: ['FRONTMATTER', 'TAGGING', 'REGISTRY']
 
 ## File: `master-knowledge-base/standards/src/MT-TAGS-IMPLEMENTATION-changelog.md`
 ### Warnings:
@@ -1038,7 +1032,8 @@
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
-  - [L1] No YAML frontmatter block found.
+  - [L3] 'standard_id' ('OM-AUTOMATION-LLM-IO-SCHEMAS-changelog') fails regex: '^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\-]+$'.
+  - [L12] 'info-type' ('changelog') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document']
 
 ## File: `master-knowledge-base/standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS.md`
 ### Warnings:
@@ -1073,7 +1068,6 @@
 ## File: `master-knowledge-base/standards/src/OM-POLICY-STANDARDS-DEPRECATION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
   - [L39] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L40] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
   - [L47] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
@@ -1082,27 +1076,23 @@
   - [L81] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L82] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
   - [L83] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('POLICY') not valid for domain 'OM'. Valid: ['LIFECYCLE', 'AUTOMATION']
 
 ## File: `master-knowledge-base/standards/src/OM-POLICY-STANDARDS-GOVERNANCE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
-  - [L1] No YAML frontmatter block found.
+  - [L3] 'standard_id' ('OM-POLICY-STANDARDS-GOVERNANCE-changelog') fails regex: '^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\-]+$'.
+  - [L11] 'info-type' ('changelog') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document']
 
 ## File: `master-knowledge-base/standards/src/OM-POLICY-STANDARDS-GOVERNANCE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
   - [L34] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L45] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L66] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L67] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L68] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
   - [L69] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-DEPRECATION]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('POLICY') not valid for domain 'OM'. Valid: ['LIFECYCLE', 'AUTOMATION']
 
 ## File: `master-knowledge-base/standards/src/OM-VERSIONING-CHANGELOGS-changelog.md`
 ### Warnings:
@@ -1152,23 +1142,20 @@
 ## File: `master-knowledge-base/standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
   - [L36] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
   - [L78] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
   - [L79] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('ACCESSIBILITY') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
 
 ## File: `master-knowledge-base/standards/src/SF-CALLOUTS-SYNTAX-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
-  - [L1] No YAML frontmatter block found.
+  - [L3] 'standard_id' ('SF-CALLOUTS-SYNTAX-changelog') fails regex: '^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\-]+$'.
+  - [L11] 'info-type' ('changelog') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document']
 
 ## File: `master-knowledge-base/standards/src/SF-CALLOUTS-SYNTAX.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
   - [L30] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L46] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
@@ -1177,8 +1164,6 @@
   - [L119] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
   - [L120] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
   - [L121] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
 
 ## File: `master-knowledge-base/standards/src/SF-CONDITIONAL-SYNTAX-ATTRIBUTES-changelog.md`
 ### Warnings:
@@ -1204,12 +1189,9 @@
 ## File: `master-knowledge-base/standards/src/SF-CONVENTIONS-NAMING.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
   - [L55] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L87] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L88] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('CONVENTIONS') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
 
 ## File: `master-knowledge-base/standards/src/SF-FORMATTING-CITATIONS-changelog.md`
 ### Warnings:
@@ -1220,11 +1202,8 @@
 ## File: `master-knowledge-base/standards/src/SF-FORMATTING-CITATIONS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
   - [L67] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L85] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('FORMATTING') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
 
 ## File: `master-knowledge-base/standards/src/SF-FORMATTING-FILE-HYGIENE-changelog.md`
 ### Warnings:
@@ -1248,12 +1227,9 @@
 ## File: `master-knowledge-base/standards/src/SF-FORMATTING-MARKDOWN-GENERAL.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
   - [L28] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L79] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L116] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('FORMATTING') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
 
 ## File: `master-knowledge-base/standards/src/SF-LINKS-INTERNAL-SYNTAX-changelog.md`
 ### Warnings:
@@ -1318,11 +1294,8 @@
 ## File: `master-knowledge-base/standards/src/SF-SYNTAX-DEFINITION-LISTS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P3-Low' (at index 1) invalid kebab-case/structure.
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L117] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
-### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
 
 ## File: `master-knowledge-base/standards/src/SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md`
 ### Warnings:
@@ -1584,9 +1557,6 @@
 ## File: `master-knowledge-base/standards/src/UA-SCHEMA-LLM-IO.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
-  - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
-### Errors:
-  - [L14] 'sub_domain' ('AUTOMATION') not valid for domain 'UA'. Valid: ['ACCESSIBILITY', 'KEYDEFS']
 
 ## File: `master-knowledge-base/standards/src/XX-LINT-TESTDUMMY1-changelog.md`
 ### Errors:
@@ -1615,5 +1585,5 @@
 ---
 ## Linting Summary
 - Total files processed: 154
-- Total errors found: 112
-- Total warnings found: 933
+- Total errors found: 106
+- Total warnings found: 920
