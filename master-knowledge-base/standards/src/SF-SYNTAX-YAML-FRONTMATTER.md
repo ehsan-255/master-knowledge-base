@@ -9,10 +9,10 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "YAML Frontmatter Syntax" # As per prompt
-related-standards: ["U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER", "SF-FORMATTING-FILE-HYGIENE_ID_PLACEHOLDER"]
+related-standards: ["[[MT-SCHEMA-FRONTMATTER]]", "[[SF-FORMATTING-FILE-HYGIENE]]"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF" # Syntax & Formatting
 sub_domain: "SYNTAX" # As per prompt
 scope_application: "Defines the mandatory YAML syntax conventions for frontmatter blocks in all Markdown documents within the knowledge base."
@@ -49,7 +49,7 @@ A single YAML frontmatter block, enclosed by triple hyphens (`---`) on the line 
 All keys within the YAML frontmatter block MUST use **kebab-case** (all lowercase words separated by single hyphens).
 *   **Example (Correct):** `date-created: 2023-10-28`, `primary-topic: "Example Topic"`
 *   **Example (Incorrect):** `date_created: 2023-10-28`, `PrimaryTopic: "Example Topic"`
-*   **Rationale:** Enforces a single, consistent style for all YAML keys, simplifying parsing and improving readability. This is also mandated by [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]].
+*   **Rationale:** Enforces a single, consistent style for all YAML keys, simplifying parsing and improving readability. This is also mandated by [[MT-SCHEMA-FRONTMATTER]].
 
 ### Rule 2.3: Appropriate Data Types (Derived from M-SYNTAX-YAML-001, Rule 1.3)
 Values for YAML keys MUST use appropriate YAML data types (e.g., string, number, boolean, list, dictionary/map).
@@ -59,7 +59,7 @@ Values for YAML keys MUST use appropriate YAML data types (e.g., string, number,
 *   **Numbers:** `version: 1.0` (interpreted as a float), `count: 15` (interpreted as an integer).
 *   **Booleans:** `draft: true`, `is-archived: false`.
 *   **Nulls:** `not-applicable: null` (use `null` explicitly, not empty strings if the intent is a null value).
-*   **Rationale:** Correct data typing is essential for reliable parsing and subsequent processing of metadata. [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]] specifies the expected data types for its defined keys.
+*   **Rationale:** Correct data typing is essential for reliable parsing and subsequent processing of metadata. [[MT-SCHEMA-FRONTMATTER]] specifies the expected data types for its defined keys.
 
 ### Rule 2.4: List Syntax (Block Style) (Derived from M-SYNTAX-YAML-001, Rule 1.4)
 Lists (arrays) in YAML frontmatter MUST use the block list syntax, where each item is preceded by a hyphen and a space (`- `).
@@ -93,7 +93,7 @@ tags:
   - topic/example
   - status/draft
   - content-type/standard-definition
-version: '0.1.0' # String value, even for numbers, if specified by U-METADATA-FRONTMATTER-RULES-001
+version: '0.1.0' # String value, even for numbers, if specified by MT-SCHEMA-FRONTMATTER
 date-created: '2024-07-15T10:00:00Z' # ISO-8601 string
 is-experimental: true # Boolean
 complexity-score: 3 # Number

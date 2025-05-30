@@ -9,9 +9,9 @@ primary-topic: "Provides a master directory and entry points to all active Knowl
 related-standards: ["AS-STRUCTURE-MASTER-KB-INDEX", "AS-ROOT-STANDARDS-KB"] # Links to the standard defining this type of file, and the root of the standards KB.
 version: "1.0.0" # Initial version
 date-created: "2025-05-29T16:10:25Z"
-date-modified: "2025-05-29T16:10:25Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated to current date
 primary_domain: "AS"
-sub_domain: "STRUCTURE" # Using STRUCTURE as INDEXING is not yet in registry for AS. Consider adding.
+sub_domain: "INDEXING" # Changed from STRUCTURE
 scope_application: "Serves as the primary navigational entry point to all distinct Knowledge Bases."
 criticality: "P0-Critical" # Essential for navigating the entire KB ecosystem.
 lifecycle_gatekeeper: "Architect-Review"

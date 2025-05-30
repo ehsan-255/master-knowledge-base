@@ -10,15 +10,15 @@ kb-id: "" # Global policy
 info-type: "policy-document"
 primary-topic: "Layered Information Presentation"
 related-standards: [
-  "AS-STRUCTURE-KB-ROOT_ID_PLACEHOLDER",
-  "AS-STRUCTURE-KB-PART_ID_PLACEHOLDER",
-  "AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER",
-  "U-SCHEMA-METHOD-001_ID_PLACEHOLDER",
-  "U-SCHEMA-CONCEPT-001_ID_PLACEHOLDER"
+  "[[AS-STRUCTURE-KB-ROOT]]",
+  "[[AS-STRUCTURE-KB-PART]]",
+  "[[AS-STRUCTURE-DOC-CHAPTER]]",
+  "[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]",
+  "[[AS-SCHEMA-CONCEPT-DEFINITION]]"
 ]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "CS"
 sub_domain: "POLICY"
 scope_application: "All content creation and structuring within the knowledge base, ensuring information is presented in a layered and progressively disclosed manner."
@@ -40,13 +40,13 @@ The core principle is to present information in an "information funnel," where u
 
 ### Rule 2.1: General to Specific Structure (Derived from U-DETAIL-LEVEL-001, Rule 1.1)
 Content MUST be structured to allow users to gain an understanding from a high-level overview progressively down to specific details.
-*   **Guidance:** This is an overarching principle that applies to the structure of the entire KB (see [[AS-STRUCTURE-KB-ROOT_ID_PLACEHOLDER]]), individual "Parts" (see [[AS-STRUCTURE-KB-PART_ID_PLACEHOLDER]]), and "Chapters" (see [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]]).
+*   **Guidance:** This is an overarching principle that applies to the structure of the entire KB (see [[AS-STRUCTURE-KB-ROOT]]), individual "Parts" (see [[AS-STRUCTURE-KB-PART]]), and "Chapters" (see [[AS-STRUCTURE-DOC-CHAPTER]]).
 
 ### Rule 2.2: Mandatory Summaries/Abstracts (Derived from U-DETAIL-LEVEL-001, Rule 1.2)
 Every major concept, method, "Part," or "Chapter" MUST begin with a concise summary or abstract.
 *   **Guidance:**
-    *   For "Chapters," this is mandated by [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] (Rule 1.2: Topic Abstract).
-    *   For specific content types like "Methodology/Technique Descriptions" or "Concept Definitions," this is reinforced by their respective schemas (e.g., [[U-SCHEMA-METHOD-001_ID_PLACEHOLDER]], [[U-SCHEMA-CONCEPT-001_ID_PLACEHOLDER]]).
+    *   For "Chapters," this is mandated by [[AS-STRUCTURE-DOC-CHAPTER]] (Rule 1.2: Topic Abstract).
+    *   For specific content types like "Methodology/Technique Descriptions" or "Concept Definitions," this is reinforced by their respective schemas (e.g., [[AS-SCHEMA-METHODOLOGY-DESCRIPTION]], [[AS-SCHEMA-CONCEPT-DEFINITION]]).
     *   This initial summary allows users to quickly grasp the essence of the content and decide if it's relevant to their needs.
 
 ### Rule 2.3: Core Ideas Before Details (Derived from U-DETAIL-LEVEL-001, Rule 1.3)
@@ -79,11 +79,11 @@ Adopting this policy provides numerous benefits:
 This policy applies to all content creation, structuring, and presentation within all Knowledge Bases in the repository. It is a fundamental principle guiding how authors should think about and organize information.
 
 ## 5. Cross-References
-*   [[AS-STRUCTURE-KB-ROOT_ID_PLACEHOLDER]] - Standard for KB Root Structure.
-*   [[AS-STRUCTURE-KB-PART_ID_PLACEHOLDER]] - Standard for KB Part Structure.
-*   [[AS-STRUCTURE-DOC-CHAPTER_ID_PLACEHOLDER]] - Standard for Chapter Internal Structure (especially regarding abstracts and heading hierarchy).
-*   [[U-SCHEMA-METHOD-001_ID_PLACEHOLDER]] - Content Schema for "Methodology/Technique Descriptions" (example of a content type that embodies layered information).
-*   [[U-SCHEMA-CONCEPT-001_ID_PLACEHOLDER]] - Content Schema for "Concept Definitions" (another example).
+*   [[AS-STRUCTURE-KB-ROOT]] - Standard for KB Root Structure.
+*   [[AS-STRUCTURE-KB-PART]] - Standard for KB Part Structure.
+*   [[AS-STRUCTURE-DOC-CHAPTER]] - Standard for Chapter Internal Structure (especially regarding abstracts and heading hierarchy).
+*   [[AS-SCHEMA-METHODOLOGY-DESCRIPTION]] - Content Schema for "Methodology/Technique Descriptions" (example of a content type that embodies layered information).
+*   [[AS-SCHEMA-CONCEPT-DEFINITION]] - Content Schema for "Concept Definitions" (another example).
 
 ---
 *This policy (CS-POLICY-LAYERED-INFORMATION) is based on rules 1.1 through 1.5 previously defined in U-DETAIL-LEVEL-001 from COL-ARCH-UNIVERSAL.md.*

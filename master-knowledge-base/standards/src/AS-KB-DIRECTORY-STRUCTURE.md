@@ -12,7 +12,7 @@ primary-topic: "Directory Structure" # More descriptive primary topic
 related-standards: [] # Optional: e.g., ["SF-CONVENTIONS-NAMING"]
 version: "0.1.0"
 date-created: "2024-07-15T10:00:00Z" # Placeholder for actual creation date
-date-modified: "2024-07-15T10:00:00Z" # Placeholder for actual modification date
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "AS" # Architectural Standards
 sub_domain: "STRUCTURE" # Structural Standards
 scope_application: "Overall repository and knowledge base file organization."
@@ -39,7 +39,7 @@ Within `master-knowledge-base/standards/`, the following specialized directories
 *   **`/master-knowledge-base/standards/src/` (Task 0.4.1)**
     *   **Purpose:** This is the primary Layer 1 directory for all atomic standard documents (Standard Definitions, Policy Documents, Guide Documents, etc.).
     *   **Content:** Individual Markdown files (`.md`) representing single, atomic standards.
-    *   **Naming:** Files in this directory MUST follow the [File Naming Convention]([[SF-CONVENTIONS-NAMING#Atomic File Naming Convention]]) (Note: Link to be updated once actual naming convention doc ID is set).
+    *   **Naming:** Files in this directory MUST follow the [[SF-CONVENTIONS-NAMING#Atomic File Naming Convention|File Naming Convention]] (Note: Link to be updated once actual naming convention doc ID is set).
 
 *   **`/master-knowledge-base/standards/registry/` (Task 0.4.2)**
     *   **Purpose:** This directory houses all controlled vocabulary manifests and registry definition files.

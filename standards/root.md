@@ -1,21 +1,25 @@
 ---
-title: 'Universal Knowledge Base Standards - Overview'
+title: 'Universal Knowledge Base Standards - Overview - DEPRECATED'
 aliases: ['Standards KB Root', 'KB Standards Overview', 'UKBS Root']
 tags:
   - kb-id/standards
   - content-type/standard-overview-document
-  - status/final
+  - status/deprecated # Changed from status/final
   - topic/standards-governance
   - topic/meta-structure
 kb-id: standards
 info-type: standard-overview-document
 primary-topic: 'Root entry point and guide to Universal KB Standards, outlining purpose, meta-structure for standard definitions, and master Table of Contents.'
 related-standards:
-  - U-METADATA-FRONTMATTER-RULES-001
+  - AS-ROOT-STANDARDS-KB # Points to new standard
 version: '1.2.3'
-date-created: '2025-05-15'
-date-modified: '2025-05-23'
+date-created: '2025-05-15T00:00:00Z' # Standardized
+date-modified: '2025-05-30T00:00:00Z' # Deprecation date
 ---
+
+> [!WARNING] DEPRECATED: This Document is No Longer Active
+> **Reason for Deprecation:** This document has been superseded by [[AS-ROOT-STANDARDS-KB]], which serves as the main entry point for the Standards Knowledge Base.
+> Please refer to the new root document for navigation and current information. This document is retained for historical purposes only.
 
 # Universal Knowledge Base Standards - Root
 
