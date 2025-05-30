@@ -9,9 +9,9 @@ primary-topic: "Defines the logical structure, parts, and organization of the St
 related-standards: ["AS-STRUCTURE-KB-ROOT", "AS-STRUCTURE-KB-PART", "MT-SCHEMA-FRONTMATTER", "AS-STRUCTURE-MASTER-KB-INDEX"]
 version: "0.1.0"
 date-created: "2025-05-29T16:04:35Z"
-date-modified: "2025-05-29T16:04:35Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated to current date
 primary_domain: "AS" # Architecture & Structure
-sub_domain: "STRUCTURE" # Using STRUCTURE as MAP/INDEXING not in registry for AS. Consider adding.
+sub_domain: "INDEXING" # Changed from STRUCTURE
 scope_application: "Applies specifically to the Standards Knowledge Base, defining its internal organization and primary components."
 criticality: "P1-High" # Essential for navigating and understanding the Standards KB.
 lifecycle_gatekeeper: "Architect-Review"

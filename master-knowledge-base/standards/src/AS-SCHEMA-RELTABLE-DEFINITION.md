@@ -1,111 +1,97 @@
 ---
-title: "Standard: Relational Table (Reltable) Definition Schema"
-standard_id: "AS-SCHEMA-RELTABLE-DEFINITION"
-aliases: ["Reltable Schema", "Schema for Relational Data Tables"]
-tags: ["status/draft", "criticality/P3-Medium", "content-type/schema-document", "topic/schemas", "topic/data-structures", "topic/structured-data", "kb-id/standards"]
+title: "Standard: Relationship Table (Reltable) Definition"
+standard_id: AS-SCHEMA-RELTABLE-DEFINITION
+aliases: ["Reltable Standard", "Semantic Linking Definition"]
+tags:
+  - status/draft
+  - criticality/P2-Medium
+  - content-type/standard-definition
+  - topic/linking
+  - topic/semantics
+  - topic/yaml
+  - topic/data-structure
+  - kb-id/standards
 kb-id: "kb-id/standards"
-info-type: "schema-document"
-primary-topic: "Defines the standard structure and syntax for representing relational table-like data (Reltables) within knowledge base documents."
-related-standards: ["MT-SCHEMA-FRONTMATTER", "SF-FORMATTING-MARKDOWN-GENERAL", "SF-SYNTAX-TABLES"] # May also relate to YAML standards if applicable
-version: "0.1.0"
-date-created: "2025-05-29T15:55:50Z"
-date-modified: "2025-05-29T15:55:50Z"
-primary_domain: "AS" # Architecture & Structure
-sub_domain: "SCHEMA" # Defines a data schema
-scope_application: "Applies to any content requiring the structured representation of relational data in a tabular format, potentially beyond standard Markdown tables, for clarity, consistency, or automated processing."
-criticality: "P3-Medium" # Importance depends on adoption and use cases.
+info-type: "standard-definition" # Changed from schema-document in placeholder
+primary-topic: "Defines the standard structure for 'Relationship Tables' (reltables) used to explicitly define typed, non-hierarchical relationships between topics."
+related-standards: # Placeholder IDs, actual new IDs TBD
+  - "AS-STRUCTURE-KB-ROOT" # Was U-ARCH-001
+  - "SF-LINKS-INTERNAL-SYNTAX" # Was O-USAGE-LINKS-001
+  - "SF-SYNTAX-YAML-FRONTMATTER" # Was M-SYNTAX-YAML-001
+version: '0.1.2' # From original U-RELTABLE-DEFINITION-001
+date-created: "2025-05-19T00:00:00Z" # From original, standardized
+date-modified: "2025-05-30T00:00:00Z" # Current date for refactoring
+primary_domain: "AS"
+sub_domain: "SCHEMA"
+scope_application: "Defines the standard structure for 'Relationship Tables' (reltables) using YAML to define typed, non-hierarchical relationships between topics."
+criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Structured data representation", "Data consistency", "Automated data extraction", "Content requiring tabular relational data"]
+impact_areas: ["Semantic linking", "Knowledge graph generation", "Content navigability"]
 change_log_url: "./AS-SCHEMA-RELTABLE-DEFINITION-changelog.md"
 ---
 
-# Standard: Relational Table (Reltable) Definition Schema (AS-SCHEMA-RELTABLE-DEFINITION)
+# Standard: Relationship Table (Reltable) Definition (AS-SCHEMA-RELTABLE-DEFINITION)
 
-## 1. Standard Statement
+> [!TODO] This standard's content has been migrated from `U-RELTABLE-DEFINITION-001`. However, the overall concept of Reltables, their precise implementation details (especially the defined relationship types and their YAML structure), and their integration with other architectural and schema standards require further review and refinement. The relationship types listed are initial suggestions and need validation against broader use cases and semantic consistency.
 
-This standard defines the recommended structure and syntax for representing "Reltables" – structured, relational table-like data – within knowledge base documents. The goal is to provide a consistent method for authors to include tabular data that may have relational characteristics or require more explicit schema definition than standard Markdown tables alone offer.
+This document defines the standard structure for "Relationship Tables" (reltables). Reltables are used to explicitly define typed, non-hierarchical relationships between topics within the knowledge base, enhancing semantic understanding and navigation.
 
-> [!TODO] This standard is a placeholder based on the ID `U-RELTABLE-DEFINITION-001`. The concept of "Reltable" needs further definition and justification. The content below is speculative and requires significant review and elaboration based on actual use cases. If this concept is not deemed necessary or is covered by other standards (e.g., advanced use of Markdown tables, CSV embedding, or specific YAML structures for data), this standard may be deprecated or significantly revised.
+## Table of Contents
+- [[#Standard: Reltable Structure and Usage (AS-SCHEMA-RELTABLE-DEFINITION)]]
+- [[#Defined Relationship Types (Initial Set)]]
 
-## 2. Purpose and Use Cases
+## Standard: Reltable Structure and Usage (AS-SCHEMA-RELTABLE-DEFINITION)
 
-Reltables are intended for scenarios where:
--   Standard Markdown tables (`[[SF-SYNTAX-TABLES]]`) are insufficient to capture data type constraints, relationships, or complex cell structures.
--   Data needs to be easily parsed by automated tools for validation, extraction, or further processing.
--   A consistent, schema-driven representation of tabular data is required across multiple documents.
+| Metadata        | Value                                 |
+| :-------------- | :------------------------------------ |
+| Standard ID     | `AS-SCHEMA-RELTABLE-DEFINITION`       |
+| Standard Name   | Relationship Table Definition         |
+| Standard Category | Interlinking & Semantics              |
 
-Potential use cases:
--   Comparison tables with defined column types.
--   Small, embedded datasets.
--   Glossaries or definition lists requiring structured fields per term.
--   Representing outputs of analyses or experiments.
+**Rule/Guideline Statement(s):**
 
-## 3. Reltable Definition and Syntax
+| Rule # | Statement of Rule                                                                                                                               | Example (if illustrative)                                    | Notes / Further Specification (if any)                                       |
+| :----- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------- | :--------------------------------------------------------------------------- |
+| 1.1    | Relationship tables MUST be defined within the YAML frontmatter of "map" files (e.g., `root.md`, `_overview.md` for a KB Part) or in dedicated `_reltable.md` files. They use a top-level key `reltable:`. | See Illustrative Example.                                    | Centralizes relationship definitions for a given scope.                      |
+| 1.2    | The `reltable:` key MUST contain a list of relationship entries. Each entry is an object.                                                       | `reltable:\n  - topic: ...\n  - topic: ...`                  | Each object defines relationships *from* a specific source topic.            |
+| 1.3    | Each relationship entry object MUST have a `topic:` key, whose value is the path (from `master-knowledge-base` root) to the source topic file (e.g., `master-knowledge-base/standards/src/AS-STRUCTURE-KB-ROOT.md`). | `topic: master-knowledge-base/standards/src/AS-STRUCTURE-KB-ROOT.md`                             | Identifies the "from" side of the relationships. Link should be to new ID format if possible, or remain path based for now. This example uses path. |
+| 1.4    | Each entry MAY contain one or more relationship type keys (e.g., `prerequisites:`, `relatedConcepts:`, `supportingTasks:`). These keys are defined in this standard (see "Defined Relationship Types"). | `prerequisites:\n  - link: ...`                              | Defines the nature of the link.                                              |
+| 1.5    | Each relationship type key (e.g., `prerequisites:`) MUST contain a list of target topic objects.                                                | `relatedConcepts:\n  - link: master-knowledge-base/concepts/conceptA.md\n    displayText: "Concept A Overview"` | Allows multiple targets for a given relationship type.                       |
+| 1.6    | Each target topic object MUST have a `link:` key, whose value is the path (from `master-knowledge-base` root) to the target topic file. It MAY have an optional `displayText:` key for custom link text. | `link: master-knowledge-base/tasks/taskB.md\ndisplayText: "How to Perform Task B"` | Links SHOULD eventually resolve to standard `[[TARGET_ID]]` syntax if the target is a standard. For other content, path-based links may be necessary. This example uses path. |
+| 1.7    | Relationship types SHOULD be directional (e.g., "A is prerequisite for B" implies B has A as a prerequisite). Processing tools (e.g., DataviewJS) can infer reciprocal links. | N/A                                                          | Simplifies definition; tools handle bidirectionality if needed.              |
 
-*(This section requires significant elaboration based on the chosen representation for Reltables.)*
+## Defined Relationship Types (Initial Set)
 
-Two potential approaches (to be decided):
+| Relationship Type         | Definition                                                                 | Directionality         | Example YAML Structure (within a `reltable` entry)                                                                 |
+|--------------------------|----------------------------------------------------------------------------|-----------------------|--------------------------------------------------------------------------------------------------------------------|
+| `isPrerequisiteFor`      | Indicates that the source is a required prerequisite for the target.        | Source → Target        | topic: path/to/source-topic.md\n  isPrerequisiteFor:\n    - link: path/to/target-topic.md |
+| `isConceptualBasisFor`   | Indicates that the source provides the conceptual foundation for the target.| Source → Target        | topic: path/to/source-concept.md\n  isConceptualBasisFor:\n    - link: path/to/target-methodology.md |
+| `isExampleOf`            | Indicates that the source is an example instance of the target concept.     | Source → Target        | topic: path/to/example-instance.md\n  isExampleOf:\n    - link: path/to/general-concept.md |
+| `isAlternativeTo`        | Indicates that the source is an alternative to the target (peer relationship).| Bidirectional         | topic: path/to/method-a.md\n  isAlternativeTo:\n    - link: path/to/method-b.md |
+| `referencesSpecification`| Indicates that the source references a formal specification or standard.    | Source → Target        | topic: path/to/implementation-guide.md\n  referencesSpecification:\n    - link: path/to/spec-document.md |
+| `deepensUnderstandingOf` | Indicates that the source provides additional depth or detail for the target.| Source → Target        | topic: path/to/advanced-topic.md\n  deepensUnderstandingOf:\n    - link: path/to/introductory-topic.md |
 
-### Approach A: Extended Markdown Table Conventions
--   Utilizes standard Markdown table syntax.
--   Defines specific conventions for header rows to indicate column names and potentially data types (e.g., `Header (string)`, `Count (integer)`).
--   May define conventions for indicating primary keys or links to other Reltables or documents.
+This list can be expanded via the governance process (e.g., reference to a future `[[OM-POLICY-STANDARDS-GOVERNANCE]]` standard).
 
-### Approach B: YAML Structure for Reltables
--   Defines a specific YAML schema for representing the table's metadata (column definitions, data types) and its row data.
--   This YAML block could be included in the document frontmatter or as a distinct YAML code block in the body.
+**Illustrative Examples (Overall):**
 
-**Key elements to define for a Reltable Schema:**
--   **Table Identifier/Name:** A unique name for the Reltable instance or type.
--   **Column Definitions:**
-    -   `column_id`: A unique identifier for the column.
-    -   `column_label`: The human-readable header for the column.
-    -   `data_type`: Expected data type (e.g., `string`, `integer`, `boolean`, `date`, `uri`, `[[Standard_ID]]`).
-    -   `is_required`: Boolean, whether the column must have a value for each row.
-    -   `is_primary_key`: Boolean, indicates if this column (or combination of columns) serves as a primary key for the row.
-    -   `description`: Optional description of the column's content.
--   **Row Data:** The actual data, structured as a list of objects (if YAML) or rows in a Markdown table.
-
-## 4. Examples
-
-> [!TODO] Provide concrete examples once the Reltable syntax (Markdown-based or YAML-based) is finalized.
-
-### Example (Conceptual Markdown-based Reltable):
-
-```markdown
-| ID (string, PK) | Name (string) | Status (enum:active,inactive) | Last Updated (date) |
-|-----------------|---------------|-------------------------------|---------------------|
-| ITEM-001        | Example Item A| active                        | 2024-01-15          |
-| ITEM-002        | Example Item B| inactive                      | 2024-01-10          |
-```
-
-### Example (Conceptual YAML-based Reltable):
-
+YAML snippet within `some-kb/part-1/_overview.md`:
 ```yaml
-reltable_id: "UserActivitySummary"
-columns:
-  - column_id: "userId"
-    column_label: "User ID"
-    data_type: "string"
-    is_primary_key: true
-  - column_id: "lastLogin"
-    column_label: "Last Login"
-    data_type: "date-time"
-  - column_id: "actionCount"
-    column_label: "Actions This Month"
-    data_type: "integer"
-rows:
-  - userId: "user123"
-    lastLogin: "2025-05-29T10:00:00Z"
-    actionCount: 42
-  - userId: "user456"
-    lastLogin: "2025-05-28T14:30:00Z"
-    actionCount: 15
+reltable:
+  - topic: master-knowledge-base/some-kb/part-1/01-main-concept.md # Path based example
+    relatedConcepts:
+      - link: master-knowledge-base/some-kb/shared/supporting-concept-x.md
+        displayText: "Understanding Concept X"
+    supportingTasks:
+      - link: master-knowledge-base/some-kb/part-1/tasks/how-to-use-main-concept.md
+  - topic: master-knowledge-base/some-kb/part-1/tasks/how-to-use-main-concept.md
+    prerequisites:
+      - link: master-knowledge-base/some-kb/part-1/01-main-concept.md
+    referenceMaterial:
+      - link: master-knowledge-base/some-kb/references/main-concept-api.md
 ```
 
-## 5. Validation and Usage
-- Reltables SHOULD be validated against their defined schema.
-- Tools MAY be developed to parse, validate, or transform Reltables.
-
-## 6. Scope of Application
-This standard applies to any document within the knowledge base ecosystem where structured, relational tabular data needs to be presented in a standardized manner that potentially exceeds the capabilities or consistency of basic Markdown tables.
+**Cross-References to Other Standard IDs:**
+- [[AS-STRUCTURE-KB-ROOT]] (Placeholder for U-ARCH-001)
+- [[SF-LINKS-INTERNAL-SYNTAX]] (Placeholder for O-USAGE-LINKS-001)
+- [[SF-SYNTAX-YAML-FRONTMATTER]] (Placeholder for M-SYNTAX-YAML-001)

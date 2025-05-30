@@ -9,9 +9,9 @@ primary-topic: "Defines the procedures and rules for validating document metadat
 related-standards: ["MT-SCHEMA-FRONTMATTER", "MT-REGISTRY-TAG-GLOSSARY", "domain_codes.yaml", "subdomain_registry.yaml"]
 version: "0.1.0"
 date-created: "2025-05-29T15:49:24Z"
-date-modified: "2025-05-29T15:49:24Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated to current date
 primary_domain: "QM"
-sub_domain: "METRICS" # Using METRICS as VALIDATION is not yet in registry for QM. Consider adding VALIDATION to QM.
+sub_domain: "VALIDATION" # Changed from METRICS
 scope_application: "Applies to the YAML frontmatter of all Markdown documents across all knowledge bases."
 criticality: "P1-High" # Accurate metadata is crucial for automation and discoverability.
 lifecycle_gatekeeper: "Architect-Review"
