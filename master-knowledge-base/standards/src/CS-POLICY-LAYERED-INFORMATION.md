@@ -6,7 +6,7 @@ tags:
   - status/draft
   - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
 primary-topic: "Layered Information Presentation"
 related-standards: [
@@ -16,18 +16,17 @@ related-standards: [
   "[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]",
   "[[AS-SCHEMA-CONCEPT-DEFINITION]]"
 ]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
+date-modified: "2025-05-30T14:00:00Z"
 primary_domain: "CS"
 sub_domain: "POLICY"
 scope_application: "All content creation and structuring within the knowledge base, ensuring information is presented in a layered and progressively disclosed manner."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["User experience", "Readability", "Comprehension", "Knowledge retention", "Catering to diverse expertise levels"]
-change_log_url: "./CS-POLICY-LAYERED-INFORMATION-changelog.md" # Placeholder
+change_log_url: "./CS-POLICY-LAYERED-INFORMATION-changelog.md"
 ---
-
 # Policy: Layered Information Presentation and Progressive Disclosure (CS-POLICY-LAYERED-INFORMATION)
 
 ## 1. Policy Statement
@@ -87,4 +86,3 @@ This policy applies to all content creation, structuring, and presentation withi
 
 ---
 *This policy (CS-POLICY-LAYERED-INFORMATION) is based on rules 1.1 through 1.5 previously defined in U-DETAIL-LEVEL-001 from COL-ARCH-UNIVERSAL.md.*
-```

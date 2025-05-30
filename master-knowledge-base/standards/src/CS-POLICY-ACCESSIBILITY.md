@@ -4,24 +4,23 @@ standard_id: "CS-POLICY-ACCESSIBILITY"
 aliases: ["Accessibility Policy", "WCAG Compliance Goals"]
 tags:
   - status/draft
-  - criticality/P1-High # Accessibility is a core requirement
+  - criticality/P1-High
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Content Accessibility Principles" # As per prompt
+primary-topic: "Content Accessibility Principles"
 related-standards: ["SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "SF-SYNTAX-HEADINGS"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "CS" # Content Standard
-sub_domain: "POLICY" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "CS"
+sub_domain: "POLICY"
 scope_application: "All content created and maintained within the knowledge base, aiming to ensure accessibility for all users, including those with disabilities."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Editorial-Board-Approval" # Accessibility policies often have broad review
+lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["User experience", "Inclusivity", "Legal compliance (e.g., ADA, WCAG)", "Content reach"]
-change_log_url: "./CS-POLICY-ACCESSIBILITY-changelog.md" # Placeholder
+change_log_url: "./CS-POLICY-ACCESSIBILITY-changelog.md"
 ---
-
 # Policy: Content Accessibility (CS-POLICY-ACCESSIBILITY)
 
 ## 1. Policy Statement
@@ -78,4 +77,3 @@ This policy applies to all content within the Knowledge Base and to all individu
 
 ---
 *This policy (CS-POLICY-ACCESSIBILITY) incorporates Rule 1.3 from U-ACCESSIBILITY-001 (regarding headings) and sets a general framework for content accessibility, referencing the specific standard created for image alt text.*
-```

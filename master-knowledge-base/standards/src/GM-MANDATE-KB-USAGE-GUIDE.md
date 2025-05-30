@@ -4,24 +4,23 @@ standard_id: "GM-MANDATE-KB-USAGE-GUIDE"
 aliases: ["KB Guide Mandate", "Onboarding Guide Requirement"]
 tags:
   - status/draft
-  - criticality/P1-High # A usage guide is essential for adoption
-  - content-type/technical-standard # It's a standard defining a requirement
-kb-id: "" # Global standard
+  - criticality/P1-High
+  - content-type/technical-standard
+kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "KB Usage Guide Mandate"
 related-standards: ["GM-GUIDE-KB-USAGE", "OM-POLICY-STANDARDS-GOVERNANCE", "MT-REGISTRY-TAG-GLOSSARY", "AS-STRUCTURE-TEMPLATES-DIRECTORY", "AS-STRUCTURE-MASTER-KB-INDEX"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "GM" # General & Miscellaneous
-sub_domain: "MANDATE" # As per prompt
+date-modified: "2025-05-30T17:00:00Z"
+primary_domain: "GM"
+sub_domain: "MANDATE"
 scope_application: "Ensures the existence and defines the core content requirements for a comprehensive guide on using the knowledge base and its associated standards."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Governance-Board-Approval" # Mandating a guide is a governance decision
+lifecycle_gatekeeper: "Governance-Board-Approval"
 impact_areas: ["User onboarding", "Standards adoption", "KB navigability", "Community support", "Consistency of KB usage"]
-change_log_url: "./GM-MANDATE-KB-USAGE-GUIDE-changelog.md" # Placeholder
+change_log_url: "./GM-MANDATE-KB-USAGE-GUIDE-changelog.md"
 ---
-
 # Standard: Mandate for Knowledge Base Usage Guide (GM-MANDATE-KB-USAGE-GUIDE)
 
 ## 1. Policy Statement
@@ -78,4 +77,3 @@ This standard applies to the governance body responsible for the knowledge base 
 
 ---
 *This standard (GM-MANDATE-KB-USAGE-GUIDE) is based on rules 1.1 through 1.4 previously defined in U-ONBOARDING-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the guide.*
-```

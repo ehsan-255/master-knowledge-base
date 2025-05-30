@@ -5,23 +5,22 @@ aliases: ["Linking Standard", "Wikilink Syntax"]
 tags:
   - status/draft
   - criticality/P1-High
-  - content-type/technical-standard # Example of a content-type tag
-kb-id: "" # This standard is intended to be part of the global standards, not a specific KB's internal docs.
+  - content-type/technical-standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Internal Linking Syntax" # More descriptive primary topic
-related-standards: ["CS-LINKING-INTERNAL-POLICY"] # Placeholder, actual policy to be created
-version: "0.1.0"
-date-created: "2024-07-15T10:00:00Z" # Placeholder for actual creation date
-date-modified: "2024-07-15T10:00:00Z" # Placeholder for actual modification date
-primary_domain: "SF" # Syntax & Formatting Standards
-sub_domain: "LINKS" # Linking Syntax
+primary-topic: "Internal Linking Syntax"
+related-standards: ["CS-LINKING-INTERNAL-POLICY"]
+version: '0.1.0'
+date-created: "2024-07-15T10:00:00Z"
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "LINKS"
 scope_application: "All knowledge base documents utilizing Markdown for internal linking."
-criticality: "P1-High" # As specified in tags
-lifecycle_gatekeeper: "Architect-Review" # Standard gatekeeper for technical standards
+criticality: "P1-High"
+lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Authoring workflow", "Content reusability", "Link integrity", "Automated validation"]
-change_log_url: "./SF-LINKS-INTERNAL-SYNTAX-changelog.md" # Placeholder for changelog file
+change_log_url: "./SF-LINKS-INTERNAL-SYNTAX-changelog.md"
 ---
-
 # SF-LINKS-INTERNAL-SYNTAX: Internal Linking Syntax Standard
 
 ## 1. Overview

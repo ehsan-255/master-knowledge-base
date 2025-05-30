@@ -3,22 +3,21 @@ title: "Glossary of Standards Terminology"
 standard_id: "GM-GLOSSARY-STANDARDS-TERMS"
 aliases: ["Standards Glossary", "KB Governance Terms"]
 tags: ["status/draft", "criticality/P1-High", "content-type/glossary-document", "topic/glossary", "topic/standards-governance", "kb-id/standards"]
-kb-id: "kb-id/standards"
+kb-id: "standards"
 info-type: "glossary-document"
 primary-topic: "Provides definitions for key terms, acronyms, and concepts used throughout the Knowledge Base standards and governance documentation."
 related-standards: ["GM-MANDATE-STANDARDS-GLOSSARY", "MT-SCHEMA-FRONTMATTER"]
-version: "0.1.0"
+version: '0.1.0'
 date-created: "2025-05-29T16:04:35Z"
-date-modified: "2025-05-29T16:04:35Z"
-primary_domain: "GM" # General Management & Meta
-sub_domain: "GLOSSARY" # As per subdomain_registry.yaml
+date-modified: "2025-05-30T14:00:00Z"
+primary_domain: "GM"
+sub_domain: "GLOSSARY"
 scope_application: "Applies to all users and contributors of the knowledge base ecosystem to ensure a common understanding of terminology related to standards."
-criticality: "P1-High" # Shared understanding of terms is crucial.
+criticality: "P1-High"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["User understanding", "Communication clarity", "Standards adoption", "Onboarding"]
 change_log_url: "./GM-GLOSSARY-STANDARDS-TERMS-changelog.md"
 ---
-
 # Glossary of Standards Terminology (GM-GLOSSARY-STANDARDS-TERMS)
 
 This document provides definitions for key terms, acronyms, and concepts used throughout the Knowledge Base (KB) standards and governance documentation. Its purpose is to establish a shared understanding and ensure clarity in communication.

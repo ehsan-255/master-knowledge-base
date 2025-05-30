@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-MATH-EQUATIONS"
 aliases: ["Math Equation Syntax", "LaTeX in Markdown", "Markdown Math"]
 tags:
   - status/draft
-  - criticality/P3-Low # Specialized usage, but important if used
+  - criticality/P3-Low
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Math Equation Syntax" # As per prompt
-related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules around blocks
-version: "1.0.0"
+primary-topic: "Markdown Math Equation Syntax"
+related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T19:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the syntax for embedding mathematical equations (inline and block) using LaTeX within Markdown documents."
 criticality: "P3-Low"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Technical documentation", "Scientific writing", "Educational content", "Accurate rendering of mathematical formulas"]
-change_log_url: "./SF-SYNTAX-MATH-EQUATIONS-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-MATH-EQUATIONS-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Math Equations (SF-SYNTAX-MATH-EQUATIONS)
 
 ## 1. Standard Statement
@@ -113,4 +112,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-MATH-EQUATIONS) is based on common Markdown extension syntaxes for embedding LaTeX mathematical equations.*
-```

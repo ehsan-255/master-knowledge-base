@@ -4,29 +4,28 @@ standard_id: "AS-STRUCTURE-TEMPLATES-DIRECTORY"
 aliases: ["Templates Directory Standard", "Document Templates Location"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for consistency and efficiency
+  - criticality/P2-Medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Templates Directory and Usage" # As per prompt
+primary-topic: "Templates Directory and Usage"
 related-standards: [
   "AS-KB-DIRECTORY-STRUCTURE",
   "AS-SCHEMA-METHODOLOGY-DESCRIPTION",
   "AS-SCHEMA-CONCEPT-DEFINITION",
-  "tpl-canonical-frontmatter.md"
+  "[[tpl-canonical-frontmatter.md]]"
 ]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "AS" # Architectural Standard
-sub_domain: "STRUCTURE" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "AS"
+sub_domain: "STRUCTURE"
 scope_application: "Defines the mandatory location, naming conventions, and content requirements for the directory housing standard document templates."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Authoring efficiency", "Content consistency", "Standards adherence", "Onboarding new authors"]
-change_log_url: "./AS-STRUCTURE-TEMPLATES-DIRECTORY-changelog.md" # Placeholder
+change_log_url: "./AS-STRUCTURE-TEMPLATES-DIRECTORY-changelog.md"
 ---
-
 # Standard: Templates Directory Structure and Usage (AS-STRUCTURE-TEMPLATES-DIRECTORY)
 
 ## 1. Standard Statement
@@ -77,4 +76,3 @@ This standard applies to the management of the templates directory and the creat
 
 ---
 *This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 from COL-GOVERNANCE-UNIVERSAL.md, adapting them for the new directory structure and emphasizing established naming conventions.*
-```

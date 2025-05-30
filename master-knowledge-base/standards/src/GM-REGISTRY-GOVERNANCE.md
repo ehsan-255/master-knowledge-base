@@ -3,22 +3,21 @@ title: "Standard: Registry Governance Policy"
 standard_id: "GM-REGISTRY-GOVERNANCE"
 aliases: ["Controlled Vocabulary Governance", "Registry Management Policy"]
 tags: ["status/draft", "criticality/P1-High", "content-type/policy-document", "topic/governance", "topic/registries", "topic/controlled-vocabularies", "kb-id/standards"]
-kb-id: "kb-id/standards"
-info-type: "policy-document" # This is a policy defining rules for governance
+kb-id: "standards"
+info-type: "policy-document"
 primary-topic: "Defines the normative processes for creating, updating, versioning, and managing controlled vocabularies and registries within the knowledge base ecosystem."
 related-standards: ["MT-SCHEMA-FRONTMATTER", "OM-POLICY-STANDARDS-GOVERNANCE", "OM-VERSIONING-CHANGELOGS"]
-version: "0.1.0"
+version: '0.1.0'
 date-created: "2025-05-29T15:49:24Z"
-date-modified: "2025-05-29T15:49:24Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "GM"
 sub_domain: "POLICY"
 scope_application: "Applies to all controlled vocabularies, glossaries, and other formal registries managed within the `/master-knowledge-base/standards/registry/` directory and any other designated registry locations."
-criticality: "P1-High" # Proper governance of registries is crucial for consistency.
-lifecycle_gatekeeper: "Architect-Review" # Or a dedicated "Registry Governance Board"
+criticality: "P1-High"
+lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Metadata consistency", "Data integrity", "Interoperability", "Automation", "Authoring experience"]
 change_log_url: "./GM-REGISTRY-GOVERNANCE-changelog.md"
 ---
-
 # Standard: Registry Governance Policy (GM-REGISTRY-GOVERNANCE)
 
 ## 1. Policy Statement

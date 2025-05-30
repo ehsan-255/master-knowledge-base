@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-DIAGRAMS-MERMAID"
 aliases: ["Mermaid Syntax", "Markdown Diagram Syntax", "Embedding Mermaid Diagrams"]
 tags:
   - status/draft
-  - criticality/p2-medium # Diagrams are useful but syntax is specific
+  - criticality/p2-medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Mermaid Diagram Syntax in Markdown" # As per prompt
-related-standards: ["SF-SYNTAX-CODE", "SF-FORMATTING-FILE-HYGIENE"] # Uses code block syntax
-version: "1.0.0"
+primary-topic: "Mermaid Diagram Syntax in Markdown"
+related-standards: ["SF-SYNTAX-CODE", "SF-FORMATTING-FILE-HYGIENE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "MARKDOWN" # Changed from SYNTAX
+date-modified: "2025-05-30T21:00:00Z"
+primary_domain: "SF"
+sub_domain: "MARKDOWN"
 scope_application: "Defines the standard method for embedding Mermaid diagrams within Markdown documents to create text-based diagrams."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Technical documentation", "Process visualization", "Authoring of complex diagrams as code", "Version controllable diagrams"]
-change_log_url: "./SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Mermaid Diagrams (SF-SYNTAX-DIAGRAMS-MERMAID)
 
 ## 1. Standard Statement
@@ -114,4 +113,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-DIAGRAMS-MERMAID) is based on common practices for embedding Mermaid.js diagrams in Markdown.*
-```

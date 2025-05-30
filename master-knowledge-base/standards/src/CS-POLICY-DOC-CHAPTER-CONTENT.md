@@ -6,22 +6,21 @@ tags:
   - status/draft
   - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
 primary-topic: "Document Chapter Content Organization"
 related-standards: ["AS-STRUCTURE-DOC-CHAPTER", "SF-SYNTAX-HEADINGS"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T14:00:00Z"
 primary_domain: "CS"
 sub_domain: "POLICY"
 scope_application: "Governs the use of Markdown headings for content organization within 'Chapters' and ensures that H2 sections represent major sub-topics."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Content readability", "Accessibility", "Semantic structure", "Automated processing", "Authoring consistency"]
-change_log_url: "./CS-POLICY-DOC-CHAPTER-CONTENT-changelog.md" # Placeholder
+change_log_url: "./CS-POLICY-DOC-CHAPTER-CONTENT-changelog.md"
 ---
-
 # Policy: Content Organization and Heading Usage in Chapters (CS-POLICY-DOC-CHAPTER-CONTENT)
 
 ## 1. Policy Statement
@@ -74,4 +73,3 @@ This policy applies to all "Chapter" documents (as defined in [[AS-STRUCTURE-DOC
 
 ---
 *This policy (CS-POLICY-DOC-CHAPTER-CONTENT) is based on rules 2.4 and 2.5 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md.*
-```

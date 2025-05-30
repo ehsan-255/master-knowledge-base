@@ -4,24 +4,23 @@ standard_id: "MT-TAGS-IMPLEMENTATION"
 aliases: ["Tag Syntax", "Tag Declaration Standard"]
 tags:
   - status/draft
-  - criticality/P1-High # Correct syntax is vital for processing
+  - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards" # MODIFIED
 info-type: "standard-definition"
-primary-topic: "Tag Syntax and Declaration" # As per prompt
+primary-topic: "Tag Syntax and Declaration"
 related-standards: ["MT-TAGGING-STRATEGY-POLICY", "MT-SCHEMA-FRONTMATTER", "MT-REGISTRY-TAG-GLOSSARY"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-29T16:10:25Z"
-primary_domain: "MT" # Metadata & Tagging
-sub_domain: "TAGGING" # As per prompt
+date-modified: "2025-05-30T12:00:00Z" # MODIFIED
+primary_domain: "MT"
+sub_domain: "TAGGING"
 scope_application: "Defines the syntax and declaration rules for all tags used within the knowledge base frontmatter."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Metadata consistency", "Automated processing of tags", "Content discoverability", "Authoring accuracy"]
-change_log_url: "./MT-TAGS-IMPLEMENTATION-changelog.md" # Placeholder
+change_log_url: "./MT-TAGS-IMPLEMENTATION-changelog.md"
 ---
-
 # Standard: Tag Implementation and Syntax (MT-TAGS-IMPLEMENTATION)
 
 This standard defines the mandatory syntax and declaration rules for all tags used within the YAML frontmatter of knowledge base documents. Adherence to these rules is essential for ensuring metadata consistency, enabling reliable automated processing, and supporting effective content discovery.
@@ -73,4 +72,3 @@ A dedicated Tag Glossary document MUST exist and be maintained. This glossary se
 
 ---
 *This standard (MT-TAGS-IMPLEMENTATION) is based on rules 1.1, 1.2, 1.3, 1.4, and part of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*
-```

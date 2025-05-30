@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-LISTS"
 aliases: ["List Syntax", "Ordered Lists", "Unordered Lists", "Nested Lists"]
 tags:
   - status/draft
-  - criticality/p1-high # Correct list syntax is fundamental for readability
+  - criticality/p1-high
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown List Syntax" # As per prompt
+primary-topic: "Markdown List Syntax"
 related-standards: ["SF-SYNTAX-TABLES", "SF-SYNTAX-CODE", "SF-FORMATTING-FILE-HYGIENE"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "MARKDOWN" # Changed from SYNTAX
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "MARKDOWN"
 scope_application: "Defines the mandatory Markdown syntax for creating ordered (numbered) and unordered (bulleted) lists, including rules for nesting and interaction with other block elements."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Document structure", "Readability", "Accessibility", "Automated parsing", "Authoring consistency"]
-change_log_url: "./SF-SYNTAX-LISTS-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-LISTS-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Lists (SF-SYNTAX-LISTS)
 
 ## 1. Standard Statement
@@ -126,4 +125,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-LISTS) is based on rules 1.1 through 1.5 and the illustrative example previously defined in M-SYNTAX-LISTS-001 from COL-SYNTAX-MARKDOWN.md.*
-```

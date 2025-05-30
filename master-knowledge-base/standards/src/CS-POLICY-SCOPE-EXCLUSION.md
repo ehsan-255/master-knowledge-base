@@ -4,24 +4,23 @@ standard_id: "CS-POLICY-SCOPE-EXCLUSION"
 aliases: ["Content Exclusion Policy", "Scope Exclusion Principles"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Could be P1 depending on the nature of exclusions (e.g., PII)
+  - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
 primary-topic: "Content Exclusion Principles"
 related-standards: ["CS-POLICY-SCOPE-INCLUSION", "SF-FORMATTING-CITATIONS", "SF-LINKS-INTERNAL-SYNTAX"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T14:00:00Z"
 primary_domain: "CS"
 sub_domain: "POLICY"
 scope_application: "All knowledge base content planning, creation, curation, and review activities."
-criticality: "P2-Medium" # Default, but some rules (e.g., PII, illegal content) are P0
-lifecycle_gatekeeper: "Editorial-Board-Approval" # Legal/Ethical review might also be needed for some aspects
+criticality: "P2-Medium"
+lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Legal compliance", "Ethical considerations", "Data security", "KB quality and focus", "User trust"]
-change_log_url: "./CS-POLICY-SCOPE-EXCLUSION-changelog.md" # Placeholder
+change_log_url: "./CS-POLICY-SCOPE-EXCLUSION-changelog.md"
 ---
-
 # Policy: Universal Principles for Content Exclusion (CS-POLICY-SCOPE-EXCLUSION)
 
 ## 1. Policy Statement
@@ -76,4 +75,3 @@ This policy applies to all individuals involved in planning, creating, contribut
 
 ---
 *This policy (CS-POLICY-SCOPE-EXCLUSION) is based on rules 1.1 through 1.4 previously defined in U-SCOPE-EXCLUDE-001 from COL-CONTENT-UNIVERSAL.md.*
-```

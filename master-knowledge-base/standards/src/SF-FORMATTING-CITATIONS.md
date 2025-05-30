@@ -4,24 +4,23 @@ standard_id: "SF-FORMATTING-CITATIONS"
 aliases: ["Citation Standard", "APA 7th Edition Citation", "External Source Citation"]
 tags:
   - status/draft
-  - criticality/P1-High # Proper citation is crucial for academic integrity and verifiability
+  - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Citation of External Sources" # As per prompt
-related-standards: ["SF-LINKS-INTERNAL-SYNTAX"] # For linking syntax in references (though these are external)
-version: "1.0.0"
+primary-topic: "Citation of External Sources"
+related-standards: ["SF-LINKS-INTERNAL-SYNTAX"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "FORMATTING" # As per prompt
+date-modified: "2025-05-30T17:00:00Z"
+primary_domain: "SF"
+sub_domain: "FORMATTING"
 scope_application: "All documents within the knowledge base that reference, quote, or derive information from external published or citable sources."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Editorial-Board-Approval" # Citation style is often an editorial decision
+lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Academic integrity", "Content verifiability", "User trust", "Legal compliance (copyright)", "Consistency in referencing"]
-change_log_url: "./SF-FORMATTING-CITATIONS-changelog.md" # Placeholder
+change_log_url: "./SF-FORMATTING-CITATIONS-changelog.md"
 ---
-
 # Standard: Citing External Sources (APA 7th Edition) (SF-FORMATTING-CITATIONS)
 
 ## 1. Standard Statement
@@ -88,4 +87,3 @@ This standard applies to all documents within any Knowledge Base that incorporat
 
 ---
 *This standard (SF-FORMATTING-CITATIONS) is based on rules 1.1 through 1.5 previously defined in U-CITE-001 from COL-LINKING-UNIVERSAL.md.*
-```

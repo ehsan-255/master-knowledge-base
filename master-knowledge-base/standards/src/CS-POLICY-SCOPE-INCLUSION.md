@@ -6,22 +6,21 @@ tags:
   - status/draft
   - criticality/P2-Medium
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
 primary-topic: "Content Inclusion Principles"
 related-standards: ["CS-POLICY-SCOPE-EXCLUSION", "SF-FORMATTING-CITATIONS", "AS-STRUCTURE-MASTER-KB-INDEX"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T14:00:00Z"
 primary_domain: "CS"
 sub_domain: "POLICY"
 scope_application: "All knowledge base content planning, creation, and curation activities."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Knowledge base quality", "Content relevance", "User trust", "KB utility", "Maintainability"]
-change_log_url: "./CS-POLICY-SCOPE-INCLUSION-changelog.md" # Placeholder
+change_log_url: "./CS-POLICY-SCOPE-INCLUSION-changelog.md"
 ---
-
 # Policy: Universal Principles for Content Inclusion (CS-POLICY-SCOPE-INCLUSION)
 
 ## 1. Policy Statement
@@ -72,4 +71,3 @@ This policy applies to all individuals involved in planning, creating, contribut
 
 ---
 *This policy (CS-POLICY-SCOPE-INCLUSION) is based on rules 1.1 through 1.3 previously defined in U-SCOPE-INCLUDE-001 from COL-CONTENT-UNIVERSAL.md.*
-```

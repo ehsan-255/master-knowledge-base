@@ -4,24 +4,23 @@ standard_id: "SF-FORMATTING-MARKDOWN-GENERAL"
 aliases: ["General Markdown Formatting", "Line Breaks", "Paragraph Formatting"]
 tags:
   - status/draft
-  - criticality/P2-Medium # General formatting contributes to readability
+  - criticality/P2-Medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "General Markdown Formatting" # As per prompt
+primary-topic: "General Markdown Formatting"
 related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "FORMATTING" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "SF"
+sub_domain: "FORMATTING"
 scope_application: "Defines general Markdown formatting conventions for paragraphs, line breaks, horizontal rules, and the use of blank lines to ensure readability and consistency."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Readability", "Authoring consistency", "Markdown parsing", "Rendered output consistency"]
-change_log_url: "./SF-FORMATTING-MARKDOWN-GENERAL-changelog.md" # Placeholder
+change_log_url: "./SF-FORMATTING-MARKDOWN-GENERAL-changelog.md"
 ---
-
 # Standard: Markdown General Formatting Conventions (SF-FORMATTING-MARKDOWN-GENERAL)
 
 ## 1. Standard Statement
@@ -118,4 +117,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-FORMATTING-MARKDOWN-GENERAL) is based on common Markdown conventions for paragraphs, line breaks, horizontal rules, and blank line usage.*
-```

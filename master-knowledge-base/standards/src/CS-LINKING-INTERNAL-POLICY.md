@@ -6,22 +6,21 @@ tags:
   - status/draft
   - criticality/P2-Medium # Effective linking is important for usability
   - content-type/policy-document
-kb-id: "" # Global policy
+kb-id: "standards"
 info-type: "policy-document"
-primary-topic: "Internal Linking Strategy and Best Practices" # As per prompt
+primary-topic: "Internal Linking Strategy and Best Practices"
 related-standards: ["SF-LINKS-INTERNAL-SYNTAX", "AS-STRUCTURE-DOC-CHAPTER"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "CS" # Content Standard
-sub_domain: "POLICY" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "CS"
+sub_domain: "POLICY"
 scope_application: "Governs the strategy and best practices for creating internal links within and between documents in all Knowledge Bases."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["Knowledge discovery", "KB navigability", "Content cohesion", "User experience", "Information architecture"]
-change_log_url: "./CS-LINKING-INTERNAL-POLICY-changelog.md" # Placeholder
+change_log_url: "./CS-LINKING-INTERNAL-POLICY-changelog.md"
 ---
-
 # Policy: Internal Knowledge Base Linking Strategy (CS-LINKING-INTERNAL-POLICY)
 
 ## 1. Policy Statement
@@ -76,4 +75,3 @@ This policy applies to all content creators, editors, and curators working withi
 
 ---
 *This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 from COL-LINKING-UNIVERSAL.md. Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*
-```

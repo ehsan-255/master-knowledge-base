@@ -4,24 +4,23 @@ standard_id: "AS-STRUCTURE-ASSET-ORGANIZATION"
 aliases: ["Asset Management Standard", "Static File Organization"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for organized repositories
+  - criticality/P2-Medium
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Asset File Organization" # As per prompt
+primary-topic: "Asset File Organization"
 related-standards: ["SF-CONVENTIONS-NAMING", "SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "AS-KB-DIRECTORY-STRUCTURE"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "AS" # Architectural Standard
-sub_domain: "STRUCTURE" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "AS"
+sub_domain: "STRUCTURE"
 scope_application: "Defines the standards for organizing, naming, and formatting non-Markdown assets (e.g., images, diagrams, PDFs, code snippets) within any Knowledge Base."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Repository cleanliness", "Asset discoverability", "Link integrity for assets", "Authoring consistency", "Build processes"]
-change_log_url: "./AS-STRUCTURE-ASSET-ORGANIZATION-changelog.md" # Placeholder
+change_log_url: "./AS-STRUCTURE-ASSET-ORGANIZATION-changelog.md"
 ---
-
 # Standard: Asset Organization and Naming (AS-STRUCTURE-ASSET-ORGANIZATION)
 
 ## 1. Standard Statement
@@ -92,4 +91,3 @@ This standard applies to all non-Markdown files that are part of a Knowledge Bas
 
 ---
 *This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 from COL-LINKING-UNIVERSAL.md.*
-```

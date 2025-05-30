@@ -4,24 +4,23 @@ standard_id: "SF-SYNTAX-HEADINGS"
 aliases: ["Heading Syntax", "Markdown ATX Headings"]
 tags:
   - status/draft
-  - criticality/P1-High # Correct heading syntax is fundamental
+  - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Heading Syntax" # As per prompt
+primary-topic: "Markdown Heading Syntax"
 related-standards: ["AS-STRUCTURE-DOC-CHAPTER", "CS-POLICY-DOC-CHAPTER-CONTENT", "SF-FORMATTING-FILE-HYGIENE"]
-version: "1.0.0"
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+date-modified: "2025-05-30T19:00:00Z"
+primary_domain: "SF"
+sub_domain: "SYNTAX"
 scope_application: "Defines the mandatory Markdown syntax for creating headings (H1-H6) in all knowledge base documents."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Document structure", "Readability", "Accessibility", "Automated parsing (ToC generation, etc.)", "Authoring consistency"]
-change_log_url: "./SF-SYNTAX-HEADINGS-changelog.md" # Placeholder
+change_log_url: "./SF-SYNTAX-HEADINGS-changelog.md"
 ---
-
 # Standard: Markdown Syntax for Headings (SF-SYNTAX-HEADINGS)
 
 ## 1. Standard Statement
@@ -100,4 +99,3 @@ This standard applies to all Markdown documents within the knowledge base reposi
 
 ---
 *This standard (SF-SYNTAX-HEADINGS) is based on rules 1.1, 1.2, and 1.5 previously defined in M-SYNTAX-HEADINGS-001 from COL-SYNTAX-MARKDOWN.md. Rules 1.3 and 1.4 regarding semantic application are noted and deferred to content structure standards.*
-```

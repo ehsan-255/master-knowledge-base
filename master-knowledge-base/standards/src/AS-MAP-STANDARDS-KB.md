@@ -3,55 +3,21 @@ title: "Standards Knowledge Base Definition Map"
 standard_id: "AS-MAP-STANDARDS-KB"
 aliases: ["Standards KB Map", "Standards KB Structure Definition"]
 tags: ["status/draft", "criticality/P1-High", "content-type/kb-definition-map", "topic/architecture", "topic/indexing", "kb-id/standards"]
-kb-id: "kb-id/standards"
-info-type: "kb-definition-map" # This document maps out the structure of the Standards KB
+kb-id: "standards"
+info-type: "kb-definition-map"
 primary-topic: "Defines the logical structure, parts, and organization of the Standards Knowledge Base itself."
 related-standards: ["AS-STRUCTURE-KB-ROOT", "AS-STRUCTURE-KB-PART", "MT-SCHEMA-FRONTMATTER", "AS-STRUCTURE-MASTER-KB-INDEX"]
-version: "0.1.0"
+version: '0.1.0'
 date-created: "2025-05-29T16:04:35Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated to current date
-primary_domain: "AS" # Architecture & Structure
-sub_domain: "INDEXING" # Changed from STRUCTURE
+date-modified: "2025-05-30T17:00:00Z"
+primary_domain: "AS"
+sub_domain: "INDEXING"
 scope_application: "Applies specifically to the Standards Knowledge Base, defining its internal organization and primary components."
-criticality: "P1-High" # Essential for navigating and understanding the Standards KB.
+criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["KB navigation", "Content organization", "Discoverability of standards", "Authoring within the Standards KB"]
 change_log_url: "./AS-MAP-STANDARDS-KB-changelog.md"
-# Definitional structure for the KB itself (example)
-# This would typically be more complex and might be a YAML structure
-# or a specific Markdown format that tools can parse.
-# For now, this is a conceptual placeholder in the frontmatter.
-kb_definition:
-  kb_title: "Standards Knowledge Base"
-  kb_root_file: "[[AS-STRUCTURE-KB-ROOT]]" # This refers to the general standard for KB roots. The actual root for this KB would be standards/src/root.md or similar.
-  parts:
-    - part_id: "architecture-structure"
-      part_title: "Architecture and Structure (AS)"
-      overview: "Standards defining the overall organization of knowledge bases, documents, and metadata."
-      # chapters: # List of [[STANDARD_ID]]s or direct links to key documents in this part
-    - part_id: "content-style"
-      part_title: "Content Style and Policies (CS)"
-      overview: "Standards and policies related to content authoring, tone, language, and presentation."
-    - part_id: "general-meta"
-      part_title: "General Management and Meta (GM)"
-      overview: "Guidance, glossaries, and policies for overall KB management and usage."
-    - part_id: "metadata-tagging"
-      part_title: "Metadata, Tagging, and Registries (MT)"
-      overview: "Standards for document metadata, tagging strategies, and controlled vocabularies."
-    - part_id: "operational-management"
-      part_title: "Operational Management and Lifecycles (OM)"
-      overview: "Policies and procedures for the operational aspects of standards, including governance, versioning, and publishing."
-    - part_id: "quality-metrics"
-      part_title: "Quality, Metrics, and Validation (QM)"
-      overview: "Standards related to content quality, validation processes, and metrics."
-    - part_id: "syntax-formatting"
-      part_title: "Syntax, Formatting, and Conventions (SF)"
-      overview: "Specific rules for Markdown syntax, file formatting, and naming conventions."
-    - part_id: "utility-assets-automation"
-      part_title: "Utility, Assets, and Automation (UA)"
-      overview: "Standards for supporting utilities, asset management, and automation schemas."
 ---
-
 # Standards Knowledge Base Definition Map (AS-MAP-STANDARDS-KB)
 
 ## 1. Standard Statement

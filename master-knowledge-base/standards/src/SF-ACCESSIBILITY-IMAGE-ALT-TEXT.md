@@ -4,24 +4,23 @@ standard_id: "SF-ACCESSIBILITY-IMAGE-ALT-TEXT"
 aliases: ["Alt Text Standard", "Image Alt Text"]
 tags:
   - status/draft
-  - criticality/P1-High # Accessibility is a high priority
+  - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Image Alt Text" # As per prompt
-related-standards: ["CS-POLICY-ACCESSIBILITY", "SF-SYNTAX-IMAGES"] # Placeholder for image syntax
-version: "1.0.0"
+primary-topic: "Image Alt Text"
+related-standards: ["CS-POLICY-ACCESSIBILITY", "SF-SYNTAX-IMAGES"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "SF" # Syntax & Formatting
-sub_domain: "ACCESSIBILITY" # As per prompt
+date-modified: "2025-05-30T21:00:00Z"
+primary_domain: "SF"
+sub_domain: "ACCESSIBILITY"
 scope_application: "Defines the requirements for providing alternative text (alt text) for images within all knowledge base documents to ensure accessibility."
 criticality: "P1-High"
-lifecycle_gatekeeper: "Architect-Review" # Accessibility standards often require architectural or editorial review
+lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Accessibility (WCAG compliance)", "User experience for visually impaired users", "SEO (image search)", "Content understanding when images fail to load"]
-change_log_url: "./SF-ACCESSIBILITY-IMAGE-ALT-TEXT-changelog.md" # Placeholder
+change_log_url: "./SF-ACCESSIBILITY-IMAGE-ALT-TEXT-changelog.md"
 ---
-
 # Standard: Image Accessibility and Alternative Text (SF-ACCESSIBILITY-IMAGE-ALT-TEXT)
 
 ## 1. Standard Statement
@@ -81,4 +80,3 @@ This standard applies to all images (e.g., PNG, JPG, SVG, GIF) embedded within a
 
 ---
 *This standard (SF-ACCESSIBILITY-IMAGE-ALT-TEXT) is based on rules 1.1 and 1.2 previously defined in U-ACCESSIBILITY-001 from COL-LINKING-UNIVERSAL.md.*
-```

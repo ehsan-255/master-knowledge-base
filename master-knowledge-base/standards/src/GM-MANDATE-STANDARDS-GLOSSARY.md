@@ -4,24 +4,23 @@ standard_id: "GM-MANDATE-STANDARDS-GLOSSARY"
 aliases: ["Standards Glossary Mandate", "Terminology Glossary Requirement"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for clarity of standards
-  - content-type/technical-standard # It's a standard defining a requirement
-kb-id: "" # Global standard
+  - criticality/P2-Medium
+  - content-type/technical-standard
+kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Standards Terminology Glossary Mandate" # As per prompt
-related-standards: ["GM-GLOSSARY-STANDARDS-TERMS", "CS-POLICY-TONE-LANGUAGE"] # Points to the actual glossary
-version: "1.0.0"
+primary-topic: "Standards Terminology Glossary Mandate"
+related-standards: ["GM-GLOSSARY-STANDARDS-TERMS", "CS-POLICY-TONE-LANGUAGE"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
-primary_domain: "GM" # General & Miscellaneous
-sub_domain: "MANDATE" # As per prompt
+date-modified: "2025-05-30T12:00:00Z"
+primary_domain: "GM"
+sub_domain: "MANDATE"
 scope_application: "Ensures the existence, maintenance, and core content requirements for a glossary defining key terms used within the standards documents themselves."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Governance-Board-Approval"
 impact_areas: ["Clarity of standards", "User understanding of terminology", "Consistency in language", "Authoring of standards"]
-change_log_url: "./GM-MANDATE-STANDARDS-GLOSSARY-changelog.md" # Placeholder
+change_log_url: "./GM-MANDATE-STANDARDS-GLOSSARY-changelog.md"
 ---
-
 # Standard: Mandate for Standards Terminology Glossary (GM-MANDATE-STANDARDS-GLOSSARY)
 
 ## 1. Policy Statement
@@ -61,4 +60,3 @@ This standard applies to the governance body responsible for the knowledge base 
 
 ---
 *This standard (GM-MANDATE-STANDARDS-GLOSSARY) is based on rules 1.1 and 1.2 previously defined in U-GLOSSARY-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the standards terminology glossary.*
-```

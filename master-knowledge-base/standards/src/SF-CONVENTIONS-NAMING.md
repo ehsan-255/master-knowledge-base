@@ -4,22 +4,22 @@ standard_id: "SF-CONVENTIONS-NAMING"
 aliases: ["Naming Conventions", "File Naming Standard", "Folder Naming Standard"]
 tags:
   - status/draft
-  - criticality/P1-High # Naming is crucial for structure and automation
+  - criticality/P1-High
   - content-type/technical-standard
-kb-id: "" # Global standard
+kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "File and Folder Naming Conventions"
-related-standards: ["U-METADATA-FRONTMATTER-RULES-001", "SF-LINKS-INTERNAL-SYNTAX"] # Because standard_id format is defined there
-version: "1.0.0"
+related-standards: ["[[MT-SCHEMA-FRONTMATTER]]", "SF-LINKS-INTERNAL-SYNTAX"]
+version: '1.0.0'
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T14:00:00Z"
 primary_domain: "SF"
 sub_domain: "CONVENTIONS"
 scope_application: "Specifies the naming conventions for all files and folders within the knowledge base repository to ensure consistency, discoverability, and support for automation."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Repository organization", "Automated processing", "Link integrity", "Authoring consistency", "User navigation"]
-change_log_url: "./SF-CONVENTIONS-NAMING-changelog.md" # Placeholder
+change_log_url: "./SF-CONVENTIONS-NAMING-changelog.md"
 ---
 
 # Standard: File and Folder Naming Conventions (SF-CONVENTIONS-NAMING)
@@ -52,7 +52,7 @@ This rule defines the primary naming convention for atomic standard definition, 
 *   **Example:**
     *   `standard_id: SF-CONVENTIONS-NAMING` results in filename: `SF-CONVENTIONS-NAMING.md`
     *   `standard_id: AS-STRUCTURE-KB-ROOT` results in filename: `AS-STRUCTURE-KB-ROOT.md`
-*   **Notes:** This convention supersedes and refines the previous Rule 1.2 from U-FORMAT-NAMING-001 for these specific types of documents. The structure of the `standard_id` itself (and thus the filename) is further detailed in [[U-METADATA-FRONTMATTER-RULES-001]].
+*   **Notes:** This convention supersedes and refines the previous Rule 1.2 from U-FORMAT-NAMING-001 for these specific types of documents. The structure of the `standard_id` itself (and thus the filename) is further detailed in [[MT-SCHEMA-FRONTMATTER]].
 
 ### Rule 3.2: General Content Files (Non-Standard Definitions) (Derived from U-FORMAT-NAMING-001, Rule 1.3)
 For general content files (e.g., chapters within a KB part, supplementary documents not defining a formal standard), filenames (excluding the `.md` extension) MUST be descriptive and in **all lowercase kebab-case**.
@@ -84,7 +84,7 @@ Certain filenames are reserved for specific structural purposes and MUST be used
 *   **Notes:** Adherence to these reserved names is crucial for architectural consistency and proper functioning of automated tools. Refer to specific standards defining these files for their exact locations and purposes.
 
 ## 4. Cross-References
-- [[U-METADATA-FRONTMATTER-RULES-001]] - Defines the structure of `standard_id`, which is integral to standard document naming.
+- [[MT-SCHEMA-FRONTMATTER]] - Defines the structure of `standard_id`, which is integral to standard document naming.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Relevant for how names might be used in links.
 
 ---

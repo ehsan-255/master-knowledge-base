@@ -77,9 +77,9 @@ related-standards: [
     "U-SCHEMA-REFERENCE-001",
     "U-SCHEMA-TASK-001"
     ]
-version: "0.1.0"
-date-created: "2025-05-29T11:58:48Z" # Placeholder
-date-modified: "2025-05-29T11:58:48Z" # Placeholder
+version: '0.1.0'
+date-created: "2025-05-29T11:58:48Z"
+date-modified: "2025-05-30T12:00:00Z"
 primary_domain: "GM"
 sub_domain: "GUIDE"
 scope_application: "Provides a task-based approach to navigating and applying the refactored knowledge base standards."
@@ -88,7 +88,6 @@ lifecycle_gatekeeper: "Editorial-Board-Approval"
 impact_areas: ["User Onboarding", "Standards Adoption", "Workflow Efficiency"]
 change_log_url: "./GM-GUIDE-STANDARDS-BY-TASK-changelog.md"
 ---
-
 # Guide: Task-Based Navigation of Knowledge Base Standards (GM-GUIDE-STANDARDS-BY-TASK)
 
 This document provides a task-oriented view of the Universal Knowledge Base Standards. It categorizes standards based on common knowledge base management activities and assigns a priority ranking (P1-P3) to each standard within the context of that specific task. This approach aims to help users focus on the most relevant standards for the job at hand, complementing the master priority ranking.
