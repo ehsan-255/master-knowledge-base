@@ -7,17 +7,15 @@ tags:
   - content-type/standard-definition
   - topic/syntax
   - topic/task-management
-  - primary_domain/SF
-  - sub_domain/SYNTAX
 kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "Defines the standard HTML comment syntax for embedding machine-parseable TODO items within Markdown documents that do not render in typical views."
 related-standards: ["SF-CALLOUTS-SYNTAX"] # As SF-CALLOUTS-SYNTAX offers a visible alternative
 version: "1.0.0"
-date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
+date-created: "2025-05-30T00:00:00Z" # Updated
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF"
-sub_domain: "SYNTAX"
+sub_domain: "MARKDOWN" # Changed from SYNTAX
 scope_application: "Applies to all knowledge base documents where non-rendering, machine-parseable TODO items are embedded."
 criticality: "P3-Low"
 lifecycle_gatekeeper: "Architect-Review"

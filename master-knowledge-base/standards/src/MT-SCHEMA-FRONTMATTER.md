@@ -2,14 +2,14 @@
 title: "Standard: Frontmatter Schema Definition"
 standard_id: "MT-SCHEMA-FRONTMATTER"
 aliases: ["Frontmatter Schema", "Metadata Schema for Frontmatter"]
-tags: ["status/draft", "criticality/P0-Critical", "content-type/standard-definition", "topic/metadata", "topic/frontmatter", "topic/schema"]
+tags: ["status/draft", "criticality/p0-critical", "content-type/standard-definition", "topic/metadata", "topic/frontmatter", "topic/schema"]
 kb-id: "standards"
 info-type: "standard-definition"
 primary-topic: "Defines the comprehensive schema for YAML frontmatter, including all keys, their order, data types, validation rules, and controlled vocabularies."
 related-standards: ["SF-SYNTAX-YAML-FRONTMATTER", "SF-FORMATTING-FILE-HYGIENE", "MT-REGISTRY-TAG-GLOSSARY", "AS-STRUCTURE-TEMPLATES-DIRECTORY", "QM-VALIDATION-METADATA"]
 version: "0.1.0"
 date-created: "2025-05-29T15:40:18Z"
-date-modified: "2025-05-29T15:53:52Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "MT"
 sub_domain: "FRONTMATTER"
 scope_application: "Applies to the YAML frontmatter of all Markdown documents in all knowledge bases."

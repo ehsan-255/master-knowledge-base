@@ -4,7 +4,7 @@ standard_id: "SF-CONDITIONAL-SYNTAX-ATTRIBUTES"
 aliases: ["Conditional Syntax", "IF Callout Condition Syntax"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Syntax for a specialized feature
+  - criticality/p2-medium # Syntax for a specialized feature
   - content-type/technical-standard
 kb-id: "" # Global standard
 info-type: "standard-definition"
@@ -12,9 +12,9 @@ primary-topic: "Conditional Attribute Syntax" # As per prompt
 related-standards: ["SF-CALLOUTS-SYNTAX", "CS-CONTENT-PROFILING-POLICY"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+sub_domain: "CONDITIONAL" # Changed from SYNTAX
 scope_application: "Defines the syntax for the condition string used within `[!IF condition]` callout blocks (as defined in SF-CALLOUTS-SYNTAX)."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"

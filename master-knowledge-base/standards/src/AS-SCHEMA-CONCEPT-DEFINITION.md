@@ -4,7 +4,7 @@ standard_id: "AS-SCHEMA-CONCEPT-DEFINITION"
 aliases: ["Concept Definition Schema", "Terminology Schema"]
 tags:
   - status/draft
-  - criticality/P1-High # Schemas are important for consistency
+  - criticality/p1-high # Schemas are important for consistency
   - content-type/technical-standard # It's a standard defining a schema
 kb-id: "" # Global standard
 info-type: "standard-definition" # Defines a standard for document structure
@@ -12,9 +12,9 @@ primary-topic: "Schema for Concept Definitions"
 related-standards: ["AS-STRUCTURE-DOC-CHAPTER"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "AS"
-sub_domain: "SCHEMA"
+sub_domain: "STRUCTURE" # Changed from SCHEMA
 scope_application: "Defines the mandatory content structure (schema) for documents that primarily define a core concept or term."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"

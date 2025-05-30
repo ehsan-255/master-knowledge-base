@@ -4,7 +4,7 @@ standard_id: "SF-SYNTAX-CODE"
 aliases: ["Code Syntax", "Markdown Code Blocks", "Inline Code Syntax"]
 tags:
   - status/draft
-  - criticality/P1-High # Correct code representation is vital
+  - criticality/p1-high # Correct code representation is vital
   - content-type/technical-standard
 kb-id: "" # Global standard
 info-type: "standard-definition"
@@ -12,9 +12,9 @@ primary-topic: "Markdown Code Syntax" # As per assumed keyword
 related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules around blocks
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+sub_domain: "MARKDOWN" # Changed from SYNTAX
 scope_application: "Defines the mandatory Markdown syntax for representing inline code and code blocks (both fenced and indented) in all knowledge base documents."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"

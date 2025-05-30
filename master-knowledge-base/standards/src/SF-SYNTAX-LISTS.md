@@ -4,7 +4,7 @@ standard_id: "SF-SYNTAX-LISTS"
 aliases: ["List Syntax", "Ordered Lists", "Unordered Lists", "Nested Lists"]
 tags:
   - status/draft
-  - criticality/P1-High # Correct list syntax is fundamental for readability
+  - criticality/p1-high # Correct list syntax is fundamental for readability
   - content-type/technical-standard
 kb-id: "" # Global standard
 info-type: "standard-definition"
@@ -12,9 +12,9 @@ primary-topic: "Markdown List Syntax" # As per prompt
 related-standards: ["SF-SYNTAX-TABLES", "SF-SYNTAX-CODE", "SF-FORMATTING-FILE-HYGIENE"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+sub_domain: "MARKDOWN" # Changed from SYNTAX
 scope_application: "Defines the mandatory Markdown syntax for creating ordered (numbered) and unordered (bulleted) lists, including rules for nesting and interaction with other block elements."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"

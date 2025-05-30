@@ -4,7 +4,7 @@ standard_id: AS-SCHEMA-RELTABLE-DEFINITION
 aliases: ["Reltable Standard", "Semantic Linking Definition"]
 tags:
   - status/draft
-  - criticality/P2-Medium
+  - criticality/p2-medium # Corrected case
   - content-type/standard-definition
   - topic/linking
   - topic/semantics
@@ -22,9 +22,9 @@ version: '0.1.2' # From original U-RELTABLE-DEFINITION-001
 date-created: "2025-05-19T00:00:00Z" # From original, standardized
 date-modified: "2025-05-30T00:00:00Z" # Current date for refactoring
 primary_domain: "AS"
-sub_domain: "SCHEMA"
+sub_domain: "STRUCTURE" # Changed from SCHEMA
 scope_application: "Defines the standard structure for 'Relationship Tables' (reltables) using YAML to define typed, non-hierarchical relationships between topics."
-criticality: "P2-Medium"
+criticality: "P2-Medium" # Value itself is okay, tag was fixed
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["Semantic linking", "Knowledge graph generation", "Content navigability"]
 change_log_url: "./AS-SCHEMA-RELTABLE-DEFINITION-changelog.md"

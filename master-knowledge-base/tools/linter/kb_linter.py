@@ -4,14 +4,14 @@
 import os
 import re
 import yaml
-from datetime import datetime
+from datetime import datetime, timezone # Import timezone
 import json
 from collections import defaultdict
 import argparse # For CI-friendliness
 import sys # For CI-friendliness
 
 # --- Configuration (Constants) ---
-STANDARD_ID_REGEX = r"^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$"
+STANDARD_ID_REGEX = r"^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\-]+$" # Updated to allow longer sub-domains
 ISO_DATE_REGEX = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$"
 KEBAB_CASE_TAG_REGEX = r"^[a-z0-9]+(-[a-z0-9]+)*(/[a-z0-9]+(-[a-z0-9]+)*)*$"
 INTERNAL_LINK_REGEX = r"\[\[([^\]#\|]+)(?:#([^\]\|]+))?(?:\|([^\]]+))?\]\]" 
@@ -50,7 +50,8 @@ class LinterConfig:
 
         # Load YAML Vocabularies
         domain_codes_data = self._load_yaml_vocab(os.path.join(self.registry_path, "domain_codes.yaml"))
-        self.domain_codes = [item['code'] for item in domain_codes_data.get('codes', []) if isinstance(item, dict) and 'code' in item]
+        # Corrected parsing based on actual domain_codes.yaml structure
+        self.domain_codes = [item['id'] for item in domain_codes_data.get('entries', []) if isinstance(item, dict) and 'id' in item]
         self.subdomain_registry = self._load_yaml_vocab(os.path.join(self.registry_path, "subdomain_registry.yaml"))
         if not isinstance(self.subdomain_registry, dict): self.subdomain_registry = {}
 
@@ -429,14 +430,17 @@ def main():
     if create_dummies_for_testing:
         print("Running in local test mode with dummy files as no specific directory was provided beyond default.")
         dummy_index_path = os.path.join(config.dist_path, "standards_index.json")
-        if not os.path.exists(dummy_index_path):
+        if not os.path.exists(dummy_index_path): # Only create if indexer hasn't run
             os.makedirs(config.dist_path, exist_ok=True)
             with open(dummy_index_path, "w") as f:
-                json.dump({"schemaVersion": "1.0.0", "generatedDate": datetime.now(datetime.timezone.utc).isoformat(), "standards": [
+                # Corrected datetime.now(datetime.timezone.utc) to datetime.now(timezone.utc)
+                json.dump({"schemaVersion": "1.0.0", "generatedDate": datetime.now(timezone.utc).isoformat(), "standards": [
                     {"standard_id": "AS-SCHEMA-CONCEPT-DEFINITION", "title": "Concept Definition Schema", "filepath": "master-knowledge-base/standards/src/AS-SCHEMA-CONCEPT-DEFINITION.md"},
                     {"standard_id": "AS-SCHEMA-TASK", "title": "Task Schema", "filepath": "master-knowledge-base/standards/src/AS-SCHEMA-TASK.md"}
                 ]}, f)
             print(f"Created dummy {dummy_index_path} for linter testing.")
+        else:
+            print(f"Using existing standards_index.json found at {dummy_index_path}")
 
         dummy_files_to_create = {
             "XX-LINT-TESTDUMMY1.md": """---
