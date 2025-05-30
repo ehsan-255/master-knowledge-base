@@ -4,7 +4,7 @@ standard_id: "SF-SYNTAX-BLOCKQUOTES"
 aliases: ["Blockquote Syntax", "Markdown Quoting"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Basic but important for clear quoting
+  - criticality/p2-medium # Basic but important for clear quoting
   - content-type/technical-standard
 kb-id: "" # Global standard
 info-type: "standard-definition"
@@ -12,9 +12,9 @@ primary-topic: "Markdown Blockquote Syntax" # As per prompt
 related-standards: ["SF-FORMATTING-FILE-HYGIENE"] # For blank line rules
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF" # Syntax & Formatting
-sub_domain: "SYNTAX" # As per prompt
+sub_domain: "MARKDOWN" # Changed from SYNTAX
 scope_application: "Defines the mandatory Markdown syntax for creating blockquotes in all knowledge base documents."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review"

@@ -4,17 +4,17 @@ standard_id: "SF-FORMATTING-FILE-HYGIENE"
 aliases: ["File Formatting Standard", "Line Endings", "UTF-8 Encoding Standard"]
 tags:
   - status/draft
-  - criticality/P2-Medium # Important for consistency and technical integrity
+  - criticality/p2-medium # Important for consistency and technical integrity
   - content-type/technical-standard
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "File Hygiene and Line Endings" # As per prompt
-related-standards: ["U-METADATA-FRONTMATTER-RULES-001"]
+related-standards: ["MT-SCHEMA-FRONTMATTER"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF" # Syntax & Formatting
-sub_domain: "FORMATTING" # As per prompt
+sub_domain: "MARKDOWN" # Changed from FORMATTING
 scope_application: "All text-based files within the knowledge base repository, especially Markdown (.md), YAML (.yaml), JSON (.json), and script files (.py, .sh, etc.)."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Architect-Review" # Or automated linting
