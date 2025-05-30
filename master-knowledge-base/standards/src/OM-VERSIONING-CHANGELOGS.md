@@ -9,10 +9,10 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Standard File Versioning and Changelogs"
-related-standards: ["U-METADATA-FRONTMATTER-RULES-001"]
+related-standards: ["MT-SCHEMA-FRONTMATTER"]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "OM" # Operational & Management
 sub_domain: "LIFECYCLE" # Lifecycle Management
 scope_application: "All individual standard documents (standard definitions, policies, guides, schemas) within the knowledge base repository."
@@ -28,15 +28,15 @@ This standard defines the mandatory requirements for versioning individual stand
 
 ## 1. Frontmatter Versioning Keys (Derived from U-VERSIONING-001, Rule 1.1)
 
-Each individual standard document (including standard definitions, policies, guides, and schemas) MUST include the following keys in its YAML frontmatter, as defined in [[U-METADATA-FRONTMATTER-RULES-001]]:
+Each individual standard document (including standard definitions, policies, guides, and schemas) MUST include the following keys in its YAML frontmatter, as defined in [[MT-SCHEMA-FRONTMATTER]]:
 
 *   **`version`**: Specifies the current version of the standard document.
 *   **`date-created`**: Specifies the date (and time) the standard document was initially created. This value SHOULD NOT change after initial creation.
 *   **`date-modified`**: Specifies the date (and time) the standard document was last significantly modified. This MUST be updated upon every substantive change that also warrants a version increment.
 
 *   **Notes:**
-    *   The format for `date-created` and `date-modified` MUST be full ISO-8601 date-time format (e.g., `YYYY-MM-DDTHH:MM:SSZ`) as per [[U-METADATA-FRONTMATTER-RULES-001]].
-    *   The `version` key value MUST also be enclosed in single quotes in YAML (e.g., `version: '1.0.0'`) as specified in [[U-METADATA-FRONTMATTER-RULES-001]].
+    *   The format for `date-created` and `date-modified` MUST be full ISO-8601 date-time format (e.g., `YYYY-MM-DDTHH:MM:SSZ`) as per [[MT-SCHEMA-FRONTMATTER]].
+    *   The `version` key value MUST also be enclosed in single quotes in YAML (e.g., `version: '1.0.0'`) as specified in [[MT-SCHEMA-FRONTMATTER]].
 
 ## 2. Semantic Versioning (Derived from U-VERSIONING-001, Rule 1.2)
 
@@ -65,7 +65,7 @@ The `version` key for all standard documents MUST use Semantic Versioning 2.0.0 
 Each individual standard document MUST maintain a human-readable changelog. This changelog SHOULD be:
 
 *   **Location Option 1 (Preferred for Atomic Standards):** A dedicated section within the standard document itself, typically an H2 or H3 heading titled "Changelog" or "Revision History" near the end of the document.
-*   **Location Option 2 (Alternative):** A separate linked changelog file, referenced by the `change_log_url` frontmatter key as defined in [[U-METADATA-FRONTMATTER-RULES-001]]. This is the approach this standard itself will follow (see its `change_log_url` frontmatter).
+*   **Location Option 2 (Alternative):** A separate linked changelog file, referenced by the `change_log_url` frontmatter key as defined in [[MT-SCHEMA-FRONTMATTER]]. This is the approach this standard itself will follow (see its `change_log_url` frontmatter).
 
 The changelog MUST record, at a minimum:
 *   The **version number**.
@@ -94,7 +94,7 @@ The changelog MUST record, at a minimum:
 *   **Dependency Management:** In automated systems or when standards reference each other, versioning is critical for managing dependencies.
 
 ## 5. Cross-References
-- [[U-METADATA-FRONTMATTER-RULES-001]] - Defines the mandatory frontmatter keys (`version`, `date-created`, `date-modified`, `change_log_url`) and their formats.
+- [[MT-SCHEMA-FRONTMATTER]] - Defines the mandatory frontmatter keys (`version`, `date-created`, `date-modified`, `change_log_url`) and their formats.
 
 ---
 *This standard (OM-VERSIONING-CHANGELOGS) is based on rules 1.1 through 1.3 previously defined in U-VERSIONING-001 from COL-GOVERNANCE-UNIVERSAL.md.*

@@ -9,10 +9,14 @@ tags:
 kb-id: "" # Global standard
 info-type: "standard-definition"
 primary-topic: "Transclusion Syntax" # As per prompt
-related-standards: ["CS-MODULARITY-TRANSCLUSION-POLICY_ID_PLACEHOLDER"]
+related-standards: [
+  "[[CS-MODULARITY-TRANSCLUSION-POLICY]]",
+  "[[SF-LINKS-INTERNAL-SYNTAX]]",
+  "[[MT-SCHEMA-FRONTMATTER]]"
+]
 version: "1.0.0"
 date-created: "2024-07-15T12:00:00Z"
-date-modified: "2024-07-15T12:00:00Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated
 primary_domain: "SF" # Syntax & Formatting
 sub_domain: "TRANSCLUSION" # As per prompt
 scope_application: "Defines a generalized syntax for declaring the intent to transclude (embed) content from one document into another within the knowledge base."
@@ -71,7 +75,7 @@ Authors MUST avoid creating circular transclusion dependencies (e.g., Document A
 ## 4. Rationale
 
 *   **Consistency:** Provides a uniform syntax for authors to express the intent of embedding content.
-*   **Modularity:** Supports the creation of modular content by allowing reusable chunks of information to be defined once and referenced multiple times, as outlined in [[CS-MODULARITY-TRANSCLUSION-POLICY_ID_PLACEHOLDER]].
+*   **Modularity:** Supports the creation of modular content by allowing reusable chunks of information to be defined once and referenced multiple times, as outlined in [[CS-MODULARITY-TRANSCLUSION-POLICY]].
 *   **Maintainability:** When transcluded content is updated in its source document, all instances where it is embedded reflect these changes automatically (assuming tool support), reducing redundancy and effort.
 *   **Future-Proofing:** Establishes a clear syntax that can be adopted by various tools, even if full rendering support varies initially.
 
@@ -80,9 +84,9 @@ Authors MUST avoid creating circular transclusion dependencies (e.g., Document A
 This standard applies to all authors creating or editing content within the knowledge base who wish to embed content from one document into another.
 
 ## 6. Cross-References
-- [[CS-MODULARITY-TRANSCLUSION-POLICY_ID_PLACEHOLDER]] - Policy on when and how to use modularity and transclusion.
-- [[SF-LINKS-INTERNAL-SYNTAX_ID_PLACEHOLDER]] - For the base syntax of internal linking, which transclusion extends.
-- [[U-METADATA-FRONTMATTER-RULES-001_ID_PLACEHOLDER]] - For the definition of `standard_id`.
+- [[CS-MODULARITY-TRANSCLUSION-POLICY]] - Policy on when and how to use modularity and transclusion.
+- [[SF-LINKS-INTERNAL-SYNTAX]] - For the base syntax of internal linking, which transclusion extends.
+- [[MT-SCHEMA-FRONTMATTER]] - For the definition of `standard_id`.
 
 ---
 *This standard (SF-TRANSCLUSION-SYNTAX) generalizes concepts from O-USAGE-TRANSCLUSION-001 and aims to provide a tool-agnostic syntax for declaring content embedding intent.*
