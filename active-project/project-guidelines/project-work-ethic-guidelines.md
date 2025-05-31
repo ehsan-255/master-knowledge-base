@@ -1,3 +1,22 @@
+---
+title: Project Work Ethic Guidelines
+standard_id: project-guideline-work-ethic
+tags: [status/active, info-type/project-guideline, topic/project-conduct]
+kb-id: project-governance
+info-type: project-guideline
+primary-topic: Guidelines for professional conduct and collaboration within the project.
+version: '1.0.0'
+date-created: '2025-05-25T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: GUIDELINES
+scope_application: All contributors to this knowledge base project.
+criticality: p2-medium
+lifecycle_gatekeeper: N/A
+impact_areas: [team-collaboration, project-culture]
+change_log_url: N/A
+---
+
 # Work Ethic & Operational Guidelines for Project Tasks
 
 ## 1. Core Principles

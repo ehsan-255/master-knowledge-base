@@ -1,3 +1,23 @@
+---
+title: Single-Source Multi-View Standards Architecture Design
+standard_id: project-design-multi-view-architecture
+tags: [status/informational-reference, info-type/project-design-document, topic/system-architecture]
+kb-id: project-governance
+info-type: project-design-document
+primary-topic: Architectural design for the single-source, multi-view approach to standards management and delivery.
+related-standards: ['project-design-standards-categorization-scheme']
+version: '1.0.0'
+date-created: '2025-05-29T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: DESIGN
+scope_application: Fundamental architecture for the entire standards ecosystem.
+criticality: p0-critical
+lifecycle_gatekeeper: N/A
+impact_areas: [system-architecture, automation, content-delivery]
+change_log_url: N/A
+---
+
 ## Summary
 
 The **Single-Source / Multi-View Standards Architecture** is a model for managing and publishing sets of operational or technical standards. It establishes **atomic, individual rule documents** as the canonical source of truth, each with its own distinct metadata and lifecycle. Automated build processes then generate various **derived views** from this atomic source, including aggregated "collection" documents optimized for human readability and contextual understanding, alongside other machine-processable outputs (e.g., indexes, semantic data exports).

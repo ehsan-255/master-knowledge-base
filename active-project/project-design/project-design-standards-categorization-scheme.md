@@ -1,3 +1,23 @@
+---
+title: Standards Categorization Scheme Design Document
+standard_id: project-design-standards-categorization-scheme
+tags: [status/informational-reference, info-type/project-design-document, topic/project-architecture]
+kb-id: project-governance
+info-type: project-design-document
+primary-topic: Design framework for categorizing and organizing standards within the knowledge base system.
+related-standards: ['project-design-multi-view-architecture']
+version: '1.0.0'
+date-created: '2025-05-29T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: DESIGN
+scope_application: Overall structural design for the standards system.
+criticality: p1-high
+lifecycle_gatekeeper: N/A
+impact_areas: [system-architecture, content-organization]
+change_log_url: N/A
+---
+
 ## Universal Standards Categorization Scheme: Final Framework
 
 This document outlines the definitive, multi-dimensional categorization scheme for organizing and managing any collection of standards. The framework is designed to ensure clarity, discoverability, maintainability, and robust governance, supporting both human understanding and automated processing.
