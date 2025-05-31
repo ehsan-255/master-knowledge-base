@@ -1,25 +1,34 @@
 ---
-title: "Policy: Content Organization within Knowledge Base Parts"
-standard_id: "CS-POLICY-KB-PART-CONTENT"
-aliases: ["KB Part Content Policy", "Chapter Organization Policy"]
+title: 'Policy: Content Organization within Knowledge Base Parts'
+standard_id: CS-POLICY-KB-PART-CONTENT
+aliases:
+- KB Part Content Policy
+- Chapter Organization Policy
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "KB Part Content Organization"
-related-standards: ["AS-STRUCTURE-KB-PART", "AS-STRUCTURE-DOC-CHAPTER", "SF-CONVENTIONS-NAMING"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "Governs the logical sequencing and topical coherence of 'Chapters' (individual documents or H2 sections) within a Knowledge Base 'Part'."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Content clarity", "User navigation", "Learning pathways", "Information architecture"]
-change_log_url: "./CS-POLICY-KB-PART-CONTENT-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: KB Part Content Organization
+related-standards:
+- AS-STRUCTURE-KB-PART
+- AS-STRUCTURE-DOC-CHAPTER
+- SF-CONVENTIONS-NAMING
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T12:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: Governs the logical sequencing and topical coherence of 'Chapters' (individual documents or H2 sections) within a Knowledge Base 'Part'.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- Content clarity
+- User navigation
+- Learning pathways
+- Information architecture
+change_log_url: ./CS-POLICY-KB-PART-CONTENT-changelog.md
 ---
 # Policy: Content Organization within Knowledge Base Parts (CS-POLICY-KB-PART-CONTENT)
 

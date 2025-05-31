@@ -1,26 +1,36 @@
 ---
-title: "Standard: Key Definition Management and Storage"
-standard_id: "MT-KEYREF-MANAGEMENT"
-aliases: ["Keyref Management", "Key Definition Standard", "U-KEYREF-MANAGEMENT-001"]
+title: 'Standard: Key Definition Management and Storage'
+standard_id: MT-KEYREF-MANAGEMENT
+aliases:
+- Keyref Management
+- Key Definition Standard
+- U-KEYREF-MANAGEMENT-001
 tags:
-  - status/draft
-  - content-type/standard-definition
-  - topic/keyref
-  - topic/metadata-management
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Defines the storage, structure, and management process for global key definitions used in key-based referencing (keyrefs)."
-related-standards: ["SF-SYNTAX-KEYREF", "SF-SYNTAX-YAML-FRONTMATTER", "UA-KEYDEFS-GLOBAL"]
-version: '1.0.0'
-date-created: "2025-05-30T12:00:00Z"
-date-modified: "2025-05-30T21:00:00Z"
-primary_domain: "MT"
-sub_domain: "REGISTRY"
-scope_application: "Governs the management of the central _key_definitions.md file (identified as [[UA-KEYDEFS-GLOBAL]]) and the structure of its content."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Content consistency", "Maintainability", "Automation (keyref resolution)", "Authoring workflow"]
-change_log_url: "./MT-KEYREF-MANAGEMENT-changelog.md"
+- status/draft
+- content-type/standard-definition
+- topic/keyref
+- topic/metadata-management
+kb-id: standards
+info-type: standard-definition
+primary-topic: Defines the storage, structure, and management process for global key definitions used in key-based referencing (keyrefs).
+related-standards:
+- SF-SYNTAX-KEYREF
+- SF-SYNTAX-YAML-FRONTMATTER
+- UA-KEYDEFS-GLOBAL
+version: 1.0.0
+date-created: '2025-05-30T12:00:00Z'
+date-modified: '2025-05-30T21:00:00Z'
+primary_domain: MT
+sub_domain: REGISTRY
+scope_application: Governs the management of the central _key_definitions.md file (identified as [[UA-KEYDEFS-GLOBAL]]) and the structure of its content.
+criticality: p1-high
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Content consistency
+- Maintainability
+- Automation (keyref resolution)
+- Authoring workflow
+change_log_url: ./MT-KEYREF-MANAGEMENT-changelog.md
 ---
 # Standard: Key Definition Management and Storage (MT-KEYREF-MANAGEMENT)
 

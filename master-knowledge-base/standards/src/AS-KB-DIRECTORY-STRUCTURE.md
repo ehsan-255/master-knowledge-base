@@ -1,25 +1,30 @@
 ---
-title: "Knowledge Base Directory Structure Standard"
-standard_id: "AS-KB-DIRECTORY-STRUCTURE"
-aliases: ["Directory Structure", "Folder Organization"]
+title: Knowledge Base Directory Structure Standard
+standard_id: AS-KB-DIRECTORY-STRUCTURE
+aliases:
+- Directory Structure
+- Folder Organization
 tags:
-  - status/draft
-  - criticality/P1-High
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Directory Structure"
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: Directory Structure
 related-standards: []
-version: '0.1.0'
-date-created: "2024-07-15T10:00:00Z"
-date-modified: "2025-05-30T21:00:00Z"
-primary_domain: "AS"
-sub_domain: "STRUCTURE"
-scope_application: "Overall repository and knowledge base file organization."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Authoring workflow", "Build process", "Navigation"]
-change_log_url: "./AS-KB-DIRECTORY-STRUCTURE-changelog.md"
+version: 0.1.0
+date-created: '2024-07-15T10:00:00Z'
+date-modified: '2025-05-30T21:00:00Z'
+primary_domain: AS
+sub_domain: STRUCTURE
+scope_application: Overall repository and knowledge base file organization.
+criticality: p1-high
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Authoring workflow
+- Build process
+- Navigation
+change_log_url: ./AS-KB-DIRECTORY-STRUCTURE-changelog.md
 ---
 # AS-KB-DIRECTORY-STRUCTURE: Knowledge Base Directory Structure Standard
 

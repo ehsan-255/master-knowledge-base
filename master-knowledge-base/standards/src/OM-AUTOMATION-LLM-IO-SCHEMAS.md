@@ -1,29 +1,35 @@
 ---
-title: "Standard: LLM Automation Input/Output Schemas"
+title: 'Standard: LLM Automation Input/Output Schemas'
 standard_id: OM-AUTOMATION-LLM-IO-SCHEMAS
-aliases: ["LLM IO Schemas", "LLM Automation Schemas"]
+aliases:
+- LLM IO Schemas
+- LLM Automation Schemas
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/standard-definition
-  - topic/llm-integration
-  - topic/automation
-  - topic/schemas
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "LLM Automation I/O Schemas"
+- status/draft
+- criticality/p2-medium
+- content-type/standard-definition
+- topic/llm-integration
+- topic/automation
+- topic/schemas
+kb-id: standards
+info-type: standard-definition
+primary-topic: LLM Automation I/O Schemas
 related-standards:
-  - "[[OM-AUTOMATION-LLM-PROMPT-LIBRARY]]"
-version: "0.1.2"
-date-created: "2025-05-19T00:00:00Z"
-date-modified: "2025-05-30T23:00:00Z"
-primary_domain: "OM"
-sub_domain: "AUTOMATION"
-scope_application: "Defines the standard for creating, documenting, and managing JSON schemas used for LLM input/output in automated workflows."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["LLM automation", "Data interchange", "Schema validation", "Workflow integration"]
-change_log_url: "./OM-AUTOMATION-LLM-IO-SCHEMAS-changelog.md"
+- '[[OM-AUTOMATION-LLM-PROMPT-LIBRARY]]'
+version: 0.1.2
+date-created: '2025-05-19T00:00:00Z'
+date-modified: '2025-05-30T23:00:00Z'
+primary_domain: OM
+sub_domain: AUTOMATION
+scope_application: Defines the standard for creating, documenting, and managing JSON schemas used for LLM input/output in automated workflows.
+criticality: p2-medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- LLM automation
+- Data interchange
+- Schema validation
+- Workflow integration
+change_log_url: ./OM-AUTOMATION-LLM-IO-SCHEMAS-CHANGELOG.MD
 ---
 
 # Standard: LLM Automation Input/Output Schemas
@@ -118,4 +124,24 @@ This document defines the standard for creating, documenting, and managing JSON 
 - Each schema file MUST use the `title` and `description` top-level JSON Schema keywords.
 - Each property within the schema MUST have a `description` field explaining its purpose, data type, and whether it is required or optional.
 
-**Cross-References to Other Standard IDs:** [[../../_backup/master-knowledge-base-backup/standards/LLM-PROMPT-LIBRARY-001|LLM-PROMPT-LIBRARY-001]] 
+
+### 2.4 LLM Prompt Meta-Data Structure
+
+*   `prompt_id`: (String) A unique identifier for the prompt (e.g., "KB-ARTICLE-SUMMARIZER-V1").
+*   `prompt_name`: (String) A human-readable name for the prompt.
+*   `prompt_description`: (String) A brief description of what the prompt does.
+*   `prompt_version`: (String) Semantic version of the prompt (e.g., "1.0.2").
+*   `tags`: (List of Strings) Keywords for categorization.
+*   `variables`: (List of Objects) Describes input variables required by the prompt template.
+    *   `var_name`: (String) e.g., "input_text", "tone_style"
+    *   `var_type`: (String) e.g., "string", "integer", "boolean"
+    *   `var_description`: (String) Explanation of the variable.
+    *   `var_required`: (Boolean)
+*   `prompt_template_url`: (String) Relative path to the prompt template file (e.g., `./prompts/summarizer_v1.txt`).
+*   `model_parameters`: (Object) Key-value pairs for LLM parameters (e.g., `"temperature": 0.7`, `"max_tokens": 500`).
+*   `expected_output_description`: (String) Description of the expected output format or structure.
+*   `notes`: (String, Optional) Any additional notes or usage instructions.
+
+## 3. Related Standards
+
+# ... existing code ... 

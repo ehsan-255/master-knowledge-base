@@ -8,6 +8,9 @@ AS: # Architectural Standards
   - code: INDEXING
     name: Indexing and Mapping
     description: Standards for creating and managing indexes, maps, and tables of contents.
+  - code: SCHEMA
+    name: Schema Definitions (Architectural)
+    description: Standards defining schemas for architectural components or document types.
 
 CS: # Content Standards
   - code: POLICY
@@ -74,6 +77,9 @@ UA: # User & Audience Standards (Placeholder - refine as needed)
   - code: KEYDEFS
     name: Key Definitions
     description: Global key definitions.
+  - code: SCHEMAS
+    name: Schema Definitions (Utility & Assets)
+    description: Standards defining schemas for utility or asset-related data structures.
 
 
 QM: # Quality Management Standards (Placeholder - refine as needed)

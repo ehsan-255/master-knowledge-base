@@ -1,25 +1,30 @@
 ---
-title: "Standard: Character Escaping Syntax"
-standard_id: "SF-SYNTAX-ESCAPING-CHARACTERS"
-aliases: ["Character Escaping", "Markdown Escaping"]
+title: 'Standard: Character Escaping Syntax'
+standard_id: SF-SYNTAX-ESCAPING-CHARACTERS
+aliases:
+- Character Escaping
+- Markdown Escaping
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Character Escaping Syntax"
+- status/draft
+- criticality/p2-medium
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: Character Escaping Syntax
 related-standards: []
-version: '1.0.0'
-date-created: "2025-05-29T13:24:53Z"
-date-modified: "2025-05-30T18:00:00Z"
-primary_domain: "SF"
-sub_domain: "MARKDOWN"
-scope_application: "Defines the syntax for escaping special characters in knowledge base documents."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Character handling", "Syntax accuracy", "Content display"]
-change_log_url: "./SF-SYNTAX-ESCAPING-CHARACTERS-changelog.md"
+version: 1.0.0
+date-created: '2025-05-29T13:24:53Z'
+date-modified: '2025-05-30T18:00:00Z'
+primary_domain: SF
+sub_domain: MARKDOWN
+scope_application: Defines the syntax for escaping special characters in knowledge base documents.
+criticality: p2-medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Character handling
+- Syntax accuracy
+- Content display
+change_log_url: ./SF-SYNTAX-ESCAPING-CHARACTERS-changelog.md
 ---
 # Standard: Escaping Special Markdown Characters (SF-SYNTAX-ESCAPING-CHARACTERS)
 

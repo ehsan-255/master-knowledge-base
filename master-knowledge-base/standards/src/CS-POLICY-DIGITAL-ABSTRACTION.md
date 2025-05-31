@@ -1,25 +1,34 @@
 ---
-title: "Policy: Translating Non-Digital Concepts for Digital Workflows"
-standard_id: "CS-POLICY-DIGITAL-ABSTRACTION"
-aliases: ["Digital Abstraction Policy", "Non-Digital Concept Translation"]
+title: 'Policy: Translating Non-Digital Concepts for Digital Workflows'
+standard_id: CS-POLICY-DIGITAL-ABSTRACTION
+aliases:
+- Digital Abstraction Policy
+- Non-Digital Concept Translation
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Digital Abstraction of Non-Digital Concepts"
-related-standards: ["CS-POLICY-SCOPE-INCLUSION", "CS-POLICY-SCOPE-EXCLUSION", "AS-SCHEMA-METHODOLOGY-DESCRIPTION"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T14:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "Content creation involving methodologies or concepts that have non-digital real-world components, ensuring appropriate abstraction for a digital knowledge base."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Content relevance", "KB scope adherence", "User understanding of abstracted processes", "Methodology documentation"]
-change_log_url: "./CS-POLICY-DIGITAL-ABSTRACTION-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Digital Abstraction of Non-Digital Concepts
+related-standards:
+- CS-POLICY-SCOPE-INCLUSION
+- CS-POLICY-SCOPE-EXCLUSION
+- AS-SCHEMA-METHODOLOGY-DESCRIPTION
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T14:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: Content creation involving methodologies or concepts that have non-digital real-world components, ensuring appropriate abstraction for a digital knowledge base.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- Content relevance
+- KB scope adherence
+- User understanding of abstracted processes
+- Methodology documentation
+change_log_url: ./CS-POLICY-DIGITAL-ABSTRACTION-changelog.md
 ---
 # Policy: Translating Non-Digital Concepts for Digital Workflows (CS-POLICY-DIGITAL-ABSTRACTION)
 

@@ -1,25 +1,32 @@
 ---
-title: "Policy: Usage of Admonitions and Callouts"
-standard_id: "CS-ADMONITIONS-POLICY"
-aliases: ["Callout Usage Policy", "Admonition Policy"]
+title: 'Policy: Usage of Admonitions and Callouts'
+standard_id: CS-ADMONITIONS-POLICY
+aliases:
+- Callout Usage Policy
+- Admonition Policy
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Admonition and Callout Usage Policy"
-related-standards: ["SF-CALLOUTS-SYNTAX"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T14:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "Governs the appropriate and semantic use of admonition/callout blocks (as defined in SF-CALLOUTS-SYNTAX) across all knowledge base documents."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Content readability", "User experience", "Consistent highlighting of information", "Authoring practices"]
-change_log_url: "./CS-ADMONITIONS-POLICY-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Admonition and Callout Usage Policy
+related-standards:
+- SF-CALLOUTS-SYNTAX
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T14:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: Governs the appropriate and semantic use of admonition/callout blocks (as defined in SF-CALLOUTS-SYNTAX) across all knowledge base documents.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- Content readability
+- User experience
+- Consistent highlighting of information
+- Authoring practices
+change_log_url: ./CS-ADMONITIONS-POLICY-changelog.md
 ---
 # Policy: Usage of Admonitions and Callouts (CS-ADMONITIONS-POLICY)
 

@@ -1,5 +1,5 @@
-P0-Critical
-P1-High
-P2-Medium
-P3-Low
-P4-Informational
+p0-critical
+p1-high
+p2-medium
+p3-low
+p4-informational

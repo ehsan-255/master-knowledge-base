@@ -1,29 +1,38 @@
 ---
-title: "Master Tag Glossary and Registry" # Updated title
-standard_id: "MT-REGISTRY-TAG-GLOSSARY"
-aliases: ["Tag Glossary", "Controlled Vocabulary for Tags"]
+title: Master Tag Glossary and Registry
+standard_id: MT-REGISTRY-TAG-GLOSSARY
+aliases:
+- Tag Glossary
+- Controlled Vocabulary for Tags
 tags:
-  - kb-id/standards # Updated kb-id
-  - content-type/registry-document # More specific content-type
-  - content-type/glossary-document
-  - status/draft
-  - topic/tagging
-  - topic/metadata
-  - topic/registry
-kb-id: "kb-id/standards" # Updated kb-id
-info-type: "registry-document" # Changed from tag-glossary-document to registry-document as it's a core registry
-primary-topic: 'Defines all official tags, their meanings, hierarchy, and usage guidelines. Serves as the master registry for tags.'
-related-standards: ["MT-TAGGING-STRATEGY-POLICY", "GM-REGISTRY-GOVERNANCE", "MT-SCHEMA-FRONTMATTER"]
-version: '1.0.0' # Resetting version as it becomes a formal standard
-date-created: '2025-05-15' # Keep original creation date
-date-modified: '2025-05-29T16:04:35Z' # Updated
-primary_domain: "MT"
-sub_domain: "REGISTRY"
-scope_application: "Applies to all knowledge bases and documents for tag usage and frontmatter validation."
-criticality: "P0-Critical" # This is a critical registry
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Metadata consistency", "Content discoverability", "Automation", "Search accuracy"]
-change_log_url: "./MT-REGISTRY-TAG-GLOSSARY-changelog.md" # Added changelog
+- kb-id/standards
+- content-type/registry-document
+- content-type/glossary-document
+- status/draft
+- topic/tagging
+- topic/metadata
+- topic/registry
+kb-id: kb-id/standards
+info-type: registry-document
+primary-topic: Defines all official tags, their meanings, hierarchy, and usage guidelines. Serves as the master registry for tags.
+related-standards:
+- MT-TAGGING-STRATEGY-POLICY
+- GM-REGISTRY-GOVERNANCE
+- MT-SCHEMA-FRONTMATTER
+version: 1.0.0
+date-created: '2025-05-15'
+date-modified: '2025-05-29T16:04:35Z'
+primary_domain: MT
+sub_domain: REGISTRY
+scope_application: Applies to all knowledge bases and documents for tag usage and frontmatter validation.
+criticality: p0-critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Metadata consistency
+- Content discoverability
+- Automation
+- Search accuracy
+change_log_url: ./MT-REGISTRY-TAG-GLOSSARY-changelog.md
 ---
 
 # Master Tag Glossary and Registry (MT-REGISTRY-TAG-GLOSSARY)

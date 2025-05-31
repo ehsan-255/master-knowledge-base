@@ -1,25 +1,30 @@
 ---
-title: "Standard: YAML Frontmatter Syntax"
-standard_id: "SF-SYNTAX-YAML-FRONTMATTER"
-aliases: ["YAML Frontmatter", "Frontmatter Syntax"]
+title: 'Standard: YAML Frontmatter Syntax'
+standard_id: SF-SYNTAX-YAML-FRONTMATTER
+aliases:
+- YAML Frontmatter
+- Frontmatter Syntax
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "YAML Frontmatter Syntax"
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: YAML Frontmatter Syntax
 related-standards: []
-version: '1.0.0'
-date-created: "2025-05-29T13:24:53Z"
-date-modified: "2025-05-30T18:00:00Z"
-primary_domain: "SF"
-sub_domain: "MARKDOWN"
-scope_application: "Defines the syntax for YAML frontmatter in knowledge base documents."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Frontmatter syntax", "Metadata structure", "Document parsing"]
-change_log_url: "./SF-SYNTAX-YAML-FRONTMATTER-changelog.md"
+version: 1.0.0
+date-created: '2025-05-29T13:24:53Z'
+date-modified: '2025-05-30T18:00:00Z'
+primary_domain: SF
+sub_domain: MARKDOWN
+scope_application: Defines the syntax for YAML frontmatter in knowledge base documents.
+criticality: p1-high
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Frontmatter syntax
+- Metadata structure
+- Document parsing
+change_log_url: ./SF-SYNTAX-YAML-FRONTMATTER-changelog.md
 ---
 # Standard: Markdown YAML Frontmatter Syntax (SF-SYNTAX-YAML-FRONTMATTER)
 

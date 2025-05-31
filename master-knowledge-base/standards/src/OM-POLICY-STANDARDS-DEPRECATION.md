@@ -1,25 +1,30 @@
 ---
-title: "Policy: Standards Deprecation Process"
-standard_id: "OM-POLICY-STANDARDS-DEPRECATION"
-aliases: ["Deprecation Policy", "Standards Retirement"]
+title: 'Policy: Standards Deprecation Process'
+standard_id: OM-POLICY-STANDARDS-DEPRECATION
+aliases:
+- Deprecation Policy
+- Standards Retirement
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Standards Deprecation Process"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Standards Deprecation Process
 related-standards: []
-version: '1.0.0'
-date-created: "2025-05-29T13:24:53Z"
-date-modified: "2025-05-30T18:00:00Z"
-primary_domain: "OM"
-sub_domain: "LIFECYCLE"
-scope_application: "Defines the process and criteria for deprecating standards within the knowledge base."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Governance-Board-Approval"
-impact_areas: ["Standards lifecycle", "Change management", "Documentation integrity"]
-change_log_url: "./OM-POLICY-STANDARDS-DEPRECATION-changelog.md"
+version: 1.0.0
+date-created: '2025-05-29T13:24:53Z'
+date-modified: '2025-05-30T18:00:00Z'
+primary_domain: OM
+sub_domain: LIFECYCLE
+scope_application: Defines the process and criteria for deprecating standards within the knowledge base.
+criticality: p2-medium
+lifecycle_gatekeeper: Governance-Board-Approval
+impact_areas:
+- Standards lifecycle
+- Change management
+- Documentation integrity
+change_log_url: ./OM-POLICY-STANDARDS-DEPRECATION-changelog.md
 ---
 # Policy: Deprecation of Standards (OM-POLICY-STANDARDS-DEPRECATION)
 
@@ -47,7 +52,7 @@ The body of a deprecated standard document MUST be prefaced with a prominent and
 *   **Example using a standard callout format (syntax defined in [[SF-CALLOUTS-SYNTAX]]):**
     ```markdown
     > [!WARNING] DEPRECATED: This Standard is No Longer Active
-    > **Reason for Deprecation:** This standard has been superseded by [[XX-REPLACEMENT-STANDARD-ID]].
+    > **Reason for Deprecation:** This standard has been superseded by `[[XX-REPLACEMENT-STANDARD-ID]]`.
     > **Effective Date:** YYYY-MM-DD
     > Please refer to the new standard for current guidelines. This document is retained for historical purposes only.
     ```

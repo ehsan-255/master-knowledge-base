@@ -1,27 +1,31 @@
 ---
-title: "Standard: Primary Topic Keyword Strategy"
-standard_id: "MT-STRATEGY-PRIMARY-TOPIC-KEYWORD"
+title: 'Standard: Primary Topic Keyword Strategy'
+standard_id: MT-STRATEGY-PRIMARY-TOPIC-KEYWORD
 aliases:
-  - "Primary Topic Strategy"
-  - "Topic Keywords"
+- Primary Topic Strategy
+- Topic Keywords
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Primary Topic Keyword Strategy"
-related-standards: ["MT-SCHEMA-FRONTMATTER"]
-version: '1.0.0'
-date-created: "2025-05-29T13:24:53Z"
-date-modified: "2025-05-30T18:00:00Z"
-primary_domain: "MT"
-sub_domain: "FRONTMATTER"
-scope_application: "Defines the strategy for selecting and formatting primary topic keywords in frontmatter."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Content categorization", "Search optimization", "Metadata consistency"]
-change_log_url: "./MT-STRATEGY-PRIMARY-TOPIC-KEYWORD-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: Primary Topic Keyword Strategy
+related-standards:
+- MT-SCHEMA-FRONTMATTER
+version: 1.0.0
+date-created: '2025-05-29T13:24:53Z'
+date-modified: '2025-05-30T18:00:00Z'
+primary_domain: MT
+sub_domain: FRONTMATTER
+scope_application: Defines the strategy for selecting and formatting primary topic keywords in frontmatter.
+criticality: p2-medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Content categorization
+- Search optimization
+- Metadata consistency
+change_log_url: ./MT-STRATEGY-PRIMARY-TOPIC-KEYWORD-changelog.md
 ---
 # Standard: Primary Topic Keyword Strategy
 

@@ -1,25 +1,34 @@
 ---
-title: "Standard: File Hygiene and Formatting"
-standard_id: "SF-FORMATTING-FILE-HYGIENE"
-aliases: ["File Formatting Standard", "Line Endings", "UTF-8 Encoding Standard"]
+title: 'Standard: File Hygiene and Formatting'
+standard_id: SF-FORMATTING-FILE-HYGIENE
+aliases:
+- File Formatting Standard
+- Line Endings
+- UTF-8 Encoding Standard
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "File Hygiene and Line Endings"
-related-standards: ["[[MT-SCHEMA-FRONTMATTER]]"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T18:00:00Z"
-primary_domain: "SF"
-sub_domain: "MARKDOWN"
-scope_application: "All text-based files within the knowledge base repository, especially Markdown (.md), YAML (.yaml), JSON (.json), and script files (.py, .sh, etc.)."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Version control consistency", "Cross-platform compatibility", "File integrity", "Readability", "Automated processing"]
-change_log_url: "./SF-FORMATTING-FILE-HYGIENE-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: File Hygiene and Line Endings
+related-standards:
+- '[[MT-SCHEMA-FRONTMATTER]]'
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T18:00:00Z'
+primary_domain: SF
+sub_domain: MARKDOWN
+scope_application: All text-based files within the knowledge base repository, especially Markdown (.md), YAML (.yaml), JSON (.json), and script files (.py, .sh, etc.).
+criticality: p2-medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Version control consistency
+- Cross-platform compatibility
+- File integrity
+- Readability
+- Automated processing
+change_log_url: ./SF-FORMATTING-FILE-HYGIENE-changelog.md
 ---
 
 # Standard: File Hygiene and Formatting (SF-FORMATTING-FILE-HYGIENE)

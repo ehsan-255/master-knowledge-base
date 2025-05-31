@@ -1,25 +1,34 @@
 ---
-title: "Policy: Knowledge Base Part Overviews"
-standard_id: "CS-POLICY-PART-OVERVIEW"
-aliases: ["Part Overview Policy", "KB Section Overview Policy"]
+title: 'Policy: Knowledge Base Part Overviews'
+standard_id: CS-POLICY-PART-OVERVIEW
+aliases:
+- Part Overview Policy
+- KB Section Overview Policy
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Policy for KB Part Overviews"
-related-standards: ["AS-STRUCTURE-KB-PART", "AS-STRUCTURE-KB-ROOT"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T18:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "Governs the mandatory use and purpose of overview documents for each major 'Part' (primary section) of a Knowledge Base."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["KB navigability", "User experience", "Content discoverability", "Clarity of KB structure", "Authoring consistency"]
-change_log_url: "./CS-POLICY-PART-OVERVIEW-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Policy for KB Part Overviews
+related-standards:
+- AS-STRUCTURE-KB-PART
+- AS-STRUCTURE-KB-ROOT
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T18:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: Governs the mandatory use and purpose of overview documents for each major 'Part' (primary section) of a Knowledge Base.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- KB navigability
+- User experience
+- Content discoverability
+- Clarity of KB structure
+- Authoring consistency
+change_log_url: ./CS-POLICY-PART-OVERVIEW-changelog.md
 ---
 # Policy: Knowledge Base Part Overviews (CS-POLICY-PART-OVERVIEW)
 
