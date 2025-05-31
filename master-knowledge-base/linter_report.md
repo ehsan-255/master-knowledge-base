@@ -1,28 +1,45 @@
 # Linter Report
 
 
-## File: `master-knowledge-base/standards/src/AS-KB-DIRECTORY-STRUCTURE-changelog.md`
+## File: `standards/src/AS-KB-DIRECTORY-STRUCTURE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-KB-DIRECTORY-STRUCTURE.md`
+## File: `standards/src/AS-KB-DIRECTORY-STRUCTURE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L41] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-MAP-STANDARDS-KB-changelog.md`
+## File: `standards/src/AS-MAP-STANDARDS-KB-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-MAP-STANDARDS-KB.md`
+## File: `standards/src/AS-MAP-STANDARDS-KB.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/kb-definition-map' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/architecture' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/indexing' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 5) has unrecognized category prefix. Valid prefixes: []
   - [L49] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L49] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L49] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
@@ -39,18 +56,29 @@
   - [L77] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
   - [L77] Potentially broken link: Standard ID '[[UA-SCHEMA-LLM-IO]]' not found in standards_index.json.
   - [L81] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+### Errors:
+  - [L13] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('kb-definition-map') not in defined list. Valid: []
+  - [L16] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-ROOT-STANDARDS-KB-changelog.md`
+## File: `standards/src/AS-ROOT-STANDARDS-KB-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-ROOT-STANDARDS-KB.md`
+## File: `standards/src/AS-ROOT-STANDARDS-KB.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P0-Critical' (at index 1) invalid kebab-case/structure.
-  - [L5] Tag 'kb-root' (at index 5) has unrecognized category prefix. Valid prefixes: ['status/', 'kb-id/', 'content-type/', 'topic/', 'criticality/', 'lifecycle_gatekeeper/']
+  - [L5] Tag 'criticality/P0-Critical' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/navigation-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/architecture' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-root' (at index 5) has unrecognized category prefix. Valid prefixes: []
   - [L25] Potentially broken link: Standard ID '[[AS-MAP-STANDARDS-KB]]' not found in standards_index.json.
   - [L33] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L34] Potentially broken link: Standard ID '[[GM-GUIDE-STANDARDS-BY-TASK]]' not found in standards_index.json.
@@ -97,31 +125,49 @@
   - [L106] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
   - [L107] Potentially broken link: Standard ID '[[UA-SCHEMA-LLM-IO]]' not found in standards_index.json.
   - [L111] Potentially broken link: Standard ID '[[AS-INDEX-KB-MASTER]]' not found in standards_index.json.
+### Errors:
+  - [L13] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L16] 'criticality' ('P0-Critical') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-CONCEPT-DEFINITION-changelog.md`
+## File: `standards/src/AS-SCHEMA-CONCEPT-DEFINITION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-CONCEPT-DEFINITION.md`
+## File: `standards/src/AS-SCHEMA-CONCEPT-DEFINITION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L35] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L43] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L47] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L110] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-METHODOLOGY-DESCRIPTION-changelog.md`
+## File: `standards/src/AS-SCHEMA-METHODOLOGY-DESCRIPTION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-METHODOLOGY-DESCRIPTION.md`
+## File: `standards/src/AS-SCHEMA-METHODOLOGY-DESCRIPTION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L36] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L44] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L48] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
@@ -130,47 +176,82 @@
   - [L155] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L156] Potentially broken link: Standard ID '[[CS-POLICY-LAYERED-INFORMATION]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SCHEMA') not valid for domain 'AS'. Valid: ['STRUCTURE', 'INDEXING']
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-REFERENCE-changelog.md`
+## File: `standards/src/AS-SCHEMA-REFERENCE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-REFERENCE.md`
+## File: `standards/src/AS-SCHEMA-REFERENCE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/schema-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/schemas' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/documentation-standards' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 5) has unrecognized category prefix. Valid prefixes: []
   - [L27] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L47] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
 ### Errors:
-  - [L14] 'sub_domain' ('SCHEMA') not valid for domain 'AS'. Valid: ['STRUCTURE', 'INDEXING']
+  - [L13] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('schema-document') not in defined list. Valid: []
+  - [L16] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-RELTABLE-DEFINITION-changelog.md`
+## File: `standards/src/AS-SCHEMA-RELTABLE-DEFINITION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-RELTABLE-DEFINITION.md`
+## File: `standards/src/AS-SCHEMA-RELTABLE-DEFINITION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L25] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L28] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/linking' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/semantics' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/yaml' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/data-structure' (at index 6) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 7) has unrecognized category prefix. Valid prefixes: []
   - [L73] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
   - [L94] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L95] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L96] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+### Errors:
+  - [L24] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L15] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L27] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-TASK-changelog.md`
+## File: `standards/src/AS-SCHEMA-TASK-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-SCHEMA-TASK.md`
+## File: `standards/src/AS-SCHEMA-TASK.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/schema-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/schemas' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/documentation-standards' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/procedures' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
   - [L27] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L51] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
   - [L62] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
@@ -178,35 +259,51 @@
   - [L73] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
   - [L73] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
 ### Errors:
-  - [L14] 'sub_domain' ('SCHEMA') not valid for domain 'AS'. Valid: ['STRUCTURE', 'INDEXING']
+  - [L13] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('schema-document') not in defined list. Valid: []
+  - [L16] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-ASSET-ORGANIZATION-changelog.md`
+## File: `standards/src/AS-STRUCTURE-ASSET-ORGANIZATION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-ASSET-ORGANIZATION.md`
+## File: `standards/src/AS-STRUCTURE-ASSET-ORGANIZATION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L35] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
   - [L48] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L54] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L88] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L89] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
   - [L90] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-DOC-CHAPTER-changelog.md`
+## File: `standards/src/AS-STRUCTURE-DOC-CHAPTER-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-DOC-CHAPTER.md`
+## File: `standards/src/AS-STRUCTURE-DOC-CHAPTER.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
   - [L51] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L63] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
@@ -215,17 +312,26 @@
   - [L103] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
   - [L104] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
   - [L105] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-KB-PART-changelog.md`
+## File: `standards/src/AS-STRUCTURE-KB-PART-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-KB-PART.md`
+## File: `standards/src/AS-STRUCTURE-KB-PART.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L35] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L37] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L40] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
@@ -236,17 +342,26 @@
   - [L82] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L83] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L84] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-KB-ROOT-changelog.md`
+## File: `standards/src/AS-STRUCTURE-KB-ROOT-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-KB-ROOT.md`
+## File: `standards/src/AS-STRUCTURE-KB-ROOT.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L42] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L47] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
@@ -258,17 +373,26 @@
   - [L82] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L83] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L84] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-MASTER-KB-INDEX-changelog.md`
+## File: `standards/src/AS-STRUCTURE-MASTER-KB-INDEX-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-MASTER-KB-INDEX.md`
+## File: `standards/src/AS-STRUCTURE-MASTER-KB-INDEX.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
   - [L46] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L64] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
@@ -276,17 +400,26 @@
   - [L68] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
   - [L69] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L70] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-TEMPLATES-DIRECTORY-changelog.md`
+## File: `standards/src/AS-STRUCTURE-TEMPLATES-DIRECTORY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/AS-STRUCTURE-TEMPLATES-DIRECTORY.md`
+## File: `standards/src/AS-STRUCTURE-TEMPLATES-DIRECTORY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L22] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+  - [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L39] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
   - [L44] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
   - [L44] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
@@ -297,26 +430,26 @@
   - [L73] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
   - [L74] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
   - [L75] Path-based link '[[[[tpl-canonical-frontmatter.md]]]]'. Use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.
-
-## File: `master-knowledge-base/standards/src/bad_filename_id_mismatch.md`
-### Warnings:
-  - [L11] Key order issue: Key 'tags' (defined order index 3) is before key 'criticality' (defined order index 14), violating defined relative order.
-  - [L3] Filename 'bad_filename_id_mismatch.md' should match 'standard_id' 'XX-CORRECT-ID-001'.
 ### Errors:
-  - [L6] Key 'date-created' has value '2023-03-03 00:00:00+00:00' of type 'datetime'. Expected type 'str'.
-  - [L7] Key 'date-modified' has value '2023-03-03 00:00:00+00:00' of type 'datetime'. Expected type 'str'.
-  - [L12] Relative 'change_log_url' non-existent: ./changelog.md (resolved: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\standards\src\changelog.md)
+  - [L21] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L24] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-ADMONITIONS-POLICY-changelog.md`
+## File: `standards/src/CS-ADMONITIONS-POLICY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-ADMONITIONS-POLICY.md`
+## File: `standards/src/CS-ADMONITIONS-POLICY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L33] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L37] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
@@ -325,17 +458,26 @@
   - [L82] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L83] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
   - [L86] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-CONTENT-PROFILING-POLICY-changelog.md`
+## File: `standards/src/CS-CONTENT-PROFILING-POLICY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-CONTENT-PROFILING-POLICY.md`
+## File: `standards/src/CS-CONTENT-PROFILING-POLICY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L41] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L46] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
   - [L51] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
@@ -344,17 +486,26 @@
   - [L147] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L148] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
   - [L149] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-LINKING-INTERNAL-POLICY-changelog.md`
+## File: `standards/src/CS-LINKING-INTERNAL-POLICY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-LINKING-INTERNAL-POLICY.md`
+## File: `standards/src/CS-LINKING-INTERNAL-POLICY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L39] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L39] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
@@ -363,17 +514,26 @@
   - [L73] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L74] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L77] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-MODULARITY-TRANSCLUSION-POLICY-changelog.md`
+## File: `standards/src/CS-MODULARITY-TRANSCLUSION-POLICY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-MODULARITY-TRANSCLUSION-POLICY.md`
+## File: `standards/src/CS-MODULARITY-TRANSCLUSION-POLICY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L22] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L25] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
   - [L41] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
   - [L42] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
@@ -386,115 +546,178 @@
   - [L92] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
   - [L93] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
   - [L96] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+### Errors:
+  - [L21] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L24] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-ACCESSIBILITY-changelog.md`
+## File: `standards/src/CS-POLICY-ACCESSIBILITY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-ACCESSIBILITY.md`
+## File: `standards/src/CS-POLICY-ACCESSIBILITY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L37] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
   - [L38] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
   - [L50] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
   - [L75] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
   - [L76] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-DIGITAL-ABSTRACTION-changelog.md`
+## File: `standards/src/CS-POLICY-DIGITAL-ABSTRACTION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-DIGITAL-ABSTRACTION.md`
+## File: `standards/src/CS-POLICY-DIGITAL-ABSTRACTION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-INCLUSION]]' not found in standards_index.json.
   - [L33] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-EXCLUSION]]' not found in standards_index.json.
   - [L42] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
   - [L65] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-INCLUSION]]' not found in standards_index.json.
   - [L66] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-EXCLUSION]]' not found in standards_index.json.
   - [L67] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-DOC-CHAPTER-CONTENT-changelog.md`
+## File: `standards/src/CS-POLICY-DOC-CHAPTER-CONTENT-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-DOC-CHAPTER-CONTENT.md`
+## File: `standards/src/CS-POLICY-DOC-CHAPTER-CONTENT.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L43] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L44] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
   - [L68] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L71] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L72] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-KB-IDENTIFICATION-changelog.md`
+## File: `standards/src/CS-POLICY-KB-IDENTIFICATION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-KB-IDENTIFICATION.md`
+## File: `standards/src/CS-POLICY-KB-IDENTIFICATION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L37] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L41] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
   - [L62] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
   - [L63] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-KB-PART-CONTENT-changelog.md`
+## File: `standards/src/CS-POLICY-KB-PART-CONTENT-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-KB-PART-CONTENT.md`
+## File: `standards/src/CS-POLICY-KB-PART-CONTENT.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L36] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
   - [L37] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
   - [L44] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L62] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
   - [L63] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L64] Potentially broken link: Standard ID '[[SF-CONVENTIONS-NAMING]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-KB-ROOT-changelog.md`
+## File: `standards/src/CS-POLICY-KB-ROOT-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-KB-ROOT.md`
+## File: `standards/src/CS-POLICY-KB-ROOT.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L34] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L34] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L45] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L53] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L63] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-LAYERED-INFORMATION-changelog.md`
+## File: `standards/src/CS-POLICY-LAYERED-INFORMATION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-LAYERED-INFORMATION.md`
+## File: `standards/src/CS-POLICY-LAYERED-INFORMATION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L23] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L26] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L42] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L42] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
   - [L42] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
@@ -506,17 +729,26 @@
   - [L83] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L84] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
   - [L85] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+### Errors:
+  - [L22] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L25] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-PART-OVERVIEW-changelog.md`
+## File: `standards/src/CS-POLICY-PART-OVERVIEW-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-PART-OVERVIEW.md`
+## File: `standards/src/CS-POLICY-PART-OVERVIEW.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L28] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
   - [L33] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
@@ -525,79 +757,127 @@
   - [L43] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
   - [L58] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
   - [L59] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-SCOPE-EXCLUSION-changelog.md`
+## File: `standards/src/CS-POLICY-SCOPE-EXCLUSION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-SCOPE-EXCLUSION.md`
+## File: `standards/src/CS-POLICY-SCOPE-EXCLUSION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L46] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
   - [L52] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L72] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-INCLUSION]]' not found in standards_index.json.
   - [L73] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
   - [L74] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-SCOPE-INCLUSION-changelog.md`
+## File: `standards/src/CS-POLICY-SCOPE-INCLUSION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-SCOPE-INCLUSION.md`
+## File: `standards/src/CS-POLICY-SCOPE-INCLUSION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L34] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
   - [L41] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
   - [L68] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-EXCLUSION]]' not found in standards_index.json.
   - [L69] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
   - [L70] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-TONE-LANGUAGE-changelog.md`
+## File: `standards/src/CS-POLICY-TONE-LANGUAGE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-POLICY-TONE-LANGUAGE.md`
+## File: `standards/src/CS-POLICY-TONE-LANGUAGE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L43] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
   - [L68] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/CS-TOC-POLICY-changelog.md`
+## File: `standards/src/CS-TOC-POLICY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/CS-TOC-POLICY.md`
+## File: `standards/src/CS-TOC-POLICY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L34] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L50] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
   - [L54] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
   - [L69] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
   - [L70] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/GM-GLOSSARY-STANDARDS-TERMS-changelog.md`
+## File: `standards/src/GM-GLOSSARY-STANDARDS-TERMS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/GM-GLOSSARY-STANDARDS-TERMS.md`
+## File: `standards/src/GM-GLOSSARY-STANDARDS-TERMS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/glossary-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/glossary' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/standards-governance' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 5) has unrecognized category prefix. Valid prefixes: []
   - [L25] Potentially broken link: Standard ID '[[GM-MANDATE-STANDARDS-GLOSSARY]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
   - [L33] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
@@ -624,16 +904,29 @@
   - [L103] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L106] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
   - [L106] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+### Errors:
+  - [L13] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('glossary-document') not in defined list. Valid: []
+  - [L16] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/GM-GUIDE-KB-USAGE-changelog.md`
+## File: `standards/src/GM-GUIDE-KB-USAGE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/GM-GUIDE-KB-USAGE.md`
+## File: `standards/src/GM-GUIDE-KB-USAGE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L61] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+  - [L64] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/guide-document' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/onboarding' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/standards-governance' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/user-documentation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/knowledge-management' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/content-authoring' (at index 6) has unrecognized category prefix. Valid prefixes: []
   - [L89] Potentially broken link: Standard ID '[[AS-ROOT-STANDARDS-KB]]' not found in standards_index.json.
   - [L94] Potentially broken link: Standard ID '[[AS-INDEX-KB-MASTER]]' not found in standards_index.json.
   - [L95] Potentially broken link: Standard ID '[[AS-ROOT-STANDARDS-KB]]' not found in standards_index.json.
@@ -688,16 +981,29 @@
   - [L250] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L255] Path-based link '[[[[Refactor Roadmap.md]]]]'. Use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.
   - [L256] Potentially broken link: Standard ID '[[GM-GUIDE-STANDARDS-BY-TASK]]' not found in standards_index.json.
+### Errors:
+  - [L60] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+  - [L14] 'info-type' ('guide-document') not in defined list. Valid: []
+  - [L63] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/GM-GUIDE-STANDARDS-BY-TASK-changelog.md`
+## File: `standards/src/GM-GUIDE-STANDARDS-BY-TASK-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/GM-GUIDE-STANDARDS-BY-TASK.md`
+## File: `standards/src/GM-GUIDE-STANDARDS-BY-TASK.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L84] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+  - [L87] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/guide-document' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/standards-governance' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/workflow' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/knowledge-management' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/content-authoring' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/navigation' (at index 6) has unrecognized category prefix. Valid prefixes: []
   - [L116] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L119] Potentially broken link: Standard ID '[[CS-POLICY-KB-ROOT]]' not found in standards_index.json.
   - [L120] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
@@ -879,17 +1185,26 @@
   - [L631] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L633] Path-based link '[[[[Refactor Roadmap.md]]]]'. Use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.
   - [L634] Path-based link '[[[[CONTRIBUTOR_GUIDE.md]]]]'. Use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.
+### Errors:
+  - [L83] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+  - [L14] 'info-type' ('guide-document') not in defined list. Valid: []
+  - [L86] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/GM-MANDATE-KB-USAGE-GUIDE-changelog.md`
+## File: `standards/src/GM-MANDATE-KB-USAGE-GUIDE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/GM-MANDATE-KB-USAGE-GUIDE.md`
+## File: `standards/src/GM-MANDATE-KB-USAGE-GUIDE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L38] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L45] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
@@ -904,18 +1219,25 @@
   - [L75] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
   - [L76] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('MANDATE') not valid for domain 'GM'. Valid: ['CONVENTIONS', 'GUIDE', 'GLOSSARY']
+  - [L16] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/GM-MANDATE-STANDARDS-GLOSSARY-changelog.md`
+## File: `standards/src/GM-MANDATE-STANDARDS-GLOSSARY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/GM-MANDATE-STANDARDS-GLOSSARY.md`
+## File: `standards/src/GM-MANDATE-STANDARDS-GLOSSARY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
   - [L33] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
   - [L39] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
@@ -923,34 +1245,53 @@
   - [L58] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
   - [L59] Potentially broken link: Standard ID '[[CS-POLICY-TONE-LANGUAGE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('MANDATE') not valid for domain 'GM'. Valid: ['CONVENTIONS', 'GUIDE', 'GLOSSARY']
+  - [L16] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/GM-REGISTRY-GOVERNANCE-changelog.md`
+## File: `standards/src/GM-REGISTRY-GOVERNANCE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/GM-REGISTRY-GOVERNANCE.md`
+## File: `standards/src/GM-REGISTRY-GOVERNANCE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/governance' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/registries' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/controlled-vocabularies' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
   - [L32] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L34] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
   - [L43] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
   - [L48] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
 ### Errors:
-  - [L14] 'sub_domain' ('POLICY') not valid for domain 'GM'. Valid: ['CONVENTIONS', 'GUIDE', 'GLOSSARY']
+  - [L13] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L16] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/MT-KEYREF-MANAGEMENT-changelog.md`
+## File: `standards/src/MT-KEYREF-MANAGEMENT-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/MT-KEYREF-MANAGEMENT.md`
+## File: `standards/src/MT-KEYREF-MANAGEMENT.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L18] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+  - [L21] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/keyref' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/metadata-management' (at index 3) has unrecognized category prefix. Valid prefixes: []
   - [L27] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
   - [L32] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
   - [L36] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
@@ -960,16 +1301,28 @@
   - [L127] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
   - [L128] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
   - [L129] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+### Errors:
+  - [L17] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+  - [L11] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L20] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/MT-SCHEMA-FRONTMATTER-changelog.md`
+## File: `standards/src/MT-SCHEMA-FRONTMATTER-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/MT-SCHEMA-FRONTMATTER.md`
+## File: `standards/src/MT-SCHEMA-FRONTMATTER.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p0-critical' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/metadata' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/frontmatter' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/schema' (at index 5) has unrecognized category prefix. Valid prefixes: []
   - [L29] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
   - [L29] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L80] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
@@ -980,30 +1333,51 @@
   - [L203] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L204] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L205] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+### Errors:
+  - [L13] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L16] 'criticality' ('P0-Critical') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/MT-STRATEGY-PRIMARY-TOPIC-KEYWORD-changelog.md`
+## File: `standards/src/MT-STRATEGY-PRIMARY-TOPIC-KEYWORD-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md`
+## File: `standards/src/MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L15] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+  - [L18] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L6] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L6] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L6] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L6] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L6] Tag 'topic/metadata' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L6] Tag 'topic/keywords' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L6] Tag 'topic/tagging' (at index 5) has unrecognized category prefix. Valid prefixes: []
   - [L26] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L93] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+### Errors:
+  - [L14] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+  - [L8] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L17] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/MT-TAGGING-STRATEGY-POLICY-changelog.md`
+## File: `standards/src/MT-TAGGING-STRATEGY-POLICY-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/MT-TAGGING-STRATEGY-POLICY.md`
+## File: `standards/src/MT-TAGGING-STRATEGY-POLICY.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
   - [L28] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L42] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
@@ -1014,18 +1388,25 @@
   - [L81] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L82] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('POLICY') not valid for domain 'MT'. Valid: ['FRONTMATTER', 'TAGGING', 'REGISTRY']
+  - [L16] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/MT-TAGS-IMPLEMENTATION-changelog.md`
+## File: `standards/src/MT-TAGS-IMPLEMENTATION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/MT-TAGS-IMPLEMENTATION.md`
+## File: `standards/src/MT-TAGS-IMPLEMENTATION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L63] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L65] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
@@ -1033,28 +1414,53 @@
   - [L69] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L70] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
   - [L71] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS-changelog.md`
+## File: `standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS.md`
+## File: `standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L21] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+  - [L24] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/llm-integration' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/automation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/schemas' (at index 5) has unrecognized category prefix. Valid prefixes: []
   - [L121] Path-based link '[[[[../../_backup/master-knowledge-base-backup/standards/LLM-PROMPT-LIBRARY-001|LLM-PROMPT-LIBRARY-001]]]]'. Use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.
+### Errors:
+  - [L20] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+  - [L13] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L23] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/OM-OVERVIEW-PUBLISHING-PIPELINE-changelog.md`
+## File: `standards/src/OM-OVERVIEW-PUBLISHING-PIPELINE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/OM-OVERVIEW-PUBLISHING-PIPELINE.md`
+## File: `standards/src/OM-OVERVIEW-PUBLISHING-PIPELINE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/publishing' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/automation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/workflow' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
   - [L56] Potentially broken link: Standard ID '[[QM-VALIDATION-METADATA]]' not found in standards_index.json.
   - [L56] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L58] Potentially broken link: Standard ID '[[SF-FORMATTING-MARKDOWN-GENERAL]]' not found in standards_index.json.
@@ -1063,17 +1469,26 @@
   - [L64] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
   - [L69] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
   - [L98] Potentially broken link: Standard ID '[[UA-SCHEMA-LLM-IO]]' not found in standards_index.json.
+### Errors:
+  - [L13] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L16] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/OM-POLICY-STANDARDS-DEPRECATION-changelog.md`
+## File: `standards/src/OM-POLICY-STANDARDS-DEPRECATION-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/OM-POLICY-STANDARDS-DEPRECATION.md`
+## File: `standards/src/OM-POLICY-STANDARDS-DEPRECATION.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L39] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L40] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
   - [L47] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
@@ -1083,18 +1498,25 @@
   - [L82] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
   - [L83] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('POLICY') not valid for domain 'OM'. Valid: ['LIFECYCLE', 'AUTOMATION']
+  - [L16] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/OM-POLICY-STANDARDS-GOVERNANCE-changelog.md`
+## File: `standards/src/OM-POLICY-STANDARDS-GOVERNANCE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/OM-POLICY-STANDARDS-GOVERNANCE.md`
+## File: `standards/src/OM-POLICY-STANDARDS-GOVERNANCE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L34] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
   - [L45] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L66] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
@@ -1102,34 +1524,54 @@
   - [L68] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
   - [L69] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-DEPRECATION]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('POLICY') not valid for domain 'OM'. Valid: ['LIFECYCLE', 'AUTOMATION']
+  - [L16] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('policy-document') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/OM-VERSIONING-CHANGELOGS-changelog.md`
+## File: `standards/src/OM-VERSIONING-CHANGELOGS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/OM-VERSIONING-CHANGELOGS.md`
+## File: `standards/src/OM-VERSIONING-CHANGELOGS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L37] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L38] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L67] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L96] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/QM-VALIDATION-METADATA-changelog.md`
+## File: `standards/src/QM-VALIDATION-METADATA-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/QM-VALIDATION-METADATA.md`
+## File: `standards/src/QM-VALIDATION-METADATA.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'QM' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/metadata' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/validation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/quality-assurance' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
   - [L25] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L43] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L46] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
@@ -1142,33 +1584,49 @@
   - [L74] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
   - [L89] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
   - [L90] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+### Errors:
+  - [L13] 'primary_domain' ('QM') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L16] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT-changelog.md`
+## File: `standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md`
+## File: `standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L36] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
   - [L78] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
   - [L79] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('ACCESSIBILITY') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-CALLOUTS-SYNTAX-changelog.md`
+## File: `standards/src/SF-CALLOUTS-SYNTAX-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-CALLOUTS-SYNTAX.md`
+## File: `standards/src/SF-CALLOUTS-SYNTAX.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L46] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
@@ -1178,218 +1636,338 @@
   - [L120] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
   - [L121] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-CONDITIONAL-SYNTAX-ATTRIBUTES-changelog.md`
+## File: `standards/src/SF-CONDITIONAL-SYNTAX-ATTRIBUTES-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md`
+## File: `standards/src/SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
   - [L81] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
   - [L94] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L95] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-CONVENTIONS-NAMING-changelog.md`
+## File: `standards/src/SF-CONVENTIONS-NAMING-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-CONVENTIONS-NAMING.md`
+## File: `standards/src/SF-CONVENTIONS-NAMING.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L55] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L87] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L88] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('CONVENTIONS') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-FORMATTING-CITATIONS-changelog.md`
+## File: `standards/src/SF-FORMATTING-CITATIONS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-FORMATTING-CITATIONS.md`
+## File: `standards/src/SF-FORMATTING-CITATIONS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L67] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L85] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('FORMATTING') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-FORMATTING-FILE-HYGIENE-changelog.md`
+## File: `standards/src/SF-FORMATTING-FILE-HYGIENE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-FORMATTING-FILE-HYGIENE.md`
+## File: `standards/src/SF-FORMATTING-FILE-HYGIENE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L33] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L36] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L79] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-FORMATTING-MARKDOWN-GENERAL-changelog.md`
+## File: `standards/src/SF-FORMATTING-MARKDOWN-GENERAL-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-FORMATTING-MARKDOWN-GENERAL.md`
+## File: `standards/src/SF-FORMATTING-MARKDOWN-GENERAL.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L79] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L116] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('FORMATTING') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-LINKS-INTERNAL-SYNTAX-changelog.md`
+## File: `standards/src/SF-LINKS-INTERNAL-SYNTAX-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-LINKS-INTERNAL-SYNTAX.md`
+## File: `standards/src/SF-LINKS-INTERNAL-SYNTAX.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L35] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L44] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L54] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
   - [L55] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-BLOCKQUOTES-changelog.md`
+## File: `standards/src/SF-SYNTAX-BLOCKQUOTES-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-BLOCKQUOTES.md`
+## File: `standards/src/SF-SYNTAX-BLOCKQUOTES.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L74] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L88] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-CODE-changelog.md`
+## File: `standards/src/SF-SYNTAX-CODE-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-CODE.md`
+## File: `standards/src/SF-SYNTAX-CODE.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L61] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L94] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-COMMENT-TODO-changelog.md`
+## File: `standards/src/SF-SYNTAX-COMMENT-TODO-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-COMMENT-TODO.md`
+## File: `standards/src/SF-SYNTAX-COMMENT-TODO.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L18] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L21] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/syntax' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/task-management' (at index 3) has unrecognized category prefix. Valid prefixes: []
   - [L94] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L97] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
   - [L98] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+### Errors:
+  - [L17] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L11] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L20] 'criticality' ('P3-Low') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-DEFINITION-LISTS-changelog.md`
+## File: `standards/src/SF-SYNTAX-DEFINITION-LISTS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-DEFINITION-LISTS.md`
+## File: `standards/src/SF-SYNTAX-DEFINITION-LISTS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P3-Low' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P3-Low' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L117] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P3-Low') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md`
+## File: `standards/src/SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-DIAGRAMS-MERMAID.md`
+## File: `standards/src/SF-SYNTAX-DIAGRAMS-MERMAID.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L47] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L110] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
   - [L111] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-EMPHASIS-changelog.md`
+## File: `standards/src/SF-SYNTAX-EMPHASIS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-EMPHASIS.md`
+## File: `standards/src/SF-SYNTAX-EMPHASIS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-ESCAPING-CHARACTERS-changelog.md`
+## File: `standards/src/SF-SYNTAX-ESCAPING-CHARACTERS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-ESCAPING-CHARACTERS.md`
+## File: `standards/src/SF-SYNTAX-ESCAPING-CHARACTERS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-FOOTNOTES-changelog.md`
+## File: `standards/src/SF-SYNTAX-FOOTNOTES-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-FOOTNOTES.md`
+## File: `standards/src/SF-SYNTAX-FOOTNOTES.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P3-Low' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P3-Low' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L121] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P3-Low') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-HEADINGS-changelog.md`
+## File: `standards/src/SF-SYNTAX-HEADINGS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-HEADINGS.md`
+## File: `standards/src/SF-SYNTAX-HEADINGS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
@@ -1400,35 +1978,50 @@
   - [L97] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
   - [L98] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-IMAGES-changelog.md`
+## File: `standards/src/SF-SYNTAX-IMAGES-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-IMAGES.md`
+## File: `standards/src/SF-SYNTAX-IMAGES.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L47] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
   - [L56] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
   - [L86] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
   - [L105] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
   - [L106] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-KEYREF-changelog.md`
+## File: `standards/src/SF-SYNTAX-KEYREF-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-KEYREF.md`
+## File: `standards/src/SF-SYNTAX-KEYREF.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L18] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L21] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/syntax' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/keyref' (at index 3) has unrecognized category prefix. Valid prefixes: []
   - [L35] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
   - [L36] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
   - [L36] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
@@ -1436,17 +2029,24 @@
   - [L47] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
   - [L48] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
 ### Errors:
-  - [L18] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L17] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L11] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L20] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-LINKS-GENERAL-changelog.md`
+## File: `standards/src/SF-SYNTAX-LINKS-GENERAL-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-LINKS-GENERAL.md`
+## File: `standards/src/SF-SYNTAX-LINKS-GENERAL.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L29] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L57] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L78] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
@@ -1455,64 +2055,96 @@
   - [L95] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
   - [L96] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
   - [L99] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-LISTS-changelog.md`
+## File: `standards/src/SF-SYNTAX-LISTS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-LISTS.md`
+## File: `standards/src/SF-SYNTAX-LISTS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L84] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
   - [L84] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
   - [L122] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
   - [L123] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
   - [L124] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+### Errors:
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-MATH-EQUATIONS-changelog.md`
+## File: `standards/src/SF-SYNTAX-MATH-EQUATIONS-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-MATH-EQUATIONS.md`
+## File: `standards/src/SF-SYNTAX-MATH-EQUATIONS.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P3-Low' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P3-Low' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L111] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P3-Low') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-TABLES-changelog.md`
+## File: `standards/src/SF-SYNTAX-TABLES-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-TABLES.md`
+## File: `standards/src/SF-SYNTAX-TABLES.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L28] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L86] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L129] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-YAML-FRONTMATTER-changelog.md`
+## File: `standards/src/SF-SYNTAX-YAML-FRONTMATTER-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-SYNTAX-YAML-FRONTMATTER.md`
+## File: `standards/src/SF-SYNTAX-YAML-FRONTMATTER.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L17] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L20] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L30] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L30] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
   - [L51] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
@@ -1520,18 +2152,27 @@
   - [L113] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
   - [L114] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
 ### Errors:
-  - [L17] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L16] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L19] 'criticality' ('P1-High') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-TOC-SYNTAX-changelog.md`
+## File: `standards/src/SF-TOC-SYNTAX-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-TOC-SYNTAX.md`
+## File: `standards/src/SF-TOC-SYNTAX.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/standard-definition' (at index 1) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 2) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/syntax' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/markdown' (at index 4) has unrecognized category prefix. Valid prefixes: []
   - [L48] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
   - [L76] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
   - [L82] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
@@ -1539,18 +2180,25 @@
   - [L84] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L85] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
 ### Errors:
-  - [L19] 'sub_domain' ('SYNTAX') not valid for domain 'SF'. Valid: ['MARKDOWN', 'LINKS', 'TRANSCLUSION', 'CALLOUTS', 'CONDITIONAL']
+  - [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L21] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/SF-TRANSCLUSION-SYNTAX-changelog.md`
+## File: `standards/src/SF-TRANSCLUSION-SYNTAX-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/SF-TRANSCLUSION-SYNTAX.md`
+## File: `standards/src/SF-TRANSCLUSION-SYNTAX.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L21] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+  - [L24] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P2-Medium' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P2-Medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
   - [L42] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
   - [L50] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
   - [L59] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
@@ -1558,62 +2206,67 @@
   - [L86] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
   - [L87] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
   - [L88] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+### Errors:
+  - [L20] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+  - [L10] 'info-type' ('standard-definition') not in defined list. Valid: []
+  - [L23] 'criticality' ('P2-Medium') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/UA-KEYDEFS-GLOBAL-changelog.md`
+## File: `standards/src/UA-KEYDEFS-GLOBAL-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/UA-KEYDEFS-GLOBAL.md`
+## File: `standards/src/UA-KEYDEFS-GLOBAL.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'UA' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P0-Critical' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P0-Critical' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/key-definition-set' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/keyrefs' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/structured-data' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/global' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
   - [L32] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
   - [L32] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
   - [L62] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
   - [L62] Potentially broken link: Standard ID '[[GM-REGISTRY-GOVERNANCE]]' not found in standards_index.json.
   - [L66] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+### Errors:
+  - [L13] 'primary_domain' ('UA') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('key-definition-set') not in defined list. Valid: []
+  - [L16] 'criticality' ('P0-Critical') not in defined list. Valid: []
 
-## File: `master-knowledge-base/standards/src/UA-SCHEMA-LLM-IO-changelog.md`
+## File: `standards/src/UA-SCHEMA-LLM-IO-changelog.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/standards/src/UA-SCHEMA-LLM-IO.md`
+## File: `standards/src/UA-SCHEMA-LLM-IO.md`
 ### Warnings:
   - [LNone] File contains CRLF line endings. Should use LF.
+  - [L14] Primary domain 'UA' not found in subdomain registry structure for sub_domain check.
+  - [L17] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+  - [L5] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
   - [L5] Tag 'criticality/P1-High' (at index 1) invalid kebab-case/structure.
+  - [L5] Tag 'criticality/P1-High' (at index 1) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'content-type/schema-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/llm' (at index 3) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/automation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/schemas' (at index 5) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'topic/data-interchange' (at index 6) has unrecognized category prefix. Valid prefixes: []
+  - [L5] Tag 'kb-id/standards' (at index 7) has unrecognized category prefix. Valid prefixes: []
 ### Errors:
-  - [L14] 'sub_domain' ('AUTOMATION') not valid for domain 'UA'. Valid: ['ACCESSIBILITY', 'KEYDEFS']
-
-## File: `master-knowledge-base/standards/src/XX-LINT-TESTDUMMY1-changelog.md`
-### Errors:
-  - [L1] No YAML frontmatter block found.
-
-## File: `master-knowledge-base/standards/src/XX-LINT-TESTDUMMY1.md`
-### Warnings:
-  - [L11] Key order issue: Key 'tags' (defined order index 3) is before key 'criticality' (defined order index 14), violating defined relative order.
-  - [L21] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
-### Errors:
-  - [L6] Key 'date-created' has value '2023-01-01 00:00:00+00:00' of type 'datetime'. Expected type 'str'.
-  - [L7] Key 'date-modified' has value '2023-01-01 00:00:00+00:00' of type 'datetime'. Expected type 'str'.
-  - [L9] 'sub_domain' ('SCHEMA') not valid for domain 'AS'. Valid: ['STRUCTURE', 'INDEXING']
-  - [L3] Duplicate 'standard_id' 'XX-LINT-TESTDUMMY1' also found in: master-knowledge-base/standards/src/XX-LINT-TESTDUMMY2.md
-
-## File: `master-knowledge-base/standards/src/XX-LINT-TESTDUMMY2.md`
-### Warnings:
-  - [L8] Key order issue: Key 'tags' (defined order index 3) is before key 'date-modified' (defined order index 10), violating defined relative order.
-  - [L3] Filename 'XX-LINT-TESTDUMMY2.md' should match 'standard_id' 'XX-LINT-TESTDUMMY1'.
-  - [L16] Potentially broken link: Standard ID '[[XX-LINT-TESTDUMMY1]]' not found in standards_index.json.
-### Errors:
-  - [L6] Key 'date-created' has value '2023-02-02 00:00:00+00:00' of type 'datetime'. Expected type 'str'.
-  - [L7] Key 'date-modified' has value '2023-02-02 00:00:00+00:00' of type 'datetime'. Expected type 'str'.
-  - [L3] Duplicate 'standard_id' 'XX-LINT-TESTDUMMY1' also found in: master-knowledge-base/standards/src/XX-LINT-TESTDUMMY1.md
+  - [L13] 'primary_domain' ('UA') not in defined domain_codes. Valid: []
+  - [L7] 'info-type' ('schema-document') not in defined list. Valid: []
+  - [L16] 'criticality' ('P1-High') not in defined list. Valid: []
 
 ---
 ## Linting Summary
-- Total files processed: 154
-- Total errors found: 112
-- Total warnings found: 933
+- Total files processed: 150
+- Total errors found: 300
+- Total warnings found: 1364

@@ -1,24 +1,24 @@
 ---
-title: "Standard: Mandate for Standards Terminology Glossary"
+title: "Mandate: Standards Glossary Requirements"
 standard_id: "GM-MANDATE-STANDARDS-GLOSSARY"
-aliases: ["Standards Glossary Mandate", "Terminology Glossary Requirement"]
+aliases: ["Glossary Mandate", "Standards Terms Requirement"]
 tags:
   - status/draft
-  - criticality/P2-Medium
-  - content-type/technical-standard
+  - criticality/p2-medium
+  - content-type/mandate-document
 kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Standards Terminology Glossary Mandate"
-related-standards: ["GM-GLOSSARY-STANDARDS-TERMS", "CS-POLICY-TONE-LANGUAGE"]
+info-type: "mandate-document"
+primary-topic: "Standards Glossary Requirements"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "GM"
-sub_domain: "MANDATE"
-scope_application: "Ensures the existence, maintenance, and core content requirements for a glossary defining key terms used within the standards documents themselves."
+sub_domain: "GLOSSARY"
+scope_application: "Defines mandatory requirements for maintaining a comprehensive standards glossary."
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "Governance-Board-Approval"
-impact_areas: ["Clarity of standards", "User understanding of terminology", "Consistency in language", "Authoring of standards"]
+impact_areas: ["Terminology consistency", "Standards comprehension", "Knowledge management"]
 change_log_url: "./GM-MANDATE-STANDARDS-GLOSSARY-changelog.md"
 ---
 # Standard: Mandate for Standards Terminology Glossary (GM-MANDATE-STANDARDS-GLOSSARY)

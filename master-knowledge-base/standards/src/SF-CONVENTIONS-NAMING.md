@@ -1,24 +1,24 @@
 ---
-title: "Standard: File and Folder Naming Conventions"
+title: "Standard: File and ID Naming Conventions"
 standard_id: "SF-CONVENTIONS-NAMING"
-aliases: ["Naming Conventions", "File Naming Standard", "Folder Naming Standard"]
+aliases: ["Naming Conventions", "File Naming", "ID Conventions"]
 tags:
   - status/draft
-  - criticality/P1-High
+  - criticality/p1-high
   - content-type/technical-standard
 kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "File and Folder Naming Conventions"
-related-standards: ["[[MT-SCHEMA-FRONTMATTER]]", "SF-LINKS-INTERNAL-SYNTAX"]
+primary-topic: "File and ID Naming Conventions"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T14:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "SF"
-sub_domain: "CONVENTIONS"
-scope_application: "Specifies the naming conventions for all files and folders within the knowledge base repository to ensure consistency, discoverability, and support for automation."
+sub_domain: "MARKDOWN"
+scope_application: "Defines the naming conventions for files, standard IDs, and other identifiers in the knowledge base."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Repository organization", "Automated processing", "Link integrity", "Authoring consistency", "User navigation"]
+impact_areas: ["File organization", "Standard identification", "System consistency"]
 change_log_url: "./SF-CONVENTIONS-NAMING-changelog.md"
 ---
 

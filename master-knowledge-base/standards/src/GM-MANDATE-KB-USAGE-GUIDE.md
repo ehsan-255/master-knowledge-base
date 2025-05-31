@@ -1,24 +1,24 @@
 ---
-title: "Standard: Mandate for Knowledge Base Usage Guide"
+title: "Mandate: Knowledge Base Usage Guide"
 standard_id: "GM-MANDATE-KB-USAGE-GUIDE"
-aliases: ["KB Guide Mandate", "Onboarding Guide Requirement"]
+aliases: ["KB Usage Mandate", "Usage Requirements"]
 tags:
   - status/draft
-  - criticality/P1-High
-  - content-type/technical-standard
+  - criticality/p1-high
+  - content-type/mandate-document
 kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "KB Usage Guide Mandate"
-related-standards: ["GM-GUIDE-KB-USAGE", "OM-POLICY-STANDARDS-GOVERNANCE", "MT-REGISTRY-TAG-GLOSSARY", "AS-STRUCTURE-TEMPLATES-DIRECTORY", "AS-STRUCTURE-MASTER-KB-INDEX"]
+info-type: "mandate-document"
+primary-topic: "Knowledge Base Usage Guide"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T17:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "GM"
-sub_domain: "MANDATE"
-scope_application: "Ensures the existence and defines the core content requirements for a comprehensive guide on using the knowledge base and its associated standards."
+sub_domain: "GUIDE"
+scope_application: "Defines mandatory requirements for knowledge base usage across the organization."
 criticality: "P1-High"
 lifecycle_gatekeeper: "Governance-Board-Approval"
-impact_areas: ["User onboarding", "Standards adoption", "KB navigability", "Community support", "Consistency of KB usage"]
+impact_areas: ["Knowledge base adoption", "Compliance", "User training"]
 change_log_url: "./GM-MANDATE-KB-USAGE-GUIDE-changelog.md"
 ---
 # Standard: Mandate for Knowledge Base Usage Guide (GM-MANDATE-KB-USAGE-GUIDE)

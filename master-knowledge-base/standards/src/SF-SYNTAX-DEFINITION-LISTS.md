@@ -1,24 +1,24 @@
 ---
-title: "Standard: Markdown Syntax for Definition Lists"
+title: "Standard: Definition List Syntax"
 standard_id: "SF-SYNTAX-DEFINITION-LISTS"
-aliases: ["Definition List Syntax", "Markdown DL Syntax"]
+aliases: ["Definition Lists", "Term Definitions"]
 tags:
   - status/draft
-  - criticality/P3-Low
+  - criticality/p3-low
   - content-type/technical-standard
 kb-id: "standards"
 info-type: "standard-definition"
-primary-topic: "Markdown Definition List Syntax"
-related-standards: ["SF-FORMATTING-FILE-HYGIENE"]
+primary-topic: "Definition List Syntax"
+related-standards: []
 version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T14:00:00Z"
+date-created: "2025-05-29T13:24:53Z"
+date-modified: "2025-05-30T18:00:00Z"
 primary_domain: "SF"
-sub_domain: "SYNTAX"
-scope_application: "Defines the syntax for creating definition lists in Markdown documents, intended for term-definition pairs such as glossaries or descriptive itemizations."
+sub_domain: "MARKDOWN"
+scope_application: "Defines the syntax for creating definition lists in knowledge base documents."
 criticality: "P3-Low"
 lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Structured content (glossaries, etc.)", "Readability", "Authoring consistency", "Semantic representation of definitions"]
+impact_areas: ["Content structure", "Term definitions", "Document formatting"]
 change_log_url: "./SF-SYNTAX-DEFINITION-LISTS-changelog.md"
 ---
 # Standard: Markdown Syntax for Definition Lists (SF-SYNTAX-DEFINITION-LISTS)
