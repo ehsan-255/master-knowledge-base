@@ -1,3 +1,24 @@
+---
+title: Original High-Level Refactoring Roadmap (Phases 0-5)
+standard_id: project-roadmap-original
+aliases: [Original Project Roadmap, Phase 0-5 Roadmap]
+tags: [status/active, info-type/project-roadmap, topic/project-planning, project-phase/legacy]
+kb-id: project-governance
+info-type: project-roadmap
+primary-topic: The initial overall strategic plan for the knowledge base refactoring.
+related-standards: ['project-roadmap-completion-phases-a-f']
+version: '1.0.0'
+date-created: '2025-05-25T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: PLANNING
+scope_application: Overall guidance for the multi-year refactoring effort (historical high-level).
+criticality: p1-high
+lifecycle_gatekeeper: N/A
+impact_areas: [project-strategy, historical-context]
+change_log_url: N/A
+---
+
 ## Roadmap: Standards Refactoring
 
 This roadmap outlines the phases, steps, and tasks required to fully refactor the existing standards according to the new architecture and categorization schemes, incorporating all agreed-upon revisions and final clarifications.

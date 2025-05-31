@@ -1,3 +1,24 @@
+---
+title: Refactoring Completion Roadmap (Phases A-F)
+standard_id: project-roadmap-completion-phases-a-f
+aliases: [Completion Roadmap, Phase A-F Roadmap]
+tags: [status/active, info-type/project-roadmap, topic/project-planning]
+kb-id: project-governance
+info-type: project-roadmap
+primary-topic: The detailed execution plan for completing the knowledge base refactoring (Phases A-F).
+related-standards: ['project-roadmap-original-high-level', 'project-instructions-phase-b-cleanup']
+version: '1.3.0'
+date-created: '2025-05-30T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: PLANNING
+scope_application: Detailed operational roadmap for refactoring completion.
+criticality: p0-critical
+lifecycle_gatekeeper: N/A
+impact_areas: [project-execution, phase-management]
+change_log_url: N/A
+---
+
 ## Refactoring Completion Roadmap
 
 **Document ID:** `GM-ROADMAP-REFACTORING-COMPLETION`
