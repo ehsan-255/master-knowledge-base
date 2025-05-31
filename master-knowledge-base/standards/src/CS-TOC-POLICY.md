@@ -1,25 +1,34 @@
 ---
-title: "Policy: Table of Contents (ToC) Usage and Generation"
-standard_id: "CS-TOC-POLICY"
-aliases: ["ToC Policy", "Table of Contents Mandate", "Automated ToC Policy"]
+title: 'Policy: Table of Contents (ToC) Usage and Generation'
+standard_id: CS-TOC-POLICY
+aliases:
+- ToC Policy
+- Table of Contents Mandate
+- Automated ToC Policy
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Table of Contents Policy"
-related-standards: ["SF-TOC-SYNTAX", "AS-STRUCTURE-DOC-CHAPTER"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "Governs the requirement for, content of, and generation methods for Tables of Contents (ToCs) in knowledge base documents."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Document navigation", "User experience", "Authoring efficiency", "Content accessibility"]
-change_log_url: "./CS-TOC-POLICY-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Table of Contents Policy
+related-standards:
+- SF-TOC-SYNTAX
+- AS-STRUCTURE-DOC-CHAPTER
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T12:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: Governs the requirement for, content of, and generation methods for Tables of Contents (ToCs) in knowledge base documents.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- Document navigation
+- User experience
+- Authoring efficiency
+- Content accessibility
+change_log_url: ./CS-TOC-POLICY-changelog.md
 ---
 # Policy: Table of Contents (ToC) Usage and Generation (CS-TOC-POLICY)
 

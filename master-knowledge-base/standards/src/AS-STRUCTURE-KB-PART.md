@@ -1,25 +1,34 @@
 ---
-title: "Standard: Knowledge Base Part Structure and Overview"
-standard_id: "AS-STRUCTURE-KB-PART"
-aliases: ["KB Part Structure", "Section Overview Standard"]
+title: 'Standard: Knowledge Base Part Structure and Overview'
+standard_id: AS-STRUCTURE-KB-PART
+aliases:
+- KB Part Structure
+- Section Overview Standard
 tags:
-  - status/draft
-  - criticality/P1-High
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "KB Part Structure"
-related-standards: ["CS-POLICY-KB-PART-CONTENT", "AS-STRUCTURE-KB-ROOT", "SF-CONVENTIONS-NAMING"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
-primary_domain: "AS"
-sub_domain: "STRUCTURE"
-scope_application: "Defines the structural requirements for primary sections ('Parts') within a Knowledge Base (KB), focusing on the mandatory overview content."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["KB navigability", "Content discoverability", "Authoring consistency", "User onboarding"]
-change_log_url: "./AS-STRUCTURE-KB-PART-changelog.md"
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: KB Part Structure
+related-standards:
+- CS-POLICY-KB-PART-CONTENT
+- AS-STRUCTURE-KB-ROOT
+- SF-CONVENTIONS-NAMING
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T12:00:00Z'
+primary_domain: AS
+sub_domain: STRUCTURE
+scope_application: Defines the structural requirements for primary sections ('Parts') within a Knowledge Base (KB), focusing on the mandatory overview content.
+criticality: p1-high
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- KB navigability
+- Content discoverability
+- Authoring consistency
+- User onboarding
+change_log_url: ./AS-STRUCTURE-KB-PART-changelog.md
 ---
 # Standard: Knowledge Base Part Structure and Overview (AS-STRUCTURE-KB-PART)
 

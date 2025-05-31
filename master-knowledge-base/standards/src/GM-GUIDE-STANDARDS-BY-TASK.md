@@ -1,92 +1,96 @@
 ---
-title: "Guide: Task-Based Navigation of Knowledge Base Standards"
-standard_id: "GM-GUIDE-STANDARDS-BY-TASK"
-aliases: ["Standards by Task Guide", "Task-Oriented Standards"]
+title: 'Guide: Task-Based Navigation of Knowledge Base Standards'
+standard_id: GM-GUIDE-STANDARDS-BY-TASK
+aliases:
+- Standards by Task Guide
+- Task-Oriented Standards
 tags:
-  - status/draft
-  - content-type/guide-document
-  - topic/standards-governance
-  - topic/workflow
-  - topic/knowledge-management
-  - topic/content-authoring
-  - topic/navigation
-kb-id: "standards"
-info-type: "guide-document"
-primary-topic: "Task-oriented guide to Knowledge Base Standards, categorizing them by common activities and priority to help users find relevant standards."
-related-standards: [
-    "GM-GUIDE-KB-USAGE",
-    "AS-STRUCTURE-MASTER-KB-INDEX",
-    "CS-POLICY-KB-IDENTIFICATION",
-    "AS-STRUCTURE-KB-ROOT",
-    "CS-POLICY-KB-ROOT",
-    "SF-CONVENTIONS-NAMING",
-    "SF-SYNTAX-YAML-FRONTMATTER",
-    "MT-SCHEMA-FRONTMATTER",
-    "MT-TAGGING-STRATEGY-POLICY",
-    "MT-TAGS-IMPLEMENTATION",
-    "CS-POLICY-SCOPE-INCLUSION",
-    "CS-POLICY-SCOPE-EXCLUSION",
-    "AS-KB-DIRECTORY-STRUCTURE",
-    "AS-STRUCTURE-KB-PART",
-    "CS-POLICY-KB-PART-CONTENT",
-    "CS-POLICY-PART-OVERVIEW",
-    "SF-SYNTAX-HEADINGS",
-    "SF-SYNTAX-LINKS-GENERAL",
-    "SF-LINKS-INTERNAL-SYNTAX",
-    "GM-MANDATE-KB-USAGE-GUIDE",
-    "AS-STRUCTURE-TEMPLATES-DIRECTORY",
-    "GM-MANDATE-STANDARDS-GLOSSARY",
-    "GM-GLOSSARY-STANDARDS-TERMS",
-    "AS-STRUCTURE-DOC-CHAPTER",
-    "CS-POLICY-DOC-CHAPTER-CONTENT",
-    "CS-POLICY-TONE-LANGUAGE",
-    "AS-SCHEMA-METHODOLOGY-DESCRIPTION",
-    "AS-SCHEMA-CONCEPT-DEFINITION",
-    "SF-FORMATTING-FILE-HYGIENE",
-    "SF-SYNTAX-KEYREF",
-    "SF-CONDITIONAL-SYNTAX-ATTRIBUTES",
-    "CS-CONTENT-PROFILING-POLICY",
-    "CS-LINKING-INTERNAL-POLICY",
-    "CS-MODULARITY-TRANSCLUSION-POLICY",
-    "SF-TRANSCLUSION-SYNTAX",
-    "CS-POLICY-ACCESSIBILITY",
-    "SF-ACCESSIBILITY-IMAGE-ALT-TEXT",
-    "SF-SYNTAX-LISTS",
-    "SF-SYNTAX-CODE",
-    "SF-SYNTAX-TABLES",
-    "SF-FORMATTING-CITATIONS",
-    "CS-POLICY-LAYERED-INFORMATION",
-    "CS-TOC-POLICY",
-    "SF-TOC-SYNTAX",
-    "SF-SYNTAX-EMPHASIS",
-    "SF-SYNTAX-BLOCKQUOTES",
-    "SF-SYNTAX-IMAGES",
-    "SF-SYNTAX-ESCAPING-CHARACTERS",
-    "SF-SYNTAX-DEFINITION-LISTS",
-    "SF-SYNTAX-FOOTNOTES",
-    "SF-SYNTAX-MATH-EQUATIONS",
-    "SF-SYNTAX-DIAGRAMS-MERMAID",
-    "AS-STRUCTURE-ASSET-ORGANIZATION",
-    "OM-POLICY-STANDARDS-GOVERNANCE",
-    "MT-REGISTRY-TAG-GLOSSARY",
-    "MT-KEYREF-MANAGEMENT",
-    "UA-KEYDEFS-GLOBAL",
-    "OM-VERSIONING-CHANGELOGS",
-    "OM-POLICY-STANDARDS-DEPRECATION",
-    "SF-CALLOUTS-SYNTAX",
-    "U-SCHEMA-REFERENCE-001",
-    "U-SCHEMA-TASK-001"
-    ]
-version: '0.1.0'
-date-created: "2025-05-29T11:58:48Z"
-date-modified: "2025-05-30T12:00:00Z"
-primary_domain: "GM"
-sub_domain: "GUIDE"
-scope_application: "Provides a task-based approach to navigating and applying the refactored knowledge base standards."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["User Onboarding", "Standards Adoption", "Workflow Efficiency"]
-change_log_url: "./GM-GUIDE-STANDARDS-BY-TASK-changelog.md"
+- status/draft
+- content-type/guide-document
+- topic/standards-governance
+- topic/workflow
+- topic/knowledge-management
+- topic/content-authoring
+- topic/navigation
+kb-id: standards
+info-type: guide-document
+primary-topic: Task-oriented guide to Knowledge Base Standards, categorizing them by common activities and priority to help users find relevant standards.
+related-standards:
+- GM-GUIDE-KB-USAGE
+- AS-STRUCTURE-MASTER-KB-INDEX
+- CS-POLICY-KB-IDENTIFICATION
+- AS-STRUCTURE-KB-ROOT
+- CS-POLICY-KB-ROOT
+- SF-CONVENTIONS-NAMING
+- SF-SYNTAX-YAML-FRONTMATTER
+- MT-SCHEMA-FRONTMATTER
+- MT-TAGGING-STRATEGY-POLICY
+- MT-TAGS-IMPLEMENTATION
+- CS-POLICY-SCOPE-INCLUSION
+- CS-POLICY-SCOPE-EXCLUSION
+- AS-KB-DIRECTORY-STRUCTURE
+- AS-STRUCTURE-KB-PART
+- CS-POLICY-KB-PART-CONTENT
+- CS-POLICY-PART-OVERVIEW
+- SF-SYNTAX-HEADINGS
+- SF-SYNTAX-LINKS-GENERAL
+- SF-LINKS-INTERNAL-SYNTAX
+- GM-MANDATE-KB-USAGE-GUIDE
+- AS-STRUCTURE-TEMPLATES-DIRECTORY
+- GM-MANDATE-STANDARDS-GLOSSARY
+- GM-GLOSSARY-STANDARDS-TERMS
+- AS-STRUCTURE-DOC-CHAPTER
+- CS-POLICY-DOC-CHAPTER-CONTENT
+- CS-POLICY-TONE-LANGUAGE
+- AS-SCHEMA-METHODOLOGY-DESCRIPTION
+- AS-SCHEMA-CONCEPT-DEFINITION
+- SF-FORMATTING-FILE-HYGIENE
+- SF-SYNTAX-KEYREF
+- SF-CONDITIONAL-SYNTAX-ATTRIBUTES
+- CS-CONTENT-PROFILING-POLICY
+- CS-LINKING-INTERNAL-POLICY
+- CS-MODULARITY-TRANSCLUSION-POLICY
+- SF-TRANSCLUSION-SYNTAX
+- CS-POLICY-ACCESSIBILITY
+- SF-ACCESSIBILITY-IMAGE-ALT-TEXT
+- SF-SYNTAX-LISTS
+- SF-SYNTAX-CODE
+- SF-SYNTAX-TABLES
+- SF-FORMATTING-CITATIONS
+- CS-POLICY-LAYERED-INFORMATION
+- CS-TOC-POLICY
+- SF-TOC-SYNTAX
+- SF-SYNTAX-EMPHASIS
+- SF-SYNTAX-BLOCKQUOTES
+- SF-SYNTAX-IMAGES
+- SF-SYNTAX-ESCAPING-CHARACTERS
+- SF-SYNTAX-DEFINITION-LISTS
+- SF-SYNTAX-FOOTNOTES
+- SF-SYNTAX-MATH-EQUATIONS
+- SF-SYNTAX-DIAGRAMS-MERMAID
+- AS-STRUCTURE-ASSET-ORGANIZATION
+- OM-POLICY-STANDARDS-GOVERNANCE
+- MT-REGISTRY-TAG-GLOSSARY
+- MT-KEYREF-MANAGEMENT
+- UA-KEYDEFS-GLOBAL
+- OM-VERSIONING-CHANGELOGS
+- OM-POLICY-STANDARDS-DEPRECATION
+- SF-CALLOUTS-SYNTAX
+- U-SCHEMA-REFERENCE-001
+- U-SCHEMA-TASK-001
+version: 0.1.0
+date-created: '2025-05-29T11:58:48Z'
+date-modified: '2025-05-30T12:00:00Z'
+primary_domain: GM
+sub_domain: GUIDE
+scope_application: Provides a task-based approach to navigating and applying the refactored knowledge base standards.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- User Onboarding
+- Standards Adoption
+- Workflow Efficiency
+change_log_url: ./GM-GUIDE-STANDARDS-BY-TASK-changelog.md
 ---
 # Guide: Task-Based Navigation of Knowledge Base Standards (GM-GUIDE-STANDARDS-BY-TASK)
 
@@ -627,8 +631,12 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
     * Requires specific Mermaid JavaScript library for rendering.
     * *Task Priority Rationale*: Diagrams will appear as code blocks without Mermaid support.
 
+## 8. Appendix
+
+For further details on the refactoring project that led to this standards structure, please see the [Refactor Roadmap](../../../_temp/Refactor Roadmap.md).
+For guidelines on how to contribute to this knowledge base or propose changes to standards, refer to the [CONTRIBUTOR_GUIDE](../../CONTRIBUTOR_GUIDE.md).
+
 ---
 *This document provides a task-based entry point to the standards knowledge base. It is intended to complement the [[GM-GUIDE-KB-USAGE]].*
 *It replaces the older `standards/GUIDE-TASK-BASED.md`.*
-*For the overall refactoring project context, refer to [[Refactor Roadmap.md]].*
-*Note: The `[[CONTRIBUTOR_GUIDE.md]]` tracks key decisions and progress of the refactoring effort.*
+*For the overall refactoring project context, refer to [Refactor Roadmap](../../../_temp/Refactor Roadmap.md) .*

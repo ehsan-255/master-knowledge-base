@@ -1,25 +1,34 @@
 ---
-title: "Standard: Markdown Syntax for Mermaid Diagrams"
-standard_id: "SF-SYNTAX-DIAGRAMS-MERMAID"
-aliases: ["Mermaid Syntax", "Markdown Diagram Syntax", "Embedding Mermaid Diagrams"]
+title: 'Standard: Markdown Syntax for Mermaid Diagrams'
+standard_id: SF-SYNTAX-DIAGRAMS-MERMAID
+aliases:
+- Mermaid Syntax
+- Markdown Diagram Syntax
+- Embedding Mermaid Diagrams
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Mermaid Diagram Syntax in Markdown"
-related-standards: ["SF-SYNTAX-CODE", "SF-FORMATTING-FILE-HYGIENE"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T21:00:00Z"
-primary_domain: "SF"
-sub_domain: "MARKDOWN"
-scope_application: "Defines the standard method for embedding Mermaid diagrams within Markdown documents to create text-based diagrams."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Technical documentation", "Process visualization", "Authoring of complex diagrams as code", "Version controllable diagrams"]
-change_log_url: "./SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: Mermaid Diagram Syntax in Markdown
+related-standards:
+- SF-SYNTAX-CODE
+- SF-FORMATTING-FILE-HYGIENE
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T21:00:00Z'
+primary_domain: SF
+sub_domain: MARKDOWN
+scope_application: Defines the standard method for embedding Mermaid diagrams within Markdown documents to create text-based diagrams.
+criticality: p2-medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Technical documentation
+- Process visualization
+- Authoring of complex diagrams as code
+- Version controllable diagrams
+change_log_url: ./SF-SYNTAX-DIAGRAMS-MERMAID-changelog.md
 ---
 # Standard: Markdown Syntax for Mermaid Diagrams (SF-SYNTAX-DIAGRAMS-MERMAID)
 

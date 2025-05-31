@@ -1,25 +1,30 @@
 ---
-title: "Standard: Citation Formatting Guidelines"
-standard_id: "SF-FORMATTING-CITATIONS"
-aliases: ["Citations", "Reference Formatting"]
+title: 'Standard: Citation Formatting Guidelines'
+standard_id: SF-FORMATTING-CITATIONS
+aliases:
+- Citations
+- Reference Formatting
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Citation Formatting Guidelines"
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: Citation Formatting Guidelines
 related-standards: []
-version: '1.0.0'
-date-created: "2025-05-29T13:24:53Z"
-date-modified: "2025-05-30T18:00:00Z"
-primary_domain: "SF"
-sub_domain: "MARKDOWN"
-scope_application: "Defines the formatting standards for citations and references in knowledge base documents."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Citation consistency", "Reference formatting", "Academic standards"]
-change_log_url: "./SF-FORMATTING-CITATIONS-changelog.md"
+version: 1.0.0
+date-created: '2025-05-29T13:24:53Z'
+date-modified: '2025-05-30T18:00:00Z'
+primary_domain: SF
+sub_domain: MARKDOWN
+scope_application: Defines the formatting standards for citations and references in knowledge base documents.
+criticality: p1-high
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Citation consistency
+- Reference formatting
+- Academic standards
+change_log_url: ./SF-FORMATTING-CITATIONS-changelog.md
 ---
 # Standard: Citing External Sources (APA 7th Edition) (SF-FORMATTING-CITATIONS)
 

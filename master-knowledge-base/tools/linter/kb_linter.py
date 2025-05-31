@@ -11,7 +11,7 @@ import argparse # For CI-friendliness
 import sys # For CI-friendliness
 
 # --- Configuration (Constants) ---
-STANDARD_ID_REGEX = r"^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\-]+$" # Updated to allow longer sub-domains
+STANDARD_ID_REGEX = r"^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$" # Agreed: All UPPERCASE, Domain-RestOfID structure
 ISO_DATE_REGEX = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$"
 KEBAB_CASE_TAG_REGEX = r"^[a-z0-9]+(-[a-z0-9]+)*(/[a-z0-9]+(-[a-z0-9]+)*)*$"
 INTERNAL_LINK_REGEX = r"\[\[([^\]#\|]+)(?:#([^\]\|]+))?(?:\|([^\]]+))?\]\]" 
@@ -28,7 +28,7 @@ MANDATORY_KEYS_BASE = [
     "primary-topic", "kb-id", "tags", "scope_application", 
     "criticality", "lifecycle_gatekeeper", "impact_areas"
 ]
-MANDATORY_KEYS_FOR_STANDARD_DEFINITION = MANDATORY_KEYS_BASE + [
+MANDATORY_KEYS_FOR_STANDARD_DEFINITION_POLICY = MANDATORY_KEYS_BASE + [
     "standard_id", "primary_domain", "sub_domain", "change_log_url"
 ]
 
@@ -187,7 +187,12 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
         return {"filepath": filepath_abs, "errors": errors, "warnings": warnings, "infos": infos, "standard_id": None, "_fm_str_cache": fm_str_cache, "_fm_content_start_line_cache": fm_content_start_line_cache}
 
     current_info_type = frontmatter_data.get("info-type")
-    mandatory_keys = MANDATORY_KEYS_FOR_STANDARD_DEFINITION if current_info_type == "standard-definition" else MANDATORY_KEYS_BASE
+    # Updated logic for mandatory keys based on info-type
+    if current_info_type in ["standard-definition", "policy-document"]:
+        mandatory_keys = MANDATORY_KEYS_FOR_STANDARD_DEFINITION_POLICY
+    else:
+        mandatory_keys = MANDATORY_KEYS_BASE
+    
     for key in mandatory_keys:
         if key not in frontmatter_data:
             errors.append({"message": f"Mandatory key '{key}' missing.", "line": fm_content_start_line -1 })
@@ -344,14 +349,17 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
     content_lines = markdown_content.splitlines(True)
     for i, line_text in enumerate(content_lines):
         for match in re.finditer(INTERNAL_LINK_REGEX, line_text):
-            target_link, anchor, display_text = match.groups() # Adjusted group unpacking
+            # Corrected regex group unpacking
+            target_id_from_link, anchor, display_text_from_link = match.groups()
             link_line_num = fm_content_end_line + i + 1 
-            if "/" in target_link or target_link.endswith(".md"):
-                warnings.append({"message": f"Path-based link '[[{match.group(0)}]]'. Use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.", "line": link_line_num })
-            elif re.match(STANDARD_ID_REGEX, target_link):
-                 if target_link not in config.standards_index:
-                    warnings.append({"message": f"Potentially broken link: Standard ID '[[{target_link}]]' not found in standards_index.json.", "line": link_line_num })
-            # Else: could be a plain text [[bracketed phrase]], not necessarily an ID. Or an anchor to current doc.
+            if "/" in target_id_from_link or target_id_from_link.endswith(".md"):
+                errors.append({"message": f"Path-based link '[[{match.group(0)}]]'. Must use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.", "line": link_line_num })
+            elif re.match(STANDARD_ID_REGEX, target_id_from_link):
+                 if target_id_from_link not in config.standards_index:
+                    warnings.append({"message": f"Potentially broken link: Standard ID '[[{target_id_from_link}]]' not found in standards_index.json.", "line": link_line_num })
+            # Else: could be a plain text [[bracketed phrase]], not necessarily an ID. Or an anchor to current doc (e.g. [[#Some Heading]]).
+            # Consider if [[#Some Heading]] should be flagged or allowed.
+            # For now, only explicit STANDARD_ID format is actively checked against index.
                 
     return {"filepath": filepath_abs, "errors": errors, "warnings": warnings, "infos": infos, "standard_id": extracted_standard_id, "_fm_str_cache": fm_str_cache, "_fm_content_start_line_cache": fm_content_start_line_cache}
 
@@ -443,18 +451,18 @@ def main():
             print(f"Using existing standards_index.json found at {dummy_index_path}")
 
         dummy_files_to_create = {
-            "XX-LINT-TESTDUMMY1.md": """---
+            "XX-LINT-TESTDUMMY1.MD": """---
 title: Dummy Test One (Correct ID)
 standard_id: XX-LINT-TESTDUMMY1
 info-type: standard-definition
 version: '1.0'
-date-created: 2023-01-01T00:00:00Z
-date-modified: 2023-01-01T00:00:00Z
+date-created: "2023-01-01T00:00:00Z"
+date-modified: "2023-01-01T00:00:00Z"
 primary_domain: AS 
 sub_domain: SCHEMA # Make sure this is valid for AS in your test registry
-criticality: P1-High
+criticality: p1-high # Corrected casing
 tags: [status/draft, topic/testing, kb-id/test]
-change_log_url: ./XX-LINT-TESTDUMMY1-changelog.md 
+change_log_url: ./XX-LINT-TESTDUMMY1-CHANGELOG.MD 
 primary-topic: Test
 kb-id: kb-id/test
 scope_application: Test scope
@@ -465,18 +473,18 @@ related-standards: ["AS-SCHEMA-TASK"]
 ---
 Content of dummy 1. [[AS-SCHEMA-CONCEPT-DEFINITION]]
 """,
-            "XX-LINT-TESTDUMMY2.md": """---
+            "XX-LINT-TESTDUMMY2.MD": """---
 title: Dummy Test Two (Duplicate ID) # Key order error - title is not first
 standard_id: XX-LINT-TESTDUMMY1 
 info-type: policy-document
 version: '0.1.0'
-date-created: 2023-02-02T00:00:00Z
-date-modified: 2023-02-02T00:00:00Z
+date-created: "2023-02-02T00:00:00Z"
+date-modified: "2023-02-02T00:00:00Z"
 tags: [status/approved, kb-id/test]
 primary-topic: Test 2
 kb-id: kb-id/test
 scope_application: Test scope 2
-criticality: P2-Medium
+criticality: p2-medium # Corrected casing
 lifecycle_gatekeeper: SME-Consensus
 impact_areas: ['test2']
 ---
@@ -487,13 +495,13 @@ title: Filename Mismatch Test
 standard_id: XX-CORRECT-ID-001
 info-type: standard-definition
 version: '1.0'
-date-created: 2023-03-03T00:00:00Z
-date-modified: 2023-03-03T00:00:00Z
+date-created: "2023-03-03T00:00:00Z"
+date-modified: "2023-03-03T00:00:00Z"
 primary_domain: CS # Make sure this is valid
 sub_domain: POLICY # Make sure this is valid for CS
-criticality: P3-Low
+criticality: p3-low # Corrected casing
 tags: [status/draft, kb-id/test]
-change_log_url: ./changelog.md
+change_log_url: ./XX-CORRECT-ID-001-CHANGELOG.MD # Assuming changelog name matches ID
 primary-topic: Test 3
 kb-id: kb-id/test
 scope_application: Test scope 3
@@ -511,8 +519,8 @@ Content.
             fpath = os.path.join(target_dummy_dir, fname)
             dummy_files_created_paths.append(fpath)
             with open(fpath, "w", encoding="utf-8", newline="\n") as f: f.write(content)
-            if fname == "XX-LINT-TESTDUMMY1.md" and "change_log_url: ./XX-LINT-TESTDUMMY1-changelog.md" in content:
-                cl_path = os.path.join(target_dummy_dir, "XX-LINT-TESTDUMMY1-changelog.md")
+            if fname == "XX-LINT-TESTDUMMY1.MD" and "change_log_url: ./XX-LINT-TESTDUMMY1-CHANGELOG.MD" in content:
+                cl_path = os.path.join(target_dummy_dir, "XX-LINT-TESTDUMMY1-CHANGELOG.MD")
                 dummy_files_created_paths.append(cl_path)
                 with open(cl_path, "w") as cf: cf.write("# Changelog")
         print(f"Created dummy files in {target_dummy_dir}")

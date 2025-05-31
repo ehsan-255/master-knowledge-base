@@ -1,25 +1,35 @@
 ---
-title: "Policy: Universal Principles for Content Inclusion"
-standard_id: "CS-POLICY-SCOPE-INCLUSION"
-aliases: ["Content Inclusion Policy", "Scope Inclusion Principles"]
+title: 'Policy: Universal Principles for Content Inclusion'
+standard_id: CS-POLICY-SCOPE-INCLUSION
+aliases:
+- Content Inclusion Policy
+- Scope Inclusion Principles
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Content Inclusion Principles"
-related-standards: ["CS-POLICY-SCOPE-EXCLUSION", "SF-FORMATTING-CITATIONS", "AS-STRUCTURE-MASTER-KB-INDEX"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T14:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "All knowledge base content planning, creation, and curation activities."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Knowledge base quality", "Content relevance", "User trust", "KB utility", "Maintainability"]
-change_log_url: "./CS-POLICY-SCOPE-INCLUSION-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Content Inclusion Principles
+related-standards:
+- CS-POLICY-SCOPE-EXCLUSION
+- SF-FORMATTING-CITATIONS
+- AS-STRUCTURE-MASTER-KB-INDEX
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T14:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: All knowledge base content planning, creation, and curation activities.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- Knowledge base quality
+- Content relevance
+- User trust
+- KB utility
+- Maintainability
+change_log_url: ./CS-POLICY-SCOPE-INCLUSION-changelog.md
 ---
 # Policy: Universal Principles for Content Inclusion (CS-POLICY-SCOPE-INCLUSION)
 

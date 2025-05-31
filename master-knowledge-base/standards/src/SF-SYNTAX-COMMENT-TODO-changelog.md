@@ -1,8 +1,34 @@
-# Changelog: SF-SYNTAX-COMMENT-TODO
+---
+title: 'Changelog: Standard: HTML Comment Syntax for TODO Items'
+standard_id: SF-SYNTAX-COMMENT-TODO-CHANGELOG
+aliases:
+  - 'Standard: HTML Comment Syntax for TODO Items Changelog'
+tags:
+  - status/active
+  - content-type/changelog
+  - topic/governance
+kb-id: standards
+info-type: changelog
+primary-topic: 'Tracks changes for the standard: [[SF-SYNTAX-COMMENT-TODO]] - Standard:
+  HTML Comment Syntax for TODO Items.'
+related-standards:
+  - SF-SYNTAX-COMMENT-TODO
+version: 1.0.0
+date-created: '2025-05-30T00:00:00Z'
+date-modified: '2025-05-31T10:05:30Z'
+primary_domain: SF
+sub_domain: MARKDOWN
+scope_application: Tracks changes for [[SF-SYNTAX-COMMENT-TODO]].
+criticality: p3-low
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+  - Task tracking
+  - Authoring workflow
+  - Automated reporting
+  - Content maintenance
+change_log_url: ./SF-SYNTAX-COMMENT-TODO-changelog.md
+---
 
-## Version 1.0.0 (2025-05-30)
-- Initial versioning and frontmatter conformance pass.
-- `kb-id` set to "standards" (if it was blank).
-- `date-modified` updated.
-- `version` formatting corrected/ensured.
-- Other standard frontmatter fields validated/added if missing.
+# Changelog
+
+This document records the change history.

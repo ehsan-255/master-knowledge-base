@@ -1,69 +1,75 @@
 ---
-title: "Guide: Knowledge Base Usage and Standards"
-standard_id: "GM-GUIDE-KB-USAGE"
-aliases: ["KB Onboarding Guide", "How to Use This KB", "KB Usage Guide"]
+title: 'Guide: Knowledge Base Usage and Standards'
+standard_id: GM-GUIDE-KB-USAGE
+aliases:
+- KB Onboarding Guide
+- How to Use This KB
+- KB Usage Guide
 tags:
-  - status/draft
-  - content-type/guide-document
-  - topic/onboarding
-  - topic/standards-governance
-  - topic/user-documentation
-  - topic/knowledge-management
-  - topic/content-authoring
-kb-id: "standards"
-info-type: "guide-document"
-primary-topic: "Comprehensive guide for users on how to navigate, understand, apply, and contribute to the knowledge base system and its standards."
-related-standards: [
-    "GM-MANDATE-KB-USAGE-GUIDE", 
-    "AS-INDEX-KB-MASTER", 
-    "SF-CONVENTIONS-NAMING", 
-    "AS-STRUCTURE-KB-ROOT", 
-    "AS-STRUCTURE-KB-PART", 
-    "CS-POLICY-PART-OVERVIEW", 
-    "AS-STRUCTURE-DOC-CHAPTER", 
-    "AS-ROOT-STANDARDS-KB", 
-    "AS-STRUCTURE-TEMPLATES-DIRECTORY",
-    "CS-TOC-POLICY", 
-    "SF-TOC-SYNTAX", 
-    "SF-LINKS-INTERNAL-SYNTAX", 
-    "MT-TAGGING-STRATEGY-POLICY", 
-    "MT-REGISTRY-TAG-GLOSSARY",
-    "MT-SCHEMA-FRONTMATTER",
-    "CS-POLICY-TONE-LANGUAGE",
-    "SF-SYNTAX-HEADINGS",
-    "SF-SYNTAX-LISTS",
-    "SF-SYNTAX-LINKS-GENERAL",
-    "UA-KEYDEFS-GLOBAL",
-    "SF-SYNTAX-KEYREF",
-    "MT-KEYREF-MANAGEMENT",
-    "CS-CONTENT-PROFILING-POLICY",
-    "SF-CONDITIONAL-SYNTAX-ATTRIBUTES",
-    "AS-SCHEMA-METHODOLOGY-DESCRIPTION",
-    "AS-SCHEMA-CONCEPT-DEFINITION",
-    "AS-SCHEMA-REFERENCE",
-    "AS-SCHEMA-TASK",
-    "CS-LINKING-INTERNAL-POLICY",
-    "MT-TAGS-IMPLEMENTATION",
-    "SF-TRANSCLUSION-SYNTAX",
-    "CS-MODULARITY-TRANSCLUSION-POLICY",
-    "SF-CALLOUTS-SYNTAX",
-    "CS-ADMONITIONS-POLICY",
-    "OM-POLICY-STANDARDS-GOVERNANCE",
-    "OM-VERSIONING-CHANGELOGS",
-    "OM-POLICY-STANDARDS-DEPRECATION",
-    "GM-GLOSSARY-STANDARDS-TERMS",
-    "GM-GUIDE-STANDARDS-BY-TASK"
-    ]
-version: '0.1.0'
-date-created: "2025-05-29T11:51:19Z"
-date-modified: "2025-05-30T14:00:00Z"
-primary_domain: "GM"
-sub_domain: "GUIDE"
-scope_application: "Provides guidance for all users and contributors on utilizing the knowledge base and its standards."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["User Onboarding", "Standards Adoption", "KB Navigation", "Contribution Process"]
-change_log_url: "./GM-GUIDE-KB-USAGE-changelog.md"
+- status/draft
+- content-type/guide-document
+- topic/onboarding
+- topic/standards-governance
+- topic/user-documentation
+- topic/knowledge-management
+- topic/content-authoring
+kb-id: standards
+info-type: guide-document
+primary-topic: Comprehensive guide for users on how to navigate, understand, apply, and contribute to the knowledge base system and its standards.
+related-standards:
+- GM-MANDATE-KB-USAGE-GUIDE
+- AS-INDEX-KB-MASTER
+- SF-CONVENTIONS-NAMING
+- AS-STRUCTURE-KB-ROOT
+- AS-STRUCTURE-KB-PART
+- CS-POLICY-PART-OVERVIEW
+- AS-STRUCTURE-DOC-CHAPTER
+- AS-ROOT-STANDARDS-KB
+- AS-STRUCTURE-TEMPLATES-DIRECTORY
+- CS-TOC-POLICY
+- SF-TOC-SYNTAX
+- SF-LINKS-INTERNAL-SYNTAX
+- MT-TAGGING-STRATEGY-POLICY
+- MT-REGISTRY-TAG-GLOSSARY
+- MT-SCHEMA-FRONTMATTER
+- CS-POLICY-TONE-LANGUAGE
+- SF-SYNTAX-HEADINGS
+- SF-SYNTAX-LISTS
+- SF-SYNTAX-LINKS-GENERAL
+- UA-KEYDEFS-GLOBAL
+- SF-SYNTAX-KEYREF
+- MT-KEYREF-MANAGEMENT
+- CS-CONTENT-PROFILING-POLICY
+- SF-CONDITIONAL-SYNTAX-ATTRIBUTES
+- AS-SCHEMA-METHODOLOGY-DESCRIPTION
+- AS-SCHEMA-CONCEPT-DEFINITION
+- AS-SCHEMA-REFERENCE
+- AS-SCHEMA-TASK
+- CS-LINKING-INTERNAL-POLICY
+- MT-TAGS-IMPLEMENTATION
+- SF-TRANSCLUSION-SYNTAX
+- CS-MODULARITY-TRANSCLUSION-POLICY
+- SF-CALLOUTS-SYNTAX
+- CS-ADMONITIONS-POLICY
+- OM-POLICY-STANDARDS-GOVERNANCE
+- OM-VERSIONING-CHANGELOGS
+- OM-POLICY-STANDARDS-DEPRECATION
+- GM-GLOSSARY-STANDARDS-TERMS
+- GM-GUIDE-STANDARDS-BY-TASK
+version: 0.1.0
+date-created: '2025-05-29T11:51:19Z'
+date-modified: '2025-05-30T14:00:00Z'
+primary_domain: GM
+sub_domain: GUIDE
+scope_application: Provides guidance for all users and contributors on utilizing the knowledge base and its standards.
+criticality: p1-high
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- User Onboarding
+- Standards Adoption
+- KB Navigation
+- Contribution Process
+change_log_url: ./GM-GUIDE-KB-USAGE-changelog.md
 ---
 # Guide: Knowledge Base Usage and Standards
 
@@ -105,7 +111,7 @@ Our KB system utilizes a "Source-and-Render" model.
 This section guides you through creating a typical content document.
 
 ### 3.1 Creating a New Content Document
-1.  **Choose a Template (Recommended):** Navigate to the `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]` and copy an appropriate template (e.g., `[[master-knowledge-base/templates/tpl-chapter-template.md|Chapter Template]]`) to your target KB location. 
+1.  **Choose a Template (Recommended):** Navigate to the `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]` and copy an appropriate template (e.g., `[Chapter Template](../templates/tpl-chapter-template.md)`) to your target KB location. 
 2.  **File Naming:** Name your new file according to `[[SF-CONVENTIONS-NAMING]]` (lowercase kebab-case, descriptive, optional numerical prefix for sequencing).
 3.  **Initial Frontmatter:** Populate all 10 canonical YAML frontmatter keys as defined in `[[MT-SCHEMA-FRONTMATTER]]`. Pay close attention to `title`, `kb-id`, `content-type` tag, `info-type`, `status/draft` tag, and `topic/*` tags.
 
@@ -186,7 +192,7 @@ Certain document types have specific structural requirements defined by their re
 *(Note: This section details conventions for users of the Obsidian Markdown editor. These conventions are now generalized in the standards. If you use a different editor, these specific features may not apply, but the underlying Markdown standards still do.)*
 
 ### 6.1 Obsidian Linking Conventions
--   Use Wikilinks: `[[STANDARD_ID|Optional Display Text]]` or `[[path/to/file#Optional Heading|Optional Display Text]]`.
+-   Use Wikilinks: `[[STANDARD_ID|Optional Display Text]]` or `[[STANDARD_ID#Optional Heading|Optional Display Text]]`. Note: an older example of a path-based wikilink like `[[path/to/file#Optional Heading|Optional Display Text]]` has been updated to reflect primary standard ID usage.
 -   Paths SHOULD primarily use `standard_id` for linking to other standards. For non-standard content, relative paths are used.
 -   Utilize Obsidian's path autocompletion where helpful.
 -   Refer to `[[SF-LINKS-INTERNAL-SYNTAX]]` and `[[CS-LINKING-INTERNAL-POLICY]]`.
@@ -210,11 +216,11 @@ Certain document types have specific structural requirements defined by their re
 ## 7. LLM-Assisted Content Generation (Tutorial/How-To Style)
 
 ### 7.1 Introduction to the LLM Content Generation Cookbook
--   The `[[llm-content-generation-cookbook-kb/root|LLM Content Generation Cookbook KB]]` provides recipes and best practices for using Large Language Models (LLMs) to assist with content creation.
+-   The `[LLM Content Generation Cookbook KB](../../llm-content-generation-cookbook-kb/root.md)` provides recipes and best practices for using Large Language Models (LLMs) to assist with content creation.
 
 ### 7.2 How to Use Recipes and Prompt Templates
--   Cookbook recipes (e.g., `[[llm-content-generation-cookbook-kb/part-ii-recipes/01-recipe-methodology-schema|Recipe: Generating a Methodology Description]]`) provide structured prompts.
--   These prompts reference versioned prompt templates from `[[master-knowledge-base/llm-io/llm-prompts|LLM Prompt Library]]` and I/O schemas from `[[master-knowledge-base/llm-io/llm-io-schemas|LLM I/O Schemas]]`.
+-   Cookbook recipes (e.g., `[Recipe: Generating a Methodology Description](../../llm-content-generation-cookbook-kb/part-ii-recipes/01-recipe-methodology-schema.md)`) provide structured prompts.
+-   These prompts reference versioned prompt templates from `[LLM Prompt Library](../../llm-io/llm-prompts/)` and I/O schemas from `[LLM I/O Schemas](../../llm-io/llm-io-schemas/)`.
 -   Follow the input variable guidance in each recipe.
 
 ### 7.3 Critical Human Review and Validation of LLM Output
@@ -249,6 +255,13 @@ Certain document types have specific structural requirements defined by their re
 -   **Standards Terminology:** For definitions of terms used within the standards documents themselves, see `[[GM-GLOSSARY-STANDARDS-TERMS]]`.
 -   **Tag Glossary:** For definitions of all official tags used in YAML frontmatter, see `[[MT-REGISTRY-TAG-GLOSSARY]]`.
 -   **Questions:** If you have questions or need clarification, please [Specify Contact Point or Channel, e.g., "reach out on the #kb-standards channel" or "contact Jim"].
+
+## 10. Appendix: Further Reading & Advanced Topics
+
+*   Advanced Search Queries and Techniques (See [[ADVANCED-SEARCH-GUIDE]] - *placeholder for a future guide*)
+*   Knowledge Base Architecture Overview (See [[AS-MAP-STANDARDS-KB]])
+*   The full refactoring plan that led to this structure: [Refactor Roadmap](../../../_temp/Refactor Roadmap.md)
+*   Details on how to contribute new standards or propose changes (See [[OM-POLICY-STANDARDS-GOVERNANCE]])
 
 ---
 *This guide is intended to be the primary onboarding document for all users of the Knowledge Base. It replaces and expands upon the original `GUIDE-KB-USAGE-AND-STANDARDS.md`.*

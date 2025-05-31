@@ -1,29 +1,34 @@
 ---
-title: "Standard: Transclusion Syntax for Content Embedding"
-standard_id: "SF-TRANSCLUSION-SYNTAX"
-aliases: ["Content Embedding Syntax", "Transclusion Standard"]
+title: 'Standard: Transclusion Syntax for Content Embedding'
+standard_id: SF-TRANSCLUSION-SYNTAX
+aliases:
+- Content Embedding Syntax
+- Transclusion Standard
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/technical-standard
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Transclusion Syntax"
-related-standards: [
-  "[[CS-MODULARITY-TRANSCLUSION-POLICY]]",
-  "[[SF-LINKS-INTERNAL-SYNTAX]]",
-  "[[MT-SCHEMA-FRONTMATTER]]"
-]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
-primary_domain: "SF"
-sub_domain: "TRANSCLUSION"
-scope_application: "Defines a generalized syntax for declaring the intent to transclude (embed) content from one document into another within the knowledge base."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Content reusability", "Maintainability", "Authoring tools", "KB rendering systems"]
-change_log_url: "./SF-TRANSCLUSION-SYNTAX-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/technical-standard
+kb-id: standards
+info-type: standard-definition
+primary-topic: Transclusion Syntax
+related-standards:
+- '[[CS-MODULARITY-TRANSCLUSION-POLICY]]'
+- '[[SF-LINKS-INTERNAL-SYNTAX]]'
+- '[[MT-SCHEMA-FRONTMATTER]]'
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T12:00:00Z'
+primary_domain: SF
+sub_domain: TRANSCLUSION
+scope_application: Defines a generalized syntax for declaring the intent to transclude (embed) content from one document into another within the knowledge base.
+criticality: p2-medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Content reusability
+- Maintainability
+- Authoring tools
+- KB rendering systems
+change_log_url: ./SF-TRANSCLUSION-SYNTAX-changelog.md
 ---
 # Standard: Transclusion Syntax for Content Embedding (SF-TRANSCLUSION-SYNTAX)
 

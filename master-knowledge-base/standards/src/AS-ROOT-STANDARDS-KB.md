@@ -1,22 +1,38 @@
 ---
-title: "Standards Knowledge Base Root"
-standard_id: "AS-ROOT-STANDARDS-KB"
-aliases: ["Standards KB Main Page", "Root for Standards KB"]
-tags: ["status/draft", "criticality/P0-Critical", "content-type/navigation-document", "topic/architecture", "kb-id/standards", "kb-root"]
-kb-id: "standards"
-info-type: "standard-definition"
-primary-topic: "Main entry point and master table of contents for the Standards Knowledge Base."
-related-standards: ["AS-STRUCTURE-KB-ROOT", "AS-MAP-STANDARDS-KB", "AS-STRUCTURE-MASTER-KB-INDEX"]
-version: '0.1.0'
-date-created: "2025-05-29T16:10:25Z"
-date-modified: "2025-05-30T12:00:00Z"
-primary_domain: "AS"
-sub_domain: "STRUCTURE" 
-scope_application: "Serves as the primary navigational hub for the Standards Knowledge Base."
-criticality: "P0-Critical"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["KB navigation", "Content discoverability", "User orientation"]
-change_log_url: "./AS-ROOT-STANDARDS-KB-changelog.md"
+title: Standards Knowledge Base Root
+standard_id: AS-ROOT-STANDARDS-KB
+aliases:
+- Standards KB Main Page
+- Root for Standards KB
+- Standards KB Root
+- Root of Standards KB
+tags:
+- status/active
+- criticality/p0-critical
+- content-type/navigation-document
+- topic/architecture
+- kb-id/standards
+- topic/kb-root
+kb-id: standards
+info-type: standard-definition
+primary-topic: Main entry point and master table of contents for the Standards Knowledge Base.
+related-standards:
+- AS-STRUCTURE-KB-ROOT
+- AS-MAP-STANDARDS-KB
+- AS-STRUCTURE-MASTER-KB-INDEX
+version: 0.1.0
+date-created: '2025-05-29T16:10:25Z'
+date-modified: '2025-05-30T12:00:00Z'
+primary_domain: AS
+sub_domain: STRUCTURE
+scope_application: Serves as the primary navigational hub for the Standards Knowledge Base.
+criticality: p0-critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- KB navigation
+- Content discoverability
+- User orientation
+change_log_url: ./AS-ROOT-STANDARDS-KB-changelog.md
 ---
 # Standards Knowledge Base Root (AS-ROOT-STANDARDS-KB)
 

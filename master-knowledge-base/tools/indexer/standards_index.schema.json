@@ -19,7 +19,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "standard_id": { "type": "string", "pattern": "^[A-Z]{2}-[A-Z]{2,15}-[A-Z0-9\\-]+$" },
+          "standard_id": { "type": "string", "pattern": "^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
           "title": { "type": "string" },
           "primary_domain": { "type": "string", "pattern": "^[A-Z]{2}$" },
           "sub_domain": { "type": "string", "pattern": "^[A-Z]{2,15}$" },

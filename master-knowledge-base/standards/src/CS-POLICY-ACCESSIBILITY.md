@@ -1,25 +1,33 @@
 ---
-title: "Policy: Content Accessibility"
-standard_id: "CS-POLICY-ACCESSIBILITY"
-aliases: ["Accessibility Policy", "WCAG Compliance Goals"]
+title: 'Policy: Content Accessibility'
+standard_id: CS-POLICY-ACCESSIBILITY
+aliases:
+- Accessibility Policy
+- WCAG Compliance Goals
 tags:
-  - status/draft
-  - criticality/P1-High
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Content Accessibility Principles"
-related-standards: ["SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "SF-SYNTAX-HEADINGS"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T12:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "All content created and maintained within the knowledge base, aiming to ensure accessibility for all users, including those with disabilities."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["User experience", "Inclusivity", "Legal compliance (e.g., ADA, WCAG)", "Content reach"]
-change_log_url: "./CS-POLICY-ACCESSIBILITY-changelog.md"
+- status/draft
+- criticality/p1-high
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Content Accessibility Principles
+related-standards:
+- SF-ACCESSIBILITY-IMAGE-ALT-TEXT
+- SF-SYNTAX-HEADINGS
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T12:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: All content created and maintained within the knowledge base, aiming to ensure accessibility for all users, including those with disabilities.
+criticality: p1-high
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- User experience
+- Inclusivity
+- Legal compliance (e.g., ADA, WCAG)
+- Content reach
+change_log_url: ./CS-POLICY-ACCESSIBILITY-changelog.md
 ---
 # Policy: Content Accessibility (CS-POLICY-ACCESSIBILITY)
 

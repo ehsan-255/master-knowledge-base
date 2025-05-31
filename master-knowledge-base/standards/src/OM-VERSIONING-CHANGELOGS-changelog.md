@@ -1,26 +1,33 @@
 ---
-title: "Changelog: Versioning and Changelog Management Standard"
-standard_id: "OM-VERSIONING-CHANGELOGS-CHANGELOG"
-aliases: ["Versioning Changelogs Changelog"]
+title: 'Changelog: Standard: Versioning and Changelogs for Standard Files'
+standard_id: OM-VERSIONING-CHANGELOGS-CHANGELOG
+aliases:
+  - 'Standard: Versioning and Changelogs for Standard Files Changelog'
 tags:
   - status/active
   - content-type/changelog
   - topic/versioning
   - topic/changelog-management
-kb-id: "standards"
-info-type: "changelog"
-primary-topic: "Versioning and Changelog Management Standard Changelog"
-related-standards: ["OM-VERSIONING-CHANGELOGS"]
-version: "1.0.0"
-date-created: "2025-05-30T23:30:00Z"
-date-modified: "2025-05-30T23:30:00Z"
-primary_domain: "OM"
-sub_domain: "LIFECYCLE"
-scope_application: "Tracks changes to the Versioning and Changelog Management Standard."
-criticality: "P1-High"
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["Change tracking", "Version history", "Versioning standards"]
-change_log_url: "./OM-VERSIONING-CHANGELOGS-changelog.md"
+kb-id: standards
+info-type: changelog
+primary-topic: 'Tracks changes for the standard: [[OM-VERSIONING-CHANGELOGS]] - Standard:
+  Versioning and Changelogs for Standard Files.'
+related-standards:
+  - OM-VERSIONING-CHANGELOGS
+version: 1.0.0
+date-created: '2025-05-30T23:30:00Z'
+date-modified: '2025-05-31T10:05:30Z'
+primary_domain: OM
+sub_domain: LIFECYCLE
+scope_application: Tracks changes for [[OM-VERSIONING-CHANGELOGS]].
+criticality: p1-high
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+  - Standards management
+  - Change tracking
+  - Historical record keeping
+  - User awareness of changes
+change_log_url: ./OM-VERSIONING-CHANGELOGS-CHANGELOG.md
 ---
 
 # Changelog: OM-VERSIONING-CHANGELOGS

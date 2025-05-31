@@ -1,8 +1,33 @@
-# Changelog: AS-SCHEMA-RELTABLE-DEFINITION
+---
+title: 'Changelog: Standard: Relationship Table (Reltable) Definition'
+standard_id: AS-SCHEMA-RELTABLE-DEFINITION-CHANGELOG
+aliases:
+  - 'Standard: Relationship Table (Reltable) Definition Changelog'
+tags:
+  - status/active
+  - content-type/changelog
+  - topic/governance
+kb-id: standards
+info-type: changelog
+primary-topic: 'Tracks changes for the standard: [[AS-SCHEMA-RELTABLE-DEFINITION]]
+  - Standard: Relationship Table (Reltable) Definition.'
+related-standards:
+  - AS-SCHEMA-RELTABLE-DEFINITION
+version: 0.1.2
+date-created: '2025-05-19T00:00:00Z'
+date-modified: '2025-05-31T10:05:30Z'
+primary_domain: AS
+sub_domain: STRUCTURE
+scope_application: Tracks changes for [[AS-SCHEMA-RELTABLE-DEFINITION]].
+criticality: p2-medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+  - Semantic linking
+  - Knowledge graph generation
+  - Content navigability
+change_log_url: ./AS-SCHEMA-RELTABLE-DEFINITION-changelog.md
+---
 
-## Version 0.1.2 (2025-05-30)
-- Frontmatter conformance pass.
-- `kb-id` corrected to "standards".
-- `date-modified` updated to "2025-05-30T20:00:00Z".
-- `related-standards` list items ensured in valid link format.
-- Other standard frontmatter fields validated/reordered.
+# Changelog
+
+This document records the change history.

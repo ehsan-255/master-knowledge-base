@@ -1,25 +1,33 @@
 ---
-title: "Policy: Clarity, Objectivity, and Consistency in Language"
-standard_id: "CS-POLICY-TONE-LANGUAGE"
-aliases: ["Tone and Language Policy", "Writing Style Guide"]
+title: 'Policy: Clarity, Objectivity, and Consistency in Language'
+standard_id: CS-POLICY-TONE-LANGUAGE
+aliases:
+- Tone and Language Policy
+- Writing Style Guide
 tags:
-  - status/draft
-  - criticality/P2-Medium
-  - content-type/policy-document
-kb-id: "standards"
-info-type: "policy-document"
-primary-topic: "Tone and Language Standards"
-related-standards: ["GM-GLOSSARY-STANDARDS-TERMS"]
-version: '1.0.0'
-date-created: "2024-07-15T12:00:00Z"
-date-modified: "2025-05-30T19:00:00Z"
-primary_domain: "CS"
-sub_domain: "POLICY"
-scope_application: "All written content within the knowledge base, including standard documents, guides, and descriptive texts."
-criticality: "P2-Medium"
-lifecycle_gatekeeper: "Editorial-Board-Approval"
-impact_areas: ["Content readability", "User comprehension", "Professionalism of content", "Consistency across KB", "Accessibility"]
-change_log_url: "./CS-POLICY-TONE-LANGUAGE-changelog.md"
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
+kb-id: standards
+info-type: policy-document
+primary-topic: Tone and Language Standards
+related-standards:
+- GM-GLOSSARY-STANDARDS-TERMS
+version: 1.0.0
+date-created: '2024-07-15T12:00:00Z'
+date-modified: '2025-05-30T19:00:00Z'
+primary_domain: CS
+sub_domain: POLICY
+scope_application: All written content within the knowledge base, including standard documents, guides, and descriptive texts.
+criticality: p2-medium
+lifecycle_gatekeeper: Editorial-Board-Approval
+impact_areas:
+- Content readability
+- User comprehension
+- Professionalism of content
+- Consistency across KB
+- Accessibility
+change_log_url: ./CS-POLICY-TONE-LANGUAGE-changelog.md
 ---
 # Policy: Clarity, Objectivity, and Consistency in Language (CS-POLICY-TONE-LANGUAGE)
 

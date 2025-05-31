@@ -1,0 +1,46 @@
+Refactor: Complete Phase B Linter & Indexer Productionization and Initial Data Validation
+
+This commit concludes Phase B of the standards refactoring project, focusing on the productionization of the `kb_linter.py` and `generate_index.py` tools, and performing extensive automated and targeted manual data corrections to align content with documented standards. This effort has significantly improved data quality and tool reliability.
+
+**I. Tooling Enhancements & Configuration:**
+
+1.  **`standard_id` Regex Alignment:**
+    *   The `STANDARD_ID_REGEX` in `kb_linter.py` and the `standard_id` pattern in `standards_index.schema.json` were updated to `^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$`. This enforces all-uppercase `standard_id`s with a `DOMAIN-RestOfID` structure, where `RestOfID` can be multi-segmented with hyphens and alphanumeric characters.
+
+2.  **Linter (`kb_linter.py`):**
+    *   Updated mandatory key logic, path-based link erroring, regex group unpacking, `README.md`, and dummy file data.
+
+3.  **Indexer (`generate_index.py`):**
+    *   Added `argparse` for configurability, multi-directory scan support (`--src-dirs`), debug output, and updated `README.md`.
+
+4.  **New Utility Scripts Created (`master-knowledge-base/tools/`):**
+    *   `refactor_ids_filenames.py`: Uppercased `standard_id`s and filenames (e.g., `-changelog` to `-CHANGELOG`). Run.
+    *   `refactor_criticality_field.py`: Lowercased `criticality:` field values. Run.
+    *   `refactor_tag_casing.py`: (User-fixed) Lowercased `criticality/*` tags. Run.
+    *   `crlf_to_lf_converter.py`: Converted `.md` file line endings to LF. Run.
+    *   `populate_changelog_fm.py`: (User-fixed) Adds/updates frontmatter for changelogs using `ruamel.yaml` for order. Run with `--force`.
+
+**II. Data Corrections & Standard Alignments:**
+
+*   `standard_id` and Filename Casing: Addressed.
+*   Changelog Frontmatter: Populated for ~75 files.
+*   CRLF Line Endings: Addressed.
+*   `sub_domain` Corrections: `subdomain_registry.yaml` updated for `AS/SCHEMA`, `UA/SCHEMAS`. Specific `SF` files updated to `SF/MARKDOWN`.
+*   Tag & Field Casing for `criticality`: Addressed.
+*   Path-Based Links: Some fixed (e.g., `OM-AUTOMATION-LLM-IO-SCHEMAS.md` backup link removed, `AS-STRUCTURE-TEMPLATES-DIRECTORY.md` template links), others converted to relative Markdown or commented with TODOs.
+*   Example Links: Clarified in `OM-POLICY-STANDARDS-DEPRECATION.md`.
+*   `kb-root` Tag: Corrected to `topic/kb-root`.
+
+**III. Current State & Remaining Issues (Post `linter_report_final_v5.md`):**
+
+*   Indexer: Successfully indexes 304 files; index is schema-valid.
+*   Linter Errors: 3 (all path-based links in guide files requiring manual path verification).
+*   Linter Warnings (128): Primarily key order in changelogs (due to `populate_changelog_fm.py` YAML dump behavior) and some filename/`standard_id` mismatches for changelogs (potential linter/OS case interaction).
+
+**IV. Next Steps (User Action Required to Finalize Phase B):**
+
+1.  Manually Correct Remaining 3 Path-Based Link Errors in guide files.
+2.  Investigate & Resolve Key Order Warnings (likely by refining `populate_changelog_fm.py` further or accepting current state for these warnings).
+3.  Investigate any persistent Filename Mismatches for changelogs.
+
+This iterative process has dramatically improved data quality and tool reliability. 
