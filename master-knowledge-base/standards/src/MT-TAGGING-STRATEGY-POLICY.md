@@ -2,12 +2,12 @@
 title: 'Policy: Tagging Strategy and Implementation'
 standard_id: MT-TAGGING-STRATEGY-POLICY
 aliases:
-- Tagging Policy
-- Tag Strategy
+  - Tagging Policy
+  - Tag Strategy
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/policy-document
+  - status/draft
+  - criticality/p1-high
+  - content-type/policy-document
 kb-id: standards
 info-type: policy-document
 primary-topic: Tagging Strategy and Implementation
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: MT
 sub_domain: TAGGING
-scope_application: Defines the strategy and implementation approach for tagging across the knowledge base.
-criticality: p1-high
+scope_application: Defines the strategy and implementation approach for tagging across
+  the knowledge base.
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Content organization
-- Searchability
-- Metadata consistency
-change_log_url: ./MT-TAGGING-STRATEGY-POLICY-changelog.md
+  - Content organization
+  - Searchability
+  - Metadata consistency
+change_log_url: ./MT-TAGGING-STRATEGY-POLICY-CHANGELOG.MD
 ---
 # Policy: Core Tagging Strategy (MT-TAGGING-STRATEGY-POLICY)
 

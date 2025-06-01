@@ -2,12 +2,12 @@
 title: 'Standard: Heading Syntax'
 standard_id: SF-SYNTAX-HEADINGS
 aliases:
-- Headings
-- Header Syntax
+  - Headings
+  - Header Syntax
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Heading Syntax
@@ -18,13 +18,13 @@ date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines the syntax for creating headings in knowledge base documents.
-criticality: p1-high
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Document structure
-- Navigation
-- Content hierarchy
-change_log_url: ./SF-SYNTAX-HEADINGS-changelog.md
+  - Document structure
+  - Navigation
+  - Content hierarchy
+change_log_url: ./SF-SYNTAX-HEADINGS-CHANGELOG.MD
 ---
 # Standard: Markdown Syntax for Headings (SF-SYNTAX-HEADINGS)
 

@@ -2,12 +2,12 @@
 title: 'Standard: Blockquote Syntax'
 standard_id: SF-SYNTAX-BLOCKQUOTES
 aliases:
-- Blockquotes
-- Quote Blocks
+  - Blockquotes
+  - Quote Blocks
 tags:
-- status/draft
-- criticality/p2-medium
-- content-type/technical-standard
+  - status/draft
+  - criticality/p2-medium
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Blockquote Syntax
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the syntax and usage rules for blockquotes in knowledge base documents.
-criticality: p2-medium
+scope_application: Defines the syntax and usage rules for blockquotes in knowledge
+  base documents.
+criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Content presentation
-- Citation formatting
-- Text emphasis
-change_log_url: ./SF-SYNTAX-BLOCKQUOTES-changelog.md
+  - Content presentation
+  - Citation formatting
+  - Text emphasis
+change_log_url: ./SF-SYNTAX-BLOCKQUOTES-CHANGELOG.MD
 ---
 # Standard: Markdown Syntax for Blockquotes (SF-SYNTAX-BLOCKQUOTES)
 

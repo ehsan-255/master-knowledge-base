@@ -4,6 +4,7 @@ from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap
 import argparse
 from datetime import datetime, timezone
+import logging
 
 # Expected standard_id regex for parent IDs
 PARENT_ID_REGEX = r"^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
@@ -11,7 +12,7 @@ PARENT_ID_REGEX = r"^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
 DEFAULT_CHANGELOG_INFO_TYPE = "changelog"
 DEFAULT_CHANGELOG_VERSION = "1.0.0" # Initial version for the changelog doc itself
 DEFAULT_CHANGELOG_TAGS = ["status/active", "content-type/changelog", "topic/governance"]
-DEFAULT_CHANGELOG_CRITICALITY = "p3-low" # Ensure this is lowercase to match vocabulary
+DEFAULT_CHANGELOG_CRITICALITY_MIXED_CASE = "P3-Low" # Default mixed-case for changelog criticality
 DEFAULT_CHANGELOG_IMPACT_AREAS = ["auditing", "version-tracking"]
 
 # Defined key order for consistent frontmatter output for changelogs
@@ -44,39 +45,40 @@ def get_frontmatter_and_content_indices(file_content_lines):
         frontmatter_data = yaml_parser.load(frontmatter_str)
         return fm_content_lines, body_start_idx, frontmatter_data
     except Exception: # Broader exception for ruamel.yaml parsing
-        print(f"  WARN: Invalid YAML in existing frontmatter. Will overwrite if forced.")
+        logging.warning(f"Invalid YAML in existing frontmatter for {os.path.basename(file_content_lines[0]) if file_content_lines else 'unknown file'}. Will overwrite if forced.") # Assuming file_content_lines[0] might give context
         return fm_content_lines, body_start_idx, None
 
 def read_parent_frontmatter(parent_filepath):
     try:
         with open(parent_filepath, 'r', encoding='utf-8') as f:
             lines = f.readlines()
+        # Pass parent_filepath to get_frontmatter_and_content_indices for context in logging
         _, _, parent_fm_data = get_frontmatter_and_content_indices(lines)
         if isinstance(parent_fm_data, dict):
             return parent_fm_data
         else:
-            print(f"  WARN: Parent file {parent_filepath} has no valid dictionary frontmatter.")
+            logging.warning(f"Parent file {parent_filepath} has no valid dictionary frontmatter.")
     except FileNotFoundError:
-        print(f"  WARN: Parent file {parent_filepath} not found.")
+        logging.warning(f"Parent file {parent_filepath} not found.")
     except Exception as e:
-        print(f"  ERROR: Could not read or parse parent file {parent_filepath}: {e}")
+        logging.error(f"Could not read or parse parent file {parent_filepath}: {e}")
     return None
 
 def process_changelog_file(changelog_filepath, dry_run=True, force_overwrite_fm=False):
-    print(f"INFO: Processing changelog: {changelog_filepath}")
+    logging.info(f"Processing changelog: {changelog_filepath}")
     changelog_filename = os.path.basename(changelog_filepath)
     
     match = re.match(r"(.+)-CHANGELOG\.MD", changelog_filename.upper()) # Ensure we match against uppercase
     if not match:
-        print(f"  INFO: Filename {changelog_filename} does not match PARENT_ID-CHANGELOG.MD pattern. Skipping.")
+        logging.info(f"Filename {changelog_filename} does not match PARENT_ID-CHANGELOG.MD pattern. Skipping.")
         return False
 
     parent_id = match.group(1)
     if not re.match(PARENT_ID_REGEX, parent_id):
-        print(f"  WARN: Derived parent ID '{parent_id}' from {changelog_filename} is not a valid standard ID. Skipping.")
+        logging.warning(f"Derived parent ID '{parent_id}' from {changelog_filename} is not a valid standard ID. Skipping.")
         return False
 
-    parent_filename = parent_id + ".MD"
+    parent_filename = parent_id + ".md" # Assumes parent uses lowercase .md extension
     parent_filepath = os.path.join(os.path.dirname(changelog_filepath), parent_filename)
 
     lines = []
@@ -84,22 +86,21 @@ def process_changelog_file(changelog_filepath, dry_run=True, force_overwrite_fm=
         with open(changelog_filepath, 'r', encoding='utf-8') as f:
             lines = f.readlines()
     except Exception as e:
-        print(f"  ERROR: Could not read changelog file {changelog_filepath}: {e}")
+        logging.error(f"Could not read changelog file {changelog_filepath}: {e}")
         return False
 
     _original_fm_lines, body_start_idx, existing_fm_data = get_frontmatter_and_content_indices(lines)
 
     if existing_fm_data is not None and not force_overwrite_fm:
-        print(f"  INFO: File {changelog_filepath} already has frontmatter. Use --force to overwrite. Skipping.")
+        logging.info(f"File {changelog_filepath} already has frontmatter. Use --force to overwrite. Skipping.")
         return False
     
     if existing_fm_data is not None and force_overwrite_fm:
-        print(f"  INFO: Overwriting existing frontmatter in {changelog_filepath} due to --force.")
+        logging.info(f"Overwriting existing frontmatter in {changelog_filepath} due to --force.")
 
     parent_fm = read_parent_frontmatter(parent_filepath)
     if not parent_fm:
-        print(f"  WARN: Could not get frontmatter from parent '{parent_filepath}' for {changelog_filepath}. Cannot fully populate. Skipping.")
-        # Optionally, could create a very minimal FM here, but better to have parent info.
+        logging.warning(f"Could not get frontmatter from parent '{parent_filepath}' for {changelog_filepath}. Cannot fully populate. Skipping.")
         return False
 
     changelog_std_id = f"{parent_id}-CHANGELOG"
@@ -140,7 +141,10 @@ def process_changelog_file(changelog_filepath, dry_run=True, force_overwrite_fm=
         elif key == "scope_application":
             value = f"Tracks changes for [[{parent_id}]]."
         elif key == "criticality":
-            value = (parent_fm.get('criticality') or DEFAULT_CHANGELOG_CRITICALITY).lower()
+            # Use parent's criticality if available and valid, otherwise default to mixed-case default for changelogs
+            # This assumes parent_fm criticality is already validated/correct mixed-case.
+            # For now, we just take parent or default, no re-validation here.
+            value = parent_fm.get('criticality', DEFAULT_CHANGELOG_CRITICALITY_MIXED_CASE)
         elif key == "lifecycle_gatekeeper":
             value = parent_fm.get('lifecycle_gatekeeper')
         elif key == "impact_areas":
@@ -151,12 +155,12 @@ def process_changelog_file(changelog_filepath, dry_run=True, force_overwrite_fm=
         if value is not None: # Only add key if it has a value
             final_fm_data[key] = value
 
-    print(f"  CONSTRUCTED FM for {changelog_filepath}: Title '{final_fm_data.get('title')}'")
+    logging.debug(f"Constructed FM for {changelog_filepath}: Title '{final_fm_data.get('title')}'")
 
     if not dry_run:
         yaml_dumper = YAML()
-        yaml_dumper.indent(mapping=2, sequence=4, offset=2) # Preserves block style for sequences
-        yaml_dumper.preserve_quotes = True
+        yaml_dumper.indent(mapping=2, sequence=4, offset=2)
+        yaml_dumper.preserve_quotes = True # Try to keep quotes if they were there
         
         import io
         string_stream = io.StringIO()
@@ -165,67 +169,67 @@ def process_changelog_file(changelog_filepath, dry_run=True, force_overwrite_fm=
         string_stream.close()
 
         new_file_content_lines = ["---\n"]
-        # Manually add a newline after each item from ruamel.yaml dump if needed
-        # Ruamel often produces good formatting itself.
         new_file_content_lines.append(updated_frontmatter_block_str) 
-        # updated_frontmatter_block_str likely ends with a newline from ruamel
         if not updated_frontmatter_block_str.endswith('\n'):
-            new_file_content_lines.append("\n")
-        
+            new_file_content_lines.append("\n") # Ensure it ends with a newline before ---
         new_file_content_lines.append("---\n")
         
         if body_start_idx is not None and body_start_idx < len(lines):
             new_file_content_lines.extend(lines[body_start_idx:])
         else: 
-            new_file_content_lines.append("\n# Changelog\n\nThis document records the change history.\n")
+            logging.info(f"No existing body content found for {changelog_filepath}, adding default body.")
+            new_file_content_lines.append("\n# Changelog\n\nThis document records the change history for its parent standard.\n")
         
         try:
             with open(changelog_filepath, 'w', encoding='utf-8') as f:
                 f.writelines(new_file_content_lines)
-            print(f"  SUCCESS: {'Overwrote' if existing_fm_data else 'Added'} frontmatter to {changelog_filepath}")
+            logging.info(f"SUCCESS: {'Overwrote' if existing_fm_data else 'Added'} frontmatter to {changelog_filepath}")
             return True
         except Exception as e_write:
-            print(f"  ERROR: Failed to write updated file {changelog_filepath}: {e_write}")
+            logging.error(f"Failed to write updated file {changelog_filepath}: {e_write}")
             return False
     else:
-        print(f"  DRY RUN: Would {'overwrite' if existing_fm_data else 'add'} frontmatter to {changelog_filepath}")
-        return True # Indicates a change would be made
-    return False
+        logging.info(f"DRY RUN: Would {'overwrite' if existing_fm_data else 'add'} frontmatter to {changelog_filepath}")
+        return True
+    return False # Should not be reached if dry_run is true and returns True
 
 def main():
     parser = argparse.ArgumentParser(description="Add or update frontmatter for changelog files based on their parent standards.")
     parser.add_argument("target_dirs", nargs='+', help="One or more directories to scan for Markdown files.")
     parser.add_argument("--dry-run", action="store_true", help="Perform a dry run without making changes.")
     parser.add_argument("--force", action="store_true", help="Force overwrite of existing frontmatter in changelog files.")
+    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], help="Set the logging level.")
     args = parser.parse_args()
 
-    print(f"Starting changelog frontmatter population. Dry run: {args.dry_run}, Force: {args.force}")
+    logging.basicConfig(level=getattr(logging, args.log_level.upper()), format='%(levelname)s: %(message)s')
+
+    logging.info(f"Starting changelog frontmatter population. Dry run: {args.dry_run}, Force: {args.force}")
     
     files_processed_potentially_changed = 0
     files_actually_changed = 0
     total_files_scanned = 0
 
-    for target_dir in args.target_dirs:
-        abs_target_dir = os.path.abspath(target_dir)
+    for target_dir_rel in args.target_dirs:
+        abs_target_dir = os.path.abspath(target_dir_rel)
         if not os.path.isdir(abs_target_dir):
-            print(f"ERROR: Target directory {abs_target_dir} not found. Skipping.")
+            logging.error(f"Target directory {abs_target_dir} (from '{target_dir_rel}') not found. Skipping.")
             continue
-        print(f"Scanning directory: {abs_target_dir}")
+        logging.info(f"Scanning directory: {abs_target_dir}")
         for root, _, files in os.walk(abs_target_dir):
             for filename in files:
-                if filename.upper().endswith("-CHANGELOG.MD"):
+                if filename.upper().endswith("-CHANGELOG.MD"): # Process only files ending with -CHANGELOG.MD (case-insensitive)
                     total_files_scanned += 1
                     filepath = os.path.join(root, filename)
                     if process_changelog_file(filepath, dry_run=args.dry_run, force_overwrite_fm=args.force):
                         files_processed_potentially_changed +=1
-                        if not args.dry_run:
+                        if not args.dry_run: # If not dry run, means a change was successfully written (process_changelog_file returns True on success)
                             files_actually_changed +=1
             
-    print(f"Changelog frontmatter script finished. Scanned {total_files_scanned} potential changelog files.")
+    logging.info(f"Changelog frontmatter script finished. Scanned {total_files_scanned} potential changelog files.")
     if args.dry_run:
-        print(f"  Files that would have frontmatter added/overwritten: {files_processed_potentially_changed}")
+        logging.info(f"  Files that would have frontmatter added/overwritten: {files_processed_potentially_changed}")
     else:
-        print(f"  Files with frontmatter actually added/overwritten: {files_actually_changed}")
+        logging.info(f"  Files with frontmatter actually added/overwritten: {files_actually_changed}")
 
 if __name__ == "__main__":
     main() 

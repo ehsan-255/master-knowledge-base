@@ -1,6 +1,6 @@
 ---
 title: "TBD: Title of the Standard"
-standard_id: "XX-YYYY-PRIMARY-TOPIC" # Example: AS-STRUCTURE-KB-ROOT
+standard_id: "XX-TEMPLATESTD-PRIMARYTOPIC" # Example: AS-STRUCTURE-KB-ROOT
 aliases: [] # Optional: e.g., ["Old Standard Name", "Acronym"]
 tags:
   - status/draft # e.g., status/draft, status/approved, status/deprecated
@@ -13,8 +13,8 @@ related-standards: [] # Optional: e.g., ["YY-ZZZZ-OTHER-STANDARD"]
 version: "0.1.0" # Initial version
 date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for ISO-8601 date-time
 date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for ISO-8601 date-time
-primary_domain: "XX" # e.g., AS, CS, MT, SF, OM, GM, UA, QM. Mandatory for standards. Must exist in [[domain_codes.yaml]]
-sub_domain: "YYYY" # e.g., STRUCTURE, POLICY, MARKDOWN. Mandatory for standards. Must exist in [[subdomain_registry.yaml]]
+primary_domain: "GM" # e.g., AS, CS, MT, SF, OM, GM, UA, QM. Mandatory for standards. Must exist in [[domain_codes.yaml]]
+sub_domain: "GUIDE" # e.g., STRUCTURE, POLICY, MARKDOWN. Mandatory for standards. Must exist in [[subdomain_registry.yaml]]
 scope_application: "TBD: Define scope" # Mandatory. e.g., "All knowledge base documents"
 criticality: "P2-Medium" # Mandatory. Matches tag value. e.g., P0-Critical, P1-High. From [[MT-REGISTRY-TAG-GLOSSARY]]
 lifecycle_gatekeeper: "TBD: Define gatekeeper" # Mandatory. e.g., Architect-Review, SME-Consensus. From [[MT-REGISTRY-TAG-GLOSSARY]]

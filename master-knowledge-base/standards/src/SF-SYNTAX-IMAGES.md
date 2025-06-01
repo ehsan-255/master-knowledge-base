@@ -2,12 +2,12 @@
 title: 'Standard: Image Syntax'
 standard_id: SF-SYNTAX-IMAGES
 aliases:
-- Images
-- Image Embedding
+  - Images
+  - Image Embedding
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Image Syntax
@@ -18,13 +18,13 @@ date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines the syntax for embedding images in knowledge base documents.
-criticality: p1-high
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Image display
-- Content presentation
-- Accessibility
-change_log_url: ./SF-SYNTAX-IMAGES-changelog.md
+  - Image display
+  - Content presentation
+  - Accessibility
+change_log_url: ./SF-SYNTAX-IMAGES-CHANGELOG.MD
 ---
 # Standard: Markdown Syntax for Images (SF-SYNTAX-IMAGES)
 

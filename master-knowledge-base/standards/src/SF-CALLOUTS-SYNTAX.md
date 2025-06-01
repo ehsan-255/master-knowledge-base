@@ -2,13 +2,13 @@
 title: 'Standard: Callout and Admonition Syntax'
 standard_id: SF-CALLOUTS-SYNTAX
 aliases:
-- Callouts
-- Admonitions
-- Alert Boxes
+  - Callouts
+  - Admonitions
+  - Alert Boxes
 tags:
-- status/draft
-- criticality/p2-medium
-- content-type/technical-standard
+  - status/draft
+  - criticality/p2-medium
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Callout and Admonition Syntax
@@ -18,14 +18,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: CALLOUTS
-scope_application: Defines the syntax and usage rules for callouts, admonitions, and alert boxes in knowledge base documents.
-criticality: p2-medium
+scope_application: Defines the syntax and usage rules for callouts, admonitions, and
+  alert boxes in knowledge base documents.
+criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Content presentation
-- User attention
-- Information hierarchy
-change_log_url: ./SF-CALLOUTS-SYNTAX-changelog.md
+  - Content presentation
+  - User attention
+  - Information hierarchy
+change_log_url: ./SF-CALLOUTS-SYNTAX-CHANGELOG.MD
 ---
 # Standard: Callout/Admonition Block Syntax (SF-CALLOUTS-SYNTAX)
 

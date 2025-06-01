@@ -2,12 +2,12 @@
 title: 'Mandate: Knowledge Base Usage Guide'
 standard_id: GM-MANDATE-KB-USAGE-GUIDE
 aliases:
-- KB Usage Mandate
-- Usage Requirements
+  - KB Usage Mandate
+  - Usage Requirements
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/mandate-document
+  - status/draft
+  - criticality/p1-high
+  - content-type/mandate-document
 kb-id: standards
 info-type: mandate-document
 primary-topic: Knowledge Base Usage Guide
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: GM
 sub_domain: GUIDE
-scope_application: Defines mandatory requirements for knowledge base usage across the organization.
-criticality: p1-high
+scope_application: Defines mandatory requirements for knowledge base usage across
+  the organization.
+criticality: P1-High
 lifecycle_gatekeeper: Governance-Board-Approval
 impact_areas:
-- Knowledge base adoption
-- Compliance
-- User training
-change_log_url: ./GM-MANDATE-KB-USAGE-GUIDE-changelog.md
+  - Knowledge base adoption
+  - Compliance
+  - User training
+change_log_url: ./GM-MANDATE-KB-USAGE-GUIDE-CHANGELOG.MD
 ---
 # Standard: Mandate for Knowledge Base Usage Guide (GM-MANDATE-KB-USAGE-GUIDE)
 

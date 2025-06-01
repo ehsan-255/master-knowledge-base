@@ -2,34 +2,35 @@
 title: 'Standard: Templates Directory Structure and Usage'
 standard_id: AS-STRUCTURE-TEMPLATES-DIRECTORY
 aliases:
-- Templates Directory Standard
-- Document Templates Location
+  - Templates Directory Standard
+  - Document Templates Location
 tags:
-- status/draft
-- criticality/p2-medium
-- content-type/technical-standard
+  - status/draft
+  - criticality/p2-medium
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Templates Directory and Usage
 related-standards:
-- AS-KB-DIRECTORY-STRUCTURE
-- AS-SCHEMA-METHODOLOGY-DESCRIPTION
-- AS-SCHEMA-CONCEPT-DEFINITION
-- '[[TPL-CANONICAL-FRONTMATTER]]'
+  - AS-KB-DIRECTORY-STRUCTURE
+  - AS-SCHEMA-METHODOLOGY-DESCRIPTION
+  - AS-SCHEMA-CONCEPT-DEFINITION
+  - '[[XX-TEMPLATESTD-PRIMARYTOPIC]]'
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
 date-modified: '2025-05-30T12:00:00Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the mandatory location, naming conventions, and content requirements for the directory housing standard document templates.
-criticality: p2-medium
+scope_application: Defines the mandatory location, naming conventions, and content
+  requirements for the directory housing standard document templates.
+criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Authoring efficiency
-- Content consistency
-- Standards adherence
-- Onboarding new authors
-change_log_url: ./AS-STRUCTURE-TEMPLATES-DIRECTORY-changelog.md
+  - Authoring efficiency
+  - Content consistency
+  - Standards adherence
+  - Onboarding new authors
+change_log_url: ./AS-STRUCTURE-TEMPLATES-DIRECTORY-CHANGELOG.MD
 ---
 # Standard: Templates Directory Structure and Usage (AS-STRUCTURE-TEMPLATES-DIRECTORY)
 
@@ -48,14 +49,14 @@ A dedicated directory for housing standard document templates MUST be maintained
 The `/master-knowledge-base/standards/templates/` directory MUST contain Markdown template files (`.md`) for common standard document types. These templates are intended to:
     a.  Pre-fill the basic structure of a new document according to relevant `AS-SCHEMA-*` (Architectural Standard - Schema) documents, such as [[AS-SCHEMA-METHODOLOGY-DESCRIPTION]] and [[AS-SCHEMA-CONCEPT-DEFINITION]].
     b.  Include placeholder content or comments to guide authors on filling out various sections.
-    c.  May also include utility templates, such as a canonical frontmatter template (e.g., [[TPL-CANONICAL-FRONTMATTER]], which was created in Phase 0, Task 0.4.3).
+    c.  May also include utility templates, such as a canonical frontmatter template (e.g., [[XX-TEMPLATESTD-PRIMARYTOPIC]], which was created in Phase 0, Task 0.4.3).
 
 *   **Examples of Templates:**
     *   `tpl-standard-definition.md`
     *   `tpl-policy-document.md`
     *   `tpl-methodology-schema.md` (based on [[AS-SCHEMA-METHODOLOGY-DESCRIPTION]])
     *   `tpl-concept-schema.md` (based on [[AS-SCHEMA-CONCEPT-DEFINITION]])
-    *   `[[TPL-CANONICAL-FRONTMATTER]]`
+    *   `[[XX-TEMPLATESTD-PRIMARYTOPIC]]`
 
 ### Rule 2.3: Template Naming Convention
 All template filenames within the `/master-knowledge-base/standards/templates/` directory MUST be prefixed with `tpl-`.
@@ -77,7 +78,7 @@ This standard applies to the management of the templates directory and the creat
 - [[AS-KB-DIRECTORY-STRUCTURE]] - Defines the overall location of the `/master-knowledge-base/standards/templates/` directory.
 - [[AS-SCHEMA-METHODOLOGY-DESCRIPTION]] - An example of a schema for which a template should exist.
 - [[AS-SCHEMA-CONCEPT-DEFINITION]] - Another example of a schema for which a template should exist.
-- [[TPL-CANONICAL-FRONTMATTER]] - Reference to the existing canonical frontmatter template. (Note: This is a direct reference to a template file, not a standard. It's included as it's a key example of a utility template.)
+- [[XX-TEMPLATESTD-PRIMARYTOPIC]] - Reference to the existing canonical frontmatter template. (Note: This is a direct reference to a template file, not a standard. It's included as it's a key example of a utility template.)
 
 ---
 *This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 from COL-GOVERNANCE-UNIVERSAL.md, adapting them for the new directory structure and emphasizing established naming conventions.*

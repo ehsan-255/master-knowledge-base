@@ -2,41 +2,43 @@
 title: 'Standard: Metadata Validation Procedures'
 standard_id: QM-VALIDATION-METADATA
 aliases:
-- Frontmatter Validation Rules
-- Metadata Quality Assurance
+  - Frontmatter Validation Rules
+  - Metadata Quality Assurance
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/standard-definition
-- topic/metadata
-- topic/validation
-- topic/quality-assurance
-- kb-id/standards
+  - status/draft
+  - criticality/p1-high
+  - content-type/standard-definition
+  - topic/metadata
+  - topic/validation
+  - topic/quality-assurance
+  - kb-id/standards
 kb-id: standards
 info-type: standard-definition
-primary-topic: Defines the procedures and rules for validating document metadata (YAML frontmatter) against the official schema to ensure accuracy, consistency, and completeness.
+primary-topic: Defines the procedures and rules for validating document metadata (YAML
+  frontmatter) against the official schema to ensure accuracy, consistency, and completeness.
 related-standards:
-- MT-SCHEMA-FRONTMATTER
-- MT-REGISTRY-TAG-GLOSSARY
-- '[[domain_codes.yaml]]'
-- '[[subdomain_registry.yaml]]'
+  - MT-SCHEMA-FRONTMATTER
+  - MT-REGISTRY-TAG-GLOSSARY
+  - '[[domain_codes.yaml]]'
+  - '[[subdomain_registry.yaml]]'
 version: 0.1.0
 date-created: '2025-05-29T15:49:24Z'
 date-modified: '2025-05-30T14:00:00Z'
 primary_domain: QM
 sub_domain: VALIDATION
-scope_application: Applies to the YAML frontmatter of all Markdown documents across all knowledge bases.
-criticality: p1-high
+scope_application: Applies to the YAML frontmatter of all Markdown documents across
+  all knowledge bases.
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Metadata integrity
-- Data quality
-- Content validation
-- Authoring consistency
-- Automated processing
-- Interoperability
-- Search accuracy
-change_log_url: ./QM-VALIDATION-METADATA-changelog.md
+  - Metadata integrity
+  - Data quality
+  - Content validation
+  - Authoring consistency
+  - Automated processing
+  - Interoperability
+  - Search accuracy
+change_log_url: ./QM-VALIDATION-METADATA-CHANGELOG.MD
 ---
 # Standard: Metadata Validation Procedures (QM-VALIDATION-METADATA)
 

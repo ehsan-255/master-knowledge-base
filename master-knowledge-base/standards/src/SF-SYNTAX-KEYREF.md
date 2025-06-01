@@ -2,12 +2,12 @@
 title: 'Standard: Key Reference Syntax'
 standard_id: SF-SYNTAX-KEYREF
 aliases:
-- Key References
-- Keyref Syntax
+  - Key References
+  - Keyref Syntax
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Key Reference Syntax
@@ -18,13 +18,13 @@ date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: LINKS
 scope_application: Defines the syntax for key references in knowledge base documents.
-criticality: p1-high
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Key references
-- Content linking
-- Variable substitution
-change_log_url: ./SF-SYNTAX-KEYREF-changelog.md
+  - Key references
+  - Content linking
+  - Variable substitution
+change_log_url: ./SF-SYNTAX-KEYREF-CHANGELOG.MD
 ---
 # Standard: Key-Based Referencing Syntax (SF-SYNTAX-KEYREF)
 

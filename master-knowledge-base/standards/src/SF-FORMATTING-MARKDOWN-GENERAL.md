@@ -2,12 +2,12 @@
 title: 'Standard: General Markdown Formatting Guidelines'
 standard_id: SF-FORMATTING-MARKDOWN-GENERAL
 aliases:
-- Markdown Guidelines
-- General Formatting
+  - Markdown Guidelines
+  - General Formatting
 tags:
-- status/draft
-- criticality/p2-medium
-- content-type/technical-standard
+  - status/draft
+  - criticality/p2-medium
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: General Markdown Formatting Guidelines
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines general formatting guidelines for Markdown documents in the knowledge base.
-criticality: p2-medium
+scope_application: Defines general formatting guidelines for Markdown documents in
+  the knowledge base.
+criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Document formatting
-- Consistency
-- Readability
-change_log_url: ./SF-FORMATTING-MARKDOWN-GENERAL-changelog.md
+  - Document formatting
+  - Consistency
+  - Readability
+change_log_url: ./SF-FORMATTING-MARKDOWN-GENERAL-CHANGELOG.MD
 ---
 # Standard: Markdown General Formatting Conventions (SF-FORMATTING-MARKDOWN-GENERAL)
 

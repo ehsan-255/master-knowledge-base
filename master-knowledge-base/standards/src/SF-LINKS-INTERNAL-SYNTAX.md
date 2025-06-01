@@ -2,31 +2,31 @@
 title: Internal Linking Syntax Standard
 standard_id: SF-LINKS-INTERNAL-SYNTAX
 aliases:
-- Linking Standard
-- Wikilink Syntax
+  - Linking Standard
+  - Wikilink Syntax
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Internal Linking Syntax
 related-standards:
-- CS-LINKING-INTERNAL-POLICY
+  - CS-LINKING-INTERNAL-POLICY
 version: 0.1.0
 date-created: '2024-07-15T10:00:00Z'
 date-modified: '2025-05-30T12:00:00Z'
 primary_domain: SF
 sub_domain: LINKS
 scope_application: All knowledge base documents utilizing Markdown for internal linking.
-criticality: p1-high
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Authoring workflow
-- Content reusability
-- Link integrity
-- Automated validation
-change_log_url: ./SF-LINKS-INTERNAL-SYNTAX-changelog.md
+  - Authoring workflow
+  - Content reusability
+  - Link integrity
+  - Automated validation
+change_log_url: ./SF-LINKS-INTERNAL-SYNTAX-CHANGELOG.MD
 ---
 # SF-LINKS-INTERNAL-SYNTAX: Internal Linking Syntax Standard
 

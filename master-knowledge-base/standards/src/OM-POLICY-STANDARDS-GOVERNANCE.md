@@ -2,12 +2,12 @@
 title: 'Policy: Standards Governance Framework'
 standard_id: OM-POLICY-STANDARDS-GOVERNANCE
 aliases:
-- Governance Policy
-- Standards Management
+  - Governance Policy
+  - Standards Management
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/policy-document
+  - status/draft
+  - criticality/p1-high
+  - content-type/policy-document
 kb-id: standards
 info-type: policy-document
 primary-topic: Standards Governance Framework
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
-scope_application: Defines the governance framework for creating, maintaining, and managing standards within the knowledge base.
-criticality: p1-high
+scope_application: Defines the governance framework for creating, maintaining, and
+  managing standards within the knowledge base.
+criticality: P1-High
 lifecycle_gatekeeper: Governance-Board-Approval
 impact_areas:
-- Standards governance
-- Quality assurance
-- Change control
-change_log_url: ./OM-POLICY-STANDARDS-GOVERNANCE-changelog.md
+  - Standards governance
+  - Quality assurance
+  - Change control
+change_log_url: ./OM-POLICY-STANDARDS-GOVERNANCE-CHANGELOG.MD
 ---
 # Policy: Standards Governance Framework (OM-POLICY-STANDARDS-GOVERNANCE)
 

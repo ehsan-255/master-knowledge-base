@@ -2,36 +2,38 @@
 title: 'Standard: Markdown Syntax for Lists'
 standard_id: SF-SYNTAX-LISTS
 aliases:
-- List Syntax
-- Ordered Lists
-- Unordered Lists
-- Nested Lists
+  - List Syntax
+  - Ordered Lists
+  - Unordered Lists
+  - Nested Lists
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Markdown List Syntax
 related-standards:
-- SF-SYNTAX-TABLES
-- SF-SYNTAX-CODE
-- SF-FORMATTING-FILE-HYGIENE
+  - SF-SYNTAX-TABLES
+  - SF-SYNTAX-CODE
+  - SF-FORMATTING-FILE-HYGIENE
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
 date-modified: '2025-05-30T12:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the mandatory Markdown syntax for creating ordered (numbered) and unordered (bulleted) lists, including rules for nesting and interaction with other block elements.
-criticality: p1-high
+scope_application: Defines the mandatory Markdown syntax for creating ordered (numbered)
+  and unordered (bulleted) lists, including rules for nesting and interaction with
+  other block elements.
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Document structure
-- Readability
-- Accessibility
-- Automated parsing
-- Authoring consistency
-change_log_url: ./SF-SYNTAX-LISTS-changelog.md
+  - Document structure
+  - Readability
+  - Accessibility
+  - Automated parsing
+  - Authoring consistency
+change_log_url: ./SF-SYNTAX-LISTS-CHANGELOG.MD
 ---
 # Standard: Markdown Syntax for Lists (SF-SYNTAX-LISTS)
 

@@ -2,34 +2,35 @@
 title: 'Standard: Asset Organization and Naming'
 standard_id: AS-STRUCTURE-ASSET-ORGANIZATION
 aliases:
-- Asset Management Standard
-- Static File Organization
+  - Asset Management Standard
+  - Static File Organization
 tags:
-- status/draft
-- criticality/p2-medium
-- content-type/technical-standard
+  - status/draft
+  - criticality/p2-medium
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Asset File Organization
 related-standards:
-- SF-CONVENTIONS-NAMING
-- SF-ACCESSIBILITY-IMAGE-ALT-TEXT
-- AS-KB-DIRECTORY-STRUCTURE
+  - SF-CONVENTIONS-NAMING
+  - SF-ACCESSIBILITY-IMAGE-ALT-TEXT
+  - AS-KB-DIRECTORY-STRUCTURE
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
 date-modified: '2025-05-30T12:00:00Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the standards for organizing, naming, and formatting non-Markdown assets (e.g., images, diagrams, PDFs, code snippets) within any Knowledge Base.
-criticality: p2-medium
+scope_application: Defines the standards for organizing, naming, and formatting non-Markdown
+  assets (e.g., images, diagrams, PDFs, code snippets) within any Knowledge Base.
+criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Repository cleanliness
-- Asset discoverability
-- Link integrity for assets
-- Authoring consistency
-- Build processes
-change_log_url: ./AS-STRUCTURE-ASSET-ORGANIZATION-changelog.md
+  - Repository cleanliness
+  - Asset discoverability
+  - Link integrity for assets
+  - Authoring consistency
+  - Build processes
+change_log_url: ./AS-STRUCTURE-ASSET-ORGANIZATION-CHANGELOG.MD
 ---
 # Standard: Asset Organization and Naming (AS-STRUCTURE-ASSET-ORGANIZATION)
 
