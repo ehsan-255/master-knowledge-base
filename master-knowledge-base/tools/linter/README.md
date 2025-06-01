@@ -11,23 +11,27 @@ The linter currently performs the following checks:
 1.  **Frontmatter Validation:**
     *   Presence of YAML frontmatter block.
     *   Valid YAML syntax.
-    *   **Mandatory Keys:** Checks for presence of all mandatory keys based on `info-type` (distinguishing between `standard-definition`/`policy-document` and other types). Refer to `[[MT-SCHEMA-FRONTMATTER]]`.
-    *   **Key Order:** Validates the order of keys against `[[MT-SCHEMA-FRONTMATTER]]`.
+    *   **Mandatory Keys:** Checks for presence of all mandatory keys based on `info-type` (distinguishing between `standard-definition`/`policy-document` and other types).
+    *   **Key Order:** Validates the order of keys against a defined sequence (`DEFINED_KEY_ORDER`). Reports all deviations in a file.
     *   **Data Types:** Verifies that values for known keys match their expected data types (e.g., string, list). For lists, checks if items are strings.
     *   **`standard_id`:**
-        *   Validates format against regex: `^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$`.
+        *   Validates format against regex: `^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$`.
         *   Checks for uniqueness across all processed files in a directory run.
         *   Warns if the document's filename (sans `.md`) does not match the `standard_id`.
-    *   **Date Formats:** Validates `date-created` and `date-modified` against ISO-8601 format (`YYYY-MM-DDTHH:MM:SSZ`).
+    *   **Date Formats:** Validates `date-created` and `date-modified` against ISO-8601 format (`YYYY-MM-DDTHH:MM:SSZ`) and ensures they are valid dates/times.
     *   **Controlled Vocabularies:** (Loads from `/master-knowledge-base/standards/registry/`)
         *   `primary_domain`: Validates against `domain_codes.yaml`.
         *   `sub_domain`: Validates against `subdomain_registry.yaml` (scoped to `primary_domain`).
         *   `info-type`: Validates against `info_types.txt`.
-        *   `criticality`: Validates against `criticality_levels.txt`.
+        *   `criticality` (field): Validates against mixed-case values in `criticality_levels.yaml` (e.g., `P1-High`).
         *   `lifecycle_gatekeeper`: Validates against `lifecycle_gatekeepers.txt`.
-        *   `tags`: Validates individual tag syntax (kebab-case) and checks if tag prefixes match categories defined in `tag_categories.txt`.
+        *   `tags`:
+            *   Validates individual tag syntax (kebab-case).
+            *   Checks if tag prefixes match categories defined in `tag_categories.txt`.
+            *   For `criticality/*` tags, validates the value part against lowercase entries in `criticality_levels.txt` (e.g., `criticality/p1-high`).
     *   **`change_log_url`:**
-        *   If relative (starts with `./`), checks for the existence of the linked file.
+        *   If `info-type: changelog`, ensures the URL is self-referential (e.g., `./MY-CHANGELOG.md`).
+        *   If relative (starts with `./`), checks for the existence of the linked file (for non-changelog documents).
         *   If absolute, warns if it doesn't start with `http://` or `https://`.
         *   Warns if an absolute URL contains spaces.
 
@@ -42,17 +46,19 @@ The linter currently performs the following checks:
 ## Configuration & Dependencies
 
 *   **Linter Configuration (`LinterConfig` class):**
-    *   Automatically loads controlled vocabularies from files within `/master-knowledge-base/standards/registry/` relative to the specified repository base path.
-    *   Loads the `standards_index.json` (expected at `/master-knowledge-base/dist/standards_index.json` relative to repo base) for link checking and `standard_id` uniqueness.
-*   **Standards Documents as Source of Truth:**
-    *   Key order, mandatory keys, and `standard_id` regex are defined in alignment with `[[MT-SCHEMA-FRONTMATTER]]`.
-    *   Controlled vocabularies are sourced from `.yaml` and `.txt` files in `/master-knowledge-base/standards/registry/`.
+    *   Automatically loads controlled vocabularies from files within `/master-knowledge-base/standards/registry/` relative to the specified repository base path. For Phase B, vocabulary loading from Markdown content (e.g., `MT-REGISTRY-TAG-GLOSSARY.md`) has been deferred in favor of registry files.
+    *   Loads the `standards_index.json` (expected at `[REPO_BASE]/master-knowledge-base/dist/standards_index.json`). A small delay (`time.sleep(0.1)`) was added before index loading to mitigate potential filesystem synchronization issues in some environments, ensuring the index is reliably found after generation.
+*   **Python Dependencies:** `PyYAML`.
 
 ## Severity Levels
 
-*   **Error:** Violations that MUST be fixed (e.g., missing mandatory key, invalid `standard_id` format, path-based internal links).
-*   **Warning:** Issues that SHOULD be fixed (e.g., filename/`standard_id` mismatch, potentially broken `[[STANDARD_ID]]` link).
-*   **Info:** Informational messages (not currently heavily used).
+*   **Error:** Violations that MUST be fixed.
+*   **Warning:** Issues that SHOULD be fixed.
+*   **Info:** Informational messages (currently minimal).
+
+## Unit Tests
+
+A suite of unit tests using the `unittest` framework is implemented in `master-knowledge-base/tools/linter/tests/test_kb_linter.py`. These tests cover various aspects of the linter's functionality, including index loading, vocabulary validation, date checks, link parsing, and key order. Currently, there are 23 tests.
 
 ## Usage
 
@@ -60,23 +66,22 @@ The script is run from the command line.
 
 **Basic Usage:**
 
-To lint a single file:
-```bash
-python master-knowledge-base/tools/linter/kb_linter.py --repo-base . master-knowledge-base/standards/src/some-standard.md
-```
-
-To lint all `.md` files in a directory (recursively):
+To lint all `.md` files in a specific directory (recursively):
 ```bash
 python master-knowledge-base/tools/linter/kb_linter.py --repo-base . --directory master-knowledge-base/standards/src/
 ```
 
+To lint files in the registry:
+```bash
+python master-knowledge-base/tools/linter/kb_linter.py --repo-base . --directory master-knowledge-base/standards/registry/
+```
+
 **Command-Line Arguments:**
 
-*   `filepaths_or_dirs` (Positional): One or more file paths or directory paths to lint. If a directory is provided, it will be scanned recursively for `.md` files.
-*   `--directory DIRECTORY`: (Optional, if not providing positional arguments for directories) Directory to lint (relative to repository root). Defaults to `master-knowledge-base/standards/src`. *Note: The script's argument parsing currently expects file/dir paths as positional arguments after options, or uses the default directory if no positional args are given. The `main` function behavior may need adjustment if mixing `--directory` with positional file paths.*
-*   `--output OUTPUT_FILE`: (Optional) File path to write the linter report to in Markdown format.
+*   `--directory DIRECTORY`: Directory to lint (relative to repository root). Defaults to `master-knowledge-base/standards/src`.
+*   `--output OUTPUT_FILE`: (Optional) File path to write the linter report to in Markdown format. If not specified, output is to console only (aside from normal logging).
 *   `--fail-on-errors`: (Optional) If set, the script will exit with a non-zero status code if any errors are found.
-*   `--repo-base REPO_BASE_PATH`: (Optional) Path to the repository root. Defaults to the current directory (`.`). This is used to correctly locate registry and distribution (for index) directories.
+*   `--repo-base REPO_BASE_PATH`: (Optional) Path to the repository root. Defaults to the current directory (`.`). This is crucial for correctly locating the `standards_index.json` and vocabulary registry files.
 
 **Example Output (Console):**
 
@@ -90,16 +95,13 @@ Errors:
   - [L2] Duplicate 'standard_id' 'XX-LINT-TESTDUMMY1' also found in: master-knowledge-base/standards/src/XX-LINT-TESTDUMMY1.md
 ```
 
-## Development Status & Next Steps
+## Development Status
 
-*   Core validation logic for many checks is implemented.
-*   Vocabulary loading from registry files is functional.
-*   Path-based internal links are now treated as errors.
+*   Core validation logic for many checks is implemented and enhanced.
+*   Vocabulary loading from registry files is confirmed and used.
+*   Index file loading is now more robust.
+*   Unit test suite established and covers key functionalities.
+*   Specific checks for `criticality` (field vs. tag) and `change_log_url` (for changelogs) are implemented.
+*   Key order violation reporting now lists all issues in a file.
 
-**Key areas for ongoing "Productionizing" (Phase B):**
-*   **Unit Tests:** Writing comprehensive unit tests for all key linting functions and validation rules.
-*   **Robustness:** Continued refinement of error handling for edge cases and file/system interactions.
-*   **Dynamic Vocabulary Loading:** Ensure all required vocabularies are loaded dynamically and parsing is robust for all registry file formats.
-*   **Reporting:** Enhance clarity and precision of error messages and line number reporting where possible.
-
-(This README reflects the state after initial Phase B updates to the linter script.)
+(This README reflects the state after completing Sub-Instruction 2.A tasks for Phase B.)

@@ -2,31 +2,32 @@
 title: 'Standard: Versioning and Changelogs for Standard Files'
 standard_id: OM-VERSIONING-CHANGELOGS
 aliases:
-- Standard Versioning
-- Changelog Standard
+  - Standard Versioning
+  - Changelog Standard
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Standard File Versioning and Changelogs
 related-standards:
-- MT-SCHEMA-FRONTMATTER
+  - MT-SCHEMA-FRONTMATTER
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
 date-modified: '2025-05-30T19:00:00Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
-scope_application: All individual standard documents (standard definitions, policies, guides, schemas) within the knowledge base repository.
-criticality: p1-high
+scope_application: All individual standard documents (standard definitions, policies,
+  guides, schemas) within the knowledge base repository.
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Standards management
-- Change tracking
-- Historical record keeping
-- User awareness of changes
-change_log_url: ./OM-VERSIONING-CHANGELOGS-changelog.md
+  - Standards management
+  - Change tracking
+  - Historical record keeping
+  - User awareness of changes
+change_log_url: ./OM-VERSIONING-CHANGELOGS-CHANGELOG.MD
 ---
 # Standard: Versioning and Changelogs for Standard Files (OM-VERSIONING-CHANGELOGS)
 

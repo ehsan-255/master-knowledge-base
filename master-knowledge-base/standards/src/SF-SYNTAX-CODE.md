@@ -2,32 +2,33 @@
 title: 'Standard: Markdown Syntax for Code (Inline and Blocks)'
 standard_id: SF-SYNTAX-CODE
 aliases:
-- Code Syntax
-- Markdown Code Blocks
-- Inline Code Syntax
+  - Code Syntax
+  - Markdown Code Blocks
+  - Inline Code Syntax
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Markdown Code Syntax
 related-standards:
-- SF-FORMATTING-FILE-HYGIENE
+  - SF-FORMATTING-FILE-HYGIENE
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
 date-modified: '2025-05-30T12:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the mandatory Markdown syntax for representing inline code and code blocks (both fenced and indented) in all knowledge base documents.
-criticality: p1-high
+scope_application: Defines the mandatory Markdown syntax for representing inline code
+  and code blocks (both fenced and indented) in all knowledge base documents.
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Readability of technical content
-- Accuracy of code representation
-- Authoring consistency
-- Syntax highlighting in rendered views
-change_log_url: ./SF-SYNTAX-CODE-changelog.md
+  - Readability of technical content
+  - Accuracy of code representation
+  - Authoring consistency
+  - Syntax highlighting in rendered views
+change_log_url: ./SF-SYNTAX-CODE-CHANGELOG.MD
 ---
 # Standard: Markdown Syntax for Code (Inline and Blocks) (SF-SYNTAX-CODE)
 

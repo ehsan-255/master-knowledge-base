@@ -2,12 +2,12 @@
 title: 'Standard: Mathematical Equation Syntax'
 standard_id: SF-SYNTAX-MATH-EQUATIONS
 aliases:
-- Math Equations
-- LaTeX Math
+  - Math Equations
+  - LaTeX Math
 tags:
-- status/draft
-- criticality/p3-low
-- content-type/technical-standard
+  - status/draft
+  - criticality/p3-low
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Mathematical Equation Syntax
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the syntax for mathematical equations in knowledge base documents.
-criticality: p3-low
+scope_application: Defines the syntax for mathematical equations in knowledge base
+  documents.
+criticality: P3-Low
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Mathematical notation
-- Content presentation
-- Technical documentation
-change_log_url: ./SF-SYNTAX-MATH-EQUATIONS-changelog.md
+  - Mathematical notation
+  - Content presentation
+  - Technical documentation
+change_log_url: ./SF-SYNTAX-MATH-EQUATIONS-CHANGELOG.MD
 ---
 # Standard: Markdown Syntax for Math Equations (SF-SYNTAX-MATH-EQUATIONS)
 

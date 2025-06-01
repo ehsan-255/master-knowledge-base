@@ -2,12 +2,12 @@
 title: 'Standard: Citation Formatting Guidelines'
 standard_id: SF-FORMATTING-CITATIONS
 aliases:
-- Citations
-- Reference Formatting
+  - Citations
+  - Reference Formatting
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Citation Formatting Guidelines
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the formatting standards for citations and references in knowledge base documents.
-criticality: p1-high
+scope_application: Defines the formatting standards for citations and references in
+  knowledge base documents.
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Citation consistency
-- Reference formatting
-- Academic standards
-change_log_url: ./SF-FORMATTING-CITATIONS-changelog.md
+  - Citation consistency
+  - Reference formatting
+  - Academic standards
+change_log_url: ./SF-FORMATTING-CITATIONS-CHANGELOG.MD
 ---
 # Standard: Citing External Sources (APA 7th Edition) (SF-FORMATTING-CITATIONS)
 

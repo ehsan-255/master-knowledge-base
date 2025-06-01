@@ -3,10 +3,14 @@ import re
 import yaml # Requires PyYAML (ensure it's in your environment)
 import sys
 import argparse
+import logging # Added
 
 # Expected standard_id regex (all uppercase, domain + hyphen + rest-of-id)
 # This regex is for validation within this script if needed, but primary logic is direct string manipulation.
-STANDARD_ID_TARGET_REGEX = r"""^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$"""
+STANDARD_ID_TARGET_REGEX = r"""^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$""" # Used for validation
+CHANGELOG_SUFFIX = "-CHANGELOG" # Canonical suffix for IDs
+CHANGELOG_FILE_SUFFIX = "-CHANGELOG.MD" # Canonical suffix for filenames
+NORMAL_FILE_SUFFIX = ".md" # Canonical suffix for normal filenames
 
 def get_frontmatter_and_content_indices(file_content_lines):
     """
@@ -41,7 +45,7 @@ def process_file(filepath, dry_run=True):
     Returns new_filepath if rename is needed, else None.
     Modifies file content in place if not dry_run.
     """
-    print(f"INFO: Processing: {filepath}")
+    logging.info(f"Processing: {filepath}")
     made_fm_change = False
     original_std_id = None
     updated_std_id = None
@@ -54,7 +58,7 @@ def process_file(filepath, dry_run=True):
         fm_content_start_idx, fm_delimiter_end_idx, body_start_idx = get_frontmatter_and_content_indices(lines)
 
         if fm_content_start_idx is None:
-            print(f"  WARN: No YAML frontmatter block found in {filepath}. Skipping frontmatter processing.")
+            logging.warning(f"No YAML frontmatter block found in {filepath}. Skipping frontmatter processing.")
         else:
             frontmatter_str = "".join(lines[fm_content_start_idx:fm_delimiter_end_idx])
             try:
@@ -81,144 +85,175 @@ def process_file(filepath, dry_run=True):
                         frontmatter_data["standard_id"] = temp_std_id
                         updated_std_id = temp_std_id
                         made_fm_change = True
-                        print(f"  CHANGE (standard_id): '{original_std_id}' -> '{updated_std_id}'")
-                elif isinstance(frontmatter_data, dict): # Frontmatter is dict but no standard_id
-                    print(f"  INFO: No 'standard_id' key in frontmatter for {filepath}.")
-                else: # Frontmatter not a dict
-                    print(f"  WARN: Frontmatter in {filepath} is not a dictionary. Skipping standard_id update.")
+                        logging.info(f"Frontmatter standard_id CHANGE: '{original_std_id}' -> '{updated_std_id}' in {filepath}")
+                elif isinstance(frontmatter_data, dict):
+                    logging.info(f"No 'standard_id' key in frontmatter for {filepath}.")
+                else:
+                    logging.warning(f"Frontmatter in {filepath} is not a dictionary. Skipping standard_id update.")
+
+                # Title update logic (if standard_id changed and title seems derived)
+                if updated_std_id and "title" in frontmatter_data:
+                    original_title = frontmatter_data["title"]
+                    # Check if title seems derived from old ID (case-insensitive)
+                    # This is a heuristic. More complex title derivations won't be caught.
+                    if original_std_id and (original_title.lower() == original_std_id.lower() or
+                                            original_title.lower() == original_std_id.lower().replace(CHANGELOG_SUFFIX.lower(), "")):
+                        new_title = updated_std_id # Simplest is to set title to new ID
+                        if updated_std_id.endswith(CHANGELOG_SUFFIX):
+                            # Make title more human-readable for changelogs
+                            base_id_for_title = updated_std_id[:-len(CHANGELOG_SUFFIX)]
+                            new_title = f"Changelog: {base_id_for_title}"
+
+                        if frontmatter_data["title"] != new_title:
+                            logging.info(f"Frontmatter title CHANGE: '{frontmatter_data['title']}' -> '{new_title}' in {filepath}")
+                            frontmatter_data["title"] = new_title
+                            made_fm_change = True
+
 
                 if made_fm_change and not dry_run:
-                    # Re-dump YAML carefully
                     try:
-                        updated_frontmatter_block_str = yaml.dump(frontmatter_data, sort_keys=False, allow_unicode=True, width=float("inf"))
-                    except Exception as e_yaml_dump: # Catch potential issues with custom tags if any
-                        print(f"  WARN: Could not re-serialize frontmatter for {filepath} with full width due to: {e_yaml_dump}. Attempting with default width.")
-                        updated_frontmatter_block_str = yaml.dump(frontmatter_data, sort_keys=False, allow_unicode=True) # Default width
+                        updated_frontmatter_block_str = yaml.dump(frontmatter_data, Dumper=yaml.SafeDumper, sort_keys=False, allow_unicode=True, width=float("inf"))
+                    except Exception as e_yaml_dump:
+                        logging.warning(f"Could not re-serialize frontmatter for {filepath} with full width due to: {e_yaml_dump}. Attempting with default width.")
+                        updated_frontmatter_block_str = yaml.dump(frontmatter_data, Dumper=yaml.SafeDumper, sort_keys=False, allow_unicode=True)
 
                     new_file_lines = ["---\n"]
                     for line_fm in updated_frontmatter_block_str.splitlines():
                         new_file_lines.append(line_fm + "\n")
                     new_file_lines.append("---\n")
-                    if body_start_idx < len(lines):
+                    if body_start_idx < len(lines): # body_start_idx could be None if no FM
                         new_file_lines.extend(lines[body_start_idx:])
+                    else: # No body if frontmatter was missing or malformed to start.
+                        new_file_lines.append("\n")
                     
                     with open(filepath, 'w', encoding='utf-8') as f:
                         f.writelines(new_file_lines)
-                    print(f"  SUCCESS: Updated frontmatter in {filepath}")
+                    logging.info(f"SUCCESS: Updated frontmatter in {filepath}")
 
             except yaml.YAMLError as e:
-                print(f"  ERROR: Invalid YAML in frontmatter for {filepath}: {e}. Skipping frontmatter update.")
+                logging.error(f"Invalid YAML in frontmatter for {filepath}: {e}. Skipping frontmatter update.")
             except Exception as e_fm_proc:
-                print(f"  ERROR: Could not process frontmatter for {filepath}: {e_fm_proc}. Skipping frontmatter update.")
+                logging.error(f"Could not process frontmatter for {filepath}: {e_fm_proc}. Skipping frontmatter update.")
 
         # Filename processing
-        id_for_filename_base = None
-        if updated_std_id: # An ID was changed in FM
-            id_for_filename_base = updated_std_id
-        elif original_std_id: # FM had an ID, but it wasn't changed by the logic above (e.g. already uppercase)
-            id_for_filename_base = original_std_id.upper() # Ensure we use uppercase version for filename consistency
+        # Determine the canonical standard_id to use for filename generation
+        # This should be the *updated* (corrected case) standard_id from frontmatter if available and valid
+        # Otherwise, fall back to a corrected version of original_std_id, or finally, derive from filename if no ID in FM.
         
-        if id_for_filename_base:
-            # Ensure base is all uppercase
-            correct_filename_base = id_for_filename_base.upper() 
-            
-            # Determine correct suffix for filename
-            is_changelog_file_by_name = current_filename.upper().endswith("-CHANGELOG.MD")
-            is_changelog_id_by_suffix = correct_filename_base.endswith("-CHANGELOG")
+        id_for_filename = None
+        if updated_std_id: # ID was changed in FM, use this new one
+            id_for_filename = updated_std_id
+        elif original_std_id: # ID was present in FM but not changed by logic above (e.g. already uppercase)
+            id_for_filename = original_std_id
+        else: # No standard_id in frontmatter, try to derive from current filename (and then uppercase it)
+            base_name_no_ext = os.path.splitext(current_filename)[0]
+            id_for_filename = base_name_no_ext # This might need further cleanup if filename is not ID-like
+            logging.info(f"No standard_id in frontmatter of {filepath}, deriving target ID from filename: {id_for_filename}")
 
-            if is_changelog_id_by_suffix or is_changelog_file_by_name:
-                # If ID ends with -CHANGELOG, or filename implies it's a changelog, ensure base ID reflects this
-                if not correct_filename_base.endswith("-CHANGELOG"):
-                    correct_filename_base += "-CHANGELOG"
-                correct_filename = correct_filename_base + ".md"
-            else: # Non-changelog file
-                correct_filename = correct_filename_base + ".md"
+        if id_for_filename:
+            # Canonical ID form: ALL UPPERCASE. If it's a changelog, it MUST end in -CHANGELOG.
+            canonical_id = id_for_filename.upper()
+            is_changelog_by_filename = current_filename.upper().endswith(CHANGELOG_FILE_SUFFIX)
+            
+            if is_changelog_by_filename and not canonical_id.endswith(CHANGELOG_SUFFIX):
+                canonical_id += CHANGELOG_SUFFIX
+            elif canonical_id.endswith(CHANGELOG_SUFFIX) and not is_changelog_by_filename:
+                # This case is tricky: ID implies changelog, but filename doesn't.
+                # For now, assume ID is source of truth for "is changelog" status for suffix.
+                logging.warning(f"ID {canonical_id} ends with {CHANGELOG_SUFFIX} but filename {current_filename} does not. Filename will be corrected.")
+                is_changelog_by_filename = True # Treat as changelog for filename suffix rule
+
+            if is_changelog_by_filename: # This now means it *should* be a changelog
+                # Ensure canonical_id also has the suffix if filename implies it's a changelog
+                if not canonical_id.endswith(CHANGELOG_SUFFIX):
+                    canonical_id += CHANGELOG_SUFFIX
+                correct_filename = canonical_id + ".MD" # Uppercase .MD for changelogs
+            else:
+                # Ensure canonical_id does NOT have suffix if it's not a changelog
+                if canonical_id.endswith(CHANGELOG_SUFFIX):
+                    canonical_id = canonical_id[:-len(CHANGELOG_SUFFIX)]
+                correct_filename = canonical_id + NORMAL_FILE_SUFFIX # Lowercase .md for non-changelogs
 
             if current_filename != correct_filename:
                 new_filepath_candidate = os.path.join(os.path.dirname(filepath), correct_filename)
-                print(f"  CHANGE (filename): '{current_filename}' -> '{correct_filename}' (Proposed: {new_filepath_candidate})")
+                logging.info(f"Filename CHANGE: '{current_filename}' -> '{correct_filename}' (Proposed: {new_filepath_candidate})")
                 if not dry_run:
-                    # Check for collision only if the transformation results in a different name
-                    # (case difference on Windows might be an issue, but os.rename handles it)
                     if os.path.exists(new_filepath_candidate) and filepath.lower() != new_filepath_candidate.lower():
-                        print(f"  ERROR: Target filename {new_filepath_candidate} already exists. Skipping rename for {filepath}.")
+                        logging.error(f"Target filename {new_filepath_candidate} already exists. Skipping rename for {filepath}.")
                     else:
                         try:
-                            os.rename(filepath, new_filepath_candidate)
-                            print(f"  SUCCESS: Renamed {filepath} to {new_filepath_candidate}")
+                            # Robust rename for case changes
+                            if filepath.lower() == new_filepath_candidate.lower() and filepath != new_filepath_candidate:
+                                temp_name = filepath + ".tmp_rename"
+                                os.rename(filepath, temp_name)
+                                logging.debug(f"Renamed {filepath} to {temp_name} for case change.")
+                                os.rename(temp_name, new_filepath_candidate)
+                                logging.debug(f"Renamed {temp_name} to {new_filepath_candidate}.")
+                            else:
+                                os.rename(filepath, new_filepath_candidate)
+                            logging.info(f"SUCCESS: Renamed {filepath} to {new_filepath_candidate}")
                             return new_filepath_candidate
                         except Exception as e_rename:
-                            print(f"  ERROR: Failed to rename {filepath} to {new_filepath_candidate}: {e_rename}")
-            # else:
-                # print(f"  INFO: Filename '{current_filename}' already matches its standard_id casing/structure.")
+                            logging.error(f"Failed to rename {filepath} to {new_filepath_candidate}: {e_rename}")
+            else:
+                 logging.info(f"Filename '{current_filename}' already matches its standard_id casing/structure.")
 
     except FileNotFoundError:
-        print(f"  ERROR: File not found during processing: {filepath}")
+        logging.error(f"File not found during processing: {filepath}")
     except Exception as e:
-        print(f"  ERROR: Failed to process file {filepath}: {e}")
+        logging.error(f"Failed to process file {filepath}: {e}")
     return None
 
 def main():
-    parser = argparse.ArgumentParser(description="Refactor standard_id usage and filenames to be ALL UPPERCASE and ensure -CHANGELOG suffix.")
+    parser = argparse.ArgumentParser(description="Refactor standard_id and filenames to uppercase, ensure -CHANGELOG.MD suffix for changelogs, and update titles if derived.")
     parser.add_argument("target_dirs", nargs='+', help="One or more directories to scan for Markdown files.")
+    parser.add_argument("--repo-base", default=".", help="Path to the repository root. Default is current directory. (Currently unused by script logic but good for future use).")
     parser.add_argument("--dry-run", action="store_true", help="Perform a dry run without making changes.")
+    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], help="Set the logging level.")
     
     args = parser.parse_args()
 
-    print(f"Starting ID and filename refactoring. Dry run: {args.dry_run}")
+    logging.basicConfig(level=getattr(logging, args.log_level.upper()), format='%(levelname)s: %(message)s')
+
+    logging.info(f"Starting ID and filename refactoring. Dry run: {args.dry_run}")
     
     all_files_to_process = []
-    for target_dir in args.target_dirs:
-        abs_target_dir = os.path.abspath(target_dir)
+    for target_dir_rel in args.target_dirs:
+        abs_target_dir = os.path.abspath(target_dir_rel)
         if not os.path.isdir(abs_target_dir):
-            print(f"ERROR: Target directory not found: {abs_target_dir}. Skipping.")
+            logging.error(f"Target directory not found: {abs_target_dir} (from '{target_dir_rel}'). Skipping.")
             continue
-        print(f"Scanning directory: {abs_target_dir}")
+        logging.info(f"Scanning directory: {abs_target_dir}")
         for root, _, files in os.walk(abs_target_dir):
             for filename in files:
-                if filename.endswith(".md"):
+                if filename.endswith(".md") or filename.endswith(".MD"): # Catch both cases for initial scan
                     all_files_to_process.append(os.path.join(root, filename))
     
-    print(f"Found {len(all_files_to_process)} Markdown files to check.")
-
-    # Create a copy of the list for iteration as filenames might change
-    # This is safer if renames affect the order or content of os.walk on subsequent iterations
-    # for complex scenarios, but usually os.walk snapshot is at the beginning of its own loop.
-    # A more robust way for renames is to collect all changes and apply them in a second pass,
-    # or carefully manage the list of files to process.
-    # For this script, we process and rename one by one.
+    logging.info(f"Found {len(all_files_to_process)} Markdown files to check.")
     
-    # Using a copy of the list for iteration as items might be effectively "removed" by rename
-    # or their processing order could be sensitive to changes if we were re-walking.
-    # For now, this single pass over the initially found files should be okay.
-    
-    # Let's refine the loop to handle processing potentially renamed files,
-    # although the script currently renames and then the outer loop continues with original paths.
-    # A better approach for robustness with renames might be more complex than a single pass.
-    # The current `process_file` returns the new path, but the loop doesn't use it to update its iteration.
-    # This will be a limitation: if a file is renamed, and was later in the all_files_to_process list,
-    # the script will try to process it by its old name and fail.
-    # A truly robust solution would collect all intended changes in a dry run, then apply them,
-    # or use a while loop and manage the list of files to process dynamically.
+    processed_paths_map = {} # Store old_path -> new_path for multi-stage processing
 
-    # For now, stick to the simpler loop, acknowledging this limitation for widespread renames.
-    # The user should run dry-run first, review, then run actual.
+    for filepath_to_process in all_files_to_process:
+        if not os.path.exists(filepath_to_process):
+            # Check if it was processed under a different key if path normalization is tricky
+            normalized_original = os.path.normpath(filepath_to_process)
+            found_in_map = False
+            for k,v in processed_paths_map.items():
+                if os.path.normpath(k) == normalized_original or os.path.normpath(v) == normalized_original:
+                    found_in_map = True
+                    break
+            if found_in_map:
+                 logging.info(f"File {filepath_to_process} no longer exists (likely renamed and processed). Skipping.")
+                 continue
+            else: # If truly not found and not in map, then it's an issue or was deleted.
+                 logging.warning(f"File {filepath_to_process} not found during iteration start. Skipping.")
+                 continue
 
-    for i in range(len(all_files_to_process)):
-        filepath_to_process = all_files_to_process[i]
-        if not os.path.exists(filepath_to_process): # Skip if already renamed by a previous step in this run
-            print(f"INFO: File {filepath_to_process} no longer exists (likely renamed). Skipping.")
-            continue
-        
         new_path = process_file(filepath_to_process, dry_run=args.dry_run)
         if new_path and new_path != filepath_to_process:
-            # If we want to process the renamed file under its new name in the same run,
-            # we'd need to update all_files_to_process or use a different loop structure.
-            # For this version, we accept that it processes based on the initial scan.
-            all_files_to_process[i] = new_path # Update path in list in case it's used later (though loop won't re-iterate over it)
-            pass 
+            processed_paths_map[filepath_to_process] = new_path
             
-    print("Refactoring script finished.")
+    logging.info("Refactoring script finished.")
 
 if __name__ == "__main__":
     # Example: python master-knowledge-base/tools/refactor_ids_filenames.py master-knowledge-base/standards/src --dry-run

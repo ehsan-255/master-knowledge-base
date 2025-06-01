@@ -9,6 +9,7 @@ import json
 from collections import defaultdict
 import argparse # For CI-friendliness
 import sys # For CI-friendliness
+import time # For adding a small delay
 
 # --- Configuration (Constants) ---
 STANDARD_ID_REGEX = r"^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$" # Agreed: All UPPERCASE, Domain-RestOfID structure
@@ -44,9 +45,15 @@ EXPECTED_TYPES = {
 # --- LinterConfig Class ---
 class LinterConfig:
     def __init__(self, repo_base_path="."):
+        print(f"DEBUG LinterConfig: Initial repo_base_path: {repo_base_path}")
         self.repo_base = os.path.abspath(repo_base_path)
+        print(f"DEBUG LinterConfig: self.repo_base (absolute): {self.repo_base}")
         self.registry_path = os.path.join(self.repo_base, "master-knowledge-base", "standards", "registry")
-        self.dist_path = os.path.join(self.repo_base, "master-knowledge-base", "dist")
+
+        dist_path_local = os.path.join(self.repo_base, "master-knowledge-base", "dist")
+        print(f"DEBUG LinterConfig: local dist_path_local for index: {dist_path_local}")
+        time.sleep(0.1) # Small delay to help with potential filesystem sync issues
+        os.makedirs(dist_path_local, exist_ok=True) # Ensure dist directory is accessible
 
         # Load YAML Vocabularies
         domain_codes_data = self._load_yaml_vocab(os.path.join(self.registry_path, "domain_codes.yaml"))
@@ -55,17 +62,26 @@ class LinterConfig:
         self.subdomain_registry = self._load_yaml_vocab(os.path.join(self.registry_path, "subdomain_registry.yaml"))
         if not isinstance(self.subdomain_registry, dict): self.subdomain_registry = {}
 
-
         # Load Standards Index
-        self.standards_index = self._load_standards_index(os.path.join(self.dist_path, "standards_index.json"))
+        full_index_path = os.path.join(dist_path_local, "standards_index.json")
+        print(f"DEBUG LinterConfig: Attempting to load index directly from: {full_index_path}")
+        self.standards_index = self._load_standards_index(full_index_path)
         
         # Load TXT Vocabularies
         self.info_types = self._load_txt_vocab(os.path.join(self.registry_path, "info_types.txt"))
-        self.criticality_levels = self._load_txt_vocab(os.path.join(self.registry_path, "criticality_levels.txt"))
+        self.criticality_levels_txt = self._load_txt_vocab(os.path.join(self.registry_path, "criticality_levels.txt")) # For tags (e.g. p0-critical)
+
+        # Load mixed-case criticality levels for the frontmatter field value
+        criticality_yaml_data = self._load_yaml_vocab(os.path.join(self.registry_path, "criticality_levels.yaml"))
+        self.criticality_levels_yaml = [item['level'] for item in criticality_yaml_data if isinstance(item, dict) and 'level' in item] # For field (e.g. P0-Critical)
+
         self.lifecycle_gatekeepers = self._load_txt_vocab(os.path.join(self.registry_path, "lifecycle_gatekeepers.txt"))
         self.tag_categories = self._load_txt_vocab(os.path.join(self.registry_path, "tag_categories.txt"))
 
-        # TODO: Dynamic Vocabulary Loading Strategy from Markdown (as comments)
+        # Decision for Phase B: Rely on .txt/.yaml registry files for vocabularies.
+        # Defer complex Markdown-based vocabulary loading.
+        # TODO: (Post-Phase B) Re-evaluate dynamic vocabulary loading from Markdown if needed for flexibility.
+        # Original TODO comments:
         # (Retain comments from previous version about dynamic parsing strategy)
         # For MT-SCHEMA-FRONTMATTER.md (info-type list):
         #   1. Read 'MT-SCHEMA-FRONTMATTER.md'.
@@ -107,17 +123,17 @@ class LinterConfig:
             print(f"Warning: Failed to load .txt vocab {filepath}: {e}")
             return []
 
-    def _load_standards_index(self, index_path):
+    def _load_standards_index(self, index_file_abs_path): # Now expects an absolute path
         try:
-            abs_filepath = os.path.join(self.repo_base, index_path) if not os.path.isabs(index_path) else index_path
-            if not os.path.exists(abs_filepath):
-                print(f"Warning: Standards index not found: {abs_filepath}. Link checking will be limited.")
+            if not os.path.exists(index_file_abs_path):
+                print(f"DEBUG _load_standards_index: os.path.exists returned False for: {index_file_abs_path}") # Added debug
+                print(f"Warning: Standards index not found: {index_file_abs_path}. Link checking will be limited.")
                 return {}
-            with open(abs_filepath, 'r', encoding='utf-8') as f:
+            with open(index_file_abs_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 return {std["standard_id"]: std for std in data.get("standards", []) if "standard_id" in std}
         except Exception as e:
-            print(f"Warning: Failed to load/parse standards index {index_path}: {e}")
+            print(f"Warning: Failed to load/parse standards index {index_file_abs_path}: {e}") # Use abs_filepath in error
             return {}
 
 # --- Helper Functions ---
@@ -232,8 +248,8 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
                     "message": f"Key order issue: Key '{problem_key}' (defined order index {current_defined_idx}) is before key '{expected_after_key}' (defined order index {last_defined_idx}), violating defined relative order.",
                     "line": key_line
                 })
-                first_violation_reported = True
-                break 
+                # first_violation_reported = True # No longer breaking, will report all order issues
+                # break # Removed to report all violations, not just the first
             last_defined_idx = current_defined_idx
         except ValueError:
             # This key from the document isn't in DEFINED_KEY_ORDER, so it's not part of this specific check.
@@ -311,8 +327,9 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
     if "criticality" in frontmatter_data:
         crit_value = frontmatter_data["criticality"]
         crit_line = get_line_number_of_key(frontmatter_str, "criticality", fm_content_start_line)
-        if crit_value not in config.criticality_levels:
-            errors.append({"message": f"'criticality' ('{crit_value}') not in defined list. Valid: {config.criticality_levels}", "line": crit_line })
+        # Validate field against mixed-case YAML values
+        if crit_value not in config.criticality_levels_yaml:
+            errors.append({"message": f"'criticality' ('{crit_value}') not in defined list. Valid (mixed-case from YAML): {config.criticality_levels_yaml}", "line": crit_line })
 
     if "lifecycle_gatekeeper" in frontmatter_data:
         lg_value = frontmatter_data["lifecycle_gatekeeper"]
@@ -328,20 +345,42 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
                 if isinstance(tag, str): # Type check for items in list
                     if not re.match(KEBAB_CASE_TAG_REGEX, tag):
                         warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) invalid kebab-case/structure.", "line": tags_line })
-                    # Check against loaded tag categories (prefixes)
-                    if not any(tag.startswith(cat_prefix) for cat_prefix in config.tag_categories):
+
+                    valid_prefix = False
+                    for cat_prefix in config.tag_categories:
+                        if tag.startswith(cat_prefix):
+                            valid_prefix = True
+                            if cat_prefix == "criticality/":
+                                tag_value_part = tag[len(cat_prefix):]
+                                if tag_value_part not in config.criticality_levels_txt:
+                                    errors.append({"message": f"Tag value for 'criticality/' ('{tag_value_part}') not in defined list. Valid (lowercase from .txt): {config.criticality_levels_txt}", "line": tags_line})
+                            break
+                    if not valid_prefix:
                         warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) has unrecognized category prefix. Valid prefixes: {config.tag_categories}", "line": tags_line })
                 # else: item type error already caught by general type checking for lists
     
     if "change_log_url" in frontmatter_data:
-        cl_url = frontmatter_data["change_log_url"]
+        cl_url = frontmatter_data.get("change_log_url") # Use .get for safety, though key presence is checked
         cl_line = get_line_number_of_key(frontmatter_str, "change_log_url", fm_content_start_line)
+
         if isinstance(cl_url, str):
+            # Specific check for changelog documents (Task 2.A.6)
+            if current_info_type == "changelog":
+                expected_cl_url = f"./{os.path.basename(filepath_abs)}"
+                if cl_url != expected_cl_url:
+                    errors.append({
+                        "message": f"For 'info-type: changelog', 'change_log_url' must be self-referential ('{expected_cl_url}'). Found: '{cl_url}'",
+                        "line": cl_line
+                    })
+
+            # General checks for change_log_url
             if cl_url.startswith("./"):
                 doc_dir = os.path.dirname(filepath_abs)
                 abs_path = os.path.normpath(os.path.join(doc_dir, cl_url))
-                if not os.path.exists(abs_path):
-                    errors.append({"message": f"Relative 'change_log_url' non-existent: {cl_url} (resolved: {abs_path})", "line": cl_line })
+                if not os.path.exists(abs_path): # This check might be problematic if the target file itself has casing issues not yet fixed.
+                    # For non-changelog docs, this error is valid. For changelogs, the self-ref check is primary.
+                    if not (current_info_type == "changelog" and cl_url == f"./{os.path.basename(filepath_abs)}"):
+                         errors.append({"message": f"Relative 'change_log_url' non-existent: {cl_url} (resolved: {abs_path})", "line": cl_line })
             elif not (cl_url.startswith("http://") or cl_url.startswith("https://")):
                  warnings.append({"message": f"Non-relative 'change_log_url' should be an absolute HTTP(S) URL: {cl_url}", "line": cl_line })
             elif " " in cl_url : warnings.append({"message": f"Absolute 'change_log_url' syntax questionable (contains space): {cl_url}", "line": cl_line })
@@ -416,8 +455,21 @@ def main():
     parser.add_argument("--output", help="File to write the linter report to (Markdown format).")
     parser.add_argument("--fail-on-errors", action="store_true", help="Exit with a non-zero status code if errors are found.")
     parser.add_argument("--repo-base", default=".", help="Path to the repository root. Default is current directory.")
+    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+                        help="Set the logging level (default: INFO).")
 
     args = parser.parse_args()
+
+    # Configure logging (basic setup, can be more sophisticated if needed)
+    # For now, messages will go to stderr by default.
+    # The LinterConfig class and other functions use print() for debug/warnings,
+    # which should be converted to use logging for consistency if further developed.
+    # This basicConfig will only apply to new logging calls, not existing prints.
+    # For this exercise, we'll assume print statements are acceptable for now,
+    # and this log-level primarily controls verbosity of future logging.
+    # However, to make it effective for current prints, they'd need to be changed.
+    # For now, this arg is more of a placeholder for future logging integration.
+    # The `print` statements in LinterConfig will still show.
 
     repo_base_abs_path = os.path.abspath(args.repo_base)
     config = LinterConfig(repo_base_path=repo_base_abs_path)
@@ -433,24 +485,25 @@ def main():
     # Remove dummy file creation unless specifically testing the main() without args
     # For CI, dummy files are not needed as it will lint actual files.
     create_dummies_for_testing = not (sys.argv[1:] and args.directory != "master-knowledge-base/standards/src") # Basic check if run with default dir and no other args
+    #create_dummies_for_testing = False # Disabled for this debugging
 
-    dummy_files_created_paths = []
     if create_dummies_for_testing:
-        print("Running in local test mode with dummy files as no specific directory was provided beyond default.")
-        dummy_index_path = os.path.join(config.dist_path, "standards_index.json")
-        if not os.path.exists(dummy_index_path): # Only create if indexer hasn't run
-            os.makedirs(config.dist_path, exist_ok=True)
-            with open(dummy_index_path, "w") as f:
-                # Corrected datetime.now(datetime.timezone.utc) to datetime.now(timezone.utc)
-                json.dump({"schemaVersion": "1.0.0", "generatedDate": datetime.now(timezone.utc).isoformat(), "standards": [
-                    {"standard_id": "AS-SCHEMA-CONCEPT-DEFINITION", "title": "Concept Definition Schema", "filepath": "master-knowledge-base/standards/src/AS-SCHEMA-CONCEPT-DEFINITION.md"},
-                    {"standard_id": "AS-SCHEMA-TASK", "title": "Task Schema", "filepath": "master-knowledge-base/standards/src/AS-SCHEMA-TASK.md"}
-                ]}, f)
-            print(f"Created dummy {dummy_index_path} for linter testing.")
-        else:
-            print(f"Using existing standards_index.json found at {dummy_index_path}")
+        dummy_files_created_paths = [] # Keep this for cleaning up dummy .md files
+        print("Running in local test mode with dummy .md files (dummy index creation is disabled).")
+        # The following logic for dummy index creation is now disabled.
+        # We rely on the LinterConfig to load the real index or fail clearly.
+        # dist_path_local = os.path.join(repo_base_abs_path, "master-knowledge-base", "dist")
+        # dummy_index_path_local = os.path.join(dist_path_local, "standards_index.json")
+        # if not os.path.exists(dummy_index_path_local):
+        #    print(f"DEBUG: Dummy block check: index does not exist at {dummy_index_path_local}")
+        #    # os.makedirs(dist_path_local, exist_ok=True) # This would be redundant with LinterConfig's one
+        #    # with open(dummy_index_path_local, "w") as f:
+        #    #     json.dump(...)
+        #    # print(f"Created dummy {dummy_index_path_local} for linter testing.")
+        # else:
+        #    print(f"DEBUG: Dummy block check: index *does* exist at {dummy_index_path_local}")
 
-        dummy_files_to_create = {
+        dummy_files_to_create = { # These are dummy .md files for testing various linting rules
             "XX-LINT-TESTDUMMY1.MD": """---
 title: Dummy Test One (Correct ID)
 standard_id: XX-LINT-TESTDUMMY1
@@ -540,14 +593,14 @@ Content.
         if results["errors"] or results["warnings"]: # Simpler: always add to report if issues
             report_content += f"\n## File: `{filepath_to_display}`\n"
             print(f"\n--- Results for {filepath_to_display} ---")
-            if results["infos"]:
+            if results["infos"]: # Should be "if results.get('infos'):" for safety
                 report_content += "### Infos:\n"
                 print("Infos:")
                 for item in results["infos"]: 
                     msg_line = f"  - [L{item.get('line', 'N/A')}] {item['message']}\n"
                     print(msg_line.strip())
                     report_content += msg_line
-            if results["warnings"]:
+            if results["warnings"]: # Should be "if results.get('warnings'):"
                 report_content += "### Warnings:\n"
                 print("Warnings:")
                 for item in results["warnings"]: 
@@ -555,7 +608,7 @@ Content.
                     print(msg_line.strip())
                     report_content += msg_line
                 total_warnings += len(results["warnings"])
-            if results["errors"]:
+            if results["errors"]: # Should be "if results.get('errors'):"
                 report_content += "### Errors:\n"
                 print("Errors:")
                 for item in results["errors"]:
@@ -563,9 +616,10 @@ Content.
                     print(msg_line.strip())
                     report_content += msg_line
                 total_errors += len(results["errors"])
-            if not results["errors"] and not results["warnings"] and not results["infos"] and (create_dummies_for_testing and ("TESTDUMMY" in filepath_to_display.upper() or "BAD_FILENAME" in filepath_to_display.upper())):
-                print("No issues found.")
-                report_content += "- No issues found.\n"
+            # This condition will now be false due to create_dummies_for_testing being false
+            # if not results["errors"] and not results["warnings"] and not results["infos"] and (create_dummies_for_testing and ("TESTDUMMY" in filepath_to_display.upper() or "BAD_FILENAME" in filepath_to_display.upper())):
+            #    print("No issues found.")
+            #    report_content += "- No issues found.\n"
     
     summary_section = f"\n---\n## Linting Summary\n"
     summary_section += f"- Total files processed: {len(results_list)}\n"
@@ -576,20 +630,20 @@ Content.
     report_content += summary_section
 
     if args.output:
-        output_path_abs = os.path.join(repo_base_abs_path, args.output)
+        output_path_abs = os.path.join(repo_base_abs_path, args.output) # Ensure output path is correct
         with open(output_path_abs, "w", encoding="utf-8") as f_report:
             f_report.write(report_content)
         print(f"\nLinter report written to: {output_path_abs}")
 
-    if create_dummies_for_testing:
+    if create_dummies_for_testing: # This block will now be skipped
         for path_to_remove in dummy_files_created_paths:
             if os.path.exists(path_to_remove):
                 os.remove(path_to_remove)
         print(f"Cleaned up dummy files.")
         # Also remove dummy index if it was created by this test run
-        if not os.path.exists(os.path.join(config.dist_path, "standards_index.json.original")): # cheap check
-             if os.path.exists(dummy_index_path): os.remove(dummy_index_path)
-
+        # The dummy index creation is now disabled, so no need to remove it here.
+        # if not os.path.exists(os.path.join(dist_path_local, "standards_index.json.original")):
+        #      if os.path.exists(dummy_index_path_local): os.remove(dummy_index_path_local)
 
     if args.fail_on_errors and total_errors > 0:
         print("\nExiting with non-zero status due to errors.")

@@ -2,12 +2,12 @@
 title: 'Standard: Table Syntax'
 standard_id: SF-SYNTAX-TABLES
 aliases:
-- Tables
-- Markdown Tables
+  - Tables
+  - Markdown Tables
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Table Syntax
@@ -18,13 +18,13 @@ date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines the syntax for creating tables in knowledge base documents.
-criticality: p1-high
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Table formatting
-- Data presentation
-- Content structure
-change_log_url: ./SF-SYNTAX-TABLES-changelog.md
+  - Table formatting
+  - Data presentation
+  - Content structure
+change_log_url: ./SF-SYNTAX-TABLES-CHANGELOG.MD
 ---
 # Standard: Markdown Syntax for Tables (SF-SYNTAX-TABLES)
 

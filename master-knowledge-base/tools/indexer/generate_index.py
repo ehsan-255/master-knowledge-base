@@ -9,12 +9,14 @@ import jsonschema # For JSON schema validation
 from jsonschema import validate
 import argparse # Added for CLI arguments
 import re # Added for regex checks
+import logging # For better debug/info messages
 
 # Fields required by standards_index.schema.json for each standard entry
 # These must be present and non-null in the frontmatter for a standard to be indexed.
 INDEX_REQUIRED_FIELDS = [
     "standard_id", "title", "primary_domain", "sub_domain", 
-    "info-type", "version", "status", "filepath", "date-modified"
+    "info-type", "version", "status", "filepath", "date-modified",
+    "date-created", "criticality", "lifecycle_gatekeeper"
 ]
 
 def get_frontmatter_from_content(file_content):
@@ -56,20 +58,23 @@ def extract_metadata(filepath_rel_to_repo, file_content):
 
     metadata = {"filepath": filepath_rel_to_repo.replace(os.sep, '/')}
     
-    direct_fields = ["standard_id", "title", "primary_domain", "sub_domain", 
-                     "info-type", "version", "date-modified"]
-    for field in direct_fields:
-        metadata[field] = frontmatter_data.get(field)
-        if isinstance(metadata[field], (int, float)) and field == "version":
-            metadata[field] = str(metadata[field])
+    # Populate metadata from frontmatter based on INDEX_REQUIRED_FIELDS
+    for field in INDEX_REQUIRED_FIELDS:
+        if field == "filepath": # Already set
+            continue
+        elif field == "status":
+            tags = frontmatter_data.get("tags", [])
+            metadata[field] = get_status_from_tags(tags)
+        else:
+            metadata[field] = frontmatter_data.get(field)
+            # Ensure version is a string if it's a number
+            if field == "version" and isinstance(metadata[field], (int, float)):
+                metadata[field] = str(metadata[field])
 
-    tags = frontmatter_data.get("tags", [])
-    metadata["status"] = get_status_from_tags(tags)
-
-    # Check if all fields required by the index schema are present and not None
+    # Check if all fields required by the index schema are present and not None after attempting to populate them
     missing_or_empty_fields = []
     for req_field in INDEX_REQUIRED_FIELDS:
-        if metadata.get(req_field) is None: # Also catches if key was missing from frontmatter_data
+        if metadata.get(req_field) is None:
             missing_or_empty_fields.append(req_field)
             
     if missing_or_empty_fields:
@@ -88,7 +93,6 @@ def load_json_schema(schema_filepath_abs):
     return None
 
 def main():
-    print("DEBUG: generate_index.py main() started.") # DEBUG
     parser = argparse.ArgumentParser(description="Knowledge Base Index Generator")
     parser.add_argument("--repo-base", default=".", 
                         help="Path to the repository root. Default is current directory.")
@@ -101,9 +105,16 @@ def main():
                         help="Path to the JSON schema for the index, relative to repo-base.")
     parser.add_argument("--output-filename", default="standards_index.json", 
                         help="Filename for the generated index.")
+    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+                        help="Set the logging level (default: INFO).")
 
     args = parser.parse_args()
 
+    # Configure logging
+    logging.basicConfig(level=getattr(logging, args.log_level.upper()),
+                        format='%(levelname)s: %(message)s')
+
+    logging.debug("generate_index.py main() started.")
     repo_base_abs_path = os.path.abspath(args.repo_base)
     
     # Process multiple source directories
@@ -116,19 +127,19 @@ def main():
     # Check all source directories
     for s_dir_abs in source_directories_abs:
         if not os.path.isdir(s_dir_abs):
-            print(f"Error: Standards source directory not found at {s_dir_abs}")
-            print(f"DEBUG: Exiting because {s_dir_abs} is not a directory.") # DEBUG
-            return
+            logging.error(f"Standards source directory not found at {s_dir_abs}")
+            logging.debug(f"Exiting because {s_dir_abs} is not a directory.")
+            return # Consider sys.exit(1) for critical errors
     
-    print(f"DEBUG: Using source directories: {source_directories_abs}") # DEBUG
-    print("DEBUG: Attempting to load JSON schema...") # DEBUG
+    logging.debug(f"Using source directories: {source_directories_abs}")
+    logging.debug("Attempting to load JSON schema...")
     index_schema = load_json_schema(schema_file_abs)
     if not index_schema:
-        print(f"Error: Failed to load index schema from {schema_file_abs}.")
-        print("DEBUG: Exiting because index_schema could not be loaded.") # DEBUG
-        return
+        # load_json_schema already prints critical errors
+        logging.debug("Exiting because index_schema could not be loaded.")
+        return # Consider sys.exit(1)
     
-    print("DEBUG: JSON schema loaded successfully.") # DEBUG
+    logging.debug("JSON schema loaded successfully.")
 
     index_data = {
         "schemaVersion": "1.0.0", 
@@ -139,15 +150,24 @@ def main():
     total_files_found = 0
     files_indexed_count = 0
     skipped_file_details = []
+    processed_standard_ids = set()
+    processed_filepaths = set()
 
     for s_dir_abs in source_directories_abs:
-        print(f"Scanning for Markdown files in: {s_dir_abs}...")
+        logging.info(f"Scanning for Markdown files in: {s_dir_abs}...")
         for root, _, files in os.walk(s_dir_abs):
             for file in files:
                 if file.endswith(".md"):
                     total_files_found += 1
-                    filepath_abs = os.path.join(root, file)
-                    filepath_for_index = os.path.relpath(filepath_abs, start=repo_base_abs_path)
+                    filepath_abs = os.path.normpath(os.path.join(root, file)) # Normalize path
+
+                    if filepath_abs in processed_filepaths:
+                        logging.debug(f"Skipping already processed file: {filepath_abs}")
+                        skipped_file_details.append((os.path.relpath(filepath_abs, start=repo_base_abs_path).replace(os.sep, '/'), "Skipped (already processed path)"))
+                        continue
+                    processed_filepaths.add(filepath_abs)
+
+                    filepath_for_index = os.path.relpath(filepath_abs, start=repo_base_abs_path).replace(os.sep, '/')
                     
                     file_content = ""
                     try:
@@ -155,73 +175,73 @@ def main():
                             file_content = f_content.read()
                     except Exception as e:
                         reason = f"Error reading file: {e}"
-                        print(f"  SKIP: {filepath_for_index} ({reason})")
+                        logging.warning(f"SKIP: {filepath_for_index} ({reason})")
                         skipped_file_details.append((filepath_for_index, reason))
-                        continue # Skip to next file
+                        continue
                     
                     parsed_meta, reason = extract_metadata(filepath_for_index, file_content)
+
                     if parsed_meta:
-                        index_data["standards"].append(parsed_meta)
-                        files_indexed_count += 1
-                        # DEBUG: Print details of successfully indexed files
-                        print(f"  DEBUG_INDEXED: ID: {parsed_meta.get('standard_id')}, File: {filepath_for_index}") 
+                        current_std_id = parsed_meta.get("standard_id")
+                        if current_std_id in processed_standard_ids:
+                            reason = f"Duplicate standard_id '{current_std_id}' found. Original in index, this one skipped."
+                            logging.error(f"{reason} File: {filepath_for_index}") # Changed to logging.error
+                            skipped_file_details.append((filepath_for_index, reason))
+                        else:
+                            processed_standard_ids.add(current_std_id)
+                            index_data["standards"].append(parsed_meta)
+                            files_indexed_count += 1
+                            logging.debug(f"INDEXED: ID: {current_std_id}, File: {filepath_for_index}")
                     else:
                         skipped_file_details.append((filepath_for_index, reason))
 
-    print(f"\n--- Index Generation Summary ---")
-    print(f"Total .md files found: {total_files_found}")
-    print(f"Successfully indexed: {files_indexed_count}")
+    logging.info(f"\n--- Index Generation Summary ---")
+    logging.info(f"Total .md files found: {total_files_found}")
+    logging.info(f"Successfully indexed: {files_indexed_count}")
     skipped_count = len(skipped_file_details)
-    print(f"Skipped (due to errors/missing fields): {skipped_count}")
+    logging.info(f"Skipped (due to errors/missing fields): {skipped_count}")
     if skipped_file_details:
-        print("Skipped file details:")
+        logging.info("Skipped file details:")
         for filepath, reason_text in skipped_file_details:
-            print(f"  - {filepath}: {reason_text}")
+            logging.info(f"  - {filepath}: {reason_text}")
 
-    # DEBUG: Python-level regex check before jsonschema validation
-    print("\nDEBUG: Performing Python-level regex check on standard_ids before jsonschema validation...")
+    logging.debug("\nPerforming Python-level regex check on standard_ids before jsonschema validation...")
     current_regex = r"^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
     for i, std_entry in enumerate(index_data["standards"]):
         std_id_to_check = std_entry.get("standard_id", "MISSING_ID_IN_ENTRY")
         if not re.match(current_regex, std_id_to_check):
-            print(f"  DEBUG: Python re.match failed for standards[{i}]->standard_id: '{std_id_to_check}' with regex: {current_regex}")
-        # else:
-            # print(f"  DEBUG: Python re.match PASSED for standards[{i}]->standard_id: '{std_id_to_check}'") # Too verbose
-    print("DEBUG: Python-level regex check complete.")
+            logging.debug(f"Python re.match failed for standards[{i}]->standard_id: '{std_id_to_check}' with regex: {current_regex}")
+    logging.debug("Python-level regex check complete.")
 
     # Validate generated index data against the schema
     validation_passed = False
     try:
         validate(instance=index_data, schema=index_schema)
-        print(f"\nGenerated index successfully validated against schema.")
+        logging.info(f"\nGenerated index successfully validated against schema.")
         validation_passed = True
-    except jsonschema.ValidationError as ve: # More specific catch
-        print(f"\nERROR: Generated index is NOT VALID against schema {args.schema_file} (resolved: {schema_file_abs}):")
-        # Show simplified error path and message
+    except jsonschema.ValidationError as ve:
+        logging.error(f"\nGenerated index is NOT VALID against schema {args.schema_file} (resolved: {schema_file_abs}):")
         error_path = " -> ".join(str(p) for p in ve.path)
-        print(f"  Error Path: {error_path}")
-        print(f"  Error Message: {ve.message}")
-        # To get more details if needed:
-        # print(f"  Schema offending part: {ve.schema_path}")
-        # print(f"  Instance offending part: {ve.instance}")
-        print("Index will NOT be written due to schema validation errors.")
+        logging.error(f"  Error Path: {error_path}")
+        logging.error(f"  Error Message: {ve.message}")
+        logging.error("Index will NOT be written due to schema validation errors.")
     except Exception as e: 
-        print(f"\nERROR: An unexpected error occurred during JSON schema validation: {e}")
-        print("Index will NOT be written due to validation error.")
+        logging.error(f"\nAn unexpected error occurred during JSON schema validation: {e}")
+        logging.error("Index will NOT be written due to validation error.")
 
     if validation_passed:
         os.makedirs(output_dir_abs, exist_ok=True)
-        print(f"\nWriting index to: {output_file_abs}...")
+        logging.info(f"\nWriting index to: {output_file_abs}...")
         try:
             with open(output_file_abs, 'w', encoding='utf-8') as f:
                 json.dump(index_data, f, indent=2)
-            print(f"Successfully generated {os.path.join(args.output_dir, args.output_filename)}")
+            logging.info(f"Successfully generated {os.path.join(args.output_dir, args.output_filename)}")
         except IOError as e:
-            print(f"Error writing index file: {e}")
+            logging.error(f"Error writing index file: {e}")
         except Exception as e:
-            print(f"An unexpected error occurred during file writing: {e}")
+            logging.error(f"An unexpected error occurred during file writing: {e}")
     else:
-        print("No index file written due to schema validation failures.")
+        logging.info("No index file written due to schema validation failures.")
 
 
 if __name__ == "__main__":

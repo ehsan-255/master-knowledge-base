@@ -22,7 +22,7 @@ date-modified: '2025-05-30T23:00:00Z'
 primary_domain: OM
 sub_domain: AUTOMATION
 scope_application: Defines the standard for creating, documenting, and managing JSON schemas used for LLM input/output in automated workflows.
-criticality: p2-medium
+criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - LLM automation

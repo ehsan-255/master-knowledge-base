@@ -2,12 +2,12 @@
 title: 'Standard: Character Escaping Syntax'
 standard_id: SF-SYNTAX-ESCAPING-CHARACTERS
 aliases:
-- Character Escaping
-- Markdown Escaping
+  - Character Escaping
+  - Markdown Escaping
 tags:
-- status/draft
-- criticality/p2-medium
-- content-type/technical-standard
+  - status/draft
+  - criticality/p2-medium
+  - content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Character Escaping Syntax
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the syntax for escaping special characters in knowledge base documents.
-criticality: p2-medium
+scope_application: Defines the syntax for escaping special characters in knowledge
+  base documents.
+criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Character handling
-- Syntax accuracy
-- Content display
-change_log_url: ./SF-SYNTAX-ESCAPING-CHARACTERS-changelog.md
+  - Character handling
+  - Syntax accuracy
+  - Content display
+change_log_url: ./SF-SYNTAX-ESCAPING-CHARACTERS-CHANGELOG.MD
 ---
 # Standard: Escaping Special Markdown Characters (SF-SYNTAX-ESCAPING-CHARACTERS)
 

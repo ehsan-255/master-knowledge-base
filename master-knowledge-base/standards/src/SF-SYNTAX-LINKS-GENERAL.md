@@ -2,34 +2,36 @@
 title: 'Standard: General Markdown Link Syntax'
 standard_id: SF-SYNTAX-LINKS-GENERAL
 aliases:
-- Markdown Link Syntax
-- External Links
-- Relative Links
+  - Markdown Link Syntax
+  - External Links
+  - Relative Links
 tags:
-- status/draft
-- criticality/p1-high
-- content-type/technical-standard
+  - status/draft
+  - criticality/p1-high
+  - content-type/technical-standard
 kb-id: ''
 info-type: standard-definition
 primary-topic: General Markdown Link Syntax
 related-standards:
-- SF-LINKS-INTERNAL-SYNTAX
-- CS-LINKING-INTERNAL-POLICY
-- AS-STRUCTURE-ASSET-ORGANIZATION
+  - SF-LINKS-INTERNAL-SYNTAX
+  - CS-LINKING-INTERNAL-POLICY
+  - AS-STRUCTURE-ASSET-ORGANIZATION
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
 date-modified: '2025-05-30T00:00:00Z'
 primary_domain: SF
 sub_domain: LINKS
-scope_application: Defines the general Markdown syntax for creating external links and relative path internal links to non-standard documents or assets. Complements SF-LINKS-INTERNAL-SYNTAX for standard-to-standard linking.
-criticality: p1-high
+scope_application: Defines the general Markdown syntax for creating external links
+  and relative path internal links to non-standard documents or assets. Complements
+  SF-LINKS-INTERNAL-SYNTAX for standard-to-standard linking.
+criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Link integrity
-- Readability
-- Authoring consistency
-- Interoperability with Markdown parsers
-change_log_url: ./SF-SYNTAX-LINKS-GENERAL-changelog.md
+  - Link integrity
+  - Readability
+  - Authoring consistency
+  - Interoperability with Markdown parsers
+change_log_url: ./SF-SYNTAX-LINKS-GENERAL-CHANGELOG.MD
 ---
 
 # Standard: General Markdown Link Syntax (SF-SYNTAX-LINKS-GENERAL)

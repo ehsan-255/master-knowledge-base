@@ -2,32 +2,34 @@
 title: 'Standard: HTML Comment Syntax for TODO Items'
 standard_id: SF-SYNTAX-COMMENT-TODO
 aliases:
-- TODO Comment Syntax
-- HTML TODO Standard
+  - TODO Comment Syntax
+  - HTML TODO Standard
 tags:
-- status/draft
-- content-type/standard-definition
-- topic/syntax
-- topic/task-management
+  - status/draft
+  - content-type/standard-definition
+  - topic/syntax
+  - topic/task-management
 kb-id: standards
 info-type: standard-definition
-primary-topic: Defines the standard HTML comment syntax for embedding machine-parseable TODO items within Markdown documents that do not render in typical views.
+primary-topic: Defines the standard HTML comment syntax for embedding machine-parseable
+  TODO items within Markdown documents that do not render in typical views.
 related-standards:
-- SF-CALLOUTS-SYNTAX
+  - SF-CALLOUTS-SYNTAX
 version: 1.0.0
 date-created: '2025-05-30T00:00:00Z'
 date-modified: '2025-05-30T12:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Applies to all knowledge base documents where non-rendering, machine-parseable TODO items are embedded.
-criticality: p3-low
+scope_application: Applies to all knowledge base documents where non-rendering, machine-parseable
+  TODO items are embedded.
+criticality: P3-Low
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-- Task tracking
-- Authoring workflow
-- Automated reporting
-- Content maintenance
-change_log_url: ./SF-SYNTAX-COMMENT-TODO-changelog.md
+  - Task tracking
+  - Authoring workflow
+  - Automated reporting
+  - Content maintenance
+change_log_url: ./SF-SYNTAX-COMMENT-TODO-CHANGELOG.MD
 ---
 # Standard: HTML Comment Syntax for TODO Items (SF-SYNTAX-COMMENT-TODO)
 

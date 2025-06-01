@@ -2,7 +2,7 @@
 title: "Master Knowledge Base Index"
 standard_id: "AS-INDEX-KB-MASTER" # This is the ID of this specific index document
 aliases: ["KB Directory", "Knowledge Base Master List", "Index of KBs"]
-tags: ["status/live", "criticality/P0-Critical", "content-type/navigation-document", "topic/indexing", "topic/architecture", "kb-master-index"]
+tags: ["status/live", "criticality/p0-critical", "content-type/navigation-document", "topic/indexing", "topic/architecture", "topic/kb-master-index"]
 kb-id: "kb-id/global" # This file is global, indexing multiple KBs
 info-type: "navigation-document"
 primary-topic: "Provides a master directory and entry points to all active Knowledge Bases (KBs) within the ecosystem."
@@ -16,7 +16,7 @@ scope_application: "Serves as the primary navigational entry point to all distin
 criticality: "P0-Critical" # Essential for navigating the entire KB ecosystem.
 lifecycle_gatekeeper: "Architect-Review"
 impact_areas: ["KB navigation", "Content discoverability", "User orientation", "Onboarding"]
-change_log_url: "./AS-INDEX-KB-MASTER-changelog.md" # Assuming changelog is in the same directory
+change_log_url: "./AS-INDEX-KB-MASTER-CHANGELOG.MD" # Corrected casing
 ---
 
 # Master Knowledge Base Index

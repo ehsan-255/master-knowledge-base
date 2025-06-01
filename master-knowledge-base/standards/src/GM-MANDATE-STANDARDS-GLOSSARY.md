@@ -2,12 +2,12 @@
 title: 'Mandate: Standards Glossary Requirements'
 standard_id: GM-MANDATE-STANDARDS-GLOSSARY
 aliases:
-- Glossary Mandate
-- Standards Terms Requirement
+  - Glossary Mandate
+  - Standards Terms Requirement
 tags:
-- status/draft
-- criticality/p2-medium
-- content-type/mandate-document
+  - status/draft
+  - criticality/p2-medium
+  - content-type/mandate-document
 kb-id: standards
 info-type: mandate-document
 primary-topic: Standards Glossary Requirements
@@ -17,14 +17,15 @@ date-created: '2025-05-29T13:24:53Z'
 date-modified: '2025-05-30T18:00:00Z'
 primary_domain: GM
 sub_domain: GLOSSARY
-scope_application: Defines mandatory requirements for maintaining a comprehensive standards glossary.
-criticality: p2-medium
+scope_application: Defines mandatory requirements for maintaining a comprehensive
+  standards glossary.
+criticality: P2-Medium
 lifecycle_gatekeeper: Governance-Board-Approval
 impact_areas:
-- Terminology consistency
-- Standards comprehension
-- Knowledge management
-change_log_url: ./GM-MANDATE-STANDARDS-GLOSSARY-changelog.md
+  - Terminology consistency
+  - Standards comprehension
+  - Knowledge management
+change_log_url: ./GM-MANDATE-STANDARDS-GLOSSARY-CHANGELOG.MD
 ---
 # Standard: Mandate for Standards Terminology Glossary (GM-MANDATE-STANDARDS-GLOSSARY)
 

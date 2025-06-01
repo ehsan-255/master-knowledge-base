@@ -2,74 +2,76 @@
 title: 'Guide: Knowledge Base Usage and Standards'
 standard_id: GM-GUIDE-KB-USAGE
 aliases:
-- KB Onboarding Guide
-- How to Use This KB
-- KB Usage Guide
+  - KB Onboarding Guide
+  - How to Use This KB
+  - KB Usage Guide
 tags:
-- status/draft
-- content-type/guide-document
-- topic/onboarding
-- topic/standards-governance
-- topic/user-documentation
-- topic/knowledge-management
-- topic/content-authoring
+  - status/draft
+  - content-type/guide-document
+  - topic/onboarding
+  - topic/standards-governance
+  - topic/user-documentation
+  - topic/knowledge-management
+  - topic/content-authoring
 kb-id: standards
 info-type: guide-document
-primary-topic: Comprehensive guide for users on how to navigate, understand, apply, and contribute to the knowledge base system and its standards.
+primary-topic: Comprehensive guide for users on how to navigate, understand, apply,
+  and contribute to the knowledge base system and its standards.
 related-standards:
-- GM-MANDATE-KB-USAGE-GUIDE
-- AS-INDEX-KB-MASTER
-- SF-CONVENTIONS-NAMING
-- AS-STRUCTURE-KB-ROOT
-- AS-STRUCTURE-KB-PART
-- CS-POLICY-PART-OVERVIEW
-- AS-STRUCTURE-DOC-CHAPTER
-- AS-ROOT-STANDARDS-KB
-- AS-STRUCTURE-TEMPLATES-DIRECTORY
-- CS-TOC-POLICY
-- SF-TOC-SYNTAX
-- SF-LINKS-INTERNAL-SYNTAX
-- MT-TAGGING-STRATEGY-POLICY
-- MT-REGISTRY-TAG-GLOSSARY
-- MT-SCHEMA-FRONTMATTER
-- CS-POLICY-TONE-LANGUAGE
-- SF-SYNTAX-HEADINGS
-- SF-SYNTAX-LISTS
-- SF-SYNTAX-LINKS-GENERAL
-- UA-KEYDEFS-GLOBAL
-- SF-SYNTAX-KEYREF
-- MT-KEYREF-MANAGEMENT
-- CS-CONTENT-PROFILING-POLICY
-- SF-CONDITIONAL-SYNTAX-ATTRIBUTES
-- AS-SCHEMA-METHODOLOGY-DESCRIPTION
-- AS-SCHEMA-CONCEPT-DEFINITION
-- AS-SCHEMA-REFERENCE
-- AS-SCHEMA-TASK
-- CS-LINKING-INTERNAL-POLICY
-- MT-TAGS-IMPLEMENTATION
-- SF-TRANSCLUSION-SYNTAX
-- CS-MODULARITY-TRANSCLUSION-POLICY
-- SF-CALLOUTS-SYNTAX
-- CS-ADMONITIONS-POLICY
-- OM-POLICY-STANDARDS-GOVERNANCE
-- OM-VERSIONING-CHANGELOGS
-- OM-POLICY-STANDARDS-DEPRECATION
-- GM-GLOSSARY-STANDARDS-TERMS
-- GM-GUIDE-STANDARDS-BY-TASK
+  - GM-MANDATE-KB-USAGE-GUIDE
+  - AS-INDEX-KB-MASTER
+  - SF-CONVENTIONS-NAMING
+  - AS-STRUCTURE-KB-ROOT
+  - AS-STRUCTURE-KB-PART
+  - CS-POLICY-PART-OVERVIEW
+  - AS-STRUCTURE-DOC-CHAPTER
+  - AS-ROOT-STANDARDS-KB
+  - AS-STRUCTURE-TEMPLATES-DIRECTORY
+  - CS-TOC-POLICY
+  - SF-TOC-SYNTAX
+  - SF-LINKS-INTERNAL-SYNTAX
+  - MT-TAGGING-STRATEGY-POLICY
+  - MT-REGISTRY-TAG-GLOSSARY
+  - MT-SCHEMA-FRONTMATTER
+  - CS-POLICY-TONE-LANGUAGE
+  - SF-SYNTAX-HEADINGS
+  - SF-SYNTAX-LISTS
+  - SF-SYNTAX-LINKS-GENERAL
+  - UA-KEYDEFS-GLOBAL
+  - SF-SYNTAX-KEYREF
+  - MT-KEYREF-MANAGEMENT
+  - CS-CONTENT-PROFILING-POLICY
+  - SF-CONDITIONAL-SYNTAX-ATTRIBUTES
+  - AS-SCHEMA-METHODOLOGY-DESCRIPTION
+  - AS-SCHEMA-CONCEPT-DEFINITION
+  - AS-SCHEMA-REFERENCE
+  - AS-SCHEMA-TASK
+  - CS-LINKING-INTERNAL-POLICY
+  - MT-TAGS-IMPLEMENTATION
+  - SF-TRANSCLUSION-SYNTAX
+  - CS-MODULARITY-TRANSCLUSION-POLICY
+  - SF-CALLOUTS-SYNTAX
+  - CS-ADMONITIONS-POLICY
+  - OM-POLICY-STANDARDS-GOVERNANCE
+  - OM-VERSIONING-CHANGELOGS
+  - OM-POLICY-STANDARDS-DEPRECATION
+  - GM-GLOSSARY-STANDARDS-TERMS
+  - GM-GUIDE-STANDARDS-BY-TASK
 version: 0.1.0
 date-created: '2025-05-29T11:51:19Z'
 date-modified: '2025-05-30T14:00:00Z'
 primary_domain: GM
 sub_domain: GUIDE
-scope_application: Provides guidance for all users and contributors on utilizing the knowledge base and its standards.
-criticality: p1-high
+scope_application: Provides guidance for all users and contributors on utilizing the
+  knowledge base and its standards.
+criticality: P1-High
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
-- User Onboarding
-- Standards Adoption
-- KB Navigation
-- Contribution Process
-change_log_url: ./GM-GUIDE-KB-USAGE-changelog.md
+  - User Onboarding
+  - Standards Adoption
+  - KB Navigation
+  - Contribution Process
+change_log_url: ./GM-GUIDE-KB-USAGE-CHANGELOG.MD
 ---
 # Guide: Knowledge Base Usage and Standards
 
@@ -192,7 +194,7 @@ Certain document types have specific structural requirements defined by their re
 *(Note: This section details conventions for users of the Obsidian Markdown editor. These conventions are now generalized in the standards. If you use a different editor, these specific features may not apply, but the underlying Markdown standards still do.)*
 
 ### 6.1 Obsidian Linking Conventions
--   Use Wikilinks: `[[STANDARD_ID|Optional Display Text]]` or `[[STANDARD_ID#Optional Heading|Optional Display Text]]`. Note: an older example of a path-based wikilink like `[[path/to/file#Optional Heading|Optional Display Text]]` has been updated to reflect primary standard ID usage.
+-   Use Wikilinks: `[[STANDARD_ID|Optional Display Text]]` or `[[STANDARD_ID#Optional Heading|Optional Display Text]]`. Note: an older example of a path-based wikilink has been updated to reflect primary standard ID usage.
 -   Paths SHOULD primarily use `standard_id` for linking to other standards. For non-standard content, relative paths are used.
 -   Utilize Obsidian's path autocompletion where helpful.
 -   Refer to `[[SF-LINKS-INTERNAL-SYNTAX]]` and `[[CS-LINKING-INTERNAL-POLICY]]`.
@@ -260,10 +262,10 @@ Certain document types have specific structural requirements defined by their re
 
 *   Advanced Search Queries and Techniques (See [[ADVANCED-SEARCH-GUIDE]] - *placeholder for a future guide*)
 *   Knowledge Base Architecture Overview (See [[AS-MAP-STANDARDS-KB]])
-*   The full refactoring plan that led to this structure: [Refactor Roadmap](../../../_temp/Refactor Roadmap.md)
+*   The full refactoring plan that led to this structure: [Refactor Roadmap](../../../active-project/project-planning/project-roadmap-completion-phases-a-f.md)
 *   Details on how to contribute new standards or propose changes (See [[OM-POLICY-STANDARDS-GOVERNANCE]])
 
 ---
 *This guide is intended to be the primary onboarding document for all users of the Knowledge Base. It replaces and expands upon the original `GUIDE-KB-USAGE-AND-STANDARDS.md`.*
-*Refer to the [[Refactor Roadmap.md]] for the overall refactoring project context.*
+*Refer to the [Refactor Roadmap](../../../active-project/project-planning/project-roadmap-completion-phases-a-f.md) for the overall refactoring project context.*
 *For a task-oriented view of standards, see [[GM-GUIDE-STANDARDS-BY-TASK]].*
