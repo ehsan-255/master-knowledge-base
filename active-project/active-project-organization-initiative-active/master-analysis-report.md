@@ -1,3 +1,42 @@
+---
+title: "Master Analysis Report - Active Project Organization Initiative"
+id: "apo-initiative-master-analysis-report"
+kb: "active-project-organization-initiative"
+file_type: "master_analysis_report"
+source_path: "active-project/active-project-organization-initiative-active/master-analysis-report.md"
+description: "Core document defining the structure, workflow, and standards for active projects. Originally active-project-organization.md."
+status: "active"
+linked_documents: ["master-roadmap.md", "master-progress.md"]
+standard_id: "apo-initiative-master-analysis-report"
+aliases: ["APO Analysis", "Project Org Standards"]
+tags:
+  - status/active
+  - criticality/P1-High
+  - content-type/policy-document
+kb-id: "active-project-organization-initiative"
+info-type: "policy-document" # This defines standards/policy for project org
+primary-topic: "Defines the organizational standards for active projects."
+related-standards: []
+version: "1.0.0"
+date-created: "YYYY-MM-DDTHH:MM:SSZ"
+date-modified: "YYYY-MM-DDTHH:MM:SSZ"
+primary_domain: "GM" # Governance & Meta-Standards
+sub_domain: "PROJECT_MGMT" # Project Management
+scope_application: "All projects within the active-project directory."
+criticality: "P1-High"
+lifecycle_gatekeeper: "TBD"
+impact_areas: ["project-structure", "repository-organization", "workflow-standardization"]
+change_log_url: "TBD"
+maturity: "Medium"
+lifecycle_stage: "Draft"
+target_audience: ["all_contributors", "project_managers"]
+project_phase: "Definition"
+task_type: "Standards Definition"
+jira_issue: "TBD"
+history_summary: "Original content from active-project-organization.md."
+key_takeaways: ["Defines folder structure, naming conventions, and lifecycle for projects."]
+next_steps: ["Refine templates and explore automation opportunities."]
+---
 This is the project to re-organize projects in this repo. The `active-project/README.md` is going to be the central explanatory document. Templates and the main archive are external to the `active-project/` directory as you can see in the repo.
 
 

@@ -1,23 +1,42 @@
 ---
-title: Initial Refactoring Completion Report Analysis
-standard_id: project-report-initial-refactoring-completion
-tags: [status/informational-reference, info-type/project-report, topic/project-assessment]
-kb-id: project-governance
-info-type: project-report
-primary-topic: Analysis report that informed the Refactoring Completion Roadmap (Phases A-F).
-related-standards: ['project-roadmap-completion-phases-a-f']
-version: '1.0.0'
-date-created: '2025-05-30T00:00:00Z'
-date-modified: '2025-05-31T09:33:00Z'
-primary_domain: PROJECT
-sub_domain: REPORTS
-scope_application: Historical analysis for the refactoring project.
-criticality: p2-medium
-lifecycle_gatekeeper: N/A
-impact_areas: [project-planning, historical-context]
-change_log_url: N/A
+title: "L2-T1 Analysis Report - Initial Refactoring and Roadmap Phases" # Updated
+id: "refactoring-l2-t1-initial-refactoring-analysis-report" # Updated
+kb: "refactoring-initiative"
+file_type: "sub_task_analysis_report"
+source_path: "active-project/refactoring-initiative-active/l2-t1-initial-refactoring-and-roadmap-phases-active/l2-t1-analysis-report.md" # Updated
+description: "Contains the initial refactoring completion report."
+linked_documents: ["l2-t1-roadmap.md", "l2-t1-progress.md"]
+status: "active"
+standard_id: "refactoring-l2-t1-initial-refactoring-analysis-report" # Updated to match id
+aliases: ["L2-T1 Analysis", "Initial Completion Report"]
+tags:
+  - status/active
+  - criticality/P1-High
+  - content-type/report-document
+kb-id: "refactoring-initiative"
+info-type: "report-document"
+primary-topic: "Report on the initial phase of refactoring completion."
+related-standards: []
+version: "1.0.1" # Incremented
+date-created: "YYYY-MM-DDTHH:MM:SSZ" # Assuming original was placeholder
+date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for current date
+primary_domain: "PROJECT"
+sub_domain: "REPORTS"
+scope_application: "L2-T1 sub-task of refactoring initiative."
+criticality: "P2-Medium"
+lifecycle_gatekeeper: "TBD"
+impact_areas: ["project-planning", "historical-context"]
+change_log_url: "TBD"
+maturity: "Medium"
+lifecycle_stage: "Analysis"
+target_audience: ["technical_team", "project_managers"]
+project_phase: "L2-T1"
+task_type: "Sub-task Analysis"
+jira_issue: "TBD"
+history_summary: "Original content from project-report-initial-refactoring-completion.md. Content split to separate roadmap portion. Source path and title updated due to parent folder rename." # Updated
+key_takeaways: ["Details phase-by-phase progress and quality assessment of initial refactoring."]
+next_steps: ["Use as input for L2-T1 roadmap."]
 ---
-
 ### Overall Progress Summary
 
 The project has successfully transitioned from monolithic collections to an atomic structure for standards. Phase 0 (Foundations & Definitions) is largely complete, with core conventions and registries established. The structural decomposition of old standards (Phases 1 & 2) is well advanced, with most legacy concepts mapped to new atomic files. Key automation tools (linter, indexer, collection builder) have been implemented with core logic and are beyond mere skeletons, though full productionizing (CI integration, comprehensive error handling) remains.
@@ -114,7 +133,7 @@ Detailed progress, including specific file refactoring logs, can be found in `ma
 1.  **Systematic Frontmatter Enrichment:** Update YAML frontmatter for ALL *active* atomic files in `/master-knowledge-base/standards/src/` per `MT-SCHEMA-FRONTMATTER.md`.
 2.  **Audit & Update Legacy File Statuses:** Ensure every superseded `COL-*.md`, `U-*.md`, and `M-*.md` file has `status: deprecated` and a link to its replacement.
 3.  **Full Standard/Policy Content Review:** Systematically review all atomic standards for correct HOW/WHERE vs. WHAT/WHEN/WHY content allocation.
-4.  **Registry Completeness & Linter Vocabulary Alignment:** Validate and finalize all registry files in `/standards/registry/`. Ensure the linter loads and uses these for comprehensive vocabulary checks.
+4.  **Registry Completeness & Linter Vocabulary Alignment:** Validate and finalize all registry files in `/master-knowledge-base/standards/registry/`. Ensure the linter loads and uses these for comprehensive vocabulary checks.
 5.  **Tool Productionizing & Linter Findings Resolution:** Fully implement, test, and make robust the linter, indexer, and collection builder. Address critical warnings/errors reported by the current linter.
 6.  **Template Creation:** Develop `tpl-standard-definition.md` and `tpl-policy-document.md` in `/standards/templates/`.
 7.  **Link Style Enforcement:** Systematically update all internal links to `[[STANDARD_ID]]` style.

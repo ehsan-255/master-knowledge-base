@@ -1,24 +1,42 @@
 ---
-title: Phase B Completion Roadmap - Detailed Sequential Instructions
-standard_id: project-roadmap-phase-b-completion
-aliases: [Phase B Roadmap, Phase B Instructions]
-tags: [status/active, info-type/project-roadmap, topic/project-planning, project-phase/phase-b]
-kb-id: project-governance
-info-type: project-roadmap
-primary-topic: Detailed sequential instructions for genuinely completing Phase B of the refactoring project.
-related-standards: ['project-roadmap-completion-phases-a-f', 'project-report-phase-b-analysis']
-version: '1.0.0'
-date-created: '2025-05-31T00:00:00Z'
-date-modified: '2025-05-31T09:33:00Z'
-primary_domain: PROJECT
-sub_domain: PLANNING
-scope_application: Specific guidance for Phase B completion activities.
-criticality: p0-critical
-lifecycle_gatekeeper: N/A
-impact_areas: [phase-management, tool-productionization, data-validation]
-change_log_url: N/A
+title: "L3-T1 Roadmap - Analyze Phase B Scope"
+# id: "refactoring-l3-t1-roadmap" # ID remains same
+kb: "refactoring-initiative"
+file_type: "sub_task_roadmap"
+source_path: "active-project/refactoring-initiative-active/l2-t1-initial-refactoring-and-roadmap-phases-active/l3-t1-analyze-phase-b-scope-completed/l3-t1-roadmap.md" # Updated
+description: "Roadmap for Phase B completion, forming the L3-T1 sub-task."
+status: "completed"
+linked_documents: ["l3-t1-analysis-report.md", "l3-t1-progress.md"]
+standard_id: "refactoring-l3-t1-roadmap"
+aliases: ["L3-T1 Roadmap", "Phase B Completion Roadmap"]
+tags:
+  - status/completed
+  - criticality/P0-Critical
+  - content-type/roadmap-document
+kb-id: "refactoring-initiative"
+info-type: "roadmap-document"
+primary-topic: "Defines the detailed steps for completing Phase B analysis."
+related-standards: []
+version: "1.0.1" # Incremented
+date-created: "YYYY-MM-DDTHH:MM:SSZ"
+date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
+primary_domain: "PROJECT"
+sub_domain: "PLANNING"
+scope_application: "L3-T1 sub-task focusing on Phase B completion roadmap."
+criticality: "P0-Critical"
+lifecycle_gatekeeper: "TBD"
+impact_areas: ["phase-management", "tool-productionization", "data-validation"]
+change_log_url: "TBD"
+maturity: "High"
+lifecycle_stage: "Completed"
+target_audience: ["project_managers", "technical_leads"]
+project_phase: "L3-T1"
+task_type: "Sub-task Roadmap"
+jira_issue: "TBD"
+history_summary: "Content from project-roadmap-phase-b-completion.md, now part of completed L3-T1. Source path updated due to parent L2 folder rename." # Updated
+key_takeaways: ["Provides detailed sequential instructions for Phase B completion analysis."]
+next_steps: ["Ensure all steps are logged in L3-T1 progress."]
 ---
-
 ## Detailed Sequential Instructions for Phase B Completion
 
 **Overall Goal:** To genuinely complete Phase B by ensuring all tools are production-ready, all source content passes validation with zero errors, and all Phase B exit criteria as defined in the "Refactoring Completion Roadmap" (`_temp/refactoring-completion-roadmap.md`) are met.
