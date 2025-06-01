@@ -159,6 +159,39 @@ The knowledge base content within `/master-knowledge-base/` has achieved a high 
 
 ---
 
+---
+
+## 🛠️ Tools Directory Refinement & Governance Update - 2025-06-01
+
+**Status: ✅ COMPLETE**
+
+This maintenance iteration focused on enhancing the organization and governance of the `master-knowledge-base/tools/` directory and associated report management, following up on earlier project organization efforts.
+
+### Key Achievements:
+
+1.  **Relocation of Reports Folder:**
+    *   ✅ The main reports folder (previously `master-knowledge-base/reports/`) has been moved into the tools directory, now located at `master-knowledge-base/tools/reports/`. This centralizes tool-generated outputs with the tools themselves.
+
+2.  **Reorganization of Utility Scripts:**
+    *   ✅ Loose utility scripts within `master-knowledge-base/tools/` have been categorized and moved into new, dedicated subdirectories to improve clarity and maintainability.
+    *   ✅ All new directory names now strictly adhere to kebab-case naming conventions (e.g., `file-format-utils`, `refactoring-scripts`, `frontmatter-management`).
+    *   The reorganized structure includes:
+        *   `tools/file-format-utils/` (e.g., `crlf_to_lf_converter.py`)
+        *   `tools/refactoring-scripts/` (e.g., `refactor_ids_filenames.py`, `refactor_tag_casing.py`)
+        *   `tools/frontmatter-management/populate-changelog-fm/` (for `populate_changelog_fm.py` and its tests)
+
+3.  **Tools Directory Documentation:**
+    *   ✅ A new `README.md` file has been created in `master-knowledge-base/tools/`. This README provides an overview of the directory's purpose and details the structure of its subdirectories, aiding in navigation and understanding of the available tooling.
+
+4.  **Script Status Review:**
+    *   ✅ Scripts `crlf_to_lf_converter.py`, `populate_changelog_fm.py`, and `refactor_tag_casing.py` were reviewed and confirmed to be unarchived (active) in the `tools/` directory for ongoing maintenance needs.
+
+### Impact:
+These changes improve the overall organization, discoverability, and maintainability of the project's tooling and reporting infrastructure, ensuring better adherence to naming conventions and providing clearer documentation.
+
+---
+  **_Last updated: 2025-06-01 10:00 EST_**
+
 ## 🏗️ PROJECT ORGANIZATION OVERHAUL - COMPLETED: 2025-05-31
 
 *(This section remains from a previous update, detailing the file organization changes. It is still relevant as background.)*
