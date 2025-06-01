@@ -1,24 +1,41 @@
 ---
-title: Original High-Level Refactoring Roadmap (Phases 0-5)
-standard_id: project-roadmap-original
-aliases: [Original Project Roadmap, Phase 0-5 Roadmap]
-tags: [status/active, info-type/project-roadmap, topic/project-planning, project-phase/legacy]
-kb-id: project-governance
-info-type: project-roadmap
-primary-topic: The initial overall strategic plan for the knowledge base refactoring.
-related-standards: ['project-roadmap-completion-phases-a-f']
-version: '1.0.0'
-date-created: '2025-05-25T00:00:00Z'
-date-modified: '2025-05-31T09:33:00Z'
-primary_domain: PROJECT
-sub_domain: PLANNING
-scope_application: Overall guidance for the multi-year refactoring effort (historical high-level).
-criticality: p1-high
-lifecycle_gatekeeper: N/A
-impact_areas: [project-strategy, historical-context]
-change_log_url: N/A
+title: "Master Roadmap - Refactoring Initiative"
+id: "refactoring-initiative-master-roadmap"
+kb: "refactoring-initiative"
+file_type: "master_roadmap"
+source_path: "active-project/refactoring-initiative-active/master-roadmap.md"
+description: "Original high-level roadmap for the refactoring initiative."
+linked_documents: ["master-analysis-report.md", "master-progress.md"]
+standard_id: "refactoring-initiative-master-roadmap"
+aliases: ["Master Project Roadmap", "Refactoring Main Roadmap"]
+tags:
+  - status/active
+  - criticality/P1-High
+  - content-type/roadmap-document
+kb-id: "refactoring-initiative"
+info-type: "roadmap-document"
+primary-topic: "Defines the overall phases and tasks for the refactoring initiative."
+related-standards: []
+version: "1.0.0"
+date-created: "YYYY-MM-DDTHH:MM:SSZ"
+date-modified: "YYYY-MM-DDTHH:MM:SSZ"
+primary_domain: "PROJECT"
+sub_domain: "PLANNING"
+scope_application: "Entire refactoring initiative."
+criticality: "P1-High"
+lifecycle_gatekeeper: "TBD"
+impact_areas: ["project-strategy", "historical-context", "phase-planning"]
+change_log_url: "TBD"
+maturity: "Medium"
+lifecycle_stage: "Planning"
+target_audience: ["technical_team", "project_managers"]
+project_phase: "Overall"
+task_type: "Master Planning Document"
+jira_issue: "TBD"
+history_summary: "Content from project-roadmap-original-high-level.md."
+key_takeaways: ["Provides a multi-phase plan for standards refactoring."]
+next_steps: ["Execute Phase 0 and subsequent phases as outlined."]
 ---
-
 ## Roadmap: Standards Refactoring
 
 This roadmap outlines the phases, steps, and tasks required to fully refactor the existing standards according to the new architecture and categorization schemes, incorporating all agreed-upon revisions and final clarifications.
@@ -283,4 +300,3 @@ This roadmap outlines the phases, steps, and tasks required to fully refactor th
     *   Final CI (or script run) report indicates full system health and successful build.
 
 ---
-
