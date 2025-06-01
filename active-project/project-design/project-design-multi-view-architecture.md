@@ -1,37 +1,23 @@
 ---
-title: L2-T1 Analysis Report - Define Multi-View Architecture
-id: l2-t1-define-multi-view-architecture-planned-l2-t1-analysis-report
-kb: refactoring-initiative
-file_type: sub_task_analysis_report
-source_path: active-project/refactoring-initiative-active/l2-t1-define-multi-view-architecture-planned/l2-t1-analysis-report.md
-description: Analysis report for the L2-T1 sub-task, focusing on the design of the single-source, multi-view standards architecture.
-criticality: P0-Critical # From original
-maturity: High
-lifecycle_stage: Planning
-target_audience: ["technical_architects", "development_team"]
-primary_domain: "PROJECT" # From original
-sub_domain: "DESIGN" # From original
-project_phase: "l2-t1-define-multi-view-architecture"
-task_type: "analysis_document"
-jira_issue: "TBD"
-tags: ["refactoring", "sub-task", "l2-t1", "analysis", "multi-view-architecture", "status/planned", "info-type/project-design-document", "topic/system-architecture"]
-linked_documents: ["l2-t1-roadmap.md", "l2-t1-progress.md", "master-roadmap.md"]
-history_summary: "Original content from project-design-multi-view-architecture.md, repurposed for L2-T1 sub-task."
-key_takeaways: ["Defines core principles of single-source multi-view.", "Outlines architectural layers and benefits."]
-next_steps: ["Develop L2-T1 roadmap based on this analysis."]
-# Fields from original template
-standard_id: "l2-t1-define-multi-view-architecture-planned-l2-t1-analysis-report" # New ID
-aliases: ["Multi-View Architecture Analysis", "L2-T1 Analysis"]
-kb-id: "refactoring-initiative" # Updated
-info-type: "project-design-document" # From original
-version: "1.0.0" # Reset version
-date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
-scope_application: "Analysis for defining the multi-view architecture as part of L2-T1 sub-task." # Updated
-lifecycle_gatekeeper: "Architect Lead"
-impact_areas: ["system-architecture", "automation", "content-delivery", "sub-task-planning"] # From original, added sub-task context
-change_log_url: "TBD"
+title: Single-Source Multi-View Standards Architecture Design
+standard_id: project-design-multi-view-architecture
+tags: [status/informational-reference, info-type/project-design-document, topic/system-architecture]
+kb-id: project-governance
+info-type: project-design-document
+primary-topic: Architectural design for the single-source, multi-view approach to standards management and delivery.
+related-standards: ['project-design-standards-categorization-scheme']
+version: '1.0.0'
+date-created: '2025-05-29T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: DESIGN
+scope_application: Fundamental architecture for the entire standards ecosystem.
+criticality: p0-critical
+lifecycle_gatekeeper: N/A
+impact_areas: [system-architecture, automation, content-delivery]
+change_log_url: N/A
 ---
+
 ## Summary
 
 The **Single-Source / Multi-View Standards Architecture** is a model for managing and publishing sets of operational or technical standards. It establishes **atomic, individual rule documents** as the canonical source of truth, each with its own distinct metadata and lifecycle. Automated build processes then generate various **derived views** from this atomic source, including aggregated "collection" documents optimized for human readability and contextual understanding, alongside other machine-processable outputs (e.g., indexes, semantic data exports).

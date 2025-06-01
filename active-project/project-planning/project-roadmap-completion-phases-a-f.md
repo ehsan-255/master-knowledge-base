@@ -1,37 +1,24 @@
 ---
-title: Master Roadmap - Refactoring Initiative
-id: refactoring-initiative-active-master-roadmap
-kb: refactoring-initiative
-file_type: master_roadmap
-source_path: active-project/refactoring-initiative-active/master-roadmap.md
-description: Master roadmap for the overarching refactoring initiative.
-criticality: P0-Critical
-maturity: High
-lifecycle_stage: Planning
-target_audience: ["technical_team", "project_managers"]
-primary_domain: "PROJECT"
-sub_domain: "PLANNING"
-project_phase: "execution"
-task_type: "planning_document"
-jira_issue: "TBD"
-tags: ["refactoring", "roadmap", "master_document", "status/active", "info-type/project-roadmap", "topic/project-planning", "project-phase/phase-a-f"]
-linked_documents: ["master-analysis-report.md", "master-progress.md", "project-roadmap-original-high-level.md"] # Added original high level
-history_summary: "Initial creation during repository refactoring. Supersedes project-roadmap-completion-phases-a-f."
-key_takeaways: ["Comprehensive plan for all refactoring phases.", "Defines exit criteria for each phase."]
-next_steps: ["Execute Phase A of roadmap"]
-# Fields from original template, to be set to TBD or removed if not applicable
-standard_id: "refactoring-initiative-active-master-roadmap" # Using new ID scheme
-aliases: ["Master Project Roadmap", "Refactoring Master Plan"]
-kb-id: "refactoring-initiative" # Changed from project-governance to specific KB
-info-type: "project-roadmap" # from original
-version: "1.0.0" # Resetting version for this new incarnation
-date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for new creation date
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for this modification
-scope_application: "Overall guidance for the refactoring initiative." # Simplified
-lifecycle_gatekeeper: "Project Lead"
-impact_areas: ["project-execution", "phase-management", "repository-structure"]
-change_log_url: "TBD" # Was N/A, can be a dedicated changelog later
+title: Refactoring Completion Roadmap (Phases A-F)
+standard_id: project-roadmap-completion-phases-a-f
+aliases: [Completion Roadmap, Phase A-F Roadmap]
+tags: [status/active, info-type/project-roadmap, topic/project-planning]
+kb-id: project-governance
+info-type: project-roadmap
+primary-topic: The detailed execution plan for completing the knowledge base refactoring (Phases A-F).
+related-standards: ['project-roadmap-original-high-level', 'project-instructions-phase-b-cleanup']
+version: '1.3.0'
+date-created: '2025-05-30T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: PLANNING
+scope_application: Detailed operational roadmap for refactoring completion.
+criticality: p0-critical
+lifecycle_gatekeeper: N/A
+impact_areas: [project-execution, phase-management]
+change_log_url: N/A
 ---
+
 ## Refactoring Completion Roadmap
 
 **Document ID:** `GM-ROADMAP-REFACTORING-COMPLETION`
@@ -275,3 +262,4 @@ This roadmap outlines the definitive, sequential steps required to complete the 
     *   **Deliverable:** Signed-off, fully refactored, validated, and documented standards knowledge base system, operating from the repository root.
 
 ---
+
