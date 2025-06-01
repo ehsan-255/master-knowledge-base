@@ -1,3 +1,31 @@
+---
+title: Standards Knowledge Base Directory
+standard_id: DOC-STANDARDS-README
+aliases:
+  - Standards README
+tags:
+  - status/active
+  - content-type/documentation
+  - topic/readme
+  - kb-id/standards
+kb-id: standards
+info-type: guide-document
+primary-topic: Overview and guidance for the standards directory and its contents.
+related-standards: []
+version: 1.0.0
+date-created: '2025-06-01T11:33:47Z'
+date-modified: '2025-06-01T11:33:47Z'
+primary_domain: GM
+sub_domain: GUIDE
+scope_application: Provides an overview for the /app/master-knowledge-base/standards/README.md.
+criticality: P4-Informational
+lifecycle_gatekeeper: No-Gatekeeper
+impact_areas:
+  - documentation
+  - usability
+change_log_url: ./README-CHANGELOG.MD
+---
+
 # Standards Knowledge Base Directory
 
 This directory (`/standards`) houses the core knowledge base dedicated to defining and managing standards, policies, guidelines, and supporting documentation for the overall knowledge management ecosystem.

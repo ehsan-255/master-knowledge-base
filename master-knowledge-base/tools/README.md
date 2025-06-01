@@ -1,3 +1,31 @@
+---
+title: Master Knowledge Base Tools (`master-knowledge-base/tools/`)
+standard_id: DOC-TOOLS-README
+aliases:
+  - Tools README
+tags:
+  - status/active
+  - content-type/documentation
+  - topic/readme
+  - kb-id/tools
+kb-id: tools
+info-type: guide-document
+primary-topic: Overview and guidance for the tools directory and its contents.
+related-standards: []
+version: 1.0.0
+date-created: '2025-06-01T11:33:47Z'
+date-modified: '2025-06-01T11:33:47Z'
+primary_domain: GM
+sub_domain: GUIDE
+scope_application: Provides an overview for the /app/master-knowledge-base/tools/README.md.
+criticality: P4-Informational
+lifecycle_gatekeeper: No-Gatekeeper
+impact_areas:
+  - documentation
+  - usability
+change_log_url: ./README-CHANGELOG.MD
+---
+
 # Master Knowledge Base Tools (`master-knowledge-base/tools/`)
 
 This directory contains various scripts and tools used for maintaining, validating, processing, and building the Master Knowledge Base and its associated standards.

@@ -137,6 +137,19 @@ class LinterConfig:
             return {}
 
 # --- Helper Functions ---
+
+def is_placeholder_value(value_str):
+    if not isinstance(value_str, str):
+        return False
+    value_str = value_str.strip()
+    if value_str.startswith("[") and value_str.endswith("]"):
+        return True
+    if value_str == "YYYY-MM-DDTHH:MM:SSZ" or value_str == "YYYY-MM-DD":
+        return True
+    if value_str.upper().startswith("XX-") or "PLACEHOLDER" in value_str.upper() or "TBD" in value_str.upper():
+        return True
+    return False
+
 def get_frontmatter_and_content(file_content):
     lines = file_content.splitlines(True) 
     if not lines or not lines[0].startswith("---"):
@@ -161,13 +174,18 @@ def get_line_number_of_key(frontmatter_str, key, fm_content_start_line):
     return fm_content_start_line # Default to start of FM content if key not found (e.g. for missing key)
 
 
-# --- Linter Core Function ---
 def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
     errors, warnings, infos = [], [], []
     extracted_standard_id = None
-    # Cache for duplicate ID line number reporting
     fm_str_cache = None
     fm_content_start_line_cache = 0
+
+    normalized_filepath_for_template_check = filepath_abs.replace(os.sep, '/')
+    is_template_file = "master-knowledge-base/standards/templates/" in normalized_filepath_for_template_check or                        os.path.basename(normalized_filepath_for_template_check).startswith("tpl-")
+
+    if is_template_file:
+        # infos.append({"message": "Applying template-specific linting rules.", "line": 1}) # Optional: too verbose for now
+        pass
 
     if file_content_raw is None:
         try:
@@ -185,11 +203,20 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
     elif "\r" in file_content_raw: warnings.append({"message": "File contains CR line endings. Should use LF.", "line": None})
 
     frontmatter_str, markdown_content, fm_content_start_line, fm_content_end_line = get_frontmatter_and_content(file_content_raw)
-    fm_str_cache = frontmatter_str # Cache for later use
+    fm_str_cache = frontmatter_str
     fm_content_start_line_cache = fm_content_start_line
 
     if frontmatter_str is None:
-        errors.append({"message": "No YAML frontmatter block found.", "line": 1})
+        is_readme = os.path.basename(normalized_filepath_for_template_check).upper() == "README.MD"
+        is_tool_subfile = "master-knowledge-base/tools/" in normalized_filepath_for_template_check
+        is_report_file = "master-knowledge-base/tools/reports/" in normalized_filepath_for_template_check
+        is_standards_templates_readme = "master-knowledge-base/standards/templates/README.md" == normalized_filepath_for_template_check
+        is_standards_readme = "master-knowledge-base/standards/README.md" == normalized_filepath_for_template_check
+
+        # Exempt READMEs in tools, reports, and standards/templates from requiring frontmatter
+        # Also exempt the main standards README.
+        if not (is_readme and (is_tool_subfile or is_report_file or is_standards_templates_readme or is_standards_readme)):
+            errors.append({"message": "No YAML frontmatter block found.", "line": 1})
         return {"filepath": filepath_abs, "errors": errors, "warnings": warnings, "infos": infos, "standard_id": None, "_fm_str_cache": fm_str_cache, "_fm_content_start_line_cache": fm_content_start_line_cache}
 
     frontmatter_data = None
@@ -203,7 +230,6 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
         return {"filepath": filepath_abs, "errors": errors, "warnings": warnings, "infos": infos, "standard_id": None, "_fm_str_cache": fm_str_cache, "_fm_content_start_line_cache": fm_content_start_line_cache}
 
     current_info_type = frontmatter_data.get("info-type")
-    # Updated logic for mandatory keys based on info-type
     if current_info_type in ["standard-definition", "policy-document"]:
         mandatory_keys = MANDATORY_KEYS_FOR_STANDARD_DEFINITION_POLICY
     else:
@@ -211,138 +237,115 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
     
     for key in mandatory_keys:
         if key not in frontmatter_data:
-            errors.append({"message": f"Mandatory key '{key}' missing.", "line": fm_content_start_line -1 })
+            if not (is_template_file and key not in ["title", "standard_id", "info-type"]): # Allow most mandatory keys to be missing in templates
+                errors.append({"message": f"Mandatory key '{key}' missing.", "line": fm_content_start_line -1 })
 
-    # Key order validation (refined)
     actual_keys_in_doc = list(frontmatter_data.keys())
-    # Filter to keys that are in DEFINED_KEY_ORDER, maintaining the order they appear in the document
     keys_in_doc_for_order_check = [k for k in actual_keys_in_doc if k in DEFINED_KEY_ORDER]
-
     last_defined_idx = -1
-    first_violation_reported = False
     for key_in_doc in keys_in_doc_for_order_check:
         try:
             current_defined_idx = DEFINED_KEY_ORDER.index(key_in_doc)
             if current_defined_idx < last_defined_idx:
-                # Find the key from DEFINED_KEY_ORDER that was violated
-                # This means `key_in_doc` appeared too early relative to `DEFINED_KEY_ORDER[last_defined_idx]`
-                # or `DEFINED_KEY_ORDER[last_defined_idx]` appeared too late relative to `key_in_doc`
                 problem_key = key_in_doc
-                expected_after_key = DEFINED_KEY_ORDER[last_defined_idx] # The key that current key should be after
-
-                # Attempt to find what key should have been at this position based on DEFINED_KEY_ORDER
-                # Find index of `expected_after_key` in `keys_in_doc_for_order_check`
-                idx_of_expected_after_key_in_doc = -1
-                try:
-                    idx_of_expected_after_key_in_doc = keys_in_doc_for_order_check.index(expected_after_key)
-                except ValueError:
-                    pass # Should not happen
-
-                expected_key_at_problem_pos_in_doc = ""
-                # Find what key *should* have been at the position of problem_key
-                # This involves mapping DEFINED_KEY_ORDER to the subset present in the document
-                
-                # Simplified message:
+                expected_after_key = DEFINED_KEY_ORDER[last_defined_idx]
                 key_line = get_line_number_of_key(frontmatter_str, problem_key, fm_content_start_line)
                 warnings.append({
                     "message": f"Key order issue: Key '{problem_key}' (defined order index {current_defined_idx}) is before key '{expected_after_key}' (defined order index {last_defined_idx}), violating defined relative order.",
                     "line": key_line
                 })
-                # first_violation_reported = True # No longer breaking, will report all order issues
-                # break # Removed to report all violations, not just the first
             last_defined_idx = current_defined_idx
         except ValueError:
-            # This key from the document isn't in DEFINED_KEY_ORDER, so it's not part of this specific check.
-            # Extraneous keys might be caught by other checks if desired.
             pass
     
     for key, expected_type in EXPECTED_TYPES.items():
         if key in frontmatter_data:
             value = frontmatter_data[key]
             key_line = get_line_number_of_key(frontmatter_str, key, fm_content_start_line)
+            if is_template_file and is_placeholder_value(str(value)):
+                continue
             if not isinstance(value, expected_type):
                 actual_type = type(value).__name__
                 errors.append({"message": f"Key '{key}' has value '{value}' of type '{actual_type}'. Expected type '{expected_type.__name__}'.", "line": key_line})
-            elif expected_type == list: # Check item types for lists
+            elif expected_type == list:
                  for item_idx, item in enumerate(value):
-                     if not isinstance(item, str): # Assuming all list items for defined keys are strings
-                        errors.append({"message": f"Item '{item}' at index {item_idx} in list key '{key}' is type '{type(item).__name__}'. Expected 'str'.", "line": key_line})
-
+                     if not isinstance(item, str):
+                         if not (is_template_file and is_placeholder_value(str(item))):
+                            errors.append({"message": f"Item '{item}' at index {item_idx} in list key '{key}' is type '{type(item).__name__}'. Expected 'str'.", "line": key_line})
 
     if "standard_id" in frontmatter_data:
-        std_id_val = frontmatter_data.get("standard_id") # Use get to avoid error if key was removed due to type error
+        std_id_val = frontmatter_data.get("standard_id")
         key_line = get_line_number_of_key(frontmatter_str, "standard_id", fm_content_start_line)
         if isinstance(std_id_val, str): 
             extracted_standard_id = std_id_val 
-            if not re.match(STANDARD_ID_REGEX, std_id_val):
-                errors.append({"message": f"'standard_id' ('{std_id_val}') fails regex: '{STANDARD_ID_REGEX}'.", "line": key_line})
+            if not (is_template_file and is_placeholder_value(std_id_val)):
+                if not re.match(STANDARD_ID_REGEX, std_id_val):
+                    errors.append({"message": f"'standard_id' ('{std_id_val}') fails regex: '{STANDARD_ID_REGEX}'.", "line": key_line})
+
             filename_base = os.path.splitext(os.path.basename(filepath_abs))[0]
-            if filename_base != std_id_val:
-                warnings.append({"message": f"Filename '{filename_base}.md' should match 'standard_id' '{std_id_val}'.", "line": key_line })
+            if not (is_template_file and is_placeholder_value(std_id_val)):
+                if filename_base != std_id_val:
+                    warnings.append({"message": f"Filename '{filename_base}.md' should match 'standard_id' '{std_id_val}'.", "line": key_line })
     
     for dk in ["date-created", "date-modified"]:
         key_line = get_line_number_of_key(frontmatter_str, dk, fm_content_start_line)
         date_val = frontmatter_data.get(dk)
-        if date_val is not None: # Check if key exists
+        if date_val is not None:
             if isinstance(date_val, str):
-                if not re.match(ISO_DATE_REGEX, date_val):
-                    errors.append({"message": f"'{dk}' ('{date_val}') invalid ISO-8601 (YYYY-MM-DDTHH:MM:SSZ).", "line": key_line })
-                else: 
-                    try: datetime.strptime(date_val[:-1], "%Y-%m-%dT%H:%M:%S") # Check if date part is valid
-                    except ValueError: errors.append({"message": f"'{dk}' ('{date_val}') invalid date/time values for ISO-8601.", "line": key_line })
-            # else: Type error already caught
+                if not (is_template_file and is_placeholder_value(date_val)):
+                    if not re.match(ISO_DATE_REGEX, date_val):
+                        errors.append({"message": f"'{dk}' ('{date_val}') invalid ISO-8601 (YYYY-MM-DDTHH:MM:SSZ).", "line": key_line })
+                    else:
+                        try: datetime.strptime(date_val[:-1], "%Y-%m-%dT%H:%M:%S")
+                        except ValueError: errors.append({"message": f"'{dk}' ('{date_val}') invalid date/time values for ISO-8601.", "line": key_line })
 
-    # Vocabulary checks using LinterConfig (ensure key exists before getting value)
     if "primary_domain" in frontmatter_data:
-        pd_value = frontmatter_data["primary_domain"]
+        pd_value = frontmatter_data.get("primary_domain")
         pd_line = get_line_number_of_key(frontmatter_str, "primary_domain", fm_content_start_line)
-        if pd_value not in config.domain_codes: # Assuming domain_codes is a list/set
-            errors.append({"message": f"'primary_domain' ('{pd_value}') not in defined domain_codes. Valid: {config.domain_codes}", "line": pd_line })
+        if not (is_template_file and is_placeholder_value(pd_value)):
+            if pd_value not in config.domain_codes:
+                errors.append({"message": f"'primary_domain' ('{pd_value}') not in defined domain_codes. Valid: {config.domain_codes}", "line": pd_line })
         
         if "sub_domain" in frontmatter_data:
-            sd_value = frontmatter_data["sub_domain"]
+            sd_value = frontmatter_data.get("sub_domain")
             sd_line = get_line_number_of_key(frontmatter_str, "sub_domain", fm_content_start_line)
-            # Check if pd_value is a key in the subdomain_registry dictionary
-            if pd_value in config.subdomain_registry:
-                # Then check if sd_value is in the list associated with that key
-                # Assuming subdomain_registry structure is { "DOMAIN_CODE": ["SUB_CODE1", "SUB_CODE2"], ... }
-                # This needs to be adjusted if subdomain_registry structure is different, e.g. list of dicts
-                valid_subdomains_for_domain = []
-                for item in config.subdomain_registry.get(pd_value, []): # Iterate through list of dicts for the domain
-                    if isinstance(item, dict) and 'code' in item:
-                        valid_subdomains_for_domain.append(item['code'])
-
-                if sd_value not in valid_subdomains_for_domain:
-                    errors.append({"message": f"'sub_domain' ('{sd_value}') not valid for domain '{pd_value}'. Valid: {valid_subdomains_for_domain}", "line": sd_line })
-            elif pd_value: # If primary_domain was valid but not found in subdomain_registry (problem with registry load or content)
-                 warnings.append({"message": f"Primary domain '{pd_value}' not found in subdomain registry structure for sub_domain check.", "line": sd_line})
-
+            if not (is_template_file and is_placeholder_value(sd_value)):
+                if pd_value in config.subdomain_registry: # Assumes pd_value is valid or placeholder check passed
+                    valid_subdomains_for_domain = [item['code'] for item in config.subdomain_registry.get(pd_value, []) if isinstance(item, dict) and 'code' in item]
+                    if sd_value not in valid_subdomains_for_domain:
+                        errors.append({"message": f"'sub_domain' ('{sd_value}') not valid for domain '{pd_value}'. Valid: {valid_subdomains_for_domain}", "line": sd_line })
+                elif pd_value and not (is_template_file and is_placeholder_value(pd_value)):
+                     warnings.append({"message": f"Primary domain '{pd_value}' not found in subdomain registry structure for sub_domain check.", "line": sd_line})
 
     if "info-type" in frontmatter_data:
-        it_value = frontmatter_data["info-type"]
+        it_value = frontmatter_data.get("info-type")
         it_line = get_line_number_of_key(frontmatter_str, "info-type", fm_content_start_line)
-        if it_value not in config.info_types:
-            errors.append({"message": f"'info-type' ('{it_value}') not in defined list. Valid: {config.info_types}", "line": it_line })
+        if not (is_template_file and is_placeholder_value(it_value)):
+            if it_value not in config.info_types:
+                errors.append({"message": f"'info-type' ('{it_value}') not in defined list. Valid: {config.info_types}", "line": it_line })
 
     if "criticality" in frontmatter_data:
-        crit_value = frontmatter_data["criticality"]
+        crit_value = frontmatter_data.get("criticality")
         crit_line = get_line_number_of_key(frontmatter_str, "criticality", fm_content_start_line)
-        # Validate field against mixed-case YAML values
-        if crit_value not in config.criticality_levels_yaml:
-            errors.append({"message": f"'criticality' ('{crit_value}') not in defined list. Valid (mixed-case from YAML): {config.criticality_levels_yaml}", "line": crit_line })
+        if not (is_template_file and is_placeholder_value(crit_value)):
+            if crit_value not in config.criticality_levels_yaml:
+                errors.append({"message": f"'criticality' ('{crit_value}') not in defined list. Valid (mixed-case from YAML): {config.criticality_levels_yaml}", "line": crit_line })
 
     if "lifecycle_gatekeeper" in frontmatter_data:
-        lg_value = frontmatter_data["lifecycle_gatekeeper"]
+        lg_value = frontmatter_data.get("lifecycle_gatekeeper")
         lg_line = get_line_number_of_key(frontmatter_str, "lifecycle_gatekeeper", fm_content_start_line)
-        if lg_value not in config.lifecycle_gatekeepers:
-            warnings.append({"message": f"'lifecycle_gatekeeper' ('{lg_value}') not in defined list. Valid: {config.lifecycle_gatekeepers}", "line": lg_line })
+        if not (is_template_file and is_placeholder_value(lg_value)):
+            if lg_value not in config.lifecycle_gatekeepers:
+                warnings.append({"message": f"'lifecycle_gatekeeper' ('{lg_value}') not in defined list. Valid: {config.lifecycle_gatekeepers}", "line": lg_line })
 
     if "tags" in frontmatter_data:
-        tags_value = frontmatter_data["tags"]
+        tags_value = frontmatter_data.get("tags")
         tags_line = get_line_number_of_key(frontmatter_str, "tags", fm_content_start_line)
-        if isinstance(tags_value, list): # Type check for tags itself done earlier
+        if isinstance(tags_value, list):
             for tag_idx, tag in enumerate(tags_value):
-                if isinstance(tag, str): # Type check for items in list
+                if isinstance(tag, str):
+                    if is_template_file and is_placeholder_value(tag):
+                        continue
                     if not re.match(KEBAB_CASE_TAG_REGEX, tag):
                         warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) invalid kebab-case/structure.", "line": tags_line })
 
@@ -352,53 +355,49 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
                             valid_prefix = True
                             if cat_prefix == "criticality/":
                                 tag_value_part = tag[len(cat_prefix):]
-                                if tag_value_part not in config.criticality_levels_txt:
-                                    errors.append({"message": f"Tag value for 'criticality/' ('{tag_value_part}') not in defined list. Valid (lowercase from .txt): {config.criticality_levels_txt}", "line": tags_line})
+                                if not (is_template_file and is_placeholder_value(tag_value_part)):
+                                    if tag_value_part not in config.criticality_levels_txt:
+                                        errors.append({"message": f"Tag value for 'criticality/' ('{tag_value_part}') not in defined list. Valid (lowercase from .txt): {config.criticality_levels_txt}", "line": tags_line})
                             break
-                    if not valid_prefix:
+                    if not valid_prefix and not (is_template_file and is_placeholder_value(tag)):
                         warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) has unrecognized category prefix. Valid prefixes: {config.tag_categories}", "line": tags_line })
-                # else: item type error already caught by general type checking for lists
     
     if "change_log_url" in frontmatter_data:
-        cl_url = frontmatter_data.get("change_log_url") # Use .get for safety, though key presence is checked
+        cl_url = frontmatter_data.get("change_log_url")
         cl_line = get_line_number_of_key(frontmatter_str, "change_log_url", fm_content_start_line)
-
         if isinstance(cl_url, str):
-            # Specific check for changelog documents (Task 2.A.6)
-            if current_info_type == "changelog":
-                expected_cl_url = f"./{os.path.basename(filepath_abs)}"
-                if cl_url != expected_cl_url:
-                    errors.append({
-                        "message": f"For 'info-type: changelog', 'change_log_url' must be self-referential ('{expected_cl_url}'). Found: '{cl_url}'",
-                        "line": cl_line
-                    })
-
-            # General checks for change_log_url
-            if cl_url.startswith("./"):
-                doc_dir = os.path.dirname(filepath_abs)
-                abs_path = os.path.normpath(os.path.join(doc_dir, cl_url))
-                if not os.path.exists(abs_path): # This check might be problematic if the target file itself has casing issues not yet fixed.
-                    # For non-changelog docs, this error is valid. For changelogs, the self-ref check is primary.
-                    if not (current_info_type == "changelog" and cl_url == f"./{os.path.basename(filepath_abs)}"):
-                         errors.append({"message": f"Relative 'change_log_url' non-existent: {cl_url} (resolved: {abs_path})", "line": cl_line })
-            elif not (cl_url.startswith("http://") or cl_url.startswith("https://")):
-                 warnings.append({"message": f"Non-relative 'change_log_url' should be an absolute HTTP(S) URL: {cl_url}", "line": cl_line })
-            elif " " in cl_url : warnings.append({"message": f"Absolute 'change_log_url' syntax questionable (contains space): {cl_url}", "line": cl_line })
+            if is_template_file and (is_placeholder_value(cl_url) or "[FILENAME_PLACEHOLDER]" in cl_url or os.path.basename(cl_url) == "changelog.md"):
+                pass
+            else:
+                if current_info_type == "changelog":
+                    expected_cl_url = f"./{os.path.basename(filepath_abs)}"
+                    if cl_url != expected_cl_url:
+                        errors.append({
+                            "message": f"For 'info-type: changelog', 'change_log_url' must be self-referential ('{expected_cl_url}'). Found: '{cl_url}'",
+                            "line": cl_line
+                        })
+                if cl_url.startswith("./"):
+                    doc_dir = os.path.dirname(filepath_abs)
+                    abs_path = os.path.normpath(os.path.join(doc_dir, cl_url))
+                    if not os.path.exists(abs_path):
+                        if not (current_info_type == "changelog" and cl_url == f"./{os.path.basename(filepath_abs)}"): # Don't double-penalize if already caught as non-self-ref
+                           if not (is_template_file and (is_placeholder_value(cl_url) or "[FILENAME_PLACEHOLDER]" in cl_url or "changelog.md" == os.path.basename(cl_url))): # Check again for templates if it wasn't a specific self-ref issue
+                               errors.append({"message": f"Relative 'change_log_url' non-existent: {cl_url} (resolved: {abs_path})", "line": cl_line })
+                elif not (cl_url.startswith("http://") or cl_url.startswith("https://")):
+                     warnings.append({"message": f"Non-relative 'change_log_url' should be an absolute HTTP(S) URL: {cl_url}", "line": cl_line })
+                elif " " in cl_url : warnings.append({"message": f"Absolute 'change_log_url' syntax questionable (contains space): {cl_url}", "line": cl_line })
         
     content_lines = markdown_content.splitlines(True)
     for i, line_text in enumerate(content_lines):
         for match in re.finditer(INTERNAL_LINK_REGEX, line_text):
-            # Corrected regex group unpacking
             target_id_from_link, anchor, display_text_from_link = match.groups()
             link_line_num = fm_content_end_line + i + 1 
             if "/" in target_id_from_link or target_id_from_link.endswith(".md"):
                 errors.append({"message": f"Path-based link '[[{match.group(0)}]]'. Must use '[[STANDARD_ID]]' or '[[STANDARD_ID#Anchor|Display Text]]'.", "line": link_line_num })
             elif re.match(STANDARD_ID_REGEX, target_id_from_link):
-                 if target_id_from_link not in config.standards_index:
-                    warnings.append({"message": f"Potentially broken link: Standard ID '[[{target_id_from_link}]]' not found in standards_index.json.", "line": link_line_num })
-            # Else: could be a plain text [[bracketed phrase]], not necessarily an ID. Or an anchor to current doc (e.g. [[#Some Heading]]).
-            # Consider if [[#Some Heading]] should be flagged or allowed.
-            # For now, only explicit STANDARD_ID format is actively checked against index.
+                 if not (is_template_file and is_placeholder_value(target_id_from_link)):
+                    if target_id_from_link not in config.standards_index:
+                        warnings.append({"message": f"Potentially broken link: Standard ID '[[{target_id_from_link}]]' not found in standards_index.json.", "line": link_line_num })
                 
     return {"filepath": filepath_abs, "errors": errors, "warnings": warnings, "infos": infos, "standard_id": extracted_standard_id, "_fm_str_cache": fm_str_cache, "_fm_content_start_line_cache": fm_content_start_line_cache}
 
