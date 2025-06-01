@@ -1,37 +1,24 @@
 ---
-title: L2-T3 Analysis Report - Analyze Phase B Completion
-id: l2-t3-analyze-phase-b-planned-l2-t3-analysis-report
-kb: refactoring-initiative
-file_type: sub_task_analysis_report
-source_path: active-project/refactoring-initiative-active/l2-t3-analyze-phase-b-planned/l2-t3-analysis-report.md
-description: Analysis report for the L2-T3 sub-task, focusing on the verified audit of Phase B completion.
-criticality: P1-High # From original
-maturity: High
-lifecycle_stage: Planning
-target_audience: ["project_managers", "technical_leads"]
-primary_domain: "PROJECT" # From original
-sub_domain: "REPORTS" # From original
-project_phase: "l2-t3-analyze-phase-b"
-task_type: "analysis_document"
-jira_issue: "TBD"
-tags: ["refactoring", "sub-task", "l2-t3", "analysis", "phase-b-audit", "status/planned", "info-type/project-report", "topic/project-assessment"]
-linked_documents: ["l2-t3-roadmap.md", "l2-t3-progress.md", "master-roadmap.md", "master-progress.md"]
-history_summary: "Original content from project-report-phase-b-analysis.md, repurposed for L2-T3 sub-task."
-key_takeaways: ["Detailed audit of Phase B deliverables.", "Identifies discrepancies and provides verified action plan."]
-next_steps: ["Develop L2-T3 roadmap based on this analysis."]
-# Fields from original template
-standard_id: "l2-t3-analyze-phase-b-planned-l2-t3-analysis-report" # New ID
-aliases: ["Phase B Audit Analysis", "L2-T3 Analysis"]
-kb-id: "refactoring-initiative" # Updated
-info-type: "project-report" # From original
-version: "1.0.0" # Reset version
-date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
-scope_application: "Analysis for understanding Phase B completion status as part of L2-T3 sub-task." # Updated
-lifecycle_gatekeeper: "Project Lead"
-impact_areas: ["project-assessment", "phase-management", "quality-assurance", "sub-task-planning"] # From original, added sub-task context
-change_log_url: "TBD"
+title: Phase B Completion Verified Audit Report
+standard_id: project-report-phase-b-analysis
+aliases: [Phase B Audit, Phase B Verification Report]
+tags: [status/active, info-type/project-report, topic/project-assessment, project-phase/phase-b]
+kb-id: project-governance
+info-type: project-report
+primary-topic: Detailed audit and verification of Phase B completion status with evidence-based analysis.
+related-standards: ['project-roadmap-phase-b-completion', 'project-roadmap-completion-phases-a-f']
+version: '1.0.0'
+date-created: '2025-05-31T00:00:00Z'
+date-modified: '2025-05-31T09:33:00Z'
+primary_domain: PROJECT
+sub_domain: REPORTS
+scope_application: Phase B verification and completion planning.
+criticality: p1-high
+lifecycle_gatekeeper: N/A
+impact_areas: [project-assessment, phase-management, quality-assurance]
+change_log_url: N/A
 ---
+
 ## Verified Audit of Master Knowledge Base Refactoring Phase B
 
 ### 1. Introduction: Purpose and Verification Scope
