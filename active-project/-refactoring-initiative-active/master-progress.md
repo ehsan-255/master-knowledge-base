@@ -1,12 +1,12 @@
 ---
 title: "Master Progress - Refactoring Initiative"
-id: "refactoring-initiative-master-progress"
+id: "-refactoring-initiative-master-progress"
 kb: "refactoring-initiative"
 file_type: "master_progress_file"
-source_path: "active-project/refactoring-initiative-active/master-progress.md"
+source_path: "active-project/-refactoring-initiative-active/master-progress.md"
 description: "Overall progress tracking for the refactoring initiative, seeded from original root progress.md."
 linked_documents: ["master-analysis-report.md", "master-roadmap.md"]
-standard_id: "refactoring-initiative-master-progress"
+standard_id: "-refactoring-initiative-master-progress"
 aliases: ["Refactoring Master Progress Log"]
 tags:
   - status/active
@@ -16,9 +16,9 @@ kb-id: "refactoring-initiative"
 info-type: "progress-log"
 primary-topic: "Tracks the progress of the entire refactoring initiative."
 related-standards: []
-version: "1.1.0" # Incremented version
-date-created: "YYYY-MM-DDTHH:MM:SSZ" # Assuming original creation date was placeholder
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for this modification
+version: "1.1.2"
+date-created: "YYYY-MM-DDTHH:MM:SSZ"
+date-modified: "2024-07-16T12:00:00Z"
 primary_domain: "PROJECT"
 sub_domain: "TRACKING"
 scope_application: "Refactoring initiative."
@@ -32,7 +32,7 @@ target_audience: ["technical_team", "project_managers"]
 project_phase: "Overall"
 task_type: "Progress Tracking"
 jira_issue: "TBD"
-history_summary: "Content copied from root ./progress.md and updated with Refactoring Initiative restructuring summary."
+history_summary: "Content copied from root ./progress.md and updated with Refactoring Initiative restructuring summary. Parent folder renamed to '-refactoring-initiative-active'. Final review and frontmatter alignment for folder name changes."
 key_takeaways: ["Provides a consolidated view of project progress across phases.", "Details current L2/L3 task statuses."]
 next_steps: ["Continuously update with developments from L2/L3 tasks."]
 ---
@@ -330,7 +330,7 @@ This organizational foundation directly supports:
     - **L2-T1 (`l2-t1-initial-refactoring-and-roadmap-phases-active/`) Status:** Active.
         - Analysis report created: `l2-t1-analysis-report.md`.
         - Placeholder roadmap created: `l2-t1-roadmap.md`.
-    - **L3-T1 (`l3-t1-analyze-phase-b-scope-completed/`) Status:** Completed.
+    - **L3-T1 (`l3-t1-phase-b-completion-completed/`) Status:** Completed.
         - Analysis report: `l3-t1-analysis-report.md`.
         - Roadmap: `l3-t1-roadmap.md`.
         - Progress documented in `l3-t1-progress.md`.
