@@ -1,20 +1,29 @@
 ---
 title: 'Standards Index JSON-LD – Spec Sketch'
+standard_id: DOC-TOOLS-INDEXER-JSONLD-SPEC
 aliases: ['JSON-LD Index Spec']
 tags:
-  - kb-id/global # Placeholder
-  - content-type/design-document # Placeholder
-  - status/draft # Placeholder
-  - topic/automation # Placeholder
-kb-id: 'global' # Placeholder
-info-type: 'design-document' # Placeholder
+  - kb-id/tools
+  - content-type/specification
+  - status/draft
+  - topic/automation
+  - topic/indexing
+  - topic/json-ld
+kb-id: 'tools'
+info-type: 'design-specification'
 primary-topic: 'Design specification sketch for the standards_index.json in JSON-LD format.'
-related-standards: "N/A" # Placeholder
-version: '0.1.0-draft'
-date-created: '2025-05-27' # Placeholder - use actual date
-date-modified: '2025-05-27' # Placeholder - use actual date
+related-standards: []
+version: '0.1.0'
+date-created: '2025-05-27T00:00:00Z'
+date-modified: '2025-06-03T10:00:00Z'
+primary_domain: OM
+sub_domain: AUTOMATION
+scope_application: 'Specification for the JSON-LD structure of the standards index.'
+criticality: 'P2-Medium'
+lifecycle_gatekeeper: 'Architect-Review'
+impact_areas: ['indexing', 'data-interoperability']
+change_log_url: './standards-index-jsonld-spec-CHANGELOG.md'
 ---
-
 # Standards Index JSON‑LD – Spec Sketch
 
 ## Context
@@ -63,4 +72,4 @@ date-modified: '2025-05-27' # Placeholder - use actual date
 *   CI generator will enrich missing dates using Git last‑commit information.
 *   All registry look‑ups performed in‑build; failures trigger CI errors.
 *   Script path: `scripts/generate_standards_index.py`.
-*   Output location: `/views/standards_index.json`. 
+*   Output location: `/views/standards_index.json`.

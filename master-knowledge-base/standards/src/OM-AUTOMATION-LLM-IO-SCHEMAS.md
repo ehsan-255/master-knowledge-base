@@ -125,7 +125,7 @@ This document defines the standard for creating, documenting, and managing JSON 
 - Each property within the schema MUST have a `description` field explaining its purpose, data type, and whether it is required or optional.
 
 
-### 2.4 LLM Prompt Meta-Data Structure
+## LLM Prompt Meta-Data Structure
 
 *   `prompt_id`: (String) A unique identifier for the prompt (e.g., "KB-ARTICLE-SUMMARIZER-V1").
 *   `prompt_name`: (String) A human-readable name for the prompt.
@@ -144,4 +144,6 @@ This document defines the standard for creating, documenting, and managing JSON 
 
 ## 3. Related Standards
 
-# ... existing code ... 
+- [[OM-AUTOMATION-LLM-PROMPT-LIBRARY]]
+- [[MT-SCHEMA-FRONTMATTER]]
+- [[SF-CONVENTIONS-NAMING]]
