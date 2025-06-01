@@ -1,23 +1,37 @@
 ---
-title: Standards Categorization Scheme Design Document
-standard_id: project-design-standards-categorization-scheme
-tags: [status/informational-reference, info-type/project-design-document, topic/project-architecture]
-kb-id: project-governance
-info-type: project-design-document
-primary-topic: Design framework for categorizing and organizing standards within the knowledge base system.
-related-standards: ['project-design-multi-view-architecture']
-version: '1.0.0'
-date-created: '2025-05-29T00:00:00Z'
-date-modified: '2025-05-31T09:33:00Z'
-primary_domain: PROJECT
-sub_domain: DESIGN
-scope_application: Overall structural design for the standards system.
-criticality: p1-high
-lifecycle_gatekeeper: N/A
-impact_areas: [system-architecture, content-organization]
-change_log_url: N/A
+title: L2-T2 Analysis Report - Define Standards Categorization
+id: l2-t2-define-standards-categorization-planned-l2-t2-analysis-report
+kb: refactoring-initiative
+file_type: sub_task_analysis_report
+source_path: active-project/refactoring-initiative-active/l2-t2-define-standards-categorization-planned/l2-t2-analysis-report.md
+description: Analysis report for the L2-T2 sub-task, focusing on the design of the standards categorization scheme.
+criticality: P1-High # From original
+maturity: High
+lifecycle_stage: Planning
+target_audience: ["technical_architects", "information_architects", "development_team"]
+primary_domain: "PROJECT" # From original
+sub_domain: "DESIGN" # From original
+project_phase: "l2-t2-define-standards-categorization"
+task_type: "analysis_document"
+jira_issue: "TBD"
+tags: ["refactoring", "sub-task", "l2-t2", "analysis", "categorization-scheme", "status/planned", "info-type/project-design-document", "topic/project-architecture"]
+linked_documents: ["l2-t2-roadmap.md", "l2-t2-progress.md", "master-roadmap.md", "l2-t1-analysis-report.md"]
+history_summary: "Original content from project-design-standards-categorization-scheme.md, repurposed for L2-T2 sub-task."
+key_takeaways: ["Defines primary and secondary categorization axes.", "Lists essential standard metadata fields."]
+next_steps: ["Develop L2-T2 roadmap based on this analysis."]
+# Fields from original template
+standard_id: "l2-t2-define-standards-categorization-planned-l2-t2-analysis-report" # New ID
+aliases: ["Standards Categorization Analysis", "L2-T2 Analysis"]
+kb-id: "refactoring-initiative" # Updated
+info-type: "project-design-document" # From original
+version: "1.0.0" # Reset version
+date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
+date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
+scope_application: "Analysis for defining the standards categorization scheme as part of L2-T2 sub-task." # Updated
+lifecycle_gatekeeper: "Architect Lead"
+impact_areas: ["system-architecture", "content-organization", "sub-task-planning"] # From original, added sub-task context
+change_log_url: "TBD"
 ---
-
 ## Universal Standards Categorization Scheme: Final Framework
 
 This document outlines the definitive, multi-dimensional categorization scheme for organizing and managing any collection of standards. The framework is designed to ensure clarity, discoverability, maintainability, and robust governance, supporting both human understanding and automated processing.
