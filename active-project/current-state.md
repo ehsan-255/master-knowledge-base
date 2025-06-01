@@ -17,9 +17,9 @@ kb-id: "active-projects-meta"
 info-type: "log-file"
 primary-topic: "Provides a high-level overview and timeline of active project statuses."
 related-standards: ["apo-initiative-master-analysis-report"] # Links to the APO initiative which defines how projects are run
-version: "0.1.0"
+version: "0.1.1" # Incremented
 date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for actual creation
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for this modification
+date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for current date
 primary_domain: "GM" # Governance & Meta-Standards
 sub_domain: "PROJECT_MGMT" # Project Management
 scope_application: "Tracking status of all initiatives in active-project/"
@@ -44,7 +44,7 @@ This document provides a linear, chronological summary of major project initiati
 ---
 ## 2025-06-01 19:43:27 UTC - Project Initiations & Status Update
 
-*   **Refactoring Initiative (`active-project/refactoring-initiative-active/`)**:
+*   **Refactoring Initiative (`active-project/-refactoring-initiative-active/`)**:
     *   **Status:** Active
     *   **Summary:** Project initiated to restructure existing project documents from `project-design/`, `project-planning/`, and `project-reports/` into the new standardized project format.
     *   Key analysis and roadmap documents (`master-analysis-report.md`, `master-roadmap.md`) have been established by consolidating original project definition files.
@@ -52,9 +52,9 @@ This document provides a linear, chronological summary of major project initiati
     *   **Sub-task L2-T1 (`l2-t1-initial-refactoring-and-roadmap-phases-active/`)**: Active. Analysis report created.
     *   **Sub-task L3-T1 (`l3-t1-phase-b-completion-completed/`)**: Completed. Analysis and roadmap documents established.
 
-*   **Active Project Organization Initiative (`active-project/active-project-organization-initiative-active/`)**:
+*   **Active Project Organization Initiative (`active-project/-active-project-organization-initiative-active/`)**:
     *   **Status:** Active
     *   **Summary:** Project initiated to formalize, document, and manage the standards for active project organization within this repository.
-    *   The core definition document (`active-project/active-project-organization.md`) has been moved to serve as this initiative's `master-analysis-report.md`.
+    *   The core definition document (`active-project/-active-project-organization-initiative-active/master-analysis-report.md`) has been moved to serve as this initiative's `master-analysis-report.md`.
     *   Placeholder `master-roadmap.md` and `master-progress.md` have been created.
 ---

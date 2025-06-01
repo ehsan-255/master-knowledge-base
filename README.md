@@ -2,7 +2,7 @@
 
 Welcome to the Master Knowledge Base (MKB)!
 
-This repository serves as a central hub for various Knowledge Bases (KBs). It enforces strict standards for structure, formatting, style, and more. It also incorporates automation capabilities to ensure adherence to these standards and to facilitate other operational aspects.
+This repository serves as a central hub for various Knowledge Bases (KBs). It enforces strict standards for structure, formatting,style, and more. It also incorporates automation capabilities to ensure adherence to these standards and to facilitate other operational aspects.
 
 ## Foundational Development Phase
 

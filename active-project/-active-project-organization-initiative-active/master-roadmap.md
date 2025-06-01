@@ -1,13 +1,13 @@
 ---
 title: "Master Roadmap - Active Project Organization Initiative"
-id: "apo-initiative-master-roadmap"
+id: "-apo-initiative-master-roadmap"
 kb: "active-project-organization-initiative"
 file_type: "master_roadmap"
-source_path: "active-project/active-project-organization-initiative-active/master-roadmap.md"
+source_path: "active-project/-active-project-organization-initiative-active/master-roadmap.md"
 description: "Roadmap for defining and maintaining active project organization standards."
 status: "active"
 linked_documents: ["master-analysis-report.md", "master-progress.md"]
-standard_id: "apo-initiative-master-roadmap"
+standard_id: "-apo-initiative-master-roadmap"
 aliases: ["APO Roadmap"]
 tags:
   - status/active
@@ -17,7 +17,7 @@ kb-id: "active-project-organization-initiative"
 info-type: "roadmap-document"
 primary-topic: "Outlines phases for establishing and refining project organization standards."
 related-standards: []
-version: "0.1.0"
+version: "0.1.1"
 date-created: "YYYY-MM-DDTHH:MM:SSZ"
 date-modified: "YYYY-MM-DDTHH:MM:SSZ"
 primary_domain: "GM"
@@ -33,7 +33,7 @@ target_audience: ["all_contributors", "project_managers"]
 project_phase: "Planning"
 task_type: "Initiative Roadmap"
 jira_issue: "TBD"
-history_summary: "Initial placeholder roadmap created for the initiative."
+history_summary: "Initial placeholder roadmap created for the initiative. Parent folder renamed to '-active-project-organization-initiative-active'."
 key_takeaways: ["Defines goals and phases for the APO initiative."]
 next_steps: ["Execute Phase 2: Template Refinement and Creation."]
 ---

@@ -1,12 +1,12 @@
 ---
 title: "Master Analysis Report - Refactoring Initiative"
-id: "refactoring-initiative-master-analysis-report"
+id: "-refactoring-initiative-master-analysis-report"
 kb: "refactoring-initiative"
 file_type: "master_analysis_report"
-source_path: "active-project/refactoring-initiative-active/master-analysis-report.md"
+source_path: "active-project/-refactoring-initiative-active/master-analysis-report.md"
 description: "Consolidated analysis defining the multi-view architecture and standards categorization for the refactoring initiative."
 linked_documents: ["master-roadmap.md", "master-progress.md"]
-standard_id: "refactoring-initiative-master-analysis-report"
+standard_id: "-refactoring-initiative-master-analysis-report"
 aliases: ["Master Project Analysis", "Refactoring Analysis"]
 tags:
   - status/active
@@ -16,9 +16,9 @@ kb-id: "refactoring-initiative"
 info-type: "analysis-document"
 primary-topic: "Overall analysis for the refactoring initiative."
 related-standards: []
-version: "1.0.0"
+version: "1.0.3"
 date-created: "YYYY-MM-DDTHH:MM:SSZ"
-date-modified: "YYYY-MM-DDTHH:MM:SSZ"
+date-modified: "2024-07-16T12:00:00Z"
 primary_domain: "PROJECT"
 sub_domain: "ANALYSIS"
 scope_application: "Refactoring initiative planning and design."
@@ -32,7 +32,7 @@ target_audience: ["technical_team", "project_managers"]
 project_phase: "Initiation"
 task_type: "Consolidated Analysis"
 jira_issue: "TBD"
-history_summary: "Consolidated from project-design-multi-view-architecture.md and project-design-standards-categorization-scheme.md."
+history_summary: "Consolidated from project-design-multi-view-architecture.md and project-design-standards-categorization-scheme.md. Parent folder renamed to '-refactoring-initiative-active'. Final review and frontmatter alignment for folder name changes."
 key_takeaways: ["Defines foundational architectural and categorization schemes."]
 next_steps: ["Develop detailed master roadmap based on this analysis."]
 ---

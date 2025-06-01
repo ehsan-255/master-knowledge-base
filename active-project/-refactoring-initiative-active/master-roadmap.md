@@ -1,12 +1,12 @@
 ---
 title: "Master Roadmap - Refactoring Initiative"
-id: "refactoring-initiative-master-roadmap"
+id: "-refactoring-initiative-master-roadmap"
 kb: "refactoring-initiative"
 file_type: "master_roadmap"
-source_path: "active-project/refactoring-initiative-active/master-roadmap.md"
+source_path: "active-project/-refactoring-initiative-active/master-roadmap.md"
 description: "Original high-level roadmap for the refactoring initiative."
 linked_documents: ["master-analysis-report.md", "master-progress.md"]
-standard_id: "refactoring-initiative-master-roadmap"
+standard_id: "-refactoring-initiative-master-roadmap"
 aliases: ["Master Project Roadmap", "Refactoring Main Roadmap"]
 tags:
   - status/active
@@ -16,9 +16,9 @@ kb-id: "refactoring-initiative"
 info-type: "roadmap-document"
 primary-topic: "Defines the overall phases and tasks for the refactoring initiative."
 related-standards: []
-version: "1.0.0"
+version: "1.0.2"
 date-created: "YYYY-MM-DDTHH:MM:SSZ"
-date-modified: "YYYY-MM-DDTHH:MM:SSZ"
+date-modified: "2024-07-16T12:00:00Z"
 primary_domain: "PROJECT"
 sub_domain: "PLANNING"
 scope_application: "Entire refactoring initiative."
@@ -32,7 +32,7 @@ target_audience: ["technical_team", "project_managers"]
 project_phase: "Overall"
 task_type: "Master Planning Document"
 jira_issue: "TBD"
-history_summary: "Content from project-roadmap-original-high-level.md."
+history_summary: "Content from project-roadmap-original-high-level.md. Parent folder renamed to '-refactoring-initiative-active'. Final review and frontmatter alignment for folder name changes."
 key_takeaways: ["Provides a multi-phase plan for standards refactoring."]
 next_steps: ["Execute Phase 0 and subsequent phases as outlined."]
 ---
@@ -300,3 +300,5 @@ This roadmap outlines the phases, steps, and tasks required to fully refactor th
     *   Final CI (or script run) report indicates full system health and successful build.
 
 ---
+
+[end of active-project/-refactoring-initiative-active/master-roadmap.md]
