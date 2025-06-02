@@ -1,40 +1,36 @@
 ---
-title: 'Changelog: Guide: Knowledge Base Usage and Standards'
-standard_id: GM-GUIDE-KB-USAGE-CHANGELOG
-aliases:
-  - 'Guide: Knowledge Base Usage and Standards Changelog'
+title: "Changelog: Guide: Knowledge Base Usage"
+standard_id: "GM-GUIDE-KB-USAGE-CHANGELOG"
+aliases: ["Changelog for KB Usage Guide"]
 tags:
-  - status/active
-  - content-type/changelog
-  - topic/kb-usage
-  - topic/guide
-kb-id: standards
-info-type: changelog
-primary-topic: 'Tracks changes for the standard: [[GM-GUIDE-KB-USAGE]] - Guide: Knowledge
-  Base Usage and Standards.'
-related-standards:
-  - GM-GUIDE-KB-USAGE
-version: 0.1.0
-date-created: '2025-05-30T23:30:00Z'
-date-modified: '2025-05-31T18:54:50Z'
-primary_domain: GM
-sub_domain: GUIDE
-scope_application: Tracks changes for [[GM-GUIDE-KB-USAGE]].
-criticality: P1-High
-lifecycle_gatekeeper: Editorial-Board-Approval
-impact_areas:
-  - User Onboarding
-  - Standards Adoption
-  - KB Navigation
-  - Contribution Process
-change_log_url: ./GM-GUIDE-KB-USAGE-CHANGELOG.MD
+  - status/draft
+  - criticality/P3-Low
+  - content-type/changelog-document
+kb-id: "standards-development"
+info-type: "changelog-document"
+primary-topic: "Tracks changes for the GM-GUIDE-KB-USAGE document."
+related-standards: ["GM-GUIDE-KB-USAGE"]
+version: "0.1.0"
+date-created: "2025-06-02T00:00:00Z"
+date-modified: "2025-06-02T00:00:00Z"
+primary_domain: "GM"
+sub_domain: "CHANGELOG"
+scope_application: "Component-Level"
+criticality: "P3-Low" # Changelogs are typically less critical than the docs themselves
+lifecycle_gatekeeper: "SME-Review"
+impact_areas: ["version-tracking", "documentation-history"]
+change_log_url: null # Changelogs don't have their own changelogs
+maturity: "Low"
+lifecycle_stage: "Development"
+target_audience: ["all_contributors", "administrators"]
+project_phase: "Refactoring Initiative"
+task_type: "Documentation"
+history_summary: "Initial creation of changelog."
+key_takeaways: ["Tracks GM-GUIDE-KB-USAGE versions."]
+next_steps: ["Update with new versions as GM-GUIDE-KB-USAGE evolves."]
 ---
 
-# Changelog: GM-GUIDE-KB-USAGE
+# Changelog for GM-GUIDE-KB-USAGE
 
-## Version 1.0.0 (2025-05-30)
-- Initial versioning and frontmatter conformance pass.
-- `kb-id` set to "standards".
-- `date-modified` updated.
-- `version` formatting corrected.
-- Other standard frontmatter fields validated/added.
+## 0.1.0 (2025-06-02)
+- Initial creation with placeholder content.
