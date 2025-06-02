@@ -1,21 +1,24 @@
 ---
-title: 'Standard: Markdown Syntax for TODO Items (M-SYNTAX-TODO-001)'
+title: 'Standard: Markdown Syntax for TODO Items (M-SYNTAX-TODO-001) - DEPRECATED'
 tags:
-  - standards-kb/markdown
-  - content-type/standard-document
-  - syntax-rules
-  - utility-standards
-  - status/draft
-  - kb-id/standards
+- content-type/standard-document
+- kb-id/standards
+- standards-kb/markdown
+- status/deprecated
+- syntax-rules
+- utility-standards
 date-created: 2025-05-19
-date-modified: 2025-05-22
-version: '0.1.1'
+date-modified: '2025-06-02T00:41:04Z'
+version: 0.2.0
 info-type: standard-document
-primary-topic: 'Defines the Markdown syntax for marking TODO items within documents.'
+primary-topic: Defines the Markdown syntax for marking TODO items within documents.
 related-standards:
-  - O-USAGE-CALLOUTS-001 # Potential alternative using callouts
-aliases: [TODO Syntax, Task Tracking Markdown]
+- O-USAGE-CALLOUTS-001
+aliases:
+- TODO Syntax
+- Task Tracking Markdown
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[SF-SYNTAX-TODO]].
 
 # Standard: Markdown Syntax for TODO Items (M-SYNTAX-TODO-001)
 

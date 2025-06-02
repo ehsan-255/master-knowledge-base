@@ -1,22 +1,25 @@
 ---
 title: 'Standard: LLM Automation Input/Output Schemas (LLM-AUTOMATION-IO-SCHEMA-001) - DEPRECATED'
 tags:
-  - standards-kb/universal
-  - content-type/standard-document
-  - llm-integration
-  - automation
-  - schemas
-  - status/deprecated # Changed from status/draft
-  - kb-id/standards
+- automation
+- content-type/standard-document
+- kb-id/standards
+- llm-integration
+- schemas
+- standards-kb/universal
+- status/deprecated
 date-created: 2025-05-19
-date-modified: "2025-05-29T00:00:00Z" # Updated to current date
-version: '0.1.2'
+date-modified: '2025-06-02T00:36:57Z'
+version: 0.2.0
 info-type: standard-document
-primary-topic: 'Governs the definition and management of JSON schemas for LLM inputs and outputs.'
+primary-topic: Governs the definition and management of JSON schemas for LLM inputs and outputs.
 related-standards:
-  - OM-AUTOMATION-LLM-IO-SCHEMAS # Points to the new standard
-aliases: [LLM IO Schemas, LLM Automation Schemas]
+- OM-AUTOMATION-LLM-IO-SCHEMAS
+aliases:
+- LLM IO Schemas
+- LLM Automation Schemas
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[UA-SCHEMA-LLM-IO]].
 
 > **DEPRECATED**: This standard has been superseded by [[OM-AUTOMATION-LLM-IO-SCHEMAS]].
 
