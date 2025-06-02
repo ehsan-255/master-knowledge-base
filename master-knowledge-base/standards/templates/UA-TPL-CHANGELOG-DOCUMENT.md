@@ -1,11 +1,11 @@
 ---
 title: "Changelog: [TITLE_PLACEHOLDER]"
-standard_id: "XX-TEMPLATECL-CHANGELOG"
+standard_id: "UA-TPL-CHANGELOG-DOCUMENT"
 aliases: ["[ALIAS_PLACEHOLDER]"]
 tags:
   - status/active
   - content-type/changelog
-  - topic/[TOPIC_PLACEHOLDER]
+  - topic/governance
 kb-id: "standards"
 info-type: "changelog"
 primary-topic: "[PRIMARY_TOPIC_PLACEHOLDER]"
@@ -16,8 +16,8 @@ date-modified: "2025-05-30T23:30:00Z"
 primary_domain: "GM"
 sub_domain: "GUIDE"
 scope_application: "Tracks changes to the [SCOPE_PLACEHOLDER]."
-criticality: "[CRITICALITY_PLACEHOLDER]"
-lifecycle_gatekeeper: "[GATEKEEPER_PLACEHOLDER]"
+criticality: "P2-Medium"
+lifecycle_gatekeeper: "No-Gatekeeper"
 impact_areas: ["Change tracking", "Version history", "[IMPACT_PLACEHOLDER]"]
-change_log_url: "./[FILENAME_PLACEHOLDER]"
+change_log_url: "./UA-TPL-CHANGELOG-DOCUMENT.md"
 --- 

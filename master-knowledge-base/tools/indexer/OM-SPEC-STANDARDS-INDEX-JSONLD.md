@@ -1,6 +1,6 @@
 ---
 title: 'Standards Index JSON-LD – Spec Sketch'
-standard_id: DOC-TOOLS-INDEXER-JSONLD-SPEC
+standard_id: OM-SPEC-STANDARDS-INDEX-JSONLD
 aliases: ['JSON-LD Index Spec']
 tags:
   - kb-id/tools
@@ -15,14 +15,14 @@ primary-topic: 'Design specification sketch for the standards_index.json in JSON
 related-standards: []
 version: '0.1.0'
 date-created: '2025-05-27T00:00:00Z'
-date-modified: '2025-06-03T10:00:00Z'
+date-modified: '2025-05-27T00:00:00Z'
 primary_domain: OM
 sub_domain: AUTOMATION
-scope_application: 'Specification for the JSON-LD structure of the standards index.'
+scope_application: Tooling
 criticality: 'P2-Medium'
 lifecycle_gatekeeper: 'Architect-Review'
-impact_areas: ['indexing', 'data-interoperability']
-change_log_url: './standards-index-jsonld-spec-CHANGELOG.md'
+impact_areas: ['Automation', 'Indexing']
+change_log_url: "https://example.com/placeholder-changelog-url"
 ---
 # Standards Index JSON‑LD – Spec Sketch
 

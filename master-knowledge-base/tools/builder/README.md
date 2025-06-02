@@ -68,23 +68,65 @@ The `generate_collections.py` script is designed to build "Collection Documents"
         *   `number_of_standards` (count of aggregated standards).
         *   Relevant tags like `kb-collection`, `derived-view`.
 
-## Usage (Conceptual)
+## Usage
+
+The script is executed from the command line.
 
 ```bash
-python generate_collections.py 
-# (Optionally, in the future: python generate_collections.py --index /path/to/index.json --config /path/to/collections.yaml --out /path/to/output/dir)
+python generate_collections.py [OPTIONS]
+```
+
+### Command-Line Arguments:
+
+*   `--repo-base REPO_BASE`:
+    *   Base directory of the repository.
+    *   Default: `.` (current directory)
+*   `--index-file INDEX_FILE`:
+    *   Path to the standards index JSON file, relative to `repo-base`.
+    *   Default: `master-knowledge-base/dist/standards_index.json`
+*   `--definitions-file DEFINITIONS_FILE`:
+    *   Path to the collection definitions YAML file, relative to `repo-base`.
+    *   Default: `master-knowledge-base/tools/builder/collection_definitions.yaml`
+*   `--output-dir OUTPUT_DIR`:
+    *   Directory to save generated collection files, relative to `repo-base`.
+    *   Default: `master-knowledge-base/dist/collections`
+*   `--log-level LOG_LEVEL`:
+    *   Set the logging level.
+    *   Choices: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`
+    *   Default: `INFO`
+
+### Example:
+
+```bash
+# Run with default settings (assuming script is run from repo root)
+python master-knowledge-base/tools/builder/generate_collections.py
+
+# Run with a different repo base and debug logging
+python master-knowledge-base/tools/builder/generate_collections.py --repo-base /path/to/your/repo --log-level DEBUG
+
+# Specify a different output directory
+python master-knowledge-base/tools/builder/generate_collections.py --output-dir master-knowledge-base/dist/custom_collections
 ```
 
 ## Development Status
 
-This script is currently a skeleton with defined specifications. Key areas for implementation include:
--   Robust loading and validation of the YAML configuration file for collection definitions.
--   Implementation of the filtering logic based on various criteria and operators.
--   Actual file content reading and extraction (beyond just metadata).
--   Sophisticated Table of Contents generation.
--   Advanced internal link resolution logic.
--   Error handling and logging.
+The script has been enhanced with command-line argument parsing using `argparse` and structured logging using the `logging` module. Print statements have been replaced with logger calls.
 
-The current skeleton includes placeholders for these functionalities and basic file/directory handling. The path for `standards_index.json` and `collection_definitions.yaml` are set relative to an assumed repository root from the script's location.
-The output directory `/dist/collections/` is created if it doesn't exist.
-The example `collection_definitions.yaml` should be created alongside this script.
+Key functional areas that are largely implemented:
+-   Loading and validation of the YAML configuration file for collection definitions.
+-   Loading the standards index.
+-   Basic filtering logic based on criteria (currently AND logic for all criteria).
+-   File content reading and extraction of body content (after frontmatter).
+-   Table of Contents generation with GFM anchors (including basic duplicate anchor handling).
+-   Aggregation of content into collection Markdown files.
+-   Basic internal link resolution for links pointing to standards within the same collection.
+
+Potential areas for future improvement:
+-   More complex criteria logic (e.g., AND/OR groups) for filtering standards.
+-   More sophisticated internal link resolution (e.g., across different generated collections).
+-   Handling of different content extraction rules (e.g., specific H2 sections).
+
+The script uses paths relative to the specified `repo-base` (or current directory if not specified).
+The output directory is created if it doesn't exist.
+The `/master-knowledge-base/dist/` directory (which includes the default output for collections and the default standards_index.json) should typically be added to `.gitignore`.
+An example `collection_definitions.yaml` should be maintained in the `master-knowledge-base/tools/builder/` directory.
