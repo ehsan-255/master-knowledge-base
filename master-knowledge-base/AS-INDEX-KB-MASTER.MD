@@ -1,50 +1,48 @@
 ---
-title: 'Master Index of Knowledge Bases'
-standard_id: AS-INDEX-KB-MASTER
-aliases:
-- Knowledge Base Index
-- KB Master List
-- Index of KBs
-tags:
-- status/draft
-- criticality/p1-high
-- content-type/navigation-document
-- topic/architecture
-- topic/kb-management
-kb-id: master
-info-type: kb-definition-map
-primary-topic: 'Provides a centralized index of all distinct Knowledge Bases within the ecosystem.'
-related-standards:
-- AS-ROOT-STANDARDS-KB
-- AS-STRUCTURE-MASTER-KB-INDEX
-version: '0.1.0'
-date-created: '2025-06-02T06:42:47Z' # Use the timestamp from the proposal
-date-modified: '2025-06-02T06:42:47Z' # Use the timestamp from the proposal
-primary_domain: AS
-sub_domain: INDEXING
-scope_application: 'Ecosystem-wide, for anyone navigating between different KBs.'
-criticality: P1-High
-lifecycle_gatekeeper: Architect-Review
-impact_areas:
-- KB navigation
-- Content discoverability
-- Inter-KB linking
-change_log_url: './AS-INDEX-KB-MASTER-CHANGELOG.MD'
+title: "Master Knowledge Base Index"
+standard_id: "AS-INDEX-KB-MASTER" # This is the ID of this specific index document
+aliases: ["KB Directory", "Knowledge Base Master List", "Index of KBs"]
+tags: ["status/live", "criticality/p0-critical", "content-type/navigation-document", "topic/indexing", "topic/architecture"]
+kb-id: "kb-id/global" # This file is global, indexing multiple KBs
+info-type: "navigation-document"
+primary-topic: "Provides a master directory and entry points to all active Knowledge Bases (KBs) within the ecosystem."
+related-standards: ["AS-STRUCTURE-MASTER-KB-INDEX", "AS-ROOT-STANDARDS-KB"] # Links to the standard defining this type of file, and the root of the standards KB.
+version: "1.0.0" # Initial version
+date-created: "2025-05-29T16:10:25Z"
+date-modified: "2025-05-30T00:00:00Z" # Updated to current date
+primary_domain: "AS"
+sub_domain: "INDEXING" # Changed from STRUCTURE
+scope_application: "Serves as the primary navigational entry point to all distinct Knowledge Bases."
+criticality: "P0-Critical" # Essential for navigating the entire KB ecosystem.
+lifecycle_gatekeeper: "Architect-Review"
+impact_areas: ["KB navigation", "Content discoverability", "User orientation", "Onboarding"]
+change_log_url: "./AS-INDEX-KB-MASTER-CHANGELOG.MD" # Corrected casing
 ---
 
-# Master Index of Knowledge Bases (AS-INDEX-KB-MASTER)
+# Master Knowledge Base Index
 
-This document serves as a centralized directory of all distinct Knowledge Bases (KBs) within our information ecosystem. Each KB is a self-contained unit focused on a specific domain, product, or area of knowledge.
+This document provides a centralized directory to all active Knowledge Bases (KBs) within this ecosystem. For the standard defining how this index file should be structured, see `[[AS-STRUCTURE-MASTER-KB-INDEX]]`.
 
-## Registered Knowledge Bases
+## Available Knowledge Bases
 
-The following Knowledge Bases are currently part of the managed ecosystem:
+Below is a list of currently available Knowledge Bases. Each KB is a self-contained unit focused on a specific domain or purpose.
 
--   **[Standards Development Knowledge Base]([[AS-ROOT-STANDARDS-KB]])**: Contains all standards, policies, and guidelines for creating, managing, and governing content within the knowledge ecosystem.
+1.  **Standards Knowledge Base**
+    *   **Description:** Contains all standards, policies, guidelines, and supporting documentation for creating, managing, and governing content within the entire knowledge ecosystem. This is the meta-KB that defines how other KBs operate.
+    *   **Entry Point:** `[[AS-ROOT-STANDARDS-KB]]`
+    *   **Primary Folder:** `/master-knowledge-base/standards/`
 
--   **(Illustrative Example) Product X Knowledge Base**: Documentation, guides, and troubleshooting for Product X. *(Note: Link would be to the root of Product X KB if it exists)*
+2.  **LLM Content Generation Cookbook KB**
+    *   **Description:** Provides practical recipes, prompt templates, and best practices for using Large Language Models (LLMs) to assist with content creation, analysis, and other knowledge work.
+    *   **Entry Point:** `[[TODO-LLM-COOKBOOK-ROOT-ID]]` (Link to the root file of the LLM Cookbook KB once its ID is known or it's created)
+    *   **Primary Folder:** `/master-knowledge-base/llm-content-generation-cookbook/` (Assumed path)
 
--   **(Illustrative Example) Research & Development Insights KB**: Internal findings, experiment results, and innovation tracking for R&D teams. *(Note: Link would be to the root of R&D KB if it exists)*
+3.  **Research Methodology KB**
+    *   **Description:** Focuses on research design, data collection, analysis, and open science practices for generating complex workflows.
+    *   **Entry Point:** `[[TODO-RESEARCH-METHODOLOGY-ROOT-ID]]` (Link to the root file of the Research Methodology KB once its ID is known or it's created)
+    *   **Primary Folder:** `/master-knowledge-base/research-methodology-kb/` (Assumed path)
+
+> [!TODO] This index needs to be kept up-to-date as new Knowledge Bases are added or existing ones are retired. Links to the entry points (`root.md` or equivalent `AS-ROOT-*-KB.md` files) of each KB must be accurate. Placeholder links like `[[TODO-LLM-COOKBOOK-ROOT-ID]]` need to be resolved.
 
 ---
-To propose the addition of a new Knowledge Base to this index, please follow the process outlined in `[[OM-POLICY-KB-REGISTRATION]]` (once created).
+This master index is crucial for navigating the multi-KB environment.

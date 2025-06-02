@@ -130,7 +130,8 @@ def resolve_internal_links(body_content, current_collection_standard_ids_map, al
     def replace_link(match):
         target_id = match.group(1)
         target_sub_anchor_part = match.group(2) or ""  # e.g., #my-heading or #anchor1#anchor2
-        alias_text = match.group(4) # The actual text of the alias, without '|'
+        # Group 3 is the alias text. It will be None if the alias part of the regex didn't match.
+        alias_text = match.group(3)
         
         display_text = alias_text
         if not display_text: # No alias, try to use target title

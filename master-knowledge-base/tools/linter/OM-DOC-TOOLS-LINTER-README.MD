@@ -74,7 +74,7 @@ The linter currently performs the following checks:
 ## Configuration & Dependencies
 
 *   **Linter Configuration (`LinterConfig` class):**
-    *   Automatically loads controlled vocabularies from files within `/master-knowledge-base/standards/registry/` relative to the specified repository base path. For Phase B, vocabulary loading from Markdown content (e.g., `MT-REGISTRY-TAG-GLOSSARY.md`) has been deferred in favor of registry files.
+    *   Automatically loads controlled vocabularies from files within `/master-knowledge-base/standards/registry/` relative to the specified repository base path. For Phase B, vocabulary loading from Markdown content (e.g., `[[MT-REGISTRY-TAG-GLOSSARY]]`) has been deferred in favor of registry files.
     *   Loads the `standards_index.json` (expected at `[REPO_BASE]/master-knowledge-base/dist/standards_index.json`). A small delay (`time.sleep(0.1)`) was added before index loading to mitigate potential filesystem synchronization issues in some environments, ensuring the index is reliably found after generation.
 *   **Python Dependencies:** `PyYAML`.
 
