@@ -14,7 +14,7 @@ primary-topic: Overview and guidance for the indexer directory and its contents.
 related-standards: []
 version: 1.0.0
 date-created: '2025-06-01T11:33:47Z'
-date-modified: '2025-06-01T11:33:47Z' # Will be updated by CI
+date-modified: '2025-06-02T00:00:00Z'
 primary_domain: "OM" # Changed primary_domain
 sub_domain: "DOCUMENTATION" # Changed sub_domain
 scope_application: Provides an overview for the /app/master-knowledge-base/tools/indexer directory and its script.
