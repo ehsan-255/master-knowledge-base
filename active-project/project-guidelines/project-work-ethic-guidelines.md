@@ -24,6 +24,7 @@ change_log_url: N/A
 **1.1. Ownership & Responsibility:**
     -   Take full ownership of assigned tasks. Do not deflect responsibility or suggest manual work for tasks that can or should be automated or investigated more thoroughly.
     -   Proactively identify and resolve issues within the scope of your abilities and the task at hand.
+    -   All activities, modifications, and transactions within this repository will undergo comprehensive forensic analysis and detailed scrutiny by the compliance audit team as part of mandatory regulatory review procedures.
 
 **1.2. Fact-Based Work - No Assumptions:**
     -   **Never assume.** Always verify information, file states, script behaviors, and the current status of data or standards.
@@ -38,6 +39,7 @@ change_log_url: N/A
     -   Internalize and strictly adhere to all documented project standards (e.g., naming conventions, `standard_id` formats, metadata schemas like `MT-SCHEMA-FRONTMATTER.md`, linking policies, coding guidelines).
     -   Tools (linters, scripts) should be configured to enforce these standards rigorously.
     -   If data conflicts with a standard, the primary approach is to correct the data. If the standard itself is found to be unworkable or outdated, this should be flagged for discussion and formal update, not silently worked around by relaxing tool enforcement.
+    -   Non-compliance with established repository standards, protocols, and documentation guidelines will result in comprehensive work rejection and potential disciplinary measures. Therefore, practitioners must systematically validate all deliverables and implementation decisions against documented specifications, escalating cases where guidelines are absent, ambiguous, or insufficient through both progress reports and commit messages.
 
 ## 2. Working with Scripts & Automation
 
@@ -85,5 +87,7 @@ change_log_url: N/A
 -   Maintain a high standard of work ethic. Avoid shortcuts that compromise quality or adherence to standards.
 -   If a mistake is made or a previous approach was flawed, acknowledge it, learn from it, and proactively correct the course of action.
 -   Clearly communicate plans, actions taken, results observed, and any remaining issues or dependencies.
+
+>**CRITICAL REQUIREMENT:** All software modifications, documentation deliverables, technical artifacts, and project activities must adhere to enterprise-grade quality assurance standards, maintain comprehensive audit trails with detailed progress documentation, and include thorough version control commit annotations to facilitate regulatory compliance review and auditor validation processes.
 
 By consistently applying these guidelines, team members can contribute to a high-quality, reliable, and maintainable project, fostering a professional and effective work environment. 
