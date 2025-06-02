@@ -26,7 +26,7 @@ impact_areas:
   - Content reusability
   - Link integrity
   - Automated validation
-change_log_url: ./SF-LINKS-INTERNAL-SYNTAX-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # SF-LINKS-INTERNAL-SYNTAX: Internal Linking Syntax Standard
 

@@ -29,7 +29,7 @@ impact_areas:
   - File integrity
   - Readability
   - Automated processing
-change_log_url: ./SF-FORMATTING-FILE-HYGIENE-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: File Hygiene and Formatting (SF-FORMATTING-FILE-HYGIENE)

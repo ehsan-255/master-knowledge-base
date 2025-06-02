@@ -36,7 +36,7 @@ impact_areas:
   - Consistency
   - Reducing redundancy
   - Single-sourcing of terms
-change_log_url: ./UA-KEYDEFS-GLOBAL-CHANGELOG.MD
+change_log_url: ./changelog.md
 keys:
   placeholder-key: This is an example placeholder value. Replace with actual keys.
   product-name-alpha: Project AlphaX

@@ -25,7 +25,7 @@ impact_areas:
   - Content presentation
   - Citation formatting
   - Text emphasis
-change_log_url: ./SF-SYNTAX-BLOCKQUOTES-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Blockquotes (SF-SYNTAX-BLOCKQUOTES)
 

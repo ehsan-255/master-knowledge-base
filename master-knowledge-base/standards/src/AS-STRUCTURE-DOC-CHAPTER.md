@@ -28,7 +28,7 @@ impact_areas:
 - Authoring consistency
 - Automated content processing
 - Accessibility
-change_log_url: ./AS-STRUCTURE-DOC-CHAPTER-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: Content Document (Chapter) Internal Structure (AS-STRUCTURE-DOC-CHAPTER)

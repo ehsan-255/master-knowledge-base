@@ -28,7 +28,7 @@ impact_areas:
 - Content discoverability
 - Authoring consistency
 - User onboarding
-change_log_url: ./AS-STRUCTURE-KB-PART-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: Knowledge Base Part Structure and Overview (AS-STRUCTURE-KB-PART)

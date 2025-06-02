@@ -32,7 +32,7 @@ impact_areas:
 - Content discoverability
 - Automation
 - Search accuracy
-change_log_url: ./MT-REGISTRY-TAG-GLOSSARY-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Master Tag Glossary and Registry (MT-REGISTRY-TAG-GLOSSARY)

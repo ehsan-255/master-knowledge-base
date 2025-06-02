@@ -25,7 +25,7 @@ impact_areas:
   - Document formatting
   - Consistency
   - Readability
-change_log_url: ./SF-FORMATTING-MARKDOWN-GENERAL-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Markdown General Formatting Conventions (SF-FORMATTING-MARKDOWN-GENERAL)
 

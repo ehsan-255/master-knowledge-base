@@ -25,7 +25,7 @@ impact_areas:
   - Text formatting
   - Content emphasis
   - Readability
-change_log_url: ./SF-SYNTAX-EMPHASIS-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Emphasis (SF-SYNTAX-EMPHASIS)
 

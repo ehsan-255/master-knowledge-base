@@ -1,23 +1,37 @@
 ---
-title: "Changelog: [TITLE_PLACEHOLDER]"
+title: "DEPRECATED: Individual Changelog Template"
 standard_id: "UA-TPL-CHANGELOG-DOCUMENT"
-aliases: ["[ALIAS_PLACEHOLDER]"]
+aliases: ["DEPRECATED: Individual Changelog Template"]
 tags:
-  - status/active
-  - content-type/changelog
+  - status/deprecated
+  - content-type/template
   - topic/governance
 kb-id: "standards"
-info-type: "changelog"
-primary-topic: "[PRIMARY_TOPIC_PLACEHOLDER]"
-related-standards: ["[RELATED_STANDARD_PLACEHOLDER]"]
+info-type: "template"
+primary-topic: "DEPRECATED: Template for individual changelog documents - replaced by folder-level changelogs"
+related-standards: ["OM-VERSIONING-CHANGELOGS"]
 version: "1.0.0"
 date-created: "2025-05-30T23:30:00Z"
-date-modified: "2025-05-30T23:30:00Z"
+date-modified: "2025-01-11T00:00:00Z"
 primary_domain: "GM"
 sub_domain: "GUIDE"
-scope_application: "Tracks changes to the [SCOPE_PLACEHOLDER]."
-criticality: "P2-Medium"
+scope_application: "DEPRECATED: Was used for individual changelog documents - now replaced by folder-level approach"
+criticality: "P4-Informational"
 lifecycle_gatekeeper: "No-Gatekeeper"
-impact_areas: ["Change tracking", "Version history", "[IMPACT_PLACEHOLDER]"]
-change_log_url: "./UA-TPL-CHANGELOG-DOCUMENT.md"
---- 
+impact_areas: ["Historical reference", "Template evolution"]
+change_log_url: "../changelog.md"
+---
+
+# DEPRECATED: Individual Changelog Template
+
+**⚠️ DEPRECATION NOTICE:** This template is deprecated as of 2025-01-11.
+
+The knowledge base has moved to a **folder-level changelog approach** instead of individual changelog files. 
+
+**Use instead:**
+- `master-knowledge-base/standards/changelog.md` for standards-related changes
+- `master-knowledge-base/tools/changelog.md` for tools-related changes
+
+**Rationale:** Folder-level changelogs provide better maintainability and prevent duplication when changes affect multiple related standards.
+
+See [[OM-VERSIONING-CHANGELOGS]] for updated changelog requirements. 

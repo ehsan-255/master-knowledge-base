@@ -24,7 +24,7 @@ impact_areas:
   - Document structure
   - Navigation
   - Content hierarchy
-change_log_url: ./SF-SYNTAX-HEADINGS-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Headings (SF-SYNTAX-HEADINGS)
 

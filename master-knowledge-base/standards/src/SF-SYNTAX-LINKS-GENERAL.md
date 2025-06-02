@@ -31,7 +31,7 @@ impact_areas:
   - Readability
   - Authoring consistency
   - Interoperability with Markdown parsers
-change_log_url: ./SF-SYNTAX-LINKS-GENERAL-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: General Markdown Link Syntax (SF-SYNTAX-LINKS-GENERAL)

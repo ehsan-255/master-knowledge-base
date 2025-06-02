@@ -29,7 +29,7 @@ impact_areas:
 - Link integrity for assets
 - Authoring consistency
 - Build processes
-change_log_url: ./AS-STRUCTURE-ASSET-ORGANIZATION-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: Asset Organization and Naming (AS-STRUCTURE-ASSET-ORGANIZATION)

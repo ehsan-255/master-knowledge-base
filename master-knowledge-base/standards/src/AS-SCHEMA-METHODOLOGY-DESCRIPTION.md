@@ -27,7 +27,7 @@ impact_areas:
 - Authoring efficiency
 - User understanding of complex processes
 - Information reusability
-change_log_url: ./AS-SCHEMA-METHODOLOGY-DESCRIPTION-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: Content Schema for Methodology/Technique Descriptions (AS-SCHEMA-METHODOLOGY-DESCRIPTION)

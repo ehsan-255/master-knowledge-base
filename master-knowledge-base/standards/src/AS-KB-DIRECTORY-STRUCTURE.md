@@ -24,7 +24,7 @@ impact_areas:
 - Authoring workflow
 - Build process
 - Navigation
-change_log_url: ./AS-KB-DIRECTORY-STRUCTURE-CHANGELOG.MD
+change_log_url: ../changelog.md
 ---
 
 # AS-KB-DIRECTORY-STRUCTURE: Knowledge Base Directory Structure Standard

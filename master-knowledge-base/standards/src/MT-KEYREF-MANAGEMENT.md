@@ -32,7 +32,7 @@ impact_areas:
   - Maintainability
   - Automation (keyref resolution)
   - Authoring workflow
-change_log_url: ./MT-KEYREF-MANAGEMENT-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Key Definition Management and Storage (MT-KEYREF-MANAGEMENT)
 

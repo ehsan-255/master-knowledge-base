@@ -29,7 +29,7 @@ impact_areas:
 - Authoring complexity
 - Maintenance of profiled content
 - User experience
-change_log_url: ./CS-CONTENT-PROFILING-POLICY-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Policy: Content Profiling and Conditional Text (CS-CONTENT-PROFILING-POLICY)

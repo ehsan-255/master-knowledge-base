@@ -25,7 +25,7 @@ impact_areas:
   - Standards lifecycle
   - Change management
   - Documentation integrity
-change_log_url: ./OM-POLICY-STANDARDS-DEPRECATION-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Policy: Deprecation of Standards (OM-POLICY-STANDARDS-DEPRECATION)
 

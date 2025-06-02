@@ -199,8 +199,17 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
             except: errors.append({"message": "File not UTF-8 or undecodable.", "line": None}); return {"filepath": filepath_abs, "errors": errors, "warnings": warnings, "infos": infos, "standard_id": None, "_fm_str_cache": None, "_fm_content_start_line_cache": 0}
         except Exception as e: errors.append({"message": f"Error reading file: {e}", "line": None}); return {"filepath": filepath_abs, "errors": errors, "warnings": warnings, "infos": infos, "standard_id": None, "_fm_str_cache": None, "_fm_content_start_line_cache": 0}
 
-    if "\r\n" in file_content_raw: warnings.append({"message": "File contains CRLF line endings. Should use LF.", "line": None})
-    elif "\r" in file_content_raw: warnings.append({"message": "File contains CR line endings. Should use LF.", "line": None})
+    # Fix line endings automatically
+    if "\r\n" in file_content_raw or "\r" in file_content_raw:
+        # Convert CRLF or CR to LF
+        fixed_content = file_content_raw.replace("\r\n", "\n").replace("\r", "\n")
+        try:
+            with open(filepath_abs, 'w', encoding='utf-8', newline='\n') as f:
+                f.write(fixed_content)
+            infos.append({"message": "Fixed line endings: converted CRLF/CR to LF.", "line": None})
+            file_content_raw = fixed_content  # Use fixed content for further processing
+        except Exception as e:
+            warnings.append({"message": f"Failed to fix line endings: {e}", "line": None})
 
     frontmatter_str, markdown_content, fm_content_start_line, fm_content_end_line = get_frontmatter_and_content(file_content_raw)
     fm_str_cache = frontmatter_str
@@ -416,19 +425,63 @@ def lint_directory(dir_path, config: LinterConfig):
         print(f"Error: Directory not found: {abs_dir_path}")
         return []
 
+    # Track files that need extension case fixes
+    files_to_rename = []
+
     for root, _, files in os.walk(abs_dir_path):
+        # Skip /tools/reports/ directory entirely
+        if "tools/reports" in root.replace(os.sep, '/'):
+            continue
+            
         for file in files:
-            if file.endswith(".md"):
+            if file.endswith(".md") or file.endswith(".MD"):
                 filepath_abs = os.path.join(root, file)
+                
+                # Check for uppercase extension and mark for renaming
+                if file.endswith(".MD"):
+                    new_filename = file[:-3] + ".md"  # Replace .MD with .md
+                    new_filepath_abs = os.path.join(root, new_filename)
+                    files_to_rename.append((filepath_abs, new_filepath_abs))
+                    print(f"INFO: Found uppercase extension: {file} -> will rename to {new_filename}")
+                
+                # Process the file (using original name for now)
                 # Report with path relative to repo_base for consistency
                 rel_filepath_from_repo_root = os.path.relpath(filepath_abs, config.repo_base).replace(os.sep, '/')
                 
                 result = lint_file(filepath_abs, config)
                 result["filepath"] = rel_filepath_from_repo_root 
                 
+                # Add extension case warning if uppercase extension found
+                if file.endswith(".MD"):
+                    result["warnings"].append({
+                        "message": f"File extension should be lowercase '.md', not '.MD'. File will be renamed automatically.",
+                        "line": 1
+                    })
+                
                 if result.get("standard_id"):
                     seen_standard_ids[result["standard_id"]].append(result) # Store full result for caching
                 all_results.append(result)
+    
+    # Perform file renames after processing
+    for old_path, new_path in files_to_rename:
+        try:
+            # If target exists, compare content and remove duplicate if identical
+            if os.path.exists(new_path):
+                try:
+                    with open(old_path, 'r', encoding='utf-8') as f1, open(new_path, 'r', encoding='utf-8') as f2:
+                        if f1.read() == f2.read():
+                            os.remove(old_path)
+                            print(f"SUCCESS: Removed duplicate .MD file: {os.path.basename(old_path)} (identical to .md version)")
+                        else:
+                            print(f"WARNING: .MD and .md versions differ - manual resolution needed: {old_path}")
+                except Exception as e:
+                    print(f"WARNING: Could not compare files {old_path} and {new_path}: {e}")
+            else:
+                # Simple rename if target doesn't exist
+                os.rename(old_path, new_path)
+                print(f"SUCCESS: Renamed {os.path.basename(old_path)} -> {os.path.basename(new_path)}")
+        except Exception as e:
+            print(f"ERROR: Failed to process {old_path} -> {new_path}: {e}")
     
     # Standard ID Uniqueness Check
     for std_id, results_with_id in seen_standard_ids.items():

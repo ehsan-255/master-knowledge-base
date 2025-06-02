@@ -34,7 +34,7 @@ impact_areas:
   - Content organization
   - Discoverability of standards
   - Authoring within the Standards KB
-change_log_url: ./AS-MAP-STANDARDS-KB-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standards Knowledge Base Definition Map (AS-MAP-STANDARDS-KB)
 

@@ -29,7 +29,7 @@ impact_areas:
   - User trust
   - KB utility
   - Maintainability
-change_log_url: ./CS-POLICY-SCOPE-INCLUSION-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Policy: Universal Principles for Content Inclusion (CS-POLICY-SCOPE-INCLUSION)
 
