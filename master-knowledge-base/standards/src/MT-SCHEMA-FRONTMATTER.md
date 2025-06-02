@@ -36,7 +36,7 @@ impact_areas:
   - Authoring consistency
   - Automated processing
   - Interoperability
-change_log_url: ./MT-SCHEMA-FRONTMATTER-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Frontmatter Schema Definition
 

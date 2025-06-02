@@ -22,7 +22,7 @@ scope_application: Tooling
 criticality: 'P2-Medium'
 lifecycle_gatekeeper: 'Architect-Review'
 impact_areas: ['Automation', 'Indexing']
-change_log_url: "https://example.com/placeholder-changelog-url"
+change_log_url: ./changelog.md
 ---
 # Standards Index JSON‑LD – Spec Sketch
 

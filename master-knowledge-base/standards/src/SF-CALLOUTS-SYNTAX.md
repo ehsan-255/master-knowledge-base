@@ -26,7 +26,7 @@ impact_areas:
   - Content presentation
   - User attention
   - Information hierarchy
-change_log_url: ./SF-CALLOUTS-SYNTAX-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Callout/Admonition Block Syntax (SF-CALLOUTS-SYNTAX)
 

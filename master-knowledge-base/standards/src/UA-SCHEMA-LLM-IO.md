@@ -30,7 +30,7 @@ impact_areas:
   - LLM integration
   - Data consistency
   - Automation reliability
-change_log_url: ./UA-SCHEMA-LLM-IO-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: LLM Automation Input/Output Schema (UA-SCHEMA-LLM-IO)
 

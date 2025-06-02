@@ -28,7 +28,7 @@ impact_areas:
   - Accuracy of code representation
   - Authoring consistency
   - Syntax highlighting in rendered views
-change_log_url: ./SF-SYNTAX-CODE-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Code (Inline and Blocks) (SF-SYNTAX-CODE)
 

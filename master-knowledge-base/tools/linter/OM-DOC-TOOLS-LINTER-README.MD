@@ -23,7 +23,7 @@ lifecycle_gatekeeper: No-Gatekeeper
 impact_areas:
   - documentation
   - usability
-change_log_url: https://example.com/placeholder-changelog-url # Changed change_log_url
+change_log_url: ./changelog.md # Changed change_log_url
 ---
 
 # Knowledge Base Linter (`kb_linter.py`)

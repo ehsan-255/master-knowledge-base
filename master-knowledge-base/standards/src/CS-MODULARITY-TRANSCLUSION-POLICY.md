@@ -31,7 +31,7 @@ impact_areas:
 - Authoring efficiency
 - Consistency
 - Single-sourcing
-change_log_url: ./CS-MODULARITY-TRANSCLUSION-POLICY-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Policy: Content Modularity and Use of Transclusion (CS-MODULARITY-TRANSCLUSION-POLICY)

@@ -25,7 +25,7 @@ impact_areas:
   - Character handling
   - Syntax accuracy
   - Content display
-change_log_url: ./SF-SYNTAX-ESCAPING-CHARACTERS-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Escaping Special Markdown Characters (SF-SYNTAX-ESCAPING-CHARACTERS)
 

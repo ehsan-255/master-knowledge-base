@@ -29,7 +29,7 @@ impact_areas:
 - Data interchange
 - Schema validation
 - Workflow integration
-change_log_url: ./OM-AUTOMATION-LLM-IO-SCHEMAS-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: LLM Automation Input/Output Schemas

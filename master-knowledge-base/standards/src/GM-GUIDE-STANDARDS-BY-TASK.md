@@ -92,7 +92,7 @@ impact_areas:
   - User Onboarding
   - Standards Adoption
   - Workflow Efficiency
-change_log_url: ./GM-GUIDE-STANDARDS-BY-TASK-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Guide: Task-Based Navigation of Knowledge Base Standards (GM-GUIDE-STANDARDS-BY-TASK)
 

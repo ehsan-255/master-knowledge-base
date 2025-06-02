@@ -25,7 +25,7 @@ impact_areas:
   - Terminology consistency
   - Standards comprehension
   - Knowledge management
-change_log_url: ./GM-MANDATE-STANDARDS-GLOSSARY-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Mandate for Standards Terminology Glossary (GM-MANDATE-STANDARDS-GLOSSARY)
 

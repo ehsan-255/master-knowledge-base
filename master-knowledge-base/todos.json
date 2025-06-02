@@ -1,0 +1,188 @@
+{
+  "scan_date": "2025-06-02T12:30:34.043294",
+  "root_directory": ".",
+  "total_todos": 13,
+  "todos": [
+    {
+      "file_path": "AS-INDEX-KB-MASTER.md",
+      "line_number": 45,
+      "content": "This index needs to be kept up-to-date as new Knowledge Bases are added or existing ones are retired. Links to the entry points (`root.md` or equivalent `AS-ROOT-*-KB.md` files) of each KB must be accurate. Placeholder links like `[[TODO-LLM-COOKBOOK-ROOT-ID]]` need to be resolved.",
+      "context_before": [
+        "    *   **Primary Folder:** `/master-knowledge-base/research-methodology-kb/` (Assumed path)",
+        ""
+      ],
+      "context_after": [
+        "",
+        "---"
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "tools\\README.md",
+      "line_number": 100,
+      "content": "This needs to be implemented",
+      "context_before": [
+        "",
+        "```markdown"
+      ],
+      "context_after": [
+        "",
+        "> [!TODO] Fix the validation logic here"
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "tools\\README.md",
+      "line_number": 102,
+      "content": "Fix the validation logic here",
+      "context_before": [
+        "> [!TODO] This needs to be implemented",
+        ""
+      ],
+      "context_after": [
+        "```",
+        ""
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "dist\\collections\\collection-architecture-structure.md",
+      "line_number": 56,
+      "content": "This index needs to be kept up-to-date as new Knowledge Bases are added or existing ones are retired. Links to the entry points (`root.md` or equivalent `AS-ROOT-*-KB.md` files) of each KB must be accurate. Placeholder links like `[[TODO-LLM-COOKBOOK-ROOT-ID]]` need to be resolved.",
+      "context_before": [
+        "    *   **Primary Folder:** `/master-knowledge-base/research-methodology-kb/` (Assumed path)",
+        ""
+      ],
+      "context_after": [
+        "",
+        "---"
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "dist\\collections\\collection-architecture-structure.md",
+      "line_number": 122,
+      "content": "The content of this document, particularly the `parts` structure in the frontmatter and the detailed descriptions below, needs to be fully populated and aligned with the actual organization of standards within the `/master-knowledge-base/standards/src/` directory. The current content is a high-level placeholder based on primary domains.",
+      "context_before": [
+        "The Standards KB is the authoritative source for all standards, policies, and guidelines governing the creation, management, and use of all knowledge bases within the ecosystem.",
+        ""
+      ],
+      "context_after": [
+        "",
+        "## 2. Purpose"
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "dist\\collections\\collection-architecture-structure.md",
+      "line_number": 590,
+      "content": "This standard's content has been migrated from `U-RELTABLE-DEFINITION-001`. However, the overall concept of Reltables, their precise implementation details (especially the defined relationship types and their YAML structure), and their integration with other architectural and schema standards require further review and refinement. The relationship types listed are initial suggestions and need validation against broader use cases and semantic consistency.",
+      "context_before": [
+        "# Standard: Relationship Table (Reltable) Definition (AS-SCHEMA-RELTABLE-DEFINITION)",
+        ""
+      ],
+      "context_after": [
+        "",
+        "This document defines the standard structure for \"Relationship Tables\" (reltables). Reltables are used to explicitly define typed, non-hierarchical relationships between topics within the knowledge base, enhancing semantic understanding and navigation."
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "dist\\collections\\collection-syntax-formatting.md",
+      "line_number": 180,
+      "content": "",
+      "context_before": [
+        "### Example 3.4: TODO item",
+        "```markdown"
+      ],
+      "context_after": [
+        "> - Finalize the examples for Section 4.",
+        "> - Get review from SME on accuracy of definitions."
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "standards\\src\\AS-MAP-STANDARDS-KB.md",
+      "line_number": 47,
+      "content": "The content of this document, particularly the `parts` structure in the frontmatter and the detailed descriptions below, needs to be fully populated and aligned with the actual organization of standards within the `/master-knowledge-base/standards/src/` directory. The current content is a high-level placeholder based on primary domains.",
+      "context_before": [
+        "The Standards KB is the authoritative source for all standards, policies, and guidelines governing the creation, management, and use of all knowledge bases within the ecosystem.",
+        ""
+      ],
+      "context_after": [
+        "",
+        "## 2. Purpose"
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "standards\\src\\AS-SCHEMA-RELTABLE-DEFINITION.md",
+      "line_number": 40,
+      "content": "This standard's content has been migrated from `U-RELTABLE-DEFINITION-001`. However, the overall concept of Reltables, their precise implementation details (especially the defined relationship types and their YAML structure), and their integration with other architectural and schema standards require further review and refinement. The relationship types listed are initial suggestions and need validation against broader use cases and semantic consistency.",
+      "context_before": [
+        "# Standard: Relationship Table (Reltable) Definition (AS-SCHEMA-RELTABLE-DEFINITION)",
+        ""
+      ],
+      "context_after": [
+        "",
+        "This document defines the standard structure for \"Relationship Tables\" (reltables). Reltables are used to explicitly define typed, non-hierarchical relationships between topics within the knowledge base, enhancing semantic understanding and navigation."
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "standards\\src\\GM-GLOSSARY-STANDARDS-TERMS.md",
+      "line_number": 124,
+      "content": "This glossary is not exhaustive and should be expanded as more terms are standardized or require clarification.",
+      "context_before": [
+        ":   The embedding or inclusion of content from one document into another by reference, allowing for content reuse. See `[[CS-MODULARITY-TRANSCLUSION-POLICY]]` and `[[SF-TRANSCLUSION-SYNTAX]]`.",
+        ""
+      ],
+      "context_after": [
+        ""
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "standards\\src\\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md",
+      "line_number": 37,
+      "content": "This is a placeholder document created to resolve the broken link in OM-AUTOMATION-LLM-IO-SCHEMAS.md. Content needs to be developed to define standards for LLM prompt template management and organization.",
+      "context_before": [
+        "# Standard: LLM Automation Prompt Library",
+        ""
+      ],
+      "context_after": [
+        "",
+        "## Purpose"
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "standards\\src\\SF-CALLOUTS-SYNTAX.md",
+      "line_number": 103,
+      "content": "",
+      "context_before": [
+        "### Example 3.4: TODO item",
+        "```markdown"
+      ],
+      "context_after": [
+        "> - Finalize the examples for Section 4.",
+        "> - Get review from SME on accuracy of definitions."
+      ],
+      "created_date": "2025-06-02"
+    },
+    {
+      "file_path": "standards\\src\\UA-KEYDEFS-GLOBAL.md",
+      "line_number": 74,
+      "content": "The initial set of keys needs to be populated based on common terms and phrases identified across the knowledge bases. This document currently contains placeholder examples in its frontmatter. These should be replaced with actual, agreed-upon global keys.",
+      "context_before": [
+        "```",
+        ""
+      ],
+      "context_after": [
+        "",
+        "### 3.1. Naming Conventions for Keys"
+      ],
+      "created_date": "2025-06-02"
+    }
+  ]
+}

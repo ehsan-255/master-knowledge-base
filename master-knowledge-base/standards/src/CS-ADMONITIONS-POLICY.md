@@ -26,7 +26,7 @@ impact_areas:
 - User experience
 - Consistent highlighting of information
 - Authoring practices
-change_log_url: ./CS-ADMONITIONS-POLICY-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Policy: Usage of Admonitions and Callouts (CS-ADMONITIONS-POLICY)

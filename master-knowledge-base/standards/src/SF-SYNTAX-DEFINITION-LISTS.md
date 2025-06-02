@@ -25,7 +25,7 @@ impact_areas:
   - Content structure
   - Term definitions
   - Document formatting
-change_log_url: ./SF-SYNTAX-DEFINITION-LISTS-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Definition Lists (SF-SYNTAX-DEFINITION-LISTS)
 

@@ -28,7 +28,7 @@ impact_areas:
 - User navigation
 - Learning pathways
 - Information architecture
-change_log_url: ./CS-POLICY-KB-PART-CONTENT-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Policy: Content Organization within Knowledge Base Parts (CS-POLICY-KB-PART-CONTENT)

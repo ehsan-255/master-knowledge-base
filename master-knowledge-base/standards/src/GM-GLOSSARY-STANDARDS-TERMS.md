@@ -32,7 +32,7 @@ impact_areas:
   - Communication clarity
   - Standards adoption
   - Onboarding
-change_log_url: ./GM-GLOSSARY-STANDARDS-TERMS-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Glossary of Standards Terminology (GM-GLOSSARY-STANDARDS-TERMS)
 

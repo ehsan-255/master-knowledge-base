@@ -25,7 +25,7 @@ impact_areas:
   - Accessibility compliance
   - User experience
   - Legal compliance
-change_log_url: ./SF-ACCESSIBILITY-IMAGE-ALT-TEXT-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Image Accessibility and Alternative Text (SF-ACCESSIBILITY-IMAGE-ALT-TEXT)
 

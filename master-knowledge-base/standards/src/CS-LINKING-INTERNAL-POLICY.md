@@ -28,7 +28,7 @@ impact_areas:
 - Content cohesion
 - User experience
 - Information architecture
-change_log_url: ./CS-LINKING-INTERNAL-POLICY-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Policy: Internal Knowledge Base Linking Strategy (CS-LINKING-INTERNAL-POLICY)

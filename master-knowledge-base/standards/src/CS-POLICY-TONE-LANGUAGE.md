@@ -28,7 +28,7 @@ impact_areas:
   - Professionalism of content
   - Consistency across KB
   - Accessibility
-change_log_url: ./CS-POLICY-TONE-LANGUAGE-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Policy: Clarity, Objectivity, and Consistency in Language (CS-POLICY-TONE-LANGUAGE)
 

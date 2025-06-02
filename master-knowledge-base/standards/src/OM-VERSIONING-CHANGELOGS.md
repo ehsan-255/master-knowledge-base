@@ -13,13 +13,12 @@ info-type: standard-definition
 primary-topic: Standard File Versioning and Changelogs
 related-standards:
   - MT-SCHEMA-FRONTMATTER
-version: 1.0.0
+version: 2.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T19:00:00Z'
+date-modified: '2025-01-11T00:00:00Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
-scope_application: All individual standard documents (standard definitions, policies,
-  guides, schemas) within the knowledge base repository.
+scope_application: All standard documents and changelog approaches (individual, separate files, and folder-level) within the knowledge base repository.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -27,7 +26,7 @@ impact_areas:
   - Change tracking
   - Historical record keeping
   - User awareness of changes
-change_log_url: ./OM-VERSIONING-CHANGELOGS-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Versioning and Changelogs for Standard Files (OM-VERSIONING-CHANGELOGS)
 
@@ -69,10 +68,11 @@ The `version` key for all standard documents MUST use Semantic Versioning 2.0.0 
 
 ## 3. Changelog Maintenance (Derived from U-VERSIONING-001, Rule 1.3)
 
-Each individual standard document MUST maintain a human-readable changelog. This changelog SHOULD be:
+Standard documents MUST maintain human-readable changelog information. The changelog approach SHOULD be selected based on the scope and maturity of the knowledge base:
 
-*   **Location Option 1 (Preferred for Atomic Standards):** A dedicated section within the standard document itself, typically an H2 or H3 heading titled "Changelog" or "Revision History" near the end of the document.
-*   **Location Option 2 (Alternative):** A separate linked changelog file, referenced by the `change_log_url` frontmatter key as defined in [[MT-SCHEMA-FRONTMATTER]]. This is the approach this standard itself will follow (see its `change_log_url` frontmatter).
+*   **Location Option 1 (For Isolated Standards):** A dedicated section within the standard document itself, typically an H2 or H3 heading titled "Changelog" or "Revision History" near the end of the document.
+*   **Location Option 2 (For Individual Standards):** A separate linked changelog file, referenced by the `change_log_url` frontmatter key as defined in [[MT-SCHEMA-FRONTMATTER]].
+*   **Location Option 3 (Recommended for Knowledge Base Collections):** A shared changelog file at the parent folder level that tracks changes affecting multiple related standards. This is the current approach used by this knowledge base, where standards reference `../changelog.md` for comprehensive change tracking.
 
 The changelog MUST record, at a minimum:
 *   The **version number**.
@@ -93,12 +93,31 @@ The changelog MUST record, at a minimum:
     - Initial draft.
     ```
 
+*   **Example (Folder-level Changelog File):**
+    ```markdown
+    # Standards Changelog
+    
+    ## Version 1.2.0 (2024-08-15)
+    
+    ### Added
+    - AS-SCHEMA-NEW-DEFINITION: New schema for definition management
+    - SF-SYNTAX-ENHANCED-LINKS: Enhanced link syntax support
+    
+    ### Changed
+    - MT-SCHEMA-FRONTMATTER: Updated mandatory keys list
+    - CS-POLICY-ACCESSIBILITY: Clarified WCAG compliance requirements
+    
+    ### Deprecated
+    - SF-LEGACY-SYNTAX-OLD: Replaced by SF-SYNTAX-ENHANCED-LINKS
+    ```
+
 ## 4. Rationale
 
 *   **Traceability:** Semantic versioning and detailed changelogs provide a clear history of how a standard has evolved, making it easier to understand the rationale behind current rules.
 *   **Impact Assessment:** When standards change, version numbers help users and maintainers assess the potential impact of adopting a new version.
 *   **Communication:** Changelogs communicate the nature of updates to all stakeholders.
 *   **Dependency Management:** In automated systems or when standards reference each other, versioning is critical for managing dependencies.
+*   **Maintainability:** Folder-level changelogs reduce maintenance overhead when changes affect multiple related standards, preventing changelog duplication and improving change visibility across standard collections.
 
 ## 5. Cross-References
 - [[MT-SCHEMA-FRONTMATTER]] - Defines the mandatory frontmatter keys (`version`, `date-created`, `date-modified`, `change_log_url`) and their formats.

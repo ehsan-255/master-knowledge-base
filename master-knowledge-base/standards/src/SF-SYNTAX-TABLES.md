@@ -24,7 +24,7 @@ impact_areas:
   - Table formatting
   - Data presentation
   - Content structure
-change_log_url: ./SF-SYNTAX-TABLES-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Tables (SF-SYNTAX-TABLES)
 

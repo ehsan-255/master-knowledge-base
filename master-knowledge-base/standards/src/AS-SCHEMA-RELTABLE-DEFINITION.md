@@ -32,7 +32,7 @@ impact_areas:
 - Semantic linking
 - Knowledge graph generation
 - Content navigability
-change_log_url: ./AS-SCHEMA-RELTABLE-DEFINITION-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: Relationship Table (Reltable) Definition (AS-SCHEMA-RELTABLE-DEFINITION)

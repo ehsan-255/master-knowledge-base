@@ -38,7 +38,7 @@ impact_areas:
   - Automated processing
   - Interoperability
   - Search accuracy
-change_log_url: ./QM-VALIDATION-METADATA-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Standard: Metadata Validation Procedures (QM-VALIDATION-METADATA)
 

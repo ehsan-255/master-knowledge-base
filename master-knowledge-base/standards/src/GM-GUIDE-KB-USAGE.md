@@ -71,7 +71,7 @@ impact_areas:
   - Standards Adoption
   - KB Navigation
   - Contribution Process
-change_log_url: ./GM-GUIDE-KB-USAGE-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 # Guide: Knowledge Base Usage and Standards
 

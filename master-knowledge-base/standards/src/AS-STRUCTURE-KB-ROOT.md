@@ -27,7 +27,7 @@ impact_areas:
 - Authoring consistency
 - Automated processing
 - Build system
-change_log_url: ./AS-STRUCTURE-KB-ROOT-CHANGELOG.MD
+change_log_url: ./changelog.md
 ---
 
 # Standard: Knowledge Base Root Structure (AS-STRUCTURE-KB-ROOT)
