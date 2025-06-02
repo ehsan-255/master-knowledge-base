@@ -1,31 +1,25 @@
 ---
 title: "Roadmap Template"
-id: template-roadmap
-kb: "templates"
-file_type: "template_roadmap"
-source_path: "master-knowledge-base/standards/templates/roadmap-template.md"
-description: "Enhanced template for creating detailed project or sub-task roadmaps, including sections for vision, scope, milestones, phases, risks, and success metrics."
-standard_id: "TPL-ROADMAP" # Adding a template-specific ID
+standard_id: "UA-TPL-ROADMAP"
 aliases: ["Detailed Roadmap Template"]
 tags:
-  - content-type/template
-kb-id: "templates"
-info-type: "template"
+  - content-type/template-document # Updated tag
+  - status/draft # Added status tag
+kb-id: "kb-id/templates" # Assuming a general kb-id for templates
+info-type: "template-document" # Changed info-type
 primary-topic: "Provides a structured format for detailed project or sub-task roadmaps."
-version: "0.2.0"
-date-created: "YYYY-MM-DDTHH:MM:SSZ" # Assuming it was newly created
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder
-primary_domain: "TEMPLATES"
-sub_domain: "PLANNING"
+related-standards: [] # Added related-standards
+version: "0.2.0" # Retaining existing version
+date-created: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder - should be actual creation date
+date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder - will be updated by CI
+primary_domain: "UA" # Changed primary_domain
+sub_domain: "TEMPLATES" # Changed sub_domain
 scope_application: "Project and sub-task roadmap documentation."
-criticality: "N/A"
-lifecycle_gatekeeper: "N/A"
-impact_areas: ["documentation_standards", "project_planning"]
-change_log_url: "TBD"
-history_summary: "Initial creation. Enhanced template with more detailed sections and guidance."
-key_takeaways: ["Standardized structure for roadmaps."]
-next_steps: ["Use this template for all new roadmaps."]
-# Add other relevant frontmatter fields with generic template values - kept some, removed the comment itself
+criticality: "P3-Low" # Changed criticality
+lifecycle_gatekeeper: "No-Gatekeeper" # Changed lifecycle_gatekeeper
+impact_areas: ["documentation_standards", "project_planning"] # Retaining existing
+change_log_url: https://example.com/placeholder-changelog-url # Added placeholder
+# Removed other non-standard fields like id, kb, file_type, source_path, history_summary, key_takeaways, next_steps
 ---
 # Roadmap: [Insert Project/Initiative Title]
 

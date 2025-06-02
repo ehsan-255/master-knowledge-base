@@ -1,6 +1,6 @@
 ---
 title: Collection View Generator (`generate_collections.py`)
-standard_id: DOC-TOOLS-BUILDER-README
+standard_id: OM-DOC-TOOLS-BUILDER-README # Changed standard_id
 aliases:
   - Builder README
 tags:
@@ -8,22 +8,22 @@ tags:
   - content-type/documentation
   - topic/readme
   - kb-id/tools
-kb-id: tools
-info-type: guide-document
+kb-id: "kb-id/tools" # Standardized kb-id format
+info-type: "guide-document" # Ensured info-type
 primary-topic: Overview and guidance for the builder directory and its contents.
 related-standards: []
 version: 1.0.0
 date-created: '2025-06-01T11:33:47Z'
-date-modified: '2025-06-01T11:33:47Z'
-primary_domain: GM
-sub_domain: GUIDE
-scope_application: Provides an overview for the /app/master-knowledge-base/tools/builder/README.md.
-criticality: P4-Informational
+date-modified: '2025-06-01T11:33:47Z' # Will be updated by CI
+primary_domain: "OM" # Changed primary_domain
+sub_domain: "DOCUMENTATION" # Changed sub_domain
+scope_application: Provides an overview for the /app/master-knowledge-base/tools/builder directory and its script.
+criticality: "P3-Low" # Changed criticality
 lifecycle_gatekeeper: No-Gatekeeper
 impact_areas:
   - documentation
   - usability
-change_log_url: ./README-CHANGELOG.MD
+change_log_url: https://example.com/placeholder-changelog-url # Changed change_log_url
 ---
 
 # Collection View Generator (`generate_collections.py`)

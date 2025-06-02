@@ -1,29 +1,29 @@
 ---
 title: Standards Templates Directory
-standard_id: DOC-STANDARDS-TEMPLATES-README
+standard_id: UA-DOC-TEMPLATES-README # Changed standard_id
 aliases:
   - Templates README
 tags:
   - status/active
-  - content-type/documentation
+  - content-type/documentation # Assuming 'documentation' is valid, alt 'guide-document'
   - topic/readme
-  - kb-id/standards
-kb-id: standards
-info-type: guide-document
+  - kb-id/standards # Assuming kb-id/standards is a valid tag for this context
+kb-id: "kb-id/standards" # Corrected kb-id format
+info-type: "guide-document" # Confirmed info-type
 primary-topic: Overview and guidance for the templates directory and its contents.
 related-standards: []
 version: 1.0.0
 date-created: '2025-06-01T11:33:47Z'
 date-modified: '2025-06-01T11:33:47Z' # Will be updated by CI upon commit
-primary_domain: GM
-sub_domain: GUIDE
-scope_application: Provides an overview for the /app/master-knowledge-base/standards/templates/README.md.
-criticality: P4-Informational
+primary_domain: "UA" # Changed primary_domain
+sub_domain: "DOCUMENTATION" # Changed sub_domain
+scope_application: Provides an overview for the /app/master-knowledge-base/standards/templates directory.
+criticality: "P3-Low" # Changed criticality
 lifecycle_gatekeeper: No-Gatekeeper
 impact_areas:
   - documentation
   - usability
-change_log_url: ./README-CHANGELOG.MD # Assuming a changelog for the README itself
+change_log_url: https://example.com/placeholder-changelog-url # Changed change_log_url
 ---
 
 # Standards Templates Directory
@@ -59,10 +59,10 @@ Currently, the following templates are available:
     *   **When to use:** When creating a dedicated changelog file for another standard or important document. The `change_log_url` in the parent document should then point to this file.
 
 > [!NOTE]
-> Other templates available in this directory include:
-> - `analysis-report-template.md`: A template for structuring analysis reports.
-> - `roadmap-template.md`: A template for outlining roadmaps.
-> These may not yet be fully aligned with the `UA-TPL-*` series frontmatter but are available for use.
+> Other templates that have been aligned and renamed:
+> - `UA-TPL-ANALYSIS-REPORT.MD`: A template for structuring analysis reports. (Formerly `analysis-report-template.md`)
+> - `UA-TPL-ROADMAP.MD`: A template for outlining roadmaps. (Formerly `roadmap-template.md`)
+> These are now aligned with the `UA-TPL-*` series frontmatter and naming conventions.
 
 ## Maintenance
 
