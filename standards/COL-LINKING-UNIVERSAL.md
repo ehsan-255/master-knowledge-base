@@ -1,39 +1,34 @@
 ---
-title: "Collection: Universal Linking, Metadata, and Utility Standards"
+title: 'Collection: Universal Linking, Metadata, and Utility Standards'
 aliases:
-  - Universal Linking Standards
-  - COL-LINKING-UNIVERSAL
+- Universal Linking Standards
+- COL-LINKING-UNIVERSAL
 tags:
-  - kb-id/standards
-  - content-type/standards-collection
-  - status/deprecated # Updated status
-  - topic/linking
-  - topic/metadata
-  - topic/utility-standards
+- content-type/standards-collection
+- kb-id/standards
+- status/deprecated
+- topic/linking
+- topic/metadata
+- topic/utility-standards
 kb-id: standards
-info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+info-type: standards-collection
 primary-topic: 'DEPRECATED: Collection of universal standards for interlinking, metadata, tagging, citations, modularity, accessibility, and assets.'
-related-standards: ["SF-LINKS-INTERNAL-SYNTAX", "CS-LINKING-INTERNAL-POLICY", "MT-TAGS-IMPLEMENTATION", "MT-TAGGING-STRATEGY-POLICY", "SF-FORMATTING-CITATIONS", "SF-TRANSCLUSION-SYNTAX", "CS-MODULARITY-TRANSCLUSION-POLICY", "SF-ACCESSIBILITY-IMAGE-ALT-TEXT", "CS-POLICY-ACCESSIBILITY", "AS-STRUCTURE-ASSET-ORGANIZATION"]
-version: '0.4.0' # Incremented version
+related-standards:
+- SF-LINKS-INTERNAL-SYNTAX
+- CS-LINKING-INTERNAL-POLICY
+- MT-TAGS-IMPLEMENTATION
+- MT-TAGGING-STRATEGY-POLICY
+- SF-FORMATTING-CITATIONS
+- SF-TRANSCLUSION-SYNTAX
+- CS-MODULARITY-TRANSCLUSION-POLICY
+- SF-ACCESSIBILITY-IMAGE-ALT-TEXT
+- CS-POLICY-ACCESSIBILITY
+- AS-STRUCTURE-ASSET-ORGANIZATION
+version: 0.5.0
 date-created: '2025-05-15'
-date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+date-modified: '2025-06-01T23:50:44Z'
 ---
-
-**<font color="red">IMPORTANT: This document is deprecated.</font>**
-
-The standards and guidelines previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory.
-
-Key new standards that supersede content from this collection include:
-*   `[[SF-LINKS-INTERNAL-SYNTAX]]` and `[[CS-LINKING-INTERNAL-POLICY]]` (for U-INTERLINK-001)
-*   `[[MT-TAGS-IMPLEMENTATION]]` and `[[MT-TAGGING-STRATEGY-POLICY]]` (for U-TAG-001)
-*   `[[SF-FORMATTING-CITATIONS]]` (for U-CITE-001)
-*   `[[SF-TRANSCLUSION-SYNTAX]]` and `[[CS-MODULARITY-TRANSCLUSION-POLICY]]` (for U-MODULAR-001)
-*   `[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]` and `[[CS-POLICY-ACCESSIBILITY]]` (for U-ACCESSIBILITY-001)
-*   `[[AS-STRUCTURE-ASSET-ORGANIZATION]]` (for U-ASSETS-001)
-
-For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
-
----
+**DEPRECATED:** This collection document is superseded by the new atomic standards architecture. Relevant content has been refactored into individual standard, policy, and guide documents located in `/master-knowledge-base/standards/src/`. Please refer to `[[AS-ROOT-STANDARDS-KB]]` for an overview of the new standards or consult `[[GM-GUIDE-KB-USAGE]]`.
 
 # Universal Linking, Metadata, and Utility Standards
 

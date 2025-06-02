@@ -1,36 +1,35 @@
 ---
 title: 'Collection: Obsidian Usage Conventions'
-aliases: ['Obsidian Usage Rules', 'COL-TOOLING-OBSIDIAN']
+aliases:
+- Obsidian Usage Rules
+- COL-TOOLING-OBSIDIAN
 tags:
-  - kb-id/standards
-  - content-type/standards-collection
-  - status/deprecated # Updated status
-  - topic/obsidian
-  - topic/tooling
+- content-type/standards-collection
+- kb-id/standards
+- status/deprecated
+- topic/obsidian
+- topic/tooling
 kb-id: standards
-info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+info-type: standards-collection
 primary-topic: 'DEPRECATED: Collection of specific conventions for using Obsidian features to enhance knowledge bases.'
-related-standards: ["SF-LINKS-INTERNAL-SYNTAX", "CS-LINKING-INTERNAL-POLICY", "MT-TAGS-IMPLEMENTATION", "MT-TAGGING-STRATEGY-POLICY", "AS-STRUCTURE-KB-PART", "CS-POLICY-PART-OVERVIEW", "SF-TOC-SYNTAX", "CS-TOC-POLICY", "SF-TRANSCLUSION-SYNTAX", "CS-MODULARITY-TRANSCLUSION-POLICY", "SF-CALLOUTS-SYNTAX", "CS-ADMONITIONS-POLICY"]
-version: '0.4.0' # Incremented version
+related-standards:
+- SF-LINKS-INTERNAL-SYNTAX
+- CS-LINKING-INTERNAL-POLICY
+- MT-TAGS-IMPLEMENTATION
+- MT-TAGGING-STRATEGY-POLICY
+- AS-STRUCTURE-KB-PART
+- CS-POLICY-PART-OVERVIEW
+- SF-TOC-SYNTAX
+- CS-TOC-POLICY
+- SF-TRANSCLUSION-SYNTAX
+- CS-MODULARITY-TRANSCLUSION-POLICY
+- SF-CALLOUTS-SYNTAX
+- CS-ADMONITIONS-POLICY
+version: 0.5.0
 date-created: '2025-05-15'
-date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+date-modified: '2025-06-01T23:50:44Z'
 ---
-
-**<font color="red">IMPORTANT: This document is deprecated.</font>**
-
-The Obsidian-specific conventions previously contained in this collection have been refactored into generalized, tool-agnostic atomic standard documents. Please refer to these new standards located in the `/master-knowledge-base/standards/src/` directory.
-
-Key new generalized standards that supersede content from this collection include:
-*   `[[SF-LINKS-INTERNAL-SYNTAX]]` and `[[CS-LINKING-INTERNAL-POLICY]]` (for linking)
-*   `[[MT-TAGS-IMPLEMENTATION]]` and `[[MT-TAGGING-STRATEGY-POLICY]]` (for tagging)
-*   `[[AS-STRUCTURE-KB-PART]]` and `[[CS-POLICY-PART-OVERVIEW]]` (for part overviews, previously folder notes)
-*   `[[SF-TOC-SYNTAX]]` and `[[CS-TOC-POLICY]]` (for table of contents)
-*   `[[SF-TRANSCLUSION-SYNTAX]]` and `[[CS-MODULARITY-TRANSCLUSION-POLICY]]` (for transclusion/embedding)
-*   `[[SF-CALLOUTS-SYNTAX]]` and `[[CS-ADMONITIONS-POLICY]]` (for callouts/admonitions)
-
-For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available). Tool-specific usage advice, if still relevant, may be found in separate non-standard informational guides.
-
----
+**DEPRECATED:** This collection document is superseded by the new atomic standards architecture. Relevant content has been refactored into individual standard, policy, and guide documents located in `/master-knowledge-base/standards/src/`. Please refer to `[[AS-ROOT-STANDARDS-KB]]` for an overview of the new standards or consult `[[GM-GUIDE-KB-USAGE]]`.
 
 # Obsidian Usage Conventions
 

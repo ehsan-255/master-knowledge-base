@@ -2,33 +2,33 @@
 title: 'Standard: Content Schema for Concept Definitions'
 standard_id: AS-SCHEMA-CONCEPT-DEFINITION
 aliases:
-  - Concept Definition Schema
-  - Terminology Schema
+- Concept Definition Schema
+- Terminology Schema
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Schema for Concept Definitions
 related-standards:
-  - AS-STRUCTURE-DOC-CHAPTER
+- AS-STRUCTURE-DOC-CHAPTER
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T12:00:00Z'
+date-modified: '2025-06-01T23:21:22Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the mandatory content structure (schema) for documents
-  that primarily define a core concept or term.
+scope_application: Defines the mandatory content structure (schema) for documents that primarily define a core concept or term.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content consistency
-  - Clarity of definitions
-  - User understanding of terminology
-  - Knowledge base coherence
+- Content consistency
+- Clarity of definitions
+- User understanding of terminology
+- Knowledge base coherence
 change_log_url: ./AS-SCHEMA-CONCEPT-DEFINITION-CHANGELOG.MD
 ---
+
 # Standard: Content Schema for Concept Definitions (AS-SCHEMA-CONCEPT-DEFINITION)
 
 This standard defines the mandatory content structure (schema) for documents whose primary purpose is to define a core concept or term. Adherence to this schema ensures that concepts are explained clearly, consistently, and comprehensively.

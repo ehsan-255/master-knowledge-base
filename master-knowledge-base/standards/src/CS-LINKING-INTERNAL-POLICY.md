@@ -2,35 +2,35 @@
 title: 'Policy: Internal Knowledge Base Linking Strategy'
 standard_id: CS-LINKING-INTERNAL-POLICY
 aliases:
-  - Internal Linking Policy
-  - KB Linking Strategy
+- Internal Linking Policy
+- KB Linking Strategy
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/policy-document
+- status/draft
+- criticality/p2-medium
+- content-type/policy-document
 kb-id: standards
 info-type: policy-document
 primary-topic: Internal Linking Strategy and Best Practices
 related-standards:
-  - SF-LINKS-INTERNAL-SYNTAX
-  - AS-STRUCTURE-DOC-CHAPTER
+- SF-LINKS-INTERNAL-SYNTAX
+- AS-STRUCTURE-DOC-CHAPTER
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T12:00:00Z'
+date-modified: '2025-06-01T23:30:16Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Governs the strategy and best practices for creating internal links
-  within and between documents in all Knowledge Bases.
+scope_application: Governs the strategy and best practices for creating internal links within and between documents in all Knowledge Bases.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
-  - Knowledge discovery
-  - KB navigability
-  - Content cohesion
-  - User experience
-  - Information architecture
+- Knowledge discovery
+- KB navigability
+- Content cohesion
+- User experience
+- Information architecture
 change_log_url: ./CS-LINKING-INTERNAL-POLICY-CHANGELOG.MD
 ---
+
 # Policy: Internal Knowledge Base Linking Strategy (CS-LINKING-INTERNAL-POLICY)
 
 ## 1. Policy Statement

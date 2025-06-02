@@ -2,35 +2,35 @@
 title: 'Standard: Content Document (Chapter) Internal Structure'
 standard_id: AS-STRUCTURE-DOC-CHAPTER
 aliases:
-  - Chapter Structure
-  - Document Internal Layout
+- Chapter Structure
+- Document Internal Layout
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Document Chapter Structure
 related-standards:
-  - CS-POLICY-DOC-CHAPTER-CONTENT
-  - SF-SYNTAX-HEADINGS
-  - SF-LINKS-INTERNAL-SYNTAX
+- CS-POLICY-DOC-CHAPTER-CONTENT
+- SF-SYNTAX-HEADINGS
+- SF-LINKS-INTERNAL-SYNTAX
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T12:00:00Z'
+date-modified: '2025-06-01T23:24:00Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the mandatory internal structure for primary content documents,
-  typically referred to as 'Chapters'.
+scope_application: Defines the mandatory internal structure for primary content documents, typically referred to as 'Chapters'.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content readability
-  - Authoring consistency
-  - Automated content processing
-  - Accessibility
+- Content readability
+- Authoring consistency
+- Automated content processing
+- Accessibility
 change_log_url: ./AS-STRUCTURE-DOC-CHAPTER-CHANGELOG.MD
 ---
+
 # Standard: Content Document (Chapter) Internal Structure (AS-STRUCTURE-DOC-CHAPTER)
 
 This standard defines the mandatory internal structure for primary content documents, typically referred to as "Chapters." Adherence ensures consistency, readability, and supports automated processing.

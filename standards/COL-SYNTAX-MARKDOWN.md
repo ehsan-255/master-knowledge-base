@@ -1,45 +1,37 @@
 ---
 title: 'Collection: Markdown Syntax Conventions'
-aliases: ['Markdown Syntax Rules', 'COL-SYNTAX-MARKDOWN']
+aliases:
+- Markdown Syntax Rules
+- COL-SYNTAX-MARKDOWN
 tags:
-  - kb-id/standards
-  - content-type/standards-collection
-  - status/deprecated # Updated status
-  - topic/markdown
-  - topic/syntax
+- content-type/standards-collection
+- kb-id/standards
+- status/deprecated
+- topic/markdown
+- topic/syntax
 kb-id: standards
-info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+info-type: standards-collection
 primary-topic: 'DEPRECATED: Collection of specific Markdown syntax rules for consistency, readability, and interoperability.'
-related-standards: ["SF-SYNTAX-YAML-FRONTMATTER", "SF-SYNTAX-HEADINGS", "SF-SYNTAX-LISTS", "SF-SYNTAX-LINKS-GENERAL", "SF-SYNTAX-CODE", "SF-SYNTAX-TABLES", "SF-SYNTAX-EMPHASIS", "SF-SYNTAX-BLOCKQUOTES", "SF-SYNTAX-IMAGES", "SF-SYNTAX-ESCAPING-CHARACTERS", "SF-SYNTAX-DEFINITION-LISTS", "SF-SYNTAX-FOOTNOTES", "SF-SYNTAX-MATH-EQUATIONS", "SF-SYNTAX-DIAGRAMS-MERMAID"]
-version: '0.4.0' # Incremented version
+related-standards:
+- SF-SYNTAX-YAML-FRONTMATTER
+- SF-SYNTAX-HEADINGS
+- SF-SYNTAX-LISTS
+- SF-SYNTAX-LINKS-GENERAL
+- SF-SYNTAX-CODE
+- SF-SYNTAX-TABLES
+- SF-SYNTAX-EMPHASIS
+- SF-SYNTAX-BLOCKQUOTES
+- SF-SYNTAX-IMAGES
+- SF-SYNTAX-ESCAPING-CHARACTERS
+- SF-SYNTAX-DEFINITION-LISTS
+- SF-SYNTAX-FOOTNOTES
+- SF-SYNTAX-MATH-EQUATIONS
+- SF-SYNTAX-DIAGRAMS-MERMAID
+version: 0.5.0
 date-created: '2025-05-15'
-date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+date-modified: '2025-06-01T23:50:44Z'
 ---
-
-**<font color="red">IMPORTANT: This document is deprecated.</font>**
-
-The Markdown syntax rules previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory, generally prefixed with `SF-SYNTAX-`.
-
-Key new standards that supersede content from this collection include:
-*   `[[SF-SYNTAX-YAML-FRONTMATTER]]`
-*   `[[SF-SYNTAX-HEADINGS]]`
-*   `[[SF-SYNTAX-LISTS]]`
-*   `[[SF-SYNTAX-LINKS-GENERAL]]`
-*   `[[SF-SYNTAX-CODE]]`
-*   `[[SF-SYNTAX-TABLES]]`
-*   `[[SF-SYNTAX-EMPHASIS]]`
-*   `[[SF-SYNTAX-BLOCKQUOTES]]`
-*   `[[SF-SYNTAX-IMAGES]]`
-*   `[[SF-SYNTAX-ESCAPING-CHARACTERS]]`
-*   `[[SF-SYNTAX-DEFINITION-LISTS]]`
-*   `[[SF-SYNTAX-FOOTNOTES]]`
-*   `[[SF-SYNTAX-MATH-EQUATIONS]]`
-*   `[[SF-SYNTAX-DIAGRAMS-MERMAID]]`
-*   ...and others covering specific Markdown features.
-
-For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
-
----
+**DEPRECATED:** This collection document is superseded by the new atomic standards architecture. Relevant content has been refactored into individual standard, policy, and guide documents located in `/master-knowledge-base/standards/src/`. Please refer to `[[AS-ROOT-STANDARDS-KB]]` for an overview of the new standards or consult `[[GM-GUIDE-KB-USAGE]]`.
 
 # Markdown Syntax Conventions
 
