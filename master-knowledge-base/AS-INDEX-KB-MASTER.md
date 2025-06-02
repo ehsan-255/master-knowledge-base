@@ -2,7 +2,7 @@
 title: "Master Knowledge Base Index"
 standard_id: "AS-INDEX-KB-MASTER" # This is the ID of this specific index document
 aliases: ["KB Directory", "Knowledge Base Master List", "Index of KBs"]
-tags: ["status/live", "criticality/p0-critical", "content-type/navigation-document", "topic/indexing", "topic/architecture", "topic/kb-master-index"]
+tags: ["status/live", "criticality/p0-critical", "content-type/navigation-document", "topic/indexing", "topic/architecture"]
 kb-id: "kb-id/global" # This file is global, indexing multiple KBs
 info-type: "navigation-document"
 primary-topic: "Provides a master directory and entry points to all active Knowledge Bases (KBs) within the ecosystem."
