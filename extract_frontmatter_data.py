@@ -5,12 +5,12 @@ import re
 
 def extract_data(filepath):
     try:
-        with open(filepath, 'r', encoding='utf-8') as f: # Corrected typo
+        with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
     except FileNotFoundError:
-        return {"filepath": filepath, "error": "File not found"}
+        return {"filepath": filepath, "error": "File not found", "standard_id": filepath.split('/')[-1].replace('.md',''), "title": filepath.split('/')[-1].replace('.md','')}
     except Exception as e:
-        return {"filepath": filepath, "error": f"Error reading file: {str(e)}"}
+        return {"filepath": filepath, "error": f"Error reading file: {str(e)}", "standard_id": filepath.split('/')[-1].replace('.md',''), "title": filepath.split('/')[-1].replace('.md','')}
 
     data = {"filepath": filepath}
     try:
@@ -21,24 +21,34 @@ def extract_data(filepath):
             if fm is None:
                 fm = {}
 
-            data['standard_id'] = fm.get('standard_id', fm.get('id'))
-            data['title'] = fm.get('title')
+            data['standard_id'] = fm.get('standard_id', fm.get('id', filepath.split('/')[-1].replace('.md','')))
+            data['title'] = fm.get('title', filepath.split('/')[-1].replace('.md',''))
             data['info-type'] = fm.get('info-type')
+            data['primary_domain'] = fm.get('primary_domain', 'UNCAT') # Default to UNCATegorized
             related = fm.get('related-standards')
             if isinstance(related, str):
                 data['related-standards'] = [related] if related.upper() != "N/A" else []
             elif isinstance(related, list):
                 data['related-standards'] = related
             else:
-                data['related-standards'] = [] # Ensure it's always a list
+                data['related-standards'] = []
 
         else:
             data['error'] = "No frontmatter found"
+            data['standard_id'] = filepath.split('/')[-1].replace('.md','')
+            data['title'] = filepath.split('/')[-1].replace('.md','')
+            data['primary_domain'] = 'UNCAT'
 
     except yaml.YAMLError as e:
         data['error'] = f"YAML parsing error: {str(e)}"
+        data['standard_id'] = filepath.split('/')[-1].replace('.md','')
+        data['title'] = filepath.split('/')[-1].replace('.md','')
+        data['primary_domain'] = 'UNCAT'
     except Exception as e:
         data['error'] = f"General error parsing frontmatter: {str(e)}"
+        data['standard_id'] = filepath.split('/')[-1].replace('.md','')
+        data['title'] = filepath.split('/')[-1].replace('.md','')
+        data['primary_domain'] = 'UNCAT'
 
     return data
 
