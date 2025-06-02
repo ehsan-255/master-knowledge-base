@@ -42,3 +42,20 @@ Quality assurance procedures mandate comprehensive updates to all technical docu
 The implementation framework requires mandatory adherence to these specifications: snake_case for all scripting components and related artifacts, ALL-CAPS-KEBAB-CASE for standard identifiers, and kebab-case for all remaining project elements. Additional exceptions to this nomenclature framework require formal documentation and approval through established change management processes..
     *   It is necessary to develop and implement updated standards, guidelines, and regulatory frameworks to address the requirements associated with the recently initiated active projects (active-project/) guidelines. These measures should ensure comprehensive oversight, alignment with best practices, and effective governance throughout the project's lifecycle.
     *   It is imperative to establish and deploy revised standards, protocols, and regulatory frameworks that comprehensively address the requirements stipulated within the newly implemented records retention and archival management guidelines (archive/). These governance mechanisms must ensure rigorous oversight, adherence to established archival science best practices, and effective information governance throughout the retention scheduling triggers and the complete records lifecycle management process, from creation through final disposition.
+
+---
+## Reminder: Future `OM-AUTOMATION-LLM-PROMPT-LIBRARY` Integration (20250602)
+
+- The standard `OM-AUTOMATION-LLM-PROMPT-LIBRARY` is planned but does not yet exist.
+- When this standard is created:
+    - Update `[[OM-AUTOMATION-LLM-IO-SCHEMAS]]` to correctly link to it in its `related-standards` and body content if appropriate.
+- This reminder was added because a link to it was prematurely removed from `OM-AUTOMATION-LLM-IO-SCHEMAS.MD` after user feedback indicated the prompt library is not yet ready.
+
+---
+## Reminder: Missing GM-GUIDE Documents (20250602)
+
+- The following guide documents, expected to be in `master-knowledge-base/standards/src/`, could not be found during the execution of L2-T1 Phase D.2 tasks:
+    - `GM-GUIDE-KB-USAGE.MD`
+    - `GM-GUIDE-STANDARDS-BY-TASK.MD`
+- These files need to be located or recreated and then reviewed/updated as per Task D.2.2 of the L2-T1 roadmap.
+- This reminder was added after a subtask reported them as not found during an attempt to review them.

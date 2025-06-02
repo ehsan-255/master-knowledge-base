@@ -22,37 +22,27 @@ jobs:
         with:
           python-version: '3.10' # Specify desired Python version
 
-      # - name: Install dependencies (Uncomment and modify if scripts have dependencies)
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     # pip install PyYAML # Example dependency
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyYAML jsonschema
 
       - name: Run Standards Linter
         run: |
-          echo "Running linter (conceptual)..."
-          # python master-knowledge-base/tools/linter/kb_linter.py --directory master-knowledge-base/standards/src/ --output linter_report.md
-          # For now, create a dummy report if the script doesn't exist or run
-          echo "Linter finished. Dummy report created." > linter_report.md
-          echo "## Linter Report" >> linter_report.md
-          echo "- 0 errors, 0 warnings (conceptual)" >> linter_report.md
-
+          python master-knowledge-base/tools/linter/kb_linter.py --repo-base . --directory master-knowledge-base --output linter_report.md --fail-on-errors
 
       - name: Run Standards Indexer
         run: |
-          echo "Running indexer (conceptual)..."
-          # python master-knowledge-base/tools/indexer/generate_index.py --directory master-knowledge-base/standards/src/ --output standards_index.json
-          # For now, create a dummy index if the script doesn't exist or run
-          echo "Indexer finished. Dummy index created."
-          echo '{ "schemaVersion": 1, "standards": [] }' > standards_index.json
+          python master-knowledge-base/tools/indexer/generate_index.py --repo-base . --src-dirs master-knowledge-base/standards/src master-knowledge-base/standards/registry master-knowledge-base/standards/templates master-knowledge-base/tools master-knowledge-base --output-dir master-knowledge-base/dist --log-level INFO
+          cp master-knowledge-base/dist/standards_index.json standards_index.json # Copy for artifact upload
 
-      # - name: Validate Index JSON against Schema (Conceptual)
-      #   run: |
-      #     echo "Validating index.json against schema (conceptual)..."
-      #     # Add command to validate standards_index.json using a JSON schema validator
-      #     # Example (if using a python tool like jsonschema):
-      #     # pip install jsonschema
-      #     # jsonschema -i standards_index.json master-knowledge-base/tools/indexer/standards_index.schema.json
-      #     echo "Schema validation conceptual step complete."
+      - name: Validate Index JSON against Schema
+        run: |
+          jsonschema -i master-knowledge-base/dist/standards_index.json master-knowledge-base/tools/indexer/standards_index.schema.json
+
+      - name: Run Collection Builder
+        run: |
+          python master-knowledge-base/tools/builder/generate_collections.py --repo-base . --output-dir master-knowledge-base/dist/collections --log-level INFO
 
       - name: Upload Linter Report
         uses: actions/upload-artifact@v4
@@ -64,13 +54,15 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: standards-index
-          path: standards_index.json
+          path: standards_index.json # Use the copied file from the root
 
-      # - name: Post Linter Summary (Conceptual)
-      #   if: always() # Ensure this runs even if previous steps fail
-      #   run: |
-      #     echo "### Standards Linter Summary" >> $GITHUB_STEP_SUMMARY
-      #     echo "- Errors: 0 (conceptual)" >> $GITHUB_STEP_SUMMARY
-      #     echo "- Warnings: 0 (conceptual)" >> $GITHUB_STEP_SUMMARY
-      #     echo "For details, see the 'linter-report' artifact." >> $GITHUB_STEP_SUMMARY
-```
+      - name: Upload Collection Output
+        uses: actions/upload-artifact@v4
+        with:
+          name: collection-output
+          path: master-knowledge-base/dist/collections/
+
+      # Conceptual "Post Linter Summary" step removed as per instructions.
+      # Job failure (due to --fail-on-errors in linter or other script failures)
+      # will be the primary indicator of issues.
+      # The uploaded artifacts can be used for detailed review.
