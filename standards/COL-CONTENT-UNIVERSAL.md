@@ -1,36 +1,29 @@
 ---
 title: 'Collection: Universal Content and Schemas Standards'
-aliases: ['Universal Content Standards', 'COL-CONTENT-UNIVERSAL']
+aliases:
+- Universal Content Standards
+- COL-CONTENT-UNIVERSAL
 tags:
-  - kb-id/standards
-  - content-type/standards-collection
-  - status/deprecated # Updated status
-  - topic/content-guidelines
-  - topic/schemas
+- content-type/standards-collection
+- kb-id/standards
+- status/deprecated
+- topic/content-guidelines
+- topic/schemas
 kb-id: standards
-info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+info-type: standards-collection
 primary-topic: 'DEPRECATED: Collection of universal standards for content creation, schemas, tone, scope, and digital abstraction.'
-related-standards: ["AS-SCHEMA-METHODOLOGY-DESCRIPTION", "AS-SCHEMA-CONCEPT-DEFINITION", "CS-POLICY-TONE-LANGUAGE", "CS-POLICY-SCOPE-INCLUSION", "CS-POLICY-SCOPE-EXCLUSION", "CS-POLICY-DIGITAL-ABSTRACTION"]
-version: '0.3.0' # Incremented version
+related-standards:
+- AS-SCHEMA-METHODOLOGY-DESCRIPTION
+- AS-SCHEMA-CONCEPT-DEFINITION
+- CS-POLICY-TONE-LANGUAGE
+- CS-POLICY-SCOPE-INCLUSION
+- CS-POLICY-SCOPE-EXCLUSION
+- CS-POLICY-DIGITAL-ABSTRACTION
+version: 0.4.0
 date-created: '2025-05-15'
-date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+date-modified: '2025-06-01T23:50:44Z'
 ---
-
-**<font color="red">IMPORTANT: This document is deprecated.</font>**
-
-The standards and guidelines previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory.
-
-Key new standards that supersede content from this collection include:
-*   `[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]`
-*   `[[AS-SCHEMA-CONCEPT-DEFINITION]]`
-*   `[[CS-POLICY-TONE-LANGUAGE]]`
-*   `[[CS-POLICY-SCOPE-INCLUSION]]`
-*   `[[CS-POLICY-SCOPE-EXCLUSION]]`
-*   `[[CS-POLICY-DIGITAL-ABSTRACTION]]`
-
-For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
-
----
+**DEPRECATED:** This collection document is superseded by the new atomic standards architecture. Relevant content has been refactored into individual standard, policy, and guide documents located in `/master-knowledge-base/standards/src/`. Please refer to `[[AS-ROOT-STANDARDS-KB]]` for an overview of the new standards or consult `[[GM-GUIDE-KB-USAGE]]`.
 
 # Universal Content and Schemas Standards
 

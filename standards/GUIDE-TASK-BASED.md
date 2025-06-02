@@ -1,22 +1,25 @@
 ---
 title: 'Guide: Task-Based Navigation of Knowledge Base Standards'
-aliases: ['Standards by Task Guide', 'GUIDE-TASK-BASED']
+aliases:
+- Standards by Task Guide
+- GUIDE-TASK-BASED
 tags:
-  - kb-id/standards
-  - content-type/standards-guide
-  - status/draft
-  - topic/standards-governance
-  - topic/workflow
-  - topic/automation
-  - topic/scripting
+- content-type/standards-guide
+- kb-id/standards
+- status/deprecated
+- topic/automation
+- topic/scripting
+- topic/standards-governance
+- topic/workflow
 kb-id: standards
 info-type: standards-guide
-primary-topic: 'Task-oriented guide to Universal KB Standards, categorizing them by common activities and priority.'
-related-standards: "N/A"
-version: '0.1.1'
+primary-topic: Task-oriented guide to Universal KB Standards, categorizing them by common activities and priority.
+related-standards: N/A
+version: 0.2.0
 date-created: '2025-05-16'
-date-modified: '2025-05-22'
+date-modified: '2025-06-02T00:18:23Z'
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[GM-GUIDE-STANDARDS-BY-TASK]].
 
 # Task-Based Guide to Knowledge Base Standards
 
@@ -173,7 +176,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
     * Mandates Wikilink format for internal links within Obsidian.
     * *Task Priority Rationale*: Ensures proper link functionality and graph view in Obsidian.
 -   `O-USAGE-TOC-MANDATE-001`: Obsidian Table of Contents Mandate (if using Obsidian & plugin for ToC).
-    * Recommends using an Obsidian plugin for generating the document's ToC.
+    * Recommends using an Obsidian community plugin for generating the document's ToC.
     * *Task Priority Rationale*: Facilitates accurate and maintainable ToCs as per U-STRUC-002.
 
 ### P3 (Task-Beneficial)
@@ -520,4 +523,3 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 -   `M-SYNTAX-DIAGRAMS-001`: Markdown for Diagrams (Mermaid).
     * Requires specific Mermaid JavaScript library for rendering.
     * *Task Priority Rationale*: Diagrams will appear as code blocks without Mermaid support.
-

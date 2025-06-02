@@ -1,21 +1,28 @@
 ---
 title: 'Guide: Knowledge Base Usage and Standards'
-aliases: ['KB Onboarding Guide', 'How to Use This KB', 'U-ONBOARDING-001 Guide']
+aliases:
+- KB Onboarding Guide
+- How to Use This KB
+- U-ONBOARDING-001 Guide
 tags:
-  - kb-id/standards
-  - content-type/standards-guide
-  - status/draft
-  - topic/onboarding
-  - topic/standards-governance
-  - topic/user-documentation
+- content-type/standards-guide
+- kb-id/standards
+- status/deprecated
+- topic/onboarding
+- topic/standards-governance
+- topic/user-documentation
 kb-id: standards
-info-type: standards-guide 
-primary-topic: 'Comprehensive guide for users on how to navigate, understand, apply, and contribute to the knowledge base system and its standards.'
-related-standards: ['U-ONBOARDING-001', 'U-METADATA-FRONTMATTER-RULES-001', 'U-TAG-001']
-version: '0.1.0'
+info-type: standards-guide
+primary-topic: Comprehensive guide for users on how to navigate, understand, apply, and contribute to the knowledge base system and its standards.
+related-standards:
+- U-ONBOARDING-001
+- U-METADATA-FRONTMATTER-RULES-001
+- U-TAG-001
+version: 0.2.0
 date-created: '2025-05-22'
-date-modified: '2025-05-22'
+date-modified: '2025-06-02T00:13:31Z'
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[GM-GUIDE-KB-USAGE]].
 
 # Guide: Knowledge Base Usage and Standards
 
@@ -202,4 +209,4 @@ Certain document types have specific structural requirements defined by `U-SCHEM
 -   **Tag Glossary:** For definitions of all official tags used in YAML frontmatter, see `[[master-knowledge-base/tag-glossary-definition|Tag Glossary]]`.
 -   **Questions:** If you have questions or need clarification, please [Specify Contact Point or Channel, e.g., "reach out on the #kb-standards channel" or "contact Jim"].
 
---- 
+---

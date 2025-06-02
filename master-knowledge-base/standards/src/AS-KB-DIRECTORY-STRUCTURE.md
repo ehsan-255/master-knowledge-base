@@ -2,30 +2,31 @@
 title: Knowledge Base Directory Structure Standard
 standard_id: AS-KB-DIRECTORY-STRUCTURE
 aliases:
-  - Directory Structure
-  - Folder Organization
+- Directory Structure
+- Folder Organization
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Directory Structure
 related-standards: []
 version: 0.1.0
 date-created: '2024-07-15T10:00:00Z'
-date-modified: '2025-05-30T21:00:00Z'
+date-modified: '2025-06-01T23:21:22Z'
 primary_domain: AS
 sub_domain: STRUCTURE
 scope_application: Overall repository and knowledge base file organization.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Authoring workflow
-  - Build process
-  - Navigation
+- Authoring workflow
+- Build process
+- Navigation
 change_log_url: ./AS-KB-DIRECTORY-STRUCTURE-CHANGELOG.MD
 ---
+
 # AS-KB-DIRECTORY-STRUCTURE: Knowledge Base Directory Structure Standard
 
 ## 1. Overview
@@ -70,4 +71,3 @@ Within `master-knowledge-base/standards/`, the following specialized directories
     *   **Purpose:** Output directory for generated views, compiled sites, or other build artifacts.
 
 This document will be updated as the directory structure evolves.
-```

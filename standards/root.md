@@ -1,21 +1,25 @@
 ---
-title: 'Universal Knowledge Base Standards - Overview - DEPRECATED'
-aliases: ['Standards KB Root', 'KB Standards Overview', 'UKBS Root']
+title: Universal Knowledge Base Standards - Overview - DEPRECATED
+aliases:
+- Standards KB Root
+- KB Standards Overview
+- UKBS Root
 tags:
-  - kb-id/standards
-  - content-type/standard-overview-document
-  - status/deprecated # Changed from status/final
-  - topic/standards-governance
-  - topic/meta-structure
+- content-type/standard-overview-document
+- kb-id/standards
+- status/deprecated
+- topic/meta-structure
+- topic/standards-governance
 kb-id: standards
 info-type: standard-overview-document
-primary-topic: 'Root entry point and guide to Universal KB Standards, outlining purpose, meta-structure for standard definitions, and master Table of Contents.'
+primary-topic: Root entry point and guide to Universal KB Standards, outlining purpose, meta-structure for standard definitions, and master Table of Contents.
 related-standards:
-  - AS-ROOT-STANDARDS-KB # Points to new standard
-version: '1.2.3'
-date-created: '2025-05-15T00:00:00Z' # Standardized
-date-modified: '2025-05-30T00:00:00Z' # Deprecation date
+- AS-ROOT-STANDARDS-KB
+version: 1.3.0
+date-created: '2025-05-15T00:00:00Z'
+date-modified: '2025-06-02T00:26:27Z'
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[AS-ROOT-STANDARDS-KB]].
 
 > [!WARNING] DEPRECATED: This Document is No Longer Active
 > **Reason for Deprecation:** This document has been superseded by [[AS-ROOT-STANDARDS-KB]], which serves as the main entry point for the Standards Knowledge Base.

@@ -1,37 +1,30 @@
 ---
 title: 'Collection: Universal Governance and Support Standards'
-aliases: ['Universal Governance Standards', 'COL-GOVERNANCE-UNIVERSAL']
+aliases:
+- Universal Governance Standards
+- COL-GOVERNANCE-UNIVERSAL
 tags:
-  - kb-id/standards
-  - content-type/standards-collection
-  - status/deprecated # Updated status
-  - topic/governance
-  - topic/support-docs
+- content-type/standards-collection
+- kb-id/standards
+- status/deprecated
+- topic/governance
+- topic/support-docs
 kb-id: standards
-info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
+info-type: standards-collection
 primary-topic: 'DEPRECATED: Collection of universal standards for versioning, governance, deprecation, onboarding, glossaries, templates, and file hygiene.'
-related-standards: ["OM-VERSIONING-CHANGELOGS", "OM-POLICY-STANDARDS-GOVERNANCE", "OM-POLICY-STANDARDS-DEPRECATION", "GM-MANDATE-KB-USAGE-GUIDE", "GM-MANDATE-STANDARDS-GLOSSARY", "AS-STRUCTURE-TEMPLATES-DIRECTORY", "SF-FORMATTING-FILE-HYGIENE"]
-version: '0.3.0' # Incremented version
+related-standards:
+- OM-VERSIONING-CHANGELOGS
+- OM-POLICY-STANDARDS-GOVERNANCE
+- OM-POLICY-STANDARDS-DEPRECATION
+- GM-MANDATE-KB-USAGE-GUIDE
+- GM-MANDATE-STANDARDS-GLOSSARY
+- AS-STRUCTURE-TEMPLATES-DIRECTORY
+- SF-FORMATTING-FILE-HYGIENE
+version: 0.4.0
 date-created: '2025-05-15'
-date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+date-modified: '2025-06-01T23:50:44Z'
 ---
-
-**<font color="red">IMPORTANT: This document is deprecated.</font>**
-
-The standards and guidelines previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory.
-
-Key new standards that supersede content from this collection include:
-*   `[[OM-VERSIONING-CHANGELOGS]]`
-*   `[[OM-POLICY-STANDARDS-GOVERNANCE]]`
-*   `[[OM-POLICY-STANDARDS-DEPRECATION]]`
-*   `[[GM-MANDATE-KB-USAGE-GUIDE]]` (which mandates [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]])
-*   `[[GM-MANDATE-STANDARDS-GLOSSARY]]` (which mandates [[GM-GLOSSARY-STANDARDS-TERMS_ID_PLACEHOLDER]])
-*   `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]`
-*   `[[SF-FORMATTING-FILE-HYGIENE]]`
-
-For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
-
----
+**DEPRECATED:** This collection document is superseded by the new atomic standards architecture. Relevant content has been refactored into individual standard, policy, and guide documents located in `/master-knowledge-base/standards/src/`. Please refer to `[[AS-ROOT-STANDARDS-KB]]` for an overview of the new standards or consult `[[GM-GUIDE-KB-USAGE]]`.
 
 # Universal Governance and Support Standards
 

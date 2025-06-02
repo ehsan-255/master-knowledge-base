@@ -1,40 +1,29 @@
 ---
 title: 'Collection: Universal Architecture and Structure Standards'
-aliases: ['Universal Architecture Standards', 'COL-ARCH-UNIVERSAL']
+aliases:
+- Universal Architecture Standards
+- COL-ARCH-UNIVERSAL
 tags:
-  - kb-id/standards
-  - content-type/standards-collection
-  - status/deprecated # Updated status
-  - topic/architecture
-  - topic/structure
+- content-type/standards-collection
+- kb-id/standards
+- status/deprecated
+- topic/architecture
+- topic/structure
 kb-id: standards
-info-type: standards-collection # This info-type is still valid for a collection, even if deprecated
-primary-topic: 'DEPRECATED Collection of universal standards governing overall KB architecture and fundamental document/section structure. Superseded by atomic standards.'
-related-standards: ["AS-STRUCTURE-KB-ROOT", "AS-STRUCTURE-MASTER-KB-INDEX", "AS-STRUCTURE-KB-PART", "AS-STRUCTURE-DOC-CHAPTER", "CS-POLICY-LAYERED-INFORMATION", "SF-CONVENTIONS-NAMING"] # Listing some of the new standards
-version: '0.4.0' # Increment version due to significant change (deprecation)
+info-type: standards-collection
+primary-topic: DEPRECATED Collection of universal standards governing overall KB architecture and fundamental document/section structure. Superseded by atomic standards.
+related-standards:
+- AS-STRUCTURE-KB-ROOT
+- AS-STRUCTURE-MASTER-KB-INDEX
+- AS-STRUCTURE-KB-PART
+- AS-STRUCTURE-DOC-CHAPTER
+- CS-POLICY-LAYERED-INFORMATION
+- SF-CONVENTIONS-NAMING
+version: 0.5.0
 date-created: '2025-05-15'
-date-modified: '2024-07-15T12:00:00Z' # Placeholder for current date
+date-modified: '2025-06-01T23:53:38Z'
 ---
-
-**<font color="red">IMPORTANT: This document is deprecated.</font>**
-
-The standards and guidelines previously contained in this collection have been refactored into individual, atomic standard documents. Please refer to the new standards located in the `/master-knowledge-base/standards/src/` directory, particularly those with `AS-` (Architectural Standards) and related `CS-` (Content Standards/Policies) prefixes.
-
-Key new standards that supersede content from this collection include:
-- [[AS-STRUCTURE-KB-ROOT]]
-- [[CS-POLICY-KB-ROOT]]
-- [[AS-STRUCTURE-MASTER-KB-INDEX]]
-- [[CS-POLICY-KB-IDENTIFICATION]]
-- [[AS-STRUCTURE-KB-PART]]
-- [[CS-POLICY-KB-PART-CONTENT]]
-- [[AS-STRUCTURE-DOC-CHAPTER]]
-- [[CS-POLICY-DOC-CHAPTER-CONTENT]]
-- [[CS-POLICY-LAYERED-INFORMATION]]
-- [[SF-CONVENTIONS-NAMING]]
-
-For guidance on the new standards structure, please consult [[GM-GUIDE-KB-USAGE_ID_PLACEHOLDER]] (once available).
-
----
+**DEPRECATED:** This collection document is superseded by the new atomic standards architecture. Relevant content has been refactored into individual standard, policy, and guide documents located in `/master-knowledge-base/standards/src/`. Please refer to `[[AS-ROOT-STANDARDS-KB]]` for an overview of the new standards or consult `[[GM-GUIDE-KB-USAGE]]`.
 
 # Universal Architecture and Structure Standards
 
@@ -78,11 +67,11 @@ For `root.md` in a larger KB linking to Part sub-folders:
 ## Master Table of Contents
 
 ### Part I: Foundations of Research Methodology
-- [Overview of Foundations](part-i-foundations-of-research-methodology/_overview.md)
-- [Introduction to Research Methodology](part-i-foundations-of-research-methodology/01-introduction-to-research-methodology.md)
+- [Overview of Foundations](./part-i-foundations-of-research-methodology/_overview.md)
+- [Introduction to Research Methodology](./part-i-foundations-of-research-methodology/01-introduction-to-research-methodology.md)
 
 ### Part II: Key Processes in Research
-- [Overview of Key Processes](part-ii-key-processes-in-research/_overview.md)
+- [Overview of Key Processes](./part-ii-key-processes-in-research/_overview.md)
 ```
 
 **Cross-References to Other Standard IDs:** [[COL-ARCH-UNIVERSAL#Standard: File and Folder Naming Conventions (U-FORMAT-NAMING-001)|U-FORMAT-NAMING-001]], [[COL-SYNTAX-MARKDOWN#Standard: Markdown for Links (Internal and External) (M-SYNTAX-LINKS-001)|M-SYNTAX-LINKS-001]], [[COL-ARCH-UNIVERSAL#Standard: Primary KB Section ("Part") Structure (U-STRUC-001)|U-STRUC-001]].

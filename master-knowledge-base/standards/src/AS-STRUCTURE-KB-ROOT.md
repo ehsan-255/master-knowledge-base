@@ -2,34 +2,34 @@
 title: 'Standard: Knowledge Base Root Structure'
 standard_id: AS-STRUCTURE-KB-ROOT
 aliases:
-  - KB Root Structure
-  - Root File Organization
+- KB Root Structure
+- Root File Organization
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: KB Root Structure
 related-standards:
-  - CS-POLICY-KB-ROOT
-  - AS-KB-DIRECTORY-STRUCTURE
+- CS-POLICY-KB-ROOT
+- AS-KB-DIRECTORY-STRUCTURE
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T16:00:00Z'
+date-modified: '2025-06-01T23:26:37Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the mandatory structure for the root level of any Knowledge
-  Base (KB), including the root file and organization of top-level sections ('Parts').
+scope_application: Defines the mandatory structure for the root level of any Knowledge Base (KB), including the root file and organization of top-level sections ('Parts').
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - KB navigability
-  - Authoring consistency
-  - Automated processing
-  - Build system
+- KB navigability
+- Authoring consistency
+- Automated processing
+- Build system
 change_log_url: ./AS-STRUCTURE-KB-ROOT-CHANGELOG.MD
 ---
+
 # Standard: Knowledge Base Root Structure (AS-STRUCTURE-KB-ROOT)
 
 This standard defines the mandatory structure for the root level of any Knowledge Base (KB), including the root file (`root.md`) and the organization of its top-level sections, referred to as "Parts."

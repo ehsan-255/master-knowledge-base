@@ -1,20 +1,24 @@
 ---
-title: 'Glossary of Standards Terminology - DEPRECATED'
-aliases: ['Standards Glossary', 'Terminology for Standards']
+title: Glossary of Standards Terminology - DEPRECATED
+aliases:
+- Standards Glossary
+- Terminology for Standards
 tags:
-  - kb-id/standards
-  - content-type/standards-guide 
-  - status/deprecated # Changed from status/draft
-  - topic/standards-governance
-  - topic/glossary
+- content-type/standards-guide
+- kb-id/standards
+- status/deprecated
+- topic/glossary
+- topic/standards-governance
 kb-id: standards
-info-type: standards-glossary 
-primary-topic: 'Defines key terms used within the Universal Knowledge Base Standards documents themselves to ensure consistent understanding.'
-related-standards: ["GM-GLOSSARY-STANDARDS-TERMS"] # Points to new standard
-version: '0.1.0'
-date-created: '2025-05-22T00:00:00Z' # Standardized
-date-modified: '2025-05-30T00:00:00Z' # Deprecation date
+info-type: standards-glossary
+primary-topic: Defines key terms used within the Universal Knowledge Base Standards documents themselves to ensure consistent understanding.
+related-standards:
+- GM-GLOSSARY-STANDARDS-TERMS
+version: 0.2.0
+date-created: '2025-05-22T00:00:00Z'
+date-modified: '2025-06-02T00:02:06Z'
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[GM-GLOSSARY-STANDARDS-TERMS]].
 
 > [!WARNING] DEPRECATED: This Document is No Longer Active
 > **Reason for Deprecation:** This document has been superseded by [[GM-GLOSSARY-STANDARDS-TERMS]].
@@ -47,4 +51,4 @@ This glossary defines key terms as they are used within the Universal Knowledge 
 -   **Schema (Content Schema):** A predefined structure or template that dictates the mandatory and optional sections, headings, and metadata for a specific type of content document.
 -   **Source Document:** The primary, editable version of a knowledge base document, which may contain placeholders for dynamic content.
 
-*(This glossary will be expanded as more terms are identified.)* 
+*(This glossary will be expanded as more terms are identified.)*

@@ -2,34 +2,34 @@
 title: 'Standard: Master Knowledge Base Directory and Index Structure'
 standard_id: AS-STRUCTURE-MASTER-KB-INDEX
 aliases:
-  - Master KB Index
-  - KB Directory File
+- Master KB Index
+- KB Directory File
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- status/draft
+- criticality/p1-high
+- content-type/technical-standard
 kb-id: standards
 info-type: standard-definition
 primary-topic: Master KB Directory and Index
 related-standards:
-  - CS-POLICY-KB-IDENTIFICATION
-  - AS-KB-DIRECTORY-STRUCTURE
+- CS-POLICY-KB-IDENTIFICATION
+- AS-KB-DIRECTORY-STRUCTURE
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T12:00:00Z'
+date-modified: '2025-06-01T23:26:37Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the structure for the master directory housing all KBs
-  and the requirements for the `kb-directory.md` master index file.
+scope_application: Defines the structure for the master directory housing all KBs and the requirements for the `kb-directory.md` master index file.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - KB discovery
-  - Repository organization
-  - Automated KB listing
-  - Inter-KB navigation
+- KB discovery
+- Repository organization
+- Automated KB listing
+- Inter-KB navigation
 change_log_url: ./AS-STRUCTURE-MASTER-KB-INDEX-CHANGELOG.MD
 ---
+
 # Standard: Master Knowledge Base Directory and Index Structure (AS-STRUCTURE-MASTER-KB-INDEX)
 
 This standard defines the structural requirements for the master directory that houses all Knowledge Bases (KBs) and the specific requirements for the `kb-directory.md` master index file.
