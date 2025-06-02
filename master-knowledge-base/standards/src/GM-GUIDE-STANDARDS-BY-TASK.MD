@@ -19,7 +19,7 @@ scope_application: "System-Level"
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "SME-Review"
 impact_areas: ["standards-adoption", "user-effectiveness", "task-completion"]
-change_log_url: "GM-GUIDE-STANDARDS-BY-TASK-CHANGELOG.MD"
+change_log_url: "./GM-GUIDE-STANDARDS-BY-TASK-CHANGELOG.MD"
 maturity: "Low"
 lifecycle_stage: "Development"
 target_audience: ["all_contributors", "developers", "writers"]

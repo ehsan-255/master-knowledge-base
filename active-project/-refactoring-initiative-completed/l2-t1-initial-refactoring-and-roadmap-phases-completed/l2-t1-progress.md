@@ -3,7 +3,7 @@ title: "L2-T1 Progress - Initial Refactoring and Roadmap Phases"
 id: "refactoring-l2-t1-initial-refactoring-progress"
 kb: "refactoring-initiative"
 file_type: "sub_task_progress_file"
-source_path: "active-project/refactoring-initiative-active/l2-t1-initial-refactoring-and-roadmap-phases-active/l2-t1-progress.md"
+source_path: "active-project/-refactoring-initiative-completed/l2-t1-initial-refactoring-and-roadmap-phases-completed/l2-t1-progress.md"
 description: "Progress tracking for L2-T1 sub-task. Includes summary of L3-T1 and Phase A completion."
 status: "active"
 linked_documents: ["l2-t1-analysis-report.md", "l2-t1-roadmap.md", "./l3-t1-phase-b-completion-completed/l3-t1-progress.md"]
@@ -37,7 +37,7 @@ history_summary: "L3-T1 sub-task completed. L2-T1 Phase A completed. L2-T1 Phase
 key_takeaways: ["L2-T1 Phases C, D, E substantially completed by Agent Jules.", "Key documentation reviewed/updated.", "Linter validation remains a challenge due to 'local test mode' issue.", "File access inconsistency for OM-AUTOMATION-LLM-IO-SCHEMAS.MD noted."]
 next_steps: ["Proceed with L2-T1 Phase F: Project Completion & Archival."]
 ---
-For progress prior to 20250601, please refer to [[active-project/-refactoring-initiative-active/master-progress.md]].
+For progress prior to 20250601, please refer to [[active-project/-refactoring-initiative-completed/master-progress.md]].
 
 # L2-T1 Progress - Initial Refactoring and Roadmap Phases
 

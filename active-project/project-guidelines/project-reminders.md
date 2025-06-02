@@ -52,13 +52,13 @@ The implementation framework requires mandatory adherence to these specification
 - This reminder was added because a link to it was prematurely removed from `OM-AUTOMATION-LLM-IO-SCHEMAS.MD` after user feedback indicated the prompt library is not yet ready.
 
 ---
-## Reminder: Missing GM-GUIDE Documents (20250602)
+## Reminder: Populate Placeholder GM-GUIDE Documents (20250602)
 
-- The following guide documents, expected to be in `master-knowledge-base/standards/src/`, could not be found during the execution of L2-T1 Phase D.2 tasks:
-    - `GM-GUIDE-KB-USAGE.MD`
-    - `GM-GUIDE-STANDARDS-BY-TASK.MD`
-- These files need to be located or recreated and then reviewed/updated as per Task D.2.2 of the L2-T1 roadmap.
-- This reminder was added after a subtask reported them as not found during an attempt to review them.
+- The following guide documents were recreated as placeholders in `master-knowledge-base/standards/src/` during L2-T1 Phase C/D remediation (Agent Jules, 2025-06-02):
+    - `GM-GUIDE-KB-USAGE.MD` (and its changelog `GM-GUIDE-KB-USAGE-CHANGELOG.MD`)
+    - `GM-GUIDE-STANDARDS-BY-TASK.MD` (and its changelog `GM-GUIDE-STANDARDS-BY-TASK-CHANGELOG.MD`)
+- These files currently contain only placeholder content and frontmatter. They need to be populated with actual content as per their intended scope.
+- Their `status` tag is `status/draft`.
 
 ---
 ## Reminder: Linter Local Test Mode Issue (20250602)

@@ -19,7 +19,7 @@ scope_application: "System-Level"
 criticality: "P2-Medium"
 lifecycle_gatekeeper: "SME-Review"
 impact_areas: ["onboarding", "kb-navigation", "user-effectiveness"]
-change_log_url: "GM-GUIDE-KB-USAGE-CHANGELOG.MD"
+change_log_url: "./GM-GUIDE-KB-USAGE-CHANGELOG.MD"
 maturity: "Low"
 lifecycle_stage: "Development"
 target_audience: ["all_contributors", "end_users"]
