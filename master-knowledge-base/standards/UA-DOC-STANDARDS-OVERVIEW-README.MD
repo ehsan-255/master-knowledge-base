@@ -1,6 +1,6 @@
 ---
 title: Standards Knowledge Base Directory
-standard_id: DOC-STANDARDS-README
+standard_id: UA-DOC-STANDARDS-OVERVIEW-README # Changed standard_id
 aliases:
   - Standards README
 tags:
@@ -8,22 +8,22 @@ tags:
   - content-type/documentation
   - topic/readme
   - kb-id/standards
-kb-id: standards
-info-type: guide-document
+kb-id: "kb-id/standards" # Standardized kb-id format
+info-type: "guide-document" # Ensured info-type
 primary-topic: Overview and guidance for the standards directory and its contents.
 related-standards: []
 version: 1.0.0
 date-created: '2025-06-01T11:33:47Z'
-date-modified: '2025-06-01T11:33:47Z'
-primary_domain: GM
-sub_domain: GUIDE
-scope_application: Provides an overview for the /app/master-knowledge-base/standards/README.md.
-criticality: P4-Informational
+date-modified: '2025-06-01T11:33:47Z' # Will be updated by CI
+primary_domain: "UA" # Changed primary_domain
+sub_domain: "DOCUMENTATION" # Changed sub_domain
+scope_application: Provides an overview for the /app/master-knowledge-base/standards directory.
+criticality: "P3-Low" # Changed criticality
 lifecycle_gatekeeper: No-Gatekeeper
 impact_areas:
   - documentation
   - usability
-change_log_url: ./README-CHANGELOG.MD
+change_log_url: https://example.com/placeholder-changelog-url # Changed change_log_url
 ---
 
 # Standards Knowledge Base Directory
@@ -63,4 +63,5 @@ The `/standards` knowledge base is organized into the following primary subdirec
 *   **Version Control:** All standards and supporting documents are version-controlled using Git to track changes and manage their lifecycle.
 
 Refer to individual standards within the `src/` directory for specific rules and guidelines. The `[[kb-id/standards]]` tag should be used on all documents within this knowledge base, and the `kb-id: "standards"` frontmatter key should be set accordingly.
+The root document for this Standards KB is `[[AS-ROOT-STANDARDS-KB]]`.
 The master index for this KB can be found at `[[AS-STRUCTURE-MASTER-KB-INDEX]]` (once created, assuming it points to a `kb-directory.md` or similar).

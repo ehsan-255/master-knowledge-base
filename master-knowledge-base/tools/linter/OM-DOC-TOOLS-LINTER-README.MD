@@ -1,6 +1,6 @@
 ---
 title: Knowledge Base Linter (`kb_linter.py`)
-standard_id: DOC-TOOLS-LINTER-README
+standard_id: OM-DOC-TOOLS-LINTER-README # Changed standard_id
 aliases:
   - Linter README
 tags:
@@ -8,22 +8,22 @@ tags:
   - content-type/documentation
   - topic/readme
   - kb-id/tools
-kb-id: tools
-info-type: guide-document
+kb-id: "kb-id/tools" # Standardized kb-id format
+info-type: "guide-document" # Ensured info-type
 primary-topic: Overview and guidance for the linter directory and its contents.
 related-standards: []
 version: 1.0.0
 date-created: '2025-06-01T11:33:47Z'
-date-modified: '2025-06-01T11:33:47Z'
-primary_domain: GM
-sub_domain: GUIDE
-scope_application: Provides an overview for the /app/master-knowledge-base/tools/linter/README.md.
-criticality: P4-Informational
+date-modified: '2025-06-01T11:33:47Z' # Will be updated by CI
+primary_domain: "OM" # Changed primary_domain
+sub_domain: "DOCUMENTATION" # Changed sub_domain
+scope_application: Provides an overview for the /app/master-knowledge-base/tools/linter directory and its script.
+criticality: "P3-Low" # Changed criticality
 lifecycle_gatekeeper: No-Gatekeeper
 impact_areas:
   - documentation
   - usability
-change_log_url: ./README-CHANGELOG.MD
+change_log_url: https://example.com/placeholder-changelog-url # Changed change_log_url
 ---
 
 # Knowledge Base Linter (`kb_linter.py`)
@@ -68,7 +68,7 @@ The linter currently performs the following checks:
     *   **Line Endings:** Warns if CRLF or CR line endings are used (expects LF).
 
 3.  **Internal Links (Body Content):**
-    *   **Path-Based Links:** Reports an **error** for path-based `[[link/path.md]]` style links. Links MUST use `[[STANDARD_ID]]`.
+  *   **Path-Based Links:** Reports an **error** for path-based links (e.g., `[[./some/path.md]]`). Links MUST use the `[[STANDARD_ID]]` format.
     *   **Broken Links:** Warns if a `[[STANDARD_ID]]` does not exist in the `standards_index.json` (requires the index to be available and loaded).
 
 ## Configuration & Dependencies
