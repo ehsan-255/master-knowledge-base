@@ -7,7 +7,7 @@ info-type: project-guideline
 primary-topic: Key reminders and action items for project development and maintenance.
 version: '1.0.0'
 date-created: '2025-05-25T00:00:00Z'
-date-modified: '2025-05-31T09:33:00Z'
+date-modified: '2025-06-02T00:00:00Z'
 primary_domain: PROJECT
 sub_domain: GUIDELINES
 scope_application: All contributors to this knowledge base project.
@@ -59,3 +59,13 @@ The implementation framework requires mandatory adherence to these specification
     - `GM-GUIDE-STANDARDS-BY-TASK.MD`
 - These files need to be located or recreated and then reviewed/updated as per Task D.2.2 of the L2-T1 roadmap.
 - This reminder was added after a subtask reported them as not found during an attempt to review them.
+
+---
+## Reminder: Linter Local Test Mode Issue (20250602)
+
+- During L2-T1 execution (Phases C, D, E), the `kb_linter.py` script consistently ran in a "local test mode" when attempting to lint specific directories or files (e.g., `master-knowledge-base/standards/src/`).
+- This mode processed dummy files created by the linter itself, instead of the actual target files.
+- The cause for this mode triggering or how to disable it is not documented in the linter's README.
+- As a result, specific validation of newly created/modified files (like `GM-GUIDE-KB-USAGE.MD`, `GM-GUIDE-STANDARDS-BY-TASK.MD`, and their changelogs) could not be completed.
+- While the CI/CD pipeline might run the linter on the entire KB successfully, targeted local linting for development and verification remains problematic.
+- This issue needs further investigation to ensure the linter can be reliably used for local validation.
