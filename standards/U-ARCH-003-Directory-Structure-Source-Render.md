@@ -1,23 +1,25 @@
 ---
-title: 'Standard: Directory Structure for Source and Rendered Content (U-ARCH-003)'
+title: 'Standard: Directory Structure for Source and Rendered Content (U-ARCH-003) - DEPRECATED'
 tags:
-  - standards-kb/universal
-  - architecture
-  - file-system
-  - source-and-render
-  - content-type/standard-document
-  - status/draft
-  - kb-id/standards
+- architecture
+- content-type/standard-document
+- file-system
+- kb-id/standards
+- source-and-render
+- standards-kb/universal
+- status/deprecated
 date-created: 2025-05-19
-date-modified: 2025-05-22
-version: '0.1.1'
+date-modified: '2025-06-02T00:42:23Z'
+version: 0.2.0
 info-type: standard-document
-primary-topic: 'Defines the directory structure for managing source and rendered knowledge base content.'
+primary-topic: Defines the directory structure for managing source and rendered knowledge base content.
 related-standards:
-  - U-ARCH-001
-  - U-ARCH-002
-aliases: [Source-Render Directory Standard]
+- U-ARCH-001
+- U-ARCH-002
+aliases:
+- Source-Render Directory Standard
 ---
+**DEPRECATED:** This document is superseded. Concepts integrated into [[AS-KB-DIRECTORY-STRUCTURE]] and other architectural standards..
 
 # Standard: Directory Structure for Source and Rendered Content (U-ARCH-003)
 

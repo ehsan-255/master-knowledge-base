@@ -1,21 +1,24 @@
 ---
 title: 'Standard: Content Schema for "Task Topics" (U-SCHEMA-TASK-001) - DEPRECATED'
 tags:
-  - standards-kb/universal
-  - schemas
-  - content-type/task-topic
-  - status/deprecated # Changed from status/draft
-  - kb-id/standards
-  - content-type/standard-document
-date-created: "2025-05-19T00:00:00Z" # Standardized
-date-modified: "2025-05-30T00:00:00Z" # Deprecation date
-version: '0.1.2'
+- content-type/standard-document
+- content-type/task-topic
+- kb-id/standards
+- schemas
+- standards-kb/universal
+- status/deprecated
+date-created: '2025-05-19T00:00:00Z'
+date-modified: '2025-06-02T05:51:59Z'
+version: 0.2.0
 info-type: standard-document
 primary-topic: Defines the structure for step-by-step procedural task documents
 related-standards:
-  - AS-SCHEMA-TASK # Points to new standard
-aliases: [Task Topic Schema, Procedural Content Schema]
+- AS-SCHEMA-TASK
+aliases:
+- Task Topic Schema
+- Procedural Content Schema
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[AS-SCHEMA-TASK]].
 
 > [!WARNING] DEPRECATED: This Standard is No Longer Active
 > **Reason for Deprecation:** This standard has been superseded by [[AS-SCHEMA-TASK]].

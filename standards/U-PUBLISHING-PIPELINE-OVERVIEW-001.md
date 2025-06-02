@@ -1,22 +1,25 @@
 ---
 title: 'Standard: Publishing Pipeline Overview (U-PUBLISHING-PIPELINE-OVERVIEW-001) - DEPRECATED'
 tags:
-  - standards-kb/universal
-  - utility-standards
-  - publishing
-  - automation
-  - status/deprecated # Changed from status/draft
-  - kb-id/standards
-  - content-type/standard-document
-date-created: "2025-05-19T00:00:00Z" # Standardized format
-date-modified: "2025-05-30T00:00:00Z" # Updated to current date
-version: '0.1.1'
+- automation
+- content-type/standard-document
+- kb-id/standards
+- publishing
+- standards-kb/universal
+- status/deprecated
+- utility-standards
+date-created: '2025-05-19T00:00:00Z'
+date-modified: '2025-06-02T05:47:19Z'
+version: 0.2.0
 info-type: standard-document
 primary-topic: Describes the conceptual overview of the automated publishing workflow
 related-standards:
-  - OM-OVERVIEW-PUBLISHING-PIPELINE # Points to new standard
-aliases: [Publishing Workflow Standard, KB Export Process]
+- OM-OVERVIEW-PUBLISHING-PIPELINE
+aliases:
+- Publishing Workflow Standard
+- KB Export Process
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[OM-OVERVIEW-PUBLISHING-PIPELINE]].
 
 > [!WARNING] DEPRECATED: This Standard is No Longer Active
 > **Reason for Deprecation:** This standard has been superseded by [[OM-OVERVIEW-PUBLISHING-PIPELINE]].

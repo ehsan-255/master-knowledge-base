@@ -1,22 +1,25 @@
 ---
-title: 'Standard: Markdown Syntax for Conditional Text (M-CONDITIONAL-TEXT-SYNTAX-001)'
+title: 'Standard: Markdown Syntax for Conditional Text (M-CONDITIONAL-TEXT-SYNTAX-001) - DEPRECATED'
 tags:
-  - standards-kb/markdown
-  - syntax-rules
-  - content-profiling
-  - content-type/standard-document
-  - status/draft
-  - kb-id/standards
+- content-profiling
+- content-type/standard-document
+- kb-id/standards
+- standards-kb/markdown
+- status/deprecated
+- syntax-rules
 date-created: 2025-05-19
-date-modified: 2025-05-22
-version: '0.1.1'
+date-modified: '2025-06-02T00:39:05Z'
+version: 0.2.0
 info-type: standard-document
-primary-topic: 'Defines the Markdown syntax for marking conditional text blocks.'
+primary-topic: Defines the Markdown syntax for marking conditional text blocks.
 related-standards:
-  - U-PROFILING-ATTRIBUTES-001
-  - O-USAGE-CALLOUTS-001
-aliases: [Conditional Text Syntax, Profiling Markdown Syntax]
+- U-PROFILING-ATTRIBUTES-001
+- O-USAGE-CALLOUTS-001
+aliases:
+- Conditional Text Syntax
+- Profiling Markdown Syntax
 ---
+**DEPRECATED:** This document is superseded. Superseded by [[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]] and [[CS-CONTENT-PROFILING-POLICY]].
 
 # Standard: Markdown Syntax for Conditional Text (M-CONDITIONAL-TEXT-SYNTAX-001)
 

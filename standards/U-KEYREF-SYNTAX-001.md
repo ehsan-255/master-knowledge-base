@@ -1,23 +1,24 @@
 ---
-title: "Standard: Key-Based Referencing Syntax (U-KEYREF-SYNTAX-001)"
+title: 'Standard: Key-Based Referencing Syntax (U-KEYREF-SYNTAX-001) - DEPRECATED'
 tags:
-  - standards-kb/universal
-  - content-type/standard-document
-  - utility-standards
-  - keyref
-  - syntax-rules
-  - status/draft
-  - kb-id/standards
+- content-type/standard-document
+- kb-id/standards
+- keyref
+- standards-kb/universal
+- status/deprecated
+- syntax-rules
+- utility-standards
 date-created: 2025-05-19
-date-modified: 2025-05-22
-version: 0.1.1
+date-modified: '2025-06-02T00:45:19Z'
+version: 0.2.0
 info-type: standard-document
-primary-topic: 'Defines the syntax for key-based referencing (keyrefs) in KB documents.'
+primary-topic: Defines the syntax for key-based referencing (keyrefs) in KB documents.
 related-standards:
-  - U-KEYREF-MANAGEMENT-001
+- U-KEYREF-MANAGEMENT-001
 aliases:
-  - Keyref Syntax Standard
+- Keyref Syntax Standard
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[SF-SYNTAX-KEYREF]].
 
 # Standard: Key-Based Referencing Syntax (U-KEYREF-SYNTAX-001)
 

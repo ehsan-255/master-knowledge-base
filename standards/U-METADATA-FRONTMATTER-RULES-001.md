@@ -1,21 +1,26 @@
 ---
 title: 'Standard: Frontmatter Structure and Content Rules (U-METADATA-FRONTMATTER-RULES-001) - DEPRECATED'
-aliases: ['Frontmatter Standard', 'YAML Metadata Rules', 'FM-RULES-001']
+aliases:
+- Frontmatter Standard
+- YAML Metadata Rules
+- FM-RULES-001
 tags:
-  - kb-id/standards
-  - content-type/standard-document
-  - status/deprecated # Changed from status/final
-  - topic/metadata
-  - topic/governance
-  - topic/yaml
+- content-type/standard-document
+- kb-id/standards
+- status/deprecated
+- topic/governance
+- topic/metadata
+- topic/yaml
 kb-id: standards
 info-type: standard-document
-primary-topic: 'Defines the canonical structure, key order, data types, and population rules for YAML frontmatter in all knowledge base documents.'
-related-standards: ["MT-SCHEMA-FRONTMATTER"] # Superseded
-version: '1.2.2'
-date-created: '2025-05-19T00:00:00Z' # Assuming original was just date, standardizing
-date-modified: '2025-05-30T00:00:00Z' # Updated to current date
+primary-topic: Defines the canonical structure, key order, data types, and population rules for YAML frontmatter in all knowledge base documents.
+related-standards:
+- MT-SCHEMA-FRONTMATTER
+version: 1.3.0
+date-created: '2025-05-19T00:00:00Z'
+date-modified: '2025-06-02T00:46:42Z'
 ---
+**DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[MT-SCHEMA-FRONTMATTER]].
 
 > [!WARNING] DEPRECATED: This Standard is No Longer Active
 > **Reason for Deprecation:** This standard has been superseded by [[MT-SCHEMA-FRONTMATTER]].
