@@ -143,9 +143,11 @@
 ## 🎯 **URGENT NEXT STEPS**
 
 1. **CRITICAL**: Implement link updating before any live runs
-2. **HIGH**: Fix extension case detection (.MD → .md)
-3. **HIGH**: Debug directory scanning logic
-4. **MEDIUM**: Add comprehensive testing framework
+2. **CRITICAL**: Implement comprehensive logging for every action during live runs (for emergency reversals)
+3. **HIGH**: Fix extension case detection (.MD → .md)
+4. **HIGH**: Debug directory scanning logic
+5. **MEDIUM**: Add comprehensive testing framework
+6. **MEDIUM**: Update test-environment for proper testing of new naming enforcer scripts
 
 ## 📝 **LESSONS FOR FUTURE**
 
