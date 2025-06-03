@@ -1,0 +1,11 @@
+{
+  "backup_id": "fix_violations_20250603_134842",
+  "timestamp": "2025-06-03T13:48:45.461690",
+  "operation_description": "Naming enforcer fixes for 8 violations",
+  "backed_up_files": [
+    "test-environment\\test-documents\\file-with-links.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\test-environment\\test-documents\\CamelCaseFile.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\test-environment\\test-documents\\uppercase-extension-test.MD"
+  ],
+  "backup_directory": "master-knowledge-base\\tools\\reports\\backups\\fix_violations_20250603_134842"
+}

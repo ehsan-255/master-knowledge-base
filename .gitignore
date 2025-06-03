@@ -1,3 +1,4 @@
 .obsidian
 .space
 __pycache__/
+.prettierignore

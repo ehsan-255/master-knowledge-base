@@ -1,0 +1,20 @@
+2025-06-03 14:14:22,227 - INFO - Started operation: fix_violations_20250603_141422
+2025-06-03 14:14:22,228 - INFO - Building rename operations and scanning for link references...
+2025-06-03 14:14:23,713 - INFO - LOG content_update: master-knowledge-base\tools\reports\fix_violations_20250603_140913_operations.json -> 
+2025-06-03 14:14:23,715 - INFO - SUCCESS: fix_violations_20250603_141422_0000
+2025-06-03 14:14:23,715 - INFO - LOG content_update: master-knowledge-base\tools\reports\backups\fix_violations_20250603_140913\file-with-links.md -> 
+2025-06-03 14:14:23,716 - INFO - SUCCESS: fix_violations_20250603_141422_0001
+2025-06-03 14:14:23,716 - INFO - LOG content_update: master-knowledge-base\tools\reports\backups\fix_violations_20250603_140913\fix_violations_20250603_134842_operations.json -> 
+2025-06-03 14:14:23,718 - INFO - SUCCESS: fix_violations_20250603_141422_0002
+2025-06-03 14:14:23,718 - INFO - LOG content_update: master-knowledge-base\tools\reports\backups\fix_violations_20250603_140913\fix_violations_20250603_134935_operations.json -> 
+2025-06-03 14:14:23,719 - INFO - SUCCESS: fix_violations_20250603_141422_0003
+2025-06-03 14:14:23,719 - INFO - LOG content_update: master-knowledge-base\tools\reports\backups\fix_violations_20250603_140913\fix_violations_20250603_135110_operations.json -> 
+2025-06-03 14:14:23,720 - INFO - SUCCESS: fix_violations_20250603_141422_0004
+2025-06-03 14:14:23,721 - INFO - LOG content_update: master-knowledge-base\tools\reports\backups\fix_violations_20250603_140913\fix_violations_20250603_140720_operations.json -> 
+2025-06-03 14:14:23,722 - INFO - SUCCESS: fix_violations_20250603_141422_0005
+2025-06-03 14:14:23,726 - INFO - LOG rename: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\test-documents\uppercase-extension-test.MD -> C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\test-documents\uppercase-extension-test.md
+2025-06-03 14:14:23,727 - ERROR - FAILED: fix_violations_20250603_141422_0006 - Target file already exists
+2025-06-03 14:14:23,755 - INFO - NAMING FIXES COMPLETE
+2025-06-03 14:14:23,756 - INFO - Fixed 0 frontmatter fields
+2025-06-03 14:14:23,756 - INFO - Updated 6 content references
+2025-06-03 14:14:23,756 - INFO - Renamed 0 files/directories

@@ -13,10 +13,12 @@ import re
 import json
 import argparse
 import shutil
+import logging
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List, Dict, Set, Optional, Tuple, Union
 from collections import defaultdict
+from datetime import datetime
 import yaml
 
 @dataclass
@@ -53,6 +55,179 @@ class RenameOperation:
     new_path: Path
     violation_type: str
     content_updates: List[ContentUpdate] = field(default_factory=list)
+
+@dataclass
+class OperationLog:
+    """Comprehensive operation logging for reversibility"""
+    operation_id: str
+    timestamp: str
+    operation_type: str  # 'rename', 'content_update', 'backup', 'rollback'
+    source_path: str
+    target_path: str = ""
+    old_content: str = ""
+    new_content: str = ""
+    status: str = "pending"  # 'pending', 'success', 'failed', 'rolled_back'
+    error_message: str = ""
+
+@dataclass
+class BackupManifest:
+    """Manifest for tracking backups and enabling rollback"""
+    backup_id: str
+    timestamp: str
+    operation_description: str
+    backed_up_files: List[str] = field(default_factory=list)
+    backup_directory: str = ""
+
+class SafetyLogger:
+    """Comprehensive logging system with emergency rollback capabilities"""
+    
+    def __init__(self, operation_name: str = "naming_enforcer_operation"):
+        self.operation_name = operation_name
+        self.operation_id = f"{operation_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        self.logs: List[OperationLog] = []
+        self.backup_manifest: Optional[BackupManifest] = None
+        
+        # Setup logging
+        self.setup_logging()
+    
+    def setup_logging(self):
+        """Setup structured logging to files"""
+        log_dir = Path("master-knowledge-base/tools/reports")
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Operation log file
+        log_file = log_dir / f"{self.operation_id}.log"
+        
+        # Configure logging
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(log_file),
+                logging.StreamHandler()
+            ]
+        )
+        
+        self.logger = logging.getLogger(self.operation_name)
+        self.logger.info(f"Started operation: {self.operation_id}")
+    
+    def log_operation(self, operation_type: str, source_path: str, target_path: str = "", 
+                     old_content: str = "", new_content: str = ""):
+        """Log a single operation"""
+        op_log = OperationLog(
+            operation_id=f"{self.operation_id}_{len(self.logs):04d}",
+            timestamp=datetime.now().isoformat(),
+            operation_type=operation_type,
+            source_path=source_path,
+            target_path=target_path,
+            old_content=old_content,
+            new_content=new_content
+        )
+        self.logs.append(op_log)
+        
+        self.logger.info(f"LOG {operation_type}: {source_path} -> {target_path}")
+        return op_log
+    
+    def mark_success(self, operation_log: OperationLog):
+        """Mark operation as successful"""
+        operation_log.status = "success"
+        self.logger.info(f"SUCCESS: {operation_log.operation_id}")
+    
+    def mark_failed(self, operation_log: OperationLog, error_message: str):
+        """Mark operation as failed"""
+        operation_log.status = "failed"
+        operation_log.error_message = error_message
+        self.logger.error(f"FAILED: {operation_log.operation_id} - {error_message}")
+    
+    def create_backup(self, files_to_backup: List[Path], operation_description: str) -> bool:
+        """Create timestamped backup of files before modification"""
+        try:
+            backup_dir = Path("master-knowledge-base/tools/reports/backups") / self.operation_id
+            backup_dir.mkdir(parents=True, exist_ok=True)
+            
+            self.backup_manifest = BackupManifest(
+                backup_id=self.operation_id,
+                timestamp=datetime.now().isoformat(),
+                operation_description=operation_description,
+                backup_directory=str(backup_dir)
+            )
+            
+            for file_path in files_to_backup:
+                if file_path.exists():
+                    backup_file = backup_dir / file_path.name
+                    shutil.copy2(file_path, backup_file)
+                    self.backup_manifest.backed_up_files.append(str(file_path))
+                    self.logger.info(f"💾 Backed up: {file_path}")
+            
+            # Save backup manifest
+            manifest_file = backup_dir / "backup_manifest.json"
+            with open(manifest_file, 'w') as f:
+                json.dump({
+                    "backup_id": self.backup_manifest.backup_id,
+                    "timestamp": self.backup_manifest.timestamp,
+                    "operation_description": self.backup_manifest.operation_description,
+                    "backed_up_files": self.backup_manifest.backed_up_files,
+                    "backup_directory": self.backup_manifest.backup_directory
+                }, f, indent=2)
+            
+            self.logger.info(f"📦 Created backup: {backup_dir}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"❌ Backup failed: {e}")
+            return False
+    
+    def save_operation_log(self):
+        """Save complete operation log for rollback capabilities"""
+        log_dir = Path("master-knowledge-base/tools/reports")
+        log_file = log_dir / f"{self.operation_id}_operations.json"
+        
+        log_data = {
+            "operation_id": self.operation_id,
+            "timestamp": datetime.now().isoformat(),
+            "operation_name": self.operation_name,
+            "total_operations": len(self.logs),
+            "operations": [
+                {
+                    "operation_id": log.operation_id,
+                    "timestamp": log.timestamp,
+                    "operation_type": log.operation_type,
+                    "source_path": log.source_path,
+                    "target_path": log.target_path,
+                    "old_content": log.old_content[:1000] if log.old_content else "",  # Truncate for file size
+                    "new_content": log.new_content[:1000] if log.new_content else "",
+                    "status": log.status,
+                    "error_message": log.error_message
+                } for log in self.logs
+            ],
+            "backup_manifest": {
+                "backup_id": self.backup_manifest.backup_id if self.backup_manifest else "",
+                "timestamp": self.backup_manifest.timestamp if self.backup_manifest else "",
+                "operation_description": self.backup_manifest.operation_description if self.backup_manifest else "",
+                "backed_up_files": self.backup_manifest.backed_up_files if self.backup_manifest else [],
+                "backup_directory": self.backup_manifest.backup_directory if self.backup_manifest else ""
+            } if self.backup_manifest else None
+        }
+        
+        with open(log_file, 'w') as f:
+            json.dump(log_data, f, indent=2)
+        
+        self.logger.info(f"💾 Saved operation log: {log_file}")
+    
+    def finalize_operation(self):
+        """Finalize logging and provide summary"""
+        successes = len([log for log in self.logs if log.status == "success"])
+        failures = len([log for log in self.logs if log.status == "failed"])
+        
+        self.logger.info(f"🏁 Operation complete: {self.operation_id}")
+        self.logger.info(f"✅ Successful operations: {successes}")
+        self.logger.info(f"❌ Failed operations: {failures}")
+        
+        self.save_operation_log()
+        
+        if failures > 0:
+            self.logger.warning(f"⚠️  {failures} operations failed - check logs for details")
+            self.logger.warning(f"💡 Use rollback functionality if needed")
 
 class NamingStandardParser:
     """Parses GM-CONVENTIONS-NAMING.md to extract all naming rules"""
@@ -91,7 +266,7 @@ class NamingStandardParser:
             'PascalCase': r'^[A-Z][a-zA-Z0-9]*$',
             'camelCase': r'^[a-z][a-zA-Z0-9]*$',
             'UPPER_SNAKE_CASE': r'^[A-Z_][A-Z0-9_]*$',
-            'DOMAIN-SUBDOMAIN-NAME': r'^[A-Z]{1,6}-[A-Z0-9]{1,15}-[A-Z0-9\-]+$'  # More flexible character limits
+            'DOMAIN-SUBDOMAIN-NAME': r'^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$'  # FIXED: Exact pattern from GM-CONVENTIONS-NAMING.md
         }
         
         # Extract standard ID prefixes from the document
@@ -694,10 +869,10 @@ class NamingEnforcerV2:
     def print_report(self, show_all: bool = False):
         """Print a detailed report of violations"""
         if not self.violations:
-            print("✅ No naming violations found!")
+            print("No naming violations found!")
             return
         
-        print(f"\n📋 NAMING VIOLATIONS REPORT")
+        print(f"\nNAMING VIOLATIONS REPORT")
         print(f"{'='*60}")
         print(f"Source of Truth: {self.parser.standard_path}")
         print(f"Total violations: {len(self.violations)}")
@@ -712,17 +887,340 @@ class NamingEnforcerV2:
             print("-" * 40)
             
             for violation in violations[:10 if not show_all else None]:
-                print(f"  🔴 {violation.current_name}")
-                print(f"      ➜ {violation.suggested_name}")
-                print(f"      📁 {violation.path}")
-                print(f"      💡 {violation.reason}")
+                print(f"  ERROR: {violation.current_name}")
+                print(f"      -> {violation.suggested_name}")
+                print(f"      Path: {violation.path}")
+                print(f"      Reason: {violation.reason}")
                 print()
             
             if not show_all and len(violations) > 10:
                 print(f"      ... and {len(violations) - 10} more")
         
-        print(f"\n💡 Use --fix to apply automatic corrections")
-        print(f"💡 Use --show-all to see all violations")
+        print(f"\nUse --fix to apply automatic corrections")
+        print(f"Use --show-all to see all violations")
+
+    def find_content_references(self, old_path: Path, new_path: Path) -> List[ContentUpdate]:
+        """Find all content references to files being renamed"""
+        updates = []
+        
+        # Get the relative paths for both old and new files
+        old_name = old_path.name
+        new_name = new_path.name
+        old_stem = old_path.stem
+        new_stem = new_path.stem
+        
+        # Scan all text files in the repository for references
+        root_path = Path(".")
+        
+        for file_path in root_path.rglob("*"):
+            if not file_path.is_file():
+                continue
+                
+            # Skip excluded files and directories
+            if self.parser.is_exception(file_path):
+                continue
+                
+            # Only scan text files
+            if file_path.suffix.lower() not in ['.md', '.py', '.js', '.ts', '.json', '.yaml', '.yml', '.txt', '.html', '.css']:
+                continue
+                
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+                
+                for line_num, line in enumerate(lines, 1):
+                    original_line = line
+                    
+                    # Find and replace various types of references
+                    new_line = line
+                    
+                    # Markdown links: [text](filename.md)
+                    new_line = re.sub(
+                        rf'\[([^\]]*)\]\({re.escape(old_name)}\)',
+                        rf'[\1]({new_name})',
+                        new_line
+                    )
+                    
+                    # Markdown links: [text](./filename.md)  
+                    new_line = re.sub(
+                        rf'\[([^\]]*)\]\(\.\/{re.escape(old_name)}\)',
+                        rf'[\1](./{new_name})',
+                        new_line
+                    )
+                    
+                    # Wiki-style links: [[filename]]
+                    new_line = re.sub(
+                        rf'\[\[{re.escape(old_stem)}\]\]',
+                        rf'[[{new_stem}]]',
+                        new_line
+                    )
+                    
+                    # Wiki-style links: [[filename.md]]
+                    new_line = re.sub(
+                        rf'\[\[{re.escape(old_name)}\]\]',
+                        rf'[[{new_name}]]',
+                        new_line
+                    )
+                    
+                    # Python imports: import filename
+                    if file_path.suffix == '.py':
+                        old_module = old_stem.replace('-', '_')
+                        new_module = new_stem.replace('-', '_')
+                        new_line = re.sub(
+                            rf'\bimport\s+{re.escape(old_module)}\b',
+                            f'import {new_module}',
+                            new_line
+                        )
+                        # from filename import
+                        new_line = re.sub(
+                            rf'\bfrom\s+{re.escape(old_module)}\s+import\b',
+                            f'from {new_module} import',
+                            new_line
+                        )
+                    
+                    # File path references: "filename.md", 'filename.md'
+                    new_line = re.sub(
+                        rf'(["\']){re.escape(old_name)}\1',
+                        rf'\1{new_name}\1',
+                        new_line
+                    )
+                    
+                    # Relative path references: ./filename.md, ../path/filename.md
+                    new_line = re.sub(
+                        rf'(\.\.?/[^/\s]*?){re.escape(old_name)}',
+                        rf'\1{new_name}',
+                        new_line
+                    )
+                    
+                    # Add more patterns as needed...
+                    
+                    if new_line != original_line:
+                        updates.append(ContentUpdate(
+                            file_path=str(file_path),
+                            line_number=line_num,
+                            old_text=original_line.rstrip(),
+                            new_text=new_line.rstrip(),
+                            context=f"Reference in {file_path.name}",
+                            update_type="file_reference"
+                        ))
+                        
+            except Exception as e:
+                # Skip files that can't be read
+                continue
+        
+        return updates
+    
+    def build_rename_operations(self):
+        """Build rename operations with content references"""
+        self.rename_operations = []
+        
+        for violation in self.violations:
+            if violation.violation_type in ['filename_case', 'extension_case', 'directory_case']:
+                old_path = Path(violation.path)
+                new_path = old_path.parent / violation.suggested_name
+                
+                # Find all content references
+                content_updates = self.find_content_references(old_path, new_path)
+                
+                operation = RenameOperation(
+                    old_path=old_path,
+                    new_path=new_path,
+                    violation_type=violation.violation_type,
+                    content_updates=content_updates
+                )
+                
+                self.rename_operations.append(operation)
+    
+    def apply_content_updates(self, safety_logger: SafetyLogger, dry_run: bool = True) -> int:
+        """Apply all content updates BEFORE renaming files"""
+        total_updates = sum(len(op.content_updates) for op in self.rename_operations)
+        
+        if dry_run:
+            safety_logger.logger.info(f"DRY RUN - Would update {total_updates} content references")
+            
+            for op in self.rename_operations:
+                if op.content_updates:
+                    safety_logger.logger.info(f"📝 {op.old_path} → {op.new_path.name}:")
+                    for update in op.content_updates[:3]:  # Show first 3
+                        safety_logger.logger.info(f"  📄 {Path(update.file_path).name}:{update.line_number}")
+                        safety_logger.logger.info(f"    - {update.old_text[:80]}...")
+                        safety_logger.logger.info(f"    + {update.new_text[:80]}...")
+                    if len(op.content_updates) > 3:
+                        safety_logger.logger.info(f"    ... and {len(op.content_updates) - 3} more updates")
+            
+            return total_updates
+        
+        # Apply updates for real
+        updated_files = set()
+        
+        # Group updates by file for atomic processing
+        updates_by_file = defaultdict(list)
+        for op in self.rename_operations:
+            for update in op.content_updates:
+                updates_by_file[update.file_path].append(update)
+        
+        # Apply updates file by file
+        for file_path, updates in updates_by_file.items():
+            log_entry = safety_logger.log_operation("content_update", file_path)
+            
+            try:
+                # Read current content
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+                
+                log_entry.old_content = ''.join(lines)
+                
+                # Apply updates (sort by line number descending to avoid offset issues)
+                updates.sort(key=lambda u: u.line_number, reverse=True)
+                
+                for update in updates:
+                    if update.line_number <= len(lines):
+                        lines[update.line_number - 1] = update.new_text + '\n'
+                
+                # Write updated content
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.writelines(lines)
+                
+                log_entry.new_content = ''.join(lines)
+                safety_logger.mark_success(log_entry)
+                updated_files.add(file_path)
+                
+            except Exception as e:
+                safety_logger.mark_failed(log_entry, str(e))
+        
+        safety_logger.logger.info(f"✅ Updated {len(updated_files)} files with {total_updates} content references")
+        return len(updated_files)
+    
+    def apply_frontmatter_fixes(self, safety_logger: SafetyLogger, dry_run: bool = True) -> int:
+        """Apply frontmatter field name fixes"""
+        frontmatter_violations = [v for v in self.violations if v.violation_type == 'frontmatter_field']
+        
+        if not frontmatter_violations:
+            return 0
+        
+        # Group violations by file
+        violations_by_file = defaultdict(list)
+        for violation in frontmatter_violations:
+            violations_by_file[violation.path].append(violation)
+        
+        if dry_run:
+            safety_logger.logger.info(f"DRY RUN - Would fix {len(frontmatter_violations)} frontmatter fields in {len(violations_by_file)} files")
+            
+            for file_path, violations in violations_by_file.items():
+                safety_logger.logger.info(f"FRONTMATTER {file_path}:")
+                for violation in violations:
+                    # Extract field name from "frontmatter field: field_name" format
+                    field_name = violation.current_name.replace("frontmatter field: ", "")
+                    safety_logger.logger.info(f"  {field_name} -> {violation.suggested_name}")
+            
+            return len(violations_by_file)
+        
+        # Apply frontmatter fixes for real
+        fixed_files = 0
+        
+        for file_path, violations in violations_by_file.items():
+            log_entry = safety_logger.log_operation("frontmatter_fix", file_path)
+            
+            try:
+                # Read file content
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                log_entry.old_content = content
+                
+                # Parse frontmatter
+                if not content.startswith('---'):
+                    continue
+                
+                # Split frontmatter and body
+                lines = content.split('\n')
+                fm_start = 1
+                fm_end = -1
+                
+                for i, line in enumerate(lines[1:], 1):
+                    if line.strip() == '---':
+                        fm_end = i
+                        break
+                
+                if fm_end == -1:
+                    continue
+                
+                frontmatter_lines = lines[fm_start:fm_end]
+                body_lines = lines[fm_end + 1:]
+                
+                # Apply field name fixes
+                for violation in violations:
+                    field_name = violation.current_name.replace("frontmatter field: ", "")
+                    new_field_name = violation.suggested_name
+                    
+                    # Replace field name in frontmatter lines
+                    for i, line in enumerate(frontmatter_lines):
+                        if line.strip().startswith(f"{field_name}:"):
+                            # Preserve indentation and spacing
+                            indent = len(line) - len(line.lstrip())
+                            value_part = line[line.find(':'):]
+                            frontmatter_lines[i] = ' ' * indent + new_field_name + value_part
+                            break
+                
+                # Reconstruct content
+                new_content = '---\n' + '\n'.join(frontmatter_lines) + '\n---\n' + '\n'.join(body_lines)
+                
+                # Write back to file
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(new_content)
+                
+                log_entry.new_content = new_content
+                safety_logger.mark_success(log_entry)
+                fixed_files += 1
+                
+            except Exception as e:
+                safety_logger.mark_failed(log_entry, str(e))
+        
+        safety_logger.logger.info(f"Fixed frontmatter fields in {fixed_files} files")
+        return fixed_files
+
+    def apply_file_renames(self, safety_logger: SafetyLogger, dry_run: bool = True) -> int:
+        """Apply file and directory renames AFTER content updates"""
+        rename_operations = [op for op in self.rename_operations 
+                           if str(op.old_path) != str(op.new_path)]
+        
+        if dry_run:
+            safety_logger.logger.info(f"🔍 DRY RUN - Would rename {len(rename_operations)} files/directories")
+            
+            for op in rename_operations:
+                safety_logger.logger.info(f"📝 {op.old_path} → {op.new_path}")
+            
+            return len(rename_operations)
+        
+        # Apply renames for real
+        renamed_count = 0
+        
+        # Sort operations: files first, then directories (deepest first)  
+        file_ops = [op for op in rename_operations 
+                   if op.violation_type in ['filename_case', 'extension_case']]
+        dir_ops = [op for op in rename_operations 
+                  if op.violation_type == 'directory_case']
+        dir_ops.sort(key=lambda op: len(op.old_path.parts), reverse=True)  # Deepest first
+        
+        for op in file_ops + dir_ops:
+            log_entry = safety_logger.log_operation("rename", str(op.old_path), str(op.new_path))
+            
+            try:
+                if op.old_path.exists():
+                    if not op.new_path.exists():
+                        op.old_path.rename(op.new_path)
+                        safety_logger.mark_success(log_entry)
+                        renamed_count += 1
+                    else:
+                        safety_logger.mark_failed(log_entry, "Target file already exists")
+                else:
+                    safety_logger.mark_failed(log_entry, "Source file does not exist")
+                    
+            except Exception as e:
+                safety_logger.mark_failed(log_entry, str(e))
+        
+        safety_logger.logger.info(f"✅ Renamed {renamed_count} files/directories")
+        return renamed_count
 
 def main():
     parser = argparse.ArgumentParser(
@@ -788,17 +1286,72 @@ Examples:
             print(f"❌ Error: Path does not exist: {scan_path}")
             sys.exit(1)
         
-        print(f"🔍 Scanning: {scan_path}")
-        print(f"📖 Using standard: {args.standard_path}")
+        print(f"Scanning: {scan_path}")
+        print(f"Using standard: {args.standard_path}")
         
         violations = enforcer.scan_directory(scan_path)
         
         if args.fix or args.dry_run:
-            # TODO: Implement fix functionality
-            print("🚧 Fix functionality coming in next iteration")
-            print("📋 For now, showing violations report:")
-        
-        enforcer.print_report(args.show_all)
+            # Initialize safety logging
+            operation_name = "fix_violations" if args.fix else "dry_run_preview"
+            safety_logger = SafetyLogger(operation_name)
+            
+            try:
+                # Build rename operations with link detection
+                safety_logger.logger.info("Building rename operations and scanning for link references...")
+                enforcer.build_rename_operations()
+                
+                # Get all files that will be modified for backup
+                files_to_backup = []
+                
+                # Add files with frontmatter violations
+                frontmatter_violations = [v for v in violations if v.violation_type == 'frontmatter_field']
+                for violation in frontmatter_violations:
+                    files_to_backup.append(Path(violation.path))
+                    
+                # Add files from rename operations
+                for op in enforcer.rename_operations:
+                    files_to_backup.append(op.old_path)
+                    # Add files with content updates to backup
+                    for update in op.content_updates:
+                        files_to_backup.append(Path(update.file_path))
+                
+                files_to_backup = list(set(files_to_backup))  # Remove duplicates
+                
+                if args.fix and files_to_backup:
+                    # Create backup before any modifications
+                    safety_logger.logger.info(f"📦 Creating backup of {len(files_to_backup)} files...")
+                    if not safety_logger.create_backup(files_to_backup, f"Naming enforcer fixes for {len(violations)} violations"):
+                        safety_logger.logger.error("❌ Backup creation failed - aborting operation")
+                        sys.exit(1)
+                
+                # Apply frontmatter field fixes first
+                frontmatter_fixes = enforcer.apply_frontmatter_fixes(safety_logger, dry_run=args.dry_run)
+                
+                # Apply content updates second (preserves links)
+                content_updates = enforcer.apply_content_updates(safety_logger, dry_run=args.dry_run)
+                
+                # Then apply file renames last
+                file_renames = enforcer.apply_file_renames(safety_logger, dry_run=args.dry_run)
+                
+                # Finalize logging
+                safety_logger.finalize_operation()
+                
+                if args.dry_run:
+                    safety_logger.logger.info("DRY RUN COMPLETE - No changes made")
+                    safety_logger.logger.info(f"Use --fix to apply {frontmatter_fixes + content_updates + file_renames} changes")
+                else:
+                    safety_logger.logger.info("NAMING FIXES COMPLETE")
+                    safety_logger.logger.info(f"Fixed {frontmatter_fixes} frontmatter fields")
+                    safety_logger.logger.info(f"Updated {content_updates} content references")
+                    safety_logger.logger.info(f"Renamed {file_renames} files/directories")
+                    
+            except Exception as e:
+                safety_logger.logger.error(f"❌ Operation failed: {e}")
+                safety_logger.finalize_operation()
+                sys.exit(1)
+        else:
+            enforcer.print_report(args.show_all)
         
         # Exit code for CI
         sys.exit(1 if violations else 0)
