@@ -25,7 +25,6 @@ impact_areas:
   - Content organization
   - Searchability
   - Metadata consistency
-change_log_url: ./changelog.md
 ---
 # Policy: Core Tagging Strategy (MT-TAGGING-STRATEGY-POLICY)
 

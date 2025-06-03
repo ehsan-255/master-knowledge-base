@@ -21,7 +21,7 @@ DEFINED_KEY_ORDER = [
     "title", "standard_id", "aliases", "tags", "kb-id", "info-type",
     "primary-topic", "related-standards", "version", "date-created",
     "date-modified", "primary_domain", "sub_domain", "scope_application",
-    "criticality", "lifecycle_gatekeeper", "impact_areas", "change_log_url"
+    "criticality", "lifecycle_gatekeeper", "impact_areas"
 ]
 
 MANDATORY_KEYS_BASE = [
@@ -30,7 +30,7 @@ MANDATORY_KEYS_BASE = [
     "criticality", "lifecycle_gatekeeper", "impact_areas"
 ]
 MANDATORY_KEYS_FOR_STANDARD_DEFINITION_POLICY = MANDATORY_KEYS_BASE + [
-    "standard_id", "primary_domain", "sub_domain", "change_log_url"
+    "standard_id", "primary_domain", "sub_domain"
 ]
 
 EXPECTED_TYPES = {
@@ -38,8 +38,7 @@ EXPECTED_TYPES = {
     "kb-id": str, "info-type": str, "primary-topic": str, "related-standards": list,
     "version": str, "date-created": str, "date-modified": str,
     "primary_domain": str, "sub_domain": str, "scope_application": str,
-    "criticality": str, "lifecycle_gatekeeper": str, "impact_areas": list,
-    "change_log_url": str
+    "criticality": str, "lifecycle_gatekeeper": str, "impact_areas": list
 }
 
 # --- LinterConfig Class ---
@@ -371,31 +370,7 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
                     if not valid_prefix and not (is_template_file and is_placeholder_value(tag)):
                         warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) has unrecognized category prefix. Valid prefixes: {config.tag_categories}", "line": tags_line })
     
-    if "change_log_url" in frontmatter_data:
-        cl_url = frontmatter_data.get("change_log_url")
-        cl_line = get_line_number_of_key(frontmatter_str, "change_log_url", fm_content_start_line)
-        if isinstance(cl_url, str):
-            if is_template_file and (is_placeholder_value(cl_url) or "[FILENAME_PLACEHOLDER]" in cl_url or os.path.basename(cl_url) == "changelog.md"):
-                pass
-            else:
-                if current_info_type == "changelog":
-                    expected_cl_url = f"./{os.path.basename(filepath_abs)}"
-                    if cl_url != expected_cl_url:
-                        errors.append({
-                            "message": f"For 'info-type: changelog', 'change_log_url' must be self-referential ('{expected_cl_url}'). Found: '{cl_url}'",
-                            "line": cl_line
-                        })
-                if cl_url.startswith("./"):
-                    doc_dir = os.path.dirname(filepath_abs)
-                    abs_path = os.path.normpath(os.path.join(doc_dir, cl_url))
-                    if not os.path.exists(abs_path):
-                        if not (current_info_type == "changelog" and cl_url == f"./{os.path.basename(filepath_abs)}"): # Don't double-penalize if already caught as non-self-ref
-                           if not (is_template_file and (is_placeholder_value(cl_url) or "[FILENAME_PLACEHOLDER]" in cl_url or "changelog.md" == os.path.basename(cl_url))): # Check again for templates if it wasn't a specific self-ref issue
-                               errors.append({"message": f"Relative 'change_log_url' non-existent: {cl_url} (resolved: {abs_path})", "line": cl_line })
-                elif not (cl_url.startswith("http://") or cl_url.startswith("https://")):
-                     warnings.append({"message": f"Non-relative 'change_log_url' should be an absolute HTTP(S) URL: {cl_url}", "line": cl_line })
-                elif " " in cl_url : warnings.append({"message": f"Absolute 'change_log_url' syntax questionable (contains space): {cl_url}", "line": cl_line })
-        
+    # change_log_url validation removed - using unified changelog policy
     content_lines = markdown_content.splitlines(True)
     for i, line_text in enumerate(content_lines):
         for match in re.finditer(INTERNAL_LINK_REGEX, line_text):
@@ -468,15 +443,21 @@ def lint_directory(dir_path, config: LinterConfig):
             # If target exists, compare content and remove duplicate if identical
             if os.path.exists(new_path):
                 try:
-                    with open(old_path, 'r', encoding='utf-8') as f1, open(new_path, 'r', encoding='utf-8') as f2:
-                        if f1.read() == f2.read():
-                            os.remove(old_path)
-                            print(f"SUCCESS: Removed duplicate .MD file: {os.path.basename(old_path)} (identical to .md version)")
-                        else:
-                            print(f"WARNING: .MD and .md versions differ - manual resolution needed: {old_path}")
+                    # Use separate context managers to ensure proper file handle cleanup
+                    with open(old_path, 'r', encoding='utf-8') as f1:
+                        old_content = f1.read()
+                    
+                    with open(new_path, 'r', encoding='utf-8') as f2:
+                        new_content = f2.read()
+                    
+                    if old_content == new_content:
+                        os.remove(old_path)
+                        print(f"SUCCESS: Removed duplicate .MD file: {os.path.basename(old_path)} (identical to .md version)")
+                    else:
+                        print(f"WARNING: .MD and .md versions differ - manual resolution needed: {old_path}")
                 except Exception as e:
                     print(f"WARNING: Could not compare files {old_path} and {new_path}: {e}")
-            else:
+            else:  # ← FIXED: Now correctly aligned with if statement
                 # Simple rename if target doesn't exist
                 os.rename(old_path, new_path)
                 print(f"SUCCESS: Renamed {os.path.basename(old_path)} -> {os.path.basename(new_path)}")
@@ -567,7 +548,6 @@ primary_domain: AS
 sub_domain: SCHEMA # Make sure this is valid for AS in your test registry
 criticality: p1-high # Corrected casing
 tags: [status/draft, topic/testing, kb-id/test]
-change_log_url: ./XX-LINT-TESTDUMMY1-CHANGELOG.MD 
 primary-topic: Test
 kb-id: kb-id/test
 scope_application: Test scope
@@ -606,7 +586,6 @@ primary_domain: CS # Make sure this is valid
 sub_domain: POLICY # Make sure this is valid for CS
 criticality: p3-low # Corrected casing
 tags: [status/draft, kb-id/test]
-change_log_url: ./XX-CORRECT-ID-001-CHANGELOG.MD # Assuming changelog name matches ID
 primary-topic: Test 3
 kb-id: kb-id/test
 scope_application: Test scope 3
@@ -624,10 +603,7 @@ Content.
             fpath = os.path.join(target_dummy_dir, fname)
             dummy_files_created_paths.append(fpath)
             with open(fpath, "w", encoding="utf-8", newline="\n") as f: f.write(content)
-            if fname == "XX-LINT-TESTDUMMY1.MD" and "change_log_url: ./XX-LINT-TESTDUMMY1-CHANGELOG.MD" in content:
-                cl_path = os.path.join(target_dummy_dir, "XX-LINT-TESTDUMMY1-CHANGELOG.MD")
-                dummy_files_created_paths.append(cl_path)
-                with open(cl_path, "w") as cf: cf.write("# Changelog")
+            # Dummy changelog creation removed - using unified changelog policy
         print(f"Created dummy files in {target_dummy_dir}")
 
 
@@ -682,7 +658,15 @@ Content.
     report_content += summary_section
 
     if args.output:
-        output_path_abs = os.path.join(repo_base_abs_path, args.output) # Ensure output path is correct
+        # Default to reports directory if just filename provided
+        if os.path.dirname(args.output) == "":
+            output_path_abs = os.path.join(repo_base_abs_path, "master-knowledge-base", "tools", "reports", args.output)
+        else:
+            output_path_abs = os.path.join(repo_base_abs_path, args.output)
+        
+        # Ensure reports directory exists
+        os.makedirs(os.path.dirname(output_path_abs), exist_ok=True)
+        
         with open(output_path_abs, "w", encoding="utf-8") as f_report:
             f_report.write(report_content)
         print(f"\nLinter report written to: {output_path_abs}")

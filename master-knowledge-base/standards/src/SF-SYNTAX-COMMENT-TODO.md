@@ -29,7 +29,6 @@ impact_areas:
   - Authoring workflow
   - Automated reporting
   - Content maintenance
-change_log_url: ./changelog.md
 ---
 # Standard: HTML Comment Syntax for TODO Items (SF-SYNTAX-COMMENT-TODO)
 

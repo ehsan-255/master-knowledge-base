@@ -33,7 +33,6 @@ impact_areas:
   - Accessibility
   - Automated parsing
   - Authoring consistency
-change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Lists (SF-SYNTAX-LISTS)
 

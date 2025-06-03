@@ -25,7 +25,6 @@ impact_areas:
   - Knowledge base adoption
   - Compliance
   - User training
-change_log_url: ./changelog.md
 ---
 # Standard: Mandate for Knowledge Base Usage Guide (GM-MANDATE-KB-USAGE-GUIDE)
 

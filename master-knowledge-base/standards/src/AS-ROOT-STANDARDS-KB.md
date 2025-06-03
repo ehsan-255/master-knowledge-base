@@ -32,7 +32,6 @@ impact_areas:
 - KB navigation
 - Content discoverability
 - User orientation
-change_log_url: ./changelog.md
 ---
 
 # Standards Knowledge Base Root (AS-ROOT-STANDARDS-KB)

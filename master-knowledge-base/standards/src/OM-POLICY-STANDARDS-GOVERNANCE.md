@@ -25,7 +25,6 @@ impact_areas:
   - Standards governance
   - Quality assurance
   - Change control
-change_log_url: ./changelog.md
 ---
 # Policy: Standards Governance Framework (OM-POLICY-STANDARDS-GOVERNANCE)
 

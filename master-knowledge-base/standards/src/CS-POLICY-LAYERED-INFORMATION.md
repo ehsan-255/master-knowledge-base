@@ -31,7 +31,6 @@ impact_areas:
 - Comprehension
 - Knowledge retention
 - Catering to diverse expertise levels
-change_log_url: ./changelog.md
 ---
 
 # Policy: Layered Information Presentation and Progressive Disclosure (CS-POLICY-LAYERED-INFORMATION)

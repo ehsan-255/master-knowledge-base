@@ -29,7 +29,6 @@ impact_areas:
   - Prompt management
   - Template standardization
   - Workflow integration
-change_log_url: ../changelog.md
 ---
 
 # Standard: LLM Automation Prompt Library
@@ -60,5 +59,5 @@ This document requires comprehensive content development including:
 ## Related Standards
 
 - [[OM-AUTOMATION-LLM-IO-SCHEMAS]]
-- [[SF-CONVENTIONS-NAMING]]
+- [[GM-CONVENTIONS-NAMING]]
 - [[OM-VERSIONING-CHANGELOGS]] 

@@ -1,6 +1,6 @@
 ---
 title: 'Standard: Universal Naming Conventions - Single Source of Truth'
-standard_id: SF-CONVENTIONS-NAMING
+standard_id: GM-CONVENTIONS-NAMING
 aliases:
   - Naming Conventions
   - File Naming
@@ -18,7 +18,7 @@ related-standards: []
 version: 3.0.0
 date-created: '2025-05-29'
 date-modified: '2025-01-11'
-primary_domain: SF
+primary_domain: GM
 sub_domain: CONVENTIONS
 scope_application: Defines ALL naming conventions for files, directories, identifiers, variables, fields, and other named entities across the entire knowledge base system. This is the SINGLE SOURCE OF TRUTH - all other standards must reference this document rather than defining their own naming rules.
 criticality: P0-Critical
@@ -33,7 +33,6 @@ impact_areas:
   - Frontmatter schema
   - Variable naming
   - API consistency
-change_log_url: ../changelog.md
 ---
 
 # Standard: Universal Naming Conventions - Single Source of Truth
@@ -96,7 +95,7 @@ change_log_url: ../changelog.md
 ### 1.5 Standard IDs
 **Rule**: **DOMAIN-SUBDOMAIN-NAME** (uppercase with hyphens)
 - **Pattern**: `^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$`
-- **Examples**: `SF-CONVENTIONS-NAMING`, `MT-SCHEMA-FRONTMATTER`
+- **Examples**: `GM-CONVENTIONS-NAMING`, `MT-SCHEMA-FRONTMATTER`
 - **Rationale**: Established system convention, hierarchical organization
 
 ### 1.6 JavaScript/TypeScript Elements
@@ -286,15 +285,15 @@ LOG_LEVEL, DEBUG_MODE
 ```markdown
 ### Naming Conventions
 All naming in this standard follows the context-aware rules defined in 
-[[SF-CONVENTIONS-NAMING]]. Specifically:
-- [Context]: See [[SF-CONVENTIONS-NAMING#Section-X.X]]
-- Protected names: See [[SF-CONVENTIONS-NAMING#Section-2]]
+[[GM-CONVENTIONS-NAMING]]. Specifically:
+- [Context]: See [[GM-CONVENTIONS-NAMING#Section-X.X]]
+- Protected names: See [[GM-CONVENTIONS-NAMING#Section-2]]
 ```
 
 ## 6. MIGRATION AND MAINTENANCE
 
 ### 6.1 Updating Naming Conventions
-1. **Update ONLY this document** (SF-CONVENTIONS-NAMING.md)
+1. **Update ONLY this document** (GM-CONVENTIONS-NAMING.md)
 2. **Regenerate tool configurations** using generation templates
 3. **Update references** in other standards if section numbers change
 4. **Validate system integrity** before committing changes
@@ -332,8 +331,8 @@ MAX_FILE_SIZE = 1024  ✓
 
 **Frontmatter:**
 ```yaml
-standard_id: SF-CONVENTIONS-NAMING  ✓
-primary_domain: SF  ✓
+standard_id: GM-CONVENTIONS-NAMING  ✓
+primary_domain: GM  ✓
 sub_domain: CONVENTIONS  ✓
 ```
 
@@ -354,8 +353,8 @@ project_files/ ✗ (should be project-files/)
 
 **Frontmatter:**
 ```yaml
-standard-id: SF-CONVENTIONS-NAMING ✗ (should be standard_id)
-primary-domain: SF ✗ (should be primary_domain)
+standard-id: GM-CONVENTIONS-NAMING ✗ (should be standard_id)
+primary-domain: GM ✗ (should be primary_domain)
 ```
 
 **Python:**

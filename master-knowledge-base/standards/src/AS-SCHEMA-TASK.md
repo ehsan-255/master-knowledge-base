@@ -36,7 +36,6 @@ impact_areas:
   - User training
   - Operational efficiency
   - Task success rates
-change_log_url: ./changelog.md
 ---
 # Standard: Task Document Schema (AS-SCHEMA-TASK)
 

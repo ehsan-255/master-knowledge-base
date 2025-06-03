@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Naming Convention Enforcer v2.0 - Single Source of Truth
-Parses SF-CONVENTIONS-NAMING.md directly for all naming rules and configurations.
+Parses GM-CONVENTIONS-NAMING.md directly for all naming rules and configurations.
 
 This enforcer eliminates JSON configuration files by extracting everything
 from the authoritative markdown document.
@@ -55,9 +55,9 @@ class RenameOperation:
     content_updates: List[ContentUpdate] = field(default_factory=list)
 
 class NamingStandardParser:
-    """Parses SF-CONVENTIONS-NAMING.md to extract all naming rules"""
+    """Parses GM-CONVENTIONS-NAMING.md to extract all naming rules"""
     
-    def __init__(self, standard_path: str = "master-knowledge-base/standards/src/SF-CONVENTIONS-NAMING.md"):
+    def __init__(self, standard_path: str = "master-knowledge-base/standards/src/GM-CONVENTIONS-NAMING.md"):
         self.standard_path = Path(standard_path)
         self.raw_content = ""
         self.rules: Dict[str, List[NamingRule]] = {}
@@ -256,7 +256,7 @@ class NamingStandardParser:
         )
         if section_1_5_match:
             examples = section_1_5_match.group(1)
-            # Extract standard IDs like SF-CONVENTIONS-NAMING, MT-SCHEMA-FRONTMATTER
+            # Extract standard IDs like GM-CONVENTIONS-NAMING, MT-SCHEMA-FRONTMATTER
             standard_ids = re.findall(r'([A-Z]{1,6})-[A-Z0-9-]+', examples)
             prefixes.update(standard_ids)
         
@@ -358,9 +358,9 @@ class NamingStandardParser:
         return False
 
 class NamingEnforcerV2:
-    """Modern naming enforcer using SF-CONVENTIONS-NAMING.md as single source"""
+    """Modern naming enforcer using GM-CONVENTIONS-NAMING.md as single source"""
     
-    def __init__(self, standard_path: str = "master-knowledge-base/standards/src/SF-CONVENTIONS-NAMING.md"):
+    def __init__(self, standard_path: str = "master-knowledge-base/standards/src/GM-CONVENTIONS-NAMING.md"):
         self.parser = NamingStandardParser(standard_path)
         self.violations: List[NamingViolation] = []
         self.rename_operations: List[RenameOperation] = []
@@ -746,7 +746,7 @@ Examples:
     parser.add_argument("--show-all", action="store_true", 
                        help="Show all violations (not just first 10)")
     parser.add_argument("--standard-path", type=str, 
-                       default="master-knowledge-base/standards/src/SF-CONVENTIONS-NAMING.md",
+                       default="master-knowledge-base/standards/src/GM-CONVENTIONS-NAMING.md",
                        help="Path to the naming standard document")
     parser.add_argument("--validate-standard", action="store_true", 
                        help="Validate that the standard document itself is correct")
@@ -773,7 +773,7 @@ Examples:
                 "protected_names": {k: list(v) for k, v in enforcer.parser.protected_names.items()},
                 "exceptions": enforcer.parser.exceptions,
                 "source": str(enforcer.parser.standard_path),
-                "generated_at": "Auto-generated from SF-CONVENTIONS-NAMING.md"
+                "generated_at": "Auto-generated from GM-CONVENTIONS-NAMING.md"
             }
             
             with open(args.generate_config, 'w', encoding='utf-8') as f:

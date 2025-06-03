@@ -29,7 +29,6 @@ impact_areas:
   - Maintainability
   - Authoring tools
   - KB rendering systems
-change_log_url: ./changelog.md
 ---
 # Standard: Transclusion Syntax for Content Embedding (SF-TRANSCLUSION-SYNTAX)
 

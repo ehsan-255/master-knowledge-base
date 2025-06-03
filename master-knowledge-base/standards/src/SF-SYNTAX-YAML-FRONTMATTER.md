@@ -24,7 +24,6 @@ impact_areas:
   - Frontmatter syntax
   - Metadata structure
   - Document parsing
-change_log_url: ./changelog.md
 ---
 # Standard: Markdown YAML Frontmatter Syntax (SF-SYNTAX-YAML-FRONTMATTER)
 

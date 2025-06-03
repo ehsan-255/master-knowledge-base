@@ -25,7 +25,6 @@ impact_areas:
 - KB navigability
 - Authoring consistency
 - Maintainability
-change_log_url: ./changelog.md
 ---
 
 # Policy: Consistent Application of Knowledge Base Root Structure (CS-POLICY-KB-ROOT)

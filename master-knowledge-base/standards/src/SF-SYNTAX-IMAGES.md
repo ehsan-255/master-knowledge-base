@@ -24,7 +24,6 @@ impact_areas:
   - Image display
   - Content presentation
   - Accessibility
-change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Images (SF-SYNTAX-IMAGES)
 

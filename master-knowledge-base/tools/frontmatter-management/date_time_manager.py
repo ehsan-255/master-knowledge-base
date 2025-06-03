@@ -20,6 +20,14 @@ import re
 import subprocess
 import yaml
 
+# Canonical key order from linter (kb_linter.py)
+CANONICAL_KEY_ORDER = [
+    "title", "standard_id", "aliases", "tags", "kb-id", "info-type",
+    "primary-topic", "related-standards", "version", "date-created",
+    "date-modified", "primary_domain", "sub_domain", "scope_application",
+    "criticality", "lifecycle_gatekeeper", "impact_areas"
+]
+
 class DateTimeManager:
     def init(self, root_dir="."):
         self.root_dir = Path(root_dir)
@@ -111,6 +119,34 @@ class DateTimeManager:
         except Exception as e:
             return False, f"Validation error: {str(e)}"
 
+    def serialize_frontmatter_with_order(self, frontmatter_dict):
+        """Serialize frontmatter dict preserving canonical key order"""
+        # Create ordered dict following canonical order
+        ordered_items = []
+        
+        # Add keys in canonical order if they exist
+        for key in CANONICAL_KEY_ORDER:
+            if key in frontmatter_dict:
+                ordered_items.append((key, frontmatter_dict[key]))
+        
+        # Add any additional keys not in canonical order at the end
+        for key, value in frontmatter_dict.items():
+            if key not in CANONICAL_KEY_ORDER:
+                ordered_items.append((key, value))
+        
+        # Manually build YAML string to preserve order
+        yaml_lines = []
+        for key, value in ordered_items:
+            if isinstance(value, list):
+                yaml_lines.append(f"{key}: {yaml.dump(value, default_flow_style=True).strip()}")
+            elif isinstance(value, str) and ('\n' in value or value.startswith(' ') or value.endswith(' ')):
+                # Quote strings with special characters
+                yaml_lines.append(f'{key}: "{value}"')
+            else:
+                yaml_lines.append(f"{key}: {value}")
+        
+        return '\n'.join(yaml_lines) + '\n'
+
     def update_frontmatter_dates(self, file_path, manual_date=None, include_time=False, force=False, dry_run=False):
         """Update date fields in frontmatter with safety measures"""
         backup_path = None
@@ -151,8 +187,9 @@ class DateTimeManager:
                 
                 frontmatter['date-modified'] = self.format_datetime(modified, include_time)
             
-            # Create new content
-            new_content = f"---\n{yaml.dump(frontmatter, default_flow_style=False)}---\n{body}"
+            # Create new content with canonical key ordering
+            frontmatter_yaml = self.serialize_frontmatter_with_order(frontmatter)
+            new_content = f"---\n{frontmatter_yaml}---\n{body}"
             
             # Validate new content before writing
             is_valid, validation_msg = self.validate_yaml_integrity(new_content)

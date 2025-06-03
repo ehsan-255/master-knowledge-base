@@ -25,7 +25,6 @@ impact_areas:
   - Registry management
   - Vocabulary control
   - Standards consistency
-change_log_url: ./changelog.md
 ---
 # Standard: Registry Governance Policy (GM-REGISTRY-GOVERNANCE)
 

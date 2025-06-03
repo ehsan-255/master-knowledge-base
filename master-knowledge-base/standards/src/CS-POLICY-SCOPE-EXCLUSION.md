@@ -30,7 +30,6 @@ impact_areas:
   - Data security
   - KB quality and focus
   - User trust
-change_log_url: ./changelog.md
 ---
 # Policy: Universal Principles for Content Exclusion (CS-POLICY-SCOPE-EXCLUSION)
 

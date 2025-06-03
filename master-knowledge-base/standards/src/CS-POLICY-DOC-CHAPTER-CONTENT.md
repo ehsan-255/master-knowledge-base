@@ -28,7 +28,6 @@ impact_areas:
 - Semantic structure
 - Automated processing
 - Authoring consistency
-change_log_url: ./changelog.md
 ---
 
 # Policy: Content Organization and Heading Usage in Chapters (CS-POLICY-DOC-CHAPTER-CONTENT)

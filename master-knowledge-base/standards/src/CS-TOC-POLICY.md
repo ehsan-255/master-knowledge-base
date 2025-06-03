@@ -29,7 +29,6 @@ impact_areas:
   - User experience
   - Authoring efficiency
   - Content accessibility
-change_log_url: ./changelog.md
 ---
 # Policy: Table of Contents (ToC) Usage and Generation (CS-TOC-POLICY)
 

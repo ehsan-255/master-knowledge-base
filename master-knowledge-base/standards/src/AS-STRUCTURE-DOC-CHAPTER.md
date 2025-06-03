@@ -28,7 +28,6 @@ impact_areas:
 - Authoring consistency
 - Automated content processing
 - Accessibility
-change_log_url: ./changelog.md
 ---
 
 # Standard: Content Document (Chapter) Internal Structure (AS-STRUCTURE-DOC-CHAPTER)
@@ -113,7 +112,7 @@ This chapter provided an overview of research methodology, defined key terms, an
 - [[CS-POLICY-DOC-CHAPTER-CONTENT]] - Policy for content organization and heading usage within Chapters.
 - [[SF-SYNTAX-HEADINGS]] - Standard for Markdown Heading Syntax.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Standard for Internal Linking Syntax.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (if relevant to chapter file naming).
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (if relevant to chapter file naming).
 
 ---
 *This standard (AS-STRUCTURE-DOC-CHAPTER) is based on rules 2.1, 2.2, 2.3, 2.6, and 2.7 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md.*

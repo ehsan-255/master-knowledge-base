@@ -29,7 +29,6 @@ impact_areas:
 - Content consistency
 - Standards adherence
 - Onboarding new authors
-change_log_url: ./changelog.md
 ---
 
 # Standard: Templates Directory Structure and Usage (AS-STRUCTURE-TEMPLATES-DIRECTORY)

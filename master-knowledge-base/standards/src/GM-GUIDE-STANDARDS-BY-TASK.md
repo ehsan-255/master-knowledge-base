@@ -22,7 +22,7 @@ related-standards:
   - CS-POLICY-KB-IDENTIFICATION
   - AS-STRUCTURE-KB-ROOT
   - CS-POLICY-KB-ROOT
-  - SF-CONVENTIONS-NAMING
+  - GM-CONVENTIONS-NAMING
   - SF-SYNTAX-YAML-FRONTMATTER
   - MT-SCHEMA-FRONTMATTER
   - MT-TAGGING-STRATEGY-POLICY
@@ -92,7 +92,6 @@ impact_areas:
   - User Onboarding
   - Standards Adoption
   - Workflow Efficiency
-change_log_url: ./changelog.md
 ---
 # Guide: Task-Based Navigation of Knowledge Base Standards (GM-GUIDE-STANDARDS-BY-TASK)
 
@@ -127,7 +126,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
     * Ensures the new KB fits into the overall system with unique naming and `kb-directory.md` listing.
     * *Task Priority Rationale*: Essential for managing multiple KBs and ensuring top-level discoverability.
     * See also: `[[CS-POLICY-KB-IDENTIFICATION]]`
--   `[[SF-CONVENTIONS-NAMING]]`: File & Folder Naming Conventions.
+-   `[[GM-CONVENTIONS-NAMING]]`: File & Folder Naming Conventions.
     * Governs kebab-case, descriptive names, and reserved names for all initial files/folders.
     * *Task Priority Rationale*: Critical for machine readability, consistent linking, and preventing errors from the outset.
 -   `[[SF-SYNTAX-YAML-FRONTMATTER]]`: Markdown YAML Frontmatter.
@@ -187,7 +186,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 
 ### P1 (Task-Critical)
 
--   `[[SF-CONVENTIONS-NAMING]]`: File & Folder Naming Conventions.
+-   `[[GM-CONVENTIONS-NAMING]]`: File & Folder Naming Conventions.
     * Governs the name of the new content file.
     * *Task Priority Rationale*: Ensures consistent and machine-readable file identification.
 -   `[[SF-SYNTAX-YAML-FRONTMATTER]]`: Markdown YAML Frontmatter.
@@ -304,7 +303,7 @@ This document provides a task-oriented view of the Universal Knowledge Base Stan
 
 ### P1 (Task-Critical)
 
--   `[[SF-CONVENTIONS-NAMING]]`: File & Folder Naming Conventions.
+-   `[[GM-CONVENTIONS-NAMING]]`: File & Folder Naming Conventions.
     * Ensures the existing file name remains compliant or is updated if its core subject changes significantly.
     * *Task Priority Rationale*: Maintains consistent and machine-readable file identification.
 -   `[[SF-SYNTAX-YAML-FRONTMATTER]]`: Markdown YAML Frontmatter.

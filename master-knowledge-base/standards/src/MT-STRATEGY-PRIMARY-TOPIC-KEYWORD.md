@@ -26,7 +26,6 @@ impact_areas:
   - Content categorization
   - Search optimization
   - Metadata consistency
-change_log_url: ./changelog.md
 ---
 # Standard: Primary Topic Keyword Strategy
 

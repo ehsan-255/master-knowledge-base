@@ -24,7 +24,6 @@ impact_areas:
   - Key references
   - Content linking
   - Variable substitution
-change_log_url: ./changelog.md
 ---
 # Standard: Key-Based Referencing Syntax (SF-SYNTAX-KEYREF)
 

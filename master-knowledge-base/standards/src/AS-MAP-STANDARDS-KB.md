@@ -34,7 +34,6 @@ impact_areas:
   - Content organization
   - Discoverability of standards
   - Authoring within the Standards KB
-change_log_url: ./changelog.md
 ---
 # Standards Knowledge Base Definition Map (AS-MAP-STANDARDS-KB)
 
@@ -88,7 +87,7 @@ The Standards Knowledge Base is organized into logical "Parts," primarily aligne
 
 #### Part 7: Syntax, Formatting, and Conventions (SF)
 -   **Overview:** Specific rules for Markdown syntax, file formatting, naming conventions, and other presentational aspects of content.
--   **Key Documents:** (List or link to key `SF-*` standards, e.g., `[[SF-FORMATTING-MARKDOWN-GENERAL]]`, `[[SF-CONVENTIONS-NAMING]]`)
+-   **Key Documents:** (List or link to key `SF-*` standards, e.g., `[[SF-FORMATTING-MARKDOWN-GENERAL]]`, `[[GM-CONVENTIONS-NAMING]]`)
 
 #### Part 8: Utility, Assets, and Automation (UA)
 -   **Overview:** Standards for supporting utilities (like keyrefs), management of assets (like images), and schemas for automation processes (like LLM I/O).

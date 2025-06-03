@@ -20,7 +20,7 @@ primary-topic: Comprehensive guide for users on how to navigate, understand, app
 related-standards:
   - GM-MANDATE-KB-USAGE-GUIDE
   - AS-INDEX-KB-MASTER
-  - SF-CONVENTIONS-NAMING
+  - GM-CONVENTIONS-NAMING
   - AS-STRUCTURE-KB-ROOT
   - AS-STRUCTURE-KB-PART
   - CS-POLICY-PART-OVERVIEW
@@ -71,7 +71,6 @@ impact_areas:
   - Standards Adoption
   - KB Navigation
   - Contribution Process
-change_log_url: ./changelog.md
 ---
 # Guide: Knowledge Base Usage and Standards
 
@@ -114,7 +113,7 @@ This section guides you through creating a typical content document.
 
 ### 3.1 Creating a New Content Document
 1.  **Choose a Template (Recommended):** Navigate to the `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]` and copy an appropriate template (e.g., `[Chapter Template](../templates/tpl-chapter-template.md)`) to your target KB location. 
-2.  **File Naming:** Name your new file according to `[[SF-CONVENTIONS-NAMING]]` (lowercase kebab-case, descriptive, optional numerical prefix for sequencing).
+2.  **File Naming:** Name your new file according to `[[GM-CONVENTIONS-NAMING]]` (lowercase kebab-case, descriptive, optional numerical prefix for sequencing).
 3.  **Initial Frontmatter:** Populate all 10 canonical YAML frontmatter keys as defined in `[[MT-SCHEMA-FRONTMATTER]]`. Pay close attention to `title`, `kb-id`, `content-type` tag, `info-type`, `status/draft` tag, and `topic/*` tags.
 
 ### 3.2 Understanding and Applying Document Structure (`AS-STRUCTURE-DOC-CHAPTER`)

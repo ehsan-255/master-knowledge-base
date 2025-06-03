@@ -27,7 +27,6 @@ impact_areas:
 - Authoring consistency
 - Automated processing
 - Build system
-change_log_url: ./changelog.md
 ---
 
 # Standard: Knowledge Base Root Structure (AS-STRUCTURE-KB-ROOT)
@@ -39,7 +38,7 @@ This standard defines the mandatory structure for the root level of any Knowledg
 ### Rule 1.1: Designated Primary Folder
 Each Knowledge Base (KB) MUST have a designated primary folder.
 *   **Example:** `prompt-engineering-kb/`
-*   **Notes:** Folder naming MUST adhere to [[SF-CONVENTIONS-NAMING]].
+*   **Notes:** Folder naming MUST adhere to [[GM-CONVENTIONS-NAMING]].
 
 ### Rule 1.2: Root Document (`root.md`)
 Within this primary folder, a root document named `root.md` MUST exist.
@@ -53,7 +52,7 @@ The `root.md` file MUST contain a master Table of Contents (ToC) that links to a
 ### Rule 1.4: Top-Level "Parts" in Larger KBs (Sub-folders)
 For **larger KBs**, top-level "Parts" (primary sections) MUST be implemented as distinct sub-folders within the primary KB folder. Each such sub-folder represents one "Part".
 *   **Example:** `research-methodology-kb/part-i-foundations/`
-*   **Notes:** Folder naming MUST adhere to [[SF-CONVENTIONS-NAMING]]. The decision criterion for "larger" versus "smaller" is further discussed in [[CS-POLICY-KB-ROOT]].
+*   **Notes:** Folder naming MUST adhere to [[GM-CONVENTIONS-NAMING]]. The decision criterion for "larger" versus "smaller" is further discussed in [[CS-POLICY-KB-ROOT]].
 
 ### Rule 1.5: Top-Level "Parts" in Smaller KBs (`root.md` Sections)
 For **smaller or moderately sized KBs**, top-level "Parts" (primary sections) MUST be major H1 sections (often rendered as H2 in the context of the `root.md` document itself, following the main H1 title of `root.md`) directly within the `root.md` file. Content for these Parts can be nested directly or linked to subordinate files within the same primary KB folder.
@@ -88,7 +87,7 @@ This knowledge base provides comprehensive guidance on research methodologies...
 ## 3. Cross-References
 - [[CS-POLICY-KB-ROOT]] - Policy for consistent application of KB root structures.
 - [[AS-KB-DIRECTORY-STRUCTURE]] - Defines overall repository and master knowledge base directory structures.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions.
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
 - [[AS-STRUCTURE-KB-PART]] - Primary KB Section ("Part") Structure.
 

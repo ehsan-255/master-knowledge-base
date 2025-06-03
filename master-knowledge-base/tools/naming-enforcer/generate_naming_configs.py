@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate naming configuration files from SF-CONVENTIONS-NAMING.md
+Generate naming configuration files from GM-CONVENTIONS-NAMING.md
 This ensures we maintain a single source of truth for all naming conventions.
 
 Generated files:
@@ -107,8 +107,8 @@ def write_config_file(config_data, filename, description):
         return False
 
 def verify_source_authority():
-    """Verify that SF-CONVENTIONS-NAMING.md exists and contains authority markers."""
-    standard_path = Path("../standards/src/SF-CONVENTIONS-NAMING.md")
+    """Verify that GM-CONVENTIONS-NAMING.md exists and contains authority markers."""
+    standard_path = Path("../../standards/src/GM-CONVENTIONS-NAMING.md")
     
     if not standard_path.exists():
         print(f"✗ Source standard not found: {standard_path}")
@@ -139,7 +139,7 @@ def verify_source_authority():
 
 def main():
     """Generate all naming configuration files from the authoritative standard."""
-    print("🔧 Generating naming configuration files from SF-CONVENTIONS-NAMING.md")
+    print("🔧 Generating naming configuration files from GM-CONVENTIONS-NAMING.md")
     print("   This ensures single source of truth maintenance...")
     print()
     
@@ -168,10 +168,10 @@ def main():
     print()
     if success_count == total_files:
         print(f"✅ Successfully generated all {total_files} configuration files")
-        print("   All naming configurations are now synchronized with SF-CONVENTIONS-NAMING.md")
+        print("   All naming configurations are now synchronized with GM-CONVENTIONS-NAMING.md")
         print("   📋 Next steps:")
         print("   • Use these generated files in naming validation tools")
-        print("   • Do NOT manually edit these files - update SF-CONVENTIONS-NAMING.md instead")
+        print("   • Do NOT manually edit these files - update GM-CONVENTIONS-NAMING.md instead")
         print("   • Re-run this script after any changes to the authoritative standard")
     else:
         print(f"⚠️  Generated {success_count}/{total_files} files successfully")

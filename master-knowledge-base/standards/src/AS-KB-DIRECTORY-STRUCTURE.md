@@ -24,7 +24,6 @@ impact_areas:
 - Authoring workflow
 - Build process
 - Navigation
-change_log_url: ../changelog.md
 ---
 
 # AS-KB-DIRECTORY-STRUCTURE: Knowledge Base Directory Structure Standard
@@ -44,7 +43,7 @@ Within `master-knowledge-base/standards/`, the following specialized directories
 *   **`/master-knowledge-base/standards/src/` (Task 0.4.1)**
     *   **Purpose:** This is the primary Layer 1 directory for all atomic standard documents (Standard Definitions, Policy Documents, Guide Documents, etc.).
     *   **Content:** Individual Markdown files (`.md`) representing single, atomic standards.
-    *   **Naming:** Files in this directory MUST follow the [[SF-CONVENTIONS-NAMING#Atomic File Naming Convention|File Naming Convention]] (Note: Link to be updated once actual naming convention doc ID is set).
+    *   **Naming:** Files in this directory MUST follow the [[GM-CONVENTIONS-NAMING#Atomic File Naming Convention|File Naming Convention]] (Note: Link to be updated once actual naming convention doc ID is set).
 
 *   **`/master-knowledge-base/standards/registry/` (Task 0.4.2)**
     *   **Purpose:** This directory houses all controlled vocabulary manifests and registry definition files.

@@ -27,7 +27,6 @@ impact_areas:
   - Content categorization
   - Metadata consistency
   - Search optimization
-change_log_url: ./changelog.md
 ---
 # Standard: Tag Implementation and Syntax (MT-TAGS-IMPLEMENTATION)
 

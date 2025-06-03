@@ -27,7 +27,6 @@ impact_areas:
 - Inclusivity
 - Legal compliance (e.g., ADA, WCAG)
 - Content reach
-change_log_url: ./changelog.md
 ---
 
 # Policy: Content Accessibility (CS-POLICY-ACCESSIBILITY)

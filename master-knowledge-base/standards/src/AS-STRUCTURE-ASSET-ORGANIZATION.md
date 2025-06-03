@@ -12,7 +12,7 @@ kb-id: standards
 info-type: standard-definition
 primary-topic: Asset File Organization
 related-standards:
-- SF-CONVENTIONS-NAMING
+- GM-CONVENTIONS-NAMING
 - SF-ACCESSIBILITY-IMAGE-ALT-TEXT
 - AS-KB-DIRECTORY-STRUCTURE
 version: 1.0.0
@@ -29,7 +29,6 @@ impact_areas:
 - Link integrity for assets
 - Authoring consistency
 - Build processes
-change_log_url: ./changelog.md
 ---
 
 # Standard: Asset Organization and Naming (AS-STRUCTURE-ASSET-ORGANIZATION)
@@ -56,13 +55,13 @@ Within the `assets` folder, sub-folders SHOULD be used to categorize assets base
     *   `code-snippets/` (for external code files like `.py`, `.js`, `.sql` that are referenced or meant to be downloadable, not for embedded code in Markdown)
     *   Other categories as needed (e.g., `data/` for CSV files, `audio/` for audio clips).
 *   **Example:** `my-awesome-kb/assets/images/user-interface-screenshot.png`, `my-awesome-kb/assets/pdfs/annual-report-2023.pdf`
-*   **Folder Naming:** Sub-folder names MUST adhere to the folder naming conventions defined in [[SF-CONVENTIONS-NAMING]] (all lowercase kebab-case).
+*   **Folder Naming:** Sub-folder names MUST adhere to the folder naming conventions defined in [[GM-CONVENTIONS-NAMING]] (all lowercase kebab-case).
 *   **Rationale:** Categorization improves the organization of the `assets` folder, making it easier to find and manage specific types of assets, especially in KBs with many assets.
 
 ## 4. Asset File Naming
 
 ### Rule 4.1: Descriptive Kebab-Case Names (Derived from U-ASSETS-001, Rule 1.3)
-Asset file names MUST be descriptive of the asset's content or purpose and MUST adhere to the general file naming conventions (all lowercase kebab-case) defined in [[SF-CONVENTIONS-NAMING]].
+Asset file names MUST be descriptive of the asset's content or purpose and MUST adhere to the general file naming conventions (all lowercase kebab-case) defined in [[GM-CONVENTIONS-NAMING]].
 *   **Example:** `q1-sales-report.pdf`, `user-flow-diagram.svg`, `api-request-example.py`
 *   **Avoid:** Generic names like `image1.png`, `document.pdf`, or names with spaces or special characters (other than hyphens).
 *   **Rationale:** Descriptive names make assets easier to identify and manage. Consistent kebab-casing ensures cross-platform compatibility and predictability.
@@ -96,7 +95,7 @@ The following image formats are permitted for use within the knowledge base:
 This standard applies to all non-Markdown files that are part of a Knowledge Base and are stored within its designated `assets` folder.
 
 ## 8. Cross-References
-- [[SF-CONVENTIONS-NAMING]] - For general file and folder naming conventions.
+- [[GM-CONVENTIONS-NAMING]] - For general file and folder naming conventions.
 - [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]] - For requirements related to the accessibility of images.
 - [[AS-KB-DIRECTORY-STRUCTURE]] - For the overall KB directory structure, including the location of the KB-specific `assets` folder.
 

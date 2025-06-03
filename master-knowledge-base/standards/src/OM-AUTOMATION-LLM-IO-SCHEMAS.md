@@ -29,7 +29,6 @@ impact_areas:
 - Data interchange
 - Schema validation
 - Workflow integration
-change_log_url: ./changelog.md
 ---
 
 # Standard: LLM Automation Input/Output Schemas
@@ -124,7 +123,6 @@ This document defines the standard for creating, documenting, and managing JSON 
 - Each schema file MUST use the `title` and `description` top-level JSON Schema keywords.
 - Each property within the schema MUST have a `description` field explaining its purpose, data type, and whether it is required or optional.
 
-
 ## LLM Prompt Meta-Data Structure
 
 *   `prompt_id`: (String) A unique identifier for the prompt (e.g., "KB-ARTICLE-SUMMARIZER-V1").
@@ -146,4 +144,4 @@ This document defines the standard for creating, documenting, and managing JSON 
 
 - [[OM-AUTOMATION-LLM-PROMPT-LIBRARY]]
 - [[MT-SCHEMA-FRONTMATTER]]
-- [[SF-CONVENTIONS-NAMING]]
+- [[GM-CONVENTIONS-NAMING]]

@@ -34,7 +34,6 @@ impact_areas:
   - Developer experience
   - API documentation
   - Automated parsing of reference material
-change_log_url: ./changelog.md
 ---
 # Standard: Reference Document Schema (AS-SCHEMA-REFERENCE)
 

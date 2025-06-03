@@ -19,6 +19,9 @@ CS: # Content Standards
   - code: PROFILING
     name: Content Profiling
     description: Standards for conditionalizing or targeting content to specific audiences or conditions.
+  - code: CONCEPTS
+    name: Concept Definitions
+    description: Standards for defining core concepts and terminology within content domains.
 
 MT: # Metadata & Tagging Standards
   - code: FRONTMATTER

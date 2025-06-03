@@ -15,7 +15,7 @@ primary-topic: 'Tracks changes, decisions, and major updates for all standards i
 related-standards: []
 version: '1.0.0'
 date-created: '2025-01-11T00:00:00Z'
-date-modified: '2025-06-03T00:00:00Z'
+date-modified: '2025-06-03T06:18:44Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
 scope_application: 'Documents changes and decisions affecting standards in master-knowledge-base/standards/ and its subdirectories'

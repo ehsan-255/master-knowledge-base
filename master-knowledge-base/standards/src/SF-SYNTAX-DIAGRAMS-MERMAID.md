@@ -29,7 +29,6 @@ impact_areas:
   - Process visualization
   - Authoring of complex diagrams as code
   - Version controllable diagrams
-change_log_url: ./changelog.md
 ---
 # Standard: Markdown Syntax for Mermaid Diagrams (SF-SYNTAX-DIAGRAMS-MERMAID)
 

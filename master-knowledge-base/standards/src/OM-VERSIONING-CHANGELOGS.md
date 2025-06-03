@@ -26,7 +26,6 @@ impact_areas:
   - Change tracking
   - Historical record keeping
   - User awareness of changes
-change_log_url: ./changelog.md
 ---
 # Standard: Versioning and Changelogs for Standard Files (OM-VERSIONING-CHANGELOGS)
 
