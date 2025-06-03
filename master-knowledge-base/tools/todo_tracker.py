@@ -26,7 +26,7 @@ class TodoItem:
     created_date: str
 
 class TodoTracker:
-    def __init__(self, root_dir="."):
+    def init(self, root_dir="."):
         self.root_dir = Path(root_dir)
         self.todo_pattern = re.compile(r'^>\s*\[!TODO\](.*)$', re.MULTILINE | re.IGNORECASE)
         self.todos: List[TodoItem] = []

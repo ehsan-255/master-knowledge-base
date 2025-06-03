@@ -21,7 +21,7 @@ import subprocess
 import yaml
 
 class DateTimeManager:
-    def __init__(self, root_dir="."):
+    def init(self, root_dir="."):
         self.root_dir = Path(root_dir)
         self.lock_marker = "# date-locked"
         

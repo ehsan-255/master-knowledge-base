@@ -1,0 +1,42 @@
+{
+  "directories": [
+    "node_modules",
+    ".git",
+    "__pycache__",
+    ".vscode",
+    "dist",
+    "build",
+    "target",
+    "bin",
+    "obj"
+  ],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "Makefile",
+    "Dockerfile",
+    ".gitignore",
+    ".eslintrc.js"
+  ],
+  "patterns": [
+    "*.min.js",
+    "*.bundle.*",
+    "*.tmp",
+    "*.temp",
+    "*.bak",
+    "*.log",
+    "*.pid",
+    ".*"
+  ],
+  "protected_extensions": [
+    ".py",
+    ".js",
+    ".ts",
+    ".json",
+    ".yaml",
+    ".yml"
+  ],
+  "system_files": true,
+  "external_dependencies": true
+}

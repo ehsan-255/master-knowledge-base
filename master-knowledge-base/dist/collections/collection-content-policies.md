@@ -1,9 +1,9 @@
 ---
 title: "Content Style & Policies"
 description: "A collection of key policies and standards related to content authoring, tone, language, accessibility, and specific content behaviors from the CS (Content Standards) domain."
-date_generated: "2025-06-02T12:26:03.601377+00:00"
-source_collection_definition_id: "coll_cs_content_policies"
-number_of_standards: 16
+date-generated: "2025-06-02T12:26:03.601377+00:00"
+source-collection-definition-id: "coll_cs_content_policies"
+number-of-standards: 16
 tags: ["kb-collection", "derived-view", "info-type/collection-document"]
 info-type: "collection-document"
 # Consider adding a standard_id for the collection itself, e.g.:

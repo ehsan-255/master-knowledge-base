@@ -1,9 +1,9 @@
 ---
 title: "Metadata, Tagging & Registry Standards"
 description: "A collection of key standards for document metadata (frontmatter), tagging strategy, key references, and registry management from the MT (Metadata & Tagging) domain."
-date_generated: "2025-06-02T12:26:03.598567+00:00"
-source_collection_definition_id: "coll_mt_metadata_tagging"
-number_of_standards: 6
+date-generated: "2025-06-02T12:26:03.598567+00:00"
+source-collection-definition-id: "coll_mt_metadata_tagging"
+number-of-standards: 6
 tags: ["kb-collection", "derived-view", "info-type/collection-document"]
 info-type: "collection-document"
 # Consider adding a standard_id for the collection itself, e.g.:

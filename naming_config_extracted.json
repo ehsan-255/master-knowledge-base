@@ -1,0 +1,100 @@
+{
+  "patterns": {
+    "files_and_directories": "^[a-z0-9]+(-[a-z0-9]+)*$",
+    "python_variables": "^[a-z_][a-z0-9_]*$",
+    "python_functions": "^[a-z_][a-z0-9_]*$",
+    "python_classes": "^[A-Z][a-zA-Z0-9]*$",
+    "python_constants": "^[A-Z_][A-Z0-9_]*$",
+    "frontmatter_fields": "^[a-z_][a-z0-9_]*$",
+    "json_yaml_keys": "^[a-z_][a-z0-9_]*$",
+    "standard_ids": "^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\\-]+$",
+    "javascript_variables": "^[a-z][a-zA-Z0-9]*$",
+    "javascript_functions": "^[a-z][a-zA-Z0-9]*$",
+    "javascript_classes": "^[A-Z][a-zA-Z0-9]*$",
+    "javascript_constants": "^[A-Z_][A-Z0-9_]*$",
+    "tags_metadata": "^[a-z0-9]+(-[a-z0-9]+)*$",
+    "key_references": "^[a-z][a-zA-Z0-9]*$"
+  },
+  "protected_names": {
+    "python_variables": [
+      "standards_index",
+      "date_modified",
+      "generate_index",
+      "content_validator",
+      "_load_standards_index",
+      "kwargs",
+      "self",
+      "__init__",
+      "args",
+      "config",
+      "file_path",
+      "naming_enforcer",
+      "kb_linter"
+    ],
+    "frontmatter_fields": [
+      "primary_domain",
+      "tags",
+      "date-modified",
+      "kb-id",
+      "scope_application",
+      "info-type",
+      "standard_id",
+      "primary-topic",
+      "change_log_url",
+      "criticality",
+      "aliases",
+      "version",
+      "title",
+      "related-standards",
+      "impact_areas",
+      "lifecycle_gatekeeper",
+      "date-created",
+      "sub_domain"
+    ],
+    "config_files": [
+      "subdomain_registry.yaml",
+      "collection_definitions.yaml",
+      "naming_exceptions.json",
+      "standards_index.json",
+      "protected_names.json",
+      "standards_index.schema.json",
+      "domain_codes.yaml"
+    ],
+    "tool_scripts": [
+      "frontmatter_validator.py",
+      "generate_index.py",
+      "kb_linter.py",
+      "generate_collections.py",
+      "validate_metadata.py",
+      "corruption_reverser.py",
+      "naming_enforcer.py"
+    ],
+    "json_keys": [
+      "standards_index",
+      "context_rules",
+      "protected_names",
+      "standard_definitions",
+      "domain_codes",
+      "subdomain_registry",
+      "naming_exceptions"
+    ],
+    "environment_vars": [
+      "API_KEY",
+      "DATABASE_URL",
+      "DEBUG_MODE",
+      "NODE_ENV",
+      "LOG_LEVEL",
+      "PYTHONPATH"
+    ]
+  },
+  "exceptions": {
+    "temp_files": [
+      "*.tmp"
+    ],
+    "system_directories": [
+      ".git/"
+    ]
+  },
+  "source": "master-knowledge-base\\standards\\src\\SF-CONVENTIONS-NAMING.md",
+  "generated_at": "Auto-generated from SF-CONVENTIONS-NAMING.md"
+}

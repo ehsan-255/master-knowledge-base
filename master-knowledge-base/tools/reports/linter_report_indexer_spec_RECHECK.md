@@ -1,12 +1,12 @@
 # Linter Report
 
 
-## File: `master-knowledge-base/tools/indexer/standards-index-jsonld-spec.md`
+## File: `master-knowledge-base/tools/indexer/standards_index-jsonld-spec.md`
 ### Warnings:
-  - [L3] Filename 'standards-index-jsonld-spec.md' should match 'standard_id' 'DOC-TOOLS-INDEXER-JSONLD-SPEC'.
+  - [L3] Filename 'standards_index-jsonld-spec.md' should match 'standard_id' 'DOC-TOOLS-INDEXER-JSONLD-SPEC'.
 ### Errors:
   - [L3] 'standard_id' ('DOC-TOOLS-INDEXER-JSONLD-SPEC') fails regex: '^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$'.
-  - [L25] Relative 'change_log_url' non-existent: ./standards-index-jsonld-spec-CHANGELOG.md (resolved: /app/master-knowledge-base/tools/indexer/standards-index-jsonld-spec-CHANGELOG.md)
+  - [L25] Relative 'change_log_url' non-existent: ./standards_index-jsonld-spec-CHANGELOG.md (resolved: /app/master-knowledge-base/tools/indexer/standards_index-jsonld-spec-CHANGELOG.md)
 
 ## File: `master-knowledge-base/tools/indexer/README.md`
 ### Warnings:

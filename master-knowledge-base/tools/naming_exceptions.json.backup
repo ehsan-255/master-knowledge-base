@@ -11,7 +11,11 @@
       "__pycache__",
       "archive",
       "old-reports-20250531",
-      "legacy-root-content-20250602"
+      "legacy-root-content-20250602",
+      "scripts",
+      "templates",
+      "standards",
+      "test-environment"
     ],
     "files": [
       "LICENSE",
@@ -20,6 +24,7 @@
       "CONTRIBUTING.md",
       ".gitignore",
       ".gitattributes",
+      ".cursorignore",
       "package.json",
       "requirements.txt"
     ],
@@ -27,7 +32,13 @@
       "*.min.js",
       "*.min.css",
       "*.bundle.*",
-      ".*"
+      ".*",
+      "final_cleanup_verification.md",
+      "linter_report_*.md",
+      "remaining-tasks.md",
+      "test_linter_fix.md",
+      "test-todos*.json",
+      "todos.json"
     ],
     "directory_rules": {
       "snake_case_directories": [
@@ -36,10 +47,7 @@
         "master-knowledge-base/tools"
       ],
       "kebab_case_directories": [
-        "standards",
-        "templates",
-        "active-project",
-        "master-knowledge-base/standards"
+        "active-project"
       ]
     },
     "standard_ids": {

@@ -1,0 +1,624 @@
+#!/usr/bin/env python3
+"""
+Naming Convention Enforcer for Knowledge Base
+
+Validates and enforces kebab-case naming conventions with comprehensive
+content reference tracking and atomic operations.
+"""
+
+import os
+import sys
+import json
+import argparse
+import re
+import shutil
+from pathlib import Path
+from dataclasses import dataclass, field
+from typing import List, Dict, Set, Optional, Tuple
+from collections import defaultdict
+
+@dataclass
+class NamingViolation:
+    path: str
+    current_name: str
+    suggested_name: str
+    violation_type: str
+    severity: str
+    reason: str
+
+@dataclass
+class ContentUpdate:
+    file_path: str
+    line_number: int
+    old_text: str
+    new_text: str
+    context: str
+    update_type: str  # 'filename', 'filepath', 'frontmatter_field', 'import'
+
+@dataclass
+class RenameOperation:
+    old_path: Path
+    new_path: Path
+    violation_type: str
+    content_updates: List[ContentUpdate] = field(default_factory=list)
+
+class NamingEnforcer:
+    def __init__(self, config_path: str = "master-knowledge-base/tools/naming-exceptions.json"):
+        self.config_path = Path(config_path)
+        self.violations: List[NamingViolation] = []
+        self.rename_operations: List[RenameOperation] = []
+        self.exceptions = self.load_exceptions()
+        
+        # Naming patterns
+        self.kebab_pattern = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
+        self.snake_pattern = re.compile(r'^[a-z0-9]+(_[a-z0-9]+)*$')
+        self.standard_id_pattern = re.compile(r'^[A-Z][A-Z0-9]*-[A-Z][A-Z0-9]*-[A-Z0-9-]+$')
+        self.frontmatter_field_pattern = re.compile(r'^[a-z]+(-[a-z]+)*$')
+
+    def load_exceptions(self) -> Dict:
+        """Load naming exceptions configuration"""
+        try:
+            with open(self.config_path, 'r') as f:
+                config = json.load(f)
+                return config.get('exceptions', {})
+        except Exception as e:
+            print(f"Warning: Could not load exceptions config: {e}")
+            return {}
+
+    def is_kebab_case(self, name: str) -> bool:
+        return bool(self.kebab_pattern.match(name))
+    
+    def is_snake_case(self, name: str) -> bool:
+        return bool(self.snake_pattern.match(name))
+    
+    def is_standard_id_format(self, name: str) -> bool:
+        return bool(self.standard_id_pattern.match(name))
+    
+    def get_naming_convention_for_path(self, path: Path) -> str:
+        """Determine which naming convention applies to a path"""
+        path_str = str(path).replace('\\', '/')
+        snake_dirs = self.exceptions.get('directory_rules', {}).get('snake_case_directories', [])
+        for snake_dir in snake_dirs:
+            if snake_dir in path_str or path_str.startswith(snake_dir):
+                return 'snake_case'
+        return 'kebab_case'
+    
+    def to_kebab_case(self, name: str) -> str:
+        """Convert name to kebab-case"""
+        name = re.sub(r'(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])', '-', name)
+        name = name.replace('_', '-')
+        name = re.sub(r'-+', '-', name)
+        name = name.strip('-')
+        return name.lower()
+    
+    def to_snake_case(self, name: str) -> str:
+        """Convert name to snake_case"""
+        name = re.sub(r'(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])', '_', name)
+        name = name.replace('-', '_')
+        name = re.sub(r'_+', '_', name)
+        name = name.strip('_')
+        return name.lower()
+
+    def is_excluded(self, path: Path) -> bool:
+        """Check if path should be excluded"""
+        # Check directory exclusions
+        path_parts = set(path.parts)
+        excluded_dirs = set(self.exceptions.get('directories', []))
+        if path_parts & excluded_dirs:
+            return True
+        
+        # Check file exclusions
+        if path.is_file():
+            if path.name in self.exceptions.get('files', []):
+                return True
+            for pattern in self.exceptions.get('file_patterns', []):
+                if path.match(pattern):
+                    return True
+        return False
+
+    def create_reference_patterns(self, old_name: str, new_name: str, violation_type: str) -> List[Tuple[str, str, str]]:
+        """Create search/replace patterns for different reference types"""
+        patterns = []
+        
+        if violation_type in ['filename_case', 'extension_case']:
+            old_path = Path(old_name)
+            new_path = Path(new_name)
+            
+            # Full filename with extension
+            patterns.append((old_path.name, new_path.name, 'filename'))
+            
+            # Filename without extension
+            if old_path.stem != new_path.stem:
+                patterns.append((old_path.stem, new_path.stem, 'filename_stem'))
+            
+            # Path-based references
+            old_unix = str(old_path).replace('\\', '/')
+            new_unix = str(new_path).replace('\\', '/')
+            if old_unix != new_unix:
+                patterns.append((old_unix, new_unix, 'filepath'))
+            
+            # Python import style (convert path to module)
+            if old_path.suffix == '.py':
+                old_module = str(old_path.with_suffix('')).replace('/', '.').replace('\\', '.')
+                new_module = str(new_path.with_suffix('')).replace('/', '.').replace('\\', '.')
+                if old_module != new_module:
+                    patterns.append((old_module, new_module, 'python_import'))
+        
+        elif violation_type == 'directory_case':
+            old_dir = Path(old_name).name
+            new_dir = Path(new_name).name
+            
+            patterns.append((old_dir, new_dir, 'directory_name'))
+            
+            # Path references
+            old_unix = str(Path(old_name)).replace('\\', '/')
+            new_unix = str(Path(new_name)).replace('\\', '/')
+            patterns.append((old_unix, new_unix, 'directory_path'))
+        
+        elif violation_type == 'frontmatter_field':
+            # Extract field name from violation format "frontmatter field: field_name"
+            if old_name.startswith('frontmatter field: '):
+                old_field = old_name.replace('frontmatter field: ', '')
+                patterns.append((f'{old_field}:', f'{new_name}:', 'frontmatter_field'))
+        
+        return patterns
+
+    def find_content_references(self, old_path: str, new_path: str, violation_type: str) -> List[ContentUpdate]:
+        """Find all content references that need updating"""
+        updates = []
+        patterns = self.create_reference_patterns(old_path, new_path, violation_type)
+        
+        if not patterns:
+            return updates
+        
+        # Search through relevant files
+        for root, dirs, files in os.walk('.'):
+            # Skip excluded directories
+            root_path = Path(root)
+            if self.is_excluded(root_path):
+                dirs.clear()  # Don't recurse into excluded directories
+                continue
+            
+            for file in files:
+                if file.endswith(('.md', '.py', '.json', '.yaml', '.yml', '.txt', '.js', '.ts')):
+                    file_path = root_path / file
+                    
+                    if self.is_excluded(file_path):
+                        continue
+                    
+                    try:
+                        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                            lines = f.readlines()
+                        
+                        for line_num, line in enumerate(lines, 1):
+                            for old_ref, new_ref, ref_type in patterns:
+                                if old_ref in line and old_ref != new_ref:
+                                    # Create context-aware replacement
+                                    if ref_type == 'frontmatter_field':
+                                        # Only update if it's actually a YAML key (starts line or after whitespace)
+                                        if re.search(rf'^\s*{re.escape(old_ref)}', line):
+                                            new_line = re.sub(rf'^(\s*){re.escape(old_ref)}', rf'\1{new_ref}', line)
+                                            updates.append(ContentUpdate(
+                                                file_path=str(file_path),
+                                                line_number=line_num,
+                                                old_text=line.rstrip(),
+                                                new_text=new_line.rstrip(),
+                                                context=f"frontmatter in {file_path.name}",
+                                                update_type=ref_type
+                                            ))
+                                    else:
+                                        # For other types, do careful replacement
+                                        new_line = line.replace(old_ref, new_ref)
+                                        if new_line != line:
+                                            updates.append(ContentUpdate(
+                                                file_path=str(file_path),
+                                                line_number=line_num,
+                                                old_text=line.rstrip(),
+                                                new_text=new_line.rstrip(),
+                                                context=f"{ref_type} in {file_path.name}",
+                                                update_type=ref_type
+                                            ))
+                    except Exception:
+                        continue
+        
+        return updates
+
+    def scan_directory(self, root_path: Path) -> List[NamingViolation]:
+        """Scan directory for violations and build rename operations"""
+        violations = []
+        
+        def walk_path(path: Path):
+            if self.is_excluded(path):
+                return
+            
+            try:
+                for item in path.iterdir():
+                    if item.is_dir():
+                        if not self.is_excluded(item):
+                            # Validate directory name
+                            violation = self.validate_directory_name(item)
+                            if violation:
+                                violations.append(violation)
+                            walk_path(item)
+                    elif item.is_file():
+                        # Validate filename
+                        violation = self.validate_file_name(item)
+                        if violation:
+                            violations.append(violation)
+                        
+                        # Validate frontmatter fields
+                        frontmatter_violations = self.validate_frontmatter_fields(item)
+                        violations.extend(frontmatter_violations)
+            except PermissionError:
+                pass
+        
+        walk_path(root_path)
+        self.violations = violations
+        
+        # Build rename operations with content references
+        self.build_rename_operations()
+        
+        return violations
+
+    def validate_file_name(self, file_path: Path) -> Optional[NamingViolation]:
+        """Validate a single file name"""
+        if self.is_excluded(file_path):
+            return None
+        
+        # Handle compound extensions (e.g., .schema.json, .test.py)
+        # Get the base name by removing all extensions
+        full_name = file_path.name
+        base_name = full_name
+        extensions = ""
+        
+        # Extract all extensions
+        while '.' in base_name and not base_name.startswith('.'):
+            name_part, ext_part = base_name.rsplit('.', 1)
+            extensions = '.' + ext_part + extensions
+            base_name = name_part
+        
+        if self.is_standard_id_format(base_name):
+            return None
+        
+        # Check extension case
+        if extensions and extensions != extensions.lower():
+            suggested_name = base_name + extensions.lower()
+            return NamingViolation(
+                path=str(file_path),
+                current_name=full_name,
+                suggested_name=suggested_name,
+                violation_type="extension_case",
+                severity="error",
+                reason=f"File extension should be lowercase: {extensions} -> {extensions.lower()}"
+            )
+        
+        # Check naming convention for the base name only
+        convention = self.get_naming_convention_for_path(file_path)
+        
+        if convention == 'snake_case':
+            if not self.is_snake_case(base_name):
+                suggested_base = self.to_snake_case(base_name)
+                suggested_name = suggested_base + extensions
+                # Only report if there's actually a change needed
+                if suggested_name != full_name:
+                    return NamingViolation(
+                        path=str(file_path),
+                        current_name=full_name,
+                        suggested_name=suggested_name,
+                        violation_type="filename_case",
+                        severity="error",
+                        reason=f"Script filename should be snake_case: {base_name} -> {suggested_base}"
+                    )
+        else:
+            if not self.is_kebab_case(base_name):
+                suggested_base = self.to_kebab_case(base_name)
+                suggested_name = suggested_base + extensions
+                # Only report if there's actually a change needed
+                if suggested_name != full_name:
+                    return NamingViolation(
+                        path=str(file_path),
+                        current_name=full_name,
+                        suggested_name=suggested_name,
+                        violation_type="filename_case",
+                        severity="error",
+                        reason=f"Filename should be kebab-case: {base_name} -> {suggested_base}"
+                    )
+        
+        return None
+
+    def validate_directory_name(self, dir_path: Path) -> Optional[NamingViolation]:
+        """Validate a single directory name"""
+        if self.is_excluded(dir_path):
+            return None
+        
+        dir_name = dir_path.name
+        
+        if not self.is_kebab_case(dir_name):
+            suggested_name = self.to_kebab_case(dir_name)
+            return NamingViolation(
+                path=str(dir_path),
+                current_name=dir_name,
+                suggested_name=suggested_name,
+                violation_type="directory_case",
+                severity="error",
+                reason=f"Directory should be kebab-case: {dir_name} -> {suggested_name}"
+            )
+        
+        return None
+
+    def validate_frontmatter_fields(self, file_path: Path) -> List[NamingViolation]:
+        """Validate frontmatter field names"""
+        violations = []
+        
+        if file_path.suffix.lower() != '.md':
+            return violations
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            if not content.startswith('---'):
+                return violations
+            
+            # Parse frontmatter
+            first_line_end = content.find('\n')
+            if first_line_end == -1 or content[:first_line_end].strip() != '---':
+                return violations
+            
+            frontmatter_start = first_line_end + 1
+            fm_end_match = re.search(r'^---\s*$', content[frontmatter_start:], re.MULTILINE)
+            if not fm_end_match:
+                return violations
+            
+            frontmatter_content = content[frontmatter_start:frontmatter_start + fm_end_match.start()]
+            
+            # Find field names
+            field_pattern = re.compile(r'^\s*([a-zA-Z][a-zA-Z0-9_-]*)\s*:', re.MULTILINE)
+            fields = field_pattern.findall(frontmatter_content)
+            
+            for field in fields:
+                if not self.frontmatter_field_pattern.match(field):
+                    suggested_field = self.to_kebab_case(field)
+                    violations.append(NamingViolation(
+                        path=str(file_path),
+                        current_name=f"frontmatter field: {field}",
+                        suggested_name=suggested_field,
+                        violation_type="frontmatter_field",
+                        severity="warning",
+                        reason=f"Frontmatter field should be kebab-case: {field} -> {suggested_field}"
+                    ))
+            
+        except Exception:
+            pass
+        
+        return violations
+
+    def build_rename_operations(self):
+        """Build rename operations with content references"""
+        self.rename_operations = []
+        
+        for violation in self.violations:
+            if violation.violation_type in ['filename_case', 'extension_case', 'directory_case', 'frontmatter_field']:
+                old_path = Path(violation.path)
+                
+                if violation.violation_type == 'frontmatter_field':
+                    # Frontmatter fields don't rename files, just update content
+                    new_path = old_path
+                else:
+                    new_path = old_path.parent / violation.suggested_name
+                
+                # Find all content references
+                content_updates = self.find_content_references(
+                    str(old_path), str(new_path), violation.violation_type
+                )
+                
+                operation = RenameOperation(
+                    old_path=old_path,
+                    new_path=new_path,
+                    violation_type=violation.violation_type,
+                    content_updates=content_updates
+                )
+                
+                self.rename_operations.append(operation)
+
+    def apply_content_updates(self, dry_run: bool = True) -> int:
+        """Apply all content updates BEFORE renaming files"""
+        if dry_run:
+            total_updates = sum(len(op.content_updates) for op in self.rename_operations)
+            print(f"\nDRY RUN - Would update {total_updates} content references:")
+            
+            for op in self.rename_operations:
+                if op.content_updates:
+                    print(f"\nFor {op.old_path} -> {op.new_path}:")
+                    for update in op.content_updates[:3]:  # Show first 3
+                        print(f"  {Path(update.file_path).name}:{update.line_number}")
+                        print(f"    Old: {update.old_text[:80]}...")
+                        print(f"    New: {update.new_text[:80]}...")
+                    if len(op.content_updates) > 3:
+                        print(f"    ... and {len(op.content_updates) - 3} more updates")
+            
+            return total_updates
+        
+        # Apply updates for real
+        updated_files = set()
+        
+        # Group updates by file for atomic processing
+        updates_by_file = defaultdict(list)
+        for op in self.rename_operations:
+            for update in op.content_updates:
+                updates_by_file[update.file_path].append(update)
+        
+        for file_path, updates in updates_by_file.items():
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+                
+                # Apply updates in reverse line order to maintain line numbers
+                updates.sort(key=lambda u: u.line_number, reverse=True)
+                
+                for update in updates:
+                    line_idx = update.line_number - 1
+                    if 0 <= line_idx < len(lines):
+                        if lines[line_idx].rstrip() == update.old_text:
+                            lines[line_idx] = update.new_text + '\n'
+                        else:
+                            print(f"Warning: Line mismatch in {file_path}:{update.line_number}")
+                
+                # Write back
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.writelines(lines)
+                
+                updated_files.add(file_path)
+                print(f"Updated {len(updates)} references in {file_path}")
+                
+            except Exception as e:
+                print(f"Error updating {file_path}: {e}")
+        
+        return len(updated_files)
+
+    def apply_file_renames(self, dry_run: bool = True) -> int:
+        """Apply file and directory renames AFTER content updates"""
+        if dry_run:
+            rename_count = sum(1 for op in self.rename_operations 
+                             if op.violation_type != 'frontmatter_field' and op.old_path != op.new_path)
+            print(f"\nDRY RUN - Would rename {rename_count} files/directories:")
+            
+            for op in self.rename_operations:
+                if op.violation_type != 'frontmatter_field' and op.old_path != op.new_path:
+                    print(f"  {op.old_path} -> {op.new_path}")
+            
+            return rename_count
+        
+        # Apply renames for real
+        renamed_count = 0
+        
+        # Sort operations: files first, then directories (deepest first)
+        file_ops = [op for op in self.rename_operations 
+                   if op.violation_type in ['filename_case', 'extension_case'] and op.old_path != op.new_path]
+        dir_ops = [op for op in self.rename_operations 
+                  if op.violation_type == 'directory_case' and op.old_path != op.new_path]
+        dir_ops.sort(key=lambda op: len(op.old_path.parts), reverse=True)  # Deepest first
+        
+        for op in file_ops + dir_ops:
+            try:
+                if op.old_path.exists():
+                    if not op.new_path.exists():
+                        op.old_path.rename(op.new_path)
+                        renamed_count += 1
+                        print(f"Renamed: {op.old_path} -> {op.new_path}")
+                    else:
+                        print(f"Skipped (target exists): {op.old_path} -> {op.new_path}")
+                else:
+                    print(f"Skipped (source missing): {op.old_path}")
+            except Exception as e:
+                print(f"Error renaming {op.old_path}: {e}")
+        
+        return renamed_count
+
+    def print_report(self, show_all: bool = False):
+        """Print comprehensive report"""
+        if not self.violations:
+            print("No naming violations found!")
+            return
+        
+        errors = [v for v in self.violations if v.severity == 'error']
+        warnings = [v for v in self.violations if v.severity == 'warning']
+        
+        print(f"\nNAMING VIOLATIONS REPORT")
+        print(f"{'='*50}")
+        print(f"Total violations: {len(self.violations)}")
+        print(f"Errors: {len(errors)}")
+        print(f"Warnings: {len(warnings)}")
+        
+        if errors:
+            print(f"\nERRORS ({len(errors)}):")
+            for i, violation in enumerate(errors[:20 if not show_all else None]):
+                print(f"  {i+1}. {violation.current_name}")
+                print(f"     Path: {violation.path}")
+                print(f"     Suggested: {violation.suggested_name}")
+                print(f"     Reason: {violation.reason}")
+                print()
+            
+            if len(errors) > 20 and not show_all:
+                print(f"     ... and {len(errors) - 20} more errors")
+        
+        if warnings:
+            print(f"\nWARNINGS ({len(warnings)}):")
+            for i, violation in enumerate(warnings[:10 if not show_all else None]):
+                print(f"  {i+1}. {violation.current_name}")
+                print(f"     Path: {violation.path}")
+                print(f"     Suggested: {violation.suggested_name}")
+                print(f"     Reason: {violation.reason}")
+                print()
+            
+            if len(warnings) > 10 and not show_all:
+                print(f"     ... and {len(warnings) - 10} more warnings")
+
+def main():
+    parser = argparse.ArgumentParser(description="Enforce naming conventions with comprehensive reference tracking")
+    parser.add_argument("--directory", "-d", default=".", help="Directory to scan")
+    parser.add_argument("--config", "-c", default="master-knowledge-base/tools/naming-exceptions.json", 
+                       help="Path to exceptions config file")
+    parser.add_argument("--dry-run", action="store_true", help="Show what would be changed without applying")
+    parser.add_argument("--apply-fixes", action="store_true", help="Apply all fixes (content updates + renames)")
+    parser.add_argument("--show-all", action="store_true", help="Show all violations")
+    parser.add_argument("--format", choices=["text", "json"], default="text", help="Output format")
+    
+    args = parser.parse_args()
+    
+    enforcer = NamingEnforcer(args.config)
+    
+    print(f"Scanning {args.directory} for naming violations...")
+    violations = enforcer.scan_directory(Path(args.directory))
+    
+    if args.format == "json":
+        output_data = {
+            "violations": [
+                {
+                    "path": v.path,
+                    "current_name": v.current_name,
+                    "suggested_name": v.suggested_name,
+                    "violation_type": v.violation_type,
+                    "severity": v.severity,
+                    "reason": v.reason
+                }
+                for v in violations
+            ],
+            "rename_operations": [
+                {
+                    "old_path": str(op.old_path),
+                    "new_path": str(op.new_path),
+                    "violation_type": op.violation_type,
+                    "content_updates_count": len(op.content_updates)
+                }
+                for op in enforcer.rename_operations
+            ]
+        }
+        print(json.dumps(output_data, indent=2))
+    else:
+        enforcer.print_report(args.show_all)
+        
+        if args.dry_run:
+            content_count = enforcer.apply_content_updates(dry_run=True)
+            rename_count = enforcer.apply_file_renames(dry_run=True)
+            print(f"\nDRY RUN SUMMARY:")
+            print(f"  Would update {content_count} content references")
+            print(f"  Would rename {rename_count} files/directories")
+        elif args.apply_fixes:
+            print("\n" + "="*50)
+            print("APPLYING FIXES...")
+            print("="*50)
+            
+            # Step 1: Update content references (while original files exist)
+            content_count = enforcer.apply_content_updates(dry_run=False)
+            
+            # Step 2: Rename files and directories
+            rename_count = enforcer.apply_file_renames(dry_run=False)
+            
+            print(f"\nFINAL SUMMARY:")
+            print(f"  Updated {content_count} files with reference changes")
+            print(f"  Renamed {rename_count} files/directories")
+            print("  All operations completed successfully!")
+
+if __name__ == "__main__":
+    main() 

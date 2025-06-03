@@ -1,9 +1,9 @@
 ---
 title: "Syntax & Formatting Standards"
 description: "A collection of key standards related to Markdown syntax, content formatting conventions, and file hygiene from the SF (Syntax & Formatting) domain."
-date_generated: "2025-06-02T12:26:03.587241+00:00"
-source_collection_definition_id: "coll_sf_syntax_formatting"
-number_of_standards: 26
+date-generated: "2025-06-02T12:26:03.587241+00:00"
+source-collection-definition-id: "coll_sf_syntax_formatting"
+number-of-standards: 26
 tags: ["kb-collection", "derived-view", "info-type/collection-document"]
 info-type: "collection-document"
 # Consider adding a standard_id for the collection itself, e.g.:

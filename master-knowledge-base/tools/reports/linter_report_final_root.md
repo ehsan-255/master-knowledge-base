@@ -134,7 +134,7 @@
 ### Errors:
   - [L1] No YAML frontmatter block found.
 
-## File: `master-knowledge-base/tools/indexer/standards-index-jsonld-spec.md`
+## File: `master-knowledge-base/tools/indexer/standards_index-jsonld-spec.md`
 ### Errors:
   - [L1] Mandatory key 'scope_application' missing.
   - [L1] Mandatory key 'criticality' missing.

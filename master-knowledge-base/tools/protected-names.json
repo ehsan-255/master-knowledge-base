@@ -1,0 +1,88 @@
+{
+  "protected_names": {
+    "python_variables": [
+      "standards_index",
+      "config",
+      "__init__",
+      "self",
+      "args",
+      "kwargs",
+      "_load_standards_index",
+      "generate_index",
+      "kb_linter",
+      "file_path",
+      "date_modified",
+      "content_validator",
+      "naming_enforcer"
+    ],
+    "frontmatter_fields": [
+      "standard_id",
+      "primary_domain",
+      "sub_domain",
+      "scope_application",
+      "lifecycle_gatekeeper",
+      "impact_areas",
+      "change_log_url",
+      "info-type",
+      "criticality",
+      "date-created",
+      "date-modified",
+      "title",
+      "version",
+      "tags",
+      "aliases",
+      "related-standards",
+      "kb-id",
+      "primary-topic"
+    ],
+    "json_keys": [
+      "standards_index",
+      "standard_definitions",
+      "naming_exceptions",
+      "protected_names",
+      "context_rules",
+      "domain_codes",
+      "subdomain_registry"
+    ],
+    "file_patterns": [
+      "standards_index.json",
+      "standards_index.schema.json",
+      "naming_exceptions.json",
+      "protected_names.json",
+      "collection_definitions.yaml",
+      "domain_codes.yaml"
+    ],
+    "tool_dependencies": [
+      "generate_index.py",
+      "generate_collections.py",
+      "kb_linter.py",
+      "naming_enforcer.py",
+      "corruption_reverser.py"
+    ]
+  },
+  "context_rules": {
+    "python_files": {
+      "variables": "snake_case",
+      "functions": "snake_case",
+      "classes": "PascalCase",
+      "constants": "UPPER_SNAKE_CASE"
+    },
+    "markdown_files": {
+      "filenames": "kebab-case",
+      "frontmatter_fields": "snake_case"
+    },
+    "javascript_files": {
+      "variables": "camelCase",
+      "functions": "camelCase",
+      "classes": "PascalCase",
+      "constants": "UPPER_SNAKE_CASE"
+    },
+    "json_yaml_files": {
+      "keys": "snake_case",
+      "filenames": "snake_case"
+    },
+    "directories": {
+      "names": "kebab-case"
+    }
+  }
+}

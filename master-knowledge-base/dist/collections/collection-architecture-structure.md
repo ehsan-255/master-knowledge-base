@@ -1,9 +1,9 @@
 ---
 title: "Architecture & Structure Standards"
 description: "A collection of key standards related to overall knowledge base architecture, information structure, and schema definitions from the AS (Architecture & Structure) domain."
-date_generated: "2025-06-02T12:26:03.573992+00:00"
-source_collection_definition_id: "coll_as_arch_structure"
-number_of_standards: 15
+date-generated: "2025-06-02T12:26:03.573992+00:00"
+source-collection-definition-id: "coll_as_arch_structure"
+number-of-standards: 15
 tags: ["kb-collection", "derived-view", "info-type/collection-document"]
 info-type: "collection-document"
 # Consider adding a standard_id for the collection itself, e.g.:

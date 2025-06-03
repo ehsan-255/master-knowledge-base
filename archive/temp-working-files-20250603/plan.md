@@ -374,4 +374,59 @@ This execution plan provides the **actual remaining work needed** to achieve gen
 
 *Generated on: 2025-01-11*  
 *Plan Status: **CORRECTED AFTER INDEPENDENT INVESTIGATION**  
-*Approval Required: ❌ **NO ARCHIVAL UNTIL CRITICAL ISSUES RESOLVED*** 
+*Approval Required: ❌ **NO ARCHIVAL UNTIL CRITICAL ISSUES RESOLVED***
+
+# Plan for L2-T1 Phase F: Final Repository Cleanup & Project Closure
+
+This plan outlines the execution of the remaining tasks for the L2-T1 sub-project, specifically Phase F.
+
+## Phase F: Final Repository Cleanup & Project Closure
+
+**Goal:** Remove obsolete refactoring artifacts, perform final checks, and formally conclude the refactoring project.
+
+### Step 1: Repository Cleanup (Task F.1)
+
+1.  **Action (Task F.1.1):** Verify that the `/master-knowledge-base/` directory is indeed empty. If confirmed, delete the `/master-knowledge-base/` directory.
+    *   **Verification:** Check directory contents. Execute deletion.
+2.  **Action (Task F.1.2):**
+    *   Identify any remaining superseded `COL-*.md`, `U-*.md`, `M-*.md` files that were not part of the legacy root content archived in Step E.1 (Phase E, not detailed here but assumed complete as per L2-T1 roadmap structure). These would be files in deeper old paths, not at the immediate root.
+    *   Create the archive directory: `/archive/legacy-standards-v1-YYYYMMDD/` (replace YYYYMMDD with the current date, e.g., 20250602).
+    *   Move the identified superseded files into this new archive directory.
+    *   **Verification:** Confirm files are moved and no such legacy files remain in active project areas.
+3.  **Action (Task F.1.3):**
+    *   Check if an old root `/templates/` directory exists and is distinct from the current `/standards/templates/` directory.
+    *   If it exists and is distinct, delete the old root `/templates/` directory.
+    *   **Verification:** Confirm deletion if applicable.
+
+### Step 2: Review and Archive Project-Specific Tracking Files (Task F.2)
+
+1.  **Action (Task F.2.1):**
+    *   Locate and review the `master-knowledge-base-main/note.md` file. (Note: Based on previous steps, the content from `/master-knowledge-base/` should have been moved to the root. This path might need adjustment if `note.md` was moved. Assuming it's now at `./note.md` or a similar accessible project root location if it was part of the general MKB content moved.)
+    *   Identify any outstanding actions or decisions not yet incorporated into final documentation or project tasks.
+    *   Integrate any remaining critical information into relevant final documentation.
+    *   **Verification:** Review completed, necessary information integrated.
+2.  **Action (Task F.2.2):**
+    *   Create the archive directory: `/archive/project-notes/refactor-YYYYMMDD/` (replace YYYYMMDD with the current date, e.g., 20250602).
+    *   Move the `master-knowledge-base-main/note.md` (or its current equivalent path) to this new archive directory.
+    *   **Verification:** Note file archived.
+
+### Step 3: Final Project Review & Sign-off (Task F.3)
+
+1.  **Action (Task F.3.1):**
+    *   Coordinate with key stakeholders.
+    *   Conduct a final review session covering the entire refactored standards ecosystem (structure, content, tools, documentation).
+    *   **Verification:** Review session held, feedback collected.
+2.  **Action (Task F.3.2):**
+    *   Prepare a Pull Request (PR) or a merge request for the main branch.
+    *   The PR description should summarize:
+        *   The completed refactoring effort.
+        *   Key outcomes and deliverables.
+        *   Any recommendations for ongoing maintenance.
+        *   Confirmation that the PR contains the final state of the repository after all relocations and cleanup for this initiative.
+    *   **Verification:** PR created with comprehensive summary.
+3.  **Action (Task F.3.3):**
+    *   Submit the PR for review and merging.
+    *   Obtain formal sign-off (e.g., PR approval and merge) from the designated authority, signifying the completion of the refactoring project.
+    *   **Verification:** PR merged, sign-off obtained.
+
+**Note on Dates (YYYYMMDD):** All instances of YYYYMMDD should be replaced with the actual date when the task is performed. The example date `20250602` is based on the latest modification dates found in the project files reviewed.

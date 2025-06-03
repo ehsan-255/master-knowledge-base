@@ -8,20 +8,20 @@ This directory contains automation tools for managing the knowledge base, includ
 
 | Tool | Purpose | Usage |
 |------|---------|-------|
-| **date-time-manager.py** | Manage frontmatter date fields | `python date-time-manager.py scan` |
-| **todo-tracker.py** | Track and report TODO items | `python todo-tracker.py scan` |
+| **date_time_manager.py** | Manage frontmatter date fields | `python date_time_manager.py scan` |
+| **todo_tracker.py** | Track and report TODO items | `python todo_tracker.py scan` |
 | **linter/kb_linter.py** | Validate content and formatting | `python kb_linter.py --directory .` |
-| **naming-exceptions.json** | Configure naming convention exceptions | Edit configuration file |
+| **naming_exceptions.json** | Configure naming convention exceptions | Edit configuration file |
 
 ### 📁 Directory Structure
 
 ```
 tools/
 ├── README.md                          # This file
-├── naming-exceptions.json             # Naming convention exceptions
-├── todo-tracker.py                    # TODO tracking and reporting
+├── naming_exceptions.json             # Naming convention exceptions
+├── todo_tracker.py                    # TODO tracking and reporting
 ├── frontmatter-management/
-│   └── date-time-manager.py          # Date/time field management
+│   └── date_time_manager.py          # Date/time field management
 ├── linter/
 │   └── kb_linter.py                  # Content validation
 └── [other tools...]
@@ -33,19 +33,19 @@ tools/
 
 ```bash
 # Update all files with file system timestamps
-python frontmatter-management/date-time-manager.py scan
+python frontmatter-management/date_time_manager.py scan
 
 # Update specific files with manual date
-python frontmatter-management/date-time-manager.py update file1.md file2.md --date 2025-01-11
+python frontmatter-management/date_time_manager.py update file1.md file2.md --date 2025-01-11
 
 # Update with time included (for commits)
-python frontmatter-management/date-time-manager.py update file.md --time
+python frontmatter-management/date_time_manager.py update file.md --time
 
 # Lock dates to prevent automatic updates
-python frontmatter-management/date-time-manager.py lock file.md
+python frontmatter-management/date_time_manager.py lock file.md
 
 # Update only files with real changes (commit mode)
-python frontmatter-management/date-time-manager.py commit-update --time
+python frontmatter-management/date_time_manager.py commit-update --time
 ```
 
 ### How It Works
@@ -83,13 +83,13 @@ python frontmatter-management/date-time-manager.py commit-update --time
 
 ```bash
 # Scan for TODOs and show console report
-python todo-tracker.py scan
+python todo_tracker.py scan
 
 # Generate markdown report
-python todo-tracker.py report --format markdown --output todo-report.md
+python todo_tracker.py report --format markdown --output todo-report.md
 
 # Get TODO statistics
-python todo-tracker.py stats
+python todo_tracker.py stats
 ```
 
 ### TODO Format
@@ -149,7 +149,7 @@ buildScripts/
 
 ### Exception Management
 
-Edit `naming-exceptions.json` to configure exceptions:
+Edit `naming_exceptions.json` to configure exceptions:
 
 ```json
 {
@@ -188,10 +188,10 @@ Automatic timestamp updates on commits via `.github/workflows/update-timestamps.
 **Daily Maintenance**:
 ```bash
 # Update all timestamps
-python frontmatter-management/date-time-manager.py scan
+python frontmatter-management/date_time_manager.py scan
 
 # Check TODOs
-python todo-tracker.py scan
+python todo_tracker.py scan
 
 # Run linter
 python linter/kb_linter.py --directory master-knowledge-base
@@ -200,13 +200,13 @@ python linter/kb_linter.py --directory master-knowledge-base
 **Before Commits**:
 ```bash
 # Update only changed files with real content changes
-python frontmatter-management/date-time-manager.py commit-update --time
+python frontmatter-management/date_time_manager.py commit-update --time
 ```
 
 **Project Reviews**:
 ```bash
 # Generate comprehensive reports
-python todo-tracker.py report --format markdown --output project-todos.md
+python todo_tracker.py report --format markdown --output project-todos.md
 python linter/kb_linter.py --directory . --output lint-report.json
 ```
 
@@ -221,8 +221,8 @@ pip install pyyaml
 
 **Make scripts executable**:
 ```bash
-chmod +x frontmatter-management/date-time-manager.py
-chmod +x todo-tracker.py
+chmod +x frontmatter-management/date_time_manager.py
+chmod +x todo_tracker.py
 chmod +x linter/kb_linter.py
 ```
 
@@ -248,20 +248,20 @@ chmod +x linter/kb_linter.py
 ```bash
 # === Date/Time Management ===
 # Update all files
-python frontmatter-management/date-time-manager.py scan
+python frontmatter-management/date_time_manager.py scan
 
 # Manual date update
-python frontmatter-management/date-time-manager.py update *.md --date 2025-01-11
+python frontmatter-management/date_time_manager.py update *.md --date 2025-01-11
 
 # Commit mode (real changes only)
-python frontmatter-management/date-time-manager.py commit-update --time
+python frontmatter-management/date_time_manager.py commit-update --time
 
 # === TODO Tracking ===
 # Quick scan and report
-python todo-tracker.py scan
+python todo_tracker.py scan
 
 # Generate markdown report
-python todo-tracker.py report --format markdown --output todos.md
+python todo_tracker.py report --format markdown --output todos.md
 
 # === Content Validation ===
 # Run linter

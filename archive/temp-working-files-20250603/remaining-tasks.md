@@ -178,4 +178,26 @@ The L2-T1 Refactoring Initiative has achieved **PARTIAL completion** with signif
 
 *Generated on: 2025-01-11*  
 *Review Status: **CORRECTED AFTER INDEPENDENT INVESTIGATION***  
-*Archival Readiness: ❌ **NOT READY - CRITICAL ISSUES PRESENT*** 
+*Archival Readiness: ❌ **NOT READY - CRITICAL ISSUES PRESENT***
+
+# Remaining Tasks for L2-T1 (Refactoring Initiative)
+
+Based on the review of `active-project/-refactoring-initiative-completed/l2-t1-initial-refactoring-and-roadmap-phases-completed/l2-t1-roadmap.md` and `active-project/-refactoring-initiative-completed/l2-t1-initial-refactoring-and-roadmap-phases-completed/l2-t1-progress.md`, the following tasks remain for the L2-T1 sub-project:
+
+## Phase F: Final Repository Cleanup & Project Closure
+
+**Goal:** Remove obsolete refactoring artifacts, perform final checks, and formally conclude the refactoring project.
+
+*   **Step F.1: Repository Cleanup**
+    *   **Task F.1.1:** Delete the (now empty) `/master-knowledge-base/` directory.
+    *   **Task F.1.2:** Identify any remaining superseded `COL-*.md`, `U-*.md`, `M-*.md` files (that were not part of the legacy root content archived in Step E.1, e.g., if they were in deeper old paths). Move these to a dedicated archive directory: `/archive/legacy-standards-v1-YYYYMMDD/` (where YYYYMMDD is the current date).
+    *   **Task F.1.3:** Delete the old root `/templates/` directory if it exists and is distinct from `/standards/templates/`.
+
+*   **Step F.2: Review and Archive Project-Specific Tracking Files**
+    *   **Task F.2.1:** Review `master-knowledge-base-main/note.md` for any outstanding actions or decisions not yet incorporated. Integrate any remaining critical information into final documentation.
+    *   **Task F.2.2:** Archive `master-knowledge-base-main/note.md` by moving it to `/archive/project-notes/refactor-YYYYMMDD/note.md` (where YYYYMMDD is the current date).
+
+*   **Step F.3: Final Project Review & Sign-off**
+    *   **Task F.3.1:** Conduct a final review of the entire refactored standards ecosystem by all key stakeholders.
+    *   **Task F.3.2:** Prepare a final Pull Request summarizing the completed refactoring effort, key outcomes, and any recommendations for ongoing maintenance. This PR will include the final state of the repository after all relocations and cleanup.
+    *   **Task F.3.3:** Obtain formal sign-off on the completion of the refactoring project upon merging the final PR.
