@@ -177,10 +177,10 @@ class ExcludeManager:
                 else:
                     # Treat as file or directory path
                     path = Path(line)
-                    if path.is_absolute() or line.startswith('./') or line.startswith('../'):
-                        # Absolute or relative path
+                    if path.is_absolute() or line.startswith('./') or line.startswith('../') or line.endswith('/'):
+                        # Absolute or relative path, or ends with / (directory indicator)
                         resolved_path = path.resolve() if path.exists() else path
-                        if resolved_path.is_dir() or line.endswith('/'):
+                        if line.endswith('/') or (path.exists() and resolved_path.is_dir()):
                             self.add_exclude_directory(resolved_path, f"From {exclude_file.name}:{line_num}")
                         else:
                             self.add_exclude_file(resolved_path, f"From {exclude_file.name}:{line_num}")
@@ -594,9 +594,20 @@ class NamingStandardParser:
             'tool_reports': r'^[a-zA-Z0-9_-]+$',  # Lenient pattern for tool-generated reports
             'PascalCase': r'^[A-Z][a-zA-Z0-9]*$',
             'camelCase': r'^[a-z][a-zA-Z0-9]*$',
-            'UPPER_SNAKE_CASE': r'^[A-Z_][A-Z0-9_]*$',
-            'DOMAIN-SUBDOMAIN-NAME': r'^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$'  # FIXED: Exact pattern from GM-CONVENTIONS-NAMING.md
+            'UPPER_SNAKE_CASE': r'^[A-Z_][A-Z0-9_]*$'
         }
+        
+        # Extract Standard ID pattern from the document dynamically
+        standard_id_match = re.search(
+            r'### 1\.5 Standard IDs.*?- \*\*Pattern\*\*: `([^`]+)`', 
+            self.raw_content, 
+            re.DOTALL
+        )
+        if standard_id_match:
+            patterns['DOMAIN-SUBDOMAIN-NAME'] = standard_id_match.group(1)
+        else:
+            # Fallback to default if not found
+            patterns['DOMAIN-SUBDOMAIN-NAME'] = r'^[A-Z]{1,3}-[A-Z]{2,15}-[A-Z0-9\-]+$'
         
         # Extract standard ID prefixes from the document
         self.standard_id_prefixes = self.extract_standard_id_prefixes()
@@ -893,35 +904,49 @@ class NamingEnforcerV2:
         else:
             scan_directory = Path(scan_directory)
         
-        # Load .namingignore file
-        namingignore_file = scan_directory / ".namingignore"
-        if namingignore_file.exists():
-            try:
-                self.exclude_manager.load_exclude_file(namingignore_file)
-                print(f"Loaded exclusions from: {namingignore_file}")
-            except Exception as e:
-                print(f"Warning: Could not load .namingignore file: {e}")
+        # Look for .namingignore file in multiple locations:
+        # 1. Scan directory (repository root)
+        # 2. Tool directory (where the script is located)
+        tool_directory = Path(__file__).parent
         
-        # Load .naminginclude file
-        naminginclude_file = scan_directory / ".naminginclude"
-        if naminginclude_file.exists():
-            try:
-                self.include_manager.load_include_file(naminginclude_file)
-                print(f"Loaded inclusions from: {naminginclude_file}")
-            except Exception as e:
-                print(f"Warning: Could not load .naminginclude file: {e}")
+        namingignore_locations = [
+            scan_directory / ".namingignore",
+            tool_directory / ".namingignore"
+        ]
+        
+        for namingignore_file in namingignore_locations:
+            if namingignore_file.exists():
+                try:
+                    self.exclude_manager.load_exclude_file(namingignore_file)
+                    print(f"Loaded exclusions from: {namingignore_file}")
+                    break  # Only load the first one found
+                except Exception as e:
+                    print(f"Warning: Could not load .namingignore file: {e}")
+        
+        # Look for .naminginclude file in multiple locations
+        naminginclude_locations = [
+            scan_directory / ".naminginclude",
+            tool_directory / ".naminginclude"
+        ]
+        
+        for naminginclude_file in naminginclude_locations:
+            if naminginclude_file.exists():
+                try:
+                    self.include_manager.load_include_file(naminginclude_file)
+                    print(f"Loaded inclusions from: {naminginclude_file}")
+                    break  # Only load the first one found
+                except Exception as e:
+                    print(f"Warning: Could not load .naminginclude file: {e}")
     
     def reload_automatic_files(self, scan_directory: Path = None):
         """Reload automatic files for a specific scan directory"""
-        # Only reload if scan directory is different from current working directory
         if scan_directory is None:
             scan_directory = Path.cwd()
         else:
             scan_directory = Path(scan_directory)
         
-        # Only reload if we're scanning a different directory than where we initially loaded from
-        if scan_directory.resolve() != Path.cwd().resolve():
-            self._load_automatic_files(scan_directory)
+        # Always load automatic files to ensure they are available
+        self._load_automatic_files(scan_directory)
     
     def get_context_for_path(self, path: Path) -> str:
         """Determine the naming context for a given path"""
@@ -1457,6 +1482,11 @@ class NamingEnforcerV2:
         for violation in self.violations:
             if violation.violation_type in ['filename_case', 'extension_case', 'directory_case']:
                 old_path = Path(violation.path)
+                
+                # Skip excluded paths (double-check exclusions during operation building)
+                if self.exclude_manager.is_excluded(old_path):
+                    continue
+                
                 new_path = old_path.parent / violation.suggested_name
                 
                 # Find all content references

@@ -13,8 +13,10 @@ __pycache__/
 */__pycache__/
 **/__pycache__/**
 
-# Reports directory
-master-knowledge-base/tools/reports
+# Reports directory (all files and subdirectories)
+master-knowledge-base/tools/reports/
+master-knowledge-base/tools/reports/*
+master-knowledge-base/tools/reports/**/*
 
 # Temporary and backup files
 *.tmp
@@ -65,7 +67,8 @@ site/
 # Ignore archive folder and test folder
 archive/
 test-environment/
-master-knowledge-base/tools/reports/
+master-knowledge-base/tools/reports/*
+master-knowledge-base/tools/reports/**
 
 # Example exclusions for this project
 example-excludes.txt

@@ -27,7 +27,7 @@ change_log_url: N/A
     -   All activities, modifications, and transactions within this repository will undergo comprehensive forensic analysis and detailed scrutiny by the compliance audit team as part of mandatory regulatory review procedures.
 
 **1.2. Fact-Based Work - No Assumptions:**
-    -   **NEVER DECLARE SUCCESS OR COMPLETION OF A TASK UNTIL THE TASK IS AT 100% COMPLETE.**
+    -   **NEVER DECLARE OR ASSUME SUCCESS OR COMPLETION OF A TASK UNTIL THE TASK IS AT 100% COMPLETE. PERFECTION IS THE ONLY ACCEPTABLE OUTCOME.**
     -   **Never assume.** Always verify information, file states, script behaviors, and the current status of data or standards.
     -   Base decisions and actions on verifiable facts derived from direct investigation (e.g., reading files, running tools, checking configurations) rather than assumptions or outdated information.
     -   If a piece of information is critical and unknown (e.g., a file path), exhaust available tools (file search, code search) to find it. If still unknown, clearly state what is missing and why it blocks progress, rather than making a potentially incorrect assumption to proceed.

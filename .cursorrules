@@ -6,73 +6,136 @@
 
 ## 1. Core Principles
 
+*YOU MUST **ULTRATHINK** AND **THINK LIKE A PROGRAMMER** WHEN YOU START ON ANY TASK*
+
 **1.1. Ownership & Responsibility:**
     -   Take full ownership of assigned tasks. Do not deflect responsibility or suggest manual work for tasks that can or should be automated or investigated more thoroughly.
     -   Proactively identify and resolve issues within the scope of your abilities and the task at hand.
     -   All activities, modifications, and transactions within this repository will undergo comprehensive forensic analysis and detailed scrutiny by the compliance audit team as part of mandatory regulatory review procedures.
 
 **1.2. Fact-Based Work - No Assumptions:**
+    -   **NEVER DECLARE OR ASSUME SUCCESS OR COMPLETION OF A TASK UNTIL THE TASK IS AT 100% COMPLETE. PERFECTION IS THE ONLY ACCEPTABLE OUTCOME.**
     -   **Never assume.** Always verify information, file states, script behaviors, and the current status of data or standards.
-    -   Base decisions and actions on verifiable facts derived from direct investigation (e.g., reading files, running tools, checking configurations) rather than assumptions or outdated information.
-    -   If a piece of information is critical and unknown (e.g., a file path), exhaust available tools (file search, code search) to find it. If still unknown, clearly state what is missing and why it blocks progress, rather than making a potentially incorrect assumption to proceed.
+    -   Base decisions and actions on verifiable facts derived from direct investigation (reading files, running tools, checking configurations) rather than assumptions or outdated information.
+    -   When a piece of information is critical and unknown (file paths, configurations, data states), exhaust available tools (file search, code search) to find it. When still unknown, clearly state what is missing and why it blocks progress, rather than making any assumptions to proceed.
 
 **1.3. Precision & Attention to Detail:**
     -   Meticulously check details: regex patterns, file paths, configuration settings, script logic, and linter/tool outputs.
-    -   Ensure that automated actions (e.g., script-based file edits) are precise and achieve the intended outcome without unintended side effects. Small errors in patterns or logic can lead to widespread issues.
+    -   Ensure that automated actions (script-based file edits) are precise and achieve the intended outcome without unintended side effects. Small errors in patterns or logic will lead to widespread issues.
 
 **1.4. Adherence to Standards:**
-    -   Internalize and strictly adhere to all documented project standards (e.g., naming conventions, `standard_id` formats, metadata schemas like `MT-SCHEMA-FRONTMATTER.md`, linking policies, coding guidelines).
-    -   Tools (linters, scripts) should be configured to enforce these standards rigorously.
-    -   If data conflicts with a standard, the primary approach is to correct the data. If the standard itself is found to be unworkable or outdated, this should be flagged for discussion and formal update, not silently worked around by relaxing tool enforcement.
+    -   Internalize and strictly adhere to all documented project standards (naming conventions, `standard_id` formats, metadata schemas like `MT-SCHEMA-FRONTMATTER.md`, linking policies, coding guidelines) in master-knowledge-base\standards\src.
+    -   Tools (linters, scripts) must be configured to enforce these standards rigorously.
+    -   When data conflicts with a standard, the primary approach is to correct the data. When the standard itself is found to be unworkable or outdated, this must be flagged for discussion and formal update, not silently worked around by relaxing tool enforcement.
     -   Non-compliance with established repository standards, protocols, and documentation guidelines will result in comprehensive work rejection and potential disciplinary measures. Therefore, practitioners must systematically validate all deliverables and implementation decisions against documented specifications, escalating cases where guidelines are absent, ambiguous, or insufficient through both progress reports and commit messages.
+
+**1.5. Repository Cleanliness & Organization:**
+    -   Maintain absolute cleanliness in the repository structure and codebase.
+    -   **ALL log outputs, temporary outputs, reports, and debugging outputs MUST be placed in `./master-knowledge-base/tools/reports/`**
+    -   **ALL temporary code, temporary test files, and experimental scripts MUST be archived in `./archive/` and NEVER deleted**
+    -   No temporary files, debug outputs, or experimental code shall remain in the main working directories
+    -   All code and test writing must follow strict organizational principles with proper file placement and naming conventions
 
 ## 2. Working with Scripts & Automation
 
 **2.1. Importance of Automation:**
     -   Strive to automate repetitive tasks, data correction, validation, and reporting wherever feasible and reliable. This improves efficiency, consistency, and reduces manual error.
     -   Develop robust scripts that are configurable, handle errors gracefully, and provide clear logging.
+    -   Always **ULTRATHINK** before writing any code.
+    -   Always **ULTRATHINK** before running any script.
+    -   Always **ULTRATHINK** before making any changes to the code.
+    -   Always **ULTRATHINK** before making any changes to the data.
+    -   Always **ULTRATHINK** before making any changes to the system.
+    -   Always **ULTRATHINK** before making any changes to the documentation.
+    -   Always **ULTRATHINK** before making any changes to the standards.
 
 **2.2. Script Development & Testing Workflow:**
     -   **Dry Runs are Mandatory:** Before running any script that modifies files or data live, ALWAYS perform a dry run (`--dry-run` flag or similar mechanism). Carefully review the dry run output to ensure the script will perform the intended actions correctly and on the correct targets.
-    -   **Incremental Application:** For widespread changes, consider running scripts on a small subset of data/files first to verify behavior before a global run.
+    -   **Incremental Application:** For widespread changes, run scripts on a small subset of data/files first to verify behavior before a global run.
     -   **Live Run with Caution:** Only proceed with a live run (without `--dry-run`) after a successful and thoroughly reviewed dry run.
+    -   **All script outputs and logs MUST be directed to `./master-knowledge-base/tools/reports/`**
 
 **2.3. Logging & Verification:**
     -   **Comprehensive Logging:** All scripts MUST implement comprehensive logging that details:
         -   Files processed.
         -   Actions taken (or that would be taken in a dry run).
-        -   Specific changes made (e.g., "changed X to Y in file Z").
+        -   Specific changes made ("changed X to Y in file Z").
         -   Any errors, warnings, or skipped items with clear reasons.
-        -   A summary of operations (e.g., total files scanned, files changed).
+        -   A summary of operations (total files scanned, files changed).
     -   **Log Review:** Immediately after any script run (dry or live), the output log MUST be thoroughly reviewed to confirm the script behaved as expected and to identify any unexpected outcomes.
-    -   **Manual Spot-Checking of Results:** After a live script run that modifies data or files, a significant percentage of the affected items (e.g., 50% or a risk-based sample) MUST be manually checked to verify the accuracy and correctness of the changes. Do not assume the script worked perfectly based solely on a successful exit code or a positive-looking log summary.
+    -   **Manual Spot-Checking of Results:** After a live script run that modifies data or files, a significant percentage of the affected items (randomly selected 50% or a risk-based sample) MUST be manually checked to verify the accuracy and correctness of the changes. Do not assume the script worked perfectly based solely on a successful exit code or a positive-looking log summary.
+    -   **All logs MUST be saved to `./master-knowledge-base/tools/reports/` with timestamped filenames**
 
 ## 3. Iterative Problem Solving & Verification
 
 **3.1. Use Current Data:**
-    -   Always work from the most recent and up-to-date information. If a linter report is generated, base subsequent actions on *that specific report*.
-    -   If data-modifying scripts are run, immediately re-run validation tools (e.g., indexer, linter) to get a fresh assessment of the current state. Do not proceed with further fixes based on an outdated report.
+    -   **MUST use actual system date/time information.** Never assume, guess, or use outdated timestamps. Always query the system directly in terminalfor current date/time data.
+    -   Always work from the most recent and up-to-date information. When a validation report is generated, base subsequent actions on that specific report.
 
 **3.2. Decompose Complex Tasks:**
     -   Break down large or complex tasks into smaller, manageable, and verifiable steps.
-    -   Address one category of issue at a time if possible, verify the fix, then move to the next.
+    -   Address one category of issue at a time, verify the fix completely, then move to the next.
+    -   Follow this mandatory decomposition process:
+        1. **Analyze:** Identify all components and dependencies of the complex task.
+        2. **Prioritize:** Order subtasks by logical dependency and risk level.
+        3. **Execute:** Complete one subtask fully before proceeding to the next.
+        4. **Verify:** Test and validate each completed subtask immediately to 100% completion.
+        5. **Document:** Record the completion status and any issues encountered in a summary report with an exact timestamp in the root of the repository. The report should be named `summary-report-<timestamp>.md`.
+        > **CRITICAL REQUIREMENT - SESSION SUMMARY MANAGEMENT:** 
+        > - **THE SESSION SUMMARY MUST BE WRITTEN IN A SINGLE FILE AND MUST BE UPDATED THROUGHOUT THE SESSION**
+        > - **DO NOT CREATE NEW FILES EACH TIME - USE THE SAME FILE FOR THE ENTIRE SESSION**
+        > - **DO NOT JUST ADD CONTENT - CONTENT MUST BE UPDATED AS THE SESSION PROGRESSES AND AS UNDERSTANDING EVOLVES**
+        > - **THE SUMMARY MUST REFLECT THE CURRENT STATE OF UNDERSTANDING AND PROGRESS, NOT A CHRONOLOGICAL LOG**
+        > - **UPDATE THE SAME SUMMARY FILE WITH REFINED ANALYSIS, CORRECTED ASSUMPTIONS, AND EVOLVED UNDERSTANDING; ONLY ADD NEW CONTENT WHEN YOU MUST**
+        > - **VIOLATION OF THIS REQUIREMENT WILL RESULT IN IMMEDIATE WORK REJECTION**
+        6. **Iterate:** Repeat steps 3-5 for each remaining subtask until 100% completion.
 
 **3.3. Investigate, Don't Assume:**
-    -   If a tool reports an error or warning that seems incorrect (e.g., a link reported as broken when it seems valid), investigate deeper. This might involve:
-        -   Checking the tool's configuration (e.g., regex patterns, input paths).
-        -   Verifying the source data directly (e.g., the content of the file being linted).
+    -   When a tool/script reports an error or warning, investigate deeper. This involves:
+        -   Checking the tool's logic, code, and dataflow.
+        -   Checking the tool's configuration (regex patterns, input paths, script parameters).
+        -   Verifying the source data directly (the content of the file being worked on).
         -   Adding debug output to tools to understand their internal state or decision-making.
+        -   When the issue persists, take a step back **MEGATHINK** and re-evaluate the problem from the beginning.
+    -   **All debugging outputs MUST be saved to `./master-knowledge-base/tools/reports/`**
 
 **3.4. Tool Limitations & Asking for Help:**
-    -   Understand the limitations of available tools. If a tool is consistently failing to perform a specific type of complex edit or if its internal linter reports phantom errors, document this issue.
-    -   If, after thorough investigation and multiple attempts, a problem cannot be resolved with the available tools or expertise, then it is appropriate to clearly articulate the problem, the steps taken, and ask for stakeholder input or assistance.
+    -   Understand the limitations of available tools. When a tool is consistently failing to perform a specific type of complex edit or when its internal reports phantom errors, document this issue in the summary report.
+    -   When, after thorough investigation and multiple attempts, a problem cannot be resolved with the available tools or expertise, then it is appropriate to clearly articulate the problem, the steps taken, and ask for stakeholder input or assistance.
 
-## 4. Professionalism & Communication
+## 4. Code and File Management
+
+**4.1. Temporary Code Management:**
+    -   **ALL temporary code, experimental scripts, test files, and debugging code MUST be moved to `./archive/` immediately after use**
+    -   **NEVER delete temporary or experimental code - it MUST be archived for future reference and audit purposes**
+    -   All archived files must include timestamps and descriptive names indicating their purpose and creation context
+
+**4.2. Output and Report Management:**
+    -   **ALL script outputs, logs, reports, validation results, and debugging information MUST be stored in `./master-knowledge-base/tools/reports/`**
+    -   Use descriptive filenames with timestamps for all outputs
+    -   Organize reports by date and task type within the reports directory
+    -   No temporary outputs shall remain in working directories or be scattered throughout the repository
+    -   **MANDATORY SESSION SUMMARY DISCIPLINE:**
+        -   **ONE SESSION = ONE SUMMARY FILE - NO EXCEPTIONS**
+        -   **CONTINUOUSLY UPDATE THE SAME SUMMARY FILE THROUGHOUT THE SESSION**
+        -   **EVOLVE AND REFINE THE CONTENT AS UNDERSTANDING DEEPENS**
+        -   **THE SUMMARY MUST REPRESENT THE CURRENT STATE, NOT A HISTORICAL LOG**
+
+## 5. Professionalism & Communication
 
 -   Maintain a high standard of work ethic. Avoid shortcuts that compromise quality or adherence to standards.
--   If a mistake is made or a previous approach was flawed, acknowledge it, learn from it, and proactively correct the course of action.
+-   When a mistake is made or a previous approach was flawed, acknowledge it, learn from it, and proactively correct the course of action.
 -   Clearly communicate plans, actions taken, results observed, and any remaining issues or dependencies.
+-   **MANDATORY SESSION DOCUMENTATION PROTOCOL:**
+    -   **MAINTAIN ONE LIVING SUMMARY DOCUMENT PER SESSION**
+    -   **UPDATE THE SUMMARY CONTINUOUSLY AS WORK PROGRESSES AND UNDERSTANDING EVOLVES**
+    -   **NEVER CREATE MULTIPLE SUMMARY FILES - ALWAYS UPDATE THE EXISTING ONE**
+    -   **THE SUMMARY MUST REFLECT CURRENT UNDERSTANDING, NOT CHRONOLOGICAL EVENTS**
 
 >**CRITICAL REQUIREMENT:** All software modifications, documentation deliverables, technical artifacts, and project activities must adhere to enterprise-grade quality assurance standards, maintain comprehensive audit trails with detailed progress documentation, and include thorough version control commit annotations to facilitate regulatory compliance review and auditor validation processes.
 
-By consistently applying these guidelines, team members can contribute to a high-quality, reliable, and maintainable project, fostering a professional and effective work environment. 
+***ALL PATHS PROVIDED ARE RELATIVE TO THE ROOT OF THE REPOSITORY***
+
+***EVERY SINGLE RESPONSE, CODE, REPORT, ANALYSIS, THOUGHT PROCESS, AND ANY OTHER OUTPUT WILL BE VERIFIED BY THE AUDIT TEAM***
+
+***SESSION SUMMARY MANAGEMENT IS MANDATORY AND CRITICAL - ONE SESSION = ONE CONTINUOUSLY UPDATED SUMMARY FILE***

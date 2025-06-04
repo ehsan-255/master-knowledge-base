@@ -94,7 +94,7 @@ impact_areas:
 
 ### 1.5 Standard IDs
 **Rule**: **DOMAIN-SUBDOMAIN-NAME** (uppercase with hyphens)
-- **Pattern**: `^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$`
+- **Pattern**: `^[A-Z]{1,3}-[A-Z]{2,15}-[A-Z0-9\-]+$`
 - **Examples**: `GM-CONVENTIONS-NAMING`, `MT-SCHEMA-FRONTMATTER`
 - **Rationale**: Established system convention, hierarchical organization
 
