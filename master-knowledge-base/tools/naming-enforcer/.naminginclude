@@ -1,0 +1,51 @@
+# .naminginclude - Automatic inclusion patterns for naming enforcer
+# This file works like .gitignore but for inclusions - patterns are automatically loaded
+# Lines starting with # are comments
+# If this file exists, ONLY matching patterns will be processed
+
+# Example: Include only the main knowledge base content
+# Uncomment these lines to focus on the core knowledge base:
+# master-knowledge-base/
+# active-project/
+
+# Example: Include only standards and documentation
+# Uncomment to process only standards and docs:
+# master-knowledge-base/standards/
+# *.md
+# README*
+
+# Example: Include only tools and scripts
+# Uncomment to focus on tools development:
+# master-knowledge-base/tools/
+# *.py
+# *.js
+
+# Example: Include only active project work
+# Uncomment to focus on current active projects:
+# active-project/
+# *.md
+# *.py
+
+# Example: Include only naming enforcer development
+# Uncomment to focus on naming enforcer work:
+# master-knowledge-base/tools/naming-enforcer/
+# *.py
+# *.md
+
+# Example: Include only documentation files across the repo
+# Uncomment to process only documentation:
+# *.md
+# *.rst
+# *.txt
+# README*
+# CHANGELOG*
+# CONTRIBUTING*
+
+# Example: Include only source code files
+# Uncomment to process only code:
+# *.py
+# *.js
+# *.ts
+# *.json
+# *.yaml
+# *.yml 

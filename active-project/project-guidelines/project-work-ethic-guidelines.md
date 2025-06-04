@@ -44,6 +44,8 @@ change_log_url: N/A
 
 ## 2. Working with Scripts & Automation
 
+**NEVER SAVE SCRIPT OUTPUT/LOG FILES TO THE REPOSITORY ROOT; SAVE THEM TO master-knowledge-base\tools\reports.**
+
 **2.1. Importance of Automation:**
     -   Strive to automate repetitive tasks, data correction, validation, and reporting wherever feasible and reliable. This improves efficiency, consistency, and reduces manual error.
     -   Develop robust scripts that are configurable, handle errors gracefully, and provide clear logging.

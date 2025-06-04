@@ -20,6 +20,8 @@ from typing import List, Dict, Set, Optional, Tuple, Union
 from collections import defaultdict
 from datetime import datetime
 import yaml
+from uuid import uuid4
+import fnmatch
 
 @dataclass
 class NamingRule:
@@ -78,6 +80,318 @@ class BackupManifest:
     backed_up_files: List[str] = field(default_factory=list)
     backup_directory: str = ""
 
+@dataclass
+class ExcludePattern:
+    """Represents an exclusion pattern with metadata"""
+    pattern: str
+    pattern_type: str  # 'file', 'directory', 'glob', 'regex'
+    is_absolute: bool = False
+    description: str = ""
+
+@dataclass
+class IncludePattern:
+    """Represents an inclusion pattern with metadata"""
+    pattern: str
+    pattern_type: str  # 'file', 'directory', 'glob', 'regex'
+    is_absolute: bool = False
+    description: str = ""
+
+class ExcludeManager:
+    """Manages all exclusion patterns and logic for the naming enforcer"""
+    
+    def __init__(self):
+        self.exclude_patterns: List[ExcludePattern] = []
+        self.exclude_files: Set[Path] = set()
+        self.exclude_directories: Set[Path] = set()
+        self.exclude_globs: List[str] = []
+        self.exclude_regexes: List[re.Pattern] = []
+        
+    def add_exclude_file(self, file_path: Union[str, Path], description: str = ""):
+        """Add a single file to exclusions"""
+        path = Path(file_path).resolve()
+        self.exclude_files.add(path)
+        self.exclude_patterns.append(ExcludePattern(
+            pattern=str(path),
+            pattern_type='file',
+            is_absolute=True,
+            description=description or f"Excluded file: {path.name}"
+        ))
+    
+    def add_exclude_directory(self, dir_path: Union[str, Path], description: str = ""):
+        """Add a single directory to exclusions"""
+        path = Path(dir_path).resolve()
+        self.exclude_directories.add(path)
+        self.exclude_patterns.append(ExcludePattern(
+            pattern=str(path),
+            pattern_type='directory',
+            is_absolute=True,
+            description=description or f"Excluded directory: {path.name}"
+        ))
+    
+    def add_exclude_glob(self, glob_pattern: str, description: str = ""):
+        """Add a glob pattern to exclusions"""
+        self.exclude_globs.append(glob_pattern)
+        self.exclude_patterns.append(ExcludePattern(
+            pattern=glob_pattern,
+            pattern_type='glob',
+            is_absolute=False,
+            description=description or f"Excluded glob: {glob_pattern}"
+        ))
+    
+    def add_exclude_regex(self, regex_pattern: str, description: str = ""):
+        """Add a regex pattern to exclusions"""
+        try:
+            compiled_regex = re.compile(regex_pattern)
+            self.exclude_regexes.append(compiled_regex)
+            self.exclude_patterns.append(ExcludePattern(
+                pattern=regex_pattern,
+                pattern_type='regex',
+                is_absolute=False,
+                description=description or f"Excluded regex: {regex_pattern}"
+            ))
+        except re.error as e:
+            raise ValueError(f"Invalid regex pattern '{regex_pattern}': {e}")
+    
+    def load_exclude_file(self, exclude_file_path: Union[str, Path]):
+        """Load exclusions from a file (one pattern per line)"""
+        exclude_file = Path(exclude_file_path)
+        if not exclude_file.exists():
+            raise FileNotFoundError(f"Exclude file not found: {exclude_file}")
+        
+        with open(exclude_file, 'r', encoding='utf-8') as f:
+            for line_num, line in enumerate(f, 1):
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                
+                # Determine pattern type based on content
+                if line.startswith('regex:'):
+                    pattern = line[6:].strip()
+                    self.add_exclude_regex(pattern, f"From {exclude_file.name}:{line_num}")
+                elif line.startswith('glob:'):
+                    pattern = line[5:].strip()
+                    self.add_exclude_glob(pattern, f"From {exclude_file.name}:{line_num}")
+                elif '*' in line or '?' in line or '[' in line:
+                    # Looks like a glob pattern
+                    self.add_exclude_glob(line, f"From {exclude_file.name}:{line_num}")
+                else:
+                    # Treat as file or directory path
+                    path = Path(line)
+                    if path.is_absolute() or line.startswith('./') or line.startswith('../'):
+                        # Absolute or relative path
+                        resolved_path = path.resolve() if path.exists() else path
+                        if resolved_path.is_dir() or line.endswith('/'):
+                            self.add_exclude_directory(resolved_path, f"From {exclude_file.name}:{line_num}")
+                        else:
+                            self.add_exclude_file(resolved_path, f"From {exclude_file.name}:{line_num}")
+                    else:
+                        # Treat as glob pattern for relative paths
+                        self.add_exclude_glob(line, f"From {exclude_file.name}:{line_num}")
+    
+    def is_excluded(self, path: Path) -> bool:
+        """Check if a path should be excluded"""
+        resolved_path = path.resolve()
+        path_str = str(resolved_path)
+        relative_path_str = str(path)
+        
+        # Check exact file matches
+        if resolved_path in self.exclude_files:
+            return True
+        
+        # Check if path is within any excluded directory
+        for exclude_dir in self.exclude_directories:
+            try:
+                resolved_path.relative_to(exclude_dir)
+                return True  # Path is within excluded directory
+            except ValueError:
+                continue  # Path is not within this excluded directory
+        
+        # Check glob patterns against both absolute and relative paths
+        for glob_pattern in self.exclude_globs:
+            if (fnmatch.fnmatch(path_str, glob_pattern) or 
+                fnmatch.fnmatch(relative_path_str, glob_pattern) or
+                fnmatch.fnmatch(path.name, glob_pattern)):
+                return True
+        
+        # Check regex patterns
+        for regex_pattern in self.exclude_regexes:
+            if (regex_pattern.search(path_str) or 
+                regex_pattern.search(relative_path_str) or
+                regex_pattern.search(path.name)):
+                return True
+        
+        return False
+    
+    def get_exclusion_summary(self) -> str:
+        """Get a summary of all exclusion patterns"""
+        if not self.exclude_patterns:
+            return "No exclusions configured"
+        
+        summary = ["Exclusion Summary:"]
+        by_type = defaultdict(list)
+        
+        for pattern in self.exclude_patterns:
+            by_type[pattern.pattern_type].append(pattern)
+        
+        for pattern_type, patterns in by_type.items():
+            summary.append(f"  {pattern_type.title()}s ({len(patterns)}):")
+            for pattern in patterns[:5]:  # Show first 5
+                summary.append(f"    - {pattern.pattern}")
+            if len(patterns) > 5:
+                summary.append(f"    ... and {len(patterns) - 5} more")
+        
+        return "\n".join(summary)
+
+class IncludeManager:
+    """Manages all inclusion patterns and logic for the naming enforcer"""
+    
+    def __init__(self):
+        self.include_patterns: List[IncludePattern] = []
+        self.include_files: Set[Path] = set()
+        self.include_directories: Set[Path] = set()
+        self.include_globs: List[str] = []
+        self.include_regexes: List[re.Pattern] = []
+        
+    def add_include_file(self, file_path: Union[str, Path], description: str = ""):
+        """Add a single file to inclusions"""
+        path = Path(file_path).resolve()
+        self.include_files.add(path)
+        self.include_patterns.append(IncludePattern(
+            pattern=str(path),
+            pattern_type='file',
+            is_absolute=True,
+            description=description or f"Included file: {path.name}"
+        ))
+    
+    def add_include_directory(self, dir_path: Union[str, Path], description: str = ""):
+        """Add a single directory to inclusions"""
+        path = Path(dir_path).resolve()
+        self.include_directories.add(path)
+        self.include_patterns.append(IncludePattern(
+            pattern=str(path),
+            pattern_type='directory',
+            is_absolute=True,
+            description=description or f"Included directory: {path.name}"
+        ))
+    
+    def add_include_glob(self, glob_pattern: str, description: str = ""):
+        """Add a glob pattern to inclusions"""
+        self.include_globs.append(glob_pattern)
+        self.include_patterns.append(IncludePattern(
+            pattern=glob_pattern,
+            pattern_type='glob',
+            is_absolute=False,
+            description=description or f"Included glob: {glob_pattern}"
+        ))
+    
+    def add_include_regex(self, regex_pattern: str, description: str = ""):
+        """Add a regex pattern to inclusions"""
+        try:
+            compiled_regex = re.compile(regex_pattern)
+            self.include_regexes.append(compiled_regex)
+            self.include_patterns.append(IncludePattern(
+                pattern=regex_pattern,
+                pattern_type='regex',
+                is_absolute=False,
+                description=description or f"Included regex: {regex_pattern}"
+            ))
+        except re.error as e:
+            raise ValueError(f"Invalid regex pattern '{regex_pattern}': {e}")
+    
+    def load_include_file(self, include_file_path: Union[str, Path]):
+        """Load inclusions from a file (one pattern per line)"""
+        include_file = Path(include_file_path)
+        if not include_file.exists():
+            raise FileNotFoundError(f"Include file not found: {include_file}")
+        
+        with open(include_file, 'r', encoding='utf-8') as f:
+            for line_num, line in enumerate(f, 1):
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                
+                # Determine pattern type based on content
+                if line.startswith('regex:'):
+                    pattern = line[6:].strip()
+                    self.add_include_regex(pattern, f"From {include_file.name}:{line_num}")
+                elif line.startswith('glob:'):
+                    pattern = line[5:].strip()
+                    self.add_include_glob(pattern, f"From {include_file.name}:{line_num}")
+                elif '*' in line or '?' in line or '[' in line:
+                    # Looks like a glob pattern
+                    self.add_include_glob(line, f"From {include_file.name}:{line_num}")
+                else:
+                    # Treat as file or directory path
+                    path = Path(line)
+                    if path.is_absolute() or line.startswith('./') or line.startswith('../'):
+                        # Absolute or relative path
+                        resolved_path = path.resolve() if path.exists() else path
+                        if resolved_path.is_dir() or line.endswith('/'):
+                            self.add_include_directory(resolved_path, f"From {include_file.name}:{line_num}")
+                        else:
+                            self.add_include_file(resolved_path, f"From {include_file.name}:{line_num}")
+                    else:
+                        # Treat as glob pattern for relative paths
+                        self.add_include_glob(line, f"From {include_file.name}:{line_num}")
+    
+    def is_included(self, path: Path) -> bool:
+        """Check if a path should be included"""
+        # If no include patterns are configured, include everything by default
+        if not self.include_patterns:
+            return True
+            
+        resolved_path = path.resolve()
+        path_str = str(resolved_path)
+        relative_path_str = str(path)
+        
+        # Check exact file matches
+        if resolved_path in self.include_files:
+            return True
+        
+        # Check if path is within any included directory
+        for include_dir in self.include_directories:
+            try:
+                resolved_path.relative_to(include_dir)
+                return True  # Path is within included directory
+            except ValueError:
+                continue  # Path is not within this included directory
+        
+        # Check glob patterns against both absolute and relative paths
+        for glob_pattern in self.include_globs:
+            if (fnmatch.fnmatch(path_str, glob_pattern) or 
+                fnmatch.fnmatch(relative_path_str, glob_pattern) or
+                fnmatch.fnmatch(path.name, glob_pattern)):
+                return True
+        
+        # Check regex patterns
+        for regex_pattern in self.include_regexes:
+            if (regex_pattern.search(path_str) or 
+                regex_pattern.search(relative_path_str) or
+                regex_pattern.search(path.name)):
+                return True
+        
+        return False
+    
+    def get_inclusion_summary(self) -> str:
+        """Get a summary of all inclusion patterns"""
+        if not self.include_patterns:
+            return "No inclusions configured (processing all files)"
+        
+        summary = ["Inclusion Summary:"]
+        by_type = defaultdict(list)
+        
+        for pattern in self.include_patterns:
+            by_type[pattern.pattern_type].append(pattern)
+        
+        for pattern_type, patterns in by_type.items():
+            summary.append(f"  {pattern_type.title()}s ({len(patterns)}):")
+            for pattern in patterns[:5]:  # Show first 5
+                summary.append(f"    - {pattern.pattern}")
+            if len(patterns) > 5:
+                summary.append(f"    ... and {len(patterns) - 5} more")
+        
+        return "\n".join(summary)
+
 class SafetyLogger:
     """Comprehensive logging system with emergency rollback capabilities"""
     
@@ -92,7 +406,10 @@ class SafetyLogger:
     
     def setup_logging(self):
         """Setup structured logging to files"""
-        log_dir = Path("master-knowledge-base/tools/reports")
+        # Get the repo root by going up from the current script location
+        script_dir = Path(__file__).parent
+        repo_root = script_dir.parent.parent.parent  # Go up from tools/naming-enforcer to repo root
+        log_dir = repo_root / "master-knowledge-base" / "tools" / "reports"
         log_dir.mkdir(parents=True, exist_ok=True)
         
         # Operation log file
@@ -142,7 +459,10 @@ class SafetyLogger:
     def create_backup(self, files_to_backup: List[Path], operation_description: str) -> bool:
         """Create timestamped backup of files before modification"""
         try:
-            backup_dir = Path("master-knowledge-base/tools/reports/backups") / self.operation_id
+            # Get the repo root by going up from the current script location
+            script_dir = Path(__file__).parent
+            repo_root = script_dir.parent.parent.parent  # Go up from tools/naming-enforcer to repo root
+            backup_dir = repo_root / "master-knowledge-base" / "tools" / "reports" / "backups" / self.operation_id
             backup_dir.mkdir(parents=True, exist_ok=True)
             
             self.backup_manifest = BackupManifest(
@@ -157,10 +477,10 @@ class SafetyLogger:
                     backup_file = backup_dir / file_path.name
                     shutil.copy2(file_path, backup_file)
                     self.backup_manifest.backed_up_files.append(str(file_path))
-                    self.logger.info(f"💾 Backed up: {file_path}")
+                    self.logger.info(f"BACKUP: Backed up: {file_path}")
             
             # Save backup manifest
-            manifest_file = backup_dir / "backup_manifest.json"
+            manifest_file = backup_dir / "backup-manifest.json"
             with open(manifest_file, 'w') as f:
                 json.dump({
                     "backup_id": self.backup_manifest.backup_id,
@@ -174,12 +494,15 @@ class SafetyLogger:
             return True
             
         except Exception as e:
-            self.logger.error(f"❌ Backup failed: {e}")
+            self.logger.error(f"ERROR: Backup failed: {e}")
             return False
     
     def save_operation_log(self):
         """Save complete operation log for rollback capabilities"""
-        log_dir = Path("master-knowledge-base/tools/reports")
+        # Get the repo root by going up from the current script location
+        script_dir = Path(__file__).parent
+        repo_root = script_dir.parent.parent.parent  # Go up from tools/naming-enforcer to repo root
+        log_dir = repo_root / "master-knowledge-base" / "tools" / "reports"
         log_file = log_dir / f"{self.operation_id}_operations.json"
         
         log_data = {
@@ -212,28 +535,34 @@ class SafetyLogger:
         with open(log_file, 'w') as f:
             json.dump(log_data, f, indent=2)
         
-        self.logger.info(f"💾 Saved operation log: {log_file}")
+        self.logger.info(f"SAVED: Saved operation log: {log_file}")
     
     def finalize_operation(self):
         """Finalize logging and provide summary"""
         successes = len([log for log in self.logs if log.status == "success"])
         failures = len([log for log in self.logs if log.status == "failed"])
         
-        self.logger.info(f"🏁 Operation complete: {self.operation_id}")
-        self.logger.info(f"✅ Successful operations: {successes}")
-        self.logger.info(f"❌ Failed operations: {failures}")
+        self.logger.info(f"COMPLETE: Operation complete: {self.operation_id}")
+        self.logger.info(f"SUCCESS: Successful operations: {successes}")
+        self.logger.info(f"ERROR: Failed operations: {failures}")
         
         self.save_operation_log()
         
         if failures > 0:
-            self.logger.warning(f"⚠️  {failures} operations failed - check logs for details")
-            self.logger.warning(f"💡 Use rollback functionality if needed")
+            self.logger.warning(f"WARNING: {failures} operations failed - check logs for details")
+            self.logger.warning(f"INFO: Use rollback functionality if needed")
 
 class NamingStandardParser:
-    """Parses GM-CONVENTIONS-NAMING.md to extract all naming rules"""
+    """Parse naming standards from the official document"""
     
-    def __init__(self, standard_path: str = "master-knowledge-base/standards/src/GM-CONVENTIONS-NAMING.md"):
-        self.standard_path = Path(standard_path)
+    def __init__(self, standard_path: str = None):
+        if standard_path is None:
+            # Get the repo root by going up from the current script location
+            script_dir = Path(__file__).parent
+            repo_root = script_dir.parent.parent.parent  # Go up from tools/naming-enforcer to repo root
+            self.standard_path = repo_root / "master-knowledge-base" / "standards" / "src" / "GM-CONVENTIONS-NAMING.md"
+        else:
+            self.standard_path = Path(standard_path)
         self.raw_content = ""
         self.rules: Dict[str, List[NamingRule]] = {}
         self.protected_names: Dict[str, Set[str]] = {}
@@ -517,7 +846,6 @@ class NamingStandardParser:
             for pattern in self.exceptions.get('temp_files', []):
                 # Handle glob patterns
                 if '*' in pattern:
-                    import fnmatch
                     if fnmatch.fnmatch(filename, pattern):
                         return True
                 elif filename == pattern:
@@ -533,18 +861,67 @@ class NamingStandardParser:
         return False
 
 class NamingEnforcerV2:
-    """Modern naming enforcer using GM-CONVENTIONS-NAMING.md as single source"""
+    """Advanced naming convention enforcer with comprehensive violation detection"""
     
-    def __init__(self, standard_path: str = "master-knowledge-base/standards/src/GM-CONVENTIONS-NAMING.md"):
+    def __init__(self, standard_path: str = None):
+        if standard_path is None:
+            # Get the repo root by going up from the current script location
+            script_dir = Path(__file__).parent
+            repo_root = script_dir.parent.parent.parent  # Go up from tools/naming-enforcer to repo root
+            standard_path = str(repo_root / "master-knowledge-base" / "standards" / "src" / "GM-CONVENTIONS-NAMING.md")
+        
         self.parser = NamingStandardParser(standard_path)
         self.violations: List[NamingViolation] = []
         self.rename_operations: List[RenameOperation] = []
+        self.exclude_manager = ExcludeManager()
+        self.include_manager = IncludeManager()
+        
+        # Load automatic ignore/include files if they exist
+        self._load_automatic_files()
         
         # Compiled regex patterns for performance
         self.compiled_patterns = {
             context: re.compile(pattern)
             for context, pattern in self.parser.patterns.items()
         }
+    
+    def _load_automatic_files(self, scan_directory: Path = None):
+        """Load .namingignore and .naminginclude files automatically"""
+        # Determine the directory to look for automatic files
+        if scan_directory is None:
+            scan_directory = Path.cwd()
+        else:
+            scan_directory = Path(scan_directory)
+        
+        # Load .namingignore file
+        namingignore_file = scan_directory / ".namingignore"
+        if namingignore_file.exists():
+            try:
+                self.exclude_manager.load_exclude_file(namingignore_file)
+                print(f"Loaded exclusions from: {namingignore_file}")
+            except Exception as e:
+                print(f"Warning: Could not load .namingignore file: {e}")
+        
+        # Load .naminginclude file
+        naminginclude_file = scan_directory / ".naminginclude"
+        if naminginclude_file.exists():
+            try:
+                self.include_manager.load_include_file(naminginclude_file)
+                print(f"Loaded inclusions from: {naminginclude_file}")
+            except Exception as e:
+                print(f"Warning: Could not load .naminginclude file: {e}")
+    
+    def reload_automatic_files(self, scan_directory: Path = None):
+        """Reload automatic files for a specific scan directory"""
+        # Only reload if scan directory is different from current working directory
+        if scan_directory is None:
+            scan_directory = Path.cwd()
+        else:
+            scan_directory = Path(scan_directory)
+        
+        # Only reload if we're scanning a different directory than where we initially loaded from
+        if scan_directory.resolve() != Path.cwd().resolve():
+            self._load_automatic_files(scan_directory)
     
     def get_context_for_path(self, path: Path) -> str:
         """Determine the naming context for a given path"""
@@ -686,11 +1063,59 @@ class NamingEnforcerV2:
         violations = []
         
         def walk_path(path: Path):
+            # Check built-in exceptions first
             if self.parser.is_exception(path):
                 return
             
+            # Check exclude logic first (exclude takes precedence)
+            if self.exclude_manager.is_excluded(path):
+                return
+            
+            # For include logic: if include patterns are configured, check if this path should be included
+            # The key fix: we need to check if the path OR any of its parents are included
+            if self.include_manager.include_patterns:
+                path_included = False
+                
+                # Check if the path itself is included
+                if self.include_manager.is_included(path):
+                    path_included = True
+                else:
+                    # Check if any parent directory is included (for recursive scanning)
+                    current_path = path
+                    while current_path != current_path.parent:
+                        current_path = current_path.parent
+                        if self.include_manager.is_included(current_path):
+                            path_included = True
+                            break
+                
+                if not path_included:
+                    return
+            
             try:
                 for item in path.iterdir():
+                    # Check exclude logic for each item first
+                    if self.exclude_manager.is_excluded(item):
+                        continue
+                    
+                    # For include logic: if include patterns are configured, check inclusion
+                    if self.include_manager.include_patterns:
+                        item_included = False
+                        
+                        # Check if the item itself is included
+                        if self.include_manager.is_included(item):
+                            item_included = True
+                        else:
+                            # Check if any parent directory is included (for recursive scanning)
+                            current_path = item
+                            while current_path != current_path.parent:
+                                current_path = current_path.parent
+                                if self.include_manager.is_included(current_path):
+                                    item_included = True
+                                    break
+                        
+                        if not item_included:
+                            continue
+                        
                     if item.is_dir():
                         if not self.parser.is_exception(item):
                             violation = self.validate_directory_name(item)
@@ -870,12 +1295,25 @@ class NamingEnforcerV2:
         """Print a detailed report of violations"""
         if not self.violations:
             print("No naming violations found!")
+            # Show inclusion/exclusion summary even when no violations
+            if self.include_manager.include_patterns or self.exclude_manager.exclude_patterns:
+                if self.include_manager.include_patterns:
+                    print(f"\n{self.include_manager.get_inclusion_summary()}")
+                if self.exclude_manager.exclude_patterns:
+                    print(f"\n{self.exclude_manager.get_exclusion_summary()}")
             return
         
         print(f"\nNAMING VIOLATIONS REPORT")
         print(f"{'='*60}")
         print(f"Source of Truth: {self.parser.standard_path}")
         print(f"Total violations: {len(self.violations)}")
+        
+        # Show inclusion/exclusion summary if any patterns are configured
+        if self.include_manager.include_patterns or self.exclude_manager.exclude_patterns:
+            if self.include_manager.include_patterns:
+                print(f"\n{self.include_manager.get_inclusion_summary()}")
+            if self.exclude_manager.exclude_patterns:
+                print(f"\n{self.exclude_manager.get_exclusion_summary()}")
         
         # Group by violation type
         by_type = defaultdict(list)
@@ -916,8 +1354,10 @@ class NamingEnforcerV2:
             if not file_path.is_file():
                 continue
                 
-            # Skip excluded files and directories
-            if self.parser.is_exception(file_path):
+            # Skip excluded files and directories, respect include/exclude logic
+            if (self.parser.is_exception(file_path) or 
+                self.exclude_manager.is_excluded(file_path) or 
+                not self.include_manager.is_included(file_path)):
                 continue
                 
             # Only scan text files
@@ -1040,9 +1480,9 @@ class NamingEnforcerV2:
             
             for op in self.rename_operations:
                 if op.content_updates:
-                    safety_logger.logger.info(f"📝 {op.old_path} → {op.new_path.name}:")
+                    safety_logger.logger.info(f"RENAME: {op.old_path} -> {op.new_path.name}:")
                     for update in op.content_updates[:3]:  # Show first 3
-                        safety_logger.logger.info(f"  📄 {Path(update.file_path).name}:{update.line_number}")
+                        safety_logger.logger.info(f"  FILE: {Path(update.file_path).name}:{update.line_number}")
                         safety_logger.logger.info(f"    - {update.old_text[:80]}...")
                         safety_logger.logger.info(f"    + {update.new_text[:80]}...")
                     if len(op.content_updates) > 3:
@@ -1088,7 +1528,7 @@ class NamingEnforcerV2:
             except Exception as e:
                 safety_logger.mark_failed(log_entry, str(e))
         
-        safety_logger.logger.info(f"✅ Updated {len(updated_files)} files with {total_updates} content references")
+        safety_logger.logger.info(f"SUCCESS: Updated {len(updated_files)} files with {total_updates} content references")
         return len(updated_files)
     
     def apply_frontmatter_fixes(self, safety_logger: SafetyLogger, dry_run: bool = True) -> int:
@@ -1185,10 +1625,10 @@ class NamingEnforcerV2:
                            if str(op.old_path) != str(op.new_path)]
         
         if dry_run:
-            safety_logger.logger.info(f"🔍 DRY RUN - Would rename {len(rename_operations)} files/directories")
+            safety_logger.logger.info(f"DRY RUN - Would rename {len(rename_operations)} files/directories")
             
             for op in rename_operations:
-                safety_logger.logger.info(f"📝 {op.old_path} → {op.new_path}")
+                safety_logger.logger.info(f"RENAME: {op.old_path} -> {op.new_path}")
             
             return len(rename_operations)
         
@@ -1207,8 +1647,8 @@ class NamingEnforcerV2:
             
             try:
                 if op.old_path.exists():
-                    if not op.new_path.exists():
-                        op.old_path.rename(op.new_path)
+                    if not op.new_path.exists() or self._is_case_only_rename(op.old_path, op.new_path):
+                        self._safe_rename(op.old_path, op.new_path)
                         safety_logger.mark_success(log_entry)
                         renamed_count += 1
                     else:
@@ -1219,19 +1659,70 @@ class NamingEnforcerV2:
             except Exception as e:
                 safety_logger.mark_failed(log_entry, str(e))
         
-        safety_logger.logger.info(f"✅ Renamed {renamed_count} files/directories")
+        safety_logger.logger.info(f"SUCCESS: Renamed {renamed_count} files/directories")
         return renamed_count
+
+    def _is_case_only_rename(self, old_path: Path, new_path: Path) -> bool:
+        """Check if this is a case-only rename (same path, different case)"""
+        return str(old_path).lower() == str(new_path).lower()
+    
+    def _safe_rename(self, old_path: Path, new_path: Path):
+        """Safely rename files, handling case-only renames on Windows"""
+        if self._is_case_only_rename(old_path, new_path):
+            # Case-only rename - use temporary file approach for Windows compatibility
+            temp_path = old_path.parent / f"temp_{uuid4().hex}_{new_path.name}"
+            old_path.rename(temp_path)  # Step 1: rename to temp
+            temp_path.rename(new_path)  # Step 2: rename to final
+        else:
+            # Different names - direct rename is safe
+            old_path.rename(new_path)
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Naming Convention Enforcer v2.0 - Single Source of Truth",
+        description="""Naming Convention Enforcer v2.0 - Single Source of Truth
+
+Automatic Files:
+  .namingignore    - Automatically loaded exclusion patterns (like .gitignore)
+  .naminginclude   - Automatically loaded inclusion patterns""",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
-  python naming_enforcer_v2.py --scan .                    # Scan current directory
-  python naming_enforcer_v2.py --scan /path --show-all     # Show all violations
-  python naming_enforcer_v2.py --scan /path --fix          # Apply fixes
-  python naming_enforcer_v2.py --validate-standard         # Validate the standard itself
+╭─────────────────────────────────────────────────────────────────────────────╮
+│                                 EXAMPLES                                    │
+╰─────────────────────────────────────────────────────────────────────────────╯
+
+Basic Operations:
+  python naming_enforcer.py --scan .                       # Scan current directory
+  python naming_enforcer.py --scan /path --show-all        # Show all violations
+  python naming_enforcer.py --scan /path --fix             # Apply fixes
+  python naming_enforcer.py --validate-standard            # Validate standard
+
+INCLUSION Examples:
+  python naming_enforcer.py --scan . --include-file important.py
+  python naming_enforcer.py --scan . --include-dir src/ --include-dir docs/
+  python naming_enforcer.py --scan . --include-glob "*.py" --include-glob "*.md"
+  python naming_enforcer.py --scan . --include-regex ".*\\.py$"
+  python naming_enforcer.py --scan . --include-list includes.txt
+
+EXCLUSION Examples:
+  python naming_enforcer.py --scan . --exclude-file temp.txt
+  python naming_enforcer.py --scan . --exclude-dir build/ --exclude-dir dist/
+  python naming_enforcer.py --scan . --exclude-glob "*.tmp" --exclude-glob "test_*"
+  python naming_enforcer.py --scan . --exclude-regex ".*\\.backup$"
+  python naming_enforcer.py --scan . --exclude-list excludes.txt
+
+Advanced Usage:
+  python naming_enforcer.py --scan . --dry-run --exclude-dir build/
+  python naming_enforcer.py --show-exclusions --exclude-list my-excludes.txt
+  python naming_enforcer.py --scan . --fix --exclude-glob "*.tmp" --exclude-dir __pycache__/
+  python naming_enforcer.py --scan . --include-glob "*.py" --exclude-glob "*_test.py"
+  python naming_enforcer.py --show-inclusions --include-dir src/
+
+Tips: 
+  • Use --show-inclusions/--show-exclusions to verify patterns before scanning
+  • Exclude takes precedence over include (excluded files are never processed)
+  • Include patterns limit processing to only matching files/directories
+  • Create .namingignore/.naminginclude files for automatic pattern loading
+  • Automatic files are loaded from current directory or scan directory
         """
     )
     
@@ -1244,12 +1735,40 @@ Examples:
     parser.add_argument("--show-all", action="store_true", 
                        help="Show all violations (not just first 10)")
     parser.add_argument("--standard-path", type=str, 
-                       default="master-knowledge-base/standards/src/GM-CONVENTIONS-NAMING.md",
-                       help="Path to the naming standard document")
+                       default=None,
+                       help="Path to the naming standard document (default: auto-detect from repo root)")
     parser.add_argument("--validate-standard", action="store_true", 
                        help="Validate that the standard document itself is correct")
     parser.add_argument("--generate-config", type=str, 
                        help="Generate JSON config file from standard (specify output path)")
+    
+    # Include functionality
+    parser.add_argument("--include-file", action="append", metavar="FILE",
+                       help="Include only a specific file (can be used multiple times)")
+    parser.add_argument("--include-dir", action="append", metavar="DIR", 
+                       help="Include only a specific directory (can be used multiple times)")
+    parser.add_argument("--include-glob", action="append", metavar="PATTERN",
+                       help="Include only files/dirs matching glob pattern (can be used multiple times)")
+    parser.add_argument("--include-regex", action="append", metavar="PATTERN",
+                       help="Include only files/dirs matching regex pattern (can be used multiple times)")
+    parser.add_argument("--include-list", type=str, metavar="FILE",
+                       help="Load inclusions from file (one pattern per line)")
+    parser.add_argument("--show-inclusions", action="store_true",
+                       help="Show summary of configured inclusions")
+    
+    # Exclude functionality
+    parser.add_argument("--exclude-file", action="append", metavar="FILE",
+                       help="Exclude a specific file (can be used multiple times)")
+    parser.add_argument("--exclude-dir", action="append", metavar="DIR", 
+                       help="Exclude a specific directory (can be used multiple times)")
+    parser.add_argument("--exclude-glob", action="append", metavar="PATTERN",
+                       help="Exclude files/dirs matching glob pattern (can be used multiple times)")
+    parser.add_argument("--exclude-regex", action="append", metavar="PATTERN",
+                       help="Exclude files/dirs matching regex pattern (can be used multiple times)")
+    parser.add_argument("--exclude-list", type=str, metavar="FILE",
+                       help="Load exclusions from file (one pattern per line)")
+    parser.add_argument("--show-exclusions", action="store_true",
+                       help="Show summary of configured exclusions")
     
     args = parser.parse_args()
     
@@ -1257,11 +1776,97 @@ Examples:
         # Initialize enforcer
         enforcer = NamingEnforcerV2(args.standard_path)
         
+        # Reload automatic files from scan directory if specified
+        if args.scan:
+            enforcer.reload_automatic_files(Path(args.scan))
+        
+        # Configure inclusions
+        if args.include_file:
+            for file_path in args.include_file:
+                try:
+                    enforcer.include_manager.add_include_file(file_path, f"CLI include-file: {file_path}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not include file '{file_path}': {e}")
+        
+        if args.include_dir:
+            for dir_path in args.include_dir:
+                try:
+                    enforcer.include_manager.add_include_directory(dir_path, f"CLI include-dir: {dir_path}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not include directory '{dir_path}': {e}")
+        
+        if args.include_glob:
+            for glob_pattern in args.include_glob:
+                try:
+                    enforcer.include_manager.add_include_glob(glob_pattern, f"CLI include-glob: {glob_pattern}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not add include glob pattern '{glob_pattern}': {e}")
+        
+        if args.include_regex:
+            for regex_pattern in args.include_regex:
+                try:
+                    enforcer.include_manager.add_include_regex(regex_pattern, f"CLI include-regex: {regex_pattern}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not add include regex pattern '{regex_pattern}': {e}")
+        
+        if args.include_list:
+            try:
+                enforcer.include_manager.load_include_file(args.include_list)
+            except Exception as e:
+                print(f"ERROR: Error loading include list '{args.include_list}': {e}")
+                sys.exit(1)
+        
+        # Configure exclusions
+        if args.exclude_file:
+            for file_path in args.exclude_file:
+                try:
+                    enforcer.exclude_manager.add_exclude_file(file_path, f"CLI exclude-file: {file_path}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not exclude file '{file_path}': {e}")
+        
+        if args.exclude_dir:
+            for dir_path in args.exclude_dir:
+                try:
+                    enforcer.exclude_manager.add_exclude_directory(dir_path, f"CLI exclude-dir: {dir_path}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not exclude directory '{dir_path}': {e}")
+        
+        if args.exclude_glob:
+            for glob_pattern in args.exclude_glob:
+                try:
+                    enforcer.exclude_manager.add_exclude_glob(glob_pattern, f"CLI exclude-glob: {glob_pattern}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not add glob pattern '{glob_pattern}': {e}")
+        
+        if args.exclude_regex:
+            for regex_pattern in args.exclude_regex:
+                try:
+                    enforcer.exclude_manager.add_exclude_regex(regex_pattern, f"CLI exclude-regex: {regex_pattern}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not add regex pattern '{regex_pattern}': {e}")
+        
+        if args.exclude_list:
+            try:
+                enforcer.exclude_manager.load_exclude_file(args.exclude_list)
+            except Exception as e:
+                print(f"ERROR: Error loading exclude list '{args.exclude_list}': {e}")
+                sys.exit(1)
+        
+        # Show inclusions if requested
+        if args.show_inclusions:
+            print(enforcer.include_manager.get_inclusion_summary())
+            return
+        
+        # Show exclusions if requested
+        if args.show_exclusions:
+            print(enforcer.exclude_manager.get_exclusion_summary())
+            return
+        
         if args.validate_standard:
-            print(f"✅ Successfully parsed naming standard: {args.standard_path}")
-            print(f"📊 Extracted {len(enforcer.parser.patterns)} naming patterns")
-            print(f"🛡️  Found {sum(len(names) for names in enforcer.parser.protected_names.values())} protected names")
-            print(f"🚫 Configured {sum(len(exc) for exc in enforcer.parser.exceptions.values())} exception patterns")
+            print(f"SUCCESS: Successfully parsed naming standard: {args.standard_path}")
+            print(f"INFO: Extracted {len(enforcer.parser.patterns)} naming patterns")
+            print(f"INFO: Found {sum(len(names) for names in enforcer.parser.protected_names.values())} protected names")
+            print(f"INFO: Configured {sum(len(exc) for exc in enforcer.parser.exceptions.values())} exception patterns")
             return
         
         if args.generate_config:
@@ -1277,13 +1882,13 @@ Examples:
             with open(args.generate_config, 'w', encoding='utf-8') as f:
                 json.dump(config, f, indent=2)
             
-            print(f"✅ Generated configuration: {args.generate_config}")
+            print(f"SUCCESS: Generated configuration: {args.generate_config}")
             return
         
         # Scan for violations
         scan_path = Path(args.scan).resolve()
         if not scan_path.exists():
-            print(f"❌ Error: Path does not exist: {scan_path}")
+            print(f"ERROR: Path does not exist: {scan_path}")
             sys.exit(1)
         
         print(f"Scanning: {scan_path}")
@@ -1309,9 +1914,11 @@ Examples:
                 for violation in frontmatter_violations:
                     files_to_backup.append(Path(violation.path))
                     
-                # Add files from rename operations
+                # Add files from rename operations (ONLY FILES, NOT DIRECTORIES)
                 for op in enforcer.rename_operations:
-                    files_to_backup.append(op.old_path)
+                    # Only backup files, not directories (directories don't need content backup)
+                    if op.old_path.is_file():
+                        files_to_backup.append(op.old_path)
                     # Add files with content updates to backup
                     for update in op.content_updates:
                         files_to_backup.append(Path(update.file_path))
@@ -1322,7 +1929,7 @@ Examples:
                     # Create backup before any modifications
                     safety_logger.logger.info(f"📦 Creating backup of {len(files_to_backup)} files...")
                     if not safety_logger.create_backup(files_to_backup, f"Naming enforcer fixes for {len(violations)} violations"):
-                        safety_logger.logger.error("❌ Backup creation failed - aborting operation")
+                        safety_logger.logger.error("ERROR: Backup creation failed - aborting operation")
                         sys.exit(1)
                 
                 # Apply frontmatter field fixes first
@@ -1347,7 +1954,7 @@ Examples:
                     safety_logger.logger.info(f"Renamed {file_renames} files/directories")
                     
             except Exception as e:
-                safety_logger.logger.error(f"❌ Operation failed: {e}")
+                safety_logger.logger.error(f"ERROR: Operation failed: {e}")
                 safety_logger.finalize_operation()
                 sys.exit(1)
         else:
@@ -1357,10 +1964,10 @@ Examples:
         sys.exit(1 if violations else 0)
         
     except FileNotFoundError as e:
-        print(f"❌ Error: {e}")
+        print(f"ERROR: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"ERROR: Unexpected error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
