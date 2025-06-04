@@ -1,6 +1,0 @@
-2025-06-03 13:49:35,682 - INFO - Started operation: fix_violations_20250603_134935
-2025-06-03 13:49:35,682 - INFO - Building rename operations and scanning for link references...
-2025-06-03 13:49:37,179 - INFO - LOG content_update: master-knowledge-base\tools\reports\fix_violations_20250603_134842_operations.json -> 
-2025-06-03 13:49:37,179 - INFO - SUCCESS: fix_violations_20250603_134935_0000
-2025-06-03 13:49:37,179 - INFO - LOG content_update: master-knowledge-base\tools\reports\backups\fix_violations_20250603_134842\file-with-links.md -> 
-2025-06-03 13:49:37,179 - INFO - SUCCESS: fix_violations_20250603_134935_0001

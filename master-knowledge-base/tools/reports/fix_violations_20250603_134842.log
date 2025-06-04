@@ -1,6 +1,0 @@
-2025-06-03 13:48:42,977 - INFO - Started operation: fix_violations_20250603_134842
-2025-06-03 13:48:42,977 - INFO - Building rename operations and scanning for link references...
-2025-06-03 13:48:45,477 - INFO - LOG content_update: test-environment\test-documents\file-with-links.md -> 
-2025-06-03 13:48:45,494 - INFO - SUCCESS: fix_violations_20250603_134842_0000
-2025-06-03 13:48:45,494 - INFO - LOG rename: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\test-documents\CamelCaseFile.md -> C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\test-documents\camel-case-file.md
-2025-06-03 13:48:45,494 - INFO - SUCCESS: fix_violations_20250603_134842_0001
