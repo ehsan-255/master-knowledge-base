@@ -1,3 +1,7 @@
+# Generated from mt-schema-frontmatter.yaml - Single Source of Truth
+# Generated on: 2025-06-05 02:55:02
+# DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py
+
 standard-definition
 policy-document
 guide-document
@@ -5,7 +9,6 @@ glossary-document
 template-document
 registry-document
 schema-document
-navigation-document
 chapter-document
 key-definition-set
 kb-definition-map
@@ -25,5 +28,4 @@ data-model-definition
 security-standard
 compliance-guideline
 collection-document
-mandate-document
 changelog

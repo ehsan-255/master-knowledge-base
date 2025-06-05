@@ -1,13 +1,13 @@
 ---
 title: "Metadata, Tagging & Registry Standards"
 description: "A collection of key standards for document metadata (frontmatter), tagging strategy, key references, and registry management from the MT (Metadata & Tagging) domain."
-date-generated: "2025-06-02T12:26:03.598567+00:00"
-source-collection-definition-id: "coll_mt_metadata_tagging"
-number-of-standards: 6
-tags: ["kb-collection", "derived-view", "info-type/collection-document"]
-info-type: "collection-document"
+date_generated: "2025-06-04T22:19:33.653412+00:00"
+source_collection_definition_id: "coll_mt_metadata_tagging"
+number_of_standards: 6
+tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
+info-type: "collection-document" 
 # Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-MT-METADATA-TAGGING"
+# standard_id: "COLL-COLL-MT-METADATA-TAGGING" 
 ---
 
 ## Table of Contents
@@ -252,7 +252,7 @@ This document defines all official tags used across knowledge bases, their inten
 
 ## Introduction
 
-This document defines the official schema for YAML frontmatter in all Markdown documents. It specifies the allowed keys, their required order, the data types for their values, their mandatory or optional status, and associated validation rules.
+This document defines the official schema for YAML frontmatter in all Markdown documents. It specifies the allowed keys, their required order, the data types for their values, their mandatory or optional status, and associated validation rules. 
 
 Adherence to this schema is crucial for maintaining consistency across the knowledge base, enabling automated validation of metadata, and facilitating various automated processing tasks.
 

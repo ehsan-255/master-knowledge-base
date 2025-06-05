@@ -1,0 +1,10 @@
+status/
+kb-id/
+content-type/
+topic/
+criticality/
+lifecycle_gatekeeper/
+# Add other major topic categories if they become common, e.g.
+# project/
+# team/
+# technology/

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedDate": "2025-06-03T17:50:43.833795+00:00",
+  "generatedDate": "2025-06-04T16:57:23.090524+00:00",
   "standards": [
     {
       "filepath": "master-knowledge-base/standards/src/AS-KB-DIRECTORY-STRUCTURE.md",
@@ -1109,34 +1109,6 @@
       "lifecycle_gatekeeper": "No-Gatekeeper"
     },
     {
-      "filepath": "master-knowledge-base/AS-INDEX-KB-MASTER.md",
-      "standard_id": "AS-INDEX-KB-MASTER",
-      "title": "Master Knowledge Base Index",
-      "primary_domain": "AS",
-      "sub_domain": "INDEXING",
-      "info-type": "navigation-document",
-      "version": "1.0.0",
-      "status": "live",
-      "date-modified": "2025-05-30T00:00:00Z",
-      "date-created": "2025-05-29T16:10:25Z",
-      "criticality": "P0-Critical",
-      "lifecycle_gatekeeper": "Architect-Review"
-    },
-    {
-      "filepath": "master-knowledge-base/standards/changelog.md",
-      "standard_id": "OM-STANDARDS-CHANGELOG",
-      "title": "Standards Changelog",
-      "primary_domain": "OM",
-      "sub_domain": "LIFECYCLE",
-      "info-type": "changelog",
-      "version": "1.0.0",
-      "status": "active",
-      "date-modified": "2025-06-03T06:18:44Z",
-      "date-created": "2025-01-11T00:00:00Z",
-      "criticality": "P4-Informational",
-      "lifecycle_gatekeeper": "Architect-Review"
-    },
-    {
       "filepath": "master-knowledge-base/tools/changelog.md",
       "standard_id": "OM-TOOLS-CHANGELOG",
       "title": "Tools Changelog",
@@ -1162,6 +1134,34 @@
       "date-modified": "2025-05-27T00:00:00Z",
       "date-created": "2025-05-27T00:00:00Z",
       "criticality": "P2-Medium",
+      "lifecycle_gatekeeper": "Architect-Review"
+    },
+    {
+      "filepath": "master-knowledge-base/AS-INDEX-KB-MASTER.md",
+      "standard_id": "AS-INDEX-KB-MASTER",
+      "title": "Master Knowledge Base Index",
+      "primary_domain": "AS",
+      "sub_domain": "INDEXING",
+      "info-type": "navigation-document",
+      "version": "1.0.0",
+      "status": "live",
+      "date-modified": "2025-05-30T00:00:00Z",
+      "date-created": "2025-05-29T16:10:25Z",
+      "criticality": "P0-Critical",
+      "lifecycle_gatekeeper": "Architect-Review"
+    },
+    {
+      "filepath": "master-knowledge-base/standards/changelog.md",
+      "standard_id": "OM-STANDARDS-CHANGELOG",
+      "title": "Standards Changelog",
+      "primary_domain": "OM",
+      "sub_domain": "LIFECYCLE",
+      "info-type": "changelog",
+      "version": "1.0.0",
+      "status": "active",
+      "date-modified": "2025-06-03T06:18:44Z",
+      "date-created": "2025-01-11T00:00:00Z",
+      "criticality": "P4-Informational",
       "lifecycle_gatekeeper": "Architect-Review"
     }
   ]

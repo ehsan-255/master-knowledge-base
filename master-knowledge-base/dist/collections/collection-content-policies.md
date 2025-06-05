@@ -1,13 +1,13 @@
 ---
 title: "Content Style & Policies"
 description: "A collection of key policies and standards related to content authoring, tone, language, accessibility, and specific content behaviors from the CS (Content Standards) domain."
-date-generated: "2025-06-02T12:26:03.601377+00:00"
-source-collection-definition-id: "coll_cs_content_policies"
-number-of-standards: 16
-tags: ["kb-collection", "derived-view", "info-type/collection-document"]
-info-type: "collection-document"
+date_generated: "2025-06-04T22:19:33.657410+00:00"
+source_collection_definition_id: "coll_cs_content_policies"
+number_of_standards: 16
+tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
+info-type: "collection-document" 
 # Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-CS-CONTENT-POLICIES"
+# standard_id: "COLL-COLL-CS-CONTENT-POLICIES" 
 ---
 
 ## Table of Contents
@@ -548,7 +548,7 @@ Each Knowledge Base (KB) primary folder name MUST be globally unique within the 
 *   **Example:** `research-methodology-kb`, `prompt-engineering-kb`
 *   **Notes:**
     *   This primary folder name acts as the de facto unique identifier for the KB at the file system level.
-    *   Folder naming conventions (e.g., case, separators) MUST adhere to the global file and folder naming standard: [[SF-CONVENTIONS-NAMING]].
+    *   Folder naming conventions (e.g., case, separators) MUST adhere to the global file and folder naming standard: [[GM-CONVENTIONS-NAMING]].
     *   Uniqueness prevents naming conflicts and ambiguity, ensuring that each KB can be distinctly referenced.
 
 ### Rule 2.2: Consistent KB Identity in `root.md` (Derived from U-ARCH-002, Rule 2.5)
@@ -574,7 +574,7 @@ This policy applies to all Knowledge Bases developed and maintained within the o
 
 ## 5. Cross-References
 - [[AS-STRUCTURE-MASTER-KB-INDEX]] - Defines the structure of the master KB directory and the `kb-directory.md` index file.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (to be updated with actual ID).
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (to be updated with actual ID).
 
 ---
 *This policy (CS-POLICY-KB-IDENTIFICATION) is based on rules 2.2 and 2.5 previously defined in U-ARCH-002 from COL-ARCH-UNIVERSAL.md.*
@@ -595,7 +595,7 @@ This policy mandates that "Chapters" (individual documents or major H2 sections 
 "Chapters" within a "Part" of a Knowledge Base MUST be arranged in a logical sequence.
 *   **Guidance:**
     *   The sequence should support a progressive understanding of the Part's subject matter. This might involve, for example, moving from foundational concepts to more advanced topics, or following a chronological or procedural order where appropriate.
-    *   Sequencing is typically managed by numerical prefixes in filenames (e.g., `01-introduction.md`, `02-core-concepts.md`) as defined in [[SF-CONVENTIONS-NAMING]], or by the order of H2 headings if Chapters are sections within a single document (e.g., within `_overview.md` for a very small Part).
+    *   Sequencing is typically managed by numerical prefixes in filenames (e.g., `01-introduction.md`, `02-core-concepts.md`) as defined in [[GM-CONVENTIONS-NAMING]], or by the order of H2 headings if Chapters are sections within a single document (e.g., within `_overview.md` for a very small Part).
     *   The Table of Contents within the Part's overview (defined in [[AS-STRUCTURE-KB-PART]]) MUST reflect this logical sequence.
 
 ### Rule 2.2: Distinct and Coherent Topic per "Chapter" (Derived from U-STRUC-001, Rule 1.6)
@@ -623,7 +623,7 @@ This policy applies to the organization of "Chapters" within all "Parts" of all 
 ## 5. Cross-References
 - [[AS-STRUCTURE-KB-PART]] - Defines the overall structure of KB Parts and their overviews.
 - [[AS-STRUCTURE-DOC-CHAPTER]] - Standard for Content Document ("Chapter") Internal Structure (to be updated with actual ID).
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for Chapter sequencing).
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for Chapter sequencing).
 
 ---
 *This policy (CS-POLICY-KB-PART-CONTENT) is based on rules 1.5 and 1.6 previously defined in U-STRUC-001 from COL-ARCH-UNIVERSAL.md.*

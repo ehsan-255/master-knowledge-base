@@ -1,13 +1,13 @@
 ---
 title: "Architecture & Structure Standards"
 description: "A collection of key standards related to overall knowledge base architecture, information structure, and schema definitions from the AS (Architecture & Structure) domain."
-date-generated: "2025-06-02T12:26:03.573992+00:00"
-source-collection-definition-id: "coll_as_arch_structure"
-number-of-standards: 15
-tags: ["kb-collection", "derived-view", "info-type/collection-document"]
-info-type: "collection-document"
+date_generated: "2025-06-04T22:19:33.618643+00:00"
+source_collection_definition_id: "coll_as_arch_structure"
+number_of_standards: 15
+tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
+info-type: "collection-document" 
 # Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-AS-ARCH-STRUCTURE"
+# standard_id: "COLL-COLL-AS-ARCH-STRUCTURE" 
 ---
 
 ## Table of Contents
@@ -79,7 +79,7 @@ Within `master-knowledge-base/standards/`, the following specialized directories
 *   **`/master-knowledge-base/standards/src/` (Task 0.4.1)**
     *   **Purpose:** This is the primary Layer 1 directory for all atomic standard documents (Standard Definitions, Policy Documents, Guide Documents, etc.).
     *   **Content:** Individual Markdown files (`.md`) representing single, atomic standards.
-    *   **Naming:** Files in this directory MUST follow the [[SF-CONVENTIONS-NAMING#Atomic File Naming Convention|File Naming Convention]] (Note: Link to be updated once actual naming convention doc ID is set).
+    *   **Naming:** Files in this directory MUST follow the [[GM-CONVENTIONS-NAMING#Atomic File Naming Convention|File Naming Convention]] (Note: Link to be updated once actual naming convention doc ID is set).
 
 *   **`/master-knowledge-base/standards/registry/` (Task 0.4.2)**
     *   **Purpose:** This directory houses all controlled vocabulary manifests and registry definition files.
@@ -163,7 +163,7 @@ The Standards Knowledge Base is organized into logical "Parts," primarily aligne
 
 #### Part 7: Syntax, Formatting, and Conventions (SF)
 -   **Overview:** Specific rules for Markdown syntax, file formatting, naming conventions, and other presentational aspects of content.
--   **Key Documents:** (List or link to key `SF-*` standards, e.g., `[[SF-FORMATTING-MARKDOWN-GENERAL]]`, `[[SF-CONVENTIONS-NAMING]]`)
+-   **Key Documents:** (List or link to key `SF-*` standards, e.g., `[[SF-FORMATTING-MARKDOWN-GENERAL]]`, `[[GM-CONVENTIONS-NAMING]]`)
 
 #### Part 8: Utility, Assets, and Automation (UA)
 -   **Overview:** Standards for supporting utilities (like keyrefs), management of assets (like images), and schemas for automation processes (like LLM I/O).
@@ -783,13 +783,13 @@ Within the `assets` folder, sub-folders SHOULD be used to categorize assets base
     *   `code-snippets/` (for external code files like `.py`, `.js`, `.sql` that are referenced or meant to be downloadable, not for embedded code in Markdown)
     *   Other categories as needed (e.g., `data/` for CSV files, `audio/` for audio clips).
 *   **Example:** `my-awesome-kb/assets/images/user-interface-screenshot.png`, `my-awesome-kb/assets/pdfs/annual-report-2023.pdf`
-*   **Folder Naming:** Sub-folder names MUST adhere to the folder naming conventions defined in [[SF-CONVENTIONS-NAMING]] (all lowercase kebab-case).
+*   **Folder Naming:** Sub-folder names MUST adhere to the folder naming conventions defined in [[GM-CONVENTIONS-NAMING]] (all lowercase kebab-case).
 *   **Rationale:** Categorization improves the organization of the `assets` folder, making it easier to find and manage specific types of assets, especially in KBs with many assets.
 
 ## 4. Asset File Naming
 
 ### Rule 4.1: Descriptive Kebab-Case Names (Derived from U-ASSETS-001, Rule 1.3)
-Asset file names MUST be descriptive of the asset's content or purpose and MUST adhere to the general file naming conventions (all lowercase kebab-case) defined in [[SF-CONVENTIONS-NAMING]].
+Asset file names MUST be descriptive of the asset's content or purpose and MUST adhere to the general file naming conventions (all lowercase kebab-case) defined in [[GM-CONVENTIONS-NAMING]].
 *   **Example:** `q1-sales-report.pdf`, `user-flow-diagram.svg`, `api-request-example.py`
 *   **Avoid:** Generic names like `image1.png`, `document.pdf`, or names with spaces or special characters (other than hyphens).
 *   **Rationale:** Descriptive names make assets easier to identify and manage. Consistent kebab-casing ensures cross-platform compatibility and predictability.
@@ -823,7 +823,7 @@ The following image formats are permitted for use within the knowledge base:
 This standard applies to all non-Markdown files that are part of a Knowledge Base and are stored within its designated `assets` folder.
 
 ## 8. Cross-References
-- [[SF-CONVENTIONS-NAMING]] - For general file and folder naming conventions.
+- [[GM-CONVENTIONS-NAMING]] - For general file and folder naming conventions.
 - [[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]] - For requirements related to the accessibility of images.
 - [Knowledge Base Directory Structure Standard](#knowledge-base-directory-structure-standard-as-kb-directory-structure) - For the overall KB directory structure, including the location of the KB-specific `assets` folder.
 
@@ -916,7 +916,7 @@ This chapter provided an overview of research methodology, defined key terms, an
 - [[CS-POLICY-DOC-CHAPTER-CONTENT]] - Policy for content organization and heading usage within Chapters.
 - [[SF-SYNTAX-HEADINGS]] - Standard for Markdown Heading Syntax.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Standard for Internal Linking Syntax.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (if relevant to chapter file naming).
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (if relevant to chapter file naming).
 
 ---
 *This standard (AS-STRUCTURE-DOC-CHAPTER) is based on rules 2.1, 2.2, 2.3, 2.6, and 2.7 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md.*
@@ -938,7 +938,7 @@ Each "Part" (top-level primary section of a KB) MUST be fronted by an overview.
 ### Rule 1.2: Overview Location for Sub-folder Parts (Derived from U-STRUC-001, Rule 1.2)
 If "Parts" are implemented as sub-folders (typically for larger KBs, as defined in [[AS-STRUCTURE-KB-ROOT]]), the overview content MUST reside in an `_overview.md` file located directly within that Part's folder.
 *   **Example:** `research-methodology-kb/part-i-foundations/_overview.md`
-*   **Notes:** The filename `_overview.md` is mandatory and MUST adhere to naming conventions in [[SF-CONVENTIONS-NAMING]].
+*   **Notes:** The filename `_overview.md` is mandatory and MUST adhere to naming conventions in [[GM-CONVENTIONS-NAMING]].
 
 ### Rule 1.3: Overview Location for `root.md` Section Parts (Derived from U-STRUC-001, Rule 1.3)
 If "Parts" are implemented as major H1 sections within the `root.md` file (typically for smaller KBs, as defined in [[AS-STRUCTURE-KB-ROOT]]), the overview content and links to its "Chapters" MUST directly follow the Part's H1 heading in `root.md`.
@@ -983,7 +983,7 @@ This part lays the groundwork for understanding the core principles and initial 
 ## 3. Cross-References
 - [[CS-POLICY-KB-PART-CONTENT]] - Policy for content organization within KB Parts.
 - [[AS-STRUCTURE-KB-ROOT]] - Defines the overall structure for KB root files and how Parts are organized.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for `_overview.md` and Part folder names).
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for `_overview.md` and Part folder names).
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
 - [[AS-STRUCTURE-DOC-CHAPTER]] - Standard for Content Document ("Chapter") Internal Structure.
 
@@ -1003,7 +1003,7 @@ This standard defines the mandatory structure for the root level of any Knowledg
 ### Rule 1.1: Designated Primary Folder
 Each Knowledge Base (KB) MUST have a designated primary folder.
 *   **Example:** `prompt-engineering-kb/`
-*   **Notes:** Folder naming MUST adhere to [[SF-CONVENTIONS-NAMING]].
+*   **Notes:** Folder naming MUST adhere to [[GM-CONVENTIONS-NAMING]].
 
 ### Rule 1.2: Root Document (`root.md`)
 Within this primary folder, a root document named `root.md` MUST exist.
@@ -1017,7 +1017,7 @@ The `root.md` file MUST contain a master Table of Contents (ToC) that links to a
 ### Rule 1.4: Top-Level "Parts" in Larger KBs (Sub-folders)
 For **larger KBs**, top-level "Parts" (primary sections) MUST be implemented as distinct sub-folders within the primary KB folder. Each such sub-folder represents one "Part".
 *   **Example:** `research-methodology-kb/part-i-foundations/`
-*   **Notes:** Folder naming MUST adhere to [[SF-CONVENTIONS-NAMING]]. The decision criterion for "larger" versus "smaller" is further discussed in [[CS-POLICY-KB-ROOT]].
+*   **Notes:** Folder naming MUST adhere to [[GM-CONVENTIONS-NAMING]]. The decision criterion for "larger" versus "smaller" is further discussed in [[CS-POLICY-KB-ROOT]].
 
 ### Rule 1.5: Top-Level "Parts" in Smaller KBs (`root.md` Sections)
 For **smaller or moderately sized KBs**, top-level "Parts" (primary sections) MUST be major H1 sections (often rendered as H2 in the context of the `root.md` document itself, following the main H1 title of `root.md`) directly within the `root.md` file. Content for these Parts can be nested directly or linked to subordinate files within the same primary KB folder.
@@ -1052,7 +1052,7 @@ This knowledge base provides comprehensive guidance on research methodologies...
 ## 3. Cross-References
 - [[CS-POLICY-KB-ROOT]] - Policy for consistent application of KB root structures.
 - [Knowledge Base Directory Structure Standard](#knowledge-base-directory-structure-standard-as-kb-directory-structure) - Defines overall repository and master knowledge base directory structures.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions.
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
 - [[AS-STRUCTURE-KB-PART]] - Primary KB Section ("Part") Structure.
 
@@ -1109,7 +1109,7 @@ This directory provides an overview and access points to all active Knowledge Ba
 - [[CS-POLICY-KB-IDENTIFICATION]] - Policy for unique KB identification and naming.
 - [Knowledge Base Directory Structure Standard](#knowledge-base-directory-structure-standard-as-kb-directory-structure) - Defines the broader repository and `master-knowledge-base` directory structures.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
-- [[SF-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for KB folder names).
+- [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (relevant for KB folder names).
 
 ---
 *This standard (AS-STRUCTURE-MASTER-KB-INDEX) is based on rules 2.1, 2.3, and 2.4 previously defined in U-ARCH-002 from COL-ARCH-UNIVERSAL.md.*

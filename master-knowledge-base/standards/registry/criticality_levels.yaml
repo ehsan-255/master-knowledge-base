@@ -16,3 +16,7 @@
 - level: P3-Low
   tag: criticality/P3-Low
   description: Standard or policy that provides guidance or recommendations that are beneficial but not strictly mandatory for core operations or compliance. Adherence is encouraged.
+
+- level: P4-Informational
+  tag: criticality/P4-Informational
+  description: Purely informational content with no direct operational impact. Used for documentation, reference materials, and educational content that does not require adherence or compliance monitoring.

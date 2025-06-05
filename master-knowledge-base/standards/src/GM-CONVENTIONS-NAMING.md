@@ -52,6 +52,7 @@ impact_areas:
 - Other standards may reference specific sections but NEVER duplicate rules
 - Tool configurations are GENERATED from this document (see Generation Templates section)
 - Updates to naming conventions require updating ONLY this document
+- **Section 2.2 is auto-generated** from `standards/registry/mt-schema-frontmatter.yaml` via `tools/frontmatter-management/generate_schema_docs.py`
 
 ## CORE PRINCIPLE: CONTEXT-AWARE NAMING
 
@@ -135,12 +136,12 @@ file_path, date_modified, content_validator, naming_enforcer
 ```
 
 ### 2.2 Frontmatter Field Names (CRITICAL)
+### 2.2 Frontmatter Field Names (CRITICAL)
 ```
-standard_id, primary_domain, sub_domain, scope_application,
-lifecycle_gatekeeper, impact_areas, change_log_url,
-info-type, criticality, date-created, date-modified,
-title, version, tags, aliases, related-standards,
-kb-id, primary-topic
+title, standard_id, aliases, tags, kb-id, info-type, primary-topic,
+related-standards, version, date-created, date-modified,
+primary_domain, sub_domain, scope_application, criticality,
+lifecycle_gatekeeper, impact_areas, change_log_url
 ```
 
 ### 2.3 Configuration File Names

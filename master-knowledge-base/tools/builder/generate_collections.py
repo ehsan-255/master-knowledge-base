@@ -196,7 +196,7 @@ description: "{collection_description}"
 date_generated: "{datetime.datetime.now(datetime.timezone.utc).isoformat()}"
 source_collection_definition_id: "{collection_id}"
 number_of_standards: {len(included_standards_metadata_list)}
-tags: ["kb-collection", "derived-view", "info-type/collection-document"] 
+tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
 info-type: "collection-document" 
 # Consider adding a standard_id for the collection itself, e.g.:
 # standard_id: "COLL-{collection_id.upper().replace('_','-')}" 

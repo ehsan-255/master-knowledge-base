@@ -38,7 +38,10 @@ EXPECTED_TYPES = {
     "kb-id": str, "info-type": str, "primary-topic": str, "related-standards": list,
     "version": str, "date-created": str, "date-modified": str,
     "primary_domain": str, "sub_domain": str, "scope_application": str,
-    "criticality": str, "lifecycle_gatekeeper": str, "impact_areas": list
+    "criticality": str, "lifecycle_gatekeeper": str, "impact_areas": list,
+    # Collection document specific fields
+    "description": str, "date_generated": str, "source_collection_definition_id": str,
+    "number_of_standards": int
 }
 
 # --- LinterConfig Class ---
@@ -47,9 +50,9 @@ class LinterConfig:
         print(f"DEBUG LinterConfig: Initial repo_base_path: {repo_base_path}")
         self.repo_base = os.path.abspath(repo_base_path)
         print(f"DEBUG LinterConfig: self.repo_base (absolute): {self.repo_base}")
-        self.registry_path = os.path.join(self.repo_base, "master-knowledge-base", "standards", "registry")
+        self.registry_path = os.path.join(self.repo_base, "standards", "registry")
 
-        dist_path_local = os.path.join(self.repo_base, "master-knowledge-base", "dist")
+        dist_path_local = os.path.join(self.repo_base, "dist")
         print(f"DEBUG LinterConfig: local dist_path_local for index: {dist_path_local}")
         time.sleep(0.1) # Small delay to help with potential filesystem sync issues
         os.makedirs(dist_path_local, exist_ok=True) # Ensure dist directory is accessible
@@ -240,6 +243,9 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
     current_info_type = frontmatter_data.get("info-type")
     if current_info_type in ["standard-definition", "policy-document"]:
         mandatory_keys = MANDATORY_KEYS_FOR_STANDARD_DEFINITION_POLICY
+    elif current_info_type == "collection-document":
+        # Collection documents have different mandatory fields - they are auto-generated derived views
+        mandatory_keys = ["title", "info-type", "tags", "description", "date_generated"]
     else:
         mandatory_keys = MANDATORY_KEYS_BASE
     
