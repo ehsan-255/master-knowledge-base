@@ -3,3 +3,4 @@
 __pycache__/
 .prettierignore
 master-knowledge-base/tools/reports/
+.vscode/
