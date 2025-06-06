@@ -1,0 +1,58 @@
+# .treeicon - Icons and optional legend descriptions
+# Format: path|icon|description (description optional)
+# Use relative paths from repository root or folder/file names
+
+# System/ignored directories (with descriptions for legend)
+.vscode|⛔|System Configuration Directory
+.obsidian|⛔|Obsidian Workspace Directory
+.space|⛔|Space Editor Directory
+.git|⛔|Git Repository Directory
+.github|🔧|GitHub Actions Directory
+__pycache__|⛔|Python Cache Directory
+.pytest_cache|⛔|Pytest Cache Directory
+node_modules|⛔|Node.js Dependencies Directory
+
+# Important project directories
+archive|✅|Archive Storage (Important)
+test-environment|✅|Testing Environment (Important)
+
+# Master knowledge base subdirectories
+master-knowledge-base/archive|❌|Archive (Restricted Access)
+master-knowledge-base/standards/registry|✅|Standards Registry (Important)
+master-knowledge-base/standards/src|✅|Standards Source (Important)
+master-knowledge-base/standards/templates|✅|Standards Templates (Important)
+master-knowledge-base/tools|✅|Development Tools (Important)
+master-knowledge-base/tools/reports|✅|Generated Reports (Important)
+
+# Test directories (restricted)
+master-knowledge-base/tools/builder/tests|❌|Builder Tests (Restricted)
+master-knowledge-base/tools/indexer/tests|❌|Indexer Tests (Restricted)
+master-knowledge-base/tools/linter/tests|❌|Linter Tests (Restricted)
+tests|❌|Test Files (Restricted)
+
+# Specialized directories with descriptions
+standards|📋|Documentation Standards Directory
+registry|📊|Data Registry Directory
+src|📝|Source Content Directory
+templates|📄|Template Files Directory
+tools|🔧|Development Tools Directory
+reports|📋|Generated Reports Directory
+utilities|🔧|Utility Tools Directory
+builder|🏗️|Build System Directory
+indexer|📇|Content Indexing Directory
+linter|🔍|Code Linting Directory
+validators|✅|Validation Tools Directory
+refactoring-scripts|🔄|Code Refactoring Directory
+
+# Project management
+active-project|🎯|Active Project Management
+project-guidelines|📋|Project Guidelines Documentation
+
+# Generic folders
+docs|📚|Documentation Directory
+documentation|📚|Documentation Directory
+examples|💡|Example Files Directory
+samples|💡|Sample Content Directory
+backup|💾|Backup Storage Directory
+temp|🗂️|Temporary Files Directory
+tmp|🗂️|Temporary Files Directory 

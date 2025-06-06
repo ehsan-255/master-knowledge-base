@@ -1,0 +1,48 @@
+# .treeignore - Folders to completely exclude from repository tree
+# Similar to .gitignore format
+# One pattern per line, supports wildcards
+
+# System and IDE directories
+.vscode
+.obsidian
+.space
+
+# Git directories (but not .github)
+.git
+.gitmodules
+.gitattributes
+
+# Build and cache directories
+__pycache__
+.pytest_cache
+node_modules
+dist
+build
+.cache
+
+# OS-specific files and directories
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary and backup files
+*.tmp
+*.temp
+*.bak
+*~
+
+# IDE-specific directories
+.idea
+.vs
+.vscode-server
+
+# Python-specific
+*.pyc
+*.pyo
+*.egg-info
+.tox
+.coverage
+
+# Node.js specific
+package-lock.json
+yarn.lock 
