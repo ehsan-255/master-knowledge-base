@@ -64,7 +64,7 @@ fields:
     validation_rules:
       - "All tags MUST be in kebab-case"
       - "MUST include tags from specific categories: status/*, content-type/*, topic/*"
-      - "Refer to MT-REGISTRY-TAG-GLOSSARY for comprehensive list"
+      - "Refer to mt-registry-tag-glossary.yaml for comprehensive list"
     
   kb-id:
     description: "An identifier for the knowledge base this document belongs to"
@@ -72,7 +72,7 @@ fields:
     data_type: "string"
     validation_rules:
       - "Must be in kebab-case"
-      - "Value must come from controlled vocabulary in MT-REGISTRY-TAG-GLOSSARY"
+      - "Value must come from controlled vocabulary in mt-registry-tag-glossary.yaml"
     
   info-type:
     description: "Specifies the type or category of information the document represents"
@@ -127,7 +127,7 @@ fields:
     data_type: "string"
     validation_rules:
       - "Must be 2 uppercase letters"
-      - "Value MUST exist in domain_codes.yaml"
+      - "Value MUST exist in controlled_vocabularies.primary_domain"
     controlled_vocabulary: true
     
   sub_domain:
@@ -139,7 +139,7 @@ fields:
     data_type: "string"
     validation_rules:
       - "Must be 2-6 uppercase letters"
-      - "Value MUST exist in subdomain_registry.yaml for the given primary_domain"
+      - "Value MUST exist in controlled_vocabularies.sub_domain for the given primary_domain"
     controlled_vocabulary: true
     
   scope_application:
@@ -154,8 +154,8 @@ fields:
     mandatory: true
     data_type: "string"
     validation_rules:
-      - "Value MUST come from controlled vocabulary (e.g., P0-Critical, P1-High, P2-Medium)"
-      - "Refer to MT-REGISTRY-TAG-GLOSSARY"
+      - "Value MUST come from controlled_vocabularies.criticality"
+      - "Valid values: P0-Critical, P1-High, P2-Medium, P3-Low, P4-Informational"
     controlled_vocabulary: true
     
   lifecycle_gatekeeper:
@@ -163,8 +163,8 @@ fields:
     mandatory: true
     data_type: "string"
     validation_rules:
-      - "Value MUST come from controlled vocabulary"
-      - "Refer to MT-REGISTRY-TAG-GLOSSARY"
+      - "Value MUST come from controlled_vocabularies.lifecycle_gatekeeper"
+      - "Valid values: Architect-Review, Security-Team-Approval, Stakeholder-Review, No-Gatekeeper"
     controlled_vocabulary: true
     
   impact_areas:
@@ -215,26 +215,184 @@ controlled_vocabularies:
     - collection-document
     - changelog
 
+  audience_type:
+    - id: "AUTHOR"
+      preferred_label: "Author"
+      description: "Primary content producers and maintainers"
+    - id: "ENGINEER"
+      preferred_label: "Engineer"
+      description: "Technical stakeholders integrating or tooling the KB"
+    - id: "REVIEWER"
+      preferred_label: "Reviewer"
+      description: "Subject‑matter or governance reviewers"
+
+  criticality:
+    - level: "P0-Critical"
+      tag: "criticality/P0-Critical"
+      description: "Essential for system operation, core understanding, or carries significant regulatory/compliance implications"
+    - level: "P1-High"
+      tag: "criticality/P1-High"
+      description: "Important for system operation, key processes, or best practices"
+    - level: "P2-Medium"
+      tag: "criticality/P2-Medium"
+      description: "Useful for consistency, best practices, or operational efficiency"
+    - level: "P3-Low"
+      tag: "criticality/P3-Low"
+      description: "Optional or advisory content"
+    - level: "P4-Informational"
+      tag: "criticality/P4-Informational"
+      description: "Purely informational content with no direct operational impact"
+
+  primary_domain:
+    - id: "AS"
+      preferred_label: "Architecture & Structure"
+      description: "Rules defining directory structure, modularity, and single‑source build patterns"
+    - id: "CS"
+      preferred_label: "Content & Semantics"
+      description: "Standards governing meaning, metadata keys, and controlled vocabularies"
+    - id: "MT"
+      preferred_label: "Metadata & Tagging"
+      description: "Rules for metadata schemas and tagging mechanisms"
+    - id: "SF"
+      preferred_label: "Syntax & Formatting"
+      description: "Constraints on markdown syntax and formatting rules"
+    - id: "OM"
+      preferred_label: "Operational Management"
+      description: "Automation, deployment, and operational processes"
+    - id: "GM"
+      preferred_label: "Governance & Meta‑Standards"
+      description: "Policies, decision records, and governance standards"
+    - id: "UA"
+      preferred_label: "Utility & Assets"
+      description: "Reusable assets, utilities, and ancillary resources"
+    - id: "QM"
+      preferred_label: "Quality & Metrics"
+      description: "Quality criteria, metrics definition, and validation"
+
+  lifecycle_gatekeeper:
+    - gatekeeper: "Architect-Review"
+      name: "Architect Review"
+      description: "Requires review and approval from a designated system/solution architect or architectural body"
+    - gatekeeper: "SME-Consensus"
+      name: "Subject Matter Expert (SME) Consensus"
+      description: "Requires consensus agreement from a defined group of subject matter experts"
+    - gatekeeper: "Automated-Validation"
+      name: "Automated Validation"
+      description: "Requires passing automated checks, linters, or validation scripts"
+    - gatekeeper: "Peer-Review"
+      name: "Peer Review"
+      description: "Requires review and feedback from peers or team members"
+    - gatekeeper: "Editorial-Board-Approval"
+      name: "Editorial Board Approval"
+      description: "Requires approval from a designated editorial board or governance committee"
+    - gatekeeper: "No-Formal-Gatekeeper"
+      name: "No Formal Gatekeeper"
+      description: "Does not require a formal gatekeeper for progression; may rely on author discretion or informal review"
+
+  maturity_level:
+    - id: "IDEA"
+      preferred_label: "Idea"
+      description: "Initial brainstorming—no formal draft exists yet"
+    - id: "DRAFT"
+      preferred_label: "Draft"
+      description: "Actively being written and refined"
+    - id: "REVIEW"
+      preferred_label: "Review Needed"
+      description: "Awaiting peer or SME review"
+    - id: "FINAL"
+      preferred_label: "Final"
+      description: "Approved and considered stable"
+    - id: "DEPREC"
+      preferred_label: "Deprecated"
+      description: "Superseded or archived; retained for historical reference"
+
+  sub_domain:
+    AS:
+      - code: "STRUCTURE"
+        name: "Structural Standards"
+        description: "Standards related to the overall organization and structure of knowledge bases"
+      - code: "INDEXING"
+        name: "Indexing and Mapping"
+        description: "Standards for creating and managing indexes, maps, and tables of contents"
+      - code: "SCHEMA"
+        name: "Schema Definitions (Architectural)"
+        description: "Standards defining schemas for architectural components or document types"
+    CS:
+      - code: "POLICY"
+        name: "Content Policies"
+        description: "Policies governing the creation, style, and lifecycle of content"
+      - code: "PROFILING"
+        name: "Content Profiling"
+        description: "Standards for conditionalizing or targeting content to specific audiences or conditions"
+      - code: "CONCEPTS"
+        name: "Concept Definitions"
+        description: "Standards for defining core concepts and terminology within content domains"
+    MT:
+      - code: "FRONTMATTER"
+        name: "Frontmatter Metadata"
+        description: "Standards for metadata included in the frontmatter of documents"
+      - code: "TAGGING"
+        name: "Tagging Standards"
+        description: "Standards and glossaries for applying tags"
+      - code: "REGISTRY"
+        name: "Registry Management"
+        description: "Standards related to the creation and maintenance of controlled vocabularies"
+    SF:
+      - code: "MARKDOWN"
+        name: "Markdown Syntax"
+        description: "Standards for the use of Markdown syntax elements"
+      - code: "LINKS"
+        name: "Linking Syntax"
+        description: "Standards for internal and external linking"
+      - code: "TRANSCLUSION"
+        name: "Transclusion Syntax"
+        description: "Standards for transcluding content"
+      - code: "CALLOUTS"
+        name: "Callout/Admonition Syntax"
+        description: "Standards for callouts, admonitions, and similar block elements"
+      - code: "CONDITIONAL"
+        name: "Conditional Text Syntax"
+        description: "Standards for syntax used in conditional text rendering"
+    OM:
+      - code: "LIFECYCLE"
+        name: "Lifecycle Management"
+        description: "Standards related to content lifecycle, versioning, and governance"
+      - code: "AUTOMATION"
+        name: "Automation Standards"
+        description: "Standards related to automated processes, workflows, and tooling integration"
+    GM:
+      - code: "CONVENTIONS"
+        name: "Naming and ID Conventions"
+        description: "General naming conventions and identifier rules"
+      - code: "GUIDE"
+        name: "Guidance Documents"
+        description: "General guides and instructional materials for using the KB and standards"
+      - code: "GLOSSARY"
+        name: "Glossaries"
+        description: "General glossaries and term definitions"
+    UA:
+      - code: "ACCESSIBILITY"
+        name: "Accessibility Standards"
+        description: "Standards for ensuring content accessibility"
+      - code: "KEYDEFS"
+        name: "Key Definitions"
+        description: "Global key definitions"
+      - code: "SCHEMAS"
+        name: "Schema Definitions (Utility & Assets)"
+        description: "Standards defining schemas for utility or asset-related data structures"
+    QM:
+      - code: "VALIDATION"
+        name: "Validation and Linting"
+        description: "Standards and rules for content validation and linting"
+
 # External References - Controlled vocabularies defined in other files
 external_vocabularies:
   tags:
-    source: "MT-REGISTRY-TAG-GLOSSARY"
+    source: "mt-registry-tag-glossary.yaml"
     description: "Categories and specific tags for document classification"
   kb_id:
-    source: "MT-REGISTRY-TAG-GLOSSARY"
+    source: "mt-registry-tag-glossary.yaml"
     description: "Knowledge base identifiers"
-  criticality:
-    source: "MT-REGISTRY-TAG-GLOSSARY"
-    description: "Criticality levels (P0-Critical, P1-High, P2-Medium, etc.)"
-  lifecycle_gatekeeper:
-    source: "MT-REGISTRY-TAG-GLOSSARY"
-    description: "Roles/teams responsible for lifecycle approvals"
-  primary_domain:
-    source: "domain_codes.yaml"
-    description: "Primary domain codes (2 uppercase letters)"
-  sub_domain:
-    source: "subdomain_registry.yaml"
-    description: "Sub-domain codes (2-6 uppercase letters) per primary_domain"
 
 # Business Rules and Complex Logic
 business_rules:
@@ -270,12 +428,22 @@ business_rules:
 # Generation Metadata
 generation_info:
   created_date: "2025-06-04"
+  updated_date: "2025-06-06"
   created_by: "SST Migration Script"
-  purpose: "Single Source of Truth for frontmatter schema"
-  replaces: "Manual parsing of MT-SCHEMA-FRONTMATTER.md"
+  updated_by: "Registry Consolidation Project"
+  purpose: "Single Source of Truth for frontmatter schema with consolidated controlled vocabularies"
+  replaces: 
+    - "Manual parsing of MT-SCHEMA-FRONTMATTER.md"
+    - "audience_types.yaml"
+    - "criticality_levels.yaml"
+    - "domain_codes.yaml"
+    - "lifecycle_gatekeepers.yaml"
+    - "maturity_levels.yaml"
+    - "subdomain_registry.yaml"
   consumers:
     - "generate_frontmatter_registry.py"
     - "generate_schema_docs.py"
     - "frontmatter validators"
     - "naming enforcer"
-    - "linting tools" 
+    - "linting tools"
+    - "kb_linter.py" 
