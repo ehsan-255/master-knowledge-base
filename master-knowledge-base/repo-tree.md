@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-06 16:10:31  
+**Generated**: 2025-06-07 08:01:30  
 **Script**: `master-knowledge-base/tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -10,25 +10,19 @@
 
 ```
 📁 master-knowledge-base
-✅ archive ALWAYS ARCHIVE HERE
-📋 standards
-│   📊 registry
-│   │   📄 audience_types.yaml
+🗃️ archive ALWAYS ARCHIVE HERE
+⚖️ standards
+│   🔠 registry
 │   │   📄 criticality_levels.txt
-│   │   📄 criticality_levels.yaml
-│   │   📄 domain_codes.yaml
 │   │   📄 field_order.yaml
 │   │   📄 frontmatter_fields.yaml
 │   │   📄 info_types.txt
 │   │   📄 lifecycle_gatekeepers.txt
-│   │   📄 lifecycle_gatekeepers.yaml
-│   │   📄 maturity_levels.yaml
-│   │   📄 MT-REGISTRY-TAG-GLOSSARY.md
+│   │   📄 mt-registry-tag-glossary.yaml
 │   │   📄 mt-schema-frontmatter.yaml
 │   │   📄 registry_schema.yaml
-│   │   📄 subdomain_registry.yaml
 │   │   📄 tag_categories.txt
-│   📝 src
+│   ⚖️ src
 │   │   📄 AS-KB-DIRECTORY-STRUCTURE.md
 │   │   📄 AS-MAP-STANDARDS-KB.md
 │   │   📄 AS-ROOT-STANDARDS-KB.md
@@ -67,6 +61,7 @@
 │   │   📄 GM-MANDATE-STANDARDS-GLOSSARY.md
 │   │   📄 GM-REGISTRY-GOVERNANCE.md
 │   │   📄 MT-KEYREF-MANAGEMENT.md
+│   │   📄 MT-REGISTRY-TAG-GLOSSARY.md
 │   │   📄 MT-SCHEMA-FRONTMATTER.md
 │   │   📄 MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md
 │   │   📄 MT-TAGGING-STRATEGY-POLICY.md
@@ -105,7 +100,7 @@
 │   │   📄 SF-TRANSCLUSION-SYNTAX.md
 │   │   📄 UA-KEYDEFS-GLOBAL.md
 │   │   📄 UA-SCHEMA-LLM-IO.md
-│   📄 templates
+│   🧬 templates
 │   │   📄 UA-TPL-CANONICAL-FRONTMATTER.md
 │   │   📄 UA-TPL-CHANGELOG-DOCUMENT.md
 │   📄 changelog.md
@@ -118,14 +113,14 @@
 │   │   📄 frontmatter_organizer.py
 │   │   📄 generate_frontmatter_registry.py
 │   │   📄 generate_schema_docs.py
-│   📇 indexer
-│   │   ❌ tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
+│   🔧 indexer
+│   │   📁 tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
 │   │   │   📄 test_generate_index.py
 │   │   📄 generate_index.py
 │   │   📄 OM-SPEC-STANDARDS-INDEX-JSONLD.md
 │   │   📄 standards_index.schema.json
-│   🔍 linter
-│   │   ❌ tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
+│   🔧 linter
+│   │   📁 tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
 │   │   │   📄 test_kb_linter.py
 │   │   📄 kb_linter.py
 │   📁 naming-enforcer
@@ -136,11 +131,11 @@
 │   │   📄 naming_exceptions.json
 │   │   📄 protected-names.json
 │   │   📄 recover_backup.py
-│   🔄 refactoring-scripts
+│   🔧 refactoring-scripts
 │   │   📄 refactor_criticality_field.py
 │   │   📄 refactor_ids_filenames.py
 │   │   📄 refactor_tag_casing.py
-│   📋 reports
+│   📊 reports
 │   │   📁 backups
 │   │   │   📁 fix_violations_20250604_090824
 │   │   │   │   📄 AUTOMATIC_FILES.md
@@ -160,9 +155,14 @@
 │   │   │       📄 backup-manifest.json
 │   │   │       📄 current-state.mD
 │   │   📄 auto-generation-completion-report-2025-06-05.md
+│   │   📄 collection-architecture-structure.md
+│   │   📄 collection-content-policies.md
+│   │   📄 collection-metadata-tagging.md
+│   │   📄 collection-syntax-formatting.md
 │   │   📄 collection_fixes_implemented_2025-06-04.md
 │   │   📄 collection_linter_issue_analysis_2025-06-04.md
 │   │   📄 criticality_fix_summary_2025-06-04.md
+│   │   📄 enhanced-treeicon-implementation-20250606-1520.md
 │   │   📄 exact_linter_errors_2025-06-04-09-57.md
 │   │   📄 frontmatter-registry-summary-2025-06-04-20-39-16.md
 │   │   📄 frontmatter-registry-summary-2025-06-04-20-39-19.md
@@ -194,6 +194,9 @@
 │   │   📄 preview-info_types.txt
 │   │   📄 preview-lifecycle_gatekeepers.txt
 │   │   📄 preview-tag_categories.txt
+│   │   📄 registry-content-categorization-20250606-2005.md
+│   │   📄 registry-content-relationships-20250606-2000.md
+│   │   📄 registry-inventory-20250606-1954.md
 │   │   📄 repository-tree-final-cleanup-20250606-1441.md
 │   │   📄 repository-tree-generator-configuration-upgrade-20250606-1411.md
 │   │   📄 repository-tree-generator-implementation-20250606-1333.md
@@ -211,7 +214,7 @@
 │   │   │   📄 main_repo_tree.py
 │   │   📄 README-repository-tree-generator.md
 │   │   📄 todo_tracker.py
-│   ✅ validators
+│   🔧 validators
 │   │   📄 validate_registry.py
 │   📄 changelog.md
 │   📄 README.md
@@ -223,24 +226,23 @@
 
 ## Legend
 
+- ⚖️ **Source Content Directory**
 - ⛔ **Node.js Dependencies Directory**
-- ✅ **Validation Tools Directory**
-- ❌ **Test Files (Restricted)**
-- 🎯 **Active Project Management**
-- 🏗️ **Build System Directory**
-- 💡 **Sample Content Directory**
+- ❌ **INCORRECT LOCATION (ARCHIVE CONTENT AND DELETE THIS FOLDER)**
+- 🏗️ **Active Project Management**
+- 💡 **Sample Content**
 - 💾 **Backup Storage Directory**
 - 📁 **Standard Directory**
-- 📄 **Template Files Directory**
-- 📇 **Content Indexing Directory**
-- 📊 **Data Registry Directory**
-- 📋 **Project Guidelines Documentation**
-- 📚 **Documentation Directory**
-- 📝 **Source Content Directory**
-- 🔄 **Code Refactoring Directory**
-- 🔍 **Code Linting Directory**
-- 🔧 **Utility Tools Directory**
+- 📄 **File**
+- 📊 **Generated Reports Directory**
+- 📚 **Documentation**
+- 🔠 **Data Registry Directory**
+- 🔧 **Code Refactoring**
 - 🗂️ **Temporary Files Directory**
+- 🗃️ **Archive Storage**
+- 🦮 **Project Guidelines Documentation**
+- 🧪 **Testing Environment**
+- 🧬 **Template Files Directory**
 
 ---
 

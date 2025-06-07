@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-06 19:36:19  
+**Generated**: 2025-06-07 11:27:25  
 **Script**: `master-knowledge-base/tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -37,28 +37,16 @@
 │   📄 roadmap-template.md
 🗃️ archive ALWAYS ARCHIVE HERE
 📁 master-knowledge-base
-│   ❌ archive NEVER ARCHIVE HERE (content must be moved to archive folder and this folder must be deleted)
-│   │   📁 registry-old-manual-files-20250605-0240
-│   │   │   📄 criticality_levels.txt
-│   │   │   📄 lifecycle_gatekeepers.txt
-│   │   │   📄 tag_categories.txt
-│   │   📁 registry-old-manual-files-20250605-0243
 │   ⚖️ standards
 │   │   🔠 registry REGISTRY FILES MUST ALWAYS BE HERE
-│   │   │   📄 audience_types.yaml
 │   │   │   📄 criticality_levels.txt
-│   │   │   📄 criticality_levels.yaml
-│   │   │   📄 domain_codes.yaml
 │   │   │   📄 field_order.yaml
 │   │   │   📄 frontmatter_fields.yaml
 │   │   │   📄 info_types.txt
 │   │   │   📄 lifecycle_gatekeepers.txt
-│   │   │   📄 lifecycle_gatekeepers.yaml
-│   │   │   📄 maturity_levels.yaml
-│   │   │   📄 MT-REGISTRY-TAG-GLOSSARY.md
+│   │   │   📄 mt-registry-tag-glossary.yaml
 │   │   │   📄 mt-schema-frontmatter.yaml
 │   │   │   📄 registry_schema.yaml
-│   │   │   📄 subdomain_registry.yaml
 │   │   │   📄 tag_categories.txt
 │   │   ⚖️ src STANDARDS MUST ALWAYS BE HERE
 │   │   │   📄 AS-KB-DIRECTORY-STRUCTURE.md
@@ -99,6 +87,7 @@
 │   │   │   📄 GM-MANDATE-STANDARDS-GLOSSARY.md
 │   │   │   📄 GM-REGISTRY-GOVERNANCE.md
 │   │   │   📄 MT-KEYREF-MANAGEMENT.md
+│   │   │   📄 MT-REGISTRY-TAG-GLOSSARY.md
 │   │   │   📄 MT-SCHEMA-FRONTMATTER.md
 │   │   │   📄 MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md
 │   │   │   📄 MT-TAGGING-STRATEGY-POLICY.md
@@ -151,13 +140,19 @@
 │   │   │   📄 generate_frontmatter_registry.py
 │   │   │   📄 generate_schema_docs.py
 │   │   🔧 indexer
-│   │   │   ❌ tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
 │   │   │   📄 generate_index.py
 │   │   │   📄 OM-SPEC-STANDARDS-INDEX-JSONLD.md
 │   │   │   📄 standards_index.schema.json
 │   │   🔧 linter
-│   │   │   ❌ tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
 │   │   │   📄 kb_linter.py
+│   │   📁 migration-scripts
+│   │   │   📄 migrate_file_structure.py
+│   │   │   📄 migrate_master_kb_to_root.py
+│   │   │   📄 README.md
+│   │   │   📄 rollback_migration.py
+│   │   │   📄 test_migration_scripts.py
+│   │   │   📄 update_path_references.py
+│   │   │   📄 validate_migration.py
 │   │   📁 naming-enforcer
 │   │   │   📄 .namingignore
 │   │   │   📄 .naminginclude
@@ -186,7 +181,7 @@
 │   │   📄 README.md
 │   📄 AS-INDEX-KB-MASTER.md
 │   📄 repo-tree.md
-🧪 test-environment ALWAYS TEST HERE
+🧪 test-environment ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
 │   💾 backup
 │   │   📄 no-frontmatter.md
 │   │   📄 sample1.md
@@ -200,20 +195,26 @@
 │   │   📄 simple-test.md
 │   │   📄 test-uppercase.md
 │   │   📄 uppercase-extension-test.md
+│   📁 tool-tests-consolidated-20250607-0942
+│   │   📁 indexer-tests
+│   │   │   📄 test_generate_index.py
+│   │   📁 linter-tests
+│   │       📄 test_kb_linter.py
 │   📄 naming-enforcer-test-files.md
+│   📄 README.md
+│   📄 run_all_tests.py
 │   📄 safety-test-suite.py
+│   📄 test-results-20250607-091041.json
+│   📄 test-summary-20250607-091041.md
 │   📄 test-todos.json
 📄 .cursorignore
 📄 .cursorrules
 📄 .prettierignore
-📄 naming-enforcer-summary.md
+📄 master-knowledge-base-to-root-migration-analysis.md
 📄 README.md
-📄 registry-consolidation-progress-tracker.md
-📄 registry-consolidation-roadmap-checklist.md
-📄 registry-consolidation-roadmap.md
+📄 refactoring-initiative-remaining-tasks.md
 📄 repo-tree.md
 📄 repo_tree.py
-📄 summary-report-20250604-2157.md
 ```
 
 ---

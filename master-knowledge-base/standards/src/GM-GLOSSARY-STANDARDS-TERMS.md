@@ -82,7 +82,7 @@ Knowledge Base (KB)
 ## P
 
 Primary Domain
-:   A two-letter uppercase code (e.g., `AS`, `CS`, `MT`) used in `standard_id` and the `primary_domain` frontmatter field to categorize a standard by its main area of governance. Defined in `[[domain_codes.yaml]]`.
+:   A two-letter uppercase code (e.g., `AS`, `CS`, `MT`) used in `standard_id` and the `primary_domain` frontmatter field to categorize a standard by its main area of governance. Defined in `[[MT-SCHEMA-FRONTMATTER]]` controlled_vocabularies.primary_domain.
 
 Primary Topic
 :   A mandatory frontmatter key (`primary-topic`) holding a concise statement describing the main subject of a document. See `[[MT-STRATEGY-PRIMARY-TOPIC-KEYWORD]]`.
@@ -110,7 +110,7 @@ Standard ID (`standard_id`)
 :   A unique, structured identifier assigned to each standard document, following a defined pattern (e.g., `XX-YYYY-ZZZZZ`). See `[[MT-SCHEMA-FRONTMATTER]]` for format rules.
 
 Sub-domain
-:   A 2-6 letter uppercase code used in `standard_id` and the `sub_domain` frontmatter field to further categorize a standard within its `primary_domain`. Defined in `[[subdomain_registry.yaml]]`.
+:   A 2-6 letter uppercase code used in `standard_id` and the `sub_domain` frontmatter field to further categorize a standard within its `primary_domain`. Defined in `[[MT-SCHEMA-FRONTMATTER]]` controlled_vocabularies.sub_domain.
 
 ## T
 

@@ -4,7 +4,7 @@
 
 # Main directories
 archive|ALWAYS ARCHIVE HERE
-test-environment|ALWAYS TEST HERE
+test-environment|ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
 
 # Master knowledge base subdirectories
 master-knowledge-base/archive|NEVER ARCHIVE HERE (content must be moved to archive folder and this folder must be deleted)

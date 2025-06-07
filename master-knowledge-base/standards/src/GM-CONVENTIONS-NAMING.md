@@ -148,8 +148,8 @@ lifecycle_gatekeeper, impact_areas, change_log_url
 ```
 standards_index.json, standards_index.schema.json,
 naming_exceptions.json, protected_names.json,
-collection_definitions.yaml, domain_codes.yaml,
-subdomain_registry.yaml
+collection_definitions.yaml, mt-schema-frontmatter.yaml,
+mt-registry-tag-glossary.yaml
 ```
 
 ### 2.4 Tool Script Names
@@ -162,7 +162,7 @@ validate_metadata.py, frontmatter_validator.py
 ### 2.5 JSON/YAML Configuration Keys
 ```
 standards_index, standard_definitions, naming_exceptions,
-protected_names, context_rules, domain_codes, subdomain_registry
+protected_names, context_rules, controlled_vocabularies, tag_categories
 ```
 
 ### 2.6 Environment Variables
@@ -215,7 +215,7 @@ LOG_LEVEL, DEBUG_MODE
     "file_patterns": [
       "standards_index.json", "standards_index.schema.json",
       "naming_exceptions.json", "protected_names.json",
-      "collection_definitions.yaml", "domain_codes.yaml"
+      "collection_definitions.yaml", "mt-schema-frontmatter.yaml"
     ],
     "tool_dependencies": [
       "generate_index.py", "generate_collections.py", 

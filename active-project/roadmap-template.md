@@ -85,23 +85,23 @@
 
 ---
 
-#### **🔍 DECOMPOSITION LEVELS**
+#### **💣 DECOMPOSITION LEVELS**
 
-##### **Highest Precision & Predictability**
+##### **A. Highest Precision & Predictability**
 - Break down to **ACTION level** (🎬 emoji)
 - Use when: Complex technical work, critical systems, regulatory compliance
 - Benefits: Predictable outcomes, reduced errors, clear accountability
 - **🚨 CRITICAL**: Exit conditions are mandatory for this level
 - **📋 CHECKLIST**: Separate progress checklist is **MANDATORY** for this level
 
-##### **Highest Flexibility & Creativity**
+##### **B. Highest Flexibility & Creativity**
 - **Don't** break down at all (or maybe break down to **STEP level**)
 - Use when: Research, design, strategic planning, innovation, creative work, etc.
 - Benefits: Flexibility, creative freedom, adaptive execution, etc.
 - Most plans will not need exit conditions for this level
 - **📋 CHECKLIST**: Separate progress checklist **MOST LIKELY NOT NEEDED** for this level
 
-##### **Balanced Approach**
+##### **C. Balanced Approach**
 - Break down to **TASK or SUBTASK level (or even STEP level)**
 - Use when: Most projects fall in this category, where precision and predictability are required, but in moderation
 - Exit conditions are **HIGHLY RECOMMENDED** for this level
@@ -145,18 +145,35 @@
 
 ---
 
+### **🔄 PROGRESS TRACKER AND CHECKLIST TEMPLATES**
+
+>**USE PROGRESS TRACKER TEMPLATE: `roadmap-progress-tracker-template.md` TO GENERATE THE PROGRESS TRACKER**
+>**USE CHECKLIST TEMPLATE: `roadmap-checklist-template.md` TO GENERATE THE CHECKLIST.** *APPLIED TO (OPTION A) & (OPTION C) IN **💣 DECOMPOSITION LEVELS***
+
+---
+
+### **🚦 COORDINATION**
+- **This roadmap** remains the authoritative source for execution instructions
+- **Checklist** is for quick status updates and brief notes. *applicable to (OPTION A) & (OPTION C) in **💣 DECOMPOSITION LEVELS***
+- **Progress tracker** is for detailed completion documentation
+
+>**NO OTHER REPORTING, TRACKING, OR DOCUMENTATION IS REQUIRED FOR A ROADMAP**
+
+---
+
 ### **📋 EXECUTION-SPECIFIC TEXT BLOCKS**
 
 >**BELOW ARE THE TEXT BLOCKS REQUIRED FOR EACH ROADMAP LEVEL DURING THE EXECUTION STAGE. THEY ARE INSTRUCTIONS WHICH ARE NEEDED TO BE FOLLOWED DURING THE EXECUTION STAGE. ADD THEM TO THE BEGINNING AND END OF EVERY POPULATED ROADMAP**
 
->**APPLY MINOR ADJUSTMENTS TO THE TEXT BLOCKS ONLY IF THEY IMPROVE THE EXECUTION PROCESS**
+>**APPLY MINOR ADJUSTMENTS TO THE TEXT BLOCKS ONLY IF THEY IMPROVE THE EXECUTION PROCESS, *e.g. IF THE CHECKLIST IS NOT APPLICABLE, REMOVE THE CHECKLIST TEXT BLOCK***
 
 
 **ADD THIS SECTION (which is delimited by '```') TO THE BEGINNING OF EVERY POPULATED ROADMAP (without '```')**
 ```
->**THE "*🚨 MANDATORY* ROADMAP PROGRESS MANAGEMENT PROTOCOL" *MUST* BE FOLLOWED AT ALL TIMES TO ENSURE THE PROGRESS IS ACTIVELY TRACKED AND WORK CAN BE RESUMED FROM THE SAME POINT WITHOUT CAUSING ANY CONFUSION AND REDUNDANCY, THE PROGRESS MUST BE UPDATED CONTINUOUSLY WITHOUT ANY EXCEPTION**
+>**THE "*🚨 MANDATORY* ROADMAP PROGRESS MANAGEMENT PROTOCOL" *MUST* BE FOLLOWED AND UPDATED AT ALL TIMES TO ENSURE THE PROGRESS IS ACTIVELY TRACKED AND WORK CAN BE RESUMED FROM THE SAME POINT WITHOUT CAUSING ANY CONFUSION AND REDUNDANCY, THE PROGRESS MUST BE UPDATED CONTINUOUSLY WITHOUT ANY EXCEPTION**
 
->**USE PROGRESS TRACKER TEMPLATE: `roadmap-progress-tracker-template.md` TO GENERATE THE PROGRESS TRACKER**
+>**UPDATE THE CHECKLIST CONTINUOUSLY AT ALL TIMES WITHOUT ANY EXCEPTION**
+
 ```
 
 ---

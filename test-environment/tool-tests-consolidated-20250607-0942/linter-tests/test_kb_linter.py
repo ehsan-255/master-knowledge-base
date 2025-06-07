@@ -42,17 +42,103 @@ class TestKBLinter(unittest.TestCase):
             import json
             json.dump(index_content, f)
 
-        # Create minimal registry files
-        with open(os.path.join(cls.mock_standards_registry, "domain_codes.yaml"), "w") as f:
-            f.write("registry_id: \"DOMAIN\"\nentries:\n  - id: \"AS\"\n  - id: \"CS\"\n")
-        with open(os.path.join(cls.mock_standards_registry, "subdomain_registry.yaml"), "w") as f:
-            f.write("AS:\n  - code: \"TEST\"\n    name: \"Test Subdomain\"\nCS:\n  - code: \"GENERAL\"\n")
+        # Create consolidated registry files
+        # Create mt-schema-frontmatter.yaml with controlled vocabularies
+        frontmatter_schema = """metadata:
+  source_document: "MT-SCHEMA-FRONTMATTER.md"
+  standard_id: "MT-SCHEMA-FRONTMATTER"
+  version: "0.1.0"
+  description: "Test frontmatter schema"
+
+controlled_vocabularies:
+  info_type:
+    - standard-definition
+    - policy-document
+    - changelog
+  
+  criticality:
+    - level: "P0-Critical"
+      description: "Test P0"
+    - level: "P1-High"
+      description: "Test P1"
+  
+  primary_domain:
+    - id: "AS"
+      preferred_label: "Architecture & Structure"
+      description: "Test AS domain"
+    - id: "CS"
+      preferred_label: "Content & Semantics"
+      description: "Test CS domain"
+  
+  lifecycle_gatekeeper:
+    - gatekeeper: "Architect-Review"
+      name: "Architect Review"
+      description: "Test architect review"
+    - gatekeeper: "No-Gatekeeper"
+      name: "No Formal Gatekeeper"
+      description: "Test no gatekeeper"
+  
+  sub_domain:
+    AS:
+      - code: "TEST"
+        name: "Test Subdomain"
+        description: "Test subdomain for AS"
+    CS:
+      - code: "GENERAL"
+        name: "General"
+        description: "Test subdomain for CS"
+"""
+        with open(os.path.join(cls.mock_standards_registry, "mt-schema-frontmatter.yaml"), "w") as f:
+            f.write(frontmatter_schema)
+        
+        # Create mt-registry-tag-glossary.yaml
+        tag_glossary = """metadata:
+  source_document: "MT-REGISTRY-TAG-GLOSSARY.md"
+  standard_id: "MT-REGISTRY-TAG-GLOSSARY"
+  version: "0.1.0"
+  description: "Test tag glossary"
+
+tag_categories:
+  status:
+    prefix: "status/"
+    description: "Status tags"
+    tags:
+      - id: "draft"
+        full_tag: "status/draft"
+        description: "Test draft status"
+  topic:
+    prefix: "topic/"
+    description: "Topic tags"
+    tags:
+      - id: "test"
+        full_tag: "topic/test"
+        description: "Test topic"
+  kb_id:
+    prefix: "kb-id/"
+    description: "KB ID tags"
+    tags:
+      - id: "test-kb"
+        full_tag: "kb-id/test-kb"
+        description: "Test KB"
+  criticality:
+    prefix: "criticality/"
+    description: "Criticality tags"
+    tags:
+      - id: "P0-Critical"
+        full_tag: "criticality/P0-Critical"
+        description: "Test P0 criticality"
+      - id: "P1-High"
+        full_tag: "criticality/P1-High"
+        description: "Test P1 criticality"
+"""
+        with open(os.path.join(cls.mock_standards_registry, "mt-registry-tag-glossary.yaml"), "w") as f:
+            f.write(tag_glossary)
+        
+        # Keep some .txt files for backward compatibility if needed
         with open(os.path.join(cls.mock_standards_registry, "info_types.txt"), "w") as f:
-            f.write("standard-definition\npolicy-document\nchangelog\n") # Added changelog
+            f.write("standard-definition\npolicy-document\nchangelog\n")
         with open(os.path.join(cls.mock_standards_registry, "criticality_levels.txt"), "w") as f:
             f.write("p0-critical\np1-high\n")
-        with open(os.path.join(cls.mock_standards_registry, "criticality_levels.yaml"), "w") as f:
-            f.write("- level: P0-Critical\n  description: Test P0\n- level: P1-High\n  description: Test P1\n")
         with open(os.path.join(cls.mock_standards_registry, "lifecycle_gatekeepers.txt"), "w") as f:
             f.write("Architect-Review\nNo-Gatekeeper\n")
         with open(os.path.join(cls.mock_standards_registry, "tag_categories.txt"), "w") as f:

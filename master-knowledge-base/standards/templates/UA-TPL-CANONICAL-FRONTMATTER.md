@@ -13,8 +13,8 @@ related-standards: [] # Optional: e.g., ["YY-ZZZZ-OTHER-STANDARD"]
 version: "0.1.0" # Initial version
 date-created: "2024-01-01T00:00:00Z" # Placeholder for ISO-8601 date-time
 date-modified: "2025-01-11T00:00:00Z" # Updated for folder-level changelog approach
-primary_domain: "GM" # e.g., AS, CS, MT, SF, OM, GM, UA, QM. Mandatory for standards. Must exist in [[domain_codes.yaml]]
-sub_domain: "GUIDE" # e.g., STRUCTURE, POLICY, MARKDOWN. Mandatory for standards. Must exist in [[subdomain_registry.yaml]]
+primary_domain: "GM" # e.g., AS, CS, MT, SF, OM, GM, UA, QM. Mandatory for standards. Must exist in [[mt-schema-frontmatter.yaml]]
+sub_domain: "GUIDE" # e.g., STRUCTURE, POLICY, MARKDOWN. Mandatory for standards. Must exist in [[mt-schema-frontmatter.yaml]]
 scope_application: "TBD: Define scope" # Mandatory. e.g., "All knowledge base documents"
 criticality: "P2-Medium" # Mandatory. Matches tag value. e.g., P0-Critical, P1-High. From [[MT-REGISTRY-TAG-GLOSSARY]]
 lifecycle_gatekeeper: "No-Gatekeeper" # Mandatory. e.g., Architect-Review, SME-Consensus. From [[MT-REGISTRY-TAG-GLOSSARY]]

@@ -50,7 +50,7 @@
       "naming_exceptions.json",
       "protected_names.json",
       "collection_definitions.yaml",
-      "domain_codes.yaml"
+      "mt-schema-frontmatter.yaml"
     ],
     "tool_dependencies": [
       "generate_index.py",

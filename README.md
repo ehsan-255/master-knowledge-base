@@ -2,20 +2,68 @@
 
 Welcome to the Master Knowledge Base (MKB)!
 
-This repository serves as a central hub for various Knowledge Bases (KBs). It enforces strict standards for structure, formatting,style, and more. It also incorporates automation capabilities to ensure adherence to these standards and to facilitate other operational aspects.
+This repository serves as a central hub for various Knowledge Bases (KBs). It enforces strict standards for structure, formatting, style, and more. It also incorporates automation capabilities to ensure adherence to these standards and to facilitate other operational aspects.
 
-## Foundational Development Phase
+## Repository Structure
 
-The MKB is currently undergoing foundational development. Key resources and standards are being established.
+The MKB follows a clean, organized structure with clear separation of concerns:
 
-**Important Locations:**
+**Core Directories:**
 
-*   **`master-knowledge-base/`**: This directory is a **temporary staging area** for the core MKB components during this foundational phase. It contains the most recent standards, scripts, and templates that will eventually form the heart of the MKB. Once the foundational work is complete, the contents of this directory will be moved to the root level of this repository.
-*   **`active-project/`**: This directory is where ongoing project work is managed. If you are looking to understand the practical application of the MKB's principles or contribute to current initiatives, please familiarize yourself with the documents and structure within `active-project/`. It showcases the foundational work in progress.
+*   **`master-knowledge-base/`**: Contains the core MKB infrastructure including standards, tools, and registry files
+    *   **`standards/`**: Authoritative standards documentation and controlled vocabularies
+    *   **`tools/`**: Production automation tools, scripts, and utilities
+*   **`active-project/`**: Current project management and ongoing initiatives
+*   **`test-environment/`**: Centralized testing infrastructure with consolidated tool tests
+*   **`archive/`**: Historical files and deprecated content with proper timestamping
 
-**Guidance for New Contributors:**
+## Recent Improvements (2025-06-07)
 
-1.  **Familiarize yourself with Foundational Work**: Review the documents and organizational structure within the `active-project/` directory. This will provide context on how projects are managed and how MKB principles are being applied.
-2.  **Understand Current Standards**: Explore the `master-knowledge-base/` directory to understand the latest standards, available scripts, and document templates. These are critical for any contributions.
+### Registry Consolidation Completed
+- Multiple fragmented YAML registry files consolidated into unified sources
+- `mt-schema-frontmatter.yaml` and `mt-registry-tag-glossary.yaml` serve as single sources of truth
+- All tools and scripts updated to use consolidated sources
+- Deprecated files properly archived with documentation
+
+### Test Environment Optimization
+- All scattered test directories consolidated into `test-environment/`
+- Clean separation between production tools and testing infrastructure
+- Centralized test execution and output management
+- Improved repository organization following established standards
+
+### Archive Management
+- Proper archival of deprecated registry files with timestamping
+- Clean removal of incorrectly placed archive directories
+- Maintained audit trail for all consolidation activities
+
+## Getting Started
+
+**For New Contributors:**
+
+1.  **Review Current Standards**: Explore `master-knowledge-base/standards/src/` for the latest documentation standards and guidelines
+2.  **Understand Project Management**: Check `active-project/` for current initiatives and project management approaches
+3.  **Testing and Validation**: Use `test-environment/` for all testing activities - never test in production tool directories
+4.  **Tool Usage**: Production tools in `master-knowledge-base/tools/` are ready for use with consolidated registry sources
+
+**For Repository Maintenance:**
+
+1.  **Standards Updates**: All standards documentation in `master-knowledge-base/standards/src/`
+2.  **Registry Management**: Controlled vocabularies in `master-knowledge-base/standards/registry/`
+3.  **Tool Development**: Production tools in `master-knowledge-base/tools/` with tests in `test-environment/`
+4.  **Archive Policy**: Use `archive/` for historical content with proper timestamping
+
+## Quality Assurance
+
+The repository maintains high standards through:
+- Automated linting and validation tools
+- Consolidated registry sources for consistency
+- Centralized testing infrastructure
+- Comprehensive documentation standards
+- Proper archive management with audit trails
 
 We aim to create a robust and highly organized knowledge ecosystem. Your contributions and adherence to the established standards are appreciated.
+
+---
+
+**Last Updated**: 2025-06-07 09:45:00 (Post-consolidation and cleanup)
+**Repository Status**: Optimized and ready for production use

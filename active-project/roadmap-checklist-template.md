@@ -4,7 +4,7 @@
 
 >**TO POPULATE THE *1. TEMPLATE*, FOLLOW THE *2. TEMPLATE-POPULATION GUIDELINES* BELOW**
 
->**THIS CHECKLIST IS USED FOR OPTION B: SEPARATE PROGRESS CHECKLIST (for longer roadmaps)**
+>**THIS CHECKLIST IS USED FOR OPTION B: SEPARATE PROGRESS CHECKLIST (for longer roadmaps) MENTIONED IN THE ROADMAP TEMPLATE**
 
 ---
 
@@ -16,42 +16,42 @@
 ## **📋 PROJECT**: [Project Name]
 
 ⬜ **PROJECT OVERVIEW**: [Brief Project Description]
-- *Note: [One-liner notes space]*
+- *Note: [🔤]*
 
 ---
 
 ⬜ **PHASE P**: [Phase Title] (P=0)
-- *Note: [One-liner notes space]*
+- *Note: [🔤]*
 
 ⬜ **🏁 PHASE P EXIT CONDITIONS**: [Brief Exit Criteria Summary]
-⬜ **CONDITION C**: [Specific Completion Criteria] (C=1)
-- *Note: [One-liner notes space]*
+⬜ **CONDITION C**: [Very Concise Completion Criteria] (C=1)
+- *Note: [🔤]*
 
 ---
 
 ⬜ **STEP P.S**: [Step Title] (S=1)
-- *Note: [One-liner notes space]*
+- *Note: [🔤]*
 
 ⬜ **🏁 STEP P.S EXIT CONDITIONS**: [Brief Exit Criteria Summary]
-⬜ **CONDITION C**: [Specific Completion Criteria] (C=1)
-- *Note: [One-liner notes space]*
+⬜ **CONDITION C**: [Very Concise Completion Criteria] (C=1)
+- *Note: [🔤]*
 
 ---
 
 ⬜ **TASK P.S.T**: [Task Title] (T=1)
-- *Note: [One-liner notes space]*
+- *Note: [🔤]*
 
 ⬜ **SUBTASK P.S.T.U**: [Subtask Title] (U=1)
-- *Note: [One-liner notes space]*
+- *Note: [🔤]*
 
 ⬜ **ACTION P.S.T.U.A**: [Action Title] (A=1)
-- *Note: [One-liner notes space]*
+- *Note: [🔤]*
 
 ---
 
 ⬜ **🏁 PROJECT EXIT CONDITIONS**: [Final Completion Criteria Summary]
-⬜ **CONDITION C**: [Specific Completion Criteria] (C=1)
-- *Note: [One-liner notes space]*
+⬜ **CONDITION C**: [Very Concise Completion Criteria] (C=1)
+- *Note: [🔤]*
 
 ---
 
@@ -83,7 +83,7 @@
 ##### **REQUIRED ELEMENTS TO EXTRACT**
 - **Project title** and brief overview
 - **All hierarchy levels** present in the roadmap (Phase/Step/Task/Subtask/Action)
-- **Exit conditions** titles and criteria
+- **Exit conditions** titles and concise criteria
 - **Numbering scheme** (P.S.T.U.A format)
 
 ##### **ELEMENTS TO EXCLUDE**
@@ -94,8 +94,8 @@
 
 ##### **ELEMENTS TO ADD**
 - **Status checkboxes** (⬜) for each item
-- **One-liner note spaces** (*Note: [One-liner notes space]*) for each item
-- **Brief summaries** of exit conditions instead of full criteria
+- **One-liner note placeholders** (*Note: [🔤]*) for each item
+- **Very concise summaries** of exit conditions instead of full criteria
 
 ---
 
@@ -109,9 +109,9 @@
 
 ##### **CONDENSED FORMAT**
 - **Single line titles** instead of full descriptions
-- **Brief exit criteria** instead of detailed conditions
+- **Very concise exit criteria** instead of detailed conditions
 - **Consistent checkbox placement** for all trackable items
-- **Uniform note space provision** for execution updates
+- **Uniform note placeholders** for important execution updates only
 
 ---
 
@@ -120,7 +120,7 @@
 - **Generate from completed roadmap** - don't create standalone
 - **Match decomposition level** of source roadmap exactly
 - **Use consistent formatting** for all hierarchy levels
-- **Ensure every trackable item** has checkbox and note space
+- **Ensure every trackable item** has checkbox and note placeholder
 - **Maintain parent-child relationships** clearly
 - **Keep titles concise** but descriptive enough for identification
 
@@ -142,6 +142,7 @@
 🔄 **IN PROGRESS**
 ✅ **COMPLETED**
 ❌ **BLOCKED**
+*Note: [🔤]* **ONE-LINER NOTE PLACEHOLDER: REPLACE 🔤 WITH A ONE-LINER NOTE *ONLY IF NEEDED*, OTHERWISE DELETE THE WHOLE PLACEHOLDER**
 
 **NOTE:** ***🔄 IN PROGRESS and ❌ BLOCKED statuses must be applied to all the affected parent branches all the way up to the project level***
 
@@ -150,14 +151,16 @@
 ## CHECKLIST USAGE PROTOCOL
 
 ### **STATUS TRACKING**
-- **Update checkboxes** continuously during execution
-- **Add one-liner notes** for important execution points, decisions, or issues
+- **Update checkboxes** continuously during execution **at all times**
+- **Add one-liner notes** *only* for important execution points, decisions, or issues. *NOT REQUIRED; ADD ONLY IF NEEDED*
 - **Apply cascading status** to parent branches when items are blocked or in progress
 - **Reference main roadmap** for detailed instructions and context
 
 ### **NOTE MANAGEMENT**
+- **NOTES ARE NOT REQUIRED; ADD ONLY FOR VERY IMPORTANT EXECUTION POINTS, DECISIONS, OR ISSUES**
+- **Replace 🔤 with a one-liner note *only if needed*, otherwise delete the whole placeholder**
 - **Keep notes brief** - maximum 1-2 lines per item
-- **Focus on execution highlights** - decisions, issues, changes, outcomes
+- **Focus on execution highlights** - important decisions, issues, changes, outcomes
 - **Use timestamps** when helpful for critical notes
 - **Avoid duplicating** information already in progress tracker
 
@@ -166,44 +169,8 @@
 - **Progress tracker** is for detailed completion documentation
 - **Main roadmap** remains the authoritative source for execution instructions
 
+>**NO OTHER REPORTING, TRACKING, OR DOCUMENTATION IS REQUIRED FOR A ROADMAP**
+
 ---
 
 ```
-
----
-
-### **📋 CHECKLIST-SPECIFIC INSTRUCTIONS**
-
->**BELOW ARE THE ADDITIONAL USAGE INSTRUCTIONS FOR THE GENERATED CHECKLIST**
-
-### **USAGE PROTOCOL**
-
-#### **STATUS TRACKING**
-- **Update checkboxes** continuously during execution
-- **Add one-liner notes** for important execution points, decisions, or issues
-- **Apply cascading status** to parent branches when items are blocked or in progress
-- **Reference main roadmap** for detailed instructions and context
-
-#### **NOTE MANAGEMENT**
-- **Keep notes brief** - maximum 1-2 lines per item
-- **Focus on execution highlights** - decisions, issues, changes, outcomes
-- **Use timestamps** when helpful for critical notes
-- **Avoid duplicating** information already in progress tracker
-
-#### **COORDINATION**
-- **This checklist** is for quick status updates and brief notes
-- **Progress tracker** is for detailed completion documentation
-- **Main roadmap** remains the authoritative source for execution instructions
-
----
-
-## STATUS LEGEND
-
-⬜ **NOT STARTED**
-🔄 **IN PROGRESS**
-✅ **COMPLETED**
-❌ **BLOCKED**
-
-**NOTE:** ***🔄 IN PROGRESS and ❌ BLOCKED statuses must be applied to all the affected parent branches all the way up to the project level***
-
---- 

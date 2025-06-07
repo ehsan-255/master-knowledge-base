@@ -2,13 +2,11 @@
 
 >**THIS TEMPLATE IS FOR CONTINUOUS PROGRESS TRACKING THROUGHOUT PROJECT EXECUTION**
 
->**CHOOSE ONE OF THE *3 COMPLEXITY LEVELS* BASED ON YOUR ROADMAP DECOMPOSITION LEVEL**
-
->**TO POPULATE THE CHOSEN TEMPLATE, FOLLOW THE *TEMPLATE-POPULATION GUIDELINES* BELOW**
+>**TO POPULATE THE PROGRESS TRACKER, FOLLOW THE *1. COMPLEXITY LEVEL SELECTION* TO CHOOSE THE APPROPRIATE TEMPLATE AND THEN FOLLOW THE *2. TEMPLATE-POPULATION GUIDELINES* BELOW TO POPULATE THE CHOSEN TEMPLATE**
 
 ---
 
-## **🔍 COMPLEXITY LEVEL SELECTION**
+## **1. COMPLEXITY LEVEL SELECTION**
 
 ### **BASIC TRACKER** (for Highest Flexibility & Creativity roadmaps)
 - Use when: Research, design, strategic planning, innovation
@@ -192,7 +190,7 @@
 
 ---
 
-## **📋 TEMPLATE-POPULATION GUIDELINES**
+## **2. TEMPLATE-POPULATION GUIDELINES**
 
 ### **📂 PROGRESS TRACKER NAMING CONVENTION**
 
@@ -200,6 +198,16 @@
 - **Use same 1-2 words** from the corresponding roadmap filename
 - **Examples**: `database-migration-progress-tracker.md`, `api-redesign-progress-tracker.md`, `user-auth-progress-tracker.md`
 - **Always end with** `-progress-tracker.md`
+
+---
+
+### **📋 PROGRESS TRACKER-SPECIFIC TEXT BLOCKS**
+
+>**BELOW ARE THE TEXT BLOCKS REQUIRED FOR EACH PROGRESS TRACKER DURING THE EXECUTION STAGE. THEY ARE INSTRUCTIONS WHICH ARE NEEDED TO BE FOLLOWED DURING THE EXECUTION STAGE. ADD THEM TO THE END OF EVERY POPULATED PROGRESS TRACKER**
+
+**ADD THIS SECTION (which is delimited by '```') TO THE END OF EVERY POPULATED PROGRESS TRACKER (without '```')**
+
+```
 
 ---
 
@@ -219,7 +227,7 @@
 
 ---
 
-### **🎯 CONTINUOUS USAGE PROTOCOL**
+### **🔄 CONTINUOUS EXECUTION PROTOCOL**
 
 #### **AFTER EACH ITEM COMPLETION**
 1. **Extract system timestamp** using terminal command
@@ -228,25 +236,31 @@
 4. **Update metrics** (Standard/Comprehensive only)
 5. **Keep entries brief** - focus on essential information only
 
-#### **ONLY WHEN BLOCKED**
+#### **⛔ ONLY WHEN BLOCKED**
 1. **Log issue** in Issue Tracking section
 2. **Update item status** to BLOCKED in timeline
 3. **Document resolution** when issue is resolved
 4. **Extract resolution timestamp** from system
 
-#### **SELECTION CRITERIA**
-- **BASIC**: Choose for simple, creative, or research-based roadmaps
-- **STANDARD**: Choose for most balanced project roadmaps
-- **COMPREHENSIVE**: Choose for complex, critical, or highly detailed roadmaps
-
 ---
 
 ### **👍🏼 BEST PRACTICES**
 
-- **Immediate updates** - log completion within minutes of finishing
-- **System timestamps** - never estimate or manually type timestamps
+- **Immediate updates** - log completion immediately after finishing an item
+- **System timestamps** - never estimate or manually type timestamps. Always extract from system
 - **Brief entries** - focus on outcomes and key points only
 - **Issue focus** - only track significant blocking issues
 - **Consistent format** - maintain template structure throughout execution
 
---- 
+---
+
+### **COORDINATION**
+- **This progress tracker** is for detailed completion documentation
+- **Checklist** is for quick status updates and brief notes
+- **Main roadmap** remains the authoritative source for execution instructions
+
+>**NO OTHER REPORTING, TRACKING, OR DOCUMENTATION IS REQUIRED FOR A ROADMAP**
+
+---
+
+```

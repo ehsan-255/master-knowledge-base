@@ -8,31 +8,36 @@ import logging
 CRITICALITY_MAP = {}
 
 def load_criticality_map(repo_base_path):
-    """Loads criticality levels from YAML and creates a lowercase-to-mixedcase map."""
+    """Loads criticality levels from mt-schema-frontmatter.yaml controlled_vocabularies section and creates a lowercase-to-mixedcase map."""
     global CRITICALITY_MAP
     registry_path = os.path.join(repo_base_path, "master-knowledge-base", "standards", "registry")
-    yaml_file_path = os.path.join(registry_path, "criticality_levels.yaml")
+    yaml_file_path = os.path.join(registry_path, "mt-schema-frontmatter.yaml")
 
     temp_map = {}
     try:
         if not os.path.exists(yaml_file_path):
-            logging.error(f"Criticality YAML file not found at: {yaml_file_path}")
+            logging.error(f"Frontmatter schema YAML file not found at: {yaml_file_path}")
             return False
         with open(yaml_file_path, 'r', encoding='utf-8') as f:
             data = yaml.safe_load(f)
-            if isinstance(data, list):
-                for item in data:
-                    if isinstance(item, dict) and 'level' in item:
-                        mixed_case_level = item['level']
-                        temp_map[mixed_case_level.lower()] = mixed_case_level
+            # Navigate to controlled_vocabularies.criticality section
+            if isinstance(data, dict) and 'controlled_vocabularies' in data:
+                controlled_vocabs = data['controlled_vocabularies']
+                if isinstance(controlled_vocabs, dict) and 'criticality' in controlled_vocabs:
+                    criticality_list = controlled_vocabs['criticality']
+                    if isinstance(criticality_list, list):
+                        for item in criticality_list:
+                            if isinstance(item, dict) and 'level' in item:
+                                mixed_case_level = item['level']
+                                temp_map[mixed_case_level.lower()] = mixed_case_level
             CRITICALITY_MAP = temp_map
             if not CRITICALITY_MAP:
-                logging.error(f"No criticality levels found or parsed from {yaml_file_path}")
+                logging.error(f"No criticality levels found or parsed from {yaml_file_path} controlled_vocabularies.criticality section")
                 return False
             logging.info(f"Successfully loaded criticality map: {CRITICALITY_MAP}")
             return True
     except Exception as e:
-        logging.error(f"Failed to load or parse criticality_levels.yaml: {e}")
+        logging.error(f"Failed to load or parse mt-schema-frontmatter.yaml: {e}")
         return False
 
 def get_frontmatter_and_content_indices(file_content_lines):
@@ -118,9 +123,9 @@ def process_criticality_field_in_file(filepath, dry_run=True):
     return False
 
 def main():
-    parser = argparse.ArgumentParser(description="Convert 'criticality' field value to mixed-case based on criticality_levels.yaml.")
+    parser = argparse.ArgumentParser(description="Convert 'criticality' field value to mixed-case based on mt-schema-frontmatter.yaml controlled_vocabularies.")
     parser.add_argument("target_dirs", nargs='+', help="One or more directories to scan.")
-    parser.add_argument("--repo-base", default=".", help="Path to the repository root, used to find criticality_levels.yaml. Default is current directory.")
+    parser.add_argument("--repo-base", default=".", help="Path to the repository root, used to find mt-schema-frontmatter.yaml. Default is current directory.")
     parser.add_argument("--dry-run", action="store_true", help="Dry run, no actual changes.")
     parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], help="Set the logging level.")
     args = parser.parse_args()

@@ -38,7 +38,7 @@ Registries typically reside in the `/master-knowledge-base/standards/registry/` 
 
 This policy applies to all documented controlled vocabularies, including but not limited to:
 - Tag glossaries (e.g., `[[MT-REGISTRY-TAG-GLOSSARY]]`)
-- Domain and sub-domain codes (e.g., `[[domain_codes.yaml]]`, `[[subdomain_registry.yaml]]`)
+- Frontmatter schema and controlled vocabularies (e.g., `[[MT-SCHEMA-FRONTMATTER]]`)
 - Key definition files (e.g., `[[UA-KEYDEFS-GLOBAL]]`)
 - Other formally managed lists of terms or identifiers.
 

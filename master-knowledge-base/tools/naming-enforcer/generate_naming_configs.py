@@ -39,7 +39,7 @@ def generate_protected_names_config():
             "file_patterns": [
                 "standards_index.json", "standards_index.schema.json",
                 "naming_exceptions.json", "protected_names.json",
-                "collection_definitions.yaml", "domain_codes.yaml"
+                "collection_definitions.yaml", "mt-schema-frontmatter.yaml"
             ],
             "tool_dependencies": [
                 "generate_index.py", "generate_collections.py", 

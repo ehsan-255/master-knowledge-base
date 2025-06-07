@@ -48,7 +48,7 @@ Within `master-knowledge-base/standards/`, the following specialized directories
 *   **`/master-knowledge-base/standards/registry/` (Task 0.4.2)**
     *   **Purpose:** This directory houses all controlled vocabulary manifests and registry definition files.
     *   **Content:** YAML files (`.yaml`) or Markdown files (`.md`) that define terms, codes, and their meanings for various metadata fields (e.g., domain codes, status tags, criticality levels).
-    *   **Examples:** `domain_codes.yaml`, `tag-glossary-definition.md`.
+    *   **Examples:** `mt-schema-frontmatter.yaml`, `mt-registry-tag-glossary.yaml`.
 
 *   **`/master-knowledge-base/standards/templates/` (Task 0.4.3)**
     *   **Purpose:** This directory contains standard templates for creating new documents.

@@ -19,8 +19,6 @@ primary-topic: Defines the procedures and rules for validating document metadata
 related-standards:
   - MT-SCHEMA-FRONTMATTER
   - MT-REGISTRY-TAG-GLOSSARY
-  - '[[domain_codes.yaml]]'
-  - '[[subdomain_registry.yaml]]'
 version: 0.1.0
 date-created: '2025-05-29T15:49:24Z'
 date-modified: '2025-05-30T14:00:00Z'
@@ -65,8 +63,7 @@ All metadata validation MUST be performed against the criteria specified in:
 
 Additional resources for controlled vocabularies include:
 - `[[MT-REGISTRY-TAG-GLOSSARY]]`: For tags, `kb-id` values, `criticality` values, and `lifecycle_gatekeeper` values.
-- `[[domain_codes.yaml]]`: For `primary_domain` values.
-- `[[subdomain_registry.yaml]]`: For `sub_domain` values.
+- `[[MT-SCHEMA-FRONTMATTER]]`: For `primary_domain` and `sub_domain` values in the controlled_vocabularies section.
 
 ## 5. Validation Process
 
@@ -93,8 +90,8 @@ The following aspects of the frontmatter MUST be validated, as detailed in `[[MT
 - **`info-type`:** Must be a kebab-case string from the explicit list provided in `[[MT-SCHEMA-FRONTMATTER]]`.
 - **`criticality` (field):** Must be a string from the controlled vocabulary defined for `criticality/*` tags in `[[MT-REGISTRY-TAG-GLOSSARY]]`.
 - **`lifecycle_gatekeeper` (field):** Must be a string from the controlled vocabulary defined for `lifecycle_gatekeeper/*` tags in `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-- **`primary_domain`:** Must be a 2-letter uppercase string present in `[[domain_codes.yaml]]`.
-- **`sub_domain`:** Must be a 2-6 letter uppercase string present in `[[subdomain_registry.yaml]]` for the given `primary_domain`.
+- **`primary_domain`:** Must be a 2-letter uppercase string present in `[[MT-SCHEMA-FRONTMATTER]]` controlled_vocabularies.primary_domain.
+- **`sub_domain`:** Must be a 2-6 letter uppercase string present in `[[MT-SCHEMA-FRONTMATTER]]` controlled_vocabularies.sub_domain for the given `primary_domain`.
 
 ### 6.4. Specific Key Constraints
 - **`title`:** String, not empty.
