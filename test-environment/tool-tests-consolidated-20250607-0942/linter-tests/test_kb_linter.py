@@ -35,7 +35,7 @@ class TestKBLinter(unittest.TestCase):
             "schemaVersion": "1.0.0",
             "generatedDate": "2023-01-01T00:00:00Z",
             "standards": [
-                {"standard_id": "AS-TEST-VALID", "title": "Valid Standard", "filepath": "master-knowledge-base/standards/src/AS-TEST-VALID.md"}
+                {"standard_id": "AS-TEST-VALID", "title": "Valid Standard", "filepath": "standards/src/AS-TEST-VALID.md"}
             ]
         }
         with open(os.path.join(cls.mock_standards_dist, "standards_index.json"), "w") as f:

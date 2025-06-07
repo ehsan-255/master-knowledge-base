@@ -135,7 +135,7 @@ lifecycle_gatekeeper: SME-Consensus # Required by schema
 # Minimal required fields for INDEX_REQUIRED_FIELDS for this test
 info-type: standard-definition # Required by schema
 status: approved # This will be overridden by get_status_from_tags
-filepath: master-knowledge-base/standards/src/test_docs/CS-PROCESS-001.md # Required by schema
+filepath: standards/src/test_docs/CS-PROCESS-001.md # Required by schema
 ---
 Document content.
 """
@@ -212,7 +212,7 @@ date-created: "2023-01-01T00:00:00Z"
 date-modified: "2023-01-01T00:00:00Z"
 criticality: P1-High
 lifecycle_gatekeeper: No-Gatekeeper
-filepath: master-knowledge-base/standards/src/test_docs/AS-DUPE-001.md
+filepath: standards/src/test_docs/AS-DUPE-001.md
 ---
 Content1
 """
@@ -229,7 +229,7 @@ date-created: "2023-02-01T00:00:00Z"
 date-modified: "2023-02-01T00:00:00Z"
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
-filepath: master-knowledge-base/standards/src/test_docs/CS-DUPE-SAMEID-002.md
+filepath: standards/src/test_docs/CS-DUPE-SAMEID-002.md
 ---
 Content2
 """

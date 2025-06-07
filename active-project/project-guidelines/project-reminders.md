@@ -54,7 +54,7 @@ The implementation framework requires mandatory adherence to these specification
 ---
 ## Reminder: Populate Placeholder GM-GUIDE Documents (20250602)
 
-- The following guide documents were recreated as placeholders in `master-knowledge-base/standards/src/` during L2-T1 Phase C/D remediation (Agent Jules, 2025-06-02):
+- The following guide documents were recreated as placeholders in `standards/src/` during L2-T1 Phase C/D remediation (Agent Jules, 2025-06-02):
     - `GM-GUIDE-KB-USAGE.MD` (and its changelog `GM-GUIDE-KB-USAGE-CHANGELOG.MD`)
     - `GM-GUIDE-STANDARDS-BY-TASK.MD` (and its changelog `GM-GUIDE-STANDARDS-BY-TASK-CHANGELOG.MD`)
 - These files currently contain only placeholder content and frontmatter. They need to be populated with actual content as per their intended scope.
@@ -63,7 +63,7 @@ The implementation framework requires mandatory adherence to these specification
 ---
 ## Reminder: Linter Local Test Mode Issue (20250602)
 
-- During L2-T1 execution (Phases C, D, E), the `kb_linter.py` script consistently ran in a "local test mode" when attempting to lint specific directories or files (e.g., `master-knowledge-base/standards/src/`).
+- During L2-T1 execution (Phases C, D, E), the `kb_linter.py` script consistently ran in a "local test mode" when attempting to lint specific directories or files (e.g., `standards/src/`).
 - This mode processed dummy files created by the linter itself, instead of the actual target files.
 - The cause for this mode triggering or how to disable it is not documented in the linter's README.
 - As a result, specific validation of newly created/modified files (like `GM-GUIDE-KB-USAGE.MD`, `GM-GUIDE-STANDARDS-BY-TASK.MD`, and their changelogs) could not be completed.

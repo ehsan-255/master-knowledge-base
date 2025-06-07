@@ -38,9 +38,9 @@ test-environment/
 ## Recent Consolidation (2025-06-07)
 
 ### What Was Moved
-- `master-knowledge-base/tools/linter/tests/` → `test-environment/tool-tests-consolidated-20250607-0942/linter-tests/`
-- `master-knowledge-base/tools/builder/tests/` → `test-environment/tool-tests-consolidated-20250607-0942/builder-tests/`
-- `master-knowledge-base/tools/indexer/tests/` → `test-environment/tool-tests-consolidated-20250607-0942/indexer-tests/`
+- `tools/linter/tests/` → `test-environment/tool-tests-consolidated-20250607-0942/linter-tests/`
+- `tools/builder/tests/` → `test-environment/tool-tests-consolidated-20250607-0942/builder-tests/`
+- `tools/indexer/tests/` → `test-environment/tool-tests-consolidated-20250607-0942/indexer-tests/`
 
 ### Benefits
 - **Clean Repository Structure**: Tools directories now contain only production code

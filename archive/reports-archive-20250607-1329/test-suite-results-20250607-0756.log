@@ -1,0 +1,29 @@
+.F...F.................
+======================================================================
+FAIL: test_changelog_self_referential_url_invalid (__main__.TestKBLinter.test_changelog_self_referential_url_invalid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\tools\linter\tests\test_kb_linter.py", line 744, in test_changelog_self_referential_url_invalid
+    self.assert_has_error(results, "must be self-referential", key="change_log_url")
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\tools\linter\tests\test_kb_linter.py", line 172, in assert_has_error
+    self.fail(f"Expected error containing '{message_substring}' (and key '{key}' if specified) not found in {results.get('errors')}")
+AssertionError: Expected error containing 'must be self-referential' (and key 'change_log_url' if specified) not found in []
+
+======================================================================
+FAIL: test_criticality_tag_invalid_mixedcase (__main__.TestKBLinter.test_criticality_tag_invalid_mixedcase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\tools\linter\tests\test_kb_linter.py", line 689, in test_criticality_tag_invalid_mixedcase
+    self.assert_has_error(results, "not in defined list. Valid (lowercase from .txt)")
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\tools\linter\tests\test_kb_linter.py", line 172, in assert_has_error
+    self.fail(f"Expected error containing '{message_substring}' (and key '{key}' if specified) not found in {results.get('errors')}")
+AssertionError: Expected error containing 'not in defined list. Valid (lowercase from .txt)' (and key 'None' if specified) not found in []
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.284s
+
+FAILED (failures=2)
+DEBUG LinterConfig: Initial repo_base_path: C:\Users\ELIANA~1\AppData\Local\Temp\tmpex95_2at\mock_repo
+DEBUG LinterConfig: self.repo_base (resolved): C:\Users\E L I A N A\AppData\Local\Temp\tmpex95_2at\mock_repo\master-knowledge-base
+DEBUG LinterConfig: local dist_path_local for index: C:\Users\E L I A N A\AppData\Local\Temp\tmpex95_2at\mock_repo\master-knowledge-base\dist
+DEBUG LinterConfig: Attempting to load index directly from: C:\Users\E L I A N A\AppData\Local\Temp\tmpex95_2at\mock_repo\master-knowledge-base\dist\standards_index.json

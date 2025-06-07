@@ -1,0 +1,1683 @@
+DEBUG LinterConfig: Initial repo_base_path: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base
+DEBUG LinterConfig: self.repo_base (absolute): C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base
+DEBUG LinterConfig: local dist_path_local for index: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\domain_codes.yaml
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\subdomain_registry.yaml
+DEBUG LinterConfig: Attempting to load index directly from: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist\standards_index.json
+DEBUG _load_standards_index: os.path.exists returned False for: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist\standards_index.json
+Warning: Standards index not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist\standards_index.json. Link checking will be limited.
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\info_types.txt
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\criticality_levels.txt
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\criticality_levels.yaml
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\lifecycle_gatekeepers.txt
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\tag_categories.txt
+Starting Knowledge Base Linter on C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\standards/src...
+
+--- Results for standards/src/AS-KB-DIRECTORY-STRUCTURE.md ---
+Warnings:
+- [L19] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L46] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L21] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-MAP-STANDARDS-KB.md ---
+Warnings:
+- [L27] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L31] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/kb-definition-map' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/architecture' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/indexing' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'kb-id/standards' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L66] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L66] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L66] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L74] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L74] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L82] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L82] Potentially broken link: Standard ID '[[OM-OVERVIEW-PUBLISHING-PIPELINE]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[QM-VALIDATION-METADATA]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[SF-FORMATTING-MARKDOWN-GENERAL]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L94] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L94] Potentially broken link: Standard ID '[[UA-SCHEMA-LLM-IO]]' not found in standards_index.json.
+- [L98] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+Errors:
+- [L26] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L15] 'info-type' ('kb-definition-map') not in defined list. Valid: []
+- [L30] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-ROOT-STANDARDS-KB.md ---
+Warnings:
+- [L27] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L30] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L9] Tag 'status/active' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L9] Tag 'criticality/p0-critical' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L9] Tag 'content-type/navigation-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L9] Tag 'topic/architecture' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L9] Tag 'kb-id/standards' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L9] Tag 'topic/kb-root' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L41] Potentially broken link: Standard ID '[[AS-MAP-STANDARDS-KB]]' not found in standards_index.json.
+- [L53] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L54] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L55] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[AS-SCHEMA-RELTABLE-DEFINITION]]' not found in standards_index.json.
+- [L57] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
+- [L58] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L59] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L60] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L61] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+- [L62] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
+- [L65] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
+- [L66] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L67] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L68] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L69] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
+- [L70] Potentially broken link: Standard ID '[[CS-POLICY-DIGITAL-ABSTRACTION]]' not found in standards_index.json.
+- [L71] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L72] Potentially broken link: Standard ID '[[CS-POLICY-KB-IDENTIFICATION]]' not found in standards_index.json.
+- [L73] Potentially broken link: Standard ID '[[CS-POLICY-KB-PART-CONTENT]]' not found in standards_index.json.
+- [L74] Potentially broken link: Standard ID '[[CS-POLICY-KB-ROOT]]' not found in standards_index.json.
+- [L75] Potentially broken link: Standard ID '[[CS-POLICY-LAYERED-INFORMATION]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L82] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L95] Potentially broken link: Standard ID '[[AS-INDEX-KB-MASTER]]' not found in standards_index.json.
+Errors:
+- [L26] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L17] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L29] 'criticality' ('P0-Critical') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-SCHEMA-CONCEPT-DEFINITION.md ---
+Warnings:
+- [L20] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L42] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L54] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L117] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+Errors:
+- [L19] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-SCHEMA-METHODOLOGY-DESCRIPTION.md ---
+Warnings:
+- [L21] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L44] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L52] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L158] Potentially broken link: Standard ID '[[CS-POLICY-LAYERED-INFORMATION]]' not found in standards_index.json.
+- [L159] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L163] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L164] Potentially broken link: Standard ID '[[CS-POLICY-LAYERED-INFORMATION]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L23] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-SCHEMA-REFERENCE.md ---
+Warnings:
+- [L26] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L31] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/schema-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/schemas' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/documentation-standards' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'kb-id/standards' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L44] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L64] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+Errors:
+- [L25] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L15] 'info-type' ('schema-document') not in defined list. Valid: []
+- [L30] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-SCHEMA-RELTABLE-DEFINITION.md ---
+Warnings:
+- [L27] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L30] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/linking' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/semantics' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/yaml' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/data-structure' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'kb-id/standards' (at index 7) has unrecognized category prefix. Valid prefixes: []
+- [L96] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L117] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L118] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L119] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+Errors:
+- [L26] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L17] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L29] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-SCHEMA-TASK.md ---
+Warnings:
+- [L29] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L33] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/schema-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/schemas' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/documentation-standards' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/procedures' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L46] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L70] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[SF-SYNTAX-LISTS]]' not found in standards_index.json.
+- [L92] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
+- [L92] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+Errors:
+- [L28] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L17] 'info-type' ('schema-document') not in defined list. Valid: []
+- [L32] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-STRUCTURE-ASSET-ORGANIZATION.md ---
+Warnings:
+- [L22] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L45] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L58] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L64] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L98] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L99] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L100] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-STRUCTURE-DOC-CHAPTER.md ---
+Warnings:
+- [L22] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L42] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L60] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L72] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L76] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L107] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L112] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L113] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L114] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L115] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-STRUCTURE-KB-PART.md ---
+Warnings:
+- [L22] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L44] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L46] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L49] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L68] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L89] Potentially broken link: Standard ID '[[CS-POLICY-KB-PART-CONTENT]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L91] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L92] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L93] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-STRUCTURE-KB-ROOT.md ---
+Warnings:
+- [L21] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L41] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L55] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L55] Potentially broken link: Standard ID '[[CS-POLICY-KB-ROOT]]' not found in standards_index.json.
+- [L60] Potentially broken link: Standard ID '[[CS-POLICY-KB-ROOT]]' not found in standards_index.json.
+- [L85] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L88] Potentially broken link: Standard ID '[[CS-POLICY-KB-ROOT]]' not found in standards_index.json.
+- [L89] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L91] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L92] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L23] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-STRUCTURE-MASTER-KB-INDEX.md ---
+Warnings:
+- [L21] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L41] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L54] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L72] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L75] Potentially broken link: Standard ID '[[CS-POLICY-KB-IDENTIFICATION]]' not found in standards_index.json.
+- [L76] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L23] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/AS-STRUCTURE-TEMPLATES-DIRECTORY.md ---
+Warnings:
+- [L23] Primary domain 'AS' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L44] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L49] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L49] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L51] Potentially broken link: Standard ID '[[UA-TPL-CANONICAL-FRONTMATTER]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L57] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L58] Potentially broken link: Standard ID '[[UA-TPL-CANONICAL-FRONTMATTER]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L79] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L80] Potentially broken link: Standard ID '[[UA-TPL-CANONICAL-FRONTMATTER]]' not found in standards_index.json.
+Errors:
+- [L22] 'primary_domain' ('AS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L25] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-ADMONITIONS-POLICY.md ---
+Warnings:
+- [L20] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L35] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L40] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L44] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L68] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L68] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L89] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L93] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+Errors:
+- [L19] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-CONTENT-PROFILING-POLICY.md ---
+Warnings:
+- [L22] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L51] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
+- [L61] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L66] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L107] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+- [L157] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L158] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
+- [L159] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-LINKING-INTERNAL-POLICY.md ---
+Warnings:
+- [L21] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L37] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L48] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L48] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L52] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L65] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L82] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L83] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L23] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-MODULARITY-TRANSCLUSION-POLICY.md ---
+Warnings:
+- [L24] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L27] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L40] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L48] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L49] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L49] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L53] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L66] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L73] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L97] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L98] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L99] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L100] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L103] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+Errors:
+- [L23] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L26] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-ACCESSIBILITY.md ---
+Warnings:
+- [L21] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L45] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L46] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L58] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L83] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L84] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L23] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-DIGITAL-ABSTRACTION.md ---
+Warnings:
+- [L22] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L42] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-INCLUSION]]' not found in standards_index.json.
+- [L42] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-EXCLUSION]]' not found in standards_index.json.
+- [L51] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L74] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-INCLUSION]]' not found in standards_index.json.
+- [L75] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-EXCLUSION]]' not found in standards_index.json.
+- [L76] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-DOC-CHAPTER-CONTENT.md ---
+Warnings:
+- [L21] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L52] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L53] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L80] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L23] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-KB-IDENTIFICATION.md ---
+Warnings:
+- [L21] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L45] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L49] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+- [L70] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+- [L71] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L23] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-KB-PART-CONTENT.md ---
+Warnings:
+- [L22] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L45] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L46] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L53] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L71] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L72] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L73] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-KB-ROOT.md ---
+Warnings:
+- [L19] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L6] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L6] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L6] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L34] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L40] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L40] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L51] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L59] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L69] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L11] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L21] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-LAYERED-INFORMATION.md ---
+Warnings:
+- [L24] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L27] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L48] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L48] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L48] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L53] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L54] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L54] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L87] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L88] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L89] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L91] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+Errors:
+- [L23] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L26] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-PART-OVERVIEW.md ---
+Warnings:
+- [L21] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L37] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L37] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L42] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L43] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L52] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L67] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L68] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-SCOPE-EXCLUSION.md ---
+Warnings:
+- [L22] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L56] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
+- [L62] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L82] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-INCLUSION]]' not found in standards_index.json.
+- [L83] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
+- [L84] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L25] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-SCOPE-INCLUSION.md ---
+Warnings:
+- [L22] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L43] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-EXCLUSION]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
+- [L79] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-POLICY-TONE-LANGUAGE.md ---
+Warnings:
+- [L20] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L51] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L76] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+Errors:
+- [L19] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L23] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/CS-TOC-POLICY.md ---
+Warnings:
+- [L22] Primary domain 'CS' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L42] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L43] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L59] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
+- [L63] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
+- [L79] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('CS') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L25] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/GM-CONVENTIONS-NAMING.md ---
+Warnings:
+- [L22] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L10] Tag 'status/active' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L10] Tag 'criticality/p0-critical' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L10] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L289] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L290] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L291] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+Errors:
+- [L19] 'date-created' ('2025-05-29') invalid ISO-8601 (YYYY-MM-DDTHH:MM:SSZ).
+- [L20] 'date-modified' ('2025-01-11') invalid ISO-8601 (YYYY-MM-DDTHH:MM:SSZ).
+- [L21] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+- [L15] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P0-Critical') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/GM-GLOSSARY-STANDARDS-TERMS.md ---
+Warnings:
+- [L25] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+- [L29] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/glossary-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/glossary' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/standards-governance' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'kb-id/standards' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L40] Potentially broken link: Standard ID '[[GM-MANDATE-STANDARDS-GLOSSARY]]' not found in standards_index.json.
+- [L45] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L48] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L53] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
+- [L59] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L59] Potentially broken link: Standard ID '[[GM-REGISTRY-GOVERNANCE]]' not found in standards_index.json.
+- [L64] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L64] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L69] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L74] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+- [L88] Potentially broken link: Standard ID '[[MT-STRATEGY-PRIMARY-TOPIC-KEYWORD]]' not found in standards_index.json.
+- [L91] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L96] Potentially broken link: Standard ID '[[GM-REGISTRY-GOVERNANCE]]' not found in standards_index.json.
+- [L104] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L104] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L107] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L110] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L118] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L118] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L121] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L121] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+Errors:
+- [L24] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+- [L15] 'info-type' ('glossary-document') not in defined list. Valid: []
+- [L28] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/GM-GUIDE-KB-USAGE.md ---
+Warnings:
+- [L64] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+- [L68] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/guide-document' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/onboarding' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/standards-governance' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/user-documentation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/knowledge-management' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/content-authoring' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L96] Potentially broken link: Standard ID '[[AS-ROOT-STANDARDS-KB]]' not found in standards_index.json.
+- [L101] Potentially broken link: Standard ID '[[AS-INDEX-KB-MASTER]]' not found in standards_index.json.
+- [L102] Potentially broken link: Standard ID '[[AS-ROOT-STANDARDS-KB]]' not found in standards_index.json.
+- [L106] Potentially broken link: Standard ID '[[AS-ROOT-STANDARDS-KB]]' not found in standards_index.json.
+- [L107] Potentially broken link: Standard ID '[[GM-GUIDE-STANDARDS-BY-TASK]]' not found in standards_index.json.
+- [L115] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
+- [L116] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L117] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L120] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L123] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
+- [L123] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
+- [L129] Potentially broken link: Standard ID '[[CS-POLICY-TONE-LANGUAGE]]' not found in standards_index.json.
+- [L136] Potentially broken link: Standard ID '[[SF-FORMATTING-MARKDOWN-GENERAL]]' not found in standards_index.json.
+- [L137] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L138] Potentially broken link: Standard ID '[[SF-SYNTAX-LISTS]]' not found in standards_index.json.
+- [L139] Potentially broken link: Standard ID '[[SF-SYNTAX-LINKS-GENERAL]]' not found in standards_index.json.
+- [L139] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L144] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L157] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L158] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L168] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L168] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L173] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L175] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+- [L175] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
+- [L179] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L181] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
+- [L185] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L186] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L187] Potentially broken link: Standard ID '[[AS-SCHEMA-REFERENCE]]' not found in standards_index.json.
+- [L188] Potentially broken link: Standard ID '[[AS-SCHEMA-TASK]]' not found in standards_index.json.
+- [L189] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
+- [L199] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L199] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L205] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L205] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L210] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L210] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L215] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L215] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
+- [L238] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L243] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+- [L247] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-DEPRECATION]]' not found in standards_index.json.
+- [L250] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L256] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L257] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L263] Potentially broken link: Standard ID '[[AS-MAP-STANDARDS-KB]]' not found in standards_index.json.
+- [L265] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L270] Potentially broken link: Standard ID '[[GM-GUIDE-STANDARDS-BY-TASK]]' not found in standards_index.json.
+Errors:
+- [L63] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+- [L17] 'info-type' ('guide-document') not in defined list. Valid: []
+- [L67] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/GM-GUIDE-STANDARDS-BY-TASK.md ---
+Warnings:
+- [L86] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+- [L90] 'lifecycle_gatekeeper' ('Editorial-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/guide-document' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/standards-governance' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/workflow' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/knowledge-management' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/content-authoring' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/navigation' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L121] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L124] Potentially broken link: Standard ID '[[CS-POLICY-KB-ROOT]]' not found in standards_index.json.
+- [L125] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+- [L128] Potentially broken link: Standard ID '[[CS-POLICY-KB-IDENTIFICATION]]' not found in standards_index.json.
+- [L129] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L132] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L135] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L138] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L141] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L142] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-INCLUSION]]' not found in standards_index.json.
+- [L145] Potentially broken link: Standard ID '[[CS-POLICY-SCOPE-EXCLUSION]]' not found in standards_index.json.
+- [L151] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L157] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L160] Potentially broken link: Standard ID '[[CS-POLICY-KB-PART-CONTENT]]' not found in standards_index.json.
+- [L160] Potentially broken link: Standard ID '[[CS-POLICY-PART-OVERVIEW]]' not found in standards_index.json.
+- [L161] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L164] Potentially broken link: Standard ID '[[SF-SYNTAX-LINKS-GENERAL]]' not found in standards_index.json.
+- [L167] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L168] Potentially broken link: Standard ID '[[GM-MANDATE-KB-USAGE-GUIDE]]' not found in standards_index.json.
+- [L171] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
+- [L177] Potentially broken link: Standard ID '[[GM-MANDATE-STANDARDS-GLOSSARY]]' not found in standards_index.json.
+- [L177] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L180] Potentially broken link: Standard ID '[[CS-POLICY-PART-OVERVIEW]]' not found in standards_index.json.
+- [L189] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L192] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L195] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L198] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L201] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L202] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L205] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L206] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L209] Potentially broken link: Standard ID '[[CS-POLICY-TONE-LANGUAGE]]' not found in standards_index.json.
+- [L212] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L212] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L215] Potentially broken link: Standard ID '[[SF-SYNTAX-LINKS-GENERAL]]' not found in standards_index.json.
+- [L218] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L219] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L222] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+- [L225] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
+- [L228] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L232] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L235] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L236] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L239] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L240] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
+- [L243] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L244] Potentially broken link: Standard ID '[[SF-SYNTAX-LISTS]]' not found in standards_index.json.
+- [L247] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L250] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
+- [L253] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
+- [L256] Potentially broken link: Standard ID '[[CS-POLICY-LAYERED-INFORMATION]]' not found in standards_index.json.
+- [L259] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L262] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
+- [L264] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L265] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
+- [L269] Potentially broken link: Standard ID '[[SF-SYNTAX-EMPHASIS]]' not found in standards_index.json.
+- [L272] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L275] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
+- [L276] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
+- [L276] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L278] Potentially broken link: Standard ID '[[SF-SYNTAX-ESCAPING-CHARACTERS]]' not found in standards_index.json.
+- [L281] Potentially broken link: Standard ID '[[SF-SYNTAX-DEFINITION-LISTS]]' not found in standards_index.json.
+- [L284] Potentially broken link: Standard ID '[[SF-SYNTAX-FOOTNOTES]]' not found in standards_index.json.
+- [L287] Potentially broken link: Standard ID '[[SF-SYNTAX-MATH-EQUATIONS]]' not found in standards_index.json.
+- [L290] Potentially broken link: Standard ID '[[SF-SYNTAX-DIAGRAMS-MERMAID]]' not found in standards_index.json.
+- [L293] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
+- [L296] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L299] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L306] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L309] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L312] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L315] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L316] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L319] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L320] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L323] Potentially broken link: Standard ID '[[CS-POLICY-TONE-LANGUAGE]]' not found in standards_index.json.
+- [L326] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L326] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L329] Potentially broken link: Standard ID '[[SF-SYNTAX-LINKS-GENERAL]]' not found in standards_index.json.
+- [L332] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L333] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L336] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+- [L339] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+- [L342] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
+- [L345] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L349] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L352] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L353] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L356] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L357] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
+- [L360] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L361] Potentially broken link: Standard ID '[[SF-SYNTAX-LISTS]]' not found in standards_index.json.
+- [L364] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L367] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
+- [L370] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
+- [L373] Potentially broken link: Standard ID '[[CS-POLICY-LAYERED-INFORMATION]]' not found in standards_index.json.
+- [L376] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L379] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
+- [L382] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
+- [L386] Potentially broken link: Standard ID '[[SF-SYNTAX-EMPHASIS]]' not found in standards_index.json.
+- [L389] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L392] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
+- [L395] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
+- [L398] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L401] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L411] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L414] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L417] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L418] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L421] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L422] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L425] Potentially broken link: Standard ID '[[CS-POLICY-TONE-LANGUAGE]]' not found in standards_index.json.
+- [L428] Potentially broken link: Standard ID '[[AS-SCHEMA-METHODOLOGY-DESCRIPTION]]' not found in standards_index.json.
+- [L428] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L431] Potentially broken link: Standard ID '[[SF-SYNTAX-LINKS-GENERAL]]' not found in standards_index.json.
+- [L434] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L435] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L450] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+- [L450] Potentially broken link: Standard ID '[[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]]' not found in standards_index.json.
+- [L453] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L457] Potentially broken link: Standard ID '[[SF-FORMATTING-CITATIONS]]' not found in standards_index.json.
+- [L460] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L463] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L464] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L467] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L468] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
+- [L471] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L472] Potentially broken link: Standard ID '[[SF-SYNTAX-LISTS]]' not found in standards_index.json.
+- [L472] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L472] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
+- [L481] Potentially broken link: Standard ID '[[SF-SYNTAX-EMPHASIS]]' not found in standards_index.json.
+- [L481] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L490] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+- [L493] Potentially broken link: Standard ID '[[CS-POLICY-KB-IDENTIFICATION]]' not found in standards_index.json.
+- [L494] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L497] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L498] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L500] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
+- [L501] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L506] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+- [L509] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-DEPRECATION]]' not found in standards_index.json.
+- [L515] Potentially broken link: Standard ID '[[GM-MANDATE-KB-USAGE-GUIDE]]' not found in standards_index.json.
+- [L515] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L518] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L521] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L527] Potentially broken link: Standard ID '[[GM-MANDATE-STANDARDS-GLOSSARY]]' not found in standards_index.json.
+- [L527] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L533] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
+- [L542] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L545] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L549] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L550] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L552] Potentially broken link: Standard ID '[[SF-TRANSCLUSION-SYNTAX]]' not found in standards_index.json.
+- [L555] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L556] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
+- [L558] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L559] Potentially broken link: Standard ID '[[SF-TOC-SYNTAX]]' not found in standards_index.json.
+- [L563] Potentially broken link: Standard ID '[[CS-POLICY-PART-OVERVIEW]]' not found in standards_index.json.
+- [L566] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-PART]]' not found in standards_index.json.
+- [L576] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L579] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+- [L582] Potentially broken link: Standard ID '[[SF-SYNTAX-LISTS]]' not found in standards_index.json.
+- [L585] Potentially broken link: Standard ID '[[SF-SYNTAX-LINKS-GENERAL]]' not found in standards_index.json.
+- [L586] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L588] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L591] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
+- [L594] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L600] Potentially broken link: Standard ID '[[SF-SYNTAX-EMPHASIS]]' not found in standards_index.json.
+- [L603] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L606] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
+- [L609] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
+- [L612] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L613] Potentially broken link: Standard ID '[[SF-FORMATTING-MARKDOWN-GENERAL]]' not found in standards_index.json.
+- [L619] Potentially broken link: Standard ID '[[SF-SYNTAX-ESCAPING-CHARACTERS]]' not found in standards_index.json.
+- [L622] Potentially broken link: Standard ID '[[SF-SYNTAX-DEFINITION-LISTS]]' not found in standards_index.json.
+- [L625] Potentially broken link: Standard ID '[[SF-SYNTAX-FOOTNOTES]]' not found in standards_index.json.
+- [L628] Potentially broken link: Standard ID '[[SF-SYNTAX-MATH-EQUATIONS]]' not found in standards_index.json.
+- [L631] Potentially broken link: Standard ID '[[SF-SYNTAX-DIAGRAMS-MERMAID]]' not found in standards_index.json.
+- [L641] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+Errors:
+- [L85] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+- [L16] 'info-type' ('guide-document') not in defined list. Valid: []
+- [L89] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/GM-MANDATE-KB-USAGE-GUIDE.md ---
+Warnings:
+- [L19] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/mandate-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L38] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L43] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L53] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L57] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L58] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L59] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
+- [L74] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L79] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L80] Potentially broken link: Standard ID '[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[AS-STRUCTURE-MASTER-KB-INDEX]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('mandate-document') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/GM-MANDATE-STANDARDS-GLOSSARY.md ---
+Warnings:
+- [L19] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/mandate-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L33] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L38] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L44] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L60] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L63] Potentially broken link: Standard ID '[[GM-GLOSSARY-STANDARDS-TERMS]]' not found in standards_index.json.
+- [L64] Potentially broken link: Standard ID '[[CS-POLICY-TONE-LANGUAGE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('mandate-document') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/GM-REGISTRY-GOVERNANCE.md ---
+Warnings:
+- [L19] Primary domain 'GM' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L40] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L42] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L51] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('GM') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/MT-KEYREF-MANAGEMENT.md ---
+Warnings:
+- [L25] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+- [L29] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/standard-definition' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/keyref' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/metadata-management' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L38] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L43] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L47] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L73] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L82] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L138] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+- [L139] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L140] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+Errors:
+- [L24] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+- [L14] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L28] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/MT-SCHEMA-FRONTMATTER.md ---
+Warnings:
+- [L28] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+- [L32] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p0-critical' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/metadata' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/frontmatter' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/schema' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L48] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L48] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L263] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L264] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L265] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L266] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+Errors:
+- [L27] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+- [L15] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L31] 'criticality' ('P0-Critical') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md ---
+Warnings:
+- [L20] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L34] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L101] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+Errors:
+- [L19] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L23] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/MT-TAGGING-STRATEGY-POLICY.md ---
+Warnings:
+- [L19] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L33] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L33] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L47] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L61] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L61] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L67] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L85] Potentially broken link: Standard ID '[[MT-TAGS-IMPLEMENTATION]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L87] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/MT-TAGS-IMPLEMENTATION.md ---
+Warnings:
+- [L21] Primary domain 'MT' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L40] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L70] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L72] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L72] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L76] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L77] Potentially broken link: Standard ID '[[MT-TAGGING-STRATEGY-POLICY]]' not found in standards_index.json.
+- [L78] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('MT') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS.md ---
+Warnings:
+- [L23] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/llm-integration' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/automation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/schemas' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L145] Potentially broken link: Standard ID '[[OM-AUTOMATION-LLM-PROMPT-LIBRARY]]' not found in standards_index.json.
+- [L146] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L147] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+Errors:
+- [L22] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+- [L15] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L25] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/OM-AUTOMATION-LLM-PROMPT-LIBRARY.md ---
+Warnings:
+- [L23] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p4-informational' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/llm-integration' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/automation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/prompts' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L61] Potentially broken link: Standard ID '[[OM-AUTOMATION-LLM-IO-SCHEMAS]]' not found in standards_index.json.
+- [L62] Potentially broken link: Standard ID '[[GM-CONVENTIONS-NAMING]]' not found in standards_index.json.
+- [L63] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+Errors:
+- [L22] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+- [L15] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L25] 'criticality' ('P4-Informational') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/OM-OVERVIEW-PUBLISHING-PIPELINE.md ---
+Warnings:
+- [L27] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+- [L31] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/publishing' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/automation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/workflow' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L73] Potentially broken link: Standard ID '[[QM-VALIDATION-METADATA]]' not found in standards_index.json.
+- [L73] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L75] Potentially broken link: Standard ID '[[SF-FORMATTING-MARKDOWN-GENERAL]]' not found in standards_index.json.
+- [L76] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[AS-KB-DIRECTORY-STRUCTURE]]' not found in standards_index.json.
+- [L115] Potentially broken link: Standard ID '[[UA-SCHEMA-LLM-IO]]' not found in standards_index.json.
+Errors:
+- [L26] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+- [L16] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L30] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/OM-POLICY-STANDARDS-DEPRECATION.md ---
+Warnings:
+- [L19] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L44] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L45] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+- [L52] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L85] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L87] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+- [L88] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-GOVERNANCE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/OM-POLICY-STANDARDS-GOVERNANCE.md ---
+Warnings:
+- [L19] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Governance-Board-Approval') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/policy-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L39] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L71] Potentially broken link: Standard ID '[[GM-GUIDE-KB-USAGE]]' not found in standards_index.json.
+- [L72] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L73] Potentially broken link: Standard ID '[[OM-VERSIONING-CHANGELOGS]]' not found in standards_index.json.
+- [L74] Potentially broken link: Standard ID '[[OM-POLICY-STANDARDS-DEPRECATION]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('policy-document') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/OM-VERSIONING-CHANGELOGS.md ---
+Warnings:
+- [L20] Primary domain 'OM' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L36] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L43] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L44] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L73] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L122] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+Errors:
+- [L19] 'primary_domain' ('OM') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/QM-VALIDATION-METADATA.md ---
+Warnings:
+- [L28] Primary domain 'QM' not found in subdomain registry structure for sub_domain check.
+- [L32] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/standard-definition' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/metadata' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/validation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/quality-assurance' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L46] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L64] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L67] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L80] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L83] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L91] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L92] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L93] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L94] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L95] Potentially broken link: Standard ID '[[MT-REGISTRY-TAG-GLOSSARY]]' not found in standards_index.json.
+- [L110] Potentially broken link: Standard ID '[[SF-SYNTAX-YAML-FRONTMATTER]]' not found in standards_index.json.
+- [L111] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L27] 'primary_domain' ('QM') not in defined domain_codes. Valid: []
+- [L16] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L31] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L41] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
+- [L83] Potentially broken link: Standard ID '[[CS-POLICY-ACCESSIBILITY]]' not found in standards_index.json.
+- [L84] Potentially broken link: Standard ID '[[SF-SYNTAX-IMAGES]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-CALLOUTS-SYNTAX.md ---
+Warnings:
+- [L20] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L24] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L36] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
+- [L36] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L52] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L60] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
+- [L75] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
+- [L125] Potentially broken link: Standard ID '[[CS-ADMONITIONS-POLICY]]' not found in standards_index.json.
+- [L126] Potentially broken link: Standard ID '[[SF-SYNTAX-BLOCKQUOTES]]' not found in standards_index.json.
+- [L127] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L19] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L23] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md ---
+Warnings:
+- [L21] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L35] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L37] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L88] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+- [L101] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L102] Potentially broken link: Standard ID '[[CS-CONTENT-PROFILING-POLICY]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-FORMATTING-CITATIONS.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L72] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-FORMATTING-FILE-HYGIENE.md ---
+Warnings:
+- [L21] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L42] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L45] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L88] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-FORMATTING-MARKDOWN-GENERAL.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L33] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L84] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L121] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-LINKS-INTERNAL-SYNTAX.md ---
+Warnings:
+- [L20] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L41] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L60] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+- [L61] Potentially broken link: Standard ID '[[AS-STRUCTURE-KB-ROOT]]' not found in standards_index.json.
+Errors:
+- [L19] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-BLOCKQUOTES.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L33] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L79] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L93] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-CODE.md ---
+Warnings:
+- [L21] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L25] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L36] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L69] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L102] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L20] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L24] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-COMMENT-TODO.md ---
+Warnings:
+- [L22] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/standard-definition' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/syntax' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/task-management' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L102] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L105] Potentially broken link: Standard ID '[[SF-CALLOUTS-SYNTAX]]' not found in standards_index.json.
+- [L106] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L25] 'criticality' ('P3-Low') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-DEFINITION-LISTS.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p3-low' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L35] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L122] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P3-Low') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-DIAGRAMS-MERMAID.md ---
+Warnings:
+- [L22] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L39] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L39] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L56] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L119] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L120] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L25] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-EMPHASIS.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-ESCAPING-CHARACTERS.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-FOOTNOTES.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p3-low' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L34] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L125] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L21] 'criticality' ('P3-Low') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-HEADINGS.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L34] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L34] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L34] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L70] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L80] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L100] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L101] Potentially broken link: Standard ID '[[CS-POLICY-DOC-CHAPTER-CONTENT]]' not found in standards_index.json.
+- [L102] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L21] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-IMAGES.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L51] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L60] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L109] Potentially broken link: Standard ID '[[SF-ACCESSIBILITY-IMAGE-ALT-TEXT]]' not found in standards_index.json.
+- [L110] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L21] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-KEYREF.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L38] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L39] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L39] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L45] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+- [L50] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
+- [L51] Potentially broken link: Standard ID '[[UA-KEYDEFS-GLOBAL]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L21] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-LINKS-GENERAL.md ---
+Warnings:
+- [L23] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L28] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L40] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L68] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L89] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L102] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L105] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L106] Potentially broken link: Standard ID '[[CS-LINKING-INTERNAL-POLICY]]' not found in standards_index.json.
+- [L107] Potentially broken link: Standard ID '[[AS-STRUCTURE-ASSET-ORGANIZATION]]' not found in standards_index.json.
+- [L110] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+Errors:
+- [L22] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L13] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L27] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-LISTS.md ---
+Warnings:
+- [L24] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L29] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L9] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L9] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L9] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L41] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L97] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
+- [L97] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L135] Potentially broken link: Standard ID '[[SF-SYNTAX-TABLES]]' not found in standards_index.json.
+- [L136] Potentially broken link: Standard ID '[[SF-SYNTAX-CODE]]' not found in standards_index.json.
+- [L137] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L23] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L14] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L28] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-MATH-EQUATIONS.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p3-low' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L35] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L116] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P3-Low') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-TABLES.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L32] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L90] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L133] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L21] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-SYNTAX-YAML-FRONTMATTER.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L22] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L34] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L34] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+- [L55] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L65] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L117] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+- [L118] Potentially broken link: Standard ID '[[SF-FORMATTING-FILE-HYGIENE]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L21] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-TOC-SYNTAX.md ---
+Warnings:
+- [L19] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L23] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L51] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
+- [L79] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
+- [L85] Potentially broken link: Standard ID '[[CS-TOC-POLICY]]' not found in standards_index.json.
+- [L86] Potentially broken link: Standard ID '[[AS-STRUCTURE-DOC-CHAPTER]]' not found in standards_index.json.
+- [L87] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L88] Potentially broken link: Standard ID '[[SF-SYNTAX-HEADINGS]]' not found in standards_index.json.
+Errors:
+- [L18] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L22] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/SF-TRANSCLUSION-SYNTAX.md ---
+Warnings:
+- [L22] Primary domain 'SF' not found in subdomain registry structure for sub_domain check.
+- [L26] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p2-medium' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/technical-standard' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L47] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L55] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L64] Potentially broken link: Standard ID '[[AS-SCHEMA-CONCEPT-DEFINITION]]' not found in standards_index.json.
+- [L82] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L91] Potentially broken link: Standard ID '[[CS-MODULARITY-TRANSCLUSION-POLICY]]' not found in standards_index.json.
+- [L92] Potentially broken link: Standard ID '[[SF-LINKS-INTERNAL-SYNTAX]]' not found in standards_index.json.
+- [L93] Potentially broken link: Standard ID '[[MT-SCHEMA-FRONTMATTER]]' not found in standards_index.json.
+Errors:
+- [L21] 'primary_domain' ('SF') not in defined domain_codes. Valid: []
+- [L12] 'info-type' ('standard-definition') not in defined list. Valid: []
+- [L25] 'criticality' ('P2-Medium') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/UA-KEYDEFS-GLOBAL.md ---
+Warnings:
+- [L28] Primary domain 'UA' not found in subdomain registry structure for sub_domain check.
+- [L32] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L8] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'criticality/p0-critical' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'content-type/key-definition-set' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/keyrefs' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'topic/structured-data' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'kb-id/global' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L8] Tag 'kb-id/standards' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L51] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
+- [L51] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[MT-KEYREF-MANAGEMENT]]' not found in standards_index.json.
+- [L81] Potentially broken link: Standard ID '[[GM-REGISTRY-GOVERNANCE]]' not found in standards_index.json.
+- [L85] Potentially broken link: Standard ID '[[SF-SYNTAX-KEYREF]]' not found in standards_index.json.
+Errors:
+- [L27] 'primary_domain' ('UA') not in defined domain_codes. Valid: []
+- [L17] 'info-type' ('key-definition-set') not in defined list. Valid: []
+- [L31] 'criticality' ('P0-Critical') not in defined list. Valid (mixed-case from YAML): []
+
+--- Results for standards/src/UA-SCHEMA-LLM-IO.md ---
+Warnings:
+- [L24] Primary domain 'UA' not found in subdomain registry structure for sub_domain check.
+- [L28] 'lifecycle_gatekeeper' ('Architect-Review') not in defined list. Valid: []
+- [L7] Tag 'status/draft' (at index 0) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'criticality/p1-high' (at index 1) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'content-type/schema-document' (at index 2) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/llm' (at index 3) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/automation' (at index 4) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/schemas' (at index 5) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'topic/data-interchange' (at index 6) has unrecognized category prefix. Valid prefixes: []
+- [L7] Tag 'kb-id/standards' (at index 7) has unrecognized category prefix. Valid prefixes: []
+Errors:
+- [L23] 'primary_domain' ('UA') not in defined domain_codes. Valid: []
+- [L17] 'info-type' ('schema-document') not in defined list. Valid: []
+- [L27] 'criticality' ('P1-High') not in defined list. Valid (mixed-case from YAML): []
+
+---
+## Linting Summary
+- Total files processed: 76
+- Total errors found: 230
+- Total warnings found: 1128
+

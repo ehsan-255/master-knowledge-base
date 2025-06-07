@@ -16,7 +16,7 @@ def main():
     print("=" * 50)
     
     # Path to the main generator script in the new location
-    script_path = Path("master-knowledge-base/tools/utilities/repo-tree/main_repo_tree.py")
+    script_path = Path("tools/utilities/repo-tree/main_repo_tree.py")
     
     if not script_path.exists():
         print("❌ Error: Generator script not found!")

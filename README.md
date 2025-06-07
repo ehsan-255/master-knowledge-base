@@ -40,16 +40,16 @@ The MKB follows a clean, organized structure with clear separation of concerns:
 
 **For New Contributors:**
 
-1.  **Review Current Standards**: Explore `master-knowledge-base/standards/src/` for the latest documentation standards and guidelines
+1.  **Review Current Standards**: Explore `standards/src/` for the latest documentation standards and guidelines
 2.  **Understand Project Management**: Check `active-project/` for current initiatives and project management approaches
 3.  **Testing and Validation**: Use `test-environment/` for all testing activities - never test in production tool directories
-4.  **Tool Usage**: Production tools in `master-knowledge-base/tools/` are ready for use with consolidated registry sources
+4.  **Tool Usage**: Production tools in `tools/` are ready for use with consolidated registry sources
 
 **For Repository Maintenance:**
 
-1.  **Standards Updates**: All standards documentation in `master-knowledge-base/standards/src/`
-2.  **Registry Management**: Controlled vocabularies in `master-knowledge-base/standards/registry/`
-3.  **Tool Development**: Production tools in `master-knowledge-base/tools/` with tests in `test-environment/`
+1.  **Standards Updates**: All standards documentation in `standards/src/`
+2.  **Registry Management**: Controlled vocabularies in `standards/registry/`
+3.  **Tool Development**: Production tools in `tools/` with tests in `test-environment/`
 4.  **Archive Policy**: Use `archive/` for historical content with proper timestamping
 
 ## Quality Assurance

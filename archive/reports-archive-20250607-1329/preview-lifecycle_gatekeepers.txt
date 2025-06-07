@@ -1,0 +1,10 @@
+# Generated from lifecycle_gatekeepers.yaml - Single Source of Truth
+# Generated on: 2025-06-05 02:53:53
+# DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py
+
+Architect-Review
+SME-Consensus
+Automated-Validation
+Peer-Review
+Editorial-Board-Approval
+No-Formal-Gatekeeper

@@ -1,0 +1,70 @@
+[2025-06-04 20:39:19] INFO: Initializing FrontmatterRegistryGenerator
+[2025-06-04 20:39:19] INFO: Schema source: master-knowledge-base\standards\src\MT-SCHEMA-FRONTMATTER.md
+[2025-06-04 20:39:19] INFO: Registry target: master-knowledge-base\standards\registry
+[2025-06-04 20:39:19] INFO: Dry run mode: True
+[2025-06-04 20:39:19] INFO: Starting registry generation from MT-SCHEMA-FRONTMATTER.md
+[2025-06-04 20:39:19] INFO: Loaded schema document: 10627 characters
+[2025-06-04 20:39:19] INFO: Extracting info-type controlled vocabulary...
+[2025-06-04 20:39:19] INFO: Extracted 27 info-type values
+[2025-06-04 20:39:19] INFO:   - standard-definition
+[2025-06-04 20:39:19] INFO:   - policy-document
+[2025-06-04 20:39:19] INFO:   - guide-document
+[2025-06-04 20:39:19] INFO:   - glossary-document
+[2025-06-04 20:39:19] INFO:   - template-document
+[2025-06-04 20:39:19] INFO:   - registry-document
+[2025-06-04 20:39:19] INFO:   - schema-document
+[2025-06-04 20:39:19] INFO:   - chapter-document
+[2025-06-04 20:39:19] INFO:   - key-definition-set
+[2025-06-04 20:39:19] INFO:   - kb-definition-map
+[2025-06-04 20:39:19] INFO:   - how-to-guide
+[2025-06-04 20:39:19] INFO:   - tutorial-document
+[2025-06-04 20:39:19] INFO:   - troubleshooting-guide
+[2025-06-04 20:39:19] INFO:   - reference-document
+[2025-06-04 20:39:19] INFO:   - architecture-overview
+[2025-06-04 20:39:19] INFO:   - design-specification
+[2025-06-04 20:39:19] INFO:   - meeting-notes
+[2025-06-04 20:39:19] INFO:   - report-document
+[2025-06-04 20:39:19] INFO:   - process-definition
+[2025-06-04 20:39:19] INFO:   - role-definition
+[2025-06-04 20:39:19] INFO:   - service-definition
+[2025-06-04 20:39:19] INFO:   - api-specification
+[2025-06-04 20:39:19] INFO:   - data-model-definition
+[2025-06-04 20:39:19] INFO:   - security-standard
+[2025-06-04 20:39:19] INFO:   - compliance-guideline
+[2025-06-04 20:39:19] INFO:   - collection-document
+[2025-06-04 20:39:19] INFO:   - changelog
+[2025-06-04 20:39:19] INFO: Extracting field definitions...
+[2025-06-04 20:39:19] INFO:   - title: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - standard_id: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - aliases: optional | List of Strings.
+[2025-06-04 20:39:19] INFO:   - tags: mandatory | List of Strings.
+[2025-06-04 20:39:19] INFO:   - kb-id: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - info-type: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - primary-topic: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - related-standards: optional | List of Strings.
+[2025-06-04 20:39:19] INFO:   - version: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - date-created: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - date-modified: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - primary_domain: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - sub_domain: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - scope_application: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - criticality: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - lifecycle_gatekeeper: mandatory | String.
+[2025-06-04 20:39:19] INFO:   - impact_areas: mandatory | List of Strings.
+[2025-06-04 20:39:19] INFO:   - change_log_url: mandatory | String.
+[2025-06-04 20:39:19] INFO: Extracted 18 field definitions
+[2025-06-04 20:39:19] INFO: Extracting field order...
+[2025-06-04 20:39:19] INFO: Extracted field order with 2 fields
+[2025-06-04 20:39:19] INFO:   1. title
+[2025-06-04 20:39:19] INFO:   2. standard_id
+[2025-06-04 20:39:19] INFO: Generating info_types.txt content...
+[2025-06-04 20:39:19] INFO: DRY RUN: Would write info_types.txt (661 characters)
+[2025-06-04 20:39:19] INFO: DRY RUN: Preview saved to master-knowledge-base\tools\reports\preview-info_types.txt
+[2025-06-04 20:39:19] INFO: Generating frontmatter_fields.yaml content...
+[2025-06-04 20:39:19] INFO: DRY RUN: Would write frontmatter_fields.yaml (5766 characters)
+[2025-06-04 20:39:19] INFO: DRY RUN: Preview saved to master-knowledge-base\tools\reports\preview-frontmatter_fields.yaml
+[2025-06-04 20:39:19] INFO: Generating field_order.yaml content...
+[2025-06-04 20:39:19] INFO: DRY RUN: Would write field_order.yaml (244 characters)
+[2025-06-04 20:39:19] INFO: DRY RUN: Preview saved to master-knowledge-base\tools\reports\preview-field_order.yaml
+[2025-06-04 20:39:19] INFO: Summary report saved to: master-knowledge-base\tools\reports\frontmatter-registry-summary-2025-06-04-20-39-19.md
+[2025-06-04 20:39:19] INFO: Registry generation completed successfully

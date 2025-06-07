@@ -1,0 +1,25 @@
+# Linter Report
+
+
+## File: `master-knowledge-base/standards/changelog.md`
+### Warnings:
+  - [L3] Filename 'changelog.md' should match 'standard_id' 'OM-STANDARDS-CHANGELOG'.
+
+## File: `master-knowledge-base/standards/src/GM-CONVENTIONS-NAMING.md`
+### Errors:
+  - [L19] 'date-created' ('2025-05-29') invalid ISO-8601 (YYYY-MM-DDTHH:MM:SSZ).
+  - [L20] 'date-modified' ('2025-01-11') invalid ISO-8601 (YYYY-MM-DDTHH:MM:SSZ).
+
+## File: `master-knowledge-base/standards/templates/UA-TPL-CHANGELOG-DOCUMENT.md`
+### Errors:
+  - [L10] 'info-type' ('template') not in defined list. Valid: ['standard-definition', 'policy-document', 'guide-document', 'glossary-document', 'template-document', 'registry-document', 'schema-document', 'navigation-document', 'chapter-document', 'key-definition-set', 'kb-definition-map', 'how-to-guide', 'tutorial-document', 'troubleshooting-guide', 'reference-document', 'architecture-overview', 'design-specification', 'meeting-notes', 'report-document', 'process-definition', 'role-definition', 'service-definition', 'api-specification', 'data-model-definition', 'security-standard', 'compliance-guideline', 'collection-document', 'mandate-document', 'changelog']
+
+## File: `master-knowledge-base/tools/changelog.md`
+### Warnings:
+  - [L3] Filename 'changelog.md' should match 'standard_id' 'OM-TOOLS-CHANGELOG'.
+
+---
+## Linting Summary
+- Total files processed: 88
+- Total errors found: 3
+- Total warnings found: 2

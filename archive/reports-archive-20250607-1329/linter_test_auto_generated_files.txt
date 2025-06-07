@@ -1,0 +1,5 @@
+DEBUG LinterConfig: Initial repo_base_path: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base
+DEBUG LinterConfig: self.repo_base (absolute): C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base
+DEBUG LinterConfig: local dist_path_local for index: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\dist
+DEBUG LinterConfig: Attempting to load index directly from: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\dist\standards_index.json
+Error: Target directory for linting not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base/standards/src
