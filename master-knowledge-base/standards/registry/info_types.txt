@@ -1,5 +1,5 @@
 # Generated from mt-schema-frontmatter.yaml - Single Source of Truth
-# Generated on: 2025-06-05 02:55:02
+# Generated on: 2025-06-07 10:40:39
 # DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py
 
 standard-definition

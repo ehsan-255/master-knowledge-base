@@ -114,7 +114,7 @@ This order is **mandatory**.
 *   **Validation Rules & Constraints:**
     - All tags MUST be in kebab-case
     - MUST include tags from specific categories: status/*, content-type/*, topic/*
-    - Refer to MT-REGISTRY-TAG-GLOSSARY for comprehensive list
+    - Refer to mt-registry-tag-glossary.yaml for comprehensive list
 
 ### `kb-id`
 *   **Description/Purpose:** An identifier for the knowledge base this document belongs to
@@ -122,7 +122,7 @@ This order is **mandatory**.
 *   **Data Type:** String.
 *   **Validation Rules & Constraints:**
     - Must be in kebab-case
-    - Value must come from controlled vocabulary in MT-REGISTRY-TAG-GLOSSARY
+    - Value must come from controlled vocabulary in mt-registry-tag-glossary.yaml
 
 ### `info-type`
 *   **Description/Purpose:** Specifies the type or category of information the document represents
@@ -170,7 +170,7 @@ This order is **mandatory**.
 *   **Data Type:** String.
 *   **Validation Rules & Constraints:**
     - Must be 2 uppercase letters
-    - Value MUST exist in domain_codes.yaml
+    - Value MUST exist in controlled_vocabularies.primary_domain
 
 ### `sub_domain`
 *   **Description/Purpose:** The sub-domain code (e.g., SECURITY, NETWORK, SCHEMA)
@@ -180,7 +180,7 @@ This order is **mandatory**.
 *   **Data Type:** String.
 *   **Validation Rules & Constraints:**
     - Must be 2-6 uppercase letters
-    - Value MUST exist in subdomain_registry.yaml for the given primary_domain
+    - Value MUST exist in controlled_vocabularies.sub_domain for the given primary_domain
 
 ### `scope_application`
 *   **Description/Purpose:** Defines the scope to which this document applies
@@ -193,16 +193,16 @@ This order is **mandatory**.
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
 *   **Validation Rules & Constraints:**
-    - Value MUST come from controlled vocabulary (e.g., P0-Critical, P1-High, P2-Medium)
-    - Refer to MT-REGISTRY-TAG-GLOSSARY
+    - Value MUST come from controlled_vocabularies.criticality
+    - Valid values: P0-Critical, P1-High, P2-Medium, P3-Low, P4-Informational
 
 ### `lifecycle_gatekeeper`
 *   **Description/Purpose:** Specifies the role or team responsible for approving transitions in the document's lifecycle
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
 *   **Validation Rules & Constraints:**
-    - Value MUST come from controlled vocabulary
-    - Refer to MT-REGISTRY-TAG-GLOSSARY
+    - Value MUST come from controlled_vocabularies.lifecycle_gatekeeper
+    - Valid values: Architect-Review, Security-Team-Approval, Stakeholder-Review, No-Gatekeeper
 
 ### `impact_areas`
 *   **Description/Purpose:** A list of areas or systems that are affected by this document or standard
@@ -260,12 +260,20 @@ The `info-type` key MUST use one of the following string values (all in kebab-ca
 
 ### Other Controlled Vocabularies
 
-*   **`tags`:** Categories and specific tags for document classification See `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-*   **`kb_id`:** Knowledge base identifiers See `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-*   **`criticality`:** Criticality levels (P0-Critical, P1-High, P2-Medium, etc.) See `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-*   **`lifecycle_gatekeeper`:** Roles/teams responsible for lifecycle approvals See `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-*   **`primary_domain`:** Primary domain codes (2 uppercase letters) See `[[domain_codes.yaml]]`.
-*   **`sub_domain`:** Sub-domain codes (2-6 uppercase letters) per primary_domain See `[[subdomain_registry.yaml]]`.
+*   **`tags`:** Categories and specific tags for document classification See `[[mt-registry-tag-glossary.md]]`.
+    *   **Main Tag Categories Include:**
+        *   `status/`: Content lifecycle status indicators
+        *   `kb-id/`: Knowledge base identification tags
+        *   `structural`: Structural tags without category prefix
+        *   `topic/`: Topic classification tags
+        *   `content-type/`: Content type classification tags
+        *   `criticality/`: Criticality level tags (align with criticality field values)
+        *   `lifecycle_gatekeeper/`: Lifecycle gatekeeper tags (align with lifecycle_gatekeeper field values)
+        *   `standards-kb/`: Standards KB specific tags
+        *   `utility_process`: Utility and process tags without category prefix
+        *   `kb_specific`: KB-specific tags without category prefix
+
+*   **`kb_id`:** Knowledge base identifiers See `[[mt-registry-tag-glossary.md]]`.
 
 ## Relationship to Filename
 

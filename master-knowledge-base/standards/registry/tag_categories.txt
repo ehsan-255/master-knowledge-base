@@ -1,11 +1,12 @@
-# Generated tag category prefixes - Single Source of Truth
-# Generated on: 2025-06-05 02:55:02
+# Generated from mt-registry-tag-glossary.yaml (tag_categories)
+# Generated on: 2025-06-07 10:40:39
 # DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py
 
-# Common tag category prefixes used in the knowledge base
-status/
-criticality/
+# Tag category prefixes used in the knowledge base
 content-type/
-topic/
+criticality/
 kb-id/
 lifecycle_gatekeeper/
+standards-kb/
+status/
+topic/

@@ -42,6 +42,7 @@ class FrontmatterRegistryGenerator:
         
         # Paths following established conventions
         self.yaml_source = self.repo_base / "standards" / "registry" / "mt-schema-frontmatter.yaml"
+        self.tag_glossary_source = self.repo_base / "standards" / "registry" / "mt-registry-tag-glossary.yaml"
         self.registry_dir = self.repo_base / "standards" / "registry"
         self.reports_dir = self.repo_base / "tools" / "reports"
         
@@ -54,7 +55,8 @@ class FrontmatterRegistryGenerator:
         
         self.log(f"Initializing FrontmatterRegistryGenerator")
         self.log(f"Resolved repo base: {self.repo_base}")
-        self.log(f"YAML source: {self.yaml_source}")
+        self.log(f"YAML source for frontmatter: {self.yaml_source}")
+        self.log(f"YAML source for tag glossary: {self.tag_glossary_source}")
         self.log(f"Registry target: {self.registry_dir}")
         self.log(f"Dry run mode: {self.dry_run}")
     
@@ -87,6 +89,21 @@ class FrontmatterRegistryGenerator:
             return data
         except Exception as e:
             self.log(f"Failed to load YAML source: {e}", "ERROR")
+            raise
+
+    def load_tag_glossary_yaml(self) -> Dict[str, Any]:
+        """Load the Tag Glossary YAML source."""
+        try:
+            if not self.tag_glossary_source.exists():
+                raise FileNotFoundError(f"Tag Glossary YAML source file not found: {self.tag_glossary_source}")
+
+            with open(self.tag_glossary_source, 'r', encoding='utf-8') as f:
+                data = yaml.safe_load(f)
+
+            self.log(f"Loaded Tag Glossary YAML source: {len(str(data))} characters")
+            return data
+        except Exception as e:
+            self.log(f"Failed to load Tag Glossary YAML source: {e}", "ERROR")
             raise
     
     def extract_info_types(self, data: Dict[str, Any]) -> List[str]:
@@ -191,90 +208,84 @@ class FrontmatterRegistryGenerator:
         
         return yaml.dump(registry_data, default_flow_style=False, sort_keys=False)
     
-    def load_additional_yaml(self, filename: str) -> Dict[str, Any]:
-        """Load additional YAML files from registry directory."""
-        yaml_path = self.registry_dir / filename
-        try:
-            if not yaml_path.exists():
-                self.log(f"Additional YAML file not found: {yaml_path}", "WARNING")
-                return {}
-            
-            with open(yaml_path, 'r', encoding='utf-8') as f:
-                data = yaml.safe_load(f)
-                self.log(f"Loaded additional YAML: {filename} ({len(str(data))} characters)")
-                return data if data is not None else {}
-        except Exception as e:
-            self.log(f"Failed to load additional YAML {filename}: {e}", "ERROR")
-            return {}
-    
-    def generate_criticality_levels_txt(self) -> str:
-        """Generate criticality_levels.txt from criticality_levels.yaml."""
-        self.log("Generating criticality_levels.txt content...")
+    def generate_criticality_levels_txt(self, main_yaml_data: Dict[str, Any]) -> str:
+        """Generate criticality_levels.txt from mt-schema-frontmatter.yaml."""
+        self.log("Generating criticality_levels.txt content from mt-schema-frontmatter.yaml...")
         
-        criticality_data = self.load_additional_yaml("criticality_levels.yaml")
+        criticality_data = main_yaml_data.get('controlled_vocabularies', {}).get('criticality', [])
         if not criticality_data:
-            self.log("No criticality levels data found", "WARNING")
+            self.log("No criticality levels data found in mt-schema-frontmatter.yaml", "WARNING")
             return ""
         
         content_lines = [
-            "# Generated from criticality_levels.yaml - Single Source of Truth",
-            "# Generated on: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            "# Generated from mt-schema-frontmatter.yaml (controlled_vocabularies.criticality)",
+            f"# Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
             "# DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py",
             ""
         ]
         
-        # Extract tag values (lowercase format for tags)
+        extracted_levels = []
         if isinstance(criticality_data, list):
             for item in criticality_data:
                 if isinstance(item, dict) and 'level' in item:
-                    # Convert P0-Critical to p0-critical format for tags
-                    level = item['level'].lower().replace('-', '-')
-                    content_lines.append(level)
+                    level_value = item['level']
+                    # Convert "P0-Critical" to "p0-critical" for the .txt file, maintaining existing format
+                    formatted_level = level_value.lower()
+                    extracted_levels.append(formatted_level)
         
+        content_lines.extend(sorted(list(set(extracted_levels)))) # Ensure uniqueness and sort
         return '\n'.join(content_lines)
     
-    def generate_lifecycle_gatekeepers_txt(self) -> str:
-        """Generate lifecycle_gatekeepers.txt from lifecycle_gatekeepers.yaml."""
-        self.log("Generating lifecycle_gatekeepers.txt content...")
+    def generate_lifecycle_gatekeepers_txt(self, main_yaml_data: Dict[str, Any]) -> str:
+        """Generate lifecycle_gatekeepers.txt from mt-schema-frontmatter.yaml."""
+        self.log("Generating lifecycle_gatekeepers.txt content from mt-schema-frontmatter.yaml...")
         
-        gatekeeper_data = self.load_additional_yaml("lifecycle_gatekeepers.yaml")
+        gatekeeper_data = main_yaml_data.get('controlled_vocabularies', {}).get('lifecycle_gatekeeper', [])
         if not gatekeeper_data:
-            self.log("No lifecycle gatekeepers data found", "WARNING")
+            self.log("No lifecycle gatekeepers data found in mt-schema-frontmatter.yaml", "WARNING")
             return ""
         
         content_lines = [
-            "# Generated from lifecycle_gatekeepers.yaml - Single Source of Truth",
-            "# Generated on: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            "# Generated from mt-schema-frontmatter.yaml (controlled_vocabularies.lifecycle_gatekeeper)",
+            f"# Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
             "# DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py",
             ""
         ]
         
-        # Extract gatekeeper values
+        extracted_gatekeepers = []
         if isinstance(gatekeeper_data, list):
             for item in gatekeeper_data:
                 if isinstance(item, dict) and 'gatekeeper' in item:
-                    content_lines.append(item['gatekeeper'])
+                     extracted_gatekeepers.append(item['gatekeeper'])
         
+        content_lines.extend(sorted(list(set(extracted_gatekeepers)))) # Ensure uniqueness and sort
         return '\n'.join(content_lines)
     
-    def generate_tag_categories_txt(self) -> str:
-        """Generate tag_categories.txt from common tag prefixes."""
-        self.log("Generating tag_categories.txt content...")
-        
+    def generate_tag_categories_txt(self, tag_glossary_data: Dict[str, Any]) -> str:
+        """Generate tag_categories.txt from mt-registry-tag-glossary.yaml."""
+        self.log("Generating tag_categories.txt content from mt-registry-tag-glossary.yaml...")
+
+        tag_categories = tag_glossary_data.get('tag_categories', {})
+        if not tag_categories:
+            self.log("No tag categories data found in mt-registry-tag-glossary.yaml", "WARNING")
+            return ""
+
         content_lines = [
-            "# Generated tag category prefixes - Single Source of Truth",
-            "# Generated on: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            "# Generated from mt-registry-tag-glossary.yaml (tag_categories)",
+            f"# Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
             "# DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py",
             "",
-            "# Common tag category prefixes used in the knowledge base",
-            "status/",
-            "criticality/",
-            "content-type/",
-            "topic/",
-            "kb-id/",
-            "lifecycle_gatekeeper/"
+            "# Tag category prefixes used in the knowledge base"
         ]
         
+        extracted_prefixes = []
+        for category_key, category_def in tag_categories.items():
+            if isinstance(category_def, dict) and 'prefix' in category_def:
+                prefix = category_def['prefix']
+                if prefix: # Only include if prefix is not empty
+                    extracted_prefixes.append(prefix)
+
+        content_lines.extend(sorted(list(set(extracted_prefixes)))) # Ensure uniqueness and sort
         return '\n'.join(content_lines)
     
     def write_registry_file(self, filename: str, content: str) -> bool:
@@ -311,12 +322,13 @@ class FrontmatterRegistryGenerator:
             self.log("Starting registry generation from mt-schema-frontmatter.yaml")
             
             # Load YAML source
-            data = self.load_yaml_source()
+            main_yaml_data = self.load_yaml_source()
+            tag_glossary_data = self.load_tag_glossary_yaml()
             
             # Extract data
-            info_types = self.extract_info_types(data)
-            fields = self.extract_field_definitions(data)
-            field_order = self.extract_field_order(data)
+            info_types = self.extract_info_types(main_yaml_data)
+            fields = self.extract_field_definitions(main_yaml_data)
+            field_order = self.extract_field_order(main_yaml_data)
             
             # Generate registry files
             success = True
@@ -342,29 +354,29 @@ class FrontmatterRegistryGenerator:
             else:
                 self.log("No field order extracted, skipping field_order.yaml", "WARNING")
             
-            # 4. Generate criticality_levels.txt
-            criticality_content = self.generate_criticality_levels_txt()
+            # 4. Generate criticality_levels.txt (from main_yaml_data)
+            criticality_content = self.generate_criticality_levels_txt(main_yaml_data)
             if criticality_content:
                 success &= self.write_registry_file("criticality_levels.txt", criticality_content)
             else:
                 self.log("Failed to generate criticality_levels.txt", "WARNING")
             
-            # 5. Generate lifecycle_gatekeepers.txt
-            gatekeepers_content = self.generate_lifecycle_gatekeepers_txt()
+            # 5. Generate lifecycle_gatekeepers.txt (from main_yaml_data)
+            gatekeepers_content = self.generate_lifecycle_gatekeepers_txt(main_yaml_data)
             if gatekeepers_content:
                 success &= self.write_registry_file("lifecycle_gatekeepers.txt", gatekeepers_content)
             else:
                 self.log("Failed to generate lifecycle_gatekeepers.txt", "WARNING")
             
-            # 6. Generate tag_categories.txt
-            tag_categories_content = self.generate_tag_categories_txt()
+            # 6. Generate tag_categories.txt (from tag_glossary_data)
+            tag_categories_content = self.generate_tag_categories_txt(tag_glossary_data)
             if tag_categories_content:
                 success &= self.write_registry_file("tag_categories.txt", tag_categories_content)
             else:
                 self.log("Failed to generate tag_categories.txt", "WARNING")
             
             # Generate summary report
-            self.generate_summary_report(info_types, fields, field_order)
+            self.generate_summary_report(info_types, fields, field_order, main_yaml_data, tag_glossary_data)
             
             if success:
                 self.log("Registry generation completed successfully")
@@ -377,29 +389,48 @@ class FrontmatterRegistryGenerator:
             self.log(f"Registry generation failed: {e}", "ERROR")
             return False
     
-    def generate_summary_report(self, info_types: List[str], fields: Dict[str, Dict[str, Any]], field_order: List[str]):
+    def generate_summary_report(self, info_types: List[str], fields: Dict[str, Dict[str, Any]], field_order: List[str], main_yaml_data: Dict[str, Any], tag_glossary_data: Dict[str, Any]):
         """Generate summary report of extraction and generation."""
         report_content = [
             "# Frontmatter Registry Generation Report",
             f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-            f"Source: {self.yaml_source}",
+            f"Sources:",
+            f"  - Frontmatter Schema: {self.yaml_source}",
+            f"  - Tag Glossary: {self.tag_glossary_source}",
             f"Mode: {'DRY RUN' if self.dry_run else 'LIVE'}",
             "",
             "## Extraction Summary",
-            f"- Info-types extracted: {len(info_types)}",
-            f"- Field definitions extracted: {len(fields)}",
-            f"- Field order positions: {len(field_order)}",
+            f"- Info-types extracted: {len(info_types)} (from {self.yaml_source})",
+            f"- Field definitions extracted: {len(fields)} (from {self.yaml_source})",
+            f"- Field order positions: {len(field_order)} (from {self.yaml_source})",
+        ]
+
+        # Add counts for other controlled vocabularies from mt-schema-frontmatter.yaml
+        cv_summary = []
+        if main_yaml_data and 'controlled_vocabularies' in main_yaml_data:
+            for vocab_name, vocab_list in main_yaml_data['controlled_vocabularies'].items():
+                if vocab_name != 'info_type': # info_type already counted
+                    cv_summary.append(f"- {vocab_name} items: {len(vocab_list if isinstance(vocab_list, list) else [])}")
+        if cv_summary:
+            report_content.append("- Controlled Vocabularies (from mt-schema-frontmatter.yaml):")
+            report_content.extend([f"  {item}" for item in cv_summary])
+
+        # Add count for tag categories from mt-registry-tag-glossary.yaml
+        if tag_glossary_data and 'tag_categories' in tag_glossary_data:
+            report_content.append(f"- Tag Categories extracted: {len(tag_glossary_data['tag_categories'])} (from {self.tag_glossary_source})")
+
+        report_content.extend([
             "",
             "## Generated Files",
-            "- info_types.txt (from mt-schema-frontmatter.yaml)",
-            "- frontmatter_fields.yaml (from mt-schema-frontmatter.yaml)", 
-            "- field_order.yaml (from mt-schema-frontmatter.yaml)",
-            "- criticality_levels.txt (from criticality_levels.yaml)",
-            "- lifecycle_gatekeepers.txt (from lifecycle_gatekeepers.yaml)",
-            "- tag_categories.txt (common prefixes)",
+            f"- info_types.txt (from {self.yaml_source} -> controlled_vocabularies.info_type)",
+            f"- frontmatter_fields.yaml (from {self.yaml_source} -> fields)",
+            f"- field_order.yaml (from {self.yaml_source} -> field_order)",
+            f"- criticality_levels.txt (from {self.yaml_source} -> controlled_vocabularies.criticality)",
+            f"- lifecycle_gatekeepers.txt (from {self.yaml_source} -> controlled_vocabularies.lifecycle_gatekeeper)",
+            f"- tag_categories.txt (from {self.tag_glossary_source} -> tag_categories)",
             "",
             "## Info-Types Extracted",
-        ]
+        ])
         
         for info_type in info_types:
             report_content.append(f"- {info_type}")

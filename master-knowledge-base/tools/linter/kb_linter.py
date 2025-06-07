@@ -8,6 +8,7 @@ from datetime import datetime, timezone # Import timezone
 import json
 from collections import defaultdict
 import argparse # For CI-friendliness
+from pathlib import Path # Added for robust path handling
 import sys # For CI-friendliness
 import time # For adding a small delay
 
@@ -48,82 +49,104 @@ EXPECTED_TYPES = {
 class LinterConfig:
     def __init__(self, repo_base_path="."):
         print(f"DEBUG LinterConfig: Initial repo_base_path: {repo_base_path}")
-        self.repo_base = os.path.abspath(repo_base_path)
-        print(f"DEBUG LinterConfig: self.repo_base (absolute): {self.repo_base}")
-        self.registry_path = os.path.join(self.repo_base, "standards", "registry")
+        # Correct repo_base detection
+        raw_repo_base = Path(repo_base_path).resolve()
+        if not (raw_repo_base / "master-knowledge-base" / "standards").exists() and (raw_repo_base / "standards").exists():
+             # Likely running from inside master-knowledge-base
+             self.repo_base = raw_repo_base
+        elif (raw_repo_base / "master-knowledge-base").is_dir():
+            # Likely running from one level above master-knowledge-base
+            self.repo_base = raw_repo_base / "master-knowledge-base"
+        else:
+            # Fallback or if structure is unexpected
+            self.repo_base = raw_repo_base
+            # Check if we need to append master-knowledge-base
+            if not (self.repo_base / "standards" / "registry").exists() and (Path(repo_base_path) / "master-knowledge-base" / "standards" / "registry").exists():
+                 self.repo_base = Path(repo_base_path).resolve() / "master-knowledge-base"
 
+
+        print(f"DEBUG LinterConfig: self.repo_base (resolved): {self.repo_base}")
+
+        self.registry_path = self.repo_base / "standards" / "registry"
+        self.schema_yaml_path = self.registry_path / "mt-schema-frontmatter.yaml"
+        self.tag_glossary_yaml_path = self.registry_path / "mt-registry-tag-glossary.yaml"
+
+        # Load consolidated YAMLs first
+        self.frontmatter_schema_data = self._load_yaml_vocab(str(self.schema_yaml_path)) # Use str() for os.path.exists in _load_yaml_vocab
+        self.tag_glossary_data = self._load_yaml_vocab(str(self.tag_glossary_yaml_path)) # Use str() for os.path.exists
+
+        # Extract vocabularies from consolidated files
+        cv_data = self.frontmatter_schema_data.get('controlled_vocabularies', {})
+
+        self.domain_codes = [item['id'] for item in cv_data.get('primary_domain', []) if isinstance(item, dict) and 'id' in item]
+        self.subdomain_registry = cv_data.get('sub_domain', {}) # This is already a dict keyed by primary_domain
+        if not isinstance(self.subdomain_registry, dict): self.subdomain_registry = {}
+
+        self.info_types = cv_data.get('info_type', [])
+
+        # For 'criticality' field validation (e.g., "P0-Critical")
+        self.criticality_levels_yaml = [item['level'] for item in cv_data.get('criticality', []) if isinstance(item, dict) and 'level' in item]
+
+        # For 'lifecycle_gatekeeper' field validation
+        self.lifecycle_gatekeepers = [item['gatekeeper'] for item in cv_data.get('lifecycle_gatekeeper', []) if isinstance(item, dict) and 'gatekeeper' in item]
+
+        # For tag category prefix validation (e.g., "status/", "topic/")
+        self.tag_categories_prefixes = []
+        if self.tag_glossary_data and 'tag_categories' in self.tag_glossary_data:
+            for cat_info in self.tag_glossary_data['tag_categories'].values():
+                if isinstance(cat_info, dict) and cat_info.get('prefix'):
+                    self.tag_categories_prefixes.append(cat_info['prefix'])
+
+        # For criticality/* tag value validation (e.g., "p0-critical")
+        self.criticality_tag_values = []
+        if self.tag_glossary_data and 'tag_categories' in self.tag_glossary_data:
+            crit_tags = self.tag_glossary_data['tag_categories'].get('criticality', {}).get('tags', [])
+            for tag_item in crit_tags:
+                if isinstance(tag_item, dict) and 'full_tag' in tag_item:
+                    # Extract value like "p0-critical" from "criticality/P0-Critical"
+                    # The tag value in frontmatter is expected to be P0-Critical, so we take field_value and lowercase.
+                    # Or, if we use full_tag, "criticality/P0-Critical" -> "p0-critical"
+                    tag_value = tag_item.get('field_value', tag_item['full_tag'].split('/')[-1])
+                    self.criticality_tag_values.append(tag_value.lower())
+
+        # Audience types and Maturity levels (loaded but not yet used in existing lint checks)
+        self.audience_types = [item['id'] for item in cv_data.get('audience_type', []) if isinstance(item, dict) and 'id' in item]
+        self.maturity_levels = [item['id'] for item in cv_data.get('maturity_level', []) if isinstance(item, dict) and 'id' in item]
+
+        # Load Standards Index (existing logic)
         dist_path_local = os.path.join(self.repo_base, "dist")
         print(f"DEBUG LinterConfig: local dist_path_local for index: {dist_path_local}")
         time.sleep(0.1) # Small delay to help with potential filesystem sync issues
         os.makedirs(dist_path_local, exist_ok=True) # Ensure dist directory is accessible
-
-        # Load YAML Vocabularies
-        domain_codes_data = self._load_yaml_vocab(os.path.join(self.registry_path, "domain_codes.yaml"))
-        # Corrected parsing based on actual domain_codes.yaml structure
-        self.domain_codes = [item['id'] for item in domain_codes_data.get('entries', []) if isinstance(item, dict) and 'id' in item]
-        self.subdomain_registry = self._load_yaml_vocab(os.path.join(self.registry_path, "subdomain_registry.yaml"))
-        if not isinstance(self.subdomain_registry, dict): self.subdomain_registry = {}
-
-        # Load Standards Index
         full_index_path = os.path.join(dist_path_local, "standards_index.json")
         print(f"DEBUG LinterConfig: Attempting to load index directly from: {full_index_path}")
         self.standards_index = self._load_standards_index(full_index_path)
-        
-        # Load TXT Vocabularies
-        self.info_types = self._load_txt_vocab(os.path.join(self.registry_path, "info_types.txt"))
-        self.criticality_levels_txt = self._load_txt_vocab(os.path.join(self.registry_path, "criticality_levels.txt")) # For tags (e.g. p0-critical)
-
-        # Load mixed-case criticality levels for the frontmatter field value
-        criticality_yaml_data = self._load_yaml_vocab(os.path.join(self.registry_path, "criticality_levels.yaml"))
-        self.criticality_levels_yaml = [item['level'] for item in criticality_yaml_data if isinstance(item, dict) and 'level' in item] # For field (e.g. P0-Critical)
-
-        self.lifecycle_gatekeepers = self._load_txt_vocab(os.path.join(self.registry_path, "lifecycle_gatekeepers.txt"))
-        self.tag_categories = self._load_txt_vocab(os.path.join(self.registry_path, "tag_categories.txt"))
 
         # Decision for Phase B: Rely on .txt/.yaml registry files for vocabularies.
         # Defer complex Markdown-based vocabulary loading.
+        # THIS COMMENT IS NOW OUTDATED AS WE LOAD FROM CONSOLIDATED YAMLS.
         # TODO: (Post-Phase B) Re-evaluate dynamic vocabulary loading from Markdown if needed for flexibility.
-        # Original TODO comments:
-        # (Retain comments from previous version about dynamic parsing strategy)
-        # For MT-SCHEMA-FRONTMATTER.md (info-type list):
-        #   1. Read 'MT-SCHEMA-FRONTMATTER.md'.
-        #   2. Locate the specific H3 section, e.g., "### `info-type`".
-        #   3. Parse the subsequent bulleted list. Extract terms.
-        # For MT-REGISTRY-TAG-GLOSSARY.md (tag categories, criticality, lifecycle_gatekeeper):
-        #   1. Read 'MT-REGISTRY-TAG-GLOSSARY.md'.
-        #   2. For tag categories: Find H3 headings like "### Status Tags (`status/*`)"
-        #      Use regex to extract the "status/" part.
-        #   3. For criticality/lifecycle: Find H3 headings like "### Criticality Tags (`criticality/*`)"
-        #      Parse subsequent list items (e.g., "- `criticality/P0-Critical`: Description") to get the full tag.
+        # Original TODO comments related to parsing MD files are now less relevant.
 
-    def _load_yaml_vocab(self, filepath, list_key=None, extract_key=None):
+    def _load_yaml_vocab(self, filepath, list_key=None, extract_key=None): # Modified to be more generic
         try:
             abs_filepath = os.path.join(self.repo_base, filepath) if not os.path.isabs(filepath) else filepath
             if not os.path.exists(abs_filepath):
                 print(f"Warning: Vocab file not found: {abs_filepath}")
-                return {} if list_key is None and not extract_key else []
+                return {} # Return a dict for schema/glossary, or an empty dict if expecting a dict
             with open(abs_filepath, 'r', encoding='utf-8') as f:
                 data = yaml.safe_load(f)
-                if list_key: 
-                    data = data.get(list_key, [])
-                    if extract_key: 
-                        return [item[extract_key] for item in data if isinstance(item, dict) and extract_key in item]
-                return data if data is not None else ({} if list_key is None and not extract_key else [])
+                # The following logic for list_key/extract_key might be too specific for the main YAMLs
+                # and can be handled by the caller if needed, or removed if not used by main YAML loading.
+                # For now, let's assume the main YAMLs are loaded as whole dicts.
+                # if list_key:
+                #     data = data.get(list_key, [])
+                #     if extract_key:
+                #         return [item[extract_key] for item in data if isinstance(item, dict) and extract_key in item]
+                return data if data is not None else {}
         except Exception as e:
             print(f"Warning: Failed to load/parse YAML vocab {filepath}: {e}")
-            return {} if list_key is None and not extract_key else []
-
-    def _load_txt_vocab(self, filepath):
-        try:
-            abs_filepath = os.path.join(self.repo_base, filepath) if not os.path.isabs(filepath) else filepath
-            if not os.path.exists(abs_filepath):
-                print(f"Warning: Vocab file not found: {abs_filepath}")
-                return []
-            with open(abs_filepath, 'r', encoding='utf-8') as f:
-                return [line.strip() for line in f if line.strip() and not line.startswith("#")]
-        except Exception as e:
-            print(f"Warning: Failed to load .txt vocab {filepath}: {e}")
-            return []
+            return {} # Return empty dict on error
 
     def _load_standards_index(self, index_file_abs_path): # Now expects an absolute path
         try:
@@ -317,39 +340,43 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
         pd_value = frontmatter_data.get("primary_domain")
         pd_line = get_line_number_of_key(frontmatter_str, "primary_domain", fm_content_start_line)
         if not (is_template_file and is_placeholder_value(pd_value)):
-            if pd_value not in config.domain_codes:
+            if pd_value not in config.domain_codes: # Uses new self.domain_codes
                 errors.append({"message": f"'primary_domain' ('{pd_value}') not in defined domain_codes. Valid: {config.domain_codes}", "line": pd_line })
         
         if "sub_domain" in frontmatter_data:
             sd_value = frontmatter_data.get("sub_domain")
             sd_line = get_line_number_of_key(frontmatter_str, "sub_domain", fm_content_start_line)
             if not (is_template_file and is_placeholder_value(sd_value)):
-                if pd_value in config.subdomain_registry: # Assumes pd_value is valid or placeholder check passed
-                    valid_subdomains_for_domain = [item['code'] for item in config.subdomain_registry.get(pd_value, []) if isinstance(item, dict) and 'code' in item]
+                if pd_value in config.subdomain_registry: # Uses new self.subdomain_registry
+                    # Ensure that the items in the subdomain registry for the given pd_value are dictionaries with a 'code' key
+                    valid_subdomains_for_domain = [
+                        item['code'] for item in config.subdomain_registry.get(pd_value, [])
+                        if isinstance(item, dict) and 'code' in item
+                    ]
                     if sd_value not in valid_subdomains_for_domain:
                         errors.append({"message": f"'sub_domain' ('{sd_value}') not valid for domain '{pd_value}'. Valid: {valid_subdomains_for_domain}", "line": sd_line })
-                elif pd_value and not (is_template_file and is_placeholder_value(pd_value)):
+                elif pd_value and not (is_template_file and is_placeholder_value(pd_value)): # pd_value exists and is not a placeholder
                      warnings.append({"message": f"Primary domain '{pd_value}' not found in subdomain registry structure for sub_domain check.", "line": sd_line})
 
     if "info-type" in frontmatter_data:
         it_value = frontmatter_data.get("info-type")
         it_line = get_line_number_of_key(frontmatter_str, "info-type", fm_content_start_line)
         if not (is_template_file and is_placeholder_value(it_value)):
-            if it_value not in config.info_types:
+            if it_value not in config.info_types: # Uses new self.info_types
                 errors.append({"message": f"'info-type' ('{it_value}') not in defined list. Valid: {config.info_types}", "line": it_line })
 
     if "criticality" in frontmatter_data:
         crit_value = frontmatter_data.get("criticality")
         crit_line = get_line_number_of_key(frontmatter_str, "criticality", fm_content_start_line)
         if not (is_template_file and is_placeholder_value(crit_value)):
-            if crit_value not in config.criticality_levels_yaml:
+            if crit_value not in config.criticality_levels_yaml: # Uses new self.criticality_levels_yaml
                 errors.append({"message": f"'criticality' ('{crit_value}') not in defined list. Valid (mixed-case from YAML): {config.criticality_levels_yaml}", "line": crit_line })
 
     if "lifecycle_gatekeeper" in frontmatter_data:
         lg_value = frontmatter_data.get("lifecycle_gatekeeper")
         lg_line = get_line_number_of_key(frontmatter_str, "lifecycle_gatekeeper", fm_content_start_line)
         if not (is_template_file and is_placeholder_value(lg_value)):
-            if lg_value not in config.lifecycle_gatekeepers:
+            if lg_value not in config.lifecycle_gatekeepers: # Uses new self.lifecycle_gatekeepers
                 warnings.append({"message": f"'lifecycle_gatekeeper' ('{lg_value}') not in defined list. Valid: {config.lifecycle_gatekeepers}", "line": lg_line })
 
     if "tags" in frontmatter_data:
@@ -364,17 +391,31 @@ def lint_file(filepath_abs, config: LinterConfig, file_content_raw=None):
                         warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) invalid kebab-case/structure.", "line": tags_line })
 
                     valid_prefix = False
-                    for cat_prefix in config.tag_categories:
+                    # Use new self.tag_categories_prefixes for validation
+                    for cat_prefix in config.tag_categories_prefixes:
                         if tag.startswith(cat_prefix):
                             valid_prefix = True
                             if cat_prefix == "criticality/":
                                 tag_value_part = tag[len(cat_prefix):]
                                 if not (is_template_file and is_placeholder_value(tag_value_part)):
-                                    if tag_value_part not in config.criticality_levels_txt:
-                                        errors.append({"message": f"Tag value for 'criticality/' ('{tag_value_part}') not in defined list. Valid (lowercase from .txt): {config.criticality_levels_txt}", "line": tags_line})
+                                    # Use new self.criticality_tag_values for validation
+                                    if tag_value_part.lower() not in config.criticality_tag_values:
+                                        errors.append({"message": f"Tag value for 'criticality/' ('{tag_value_part}') not in defined list. Valid (lowercase values): {config.criticality_tag_values}", "line": tags_line})
                             break
                     if not valid_prefix and not (is_template_file and is_placeholder_value(tag)):
-                        warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) has unrecognized category prefix. Valid prefixes: {config.tag_categories}", "line": tags_line })
+                        # Check if it's a non-prefixed tag defined in structural or utility_process etc.
+                        is_known_non_prefixed_tag = False
+                        if config.tag_glossary_data and 'tag_categories' in config.tag_glossary_data:
+                            for cat_key, cat_def in config.tag_glossary_data['tag_categories'].items():
+                                if not cat_def.get('prefix'): # Categories with no prefix
+                                    for defined_tag_item in cat_def.get('tags', []):
+                                        if isinstance(defined_tag_item, dict) and defined_tag_item.get('full_tag') == tag:
+                                            is_known_non_prefixed_tag = True
+                                            break
+                                if is_known_non_prefixed_tag:
+                                    break
+                        if not is_known_non_prefixed_tag:
+                             warnings.append({"message": f"Tag '{tag}' (at index {tag_idx}) has unrecognized category prefix or is not a known non-prefixed tag. Valid prefixes: {config.tag_categories_prefixes}", "line": tags_line })
     
     # change_log_url validation removed - using unified changelog policy
     content_lines = markdown_content.splitlines(True)
@@ -514,12 +555,31 @@ def main():
     config = LinterConfig(repo_base_path=repo_base_abs_path)
     
     lint_target_dir_rel = args.directory
-    lint_target_dir_abs = os.path.join(repo_base_abs_path, lint_target_dir_rel)
+    # Adjust lint_target_dir_rel if config.repo_base already incorporates 'master-knowledge-base'
+    # and args.directory also starts with it.
+    if str(config.repo_base).endswith("master-knowledge-base") and lint_target_dir_rel.startswith("master-knowledge-base/"):
+        lint_target_dir_rel = lint_target_dir_rel[len("master-knowledge-base/"):]
+
+    # The path passed to lint_directory should be relative to config.repo_base
+    # config.repo_base is already the correct absolute path to master-knowledge-base
+    lint_target_dir_for_function_call = lint_target_dir_rel
+
+    # For os.path.isdir check, we need the full absolute path based on the original repo_base_abs_path
+    # This check is to ensure the user-provided path (or default) is valid from where script is called.
+    initial_check_abs_path = os.path.join(repo_base_abs_path, args.directory) # Use original args.directory for this check
 
     # Check if target directory exists before proceeding
-    if not os.path.isdir(lint_target_dir_abs):
-        print(f"Error: Target directory for linting not found: {lint_target_dir_abs}")
-        sys.exit(1) # Exit if directory doesn't exist
+    if not os.path.isdir(initial_check_abs_path):
+        # Try with resolved config.repo_base and adjusted relative path
+        # This covers cases where repo-base might be '.' from within MKB
+        check_path_alt = os.path.join(str(config.repo_base), lint_target_dir_rel)
+        if not os.path.isdir(check_path_alt):
+            print(f"Error: Target directory for linting not found using path: {initial_check_abs_path} or {check_path_alt}")
+            sys.exit(1) # Exit if directory doesn't exist
+        lint_target_display_abs = check_path_alt # For print message
+    else:
+        lint_target_display_abs = initial_check_abs_path
+
 
     # Remove dummy file creation unless specifically testing the main() without args
     # For CI, dummy files are not needed as it will lint actual files.
@@ -541,6 +601,13 @@ def main():
         #    # print(f"Created dummy {dummy_index_path_local} for linter testing.")
         # else:
         #    print(f"DEBUG: Dummy block check: index *does* exist at {dummy_index_path_local}")
+
+        # Make target_dummy_dir calculation robust
+        if args.directory.startswith("master-knowledge-base/"):
+            target_dummy_dir_rel_part = args.directory[len("master-knowledge-base/"):]
+        else:
+            target_dummy_dir_rel_part = args.directory
+        target_dummy_dir = os.path.join(str(config.repo_base), target_dummy_dir_rel_part)
 
         dummy_files_to_create = { # These are dummy .md files for testing various linting rules
             "XX-LINT-TESTDUMMY1.MD": """---
@@ -613,9 +680,9 @@ Content.
         print(f"Created dummy files in {target_dummy_dir}")
 
 
-    print(f"Starting Knowledge Base Linter on {lint_target_dir_abs}...")
+    print(f"Starting Knowledge Base Linter on {lint_target_display_abs}...")
     
-    results_list = lint_directory(lint_target_dir_rel, config) # Pass relative path to lint_directory
+    results_list = lint_directory(lint_target_dir_for_function_call, config)
     total_errors = 0
     total_warnings = 0
     report_content = "# Linter Report\n\n"

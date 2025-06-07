@@ -1,7 +1,7 @@
 registry_id: FRONTMATTER_FIELD_ORDER
 description: Mandatory field order for frontmatter generated from mt-schema-frontmatter.yaml
 generated_from: mt-schema-frontmatter.yaml
-generated_on: '2025-06-05 02:55:02'
+generated_on: '2025-06-07 10:40:39'
 mandatory_order:
 - title
 - standard_id

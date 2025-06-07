@@ -1067,7 +1067,7 @@
       "lifecycle_gatekeeper": "Architect-Review"
     },
     {
-      "filepath": "master-knowledge-base/standards/registry/MT-REGISTRY-TAG-GLOSSARY.md",
+      "filepath": "master-knowledge-base/standards/src/MT-REGISTRY-TAG-GLOSSARY.md",
       "standard_id": "MT-REGISTRY-TAG-GLOSSARY",
       "title": "Master Tag Glossary and Registry",
       "primary_domain": "MT",

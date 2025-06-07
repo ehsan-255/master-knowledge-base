@@ -1,0 +1,11 @@
+# Generated tag category prefixes - Single Source of Truth
+# Generated on: 2025-06-05 02:55:02
+# DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py
+
+# Common tag category prefixes used in the knowledge base
+status/
+criticality/
+content-type/
+topic/
+kb-id/
+lifecycle_gatekeeper/

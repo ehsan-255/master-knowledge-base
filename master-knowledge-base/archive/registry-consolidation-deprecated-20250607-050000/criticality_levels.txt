@@ -1,5 +1,5 @@
-# Generated from mt-schema-frontmatter.yaml (controlled_vocabularies.criticality)
-# Generated on: 2025-06-07 10:40:39
+# Generated from criticality_levels.yaml - Single Source of Truth
+# Generated on: 2025-06-05 02:55:02
 # DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py
 
 p0-critical

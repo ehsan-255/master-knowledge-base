@@ -25,30 +25,43 @@ class SchemaDocsGenerator:
     def __init__(self, dry_run=False):
         self.dry_run = dry_run
         self.repo_root = Path(__file__).parent.parent.parent
-        self.yaml_source = self.repo_root / "standards" / "registry" / "mt-schema-frontmatter.yaml"
-        self.schema_md = self.repo_root / "standards" / "src" / "MT-SCHEMA-FRONTMATTER.md"
-        self.naming_md = self.repo_root / "standards" / "src" / "GM-CONVENTIONS-NAMING.md"
+        self.schema_yaml_source_path = self.repo_root / "standards" / "registry" / "mt-schema-frontmatter.yaml"
+        self.tag_glossary_yaml_source_path = self.repo_root / "standards" / "registry" / "mt-registry-tag-glossary.yaml" # New
+        self.schema_md_path = self.repo_root / "standards" / "src" / "MT-SCHEMA-FRONTMATTER.md"
+        self.naming_md_path = self.repo_root / "standards" / "src" / "GM-CONVENTIONS-NAMING.md"
         self.reports_dir = self.repo_root / "tools" / "reports"
         
         # Ensure reports directory exists
         self.reports_dir.mkdir(exist_ok=True)
         
-        # Load YAML data
-        self.schema_data = self._load_yaml_source()
-        
-        # Setup logging
+        # Setup logging EARLY - before any call to self._log()
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.log_file = self.reports_dir / f"schema_docs_generation_{timestamp}.log"
         self.log_messages = []
-        
-    def _load_yaml_source(self):
-        """Load the YAML SST file"""
+
+        # Load YAML data
+        self.schema_data = self._load_yaml_file(self.schema_yaml_source_path, "Schema")
+        self.tag_glossary_data = self._load_yaml_file(self.tag_glossary_yaml_source_path, "Tag Glossary") # New
+
+    def _load_yaml_file(self, yaml_path: Path, name: str):
+        """Load a YAML file."""
+        self._log(f"Loading {name} YAML source from: {yaml_path}")
+        if not yaml_path.exists():
+            self._log(f"ERROR: {name} YAML source file not found: {yaml_path}")
+            # Allow to continue if tag glossary is missing for now, but schema must exist
+            if name == "Schema":
+                sys.exit(1)
+            return None
         try:
-            with open(self.yaml_source, 'r', encoding='utf-8') as f:
-                return yaml.safe_load(f)
+            with open(yaml_path, 'r', encoding='utf-8') as f:
+                data = yaml.safe_load(f)
+            self._log(f"Successfully loaded {name} YAML source.")
+            return data
         except Exception as e:
-            self._log(f"ERROR: Failed to load YAML source {self.yaml_source}: {e}")
-            sys.exit(1)
+            self._log(f"ERROR: Failed to load {name} YAML source {yaml_path}: {e}")
+            if name == "Schema": # Schema is critical
+                sys.exit(1)
+            return None
     
     def _log(self, message):
         """Log a message to both console and log file"""
@@ -135,25 +148,46 @@ class SchemaDocsGenerator:
         sections.append("")
         
         # Info-type vocabulary
-        sections.append("### `info-type`")
-        sections.append("")
-        sections.append("The `info-type` key MUST use one of the following string values (all in kebab-case):")
-        sections.append("")
-        
-        info_types = self.schema_data.get('controlled_vocabularies', {}).get('info_type', [])
-        for info_type in info_types:
-            sections.append(f"*   `{info_type}`")
-        
-        sections.append("")
+        if self.schema_data and 'controlled_vocabularies' in self.schema_data and 'info_type' in self.schema_data['controlled_vocabularies']:
+            sections.append("### `info-type`")
+            sections.append("")
+            sections.append("The `info-type` key MUST use one of the following string values (all in kebab-case):")
+            sections.append("")
+            info_types = self.schema_data['controlled_vocabularies'].get('info_type', [])
+            for info_type in info_types:
+                sections.append(f"*   `{info_type}`")
+            sections.append("")
+
         sections.append("### Other Controlled Vocabularies")
         sections.append("")
         
-        # External vocabularies
-        external_vocabs = self.schema_data.get('external_vocabularies', {})
-        for field, vocab_info in external_vocabs.items():
-            source = vocab_info.get('source', 'Unknown')
-            desc = vocab_info.get('description', 'No description')
-            sections.append(f"*   **`{field}`:** {desc} See `[[{source}]]`.")
+        if self.schema_data and 'external_vocabularies' in self.schema_data:
+            external_vocabs = self.schema_data.get('external_vocabularies', {})
+            for field, vocab_info in external_vocabs.items():
+                source_file_name = vocab_info.get('source', 'Unknown')
+                desc = vocab_info.get('description', 'No description')
+
+                # Determine the link target (prefer .md over .yaml for documentation)
+                link_target = source_file_name
+                if source_file_name.endswith(".yaml"):
+                    link_target = source_file_name[:-5] + ".md"
+
+                sections.append(f"*   **`{field}`:** {desc} See `[[{link_target}]]`.")
+
+                # If the field is 'tags' and tag_glossary_data is available, list main categories
+                if field == 'tags' and self.tag_glossary_data and 'tag_categories' in self.tag_glossary_data:
+                    sections.append("    *   **Main Tag Categories Include:**")
+                    tag_categories = self.tag_glossary_data.get('tag_categories', {})
+                    for cat_key, cat_def in tag_categories.items():
+                        cat_prefix = cat_def.get('prefix', cat_key)
+                        cat_desc = cat_def.get('description', 'No category description.')
+                        sections.append(f"        *   `{cat_prefix if cat_prefix else cat_key}`: {cat_desc}")
+                    sections.append("")
+
+        # Placeholder for other controlled vocabularies defined directly in mt-schema-frontmatter.yaml
+        # This part can be expanded if needed based on other vocabularies in `controlled_vocabularies`
+        # For example, listing criticality levels, lifecycle_gatekeepers, etc.
+        # For now, focusing on the 'tags' enhancement as per subtask focus.
         
         return '\n'.join(sections)
     
@@ -199,13 +233,13 @@ class SchemaDocsGenerator:
     
     def update_schema_markdown(self):
         """Update MT-SCHEMA-FRONTMATTER.md with generated sections"""
-        self._log(f"Updating {self.schema_md}...")
+        self._log(f"Updating {self.schema_md_path}...")
         
         try:
-            with open(self.schema_md, 'r', encoding='utf-8') as f:
+            with open(self.schema_md_path, 'r', encoding='utf-8') as f:
                 content = f.read()
         except Exception as e:
-            self._log(f"ERROR: Failed to read {self.schema_md}: {e}")
+            self._log(f"ERROR: Failed to read {self.schema_md_path}: {e}")
             return False
         
         # Generate new sections
@@ -230,21 +264,21 @@ class SchemaDocsGenerator:
                 f.write(new_content)
             self._log(f"DRY RUN: Preview saved to {preview_file}")
         else:
-            with open(self.schema_md, 'w', encoding='utf-8') as f:
+            with open(self.schema_md_path, 'w', encoding='utf-8') as f:
                 f.write(new_content)
-            self._log(f"Updated {self.schema_md}")
+            self._log(f"Updated {self.schema_md_path}")
         
         return True
     
     def update_naming_markdown(self):
         """Update GM-CONVENTIONS-NAMING.md with generated Section 2.2"""
-        self._log(f"Updating {self.naming_md}...")
+        self._log(f"Updating {self.naming_md_path}...")
         
         try:
-            with open(self.naming_md, 'r', encoding='utf-8') as f:
+            with open(self.naming_md_path, 'r', encoding='utf-8') as f:
                 content = f.read()
         except Exception as e:
-            self._log(f"ERROR: Failed to read {self.naming_md}: {e}")
+            self._log(f"ERROR: Failed to read {self.naming_md_path}: {e}")
             return False
         
         # Generate new section
@@ -262,9 +296,9 @@ class SchemaDocsGenerator:
                 f.write(new_content)
             self._log(f"DRY RUN: Preview saved to {preview_file}")
         else:
-            with open(self.naming_md, 'w', encoding='utf-8') as f:
+            with open(self.naming_md_path, 'w', encoding='utf-8') as f:
                 f.write(new_content)
-            self._log(f"Updated {self.naming_md}")
+            self._log(f"Updated {self.naming_md_path}")
         
         return True
     
@@ -272,36 +306,51 @@ class SchemaDocsGenerator:
         """Generate a summary report of the generation process"""
         self._log("Generating summary report...")
         
-        field_count = len(self.schema_data.get('field_order', []))
-        info_type_count = len(self.schema_data.get('controlled_vocabularies', {}).get('info_type', []))
-        
         report = [
             "# Schema Documentation Generation Report",
             f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
             f"**Mode:** {'DRY RUN' if self.dry_run else 'LIVE RUN'}",
             "",
             "## Source Data Summary",
-            f"- **YAML Source:** {self.yaml_source}",
-            f"- **Fields Processed:** {field_count}",
-            f"- **Info-type Values:** {info_type_count}",
-            "",
-            "## Generated Sections",
-            "- **MT-SCHEMA-FRONTMATTER.md:** Field definitions and controlled vocabularies",
-            "- **GM-CONVENTIONS-NAMING.md:** Section 2.2 (Frontmatter Field Names)",
-            "",
-            "## Field Order Processed",
+            f"- **Schema YAML Source:** {self.schema_yaml_source_path}",
+            f"- **Tag Glossary YAML Source:** {self.tag_glossary_yaml_source_path}",
         ]
         
-        for i, field in enumerate(self.schema_data.get('field_order', []), 1):
-            report.append(f"{i:2d}. `{field}`")
-        
+        if self.schema_data:
+            field_count = len(self.schema_data.get('field_order', []))
+            info_type_count = len(self.schema_data.get('controlled_vocabularies', {}).get('info_type', []))
+            report.append(f"- **Fields Processed (from schema):** {field_count}")
+            report.append(f"- **Info-type Values (from schema):** {info_type_count}")
+
+        if self.tag_glossary_data:
+            tag_category_count = len(self.tag_glossary_data.get('tag_categories', {}))
+            report.append(f"- **Tag Categories Processed (from tag glossary):** {tag_category_count}")
+
         report.extend([
             "",
-            "## Info-type Values",
+            "## Generated Sections Updated",
+            f"- **{self.schema_md_path.name}:** Field definitions and controlled vocabularies sections.",
+            f"- **{self.naming_md_path.name}:** Section 2.2 (Frontmatter Field Names).",
+            "",
         ])
-        
-        for info_type in self.schema_data.get('controlled_vocabularies', {}).get('info_type', []):
-            report.append(f"- `{info_type}`")
+
+        if self.schema_data and self.schema_data.get('field_order', []):
+            report.append("## Field Order Processed (from schema)")
+            for i, field in enumerate(self.schema_data.get('field_order', []), 1):
+                report.append(f"{i:2d}. `{field}`")
+            report.append("")
+
+        if self.schema_data and self.schema_data.get('controlled_vocabularies', {}).get('info_type', []):
+            report.append("## Info-type Values (from schema)")
+            for info_type in self.schema_data.get('controlled_vocabularies', {}).get('info_type', []):
+                report.append(f"- `{info_type}`")
+            report.append("")
+
+        if self.tag_glossary_data and self.tag_glossary_data.get('tag_categories', {}):
+            report.append("## Tag Categories Referenced (from tag glossary)")
+            for cat_key, cat_def in self.tag_glossary_data.get('tag_categories', {}).items():
+                cat_prefix = cat_def.get('prefix', cat_key)
+                report.append(f"- `{cat_prefix if cat_prefix else cat_key}`: {cat_def.get('description')}")
         
         # Save report
         report_file = self.reports_dir / f"schema_docs_generation_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
@@ -314,11 +363,13 @@ class SchemaDocsGenerator:
         """Run the complete documentation generation process"""
         self._log("=== Schema Documentation Generator Started ===")
         self._log(f"Mode: {'DRY RUN' if self.dry_run else 'LIVE RUN'}")
-        self._log(f"YAML Source: {self.yaml_source}")
+        self._log(f"Schema YAML Source: {self.schema_yaml_source_path}")
+        self._log(f"Tag Glossary YAML Source: {self.tag_glossary_yaml_source_path}")
         
-        if not self.yaml_source.exists():
-            self._log(f"ERROR: YAML source file not found: {self.yaml_source}")
+        if not self.schema_data: # schema_data is critical
+            self._log(f"CRITICAL ERROR: Schema data from {self.schema_yaml_source_path} could not be loaded. Aborting.")
             return False
+        # tag_glossary_data is optional; script can run without it, just with less detail for tags.
         
         success = True
         

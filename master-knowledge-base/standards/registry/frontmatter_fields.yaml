@@ -1,7 +1,7 @@
 registry_id: FRONTMATTER_FIELDS
 description: Comprehensive registry of frontmatter fields generated from mt-schema-frontmatter.yaml
 generated_from: mt-schema-frontmatter.yaml
-generated_on: '2025-06-05 02:55:02'
+generated_on: '2025-06-07 10:40:39'
 fields:
 - name: title
   description: The official title of the document
@@ -28,7 +28,7 @@ fields:
   mandatory: true
   data_type: list_of_strings
   validation_rules: 'All tags MUST be in kebab-case; MUST include tags from specific
-    categories: status/*, content-type/*, topic/*; Refer to MT-REGISTRY-TAG-GLOSSARY
+    categories: status/*, content-type/*, topic/*; Refer to mt-registry-tag-glossary.yaml
     for comprehensive list'
   controlled_vocabulary: false
 - name: kb-id
@@ -36,7 +36,7 @@ fields:
   mandatory: true
   data_type: string
   validation_rules: Must be in kebab-case; Value must come from controlled vocabulary
-    in MT-REGISTRY-TAG-GLOSSARY
+    in mt-registry-tag-glossary.yaml
   controlled_vocabulary: false
 - name: info-type
   description: Specifies the type or category of information the document represents
@@ -80,13 +80,13 @@ fields:
   description: The primary domain code (e.g., IT, HR, MT for Meta)
   mandatory: conditional
   data_type: string
-  validation_rules: Must be 2 uppercase letters; Value MUST exist in domain_codes.yaml
+  validation_rules: Must be 2 uppercase letters; Value MUST exist in controlled_vocabularies.primary_domain
   controlled_vocabulary: true
 - name: sub_domain
   description: The sub-domain code (e.g., SECURITY, NETWORK, SCHEMA)
   mandatory: conditional
   data_type: string
-  validation_rules: Must be 2-6 uppercase letters; Value MUST exist in subdomain_registry.yaml
+  validation_rules: Must be 2-6 uppercase letters; Value MUST exist in controlled_vocabularies.sub_domain
     for the given primary_domain
   controlled_vocabulary: true
 - name: scope_application
@@ -99,15 +99,16 @@ fields:
   description: The criticality level of the document or the standard it defines
   mandatory: true
   data_type: string
-  validation_rules: Value MUST come from controlled vocabulary (e.g., P0-Critical,
-    P1-High, P2-Medium); Refer to MT-REGISTRY-TAG-GLOSSARY
+  validation_rules: 'Value MUST come from controlled_vocabularies.criticality; Valid
+    values: P0-Critical, P1-High, P2-Medium, P3-Low, P4-Informational'
   controlled_vocabulary: true
 - name: lifecycle_gatekeeper
   description: Specifies the role or team responsible for approving transitions in
     the document's lifecycle
   mandatory: true
   data_type: string
-  validation_rules: Value MUST come from controlled vocabulary; Refer to MT-REGISTRY-TAG-GLOSSARY
+  validation_rules: 'Value MUST come from controlled_vocabularies.lifecycle_gatekeeper;
+    Valid values: Architect-Review, Security-Team-Approval, Stakeholder-Review, No-Gatekeeper'
   controlled_vocabulary: true
 - name: impact_areas
   description: A list of areas or systems that are affected by this document or standard
