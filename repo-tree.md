@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-07 11:27:25  
+**Generated**: 2025-06-07 12:25:32  
 **Script**: `master-knowledge-base/tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -180,7 +180,6 @@
 │   │   📄 changelog.md
 │   │   📄 README.md
 │   📄 AS-INDEX-KB-MASTER.md
-│   📄 repo-tree.md
 🧪 test-environment ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
 │   💾 backup
 │   │   📄 no-frontmatter.md
@@ -211,6 +210,7 @@
 📄 .cursorrules
 📄 .prettierignore
 📄 master-knowledge-base-to-root-migration-analysis.md
+📄 migration_scripts_analysis_and_recommendations.md
 📄 README.md
 📄 refactoring-initiative-remaining-tasks.md
 📄 repo-tree.md

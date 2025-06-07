@@ -22,7 +22,7 @@ This directory contains automated scripts for migrating the contents of `master-
 ### Step 1: Dry Run (MANDATORY)
 ```bash
 # Navigate to repository root
-cd /path/to/master-knowledge-base
+cd /path/to/your-repository-root
 
 # Run comprehensive dry-run test
 python master-knowledge-base/tools/migration-scripts/migrate_master_kb_to_root.py --dry-run
