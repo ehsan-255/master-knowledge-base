@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-08 09:16:26  
+**Generated**: 2025-06-08 12:09:27  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -20,6 +20,9 @@
 │   📄 roadmap-progress-tracker-template.md
 │   📄 roadmap-template.md
 🗃️ archive ALWAYS ARCHIVE HERE
+📁 config
+│   📄 config.json
+│   📄 config.schema.json
 📁 master-knowledge-base
 │   🔧 tools ALL TOOLS AND SCRIPTS MUST ALWAYS BE HERE
 │       📊 reports ALL SCRIPT OUTPUTS, LOGS, AND REPORTS MUST ALWAYS BE HERE
@@ -122,13 +125,18 @@
 │   │   📄 sample1.md
 │   │   📄 sample2.md
 │   📁 scribe-tests
+│   │   📄 simulated_24h_soak_test.py
+│   │   📄 simulated_soak_test.py
+│   │   📄 soak_test.py
 │   │   📄 test_atomic_write.py
 │   │   📄 test_exit_conditions_1_1.py
 │   │   📄 test_health_endpoint.py
 │   │   📄 test_integration.py
 │   │   📄 test_step_1_2_exit_conditions.py
+│   │   📄 test_step_2_1_exit_conditions.py
 │   │   📄 test_watcher.py
 │   │   📄 test_worker.py
+│   │   📄 verify_step_1_2.py
 │   📁 test-documents
 │   │   📄 CamelCaseFile.md
 │   │   📄 comprehensive-test.md
@@ -186,13 +194,23 @@
 │   │   📄 refactor_ids_filenames.py
 │   │   📄 refactor_tag_casing.py
 │   📊 reports
+│   │   📄 circuit-breaker-integration-test-20250608-1203.md
 │   📁 scribe
 │   │   📁 actions
+│   │   │   📄 __init__.py
+│   │   │   📄 base.py
 │   │   📁 core
+│   │   │   📄 action_dispatcher.py
 │   │   │   📄 atomic_write.py
+│   │   │   📄 circuit_breaker.py
+│   │   │   📄 config_manager.py
 │   │   │   📄 health_server.py
 │   │   │   📄 logging_config.py
+│   │   │   📄 plugin_loader.py
+│   │   │   📄 rule_processor.py
+│   │   │   📄 security_manager.py
 │   │   📄 engine.py
+│   │   📄 README.md
 │   │   📄 requirements.txt
 │   │   📄 watcher.py
 │   │   📄 worker.py
