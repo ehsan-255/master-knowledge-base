@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-08 08:00:58  
+**Generated**: 2025-06-08 09:16:26  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -121,6 +121,14 @@
 │   │   📄 no-frontmatter.md
 │   │   📄 sample1.md
 │   │   📄 sample2.md
+│   📁 scribe-tests
+│   │   📄 test_atomic_write.py
+│   │   📄 test_exit_conditions_1_1.py
+│   │   📄 test_health_endpoint.py
+│   │   📄 test_integration.py
+│   │   📄 test_step_1_2_exit_conditions.py
+│   │   📄 test_watcher.py
+│   │   📄 test_worker.py
 │   📁 test-documents
 │   │   📄 CamelCaseFile.md
 │   │   📄 comprehensive-test.md
@@ -178,6 +186,16 @@
 │   │   📄 refactor_ids_filenames.py
 │   │   📄 refactor_tag_casing.py
 │   📊 reports
+│   📁 scribe
+│   │   📁 actions
+│   │   📁 core
+│   │   │   📄 atomic_write.py
+│   │   │   📄 health_server.py
+│   │   │   📄 logging_config.py
+│   │   📄 engine.py
+│   │   📄 requirements.txt
+│   │   📄 watcher.py
+│   │   📄 worker.py
 │   🔧 utilities
 │   │   📁 repo-tree
 │   │   │   📄 .subtreeignore
