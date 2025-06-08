@@ -34,11 +34,11 @@
 ---
 
 ⬜ #### TASK 1.1.1: Project Scaffolding
-- **Brief Description:** Set up the initial project structure, dependencies, and version control within the existing repository.
+- **Brief Description:** Set up the initial project structure, dependencies, and version control within the existing repository. **NOTE:** Ensure you are in the branch `registry-consolidation-complete` before running this action.
 ⬜ ###### ACTION 1.1.1.1: Create Scribe Directory Structure
 - 🎬 Create the required directory structure inside `tools/scribe/` (`core/`, `actions/`) and `test-environment/scribe-tests/`.
 ⬜ ###### ACTION 1.1.1.2: Initialize Scribe Dependencies
-- 🎬 Add initial dependencies (`watchdog`, `structlog`, `pyyaml`, `jsonschema`, `psutil`) to a `requirements.txt` file for the `conda-kb` environment.
+- 🎬 Add initial dependencies (`watchdog`, `structlog`, `pyyaml`, `jsonschema`, `psutil`) to a `requirements.txt` file for the `conda-kb` environment. **NOTE:** Ensure that the Conda environment `conda-kb` is activated before running this action.
 
 ---
 
