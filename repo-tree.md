@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-07 14:22:20  
+**Generated**: 2025-06-08 08:00:58  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -185,7 +185,7 @@
 │   │   │   📄 .treeicon
 │   │   │   📄 .treeignore
 │   │   │   📄 main_repo_tree.py
-│   │   📄 README-repository-tree-generator.md
+│   │   📄 README-repo-tree.md
 │   │   📄 todo_tracker.py
 │   🔧 validators
 │   │   📄 validate_registry.py
@@ -198,6 +198,10 @@
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py
+📄 scribe-hma-blueprint.md
+📄 scribe-hma-checklist.md
+📄 scribe-hma-progress-tracker.md
+📄 scribe-hma-roadmap.md
 ```
 
 ---
