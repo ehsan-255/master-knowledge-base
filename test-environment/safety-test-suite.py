@@ -18,7 +18,7 @@ from datetime import datetime
 class SafetyTestSuite:
     def __init__(self):
         self.test_dir = Path("test-environment")
-        self.tools_dir = Path("master-knowledge-base/tools")
+        self.tools_dir = Path("tools")
         self.results = {
             "tests_run": 0,
             "tests_passed": 0,

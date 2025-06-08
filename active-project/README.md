@@ -146,17 +146,17 @@ This occurs when a roadmap (either `master-roadmap.md` or an `l[n]-t[m]-roadmap.
 
 ## Document Templates
 
-These templates are located in `master-knowledge-base/standards/templates/`:
+These templates are located in `standards/templates/`:
 
-*   **Analysis Report Template**: [Analysis Report Template](../master-knowledge-base/standards/templates/analysis-report-template.md)
-*   **Roadmap Template**: [Roadmap Template](../master-knowledge-base/standards/templates/roadmap-template.md)
-*   **Frontmatter Template**: [Frontmatter Template](../master-knowledge-base/standards/templates/tpl-canonical-frontmatter.md)
+*   **Analysis Report Template**: [Analysis Report Template](../standards/templates/analysis-report-template.md)
+*   **Roadmap Template**: [Roadmap Template](../standards/templates/roadmap-template.md)
+*   **Frontmatter Template**: [Frontmatter Template](../standards/templates/tpl-canonical-frontmatter.md)
     *   *Note: This is the canonical frontmatter template to be used for all content files.*
 
 ## External Dependencies and Notes
 
 ### Templates
-Centralized document templates (e.g., for Analysis Reports, Roadmaps, Frontmatter) are located externally in the `master-knowledge-base/standards/templates/` directory. This `active-project/README.md` contains direct relative links to these templates.
+Centralized document templates (e.g., for Analysis Reports, Roadmaps, Frontmatter) are located externally in the `standards/templates/` directory. This `active-project/README.md` contains direct relative links to these templates.
 
 ### Archive
 The centralized archive for completed projects is located at the repository root in the `/archive/` directory. Once an entire `-[project-name]-initiative-[status]/` (e.g., `-my-project-initiative-completed/`) is marked as completed, its whole folder, including all master files and nested sub-task folders, is moved from `active-project/` to this `/archive/` directory.

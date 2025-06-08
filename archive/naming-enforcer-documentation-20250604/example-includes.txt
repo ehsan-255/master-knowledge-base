@@ -1,0 +1,32 @@
+# Example include patterns for naming enforcer
+# Lines starting with # are comments and will be ignored
+
+# Include specific files
+naming_enforcer.py
+test_excludes.py
+
+# Include directories (trailing slash optional)
+tests/
+docs
+
+# Glob patterns (automatically detected by presence of wildcards)
+*.py
+*.md
+example-*
+
+# Explicit glob patterns (prefixed with glob:)
+glob:*.txt
+glob:**/src/**
+
+# Regex patterns (prefixed with regex:)
+regex:.*\.py$
+regex:^example.*\.txt$
+
+# Relative paths
+./
+../standards/
+
+# Mixed patterns work together
+*.json
+src/
+regex:.*_manager\.py$ 

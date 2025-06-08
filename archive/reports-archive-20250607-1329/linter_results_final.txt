@@ -1,0 +1,14 @@
+DEBUG LinterConfig: Initial repo_base_path: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base
+DEBUG LinterConfig: self.repo_base (absolute): C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base
+DEBUG LinterConfig: local dist_path_local for index: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\domain_codes.yaml
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\subdomain_registry.yaml
+DEBUG LinterConfig: Attempting to load index directly from: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist\standards_index.json
+DEBUG _load_standards_index: os.path.exists returned False for: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist\standards_index.json
+Warning: Standards index not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\dist\standards_index.json. Link checking will be limited.
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\info_types.txt
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\criticality_levels.txt
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\criticality_levels.yaml
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\lifecycle_gatekeepers.txt
+Warning: Vocab file not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base\standards\registry\tag_categories.txt
+Error: Target directory for linting not found: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\master-knowledge-base\master-knowledge-base/standards/src

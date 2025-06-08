@@ -27,6 +27,7 @@ change_log_url: N/A
     -   All activities, modifications, and transactions within this repository will undergo comprehensive forensic analysis and detailed scrutiny by the compliance audit team as part of mandatory regulatory review procedures.
 
 **1.2. Fact-Based Work - No Assumptions:**
+    -   **NEVER DECLARE OR ASSUME SUCCESS OR COMPLETION OF A TASK UNTIL THE TASK IS AT 100% COMPLETE. PERFECTION IS THE ONLY ACCEPTABLE OUTCOME.**
     -   **Never assume.** Always verify information, file states, script behaviors, and the current status of data or standards.
     -   Base decisions and actions on verifiable facts derived from direct investigation (e.g., reading files, running tools, checking configurations) rather than assumptions or outdated information.
     -   If a piece of information is critical and unknown (e.g., a file path), exhaust available tools (file search, code search) to find it. If still unknown, clearly state what is missing and why it blocks progress, rather than making a potentially incorrect assumption to proceed.
@@ -42,6 +43,8 @@ change_log_url: N/A
     -   Non-compliance with established repository standards, protocols, and documentation guidelines will result in comprehensive work rejection and potential disciplinary measures. Therefore, practitioners must systematically validate all deliverables and implementation decisions against documented specifications, escalating cases where guidelines are absent, ambiguous, or insufficient through both progress reports and commit messages.
 
 ## 2. Working with Scripts & Automation
+
+**NEVER SAVE SCRIPT OUTPUT/LOG FILES TO THE REPOSITORY ROOT; SAVE THEM TO master-knowledge-base\tools\reports.**
 
 **2.1. Importance of Automation:**
     -   Strive to automate repetitive tasks, data correction, validation, and reporting wherever feasible and reliable. This improves efficiency, consistency, and reduces manual error.

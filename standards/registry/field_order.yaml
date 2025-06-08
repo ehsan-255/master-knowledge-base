@@ -1,0 +1,23 @@
+registry_id: FRONTMATTER_FIELD_ORDER
+description: Mandatory field order for frontmatter generated from mt-schema-frontmatter.yaml
+generated_from: mt-schema-frontmatter.yaml
+generated_on: '2025-06-07 10:40:39'
+mandatory_order:
+- title
+- standard_id
+- aliases
+- tags
+- kb-id
+- info-type
+- primary-topic
+- related-standards
+- version
+- date-created
+- date-modified
+- primary_domain
+- sub_domain
+- scope_application
+- criticality
+- lifecycle_gatekeeper
+- impact_areas
+- change_log_url

@@ -1,0 +1,76 @@
+name: Update Frontmatter Timestamps
+true:
+  push:
+    branches:
+    - main
+    - master
+    - develop
+    paths:
+    - '**/*.md'
+  pull_request:
+    branches:
+    - main
+    - master
+    paths:
+    - '**/*.md'
+jobs:
+  update-timestamps:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: 'python -m pip install --upgrade pip
+
+        pip install pyyaml
+
+        '
+    - name: Get changed markdown files
+      id: changed-files
+      run: '# Get list of changed .md files
+
+        CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep ''\.md$'' || echo
+        "")
+
+        echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+
+        echo "Changed files: $CHANGED_FILES"
+
+        '
+    - name: Update timestamps for real changes
+      if: steps.changed-files.outputs.changed_files != ''
+      run: "# Make script executable\nchmod +x tools/frontmatter-management/date-time-manager.py\n\
+        \n# Update timestamps for changed files (with time included for commits)\n\
+        python tools/frontmatter-management/date-time-manager.py \\\n  commit-update\
+        \ --time \\\n  ${{ steps.changed-files.outputs.changed_files }}\n"
+    - name: Commit timestamp updates
+      if: steps.changed-files.outputs.changed_files != ''
+      run: "git config --local user.email \"action@github.com\"\ngit config --local\
+        \ user.name \"GitHub Action\"\n\n# Check if there are changes to commit\n\
+        if git diff --quiet; then\n  echo \"No timestamp changes to commit\"\nelse\n\
+        \  git add -A\n  git commit -m \"chore: update frontmatter timestamps [skip\
+        \ ci]\"\n  git push\nfi\n"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Run TODO scan (on main branch only)
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      run: "# Make script executable\nchmod +x tools/todo-tracker.py\n\n# Scan for\
+        \ TODOs and generate report\npython tools/todo-tracker.py scan \\\n  --root\
+        \ master-knowledge-base \\\n  --output todo-report.json\n\n# Generate markdown\
+        \ report\npython tools/todo-tracker.py report \\\n  --format markdown \\\n\
+        \  --input todo-report.json \\\n  --output TODO-REPORT.md\n"
+    - name: Commit TODO report (main branch only)
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      run: "# Check if TODO report changed\nif git diff --quiet TODO-REPORT.md; then\n\
+        \  echo \"No TODO report changes\"\nelse\n  git add TODO-REPORT.md todo-report.json\n\
+        \  git commit -m \"chore: update TODO report [skip ci]\" || echo \"No TODO\
+        \ changes to commit\"\n  git push || echo \"No TODO push needed\"\nfi\n"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,14 @@
+# .subtreeignore - Show folder but hide contents
+# Use relative paths from repository root
+# One path per line
+
+# Archive directory - show but don't expand contents
+archive
+
+# Reports directory - show but don't expand contents 
+master-knowledge-base/tools/reports
+
+# Other large directories that should be collapsed
+master-knowledge-base/tools/builder/tests
+master-knowledge-base/tools/indexer/tests
+master-knowledge-base/tools/linter/tests 

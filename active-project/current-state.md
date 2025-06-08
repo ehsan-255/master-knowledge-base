@@ -63,9 +63,9 @@ This document provides a linear, chronological summary of major project initiati
 *   **Refactoring Initiative (`active-project/-refactoring-initiative-completed/`)**:
     *   **Status:** Completed
     *   **Summary:** All phases (0-5) of the Standards Refactoring initiative, executed primarily through sub-task L2-T1 (Phases A-F), are now complete. This involved foundational definitions, atomic decomposition of standards, metadata enrichment, governance reviews, template finalization, implementation of derived views, productionization of automation tools (linter, indexer, builder), CI/CD setup, and comprehensive documentation updates.
-    *   Key deliverables include a fully refactored `/master-knowledge-base/standards/src/` directory, operational tools in `/master-knowledge-base/tools/`, generated collections in `/master-knowledge-base/dist/collections/`, and updated project management documents.
+    *   Key deliverables include a fully refactored `/standards/src/` directory, operational tools in `/tools/`, generated collections in `/dist/collections/`, and updated project management documents.
     *   **Sub-task L2-T1 (`l2-t1-initial-refactoring-and-roadmap-phases-completed/`)**: Completed. All phases (A-F) finished.
     *   **Outstanding Notes:**
         *   The `kb_linter.py` script exhibited a "local test mode" that prevented direct validation of some newly created/modified files during development. Full KB linting is handled by the CI pipeline.
-        *   An issue with file access prevented direct modification of `master-knowledge-base/standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS.MD` to remove a broken link. This is noted in `project-reminders.md`.
+        *   An issue with file access prevented direct modification of `standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS.MD` to remove a broken link. This is noted in `project-reminders.md`.
     *   **Next Steps:** The entire `active-project/-refactoring-initiative-completed/` directory is now ready for archival to the `/archive/` directory as per project lifecycle guidelines.

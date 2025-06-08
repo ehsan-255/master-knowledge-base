@@ -1,0 +1,23 @@
+# .treeaddtext - Annotations for folders/files
+# Format: relative_path|annotation_text
+# Use relative paths from repository root
+
+# Main directories
+archive|ALWAYS ARCHIVE HERE
+test-environment|ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
+
+# Master knowledge base subdirectories
+master-knowledge-base/archive|NEVER ARCHIVE HERE (content must be moved to archive folder and this folder must be deleted)
+master-knowledge-base/standards/registry|REGISTRY FILES MUST ALWAYS BE HERE
+master-knowledge-base/standards/src|STANDARDS MUST ALWAYS BE HERE
+master-knowledge-base/standards/templates|TEMPLATES MUST ALWAYS BE HERE
+master-knowledge-base/tools|ALL TOOLS AND SCRIPTS MUST ALWAYS BE HERE
+master-knowledge-base/tools/reports|ALL SCRIPT OUTPUTS, LOGS, AND REPORTS MUST ALWAYS BE HERE
+
+# Test directories inside tools (restricted)
+master-knowledge-base/tools/builder/tests|NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
+master-knowledge-base/tools/indexer/tests|NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
+master-knowledge-base/tools/linter/tests|NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
+
+# Generic test directories in tools
+tests|NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted) 

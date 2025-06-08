@@ -1,0 +1,76 @@
+# .namingignore - Automatic exclusion patterns for naming enforcer
+# This file works like .gitignore - patterns are automatically loaded
+# Lines starting with # are comments
+
+# All hidden files and directories (starting with .)
+.*
+
+# Archive directory
+archive/
+
+# Python cache directories (all __pycache__ directories)
+__pycache__/
+*/__pycache__/
+**/__pycache__/**
+
+# Reports directory (all files and subdirectories)
+master-knowledge-base/tools/reports/
+master-knowledge-base/tools/reports/*
+master-knowledge-base/tools/reports/**/*
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.backup
+*~
+Thumbs.db
+
+# Build directories
+build/
+node_modules/
+.venv/
+venv/
+
+# IDE and editor files
+*.swp
+*.swo
+
+# Log files
+*.log
+logs/
+
+# Test files and directories
+*_test.py
+test_*.py
+tests/
+__tests__/
+
+# Cache directories
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# OS generated files
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Version control
+.svn/
+.hg/
+
+# Documentation build outputs
+_build/
+site/
+
+# Ignore archive folder and test folder
+archive/
+test-environment/
+master-knowledge-base/tools/reports/*
+master-knowledge-base/tools/reports/**
+
+# Example exclusions for this project
+example-excludes.txt
+test_excludes.py
+test_include.py 

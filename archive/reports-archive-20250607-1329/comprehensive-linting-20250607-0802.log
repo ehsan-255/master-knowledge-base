@@ -1,0 +1,4 @@
+usage: kb_linter.py [-h] [--directory DIRECTORY] [--output OUTPUT]
+                    [--fail-on-errors] [--repo-base REPO_BASE]
+                    [--log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+kb_linter.py: error: unrecognized arguments: standards/src --registry-path standards/registry

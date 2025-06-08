@@ -1,0 +1,34 @@
+# Example exclude patterns for naming enforcer
+# Lines starting with # are comments and will be ignored
+
+# Exclude specific files
+temp.txt
+backup.md
+
+# Exclude directories (trailing slash optional)
+build/
+dist
+__pycache__
+
+# Glob patterns (automatically detected by presence of wildcards)
+*.tmp
+*.backup
+test_*
+*_temp.py
+
+# Explicit glob patterns (prefixed with glob:)
+glob:*.log
+glob:**/node_modules/**
+
+# Regex patterns (prefixed with regex:)
+regex:.*\.bak$
+regex:^temp_.*\.json$
+
+# Relative paths
+./temp-files/
+../backup-folder/
+
+# Mixed patterns work together
+*.cache
+logs/
+regex:.*_generated\.py$ 

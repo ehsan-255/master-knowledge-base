@@ -1,0 +1,1488 @@
+{
+  "timestamp": "20250607-125448",
+  "dry_run": true,
+  "backup_created": true,
+  "backup_path": "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\archive\\migration-backup-20250607-125448",
+  "steps_completed": [
+    "create_backup",
+    "update_path_references",
+    "migrate_file_structure"
+  ],
+  "errors": [],
+  "files_modified": [
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base-to-root-migration-analysis.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\migration_scripts_analysis_and_recommendations.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\README.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\repo-tree.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\repo_tree.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.github\\workflows\\standards_check.yml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.github\\workflows\\update-timestamps.yml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\copilot-index-cf4631058fd1665715082398649e4ebf.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\copilot-index-dbe11510173b425b16b5ca45876e1ff9.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\copilot-index-f655fea2226bc760e58cb57d2e7eb1b8.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\workspace.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\advanced-canvas\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\auto-card-link\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\auto-note-mover\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\better-word-count\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\bmo-chatbot\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\calendar\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\canvas-mindmap\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\chatgpt-md\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\chatgpt-prompt\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\code-styler\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\copilot\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\dataview\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\digitalgarden\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\editing-toolbar\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\excalibrain\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\file-explorer-note-count\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\file-tree-alternative\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\make-md\\data.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\make-md\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\mermaid-popup\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\mermaid-tools\\data.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\mermaid-tools\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-copy-block-link\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-excalidraw-plugin\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-file-color\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-git\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-graphviz\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-icon-folder\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-kanban\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-link-converter\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-linter\\data.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-linter\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-outliner\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-plantuml\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-style-settings\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-tasks-plugin\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-text-expander-js\\data.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\obsidian-text-expander-js\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\omnisearch\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\table-editor-obsidian\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\templater-obsidian\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\plugins\\zoottelkeeper-obsidian-plugin\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\themes\\Border\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\themes\\Minimal\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\themes\\Obsidianite\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.obsidian\\themes\\Things\\manifest.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.space\\def.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.space\\waypoints.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\.vscode\\settings.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\current-state.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\README.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-active-project-organization-initiative-active\\master-analysis-report.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-refactoring-initiative-completed\\master-progress.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-refactoring-initiative-completed\\master-roadmap.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-analysis-report.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-progress.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-roadmap.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-analysis-report.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-roadmap.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\active-project\\project-guidelines\\project-reminders.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\AS-INDEX-KB-MASTER.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\dist\\standards_index.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\dist\\collections\\collection-architecture-structure.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\dist\\collections\\collection-content-policies.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\changelog.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\registry\\mt-registry-tag-glossary.yaml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\registry\\mt-schema-frontmatter.yaml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\registry\\registry_schema.yaml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\AS-KB-DIRECTORY-STRUCTURE.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\AS-MAP-STANDARDS-KB.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\AS-SCHEMA-RELTABLE-DEFINITION.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\CS-TOC-POLICY.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\GM-MANDATE-KB-USAGE-GUIDE.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\GM-MANDATE-STANDARDS-GLOSSARY.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\GM-REGISTRY-GOVERNANCE.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\src\\OM-POLICY-STANDARDS-DEPRECATION.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\templates\\UA-TPL-CHANGELOG-DOCUMENT.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\changelog.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\builder\\collection_definitions.yaml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\builder\\generate_collections.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\file-format-utils\\add_readme_frontmatter.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\indexer\\standards_index.schema.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\linter\\kb_linter.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\migration-scripts\\README.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\migration-scripts\\test_migration_scripts.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\migration-scripts\\update_path_references.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\migration-scripts\\validate_migration.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\naming-enforcer\\naming_enforcer.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\refactoring-scripts\\refactor_ids_filenames.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\collection_fixes_implemented_2025-06-04.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\criticality_fix_summary_2025-06-04.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\exact_linter_errors_2025-06-04-09-57.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\legend-configuration-guide-20250606-1516.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\linter_report.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\linter_report_criticality_fixed.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\linter_report_fixed.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\linter_results_final.txt",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\linter_test_auto_generated_files.txt",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\registry-cleanup-checklist-correction-20250607-0906.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\registry-inventory-20250606-1954.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\repository-tree-final-cleanup-20250606-1441.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\repository-tree-generator-configuration-upgrade-20250606-1411.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\repository-tree-generator-implementation-20250606-1333.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\roadmap-template-compliance-update-20250606-1301.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\backups\\fix_violations_20250604_090824\\registry-schema.yaml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\backups\\fix_violations_20250604_092653\\current-state.mD",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\utilities\\README-repository-tree-generator.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\utilities\\repo-tree\\main_repo_tree.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\test-environment\\README.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\test-environment\\safety-test-suite.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\test-environment\\test-results-20250607-091041.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\test-environment\\tool-tests-consolidated-20250607-0942\\indexer-tests\\test_generate_index.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\test-environment\\tool-tests-consolidated-20250607-0942\\linter-tests\\test_kb_linter.py"
+  ],
+  "validation_results": {
+    "overall_success": false,
+    "structure_validation": {
+      "success": false,
+      "errors": [
+        "Missing expected item: standards",
+        "Missing expected item: tools",
+        "Missing expected item: dist",
+        "Missing expected item: AS-INDEX-KB-MASTER.md",
+        "Missing critical path: standards/src",
+        "Missing critical path: standards/registry",
+        "Missing critical path: standards/templates",
+        "Missing critical path: tools/linter",
+        "Missing critical path: tools/indexer",
+        "Missing critical path: tools/utilities"
+      ],
+      "warnings": [
+        "Item still exists in old location: master-knowledge-base/standards",
+        "Item still exists in old location: master-knowledge-base/tools",
+        "Item still exists in old location: master-knowledge-base/dist",
+        "Item still exists in old location: master-knowledge-base/AS-INDEX-KB-MASTER.md"
+      ],
+      "found_items": [
+        "repo-tree.md"
+      ],
+      "missing_items": [
+        "standards",
+        "tools",
+        "dist",
+        "AS-INDEX-KB-MASTER.md"
+      ]
+    },
+    "path_reference_validation": {
+      "success": false,
+      "errors": [
+        "Old path references found in: master-knowledge-base-to-root-migration-analysis.md",
+        "Old path references found in: migration_scripts_analysis_and_recommendations.md",
+        "Old path references found in: README.md",
+        "Old path references found in: repo-tree.md",
+        "Old path references found in: repo_tree.py",
+        "Old path references found in: .github\\workflows\\standards_check.yml",
+        "Old path references found in: .github\\workflows\\update-timestamps.yml",
+        "Old path references found in: .obsidian\\copilot-index-f655fea2226bc760e58cb57d2e7eb1b8.json",
+        "Old path references found in: .obsidian\\workspace.json",
+        "Old path references found in: .obsidian\\plugins\\make-md\\data.json",
+        "Old path references found in: active-project\\current-state.md",
+        "Old path references found in: active-project\\README.md",
+        "Old path references found in: active-project\\-active-project-organization-initiative-active\\master-analysis-report.md",
+        "Old path references found in: active-project\\-refactoring-initiative-completed\\master-progress.md",
+        "Old path references found in: active-project\\-refactoring-initiative-completed\\master-roadmap.md",
+        "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-analysis-report.md",
+        "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-progress.md",
+        "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-roadmap.md",
+        "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-analysis-report.md",
+        "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-roadmap.md",
+        "Old path references found in: active-project\\project-guidelines\\project-reminders.md",
+        "Old path references found in: master-knowledge-base\\AS-INDEX-KB-MASTER.md",
+        "Old path references found in: master-knowledge-base\\dist\\standards_index.json",
+        "Old path references found in: master-knowledge-base\\dist\\collections\\collection-architecture-structure.md",
+        "Old path references found in: master-knowledge-base\\dist\\collections\\collection-content-policies.md",
+        "Old path references found in: master-knowledge-base\\standards\\changelog.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\AS-KB-DIRECTORY-STRUCTURE.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\AS-MAP-STANDARDS-KB.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\AS-SCHEMA-RELTABLE-DEFINITION.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\CS-TOC-POLICY.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\GM-MANDATE-KB-USAGE-GUIDE.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\GM-MANDATE-STANDARDS-GLOSSARY.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\GM-REGISTRY-GOVERNANCE.md",
+        "Old path references found in: master-knowledge-base\\standards\\src\\OM-POLICY-STANDARDS-DEPRECATION.md",
+        "Old path references found in: master-knowledge-base\\standards\\templates\\UA-TPL-CHANGELOG-DOCUMENT.md",
+        "Old path references found in: master-knowledge-base\\tools\\changelog.md",
+        "Old path references found in: master-knowledge-base\\tools\\builder\\generate_collections.py",
+        "Old path references found in: master-knowledge-base\\tools\\file-format-utils\\add_readme_frontmatter.py",
+        "Old path references found in: master-knowledge-base\\tools\\linter\\kb_linter.py",
+        "Old path references found in: master-knowledge-base\\tools\\migration-scripts\\README.md",
+        "Old path references found in: master-knowledge-base\\tools\\migration-scripts\\update_path_references.py",
+        "Old path references found in: master-knowledge-base\\tools\\migration-scripts\\validate_migration.py",
+        "Old path references found in: master-knowledge-base\\tools\\refactoring-scripts\\refactor_ids_filenames.py",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\collection_fixes_implemented_2025-06-04.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\criticality_fix_summary_2025-06-04.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\exact_linter_errors_2025-06-04-09-57.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\legend-configuration-guide-20250606-1516.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\linter_report.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\linter_report_criticality_fixed.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\linter_report_fixed.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\linter_results_final.txt",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\linter_test_auto_generated_files.txt",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\registry-cleanup-checklist-correction-20250607-0906.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\registry-inventory-20250606-1954.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\repository-tree-final-cleanup-20250606-1441.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\repository-tree-generator-configuration-upgrade-20250606-1411.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\repository-tree-generator-implementation-20250606-1333.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\roadmap-template-compliance-update-20250606-1301.md",
+        "Old path references found in: master-knowledge-base\\tools\\reports\\backups\\fix_violations_20250604_092653\\current-state.mD",
+        "Old path references found in: master-knowledge-base\\tools\\utilities\\README-repository-tree-generator.md",
+        "Old path references found in: master-knowledge-base\\tools\\utilities\\repo-tree\\main_repo_tree.py",
+        "Old path references found in: test-environment\\README.md",
+        "Old path references found in: test-environment\\test-results-20250607-091041.json",
+        "Old path references found in: test-environment\\tool-tests-consolidated-20250607-0942\\indexer-tests\\test_generate_index.py",
+        "Old path references found in: test-environment\\tool-tests-consolidated-20250607-0942\\linter-tests\\test_kb_linter.py"
+      ],
+      "warnings": [],
+      "files_with_old_references": [
+        {
+          "file": "master-knowledge-base-to-root-migration-analysis.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "migration_scripts_analysis_and_recommendations.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "README.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "repo-tree.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "repo_tree.py",
+          "references": [
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": ".github\\workflows\\standards_check.yml",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": ".github\\workflows\\update-timestamps.yml",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": ".obsidian\\copilot-index-f655fea2226bc760e58cb57d2e7eb1b8.json",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": ".obsidian\\workspace.json",
+          "references": [
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": ".obsidian\\plugins\\make-md\\data.json",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "active-project\\current-state.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "active-project\\README.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "active-project\\-active-project-organization-initiative-active\\master-analysis-report.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "active-project\\-refactoring-initiative-completed\\master-progress.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "active-project\\-refactoring-initiative-completed\\master-roadmap.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-analysis-report.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-progress.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-roadmap.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/dist/",
+            "/master-knowledge-base/dist/",
+            "/master-knowledge-base/dist/",
+            "/master-knowledge-base/dist/",
+            "/master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-analysis-report.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-roadmap.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "active-project\\project-guidelines\\project-reminders.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\AS-INDEX-KB-MASTER.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\dist\\standards_index.json",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\dist\\collections\\collection-architecture-structure.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\dist\\collections\\collection-content-policies.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\changelog.md",
+          "references": [
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\AS-KB-DIRECTORY-STRUCTURE.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\AS-MAP-STANDARDS-KB.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\AS-SCHEMA-RELTABLE-DEFINITION.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\CS-TOC-POLICY.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\GM-MANDATE-KB-USAGE-GUIDE.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\GM-MANDATE-STANDARDS-GLOSSARY.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\GM-REGISTRY-GOVERNANCE.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\src\\OM-POLICY-STANDARDS-DEPRECATION.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\standards\\templates\\UA-TPL-CHANGELOG-DOCUMENT.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\changelog.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\builder\\generate_collections.py",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\file-format-utils\\add_readme_frontmatter.py",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\linter\\kb_linter.py",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\migration-scripts\\README.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\migration-scripts\\update_path_references.py",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/dist/",
+            "/master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\migration-scripts\\validate_migration.py",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\refactoring-scripts\\refactor_ids_filenames.py",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\collection_fixes_implemented_2025-06-04.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\criticality_fix_summary_2025-06-04.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\exact_linter_errors_2025-06-04-09-57.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\legend-configuration-guide-20250606-1516.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\linter_report.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/",
+            "master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\linter_report_criticality_fixed.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\linter_report_fixed.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\linter_results_final.txt",
+          "references": [
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\linter_test_auto_generated_files.txt",
+          "references": [
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\registry-cleanup-checklist-correction-20250607-0906.md",
+          "references": [
+            "master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\registry-inventory-20250606-1954.md",
+          "references": [
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\repository-tree-final-cleanup-20250606-1441.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\repository-tree-generator-configuration-upgrade-20250606-1411.md",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\repository-tree-generator-implementation-20250606-1333.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\roadmap-template-compliance-update-20250606-1301.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\reports\\backups\\fix_violations_20250604_092653\\current-state.mD",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/dist/",
+            "/master-knowledge-base/standards/",
+            "/master-knowledge-base/tools/",
+            "/master-knowledge-base/dist/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\utilities\\README-repository-tree-generator.md",
+          "references": [
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "master-knowledge-base\\tools\\utilities\\repo-tree\\main_repo_tree.py",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "test-environment\\README.md",
+          "references": [
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/",
+            "master-knowledge-base/tools/"
+          ]
+        },
+        {
+          "file": "test-environment\\test-results-20250607-091041.json",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "test-environment\\tool-tests-consolidated-20250607-0942\\indexer-tests\\test_generate_index.py",
+          "references": [
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/",
+            "master-knowledge-base/standards/"
+          ]
+        },
+        {
+          "file": "test-environment\\tool-tests-consolidated-20250607-0942\\linter-tests\\test_kb_linter.py",
+          "references": [
+            "master-knowledge-base/standards/"
+          ]
+        }
+      ],
+      "total_files_checked": 345
+    },
+    "file_integrity_validation": {
+      "success": true,
+      "errors": [
+        "Directory not found: standards",
+        "Directory not found: tools"
+      ],
+      "warnings": [
+        "Empty directory: .obsidian\\icons",
+        "Empty directory: .obsidian\\plugins\\infranodus-graph-view",
+        "Standards directory has fewer files than expected",
+        "Tools directory has fewer files than expected"
+      ],
+      "file_counts": {}
+    },
+    "errors": [
+      "Missing expected item: standards",
+      "Missing expected item: tools",
+      "Missing expected item: dist",
+      "Missing expected item: AS-INDEX-KB-MASTER.md",
+      "Missing critical path: standards/src",
+      "Missing critical path: standards/registry",
+      "Missing critical path: standards/templates",
+      "Missing critical path: tools/linter",
+      "Missing critical path: tools/indexer",
+      "Missing critical path: tools/utilities",
+      "Old path references found in: master-knowledge-base-to-root-migration-analysis.md",
+      "Old path references found in: migration_scripts_analysis_and_recommendations.md",
+      "Old path references found in: README.md",
+      "Old path references found in: repo-tree.md",
+      "Old path references found in: repo_tree.py",
+      "Old path references found in: .github\\workflows\\standards_check.yml",
+      "Old path references found in: .github\\workflows\\update-timestamps.yml",
+      "Old path references found in: .obsidian\\copilot-index-f655fea2226bc760e58cb57d2e7eb1b8.json",
+      "Old path references found in: .obsidian\\workspace.json",
+      "Old path references found in: .obsidian\\plugins\\make-md\\data.json",
+      "Old path references found in: active-project\\current-state.md",
+      "Old path references found in: active-project\\README.md",
+      "Old path references found in: active-project\\-active-project-organization-initiative-active\\master-analysis-report.md",
+      "Old path references found in: active-project\\-refactoring-initiative-completed\\master-progress.md",
+      "Old path references found in: active-project\\-refactoring-initiative-completed\\master-roadmap.md",
+      "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-analysis-report.md",
+      "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-progress.md",
+      "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l2-t1-roadmap.md",
+      "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-analysis-report.md",
+      "Old path references found in: active-project\\-refactoring-initiative-completed\\l2-t1-initial-refactoring-and-roadmap-phases-completed\\l3-t1-phase-b-completion-completed\\l3-t1-roadmap.md",
+      "Old path references found in: active-project\\project-guidelines\\project-reminders.md",
+      "Old path references found in: master-knowledge-base\\AS-INDEX-KB-MASTER.md",
+      "Old path references found in: master-knowledge-base\\dist\\standards_index.json",
+      "Old path references found in: master-knowledge-base\\dist\\collections\\collection-architecture-structure.md",
+      "Old path references found in: master-knowledge-base\\dist\\collections\\collection-content-policies.md",
+      "Old path references found in: master-knowledge-base\\standards\\changelog.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\AS-KB-DIRECTORY-STRUCTURE.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\AS-MAP-STANDARDS-KB.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\AS-SCHEMA-RELTABLE-DEFINITION.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\CS-TOC-POLICY.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\GM-MANDATE-KB-USAGE-GUIDE.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\GM-MANDATE-STANDARDS-GLOSSARY.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\GM-REGISTRY-GOVERNANCE.md",
+      "Old path references found in: master-knowledge-base\\standards\\src\\OM-POLICY-STANDARDS-DEPRECATION.md",
+      "Old path references found in: master-knowledge-base\\standards\\templates\\UA-TPL-CHANGELOG-DOCUMENT.md",
+      "Old path references found in: master-knowledge-base\\tools\\changelog.md",
+      "Old path references found in: master-knowledge-base\\tools\\builder\\generate_collections.py",
+      "Old path references found in: master-knowledge-base\\tools\\file-format-utils\\add_readme_frontmatter.py",
+      "Old path references found in: master-knowledge-base\\tools\\linter\\kb_linter.py",
+      "Old path references found in: master-knowledge-base\\tools\\migration-scripts\\README.md",
+      "Old path references found in: master-knowledge-base\\tools\\migration-scripts\\update_path_references.py",
+      "Old path references found in: master-knowledge-base\\tools\\migration-scripts\\validate_migration.py",
+      "Old path references found in: master-knowledge-base\\tools\\refactoring-scripts\\refactor_ids_filenames.py",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\collection_fixes_implemented_2025-06-04.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\criticality_fix_summary_2025-06-04.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\exact_linter_errors_2025-06-04-09-57.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\legend-configuration-guide-20250606-1516.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\linter_report.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\linter_report_criticality_fixed.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\linter_report_fixed.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\linter_results_final.txt",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\linter_test_auto_generated_files.txt",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\registry-cleanup-checklist-correction-20250607-0906.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\registry-inventory-20250606-1954.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\repository-tree-final-cleanup-20250606-1441.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\repository-tree-generator-configuration-upgrade-20250606-1411.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\repository-tree-generator-implementation-20250606-1333.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\roadmap-template-compliance-update-20250606-1301.md",
+      "Old path references found in: master-knowledge-base\\tools\\reports\\backups\\fix_violations_20250604_092653\\current-state.mD",
+      "Old path references found in: master-knowledge-base\\tools\\utilities\\README-repository-tree-generator.md",
+      "Old path references found in: master-knowledge-base\\tools\\utilities\\repo-tree\\main_repo_tree.py",
+      "Old path references found in: test-environment\\README.md",
+      "Old path references found in: test-environment\\test-results-20250607-091041.json",
+      "Old path references found in: test-environment\\tool-tests-consolidated-20250607-0942\\indexer-tests\\test_generate_index.py",
+      "Old path references found in: test-environment\\tool-tests-consolidated-20250607-0942\\linter-tests\\test_kb_linter.py",
+      "Directory not found: standards",
+      "Directory not found: tools"
+    ],
+    "warnings": [
+      "Item still exists in old location: master-knowledge-base/standards",
+      "Item still exists in old location: master-knowledge-base/tools",
+      "Item still exists in old location: master-knowledge-base/dist",
+      "Item still exists in old location: master-knowledge-base/AS-INDEX-KB-MASTER.md",
+      "Empty directory: .obsidian\\icons",
+      "Empty directory: .obsidian\\plugins\\infranodus-graph-view",
+      "Standards directory has fewer files than expected",
+      "Tools directory has fewer files than expected"
+    ]
+  }
+}

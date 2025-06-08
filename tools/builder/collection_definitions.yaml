@@ -1,0 +1,64 @@
+collections:
+- id: coll_as_arch_structure
+  title: Architecture & Structure Standards
+  output_filename: collection-architecture-structure.md
+  description: A collection of key standards related to overall knowledge base architecture,
+    information structure, and schema definitions from the AS (Architecture & Structure)
+    domain.
+  criteria:
+  - field: primary_domain
+    operator: equals
+    value: AS
+  - field: status
+    operator: not_equals
+    value: deprecated
+  - field: status
+    operator: not_equals
+    value: archived
+- id: coll_sf_syntax_formatting
+  title: Syntax & Formatting Standards
+  output_filename: collection-syntax-formatting.md
+  description: A collection of key standards related to Markdown syntax, content formatting
+    conventions, and file hygiene from the SF (Syntax & Formatting) domain.
+  criteria:
+  - field: primary_domain
+    operator: equals
+    value: SF
+  - field: status
+    operator: not_equals
+    value: deprecated
+  - field: status
+    operator: not_equals
+    value: archived
+- id: coll_mt_metadata_tagging
+  title: Metadata, Tagging & Registry Standards
+  output_filename: collection-metadata-tagging.md
+  description: A collection of key standards for document metadata (frontmatter),
+    tagging strategy, key references, and registry management from the MT (Metadata
+    & Tagging) domain.
+  criteria:
+  - field: primary_domain
+    operator: equals
+    value: MT
+  - field: status
+    operator: not_equals
+    value: deprecated
+  - field: status
+    operator: not_equals
+    value: archived
+- id: coll_cs_content_policies
+  title: Content Style & Policies
+  output_filename: collection-content-policies.md
+  description: A collection of key policies and standards related to content authoring,
+    tone, language, accessibility, and specific content behaviors from the CS (Content
+    Standards) domain.
+  criteria:
+  - field: primary_domain
+    operator: equals
+    value: CS
+  - field: status
+    operator: not_equals
+    value: deprecated
+  - field: status
+    operator: not_equals
+    value: archived

@@ -1,0 +1,7 @@
+[2025-06-04 22:45:21] INFO: Initializing FrontmatterRegistryGenerator
+[2025-06-04 22:45:21] INFO: YAML source: master-knowledge-base\standards\registry\mt-schema-frontmatter.yaml
+[2025-06-04 22:45:21] INFO: Registry target: master-knowledge-base\standards\registry
+[2025-06-04 22:45:21] INFO: Dry run mode: True
+[2025-06-04 22:45:21] INFO: Starting registry generation from mt-schema-frontmatter.yaml
+[2025-06-04 22:45:21] ERROR: Failed to load YAML source: YAML source file not found: master-knowledge-base\standards\registry\mt-schema-frontmatter.yaml
+[2025-06-04 22:45:21] ERROR: Registry generation failed: YAML source file not found: master-knowledge-base\standards\registry\mt-schema-frontmatter.yaml

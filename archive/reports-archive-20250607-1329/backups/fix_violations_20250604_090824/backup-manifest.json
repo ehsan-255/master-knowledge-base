@@ -1,0 +1,20 @@
+{
+  "backup_id": "fix_violations_20250604_090824",
+  "timestamp": "2025-06-04T09:08:38.027796",
+  "operation_description": "Naming enforcer fixes for 11 violations",
+  "backed_up_files": [
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\naming-enforcer\\INCLUDE_FUNCTIONALITY.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\standards\\registry\\registry-schema.yaml",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\naming-enforcer\\AUTOMATIC_FILES.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\naming-enforcer\\IMPLEMENTATION_SUMMARY.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\dry_run_preview_20250604_083922_operations.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\dry_run_preview_20250604_085009_operations.json",
+    "master-knowledge-base\\tools\\naming-enforcer\\debug_pattern_extraction.py",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\dry_run_preview_20250604_082149_operations.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\dry_run_results.txt",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\naming-enforcer\\EXCLUDE_FUNCTIONALITY.md",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\dry_run_preview_20250604_082128_operations.json",
+    "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\full_repo_scan.txt"
+  ],
+  "backup_directory": "C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\master-knowledge-base\\tools\\reports\\backups\\fix_violations_20250604_090824"
+}
