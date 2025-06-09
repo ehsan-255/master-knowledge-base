@@ -13,9 +13,6 @@ from typing import Dict, Any, Optional
 import structlog
 
 # Import logging from the core module
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
 from core.logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)

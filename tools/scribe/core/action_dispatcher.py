@@ -21,12 +21,28 @@ from .rule_processor import RuleMatch
 from .circuit_breaker import CircuitBreakerManager, CircuitBreakerError
 
 # Import action base classes
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
 from actions.base import BaseAction, ActionExecutionError, ValidationError
 
 logger = get_scribe_logger(__name__)
+
+
+class ActionChainFailedError(Exception):
+    """Exception raised when one or more actions fail in a chain."""
+    
+    def __init__(self, message: str, rule_id: str = None, failed_actions: int = 0, total_actions: int = 0):
+        """
+        Initialize the exception.
+        
+        Args:
+            message: Error message
+            rule_id: ID of the rule that failed
+            failed_actions: Number of failed actions
+            total_actions: Total number of actions in the chain
+        """
+        self.rule_id = rule_id
+        self.failed_actions = failed_actions
+        self.total_actions = total_actions
+        super().__init__(message)
 
 
 class ActionResult:
@@ -245,7 +261,8 @@ class ActionDispatcher:
                       file_content: str,
                       match: re.Match,
                       file_path: str,
-                      params: Dict[str, Any]) -> ActionResult:
+                      params: Dict[str, Any],
+                      event_id: Optional[str] = None) -> ActionResult:
         """
         Execute a single action with error handling and timing.
         
@@ -255,6 +272,7 @@ class ActionDispatcher:
             match: Regex match that triggered the action
             file_path: Path to the file being processed
             params: Action parameters
+            event_id: Unique identifier for the event that triggered this action
             
         Returns:
             ActionResult with execution details
@@ -264,6 +282,7 @@ class ActionDispatcher:
         
         try:
             logger.debug("Executing action",
+                        event_id=event_id,
                         action_type=action_type,
                         file_path=file_path,
                         params=params)
@@ -284,6 +303,7 @@ class ActionDispatcher:
                 raise ActionExecutionError(action_type, f"Action returned {type(modified_content)}, expected str")
             
             logger.info("Action executed successfully",
+                       event_id=event_id,
                        action_type=action_type,
                        file_path=file_path,
                        execution_time=execution_time,
@@ -304,6 +324,7 @@ class ActionDispatcher:
         except (ActionExecutionError, ValidationError) as e:
             execution_time = time.time() - start_time
             logger.error("Action execution failed",
+                        event_id=event_id,
                         action_type=action_type,
                         file_path=file_path,
                         error=str(e),
@@ -319,6 +340,7 @@ class ActionDispatcher:
         except Exception as e:
             execution_time = time.time() - start_time
             logger.error("Unexpected error during action execution",
+                        event_id=event_id,
                         action_type=action_type,
                         file_path=file_path,
                         error=str(e),
@@ -347,8 +369,10 @@ class ActionDispatcher:
         rule_id = rule_match.rule.id
         file_path = rule_match.file_path
         current_content = rule_match.file_content
+        event_id = rule_match.event_id
         
         logger.info("Dispatching actions for rule match",
+                   event_id=event_id,
                    rule_id=rule_id,
                    file_path=file_path,
                    actions_count=len(rule_match.rule.actions))
@@ -377,6 +401,7 @@ class ActionDispatcher:
             self._execution_stats['total_execution_time'] += total_time
             
             logger.info("Action dispatch complete (circuit breaker: CLOSED)",
+                       event_id=event_id,
                        rule_id=rule_id,
                        file_path=file_path,
                        total_actions=dispatch_result.total_actions,
@@ -393,6 +418,7 @@ class ActionDispatcher:
             self._execution_stats['failed_dispatches'] += 1
             
             logger.warning("Action dispatch blocked by circuit breaker",
+                          event_id=event_id,
                           rule_id=rule_id,
                           file_path=file_path,
                           failure_count=e.failure_count,
@@ -428,6 +454,7 @@ class ActionDispatcher:
             self._execution_stats['failed_dispatches'] += 1
             
             logger.error("Unexpected error during circuit breaker execution",
+                        event_id=event_id,
                         rule_id=rule_id,
                         file_path=file_path,
                         error=str(e),
@@ -496,6 +523,7 @@ class ActionDispatcher:
         """
         rule_id = rule_match.rule.id
         file_path = rule_match.file_path
+        event_id = rule_match.event_id
         action_results = []
         
         # Process each action in sequence
@@ -544,7 +572,7 @@ class ActionDispatcher:
                 continue
             
             # Execute the action
-            result = self.execute_action(action, current_content, rule_match.match, file_path, params)
+            result = self.execute_action(action, current_content, rule_match.match, file_path, params, event_id)
             action_results.append(result)
             
             # Update statistics
@@ -567,9 +595,50 @@ class ActionDispatcher:
             action_results=action_results
         )
         
-        # Return the dispatch result regardless of action success/failure
-        # The circuit breaker should only be triggered by system-level failures,
-        # not individual action failures (which are expected and handled gracefully)
+        # Check if action chain should trigger circuit breaker
+        # Circuit breaker should trip on persistent action failures, not just system failures
+        failed_actions = dispatch_result.get_failed_actions()
+        total_actions = len(action_results)
+        
+        if total_actions > 0:
+            failure_rate = len(failed_actions) / total_actions
+            
+            # Trip circuit breaker if:
+            # 1. All actions failed, OR
+            # 2. More than 50% of actions failed AND there are multiple actions
+            should_trip_breaker = (
+                failure_rate >= 1.0 or  # All actions failed
+                (failure_rate > 0.5 and total_actions > 1)  # >50% failed with multiple actions
+            )
+            
+            if should_trip_breaker:
+                # Create a summary of failures for the exception
+                failure_summary = []
+                for failed_action in failed_actions:
+                    failure_summary.append(f"{failed_action.action_type}: {failed_action.error}")
+                
+                error_message = (
+                    f"Action chain failure in rule '{rule_id}': "
+                    f"{len(failed_actions)}/{total_actions} actions failed. "
+                    f"Failures: {'; '.join(failure_summary)}"
+                )
+                
+                logger.error("Action chain failure triggering circuit breaker",
+                           event_id=event_id,
+                           rule_id=rule_id,
+                           file_path=file_path,
+                           failed_actions=len(failed_actions),
+                           total_actions=total_actions,
+                           failure_rate=failure_rate)
+                
+                # Raise exception to trigger circuit breaker
+                raise ActionChainFailedError(
+                    error_message,
+                    rule_id=rule_id,
+                    failed_actions=len(failed_actions),
+                    total_actions=total_actions
+                )
+        
         return dispatch_result
     
     def quarantine_file(self, file_path: str, rule_id: str, reason: str) -> Dict[str, Any]:

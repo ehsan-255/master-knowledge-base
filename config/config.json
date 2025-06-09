@@ -55,6 +55,28 @@
           }
         }
       ]
+    },
+    {
+      "id": "RULE-003",
+      "name": "Run Git Status on Repository Changes",
+      "enabled": true,
+      "file_glob": "*.md",
+      "trigger_pattern": ".*",
+      "actions": [
+        {
+          "type": "run_command",
+          "params": {
+            "command": ["git", "status"],
+            "timeout": 10
+          }
+        }
+      ],
+      "error_handling": {
+        "circuit_breaker": {
+          "failure_threshold": 3,
+          "recovery_timeout_seconds": 60
+        }
+      }
     }
   ]
 } 

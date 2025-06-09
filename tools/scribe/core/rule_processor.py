@@ -122,7 +122,7 @@ class CompiledRule:
 class RuleMatch:
     """Represents a successful rule match with context."""
     
-    def __init__(self, rule: CompiledRule, match: re.Match, file_path: str, file_content: str):
+    def __init__(self, rule: CompiledRule, match: re.Match, file_path: str, file_content: str, event_id: Optional[str] = None):
         """
         Initialize a rule match.
         
@@ -131,11 +131,13 @@ class RuleMatch:
             match: The regex match object
             file_path: Path to the file that matched
             file_content: Full content of the file
+            event_id: Unique identifier for the event that triggered this match
         """
         self.rule = rule
         self.match = match
         self.file_path = file_path
         self.file_content = file_content
+        self.event_id = event_id
         self.timestamp = None  # Will be set by processor
     
     def get_match_context(self, context_lines: int = 2) -> Dict[str, Any]:
@@ -260,13 +262,14 @@ class RuleProcessor:
         
         return matching_rules
     
-    def process_file(self, file_path: str, file_content: str) -> List[RuleMatch]:
+    def process_file(self, file_path: str, file_content: str, event_id: Optional[str] = None) -> List[RuleMatch]:
         """
         Process a file against all applicable rules.
         
         Args:
             file_path: Path to the file being processed
             file_content: Content of the file
+            event_id: Unique identifier for the event that triggered this processing
             
         Returns:
             List of rule matches found in the file
@@ -286,10 +289,11 @@ class RuleProcessor:
                 try:
                     # Find all pattern matches in the content
                     for regex_match in rule.find_matches(file_content):
-                        rule_match = RuleMatch(rule, regex_match, file_path, file_content)
+                        rule_match = RuleMatch(rule, regex_match, file_path, file_content, event_id)
                         matches.append(rule_match)
                         
                         logger.info("Rule match found",
+                                   event_id=event_id,
                                    rule_id=rule.id,
                                    file_path=file_path,
                                    match_line=rule_match.get_match_context()['match_line'])

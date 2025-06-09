@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: scribe-engine
+Version: 1.0.1
+Summary: Scribe Automation Engine
+Requires-Python: >=3.9
+Requires-Dist: watchdog>=3.0.0
+Requires-Dist: structlog>=23.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: jsonschema>=4.0.0
+Requires-Dist: psutil>=5.9.0

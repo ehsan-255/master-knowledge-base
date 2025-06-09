@@ -8,6 +8,7 @@ It monitors file system events and feeds them into the event processing pipeline
 import threading
 import queue
 import time
+import uuid
 from pathlib import Path
 from typing import List, Optional
 from watchdog.observers import Observer
@@ -55,7 +56,11 @@ class ScribeEventHandler(FileSystemEventHandler):
     
     def _queue_event(self, event_type: str, file_path: str, old_path: Optional[str] = None) -> None:
         """Queue a processed event for the worker thread."""
+        # Generate unique event_id for traceability
+        event_id = str(uuid.uuid4())
+        
         event_data = {
+            'event_id': event_id,
             'type': event_type,
             'file_path': file_path,
             'old_path': old_path,
@@ -64,9 +69,15 @@ class ScribeEventHandler(FileSystemEventHandler):
         
         try:
             self.event_queue.put_nowait(event_data)
-            logger.debug("Queued event", event_type=event_type, file_path=file_path)
+            logger.debug("Queued event", 
+                        event_id=event_id,
+                        event_type=event_type, 
+                        file_path=file_path)
         except queue.Full:
-            logger.warning("Event queue is full, dropping event", event_type=event_type, file_path=file_path)
+            logger.warning("Event queue is full, dropping event", 
+                          event_id=event_id,
+                          event_type=event_type, 
+                          file_path=file_path)
 
 
 class Watcher(threading.Thread):

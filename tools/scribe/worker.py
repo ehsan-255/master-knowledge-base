@@ -87,10 +87,12 @@ class Worker(threading.Thread):
         start_time = time.time()
         
         try:
+            event_id = event.get('event_id', 'unknown')
             event_type = event.get('type', 'unknown')
             file_path = event.get('file_path', 'unknown')
             
             logger.info("Processing event", 
+                       event_id=event_id,
                        event_type=event_type, 
                        file_path=file_path,
                        event_timestamp=event.get('timestamp'))
@@ -104,6 +106,7 @@ class Worker(threading.Thread):
             processing_time = (time.time() - start_time) * 1000  # Convert to ms
             
             logger.info("Event processed successfully",
+                       event_id=event_id,
                        event_type=event_type,
                        file_path=file_path,
                        duration_ms=round(processing_time, 2))
@@ -112,8 +115,10 @@ class Worker(threading.Thread):
             
         except Exception as e:
             processing_time = (time.time() - start_time) * 1000
+            event_id = event.get('event_id', 'unknown')
             
             logger.error("Failed to process event",
+                        event_id=event_id,
                         event_data=event,
                         error=str(e),
                         duration_ms=round(processing_time, 2),

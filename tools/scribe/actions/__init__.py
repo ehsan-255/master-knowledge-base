@@ -8,6 +8,7 @@ Action plugins implement the L3 Capability Plugin layer in the HMA architecture.
 
 from .base import BaseAction, ActionExecutionError, ValidationError
 from .base import get_match_context, validate_required_params, apply_default_params
+from .run_command_action import RunCommandAction
 
 __all__ = [
     'BaseAction',
@@ -15,7 +16,8 @@ __all__ = [
     'ValidationError',
     'get_match_context',
     'validate_required_params',
-    'apply_default_params'
+    'apply_default_params',
+    'RunCommandAction',
 ]
 
 __version__ = "1.0.0" 
