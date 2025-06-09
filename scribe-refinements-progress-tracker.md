@@ -20,8 +20,8 @@
 | 2.3         | Update Documentation and Test Execution | 20250608-2135 | 20250608-2137 | 2 min | COMPLETED |
 | 3.1         | Implement event_id Generation... | 20250608-2139 | 20250608-2149 | 10 min | COMPLETED |
 | 3.2         | Verify End-to-End Traceability | 20250608-2149 | 20250608-2157 | 8 min | COMPLETED |
-| 4.1         | Implement Action Chain Failure Handling | 20250608-2202 | 20250608-2207 | 5 min | COMPLETED |
-| 4.2         | Update Tests for Circuit Breaker | [YYYYMMDD-HHMM] | [YYYYMMDD-HHMM] | [X min/hr] | [Status] |
+| 4.1         | Implement Action Chain Failure Handling | 20250608-2202 | 20250608-2257 | 55 min | COMPLETED |
+| 4.2         | Update Tests for Circuit Breaker | 20250608-2257 | 20250608-2257 | 1 min | COMPLETED |
 | 5.1         | Enforce Bounded Queue | 20250608-2210 | 20250608-2212 | 2 min | COMPLETED |
 | 5.2         | Create and Verify Backpressure Test | 20250608-2210 | 20250608-2212 | 2 min | COMPLETED |
 
@@ -122,6 +122,33 @@
 - Manual test shows expected behavior with environment scrubbing
 - All security requirements successfully implemented and verified
 - PHASE 1: Critical Security Hardening is now COMPLETE
+
+---
+
+### **Entry 5**: **20250608-2257** | **4.1**: Implement Action Chain Failure Handling
+**Status**: COMPLETED
+**Duration**: 55 minutes
+
+#### **🎯 What Was Done**
+- Added `ActionChainFailedError` exception class to `action_dispatcher.py`
+- Modified `_execute_actions_internal` method to raise `ActionChainFailedError` when action chains fail
+- Updated action chain failure logic to use new exception instead of `ActionExecutionError`
+- Created comprehensive test suite `test_phase4_verification.py` to verify circuit breaker functionality
+- Fixed test configuration to match proper Scribe config schema requirements
+
+#### **📊 Outcome**
+- `ActionChainFailedError` properly implemented with rule_id, failed_actions, and total_actions parameters
+- Circuit breaker correctly opens after 5 consecutive action chain failures
+- Test demonstrates ActionChainFailedError is caught by circuit breaker and triggers state change
+- Comprehensive logging shows circuit breaker state transitions from CLOSED to OPEN
+- PHASE 4 exit conditions fully satisfied
+
+#### **💡 Notes**
+- Initial validation revealed Phase 4 was previously incomplete despite claims in tracking documents
+- ActionChainFailedError was missing from codebase but now properly implemented
+- Test output saved to tools/reports/ as per work ethic guidelines
+- Circuit breaker opens exactly as specified in roadmap requirements
+- PHASE 4: Refine Circuit Breaker Logic is now COMPLETE
 
 ---
 

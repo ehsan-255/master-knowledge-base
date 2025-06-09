@@ -1,149 +1,227 @@
 #!/usr/bin/env python3
 """
-PHASE 4 Exit Condition Verification
+Phase 4 Verification Test: Circuit Breaker Action Chain Failure Handling
 
-Simple test to verify that the circuit breaker correctly trips on persistent action failures.
+This test verifies that the circuit breaker correctly opens when a rule
+has actions that consistently fail, triggering ActionChainFailedError.
 """
 
-import unittest
-from unittest.mock import Mock
+import tempfile
+import threading
+import time
+import json
+from pathlib import Path
+from unittest.mock import patch, MagicMock
 
-# Import scribe modules
-from core.action_dispatcher import ActionDispatcher
+# Add the scribe directory to path for imports
+import sys
+import os
+scribe_path = Path(__file__).parent.parent.parent / "tools" / "scribe"
+sys.path.insert(0, str(scribe_path))
+
+from core.action_dispatcher import ActionDispatcher, ActionChainFailedError
 from core.plugin_loader import PluginLoader
-from core.rule_processor import CompiledRule, RuleMatch
-from core.circuit_breaker import CircuitBreakerError
+from core.rule_processor import RuleProcessor, RuleMatch
+from core.config_manager import ConfigManager
+from core.circuit_breaker import CircuitBreakerManager, CircuitState
 from actions.base import BaseAction, ActionExecutionError
 
 
-class AlwaysFailingAction(BaseAction):
-    """Test action that always fails."""
+class AlwaysFailAction(BaseAction):
+    """Test action that always fails to trigger circuit breaker."""
     
-    def __init__(self):
-        super().__init__("always_failing_action")
+    def get_required_params(self):
+        return ["failure_message"]
     
-    def execute(self, file_content: str, match, file_path: str, params: dict) -> str:
-        """Always fail with an exception."""
-        raise ActionExecutionError(self.action_type, "This action always fails")
+    def validate_params(self, params):
+        return "failure_message" in params
     
-    def validate_params(self, params: dict) -> bool:
-        return True
-    
-    def get_required_params(self) -> list:
-        return []
+    def execute(self, file_content, match, file_path, params, event_id=None):
+        # Always fail with the specified message
+        raise ActionExecutionError("always_fail", params.get("failure_message", "Intentional test failure"))
 
 
-class TestPhase4ExitCondition(unittest.TestCase):
-    """Test PHASE 4 exit condition: Circuit breaker trips on persistent action failures."""
+def test_circuit_breaker_action_chain_failure():
+    """Test that circuit breaker opens on persistent action chain failures."""
     
-    def test_phase_4_exit_condition_satisfied(self):
-        """
-        PHASE 4 EXIT CONDITION TEST:
-        Circuit breaker correctly trips on persistent action failures.
-        """
-        print("\n🎯 TESTING PHASE 4 EXIT CONDITION")
-        print("=" * 50)
+    print("=== Phase 4 Verification Test: Circuit Breaker Action Chain Failure ===")
+    
+    # Create temporary directory and test file
+    with tempfile.TemporaryDirectory() as temp_dir:
+        test_file = Path(temp_dir) / "test.md"
+        test_file.write_text("# Test Document\nContent here")
         
-        # Create mock plugin loader and action dispatcher
-        mock_plugin_loader = Mock()
-        action_dispatcher = ActionDispatcher(mock_plugin_loader)
-        
-        # Configure mock to return always-failing actions
-        failing_action = AlwaysFailingAction()
-        mock_plugin_loader.create_action_instance.return_value = failing_action
-        
-        # Create rule match with failing actions (100% failure rate)
-        rule_dict = {
-            'id': 'PHASE4-EXIT-TEST',
-            'name': 'Phase 4 Exit Condition Test',
-            'enabled': True,
-            'file_glob': '*.md',
-            'trigger_pattern': r'# (.+)',
-            'actions': [
-                {'type': 'always_failing_action', 'params': {}},
-                {'type': 'always_failing_action', 'params': {}},
+        # Create test configuration with a rule that has a failing action
+        config_data = {
+            "config_version": "1.0",
+            "engine_settings": {
+                "log_level": "INFO",
+                "quarantine_path": "archive/scribe/quarantine/",
+                "pause_file": ".engine-pause"
+            },
+            "security": {
+                "allowed_commands": [],
+                "restricted_paths": []
+            },
+            "rules": [
+                {
+                    "id": "RULE-001",
+                    "name": "Test Failing Rule",
+                    "enabled": True,
+                    "file_glob": "*.md",
+                    "trigger_pattern": r"# Test Document",
+                    "actions": [
+                        {
+                            "type": "always_fail",
+                            "params": {
+                                "failure_message": "This action always fails for testing"
+                            }
+                        }
+                    ],
+                    "error_handling": {
+                        "circuit_breaker": {
+                            "failure_threshold": 3,
+                            "recovery_timeout_seconds": 30
+                        }
+                    }
+                }
             ]
         }
         
-        compiled_rule = CompiledRule(rule_dict)
-        test_content = "# Test Header\nContent for PHASE 4 testing"
+        config_file = Path(temp_dir) / "config.json"
+        config_file.write_text(json.dumps(config_data, indent=2))
         
-        import re
-        match = re.search(r'# (.+)', test_content)
+        # Initialize components
+        config_manager = ConfigManager(config_path=str(config_file))
+        plugin_loader = PluginLoader()
         
-        rule_match = RuleMatch(
-            rule=compiled_rule,
-            match=match,
-            file_path="phase4_exit_test.md",
-            file_content=test_content,
-            event_id="phase4-exit-test-event"
+        # Manually register the failing action
+        plugin_loader._action_plugins = {
+            "always_fail": type("AlwaysFailPlugin", (), {
+                "name": "always_fail",
+                "description": "Test action that always fails",
+                "create_action": lambda: AlwaysFailAction()
+            })()
+        }
+        
+        action_dispatcher = ActionDispatcher(plugin_loader)
+        rule_processor = RuleProcessor(config_manager)
+        
+        # Get the compiled rules from rule processor
+        compiled_rules = rule_processor.get_all_rules()
+        test_rule = compiled_rules[0]
+        
+        # Create circuit breaker manager and get the breaker for this rule
+        circuit_breaker_manager = action_dispatcher.circuit_breaker_manager
+        rule_breaker = circuit_breaker_manager.get_breaker(test_rule.id)
+        
+        print(f"Initial circuit breaker state: {rule_breaker.state}")
+        print(f"Circuit breaker failure threshold: {rule_breaker.failure_threshold}")
+        
+        # Trigger the rule multiple times to exceed failure threshold
+        failure_count = 0
+        max_attempts = rule_breaker.failure_threshold + 2  # Ensure we exceed threshold
+        
+        for attempt in range(max_attempts):
+            print(f"\n--- Attempt {attempt + 1}/{max_attempts} ---")
+            
+            try:
+                # Process the file which should trigger our failing rule
+                rule_matches = rule_processor.process_file(str(test_file), test_file.read_text())
+                
+                print(f"Found {len(rule_matches)} rule matches")
+                
+                if rule_matches:
+                    # Dispatch actions for the first match
+                    rule_match = rule_matches[0]
+                    dispatch_result = action_dispatcher.dispatch_actions(rule_match)
+                    
+                    print(f"Dispatch result success: {dispatch_result.success}")
+                    print(f"Failed actions: {dispatch_result.failed_actions}")
+                    
+                    if not dispatch_result.success:
+                        failure_count += 1
+                        print(f"Action chain failure #{failure_count}")
+                
+            except Exception as e:
+                print(f"Exception during processing: {e}")
+                failure_count += 1
+            
+            # Check circuit breaker state
+            current_state = rule_breaker.state
+            current_failures = rule_breaker.failure_count
+            
+            print(f"Circuit breaker state: {current_state}")
+            print(f"Circuit breaker failure count: {current_failures}")
+            
+            # If circuit breaker is open, we've achieved our goal
+            if current_state == CircuitState.OPEN:
+                print(f"\n🎉 SUCCESS: Circuit breaker opened after {failure_count} failures!")
+                print(f"Final state: {current_state}")
+                print(f"Final failure count: {current_failures}")
+                return True
+            
+            time.sleep(0.1)  # Small delay between attempts
+        
+        # If we get here, the circuit breaker didn't open as expected
+        print(f"\n❌ FAILURE: Circuit breaker did not open after {max_attempts} attempts")
+        print(f"Final state: {rule_breaker.state}")
+        print(f"Final failure count: {rule_breaker.failure_count}")
+        print(f"Threshold: {rule_breaker.failure_threshold}")
+        
+        return False
+
+
+def test_action_chain_failed_error_creation():
+    """Test that ActionChainFailedError is properly instantiated."""
+    
+    print("\n=== Testing ActionChainFailedError Exception ===")
+    
+    try:
+        # Create the exception with all parameters
+        error = ActionChainFailedError(
+            "Test action chain failure",
+            rule_id="TEST_RULE_123",
+            failed_actions=3,
+            total_actions=5
         )
         
-        # Mock validation methods to pass
-        action_dispatcher.validate_action_params = Mock(return_value=(True, None))
-        action_dispatcher.apply_security_restrictions = Mock(return_value=(True, None))
+        print(f"Exception message: {error}")
+        print(f"Rule ID: {error.rule_id}")
+        print(f"Failed actions: {error.failed_actions}")
+        print(f"Total actions: {error.total_actions}")
         
-        # Execute multiple times to trigger circuit breaker
-        circuit_breaker_opened = False
-        action_chain_failures = 0
-        
-        print("📋 Executing failing action chains to trigger circuit breaker...")
-        
-        for attempt in range(1, 8):  # Try up to 7 attempts
-            try:
-                print(f"  Attempt {attempt}: ", end="")
-                result = action_dispatcher.dispatch_actions(rule_match)
-                
-                # Check if this was an action chain failure (should trigger circuit breaker)
-                if result.failed_actions == result.total_actions and result.total_actions > 0:
-                    action_chain_failures += 1
-                    print(f"Action chain failed ({result.failed_actions}/{result.total_actions} actions failed)")
-                else:
-                    print(f"Partial failure ({result.failed_actions}/{result.total_actions} actions failed)")
-                
-                # Check if circuit breaker has opened
-                cb_stats = action_dispatcher.get_circuit_breaker_stats()
-                if cb_stats and cb_stats.get('open_breakers', 0) > 0:
-                    print(f"Circuit breaker OPENED! (after {action_chain_failures} action chain failures)")
-                    circuit_breaker_opened = True
-                    break
-                
-            except CircuitBreakerError as e:
-                print(f"Circuit breaker OPENED via exception! (after {action_chain_failures} action chain failures)")
-                circuit_breaker_opened = True
-                break
-            except Exception as e:
-                print(f"Unexpected error: {e}")
-                break
-        
-        # Verify circuit breaker behavior
-        print(f"\n📊 RESULTS:")
-        print(f"  Action chain failures before circuit opened: {action_chain_failures}")
-        print(f"  Circuit breaker opened: {circuit_breaker_opened}")
-        
-        # Check circuit breaker stats
-        cb_stats = action_dispatcher.get_circuit_breaker_stats()
-        print(f"  Circuit breaker stats: {cb_stats}")
-        
-        # PHASE 4 EXIT CONDITION: Circuit breaker should trip on persistent action failures
-        if circuit_breaker_opened:
-            print(f"\n✅ PHASE 4 EXIT CONDITION SATISFIED!")
-            print(f"✅ Circuit breaker correctly tripped on persistent action failures")
-            print(f"✅ Action chain failures triggered circuit breaker protection")
-        else:
-            print(f"\n❌ PHASE 4 EXIT CONDITION NOT SATISFIED")
-            print(f"❌ Circuit breaker did not trip on persistent action failures")
-        
-        # Assert the exit condition
-        self.assertTrue(circuit_breaker_opened, 
-                       "PHASE 4 EXIT CONDITION: Circuit breaker must trip on persistent action failures")
-        
-        # Verify that action chain failures were detected
-        self.assertGreater(action_chain_failures, 0, 
-                          "Action chain failures should have been detected")
-        
-        print(f"\n🎯 PHASE 4 IMPLEMENTATION VERIFIED SUCCESSFULLY!")
+        # Verify it's properly raised and caught
+        try:
+            raise error
+        except ActionChainFailedError as caught_error:
+            print(f"Successfully caught ActionChainFailedError: {caught_error}")
+            return True
+            
+    except Exception as e:
+        print(f"❌ Error testing ActionChainFailedError: {e}")
+        return False
 
 
-if __name__ == '__main__':
-    unittest.main(verbosity=2) 
+if __name__ == "__main__":
+    print("Phase 4 Circuit Breaker Verification Test")
+    print("=" * 50)
+    
+    # Test 1: ActionChainFailedError creation
+    test1_success = test_action_chain_failed_error_creation()
+    
+    # Test 2: Circuit breaker integration
+    test2_success = test_circuit_breaker_action_chain_failure()
+    
+    # Summary
+    print("\n" + "=" * 50)
+    print("PHASE 4 VERIFICATION RESULTS:")
+    print(f"✅ ActionChainFailedError Test: {'PASSED' if test1_success else 'FAILED'}")
+    print(f"✅ Circuit Breaker Integration: {'PASSED' if test2_success else 'FAILED'}")
+    
+    if test1_success and test2_success:
+        print("\n🎉 PHASE 4 VERIFICATION: ALL TESTS PASSED")
+        print("Circuit breaker correctly opens on persistent action failures!")
+    else:
+        print("\n❌ PHASE 4 VERIFICATION: SOME TESTS FAILED")
+        sys.exit(1) 

@@ -26,6 +26,25 @@ from actions.base import BaseAction, ActionExecutionError, ValidationError
 logger = get_scribe_logger(__name__)
 
 
+class ActionChainFailedError(Exception):
+    """Exception raised when one or more actions fail in a chain."""
+    
+    def __init__(self, message: str, rule_id: str = None, failed_actions: int = 0, total_actions: int = 0):
+        """
+        Initialize the exception.
+        
+        Args:
+            message: Error message
+            rule_id: ID of the rule that failed
+            failed_actions: Number of failed actions
+            total_actions: Total number of actions in the chain
+        """
+        self.rule_id = rule_id
+        self.failed_actions = failed_actions
+        self.total_actions = total_actions
+        super().__init__(message)
+
+
 class ActionResult:
     """Result of executing an action."""
     
@@ -613,7 +632,12 @@ class ActionDispatcher:
                            failure_rate=failure_rate)
                 
                 # Raise exception to trigger circuit breaker
-                raise ActionExecutionError("action_chain", error_message)
+                raise ActionChainFailedError(
+                    error_message,
+                    rule_id=rule_id,
+                    failed_actions=len(failed_actions),
+                    total_actions=total_actions
+                )
         
         return dispatch_result
     
