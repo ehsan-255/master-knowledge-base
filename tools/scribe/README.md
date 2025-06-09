@@ -1,8 +1,8 @@
 # Scribe Engine - HMA-Based Automation Engine
 
-**Version**: 1.0.0-alpha  
+**Version**: 1.0.1  
 **Architecture**: Hexagonal Microkernel Architecture (HMA)  
-**Status**: Phase 1 Complete - Core MVP Ready
+**Status**: Phase 2 In Progress - Python Packaging Complete
 
 ## Overview
 
@@ -66,15 +66,22 @@ Scribe implements the Hexagonal Microkernel Architecture with four distinct laye
    conda activate conda-kb
    ```
 
-2. **Install dependencies:**
+2. **Install the Scribe engine as an editable package:**
    ```bash
    cd tools/scribe
-   python -m pip install -r requirements.txt
+   pip install -e .
    ```
 
 3. **Verify installation:**
    ```bash
    python engine.py --help
+   ```
+
+   Or import directly in Python:
+   ```python
+   from core.security_manager import SecurityManager
+   from actions.base import BaseAction
+   import engine
    ```
 
 ## Quick Start
@@ -264,11 +271,15 @@ health_server.start()
 
 ### Running Tests
 
+With the new packaging system, tests can be run directly without any path modifications:
+
 ```bash
 cd test-environment/scribe-tests
 conda activate conda-kb
 python -m pytest -v
 ```
+
+All imports now use the installed package, eliminating the need for `sys.path` modifications.
 
 ### Test Categories
 
@@ -357,17 +368,24 @@ Key metrics to monitor:
 
 ```
 tools/scribe/
+├── pyproject.toml         # Python package configuration
 ├── engine.py              # Main engine orchestrator
-├── core/                  # Core components
-│   ├── watcher.py         # File system watcher
-│   ├── worker.py          # Event processor
-│   ├── atomic_write.py    # Crash-safe file operations
+├── watcher.py             # File system watcher
+├── worker.py              # Event processor
+├── core/                  # Core components package
+│   ├── __init__.py        # Package initialization
+│   ├── config_manager.py  # Configuration management
+│   ├── security_manager.py # Security & command execution
 │   ├── logging_config.py  # Structured logging
-│   └── health_server.py   # HTTP monitoring
-├── actions/               # Plugin system (Phase 2)
-│   └── base.py           # Base action interface
-├── config/               # Configuration (Phase 2)
-│   └── config.schema.json # JSON schema
+│   ├── action_dispatcher.py # Action orchestration
+│   ├── plugin_loader.py   # Dynamic plugin loading
+│   └── ...               # Other core modules
+├── actions/               # Action plugins package
+│   ├── __init__.py        # Package initialization
+│   ├── base.py           # Base action interface
+│   └── run_command_action.py # Command execution action
+├── config/               # Configuration
+│   └── config.json       # Engine configuration
 └── requirements.txt      # Dependencies
 ```
 

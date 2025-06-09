@@ -16,7 +16,6 @@ import structlog
 from .logging_config import get_scribe_logger
 
 # Import BaseAction for type checking
-sys.path.insert(0, str(Path(__file__).parent.parent))
 from actions.base import BaseAction
 
 logger = get_scribe_logger(__name__)

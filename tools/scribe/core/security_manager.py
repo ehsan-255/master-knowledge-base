@@ -348,24 +348,27 @@ class SecurityManager:
             return False, f"Parameter validation error: {e}"
     
     def execute_command_safely(self, 
-                              command: str, 
+                              command_list: List[str], 
                               cwd: Optional[str] = None,
                               timeout: int = 30) -> Tuple[bool, str, str]:
         """
         Execute a command safely with security restrictions.
         
         Args:
-            command: Command to execute
+            command_list: Command as list of strings to execute
             cwd: Working directory (must be validated)
             timeout: Timeout in seconds
             
         Returns:
             Tuple of (success, stdout, stderr)
         """
-        # Validate command
-        is_valid, reason = self.validate_command(command)
+        # Validate command (only validate the first element - the executable)
+        if not command_list or len(command_list) == 0:
+            raise SecurityViolation("command_validation", "Empty command list not allowed", {'command_list': command_list})
+        
+        is_valid, reason = self.validate_command(command_list[0])
         if not is_valid:
-            raise SecurityViolation("command_validation", reason, {'command': command})
+            raise SecurityViolation("command_validation", reason, {'command': command_list[0]})
         
         # Validate working directory if provided
         if cwd:
@@ -379,8 +382,8 @@ class SecurityManager:
             
             # Execute with restrictions
             result = subprocess.run(
-                command,
-                shell=True,  # Controlled shell execution
+                command_list,
+                shell=False,  # Safe execution without shell
                 cwd=cwd,
                 env=safe_env,
                 capture_output=True,
@@ -390,7 +393,7 @@ class SecurityManager:
             )
             
             logger.info("Command executed safely",
-                       command=command,
+                       command=command_list,
                        exit_code=result.returncode,
                        cwd=cwd,
                        timeout=timeout)
@@ -399,13 +402,13 @@ class SecurityManager:
             
         except subprocess.TimeoutExpired:
             logger.error("Command execution timed out",
-                        command=command,
+                        command=command_list,
                         timeout=timeout)
             raise SecurityViolation("execution_timeout", f"Command timed out after {timeout} seconds")
         
         except Exception as e:
             logger.error("Command execution failed",
-                        command=command,
+                        command=command_list,
                         error=str(e),
                         exc_info=True)
             raise SecurityViolation("execution_error", f"Command execution failed: {e}")
