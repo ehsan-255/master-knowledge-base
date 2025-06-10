@@ -21,7 +21,11 @@ from .rule_processor import RuleMatch
 from .circuit_breaker import CircuitBreakerManager, CircuitBreakerError
 
 # Import action base classes
-from actions.base import BaseAction, ActionExecutionError, ValidationError
+from ..actions.base import BaseAction, ActionExecutionError, ValidationError
+# Need these for type hints and passing to plugins
+from .config_manager import ConfigManager
+from .security_manager import SecurityManager, SecurityViolation # Added SecurityViolation
+
 
 logger = get_scribe_logger(__name__)
 
@@ -136,24 +140,30 @@ class ActionDispatcher:
     and error recovery with comprehensive logging.
     """
     
-    def __init__(self, plugin_loader: PluginLoader, security_config: Optional[Dict[str, Any]] = None, quarantine_path: Optional[str] = None):
+    def __init__(self,
+                 plugin_loader: PluginLoader,
+                 config_manager: ConfigManager,
+                 security_manager: SecurityManager,
+                 quarantine_path: Optional[str] = None):
         """
         Initialize the action dispatcher.
         
         Args:
-            plugin_loader: Plugin loader for action plugins
-            security_config: Security configuration for action execution
-            quarantine_path: Path to quarantine directory for failed files
+            plugin_loader: Plugin loader for action plugins.
+            config_manager: ConfigManager instance.
+            security_manager: SecurityManager instance.
+            quarantine_path: Path to quarantine directory for failed files.
         """
         self.plugin_loader = plugin_loader
-        self.security_config = security_config or {}
+        self.config_manager = config_manager
+        self.security_manager = security_manager
         self.quarantine_path = quarantine_path or "archive/scribe/quarantine/"
         
         # Circuit breaker manager for rule failure isolation
         self.circuit_breaker_manager = CircuitBreakerManager()
         
-        # Action instance cache for performance
-        self._action_cache: Dict[str, BaseAction] = {}
+        # Action instances are created per execution, so no cache needed here.
+        # self._action_cache: Dict[str, BaseAction] = {} # Removed
         
         # Execution statistics
         self._execution_stats = {
@@ -167,33 +177,12 @@ class ActionDispatcher:
         }
         
         logger.info("ActionDispatcher initialized",
-                   security_enabled=bool(security_config),
+                   # Log security_manager presence if needed, e.g. security_enabled=bool(self.security_manager)
                    circuit_breaker_enabled=True,
                    quarantine_path=self.quarantine_path)
-    
-    def get_action_instance(self, action_type: str) -> Optional[BaseAction]:
-        """
-        Get an action instance, using cache for performance.
-        
-        Args:
-            action_type: Type of action to get
-            
-        Returns:
-            Action instance if available, None otherwise
-        """
-        # Check cache first
-        if action_type in self._action_cache:
-            return self._action_cache[action_type]
-        
-        # Create new instance
-        action_instance = self.plugin_loader.create_action_instance(action_type)
-        if action_instance:
-            self._action_cache[action_type] = action_instance
-            logger.debug("Action instance cached",
-                        action_type=action_type,
-                        class_name=action_instance.__class__.__name__)
-        
-        return action_instance
+
+    # get_action_instance method is fully removed.
+    # Action instances are created directly in _execute_actions_internal.
     
     def validate_action_params(self, action: BaseAction, params: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
         """
@@ -224,38 +213,8 @@ class ActionDispatcher:
         except Exception as e:
             return False, f"Parameter validation error: {e}"
     
-    def apply_security_restrictions(self, action_type: str, params: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
-        """
-        Apply security restrictions to action execution.
-        
-        Args:
-            action_type: Type of action being executed
-            params: Action parameters
-            
-        Returns:
-            Tuple of (is_allowed, denial_reason)
-        """
-        # Check if action type is allowed
-        allowed_actions = self.security_config.get('allowed_actions', [])
-        if allowed_actions and action_type not in allowed_actions:
-            return False, f"Action type '{action_type}' is not in allowed actions list"
-        
-        # Check for restricted parameters
-        restricted_params = self.security_config.get('restricted_params', [])
-        for param_name in params:
-            if param_name in restricted_params:
-                return False, f"Parameter '{param_name}' is restricted by security policy"
-        
-        # Check for dangerous parameter values
-        dangerous_patterns = self.security_config.get('dangerous_patterns', [])
-        for param_name, param_value in params.items():
-            if isinstance(param_value, str):
-                for pattern in dangerous_patterns:
-                    if re.search(pattern, param_value):
-                        return False, f"Parameter '{param_name}' contains dangerous pattern"
-        
-        return True, None
-    
+    # apply_security_restrictions method is fully removed.
+
     def execute_action(self, 
                       action: BaseAction,
                       file_content: str,
@@ -531,46 +490,81 @@ class ActionDispatcher:
             action_type = action_config['type']
             params = action_config.get('params', {})
             
-            # Get action instance
-            action = self.get_action_instance(action_type)
-            if action is None:
-                error = ActionExecutionError(action_type, "Action plugin not found")
+            # Get PluginInfo first
+            plugin_info = self.plugin_loader.get_plugin(action_type)
+            if not plugin_info:
+                error = ActionExecutionError(action_type, "Action plugin type not found in PluginLoader")
                 action_results.append(ActionResult(
                     action_type=action_type,
                     success=False,
                     error=error
                 ))
-                logger.error("Action plugin not found", action_type=action_type)
+                logger.error("Action plugin type not found in PluginLoader", action_type=action_type)
                 continue
-            
-            # Validate parameters
-            params_valid, validation_error = self.validate_action_params(action, params)
-            if not params_valid:
-                error = ValidationError(action_type, "params", validation_error)
+
+            # Instantiate action with dependencies
+            try:
+                action = plugin_info.action_class( # Directly instantiate using the class from PluginInfo
+                    action_type=plugin_info.action_type, # Use type from PluginInfo
+                    params=params,
+                    config_manager=self.config_manager,
+                    security_manager=self.security_manager
+                )
+            except Exception as e_inst:
+                error = ActionExecutionError(action_type, f"Failed to instantiate action: {str(e_inst)}", original_error=e_inst)
                 action_results.append(ActionResult(
                     action_type=action_type,
                     success=False,
                     error=error
                 ))
-                logger.error("Action parameter validation failed",
+                logger.error("Action plugin instantiation failed", action_type=action_type, params=params, error=str(e_inst), exc_info=True)
+                continue
+
+            # Validate parameters using action's own method AND SecurityManager
+            # Action's own validation (e.g. required keys, types)
+            action_params_valid = True  # Assume true initially
+            action_validation_error = "Unknown validation error" # Default error message
+            if hasattr(action, 'validate_params') and callable(getattr(action, 'validate_params')):
+                try:
+                    if not action.validate_params(params): # Expects bool now
+                        action_params_valid = False
+                        action_validation_error = "Action's validate_params() returned False"
+                except ActionExecutionError as e_val: # Catch if action's validation raises error
+                    action_params_valid = False
+                    action_validation_error = str(e_val)
+
+            if not action_params_valid:
+                error = ValidationError(action_type, "params", action_validation_error)
+                action_results.append(ActionResult(
+                        action_type=action_type,
+                        success=False,
+                        error=error
+                    ))
+                logger.error("Action's own parameter validation failed", # Correct indentation
+                               action_type=action_type,
+                               error=action_validation_error)
+                continue # Correct indentation
+
+            # SecurityManager validation (e.g. dangerous values)
+            sec_params_valid, sec_validation_error = self.security_manager.validate_action_params(action_type, params)
+            if not sec_params_valid:
+                error = SecurityViolation("param_validation", sec_validation_error or "SecurityManager validate_action_params() failed", {'action_type': action_type, 'params': params})
+                action_results.append(ActionResult(
+                    action_type=action_type,
+                    success=False,
+                    error=error
+                ))
+                logger.error("Action parameter validation by SecurityManager failed", # Corrected log message
                            action_type=action_type,
-                           error=validation_error)
+                           error=sec_validation_error)
                 continue
             
-            # Apply security restrictions
-            security_allowed, security_reason = self.apply_security_restrictions(action_type, params)
-            if not security_allowed:
-                error = ActionExecutionError(action_type, f"Security restriction: {security_reason}")
-                action_results.append(ActionResult(
-                    action_type=action_type,
-                    success=False,
-                    error=error
-                ))
-                logger.error("Action blocked by security policy",
-                           action_type=action_type,
-                           reason=security_reason)
-                continue
-            
+            # The apply_security_restrictions method was removed. Its core responsibility
+            # (checking parameter values against dangerous patterns) is now part of
+            # self.security_manager.validate_action_params(action_type, params).
+            # Other checks like whitelisted action types could be added here if needed,
+            # based on a configuration setting (e.g., from self.config_manager).
+
             # Execute the action
             result = self.execute_action(action, current_content, rule_match.match, file_path, params, event_id)
             action_results.append(result)
@@ -783,7 +777,7 @@ class ActionDispatcher:
             stats['success_rate'] = 0.0
             stats['average_execution_time'] = 0.0
         
-        stats['cached_actions'] = len(self._action_cache)
+        # stats['cached_actions'] = len(self._action_cache) # Cache removed
         stats['available_action_types'] = list(self.plugin_loader.get_all_plugins().keys())
         
         # Add circuit breaker statistics

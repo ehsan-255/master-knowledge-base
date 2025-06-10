@@ -14,7 +14,7 @@ from typing import List, Optional
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 import structlog
-from core.logging_config import get_scribe_logger
+from .core.logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)
 
