@@ -11,8 +11,8 @@ from typing import Dict, Any, List
 from pathlib import Path
 
 from .base import BaseAction, ActionExecutionError, validate_required_params
-from core.security_manager import SecurityManager, SecurityViolation
-from core.logging_config import get_scribe_logger
+from ..core.security_manager import SecurityManager, SecurityViolation
+from ..core.logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)
 
@@ -26,15 +26,21 @@ class RunCommandAction(BaseAction):
     shell injection attacks.
     """
     
-    def __init__(self, security_manager: SecurityManager):
-        """
-        Initialize the run command action.
-        
-        Args:
-            security_manager: SecurityManager instance for safe command execution
-        """
-        super().__init__("run_command")
-        self.security_manager = security_manager
+    # __init__ is inherited from BaseAction if not defined here.
+    # If we define it, we must call super() correctly.
+    # BaseAction.__init__ is now:
+    # def __init__(self, action_type: str, params: Dict[str, Any], config_manager: 'ConfigManager', security_manager: 'SecurityManager')
+    # The PluginLoader will now pass all these.
+    # RunCommandAction specifically uses self.security_manager. It will be set by BaseAction.
+    # No need to redefine __init__ if it just calls super and does nothing else.
+    # If it had specific logic for security_manager, it would be:
+    # def __init__(self, action_type: str, params: Dict[str, Any], config_manager: 'ConfigManager', security_manager: 'SecurityManager'):
+    #     super().__init__(action_type, params, config_manager, security_manager)
+    #     # self.security_manager is already available from super's init.
+    #     # No need for self.security_manager = security_manager here again unless super doesn't store it, but it does.
+
+    # Let's remove the old __init__ to ensure it uses the new BaseAction.__init__ correctly.
+    # The PluginLoader will now be responsible for providing all necessary arguments.
         
     def get_required_params(self) -> List[str]:
         """Get required parameters for this action."""
@@ -155,18 +161,22 @@ class RunCommandAction(BaseAction):
             command_list = params["command"]
             cwd = params.get("cwd")
             timeout = params.get("timeout", 30)
+            allowed_env_vars = params.get("allowed_env_vars") # Retrieves from params, defaults to None if not present.
+                                                              # get_optional_params provides default [] if not in rule.
             
             self.logger.info("Executing command",
                            command=command_list,
                            file_path=file_path,
                            cwd=cwd,
-                           timeout=timeout)
+                           timeout=timeout,
+                           allowed_env_vars=allowed_env_vars)
             
             # Execute command safely
             success, stdout, stderr = self.security_manager.execute_command_safely(
                 command_list=command_list,
                 cwd=cwd,
-                timeout=timeout
+                timeout=timeout,
+                allowed_env_vars=allowed_env_vars
             )
             
             if success:

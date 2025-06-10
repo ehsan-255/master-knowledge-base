@@ -16,7 +16,11 @@ import structlog
 from .logging_config import get_scribe_logger
 
 # Import BaseAction for type checking
-from actions.base import BaseAction
+from ..actions.base import BaseAction
+# Need these for type hints in the modified methods
+from ..core.config_manager import ConfigManager
+from ..core.security_manager import SecurityManager
+
 
 logger = get_scribe_logger(__name__)
 
@@ -63,14 +67,26 @@ class PluginInfo:
         self.class_name = action_class.__name__
         self.module_name = action_class.__module__
     
-    def create_instance(self) -> BaseAction:
+    def create_instance(self, params: Dict[str, Any],
+                        config_manager: 'ConfigManager',
+                        security_manager: 'SecurityManager') -> BaseAction:
         """
-        Create an instance of the action plugin.
+        Create an instance of the action plugin with dependencies.
         
+        Args:
+            params: Action-specific parameters from the rule.
+            config_manager: The ConfigManager instance.
+            security_manager: The SecurityManager instance.
+
         Returns:
-            New instance of the action plugin
+            New instance of the action plugin.
         """
-        return self.action_class(self.action_type)
+        return self.action_class(
+            action_type=self.action_type,
+            params=params,
+            config_manager=config_manager,
+            security_manager=security_manager
+        )
     
     def __str__(self) -> str:
         return f"PluginInfo(type='{self.action_type}', class='{self.class_name}')"
@@ -148,28 +164,61 @@ class PluginLoader:
         """
         try:
             file_path_obj = Path(file_path)
-            module_name = f"scribe_plugin_{file_path_obj.stem}"
+            module_name_str = None
+            package_name_str = None
+
+            # Determine module and package name relative to a sys.path entry
+            # This makes relative imports (..) work correctly.
+            abs_file_path = file_path_obj.resolve()
+
+            # Find the longest sys.path entry that is an ancestor of this file
+            longest_ancestor_path = None
+            for p_str in sys.path:
+                p_path = Path(p_str).resolve()
+                if abs_file_path.is_relative_to(p_path): # Requires Python 3.9+
+                    if longest_ancestor_path is None or len(str(p_path)) > len(str(longest_ancestor_path)):
+                        longest_ancestor_path = p_path
             
-            # Create module spec
-            spec = importlib.util.spec_from_file_location(module_name, file_path)
+            if longest_ancestor_path:
+                relative_module_path = abs_file_path.relative_to(longest_ancestor_path)
+                # Construct module name, e.g., tools.scribe.actions.my_plugin
+                module_name_str = ".".join(relative_module_path.parts[:-1] + (file_path_obj.stem,))
+                # Construct package name, e.g., tools.scribe.actions
+                package_name_str = ".".join(relative_module_path.parts[:-1])
+            else:
+                # Fallback if no ancestor found in sys.path (should be rare in controlled env)
+                module_name_str = f"scribe_plugin_{file_path_obj.stem}"
+                package_name_str = "" # Indicates top-level, relative imports will fail
+                logger.warning(f"Plugin path {file_path} not found under any sys.path entry. Using fallback module name: {module_name_str}. Relative imports within plugin may fail.")
+
+            # This was the line with the typo (module_name instead of module_name_str in the f-string).
+            # It should be module_name_str as corrected in the previous diff application for this file.
+            # The error output shows the log still has "module_name" if it's a fallback.
+            # Let's ensure all references here use module_name_str for logging the name.
+            logger.debug(f"Attempting to load plugin {file_path} as module '{module_name_str}' with package '{package_name_str}'")
+
+            spec = importlib.util.spec_from_file_location(module_name_str, str(file_path))
             if spec is None:
-                raise PluginLoadError(file_path, "Could not create module spec")
+                raise PluginLoadError(file_path, f"Could not create module spec for '{module_name_str}'")
             
             if spec.loader is None:
-                raise PluginLoadError(file_path, "Module spec has no loader")
+                raise PluginLoadError(file_path, f"Module spec for '{module_name_str}' has no loader")
             
-            # Create and load module
             module = importlib.util.module_from_spec(spec)
             
-            # Add to sys.modules to support relative imports
-            sys.modules[module_name] = module
+            # Set __package__ to allow relative imports from within the plugin
+            # This needs to happen BEFORE exec_module
+            if package_name_str:
+                 module.__package__ = package_name_str
             
-            # Execute the module
-            spec.loader.exec_module(module)
+            # Add to sys.modules BEFORE exec_module to handle circular dependencies or re-imports within plugin
+            sys.modules[module_name_str] = module
+
+            spec.loader.exec_module(module) # Execute the module to make its content available
             
             logger.debug("Plugin module loaded successfully",
                         file_path=file_path,
-                        module_name=module_name)
+                        module_name=module_name_str) # Use module_name_str
             
             return module
             
@@ -386,24 +435,28 @@ class PluginLoader:
         Create an instance of an action plugin.
         
         Args:
-            action_type: The action type to instantiate
+            action_type: The action type to instantiate.
+            params: Action-specific parameters from the rule.
+            config_manager: The ConfigManager instance.
+            security_manager: The SecurityManager instance.
             
         Returns:
-            Action instance if found, None otherwise
+            Action instance if found, None otherwise.
         """
         plugin_info = self.get_plugin(action_type)
         if plugin_info is None:
-            logger.warning("Action type not found", action_type=action_type)
+            logger.warning("Action type not found for instantiation", action_type=action_type)
             return None
         
         try:
-            instance = plugin_info.create_instance()
-            logger.debug("Action instance created",
+            instance = plugin_info.create_instance(params, config_manager, security_manager)
+            logger.debug("Action instance created with dependencies",
                         action_type=action_type,
-                        class_name=plugin_info.class_name)
+                        class_name=plugin_info.class_name,
+                        params=params)
             return instance
         except Exception as e:
-            logger.error("Error creating action instance",
+            logger.error("Error creating action instance with dependencies",
                         action_type=action_type,
                         class_name=plugin_info.class_name,
                         error=str(e),

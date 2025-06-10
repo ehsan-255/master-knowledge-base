@@ -16,10 +16,10 @@ from typing import List, Optional
 import structlog
 
 # Import our components
-from watcher import Watcher
-from worker import Worker
-from core.logging_config import configure_structured_logging, get_scribe_logger
-from core.health_server import create_health_server
+from .watcher import Watcher
+from .worker import Worker
+from .core.logging_config import configure_structured_logging, get_scribe_logger
+from .core.health_server import create_health_server
 
 # Configure structured logging using our dedicated module
 configure_structured_logging(log_level="INFO", include_stdlib_logs=True)
@@ -212,8 +212,41 @@ class ScribeEngine:
         }
         
         if self.worker:
-            status.update(self.worker.get_stats())
-        
+            status.update(self.worker.get_stats()) # Existing worker stats
+
+            # Add ActionDispatcher and CircuitBreakerManager stats
+            if hasattr(self.worker, 'action_dispatcher') and self.worker.action_dispatcher:
+                try:
+                    dispatcher_stats = self.worker.action_dispatcher.get_execution_stats()
+                    # As per ActionDispatcher.get_execution_stats(), this includes 'circuit_breaker_stats'
+                    status['action_dispatcher_stats'] = dispatcher_stats
+                    # For explicitness, if health endpoint specifically wants a top-level circuit_breaker_stats:
+                    # status['circuit_breaker_stats'] = dispatcher_stats.get('circuit_breaker_stats', {})
+                    # However, the roadmap implies they are separate keys in the final /health output,
+                    # but ActionDispatcher.get_execution_stats() nests circuit_breaker_stats.
+                    # For now, let's include the whole dispatcher_stats which contains circuit_breaker_stats.
+                    # If a separate top-level key 'circuit_breaker_stats' is strictly needed by the health endpoint schema,
+                    # this might need adjustment in how HealthCheckHandler consumes this.
+                    # The roadmap for get_status says "Add their output to the main status dictionary".
+                    # The roadmap for HealthCheckHandler says "exposes dispatcher and circuit breaker stats".
+                    # Let's assume dispatcher_stats contains what's needed for both for now.
+                    # If not, we can pull out circuit_breaker_stats explicitly.
+                    # The exit condition for Step 2.2 is "Response contains action_dispatcher_stats and circuit_breaker_stats"
+                    # So, let's add them as separate top-level keys if possible from dispatcher_stats.
+                    status['circuit_breaker_stats'] = dispatcher_stats.get('circuit_breaker_stats',
+                                                                          {'error': 'Circuit breaker stats not found in dispatcher stats'})
+
+                except Exception as e:
+                    logger.error("Failed to get ActionDispatcher stats for health endpoint", exc_info=True)
+                    status['action_dispatcher_stats'] = {'error': f'Failed to get ActionDispatcher stats: {str(e)}'}
+                    status['circuit_breaker_stats'] = {'error': f'Failed to get CircuitBreaker stats (via Dispatcher): {str(e)}'}
+            else:
+                status['action_dispatcher_stats'] = {'error': 'ActionDispatcher not available in Worker'}
+                status['circuit_breaker_stats'] = {'error': 'ActionDispatcher not available in Worker (for CircuitBreaker stats)'}
+        else:
+            status['action_dispatcher_stats'] = {'error': 'Worker not initialized'}
+            status['circuit_breaker_stats'] = {'error': 'Worker not initialized'}
+
         return status
 
 

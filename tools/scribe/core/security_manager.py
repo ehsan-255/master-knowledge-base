@@ -228,24 +228,74 @@ class SecurityManager:
                         error=str(e))
             return False, f"Path validation error: {e}"
     
-    def scrub_environment(self, env: Optional[Dict[str, str]] = None) -> Dict[str, str]:
+    def scrub_environment(self, allowed_env_vars: Optional[List[str]] = None) -> Dict[str, str]:
         """
-        Scrub environment variables for safe execution.
+        Scrub environment variables for safe execution, allowing specific variables to be passed through.
         
         Args:
-            env: Environment variables to scrub (None for current environment)
+            allowed_env_vars: A list of environment variable names to allow from os.environ.
+                              If None or empty, a very minimal environment is created.
             
         Returns:
-            Scrubbed environment variables
+            Scrubbed and potentially selectively populated environment variables.
         """
-        if env is None:
-            env = os.environ.copy()
+        safe_env: Dict[str, str] = {}
+
+        # Start with an empty environment or a very minimal one
+        safe_env: Dict[str, str] = {}
+
+        # Populate with allowed variables from os.environ
+        if allowed_env_vars:
+            logger.debug(f"Processing allowed_env_vars: {allowed_env_vars}")
+            for var_name in allowed_env_vars:
+                if var_name in os.environ:
+                    safe_env[var_name] = os.environ[var_name]
+                    logger.debug(f"Allowed and copied from os.environ: {var_name}={safe_env[var_name]}")
+                else:
+                    logger.warning(f"Allowed environment variable '{var_name}' not found in system environment.")
         else:
-            env = env.copy()
+            logger.debug("No specific environment variables allowed by (caller-provided) allowed_env_vars list.")
+
+        # Ensure essential variables have safe defaults if not explicitly allowed and set from os.environ
+        if 'PATH' not in safe_env:
+            safe_env['PATH'] = '/usr/bin:/bin'
+            logger.debug("PATH not in allowed_env_vars or os.environ, set to safe default.")
+        # If PATH was allowed and set from os.environ, it's kept as is for now.
+        # Test will assert its value.
+
+        if 'LC_ALL' not in safe_env:
+            safe_env['LC_ALL'] = 'C'
+            logger.debug("LC_ALL not in allowed_env_vars or os.environ, set to default 'C'.")
         
-        # List of potentially dangerous environment variables to remove
-        dangerous_env_vars = [
-            'LD_PRELOAD',
+        if 'LANG' not in safe_env:
+            safe_env['LANG'] = 'C'
+            logger.debug("LANG not in allowed_env_vars or os.environ, set to default 'C'.")
+
+        # The original dangerous_env_vars list was for scrubbing an existing env.
+        # Since we are building a new env based on an allowlist, this is different.
+        # We still need to check for dangerous *values* in the allowed variables.
+
+        # Remove any allowed variables if their values are suspicious (e.g., contain dangerous patterns)
+        # This is a secondary check on the *values* of *allowed* variables.
+        vars_to_remove_from_safe_env = []
+        for var_name, var_value in safe_env.items():
+            # Skip PATH and locale vars we just set from this specific value check,
+            # unless they were also in allowed_env_vars and re-added.
+            if var_name in ['PATH', 'LC_ALL', 'LANG'] and var_name not in (allowed_env_vars or []):
+                continue
+            if any(pattern.search(var_value) for pattern in self._dangerous_patterns):
+                vars_to_remove_from_safe_env.append(var_name)
+
+        for var_name in vars_to_remove_from_safe_env:
+            del safe_env[var_name]
+            logger.warning("Removed allowed environment variable due to dangerous value", var_name=var_name)
+
+        logger.debug("Environment scrubbed and selectively populated.", final_safe_env_keys=list(safe_env.keys()))
+        return safe_env
+
+    # The old dangerous_env_vars list for key-based removal:
+    _DANGEROUS_ENV_KEYS_TO_ALWAYS_SCRUB = [
+        'LD_PRELOAD',
             'LD_LIBRARY_PATH',
             'DYLD_INSERT_LIBRARIES',
             'DYLD_LIBRARY_PATH',
@@ -260,39 +310,14 @@ class SecurityManager:
             'BASH_ENV',
             'ENV',
             'FPATH',
-            'CDPATH'
-        ]
-        
-        # Remove dangerous variables
-        for var in dangerous_env_vars:
-            if var in env:
-                del env[var]
-                logger.debug("Removed dangerous environment variable", var=var)
-        
-        # Set safe PATH
-        safe_path = '/usr/bin:/bin'
-        env['PATH'] = safe_path
-        
-        # Set safe locale
-        env['LC_ALL'] = 'C'
-        env['LANG'] = 'C'
-        
-        # Remove any variables with suspicious values
-        vars_to_remove = []
-        for var_name, var_value in env.items():
-            if any(pattern.search(var_value) for pattern in self._dangerous_patterns):
-                vars_to_remove.append(var_name)
-        
-        for var_name in vars_to_remove:
-            del env[var_name]
-            logger.debug("Removed environment variable with dangerous value",
-                        var=var_name)
-        
-        logger.debug("Environment scrubbed",
-                    original_vars=len(os.environ if env is None else env),
-                    scrubbed_vars=len(env))
-        
-        return env
+        'CDPATH'
+    ]
+    # Note: The original logic for removing these keys from a copied 'env' is now superseded
+    # by building 'safe_env' from scratch and only adding allowed variables.
+    # If any of these _DANGEROUS_ENV_KEYS_TO_ALWAYS_SCRUB should *never* be allowed,
+    # even if in allowed_env_vars, that logic would need to be added explicitly
+    # (e.g., by removing them from safe_env after the allowed_env_vars loop).
+    # For now, allowed_env_vars takes precedence if a "dangerous key" is explicitly allowed.
     
     def validate_action_params(self, action_type: str, params: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
         """
@@ -350,7 +375,8 @@ class SecurityManager:
     def execute_command_safely(self, 
                               command_list: List[str], 
                               cwd: Optional[str] = None,
-                              timeout: int = 30) -> Tuple[bool, str, str]:
+                              timeout: int = 30,
+                              allowed_env_vars: Optional[List[str]] = None) -> Tuple[bool, str, str]:
         """
         Execute a command safely with security restrictions.
         
@@ -378,7 +404,7 @@ class SecurityManager:
         
         try:
             # Scrub environment
-            safe_env = self.scrub_environment()
+            safe_env = self.scrub_environment(allowed_env_vars=allowed_env_vars)
             
             # Execute with restrictions
             result = subprocess.run(

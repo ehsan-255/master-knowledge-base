@@ -12,7 +12,7 @@ import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from typing import Dict, Any, Callable, Optional
 from urllib.parse import urlparse
-from core.logging_config import get_scribe_logger
+from .logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)
 
@@ -44,27 +44,21 @@ class HealthCheckHandler(BaseHTTPRequestHandler):
     def _handle_health_check(self):
         """Handle /health endpoint requests."""
         try:
-            # Get current engine status
-            status = self.status_provider()
+            # Get current engine status from the provider
+            engine_status_data = self.status_provider() # This now contains the new stats
             
-            # Add health-specific information
-            health_status = {
-                'status': 'healthy' if status.get('is_running', False) else 'unhealthy',
-                'timestamp': time.time(),
-                'uptime_seconds': status.get('uptime_seconds', 0),
-                'queue_size': status.get('queue_size', 0),
-                'engine': {
-                    'is_running': status.get('is_running', False),
-                    'watch_paths': status.get('watch_paths', []),
-                    'file_patterns': status.get('file_patterns', [])
-                },
-                'worker': {
-                    'events_processed': status.get('events_processed', 0),
-                    'events_failed': status.get('events_failed', 0),
-                    'total_events': status.get('total_events', 0),
-                    'success_rate': status.get('success_rate', 0.0)
-                }
-            }
+            # Prepare the response payload. Start with all data from engine_status_data.
+            response_payload = engine_status_data.copy() # Make a copy
+
+            # Add/overwrite specific health status fields for the health endpoint itself
+            response_payload['health_api_status'] = 'healthy'
+            response_payload['health_api_timestamp'] = time.time()
+
+            # Determine overall engine health status based on 'is_running' from engine_status_data
+            if 'is_running' in engine_status_data:
+                response_payload['overall_engine_status'] = 'healthy' if engine_status_data['is_running'] else 'unhealthy'
+            else:
+                response_payload['overall_engine_status'] = 'status_unknown'
             
             # Send successful response
             self.send_response(200)
@@ -72,13 +66,12 @@ class HealthCheckHandler(BaseHTTPRequestHandler):
             self.send_header('Cache-Control', 'no-cache')
             self.end_headers()
             
-            response_json = json.dumps(health_status, indent=2)
+            response_json = json.dumps(response_payload, indent=2)
             self.wfile.write(response_json.encode('utf-8'))
             
             logger.debug("Health check request served",
                         client_ip=self.client_address[0],
-                        status=health_status['status'],
-                        queue_size=health_status['queue_size'])
+                        overall_status=response_payload.get('overall_engine_status'))
             
         except Exception as e:
             logger.error("Error handling health check request",

@@ -9,11 +9,16 @@ the Port interface for L3 Capability Plugins.
 
 import re
 from abc import ABC, abstractmethod
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, TYPE_CHECKING # Added TYPE_CHECKING
 import structlog
 
+# Import for type hinting only to avoid circular dependency
+if TYPE_CHECKING:
+    from ..core.config_manager import ConfigManager
+    from ..core.security_manager import SecurityManager
+
 # Import logging from the core module
-from core.logging_config import get_scribe_logger
+from ..core.logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)
 
@@ -35,17 +40,28 @@ class BaseAction(ABC):
     - The modified file content (or original content if no changes)
     """
     
-    def __init__(self, action_type: str):
+    def __init__(self,
+                 action_type: str,
+                 params: Dict[str, Any],
+                 config_manager: 'ConfigManager',
+                 security_manager: 'SecurityManager'
+                ):
         """
         Initialize the base action.
         
         Args:
             action_type: The type identifier for this action
+            params: Action-specific parameters from the rule configuration
+            config_manager: Instance of ConfigManager
+            security_manager: Instance of SecurityManager
         """
         self.action_type = action_type
+        self.params = params
+        self.config_manager = config_manager
+        self.security_manager = security_manager
         self.logger = get_scribe_logger(f"{__name__}.{self.__class__.__name__}")
         
-        self.logger.debug("Action plugin initialized", action_type=action_type)
+        self.logger.debug("Action plugin initialized", action_type=action_type, params=params)
     
     @abstractmethod
     def execute(self, 
