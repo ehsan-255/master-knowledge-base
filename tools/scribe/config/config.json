@@ -5,6 +5,11 @@
     "quarantine_path": "archive/scribe/quarantine/",
     "pause_file": ".engine-pause"
   },
+  "plugins": {
+    "directories": ["actions", "custom_plugins"],
+    "auto_reload": true,
+    "load_order": ["actions", "custom_plugins"]
+  },
   "security": {
     "allowed_commands": [
       "git",

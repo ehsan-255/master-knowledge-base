@@ -4,7 +4,7 @@
   "title": "Scribe Engine Configuration Schema",
   "description": "JSON Schema for validating Scribe engine configuration files",
   "type": "object",
-  "required": ["config_version", "engine_settings", "security", "rules"],
+  "required": ["config_version", "engine_settings", "security", "plugins", "rules"],
   "additionalProperties": false,
   "properties": {
     "config_version": {
@@ -31,6 +31,37 @@
           "type": "string",
           "minLength": 1,
           "description": "File that pauses engine operation when present"
+        }
+      }
+    },
+    "plugins": {
+      "type": "object",
+      "required": ["directories"],
+      "additionalProperties": false,
+      "properties": {
+        "directories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "List of directories containing action plugins"
+        },
+        "auto_reload": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to automatically reload plugins when files change"
+        },
+        "load_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "description": "Order in which to load plugin directories (optional)"
         }
       }
     },

@@ -1,9 +1,0 @@
-# Generated from mt-schema-frontmatter.yaml (controlled_vocabularies.criticality)
-# Generated on: 2025-06-07 10:40:39
-# DO NOT EDIT MANUALLY - Regenerate using generate_frontmatter_registry.py
-
-p0-critical
-p1-high
-p2-medium
-p3-low
-p4-informational

@@ -30,11 +30,13 @@ def create_temp_config_file(rules, plugin_dirs, security_settings=None): # Added
             "quarantine_path": os.path.join(tempfile.gettempdir(), "scribe_quarantine_test"),
             "pause_file": os.path.join(tempfile.gettempdir(), "scribe_pause_test"),
         },
+        "plugins": {
+            "directories": plugin_dirs,
+            "auto_reload": False,
+            "load_order": plugin_dirs
+        },
         "security": security_settings, # Use provided or default security_settings
         "rules": rules, # Rules structure also needs to match schema
-        # "plugin_directories": plugin_dirs, # This key is not allowed by schema at root
-        # We will need to find another way to tell PluginLoader where to find test plugins.
-        # This might involve patching self.worker.config_manager.get_plugin_directories() later in setUp.
     }
     temp_config = tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json")
     json.dump(config_data, temp_config)
@@ -125,28 +127,16 @@ class TestFullPipeline(unittest.TestCase):
         # Patch ConfigManager's __init__ to use our temporary config file
         self.original_config_manager_init = ConfigManager.__init__
 
-        # Patch ConfigManager's __init__ to use our temporary config file and add get_plugin_directories
-        self.original_config_manager_init = ConfigManager.__init__
-
         _test_config_path = self.config_file_path
-        _test_plugin_dir_str = str(self.plugin_dir)
 
         def mocked_config_manager_init(slf, config_path=None, schema_path="config/config.schema.json", auto_reload=True):
             # Call original __init__ with the test config path and auto_reload=False
             self.original_config_manager_init(slf, config_path=_test_config_path, schema_path=schema_path, auto_reload=False)
 
-            # Add get_plugin_directories method to this specific ConfigManager instance (slf)
-            # This method should return what Worker expects for PluginLoader.
-            # PluginLoader.__init__ expects a single string path.
-            slf.get_plugin_directories = lambda: _test_plugin_dir_str
-            # Note: If Worker expects a list of directories from get_plugin_directories,
-            # then this should return [_test_plugin_dir_str] and Worker should handle the list.
-            # For now, assuming Worker passes the result directly to PluginLoader which wants a string.
-
         ConfigManager.__init__ = mocked_config_manager_init
 
-        # Now, when Worker instantiates ConfigManager, it will be this mocked version.
-        # The ConfigManager instance (self.worker.config_manager) will have .get_plugin_directories()
+        # Now, when Worker instantiates ConfigManager, it will use our test configuration
+        # The ConfigManager will properly read plugin directories from the config file
         self.worker = Worker(
             event_queue=self.event_queue,
             shutdown_event=self.shutdown_event,

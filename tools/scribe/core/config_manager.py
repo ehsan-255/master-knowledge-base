@@ -10,7 +10,7 @@ import json
 import threading
 import time
 from pathlib import Path
-from typing import Dict, Any, Optional, Callable
+from typing import Dict, Any, Optional, Callable, List
 import structlog
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -49,8 +49,8 @@ class ConfigManager:
     """
     
     def __init__(self, 
-                 config_path: str = "config/config.json",
-                 schema_path: str = "config/config.schema.json",
+                 config_path: str = "tools/scribe/config/config.json",
+                 schema_path: str = "tools/scribe/config/config.schema.json",
                  auto_reload: bool = True):
         """
         Initialize the configuration manager.
@@ -234,6 +234,30 @@ class ConfigManager:
     def get_enabled_rules(self) -> list[Dict[str, Any]]:
         """Get list of enabled rules from configuration."""
         return [rule for rule in self.get_rules() if rule.get('enabled', False)]
+    
+    def get_plugin_settings(self) -> Dict[str, Any]:
+        """Get plugin settings from configuration."""
+        config = self.get_config()
+        return config.get('plugins', {
+            'directories': ['actions'],
+            'auto_reload': False,
+            'load_order': ['actions']
+        })
+    
+    def get_plugin_directories(self) -> List[str]:
+        """Get list of plugin directories from configuration."""
+        plugin_settings = self.get_plugin_settings()
+        return plugin_settings.get('directories', ['actions'])
+    
+    def get_plugin_auto_reload(self) -> bool:
+        """Get plugin auto-reload setting from configuration."""
+        plugin_settings = self.get_plugin_settings()
+        return plugin_settings.get('auto_reload', False)
+    
+    def get_plugin_load_order(self) -> List[str]:
+        """Get plugin load order from configuration."""
+        plugin_settings = self.get_plugin_settings()
+        return plugin_settings.get('load_order', [])
     
     def get_rule_by_id(self, rule_id: str) -> Optional[Dict[str, Any]]:
         """

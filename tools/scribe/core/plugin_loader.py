@@ -103,23 +103,45 @@ class PluginLoader:
     and finds classes that inherit from BaseAction.
     """
     
-    def __init__(self, plugins_directory: str = "actions"):
+    def __init__(self, plugin_directories: List[str] = None, load_order: List[str] = None):
         """
         Initialize the plugin loader.
         
         Args:
-            plugins_directory: Directory containing plugin files (relative to scribe root)
+            plugin_directories: List of directories containing plugin files (relative to scribe root)
+            load_order: Order in which to load plugin directories (optional)
         """
-        # Determine the absolute path to the plugins directory
+        # Determine the absolute path to the plugins directories
         scribe_root = Path(__file__).parent.parent
-        self.plugins_directory = scribe_root / plugins_directory
         
-        # Plugin registry
+        if plugin_directories is None:
+            plugin_directories = ["actions"]
+        
+        # Store both relative and absolute paths
+        self.relative_plugin_directories = plugin_directories
+        self.plugin_directories = []
+        self.directory_map = {}  # Maps relative to absolute paths
+        
+        for plugin_dir in plugin_directories:
+            abs_plugin_dir = scribe_root / plugin_dir
+            self.plugin_directories.append(abs_plugin_dir)
+            self.directory_map[plugin_dir] = abs_plugin_dir
+        
+        # Set load order
+        self.load_order = load_order or plugin_directories
+        
+        # Plugin registry with directory tracking
         self._plugins: Dict[str, PluginInfo] = {}
         self._loaded_modules: Dict[str, Any] = {}
+        self._plugin_directory_map: Dict[str, str] = {}  # Maps plugin name to directory
+        
+        # Hot-reload support (Phase 2)
+        self._file_watchers = {}
+        self._auto_reload = False
         
         logger.info("PluginLoader initialized",
-                   plugins_directory=str(self.plugins_directory))
+                   plugin_directories=[str(d) for d in self.plugin_directories],
+                   load_order=self.load_order)
     
     def discover_plugins(self) -> List[str]:
         """
@@ -130,18 +152,19 @@ class PluginLoader:
         """
         plugin_files = []
         
-        if not self.plugins_directory.exists():
-            logger.warning("Plugins directory does not exist",
-                          directory=str(self.plugins_directory))
-            return plugin_files
-        
-        # Find all .py files except __init__.py and base.py
-        for file_path in self.plugins_directory.glob("*.py"):
-            if file_path.name in ["__init__.py", "base.py"]:
+        for plugin_dir in self.plugin_directories:
+            if not plugin_dir.exists():
+                logger.warning("Plugins directory does not exist",
+                              directory=str(plugin_dir))
                 continue
             
-            plugin_files.append(str(file_path))
-            logger.debug("Discovered plugin file", file_path=str(file_path))
+            # Find all .py files except __init__.py and base.py
+            for file_path in plugin_dir.glob("*.py"):
+                if file_path.name in ["__init__.py", "base.py"]:
+                    continue
+                
+                plugin_files.append(str(file_path))
+                logger.debug("Discovered plugin file", file_path=str(file_path))
         
         logger.info("Plugin discovery complete",
                    total_files=len(plugin_files),
@@ -324,10 +347,31 @@ class PluginLoader:
             
         Returns:
             List of PluginInfo objects for loaded actions
+            
+        Raises:
+            PluginLoadError: If the plugin fails to load
         """
-        plugins = []
+        plugin_infos = []
         
         try:
+            # Security validation
+            if not self.validate_plugin_security(file_path):
+                raise PluginLoadError(file_path, "Plugin failed security validation")
+            
+            # Determine which directory this plugin belongs to
+            plugin_file_path = Path(file_path)
+            plugin_directory = None
+            
+            for rel_dir, abs_dir in self.directory_map.items():
+                if plugin_file_path.is_relative_to(abs_dir):
+                    plugin_directory = rel_dir
+                    break
+            
+            if plugin_directory is None:
+                logger.warning("Plugin file not in any configured directory", 
+                              file_path=file_path)
+                plugin_directory = "unknown"
+            
             # Load the module
             module = self.load_plugin_module(file_path)
             self._loaded_modules[file_path] = module
@@ -335,79 +379,95 @@ class PluginLoader:
             # Extract action classes
             action_classes = self.extract_action_classes(module, file_path)
             
-            # Create PluginInfo for each action class
+            if not action_classes:
+                logger.warning("No action classes found in plugin", file_path=file_path)
+                return plugin_infos
+            
+            # Create PluginInfo objects for each action class
             for action_class in action_classes:
-                try:
-                    action_type = self.determine_action_type(action_class, file_path)
-                    
-                    plugin_info = PluginInfo(action_class, file_path, action_type)
-                    plugins.append(plugin_info)
-                    
-                    logger.info("Plugin loaded successfully",
-                               file_path=file_path,
-                               class_name=action_class.__name__,
-                               action_type=action_type)
-                    
-                except Exception as e:
-                    logger.error("Error creating plugin info",
-                                file_path=file_path,
-                                class_name=action_class.__name__,
-                                error=str(e),
-                                exc_info=True)
+                action_type = self.determine_action_type(action_class, file_path)
+                
+                # Check for name conflicts
+                if action_type in self._plugins:
+                    existing_plugin = self._plugins[action_type]
+                    logger.warning("Plugin action type conflict",
+                                  action_type=action_type,
+                                  new_plugin=file_path,
+                                  existing_plugin=existing_plugin.module_path)
+                    # Skip this plugin to avoid conflicts
+                    continue
+                
+                plugin_info = PluginInfo(action_class, file_path, action_type)
+                plugin_infos.append(plugin_info)
+                
+                # Register the plugin
+                self._plugins[action_type] = plugin_info
+                self._plugin_directory_map[action_type] = plugin_directory
+                
+                logger.info("Plugin action loaded successfully",
+                           action_type=action_type,
+                           action_class=action_class.__name__,
+                           plugin_file=file_path,
+                           plugin_directory=plugin_directory)
+            
+            return plugin_infos
             
         except PluginLoadError:
-            # Re-raise plugin load errors
             raise
         except Exception as e:
-            raise PluginLoadError(file_path, "Unexpected error during plugin loading", e)
-        
-        return plugins
+            raise PluginLoadError(file_path, f"Unexpected error during plugin loading", e)
     
     def load_all_plugins(self) -> Dict[str, PluginInfo]:
         """
-        Load all plugins from the plugins directory.
+        Discover and load all plugins with dependency resolution.
         
         Returns:
             Dictionary mapping action types to PluginInfo objects
         """
+        logger.info("Starting plugin loading process")
+        
+        # Clear existing plugins
         self._plugins.clear()
         self._loaded_modules.clear()
+        self._plugin_directory_map.clear()
         
-        plugin_files = self.discover_plugins()
+        # Use dependency-resolved load order
+        plugin_files = self.resolve_plugin_load_order()
         
-        total_loaded = 0
-        total_errors = 0
+        if not plugin_files:
+            logger.warning("No plugin files discovered")
+            return self._plugins
         
-        for file_path in plugin_files:
+        loaded_count = 0
+        failed_count = 0
+        
+        for plugin_file in plugin_files:
             try:
-                plugins = self.load_plugin(file_path)
+                plugin_infos = self.load_plugin(plugin_file)
                 
-                for plugin_info in plugins:
-                    if plugin_info.action_type in self._plugins:
-                        logger.warning("Duplicate action type found, overriding",
-                                     action_type=plugin_info.action_type,
-                                     existing_class=self._plugins[plugin_info.action_type].class_name,
-                                     new_class=plugin_info.class_name)
-                    
+                for plugin_info in plugin_infos:
                     self._plugins[plugin_info.action_type] = plugin_info
-                    total_loaded += 1
+                    loaded_count += 1
                 
             except PluginLoadError as e:
-                logger.error("Plugin load error", error=str(e))
-                total_errors += 1
+                logger.error("Plugin load error",
+                            plugin_file=plugin_file,
+                            error=str(e))
+                failed_count += 1
             except Exception as e:
                 logger.error("Unexpected error loading plugin",
-                           file_path=file_path,
-                           error=str(e),
-                           exc_info=True)
-                total_errors += 1
+                            plugin_file=plugin_file,
+                            error=str(e),
+                            exc_info=True)
+                failed_count += 1
         
-        logger.info("Plugin loading complete",
-                   total_plugins=total_loaded,
-                   total_errors=total_errors,
+        logger.info("Plugin loading completed",
+                   total_discovered=len(plugin_files),
+                   successfully_loaded=loaded_count,
+                   failed_to_load=failed_count,
                    action_types=list(self._plugins.keys()))
         
-        return self._plugins.copy()
+        return self._plugins
     
     def get_plugin(self, action_type: str) -> Optional[PluginInfo]:
         """
@@ -481,15 +541,332 @@ class PluginLoader:
         return self.load_all_plugins()
     
     def get_plugin_stats(self) -> Dict[str, Any]:
-        """
-        Get statistics about loaded plugins.
-        
-        Returns:
-            Dictionary with plugin statistics
-        """
+        """Get plugin loader statistics."""
         return {
             'total_plugins': len(self._plugins),
+            'loaded_modules': len(self._loaded_modules),
             'action_types': list(self._plugins.keys()),
             'plugin_files': len(self._loaded_modules),
-            'plugins_directory': str(self.plugins_directory)
-        } 
+            'plugins_directory': [str(d) for d in self.plugin_directories]
+        }
+    
+    def enable_hot_reload(self) -> None:
+        """Enable hot-reloading of plugin files."""
+        try:
+            from watchdog.observers import Observer
+            from watchdog.events import FileSystemEventHandler
+            
+            class PluginFileHandler(FileSystemEventHandler):
+                def __init__(self, plugin_loader):
+                    self.plugin_loader = plugin_loader
+                
+                def on_modified(self, event):
+                    if event.is_directory:
+                        return
+                    
+                    if event.src_path.endswith('.py'):
+                        logger.info("Plugin file changed, reloading", 
+                                   file_path=event.src_path)
+                        self.plugin_loader.reload_plugins()
+            
+            self._auto_reload = True
+            observer = Observer()
+            
+            for plugin_dir in self.plugin_directories:
+                if plugin_dir.exists():
+                    handler = PluginFileHandler(self)
+                    observer.schedule(handler, str(plugin_dir), recursive=False)
+                    self._file_watchers[str(plugin_dir)] = (observer, handler)
+                    logger.info("Hot-reload enabled for plugin directory", 
+                               directory=str(plugin_dir))
+            
+            observer.start()
+            logger.info("Plugin hot-reloading enabled")
+            
+        except ImportError:
+            logger.warning("Watchdog not available, hot-reloading disabled")
+        except Exception as e:
+            logger.error("Failed to enable hot-reloading", error=str(e))
+    
+    def disable_hot_reload(self) -> None:
+        """Disable hot-reloading of plugin files."""
+        self._auto_reload = False
+        for directory, (observer, handler) in self._file_watchers.items():
+            try:
+                observer.stop()
+                observer.join(timeout=5.0)
+                logger.info("Hot-reload disabled for plugin directory", 
+                           directory=directory)
+            except Exception as e:
+                logger.error("Error stopping plugin file watcher", 
+                            directory=directory, error=str(e))
+        
+        self._file_watchers.clear()
+        logger.info("Plugin hot-reloading disabled")
+    
+    def validate_plugin_security(self, plugin_path: str) -> bool:
+        """
+        Validate plugin security before loading.
+        
+        Args:
+            plugin_path: Path to the plugin file
+            
+        Returns:
+            True if plugin passes security validation
+        """
+        try:
+            # Read plugin file content
+            with open(plugin_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Security checks
+            dangerous_imports = [
+                'subprocess', 'os.system', 'eval', 'exec', '__import__',
+                'importlib.import_module', 'open', 'file'
+            ]
+            
+            dangerous_functions = [
+                'eval(', 'exec(', 'compile(', '__import__(',
+                'getattr(', 'setattr(', 'delattr(', 'globals(', 'locals('
+            ]
+            
+            # Check for dangerous imports
+            for dangerous_import in dangerous_imports:
+                if dangerous_import in content:
+                    logger.warning("Plugin contains potentially dangerous import",
+                                  plugin_path=plugin_path,
+                                  dangerous_pattern=dangerous_import)
+                    return False
+            
+            # Check for dangerous function calls
+            for dangerous_func in dangerous_functions:
+                if dangerous_func in content:
+                    logger.warning("Plugin contains potentially dangerous function",
+                                  plugin_path=plugin_path,
+                                  dangerous_pattern=dangerous_func)
+                    return False
+            
+            # Check file permissions (should not be world-writable)
+            plugin_file = Path(plugin_path)
+            if plugin_file.stat().st_mode & 0o002:  # World-writable
+                logger.warning("Plugin file is world-writable",
+                              plugin_path=plugin_path)
+                return False
+            
+            logger.debug("Plugin security validation passed",
+                        plugin_path=plugin_path)
+            return True
+            
+        except Exception as e:
+            logger.error("Plugin security validation failed",
+                        plugin_path=plugin_path,
+                        error=str(e))
+            return False
+    
+    def add_plugin_directory(self, directory: str, position: int = -1) -> bool:
+        """
+        Add a new plugin directory at runtime.
+        
+        Args:
+            directory: Directory path (relative to scribe root)
+            position: Position in load order (-1 for end)
+            
+        Returns:
+            True if directory was added successfully
+        """
+        try:
+            scribe_root = Path(__file__).parent.parent
+            abs_plugin_dir = scribe_root / directory
+            
+            if directory in self.relative_plugin_directories:
+                logger.warning("Plugin directory already exists", directory=directory)
+                return False
+            
+            if not abs_plugin_dir.exists():
+                logger.error("Plugin directory does not exist", directory=str(abs_plugin_dir))
+                return False
+            
+            # Add to lists
+            if position == -1:
+                self.relative_plugin_directories.append(directory)
+                self.plugin_directories.append(abs_plugin_dir)
+                self.load_order.append(directory)
+            else:
+                self.relative_plugin_directories.insert(position, directory)
+                self.plugin_directories.insert(position, abs_plugin_dir)
+                self.load_order.insert(position, directory)
+            
+            # Update directory map
+            self.directory_map[directory] = abs_plugin_dir
+            
+            # Enable hot-reload for new directory if it's enabled
+            if self._auto_reload and directory not in self._file_watchers:
+                # Add hot-reload watcher for this directory
+                pass  # Implementation would go here
+            
+            logger.info("Plugin directory added", 
+                       directory=directory, 
+                       absolute_path=str(abs_plugin_dir))
+            return True
+            
+        except Exception as e:
+            logger.error("Failed to add plugin directory",
+                        directory=directory,
+                        error=str(e))
+            return False
+    
+    def remove_plugin_directory(self, directory: str) -> bool:
+        """
+        Remove a plugin directory at runtime.
+        
+        Args:
+            directory: Directory path to remove
+            
+        Returns:
+            True if directory was removed successfully
+        """
+        try:
+            if directory not in self.relative_plugin_directories:
+                logger.warning("Plugin directory not found", directory=directory)
+                return False
+            
+            # Remove from all lists
+            index = self.relative_plugin_directories.index(directory)
+            self.relative_plugin_directories.remove(directory)
+            self.plugin_directories.pop(index)
+            
+            if directory in self.load_order:
+                self.load_order.remove(directory)
+            
+            # Remove from directory map
+            if directory in self.directory_map:
+                del self.directory_map[directory]
+            
+            # Remove plugins loaded from this directory
+            plugins_to_remove = []
+            for plugin_name, plugin_dir in self._plugin_directory_map.items():
+                if plugin_dir == directory:
+                    plugins_to_remove.append(plugin_name)
+            
+            for plugin_name in plugins_to_remove:
+                if plugin_name in self._plugins:
+                    del self._plugins[plugin_name]
+                del self._plugin_directory_map[plugin_name]
+            
+            # Stop hot-reload watcher for this directory
+            if directory in self._file_watchers:
+                observer, handler = self._file_watchers[directory]
+                observer.stop()
+                del self._file_watchers[directory]
+            
+            logger.info("Plugin directory removed", 
+                       directory=directory,
+                       removed_plugins=plugins_to_remove)
+            return True
+            
+        except Exception as e:
+            logger.error("Failed to remove plugin directory",
+                        directory=directory,
+                        error=str(e))
+            return False
+    
+    def get_plugin_dependencies(self, plugin_path: str) -> List[str]:
+        """
+        Extract plugin dependencies from file.
+        
+        Args:
+            plugin_path: Path to the plugin file
+            
+        Returns:
+            List of dependency names
+        """
+        dependencies = []
+        try:
+            with open(plugin_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Look for dependency declarations in comments
+            # Format: # DEPENDENCIES: plugin1, plugin2, plugin3
+            import re
+            dep_pattern = r'#\s*DEPENDENCIES:\s*([^\n]+)'
+            matches = re.findall(dep_pattern, content, re.IGNORECASE)
+            
+            for match in matches:
+                deps = [dep.strip() for dep in match.split(',')]
+                dependencies.extend(deps)
+            
+            # Remove duplicates and empty strings
+            dependencies = list(filter(None, list(set(dependencies))))
+            
+            logger.debug("Plugin dependencies extracted",
+                        plugin_path=plugin_path,
+                        dependencies=dependencies)
+            
+        except Exception as e:
+            logger.error("Failed to extract plugin dependencies",
+                        plugin_path=plugin_path,
+                        error=str(e))
+        
+        return dependencies
+    
+    def resolve_plugin_load_order(self) -> List[str]:
+        """
+        Resolve plugin load order based on dependencies.
+        
+        Returns:
+            List of plugin files in dependency order
+        """
+        try:
+            all_plugin_files = self.discover_plugins()
+            plugin_deps = {}
+            
+            # Extract dependencies for each plugin
+            for plugin_file in all_plugin_files:
+                deps = self.get_plugin_dependencies(plugin_file)
+                plugin_name = Path(plugin_file).stem
+                plugin_deps[plugin_name] = deps
+            
+            # Topological sort
+            sorted_plugins = []
+            visited = set()
+            temp_visited = set()
+            
+            def visit(plugin_name):
+                if plugin_name in temp_visited:
+                    raise ValueError(f"Circular dependency detected involving {plugin_name}")
+                if plugin_name in visited:
+                    return
+                
+                temp_visited.add(plugin_name)
+                
+                # Visit dependencies first
+                for dep in plugin_deps.get(plugin_name, []):
+                    visit(dep)
+                
+                temp_visited.remove(plugin_name)
+                visited.add(plugin_name)
+                sorted_plugins.append(plugin_name)
+            
+            # Visit all plugins
+            for plugin_name in plugin_deps.keys():
+                if plugin_name not in visited:
+                    visit(plugin_name)
+            
+            # Convert back to file paths
+            sorted_files = []
+            for plugin_name in sorted_plugins:
+                for plugin_file in all_plugin_files:
+                    if Path(plugin_file).stem == plugin_name:
+                        sorted_files.append(plugin_file)
+                        break
+            
+            logger.info("Plugin load order resolved",
+                       total_plugins=len(sorted_files),
+                       order=[Path(f).stem for f in sorted_files])
+            
+            return sorted_files
+            
+        except Exception as e:
+            logger.error("Failed to resolve plugin load order", error=str(e))
+            # Fallback to simple discovery order
+            return self.discover_plugins() 

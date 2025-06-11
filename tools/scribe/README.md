@@ -2,7 +2,7 @@
 
 **Version**: 1.0.1  
 **Architecture**: Hexagonal Microkernel Architecture (HMA)  
-**Status**: Phase 2 In Progress - Python Packaging Complete
+**Status**: Production Ready
 
 ## Overview
 
@@ -16,6 +16,7 @@ Scribe is a lightweight, event-driven automation engine designed for plain-text 
 - **📊 Observable**: Structured JSON logging and HTTP health endpoints
 - **🧵 Multi-Threaded**: Producer-consumer pattern for high throughput
 - **🛡️ Resilient**: Graceful shutdown and error handling
+- **🔌 Extensible**: Advanced V2.0 plugin system with hot-reloading, dependency management, and security validation.
 
 ## Architecture
 
@@ -77,16 +78,7 @@ Scribe implements the Hexagonal Microkernel Architecture with four distinct laye
    python engine.py --help
    ```
 
-   Or import directly in Python:
-   ```python
-   from core.security_manager import SecurityManager
-   from actions.base import BaseAction
-   import engine
-   ```
-
 ## Quick Start
-
-### Basic Usage
 
 1. **Start the engine:**
    ```bash
@@ -99,22 +91,9 @@ Scribe implements the Hexagonal Microkernel Architecture with four distinct laye
    curl http://localhost:9468/health
    ```
 
-3. **View logs:**
-   The engine outputs structured JSON logs to stdout:
-   ```json
-   {
-     "event": "Engine started",
-     "logger": "engine",
-     "level": "info",
-     "timestamp": "2025-06-08T16:32:08.169978Z",
-     "watch_paths": ["/path/to/watch"],
-     "file_patterns": ["*.md"]
-   }
-   ```
+## Configuration (`tools/scribe/config/config.json`)
 
-### Configuration
-
-Create a `config/config.json` file to customize behavior:
+Scribe is configured via `tools/scribe/config/config.json`. The configuration is validated against a schema and supports hot-reloading for near-instantaneous changes.
 
 ```json
 {
@@ -124,9 +103,14 @@ Create a `config/config.json` file to customize behavior:
     "quarantine_path": "archive/scribe/quarantine/",
     "pause_file": ".engine-pause"
   },
+  "plugins": {
+    "directories": ["actions", "custom_plugins"],
+    "auto_reload": true,
+    "load_order": ["actions", "custom_plugins"]
+  },
   "security": {
-    "allowed_commands": ["git", "make", "npm"],
-    "restricted_paths": [".git/", ".vscode/", "node_modules/"]
+    "allowed_commands": ["git"],
+    "restricted_paths": [".git/"]
   },
   "rules": [
     {
@@ -143,129 +127,84 @@ Create a `config/config.json` file to customize behavior:
             "value_template": "{timestamp_utc_iso}"
           }
         }
-      ],
-      "error_handling": {
-        "circuit_breaker": {
-          "failure_threshold": 3,
-          "recovery_timeout_seconds": 60
-        }
-      }
+      ]
     }
   ]
 }
 ```
 
-## Core Components
+---
 
-### Engine Core (`engine.py`)
+## Plugin System (V2.0)
 
-The main orchestrator that coordinates all components:
+Scribe V2 features a powerful, dynamic plugin system that allows for extensive customization. It is built on four key pillars: **Multi-Directory Support**, **Hot-Reloading**, **Dependency Management**, and **Security Validation**.
 
-```python
-from engine import ScribeEngine
+### 1. Plugin Configuration
 
-# Create engine instance
-engine = ScribeEngine(
-    watch_paths=["/path/to/watch"],
-    file_patterns=["*.md", "*.txt"],
-    health_port=9468
-)
+The plugin system is configured in `config.json` under the `plugins` key:
 
-# Start engine
-engine.start()
+-   `"directories"`: An array of directories where Scribe looks for plugins. This allows you to organize plugins logically (e.g., core actions, custom business logic, third-party extensions).
+-   `"load_order"`: An array specifying the order in which to load the directories. This is crucial when one directory's plugins might depend on another's.
+-   `"auto_reload"`: A boolean (`true` or `false`) to enable or disable plugin hot-reloading. When `true`, any change to a plugin file will cause it to be reloaded automatically without restarting the engine.
 
-# Stop gracefully
-engine.stop()
-```
+### 2. Creating a Custom Action Plugin
 
-### Watcher (Producer Thread)
+An "Action" is a Python class that inherits from `BaseAction` and performs a specific task.
 
-Monitors file system events using the `watchdog` library:
+**Example Plugin (`custom_plugins/add_metadata_action.py`):**
 
 ```python
-from core.watcher import Watcher
-import queue
+# custom_plugins/add_metadata_action.py
 
-event_queue = queue.Queue()
-shutdown_event = threading.Event()
+# This plugin depends on another action to be loaded first
+# depends: log_event
 
-watcher = Watcher(
-    watch_paths=["/path/to/watch"],
-    file_patterns=["*.md"],
-    event_queue=event_queue,
-    shutdown_event=shutdown_event
-)
+from ..actions.base import BaseAction, ActionExecutionError
+import re
+from typing import Dict, Any, List
 
-watcher.start()
+class AddMetadataAction(BaseAction):
+    """
+    Action to add a metadata key-value pair to the end of a file.
+    """
+    def get_required_params(self) -> List[str]:
+        return ["key", "value"]
+
+    def execute(self, file_content: str, match: re.Match, file_path: str, params: Dict[str, Any]) -> str:
+        """
+        Appends a 'key: value' line to the file content.
+        """
+        self.validate_params(params)
+        key = params["key"]
+        value = params["value"]
+        
+        self.logger.info(f"Adding metadata '{{key}}: {{value}}' to file.", file_path=file_path)
+        
+        return f"{file_content.strip()}\\n{{key}}: {{value}}\\n"
+
+    def get_description(self) -> str:
+        return "Appends a key-value pair to the end of a file."
 ```
 
-### Worker (Consumer Thread)
+### 3. Dependency Management
 
-Processes events from the queue:
+Scribe can manage dependencies between plugins. If `PluginA` requires `PluginB` to be loaded first, you can declare this with a special comment.
 
-```python
-from core.worker import Worker
+-   **Declaration**: Use a comment at the top of your plugin file: `# depends: <action_type>`
+-   **Resolution**: The `PluginLoader` performs a topological sort to ensure dependencies are loaded in the correct order.
+-   **Error Handling**: The engine will fail to start if a dependency is missing or if a circular dependency is detected, preventing runtime errors.
 
-worker = Worker(
-    event_queue=event_queue,
-    shutdown_event=shutdown_event,
-    queue_timeout=1.0
-)
+### 4. Security Validation
 
-worker.start()
-```
+Before loading any plugin, the `PluginLoader` performs several security checks to create a safe execution sandbox:
 
-### Atomic File Operations
+-   **File Permissions**: Rejects plugins that are world-writable to prevent unauthorized modification.
+-   **Dangerous Imports**: Scans the plugin's source code for dangerous Python modules like `subprocess`, `eval`, `exec`, or `os.system`.
+-   **Dangerous Function Calls**: Analyzes the code to detect direct calls to potentially harmful functions.
 
-Crash-safe file writing:
+These checks significantly reduce the risk of executing malicious or unsafe code.
 
-```python
-from core.atomic_write import atomic_write, atomic_write_json
-
-# Write text atomically
-success = atomic_write("/path/to/file.txt", "content")
-
-# Write JSON atomically
-data = {"key": "value"}
-success = atomic_write_json("/path/to/file.json", data)
-```
-
-### Structured Logging
-
-Machine-parsable JSON logs:
-
-```python
-from core.logging_config import configure_structured_logging, get_scribe_logger
-
-# Configure logging
-configure_structured_logging(log_level="INFO")
-
-# Get logger
-logger = get_scribe_logger("my_component")
-
-# Log with context
-logger.info("Processing file", 
-           file_path="/path/to/file.md",
-           event_type="file_modified")
-```
-
-### Health Monitoring
-
-HTTP endpoint for monitoring:
-
-```python
-from core.health_server import HealthServer
-
-def get_status():
-    return {
-        "status": "running",
-        "uptime_seconds": 123.45,
-        "queue_size": 0
-    }
-
-health_server = HealthServer(port=9468, status_provider=get_status)
-health_server.start()
-```
+---
 
 ## Testing
 
@@ -284,126 +223,12 @@ All imports now use the installed package, eliminating the need for `sys.path` m
 ### Test Categories
 
 1. **Unit Tests**: Individual component testing
-   - `test_watcher.py` - File system watcher
    - `test_worker.py` - Event processor
    - `test_atomic_write.py` - Crash-safe file operations
 
 2. **Integration Tests**: End-to-end testing
    - `test_integration.py` - Complete event flow
    - `test_health_endpoint.py` - HTTP monitoring
-
-3. **Exit Condition Tests**: Milestone verification
-   - `test_exit_conditions_1_1.py` - Step 1.1 verification
-   - `test_step_1_2_exit_conditions.py` - Step 1.2 verification
-
-### Example Test
-
-```python
-import unittest
-from engine import ScribeEngine
-
-class TestScribeEngine(unittest.TestCase):
-    def test_engine_lifecycle(self):
-        engine = ScribeEngine(
-            watch_paths=["/tmp/test"],
-            file_patterns=["*.md"],
-            health_port=9469
-        )
-        
-        # Start engine
-        engine.start()
-        self.assertTrue(engine.is_running)
-        
-        # Stop engine
-        engine.stop()
-        self.assertFalse(engine.is_running)
-```
-
-## Monitoring & Observability
-
-### Health Endpoint
-
-The engine exposes a health endpoint at `http://localhost:9468/health`:
-
-```json
-{
-  "status": "running",
-  "uptime_seconds": 3600.5,
-  "queue_size": 0,
-  "events_processed": 1250,
-  "events_failed": 2,
-  "success_rate": 99.84,
-  "watch_paths": ["/path/to/watch"],
-  "file_patterns": ["*.md"]
-}
-```
-
-### Structured Logs
-
-All logs are emitted as JSON for easy parsing:
-
-```json
-{
-  "event": "File event detected",
-  "logger": "watcher",
-  "level": "info",
-  "timestamp": "2025-06-08T16:32:08.169978Z",
-  "file_path": "/path/to/file.md",
-  "event_type": "modified"
-}
-```
-
-### Performance Metrics
-
-Key metrics to monitor:
-
-- **Event Processing Time**: < 50ms per event
-- **Queue Size**: Should remain near 0 under normal load
-- **Success Rate**: Should be > 99%
-- **Memory Usage**: Should remain stable over time
-
-## Development
-
-### Project Structure
-
-```
-tools/scribe/
-├── pyproject.toml         # Python package configuration
-├── engine.py              # Main engine orchestrator
-├── watcher.py             # File system watcher
-├── worker.py              # Event processor
-├── core/                  # Core components package
-│   ├── __init__.py        # Package initialization
-│   ├── config_manager.py  # Configuration management
-│   ├── security_manager.py # Security & command execution
-│   ├── logging_config.py  # Structured logging
-│   ├── action_dispatcher.py # Action orchestration
-│   ├── plugin_loader.py   # Dynamic plugin loading
-│   └── ...               # Other core modules
-├── actions/               # Action plugins package
-│   ├── __init__.py        # Package initialization
-│   ├── base.py           # Base action interface
-│   └── run_command_action.py # Command execution action
-├── config/               # Configuration
-│   └── config.json       # Engine configuration
-└── requirements.txt      # Dependencies
-```
-
-### Adding Custom Actions (Phase 2)
-
-Create a new action plugin:
-
-```python
-# actions/my_action.py
-from actions.base import BaseAction
-import re
-
-class MyAction(BaseAction):
-    def execute(self, file_content: str, match: re.Match, 
-                file_path: str, params: dict) -> str:
-        # Your custom logic here
-        return modified_content
-```
 
 ## Troubleshooting
 
@@ -424,43 +249,7 @@ class MyAction(BaseAction):
    - Verify watch paths are correct
    - Look for errors in structured logs
 
-### Debug Mode
-
-Enable debug logging:
-
-```python
-from core.logging_config import configure_structured_logging
-
-configure_structured_logging(log_level="DEBUG")
-```
-
-### Log Analysis
-
-Parse JSON logs with jq:
-
-```bash
-# Filter by event type
-python engine.py | jq 'select(.event_type == "file_modified")'
-
-# Monitor error rates
-python engine.py | jq 'select(.level == "error")' | wc -l
-```
-
-## Performance
-
-### Benchmarks (Phase 1)
-
-- **Event Detection**: < 1.5ms average
-- **Queue Processing**: < 50ms per event
-- **Memory Usage**: Stable over 24+ hours
-- **Throughput**: 5,000+ events processed successfully
-
-### Optimization Tips
-
-1. **File Patterns**: Use specific patterns to reduce noise
-2. **Watch Paths**: Monitor only necessary directories
-3. **Queue Size**: Monitor via health endpoint
-4. **Log Level**: Use INFO or WARNING in production
+---
 
 ## Roadmap
 
@@ -471,11 +260,11 @@ python engine.py | jq 'select(.level == "error")' | wc -l
 - [x] Structured logging
 - [x] Health monitoring
 
-### Phase 2: The Extensible Platform (In Progress)
-- [ ] Rule engine & configuration management
-- [ ] Action plugin system & security
-- [ ] Circuit breaker pattern
-- [ ] Hot-reloading configuration
+### Phase 2: The Extensible Platform ✅
+- [x] Rule engine & configuration management
+- [x] **V2.0 Action Plugin System (Hot-Reload, Dependencies, Security)**
+- [x] Circuit breaker pattern for rule actions
+- [x] Hot-reloading for main configuration and plugins
 
 ### Future Enhancements
 - [ ] Web UI for monitoring

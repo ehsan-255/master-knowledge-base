@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-08 23:10:19  
+**Generated**: 2025-06-10 18:16:06  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -20,20 +20,10 @@
 │   📄 roadmap-progress-tracker-template.md
 │   📄 roadmap-template.md
 🗃️ archive ALWAYS ARCHIVE HERE
-📁 config
-│   📄 config.json
-│   📄 config.schema.json
 ⚖️ standards
 │   🔠 registry
-│   │   📄 criticality_levels.txt
-│   │   📄 field_order.yaml
-│   │   📄 frontmatter_fields.yaml
-│   │   📄 info_types.txt
-│   │   📄 lifecycle_gatekeepers.txt
 │   │   📄 mt-registry-tag-glossary.yaml
 │   │   📄 mt-schema-frontmatter.yaml
-│   │   📄 registry_schema.yaml
-│   │   📄 tag_categories.txt
 │   ⚖️ src
 │   │   📄 AS-KB-DIRECTORY-STRUCTURE.md
 │   │   📄 AS-MAP-STANDARDS-KB.md
@@ -131,6 +121,7 @@
 │   │   📄 test_end_to_end_traceability.py
 │   │   📄 test_event_id_traceability.py
 │   │   📄 test_exit_conditions_1_1.py
+│   │   📄 test_full_pipeline.py
 │   │   📄 test_health_endpoint.py
 │   │   📄 test_integration.py
 │   │   📄 test_phase4_verification.py
@@ -179,14 +170,6 @@
 │   │   📄 standards_index.schema.json
 │   🔧 linter
 │   │   📄 kb_linter.py
-│   📁 migration-scripts
-│   │   📄 migrate_file_structure.py
-│   │   📄 migrate_master_kb_to_root.py
-│   │   📄 README.md
-│   │   📄 rollback_migration.py
-│   │   📄 test_migration_scripts.py
-│   │   📄 update_path_references.py
-│   │   📄 validate_migration.py
 │   📁 naming-enforcer
 │   │   📄 .namingignore
 │   │   📄 .naminginclude
@@ -202,16 +185,24 @@
 │   📊 reports
 │   │   📄 action-2-2-3-3-quarantine-logic-completion-20250608-1225.md
 │   │   📄 circuit-breaker-integration-test-20250608-1203.md
+│   │   📄 config-folder-relocation-20250609-2315.md
+│   │   📄 dependency-analysis-archive-operation-20250609-2305.md
+│   │   📄 frontmatter-organizer-sst-integration-20250610-0113.md
 │   │   📄 phase4-circuit-breaker-completion-20250608-2207.md
 │   │   📄 phase5-queue-backpressure-completion-20250608-2212.md
 │   │   📄 project-completion-scribe-refinements-20250608-2216.md
 │   │   📄 quarantine-logic-test-results-20250608-1224.txt
 │   │   📄 quarantine-logic-test-results-20250608-1225.txt
+│   │   📄 standards-registry-complete-dependency-analysis-20250609-2320.md
+│   │   📄 tools-readme-revision-migration-scripts-removal-20250609-2310.md
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
 │   │   │   📄 base.py
 │   │   │   📄 run_command_action.py
+│   │   📁 config
+│   │   │   📄 config.json
+│   │   │   📄 config.schema.json
 │   │   📁 core
 │   │   │   📄 __init__.py
 │   │   │   📄 action_dispatcher.py
@@ -223,6 +214,7 @@
 │   │   │   📄 plugin_loader.py
 │   │   │   📄 rule_processor.py
 │   │   │   📄 security_manager.py
+│   │   📄 __init__.py
 │   │   📄 engine.py
 │   │   📄 pyproject.toml
 │   │   📄 README.md
@@ -246,16 +238,10 @@
 📄 .cursorrules
 📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
+📄 json-ld-implementation-analysis.md
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py
-📄 scribe-hma-blueprint.md
-📄 scribe-hma-checklist.md
-📄 scribe-hma-progress-tracker.md
-📄 scribe-hma-roadmap.md
-📄 scribe-refinements-progress-tracker.md
-📄 scribe-refinements-roadmap-checklist.md
-📄 scribe-refinements-roadmap.md
 ```
 
 ---

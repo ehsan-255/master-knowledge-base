@@ -48,7 +48,10 @@ class Worker(threading.Thread):
         
         # Core service instantiation
         self.config_manager = ConfigManager()
-        self.plugin_loader = PluginLoader(self.config_manager.get_plugin_directories())
+        self.plugin_loader = PluginLoader(
+            plugin_directories=self.config_manager.get_plugin_directories(),
+            load_order=self.config_manager.get_plugin_load_order()
+        )
         self.security_manager = SecurityManager(config_manager=self.config_manager) # Pass config_manager
         self.rule_processor = RuleProcessor(config_manager=self.config_manager) # Pass the ConfigManager instance
         # ActionDispatcher initialization in the test setup was:
@@ -64,6 +67,13 @@ class Worker(threading.Thread):
             security_manager=self.security_manager
             # quarantine_path will use its default in ActionDispatcher.
         )
+
+        # Load all plugins
+        self.plugin_loader.load_all_plugins()
+        
+        # Enable hot-reloading if configured
+        if self.config_manager.get_plugin_auto_reload():
+            self.plugin_loader.enable_hot_reload()
 
         # Statistics for monitoring
         self.events_processed = 0
@@ -263,3 +273,5 @@ class Worker(threading.Thread):
             'success_rate': round(self.events_processed / max(total_events, 1) * 100, 2),
             'queue_size': self.event_queue.qsize()
         } 
+
+     

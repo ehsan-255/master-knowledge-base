@@ -2,7 +2,7 @@
 """
 Frontmatter Organizer Tool
 
-Reorders frontmatter keys according to canonical order defined in the linter.
+Reorders frontmatter keys according to canonical order defined in the SST schema file.
 Preserves all content while ensuring compliance with linting standards.
 """
 
@@ -12,17 +12,64 @@ import argparse
 import yaml
 from pathlib import Path
 
-# Canonical key order from linter (kb_linter.py)
-CANONICAL_KEY_ORDER = [
-    "title", "standard_id", "aliases", "tags", "kb-id", "info-type",
-    "primary-topic", "related-standards", "version", "date-created",
-    "date-modified", "primary_domain", "sub_domain", "scope_application",
-    "criticality", "lifecycle_gatekeeper", "impact_areas"
-]
-
 class FrontmatterOrganizer:
-    def __init__(self):
-        pass
+    def __init__(self, repo_base_path="."):
+        """Initialize with repository base path to locate schema file"""
+        self.repo_base = Path(repo_base_path).resolve()
+        
+        # Handle both direct repo root and master-knowledge-base subdirectory
+        if self.repo_base.name == "master-knowledge-base":
+            self.schema_path = self.repo_base / "standards" / "registry" / "mt-schema-frontmatter.yaml"
+        else:
+            # Assume we're in repo root, look for master-knowledge-base subdirectory
+            mkb_path = self.repo_base / "master-knowledge-base"
+            if mkb_path.exists():
+                self.schema_path = mkb_path / "standards" / "registry" / "mt-schema-frontmatter.yaml"
+            else:
+                # Fallback: assume current directory structure
+                self.schema_path = self.repo_base / "standards" / "registry" / "mt-schema-frontmatter.yaml"
+        
+        self.canonical_key_order = self._load_canonical_key_order()
+    
+    def _load_canonical_key_order(self):
+        """Load canonical key order from SST schema file"""
+        try:
+            if not self.schema_path.exists():
+                print(f"ERROR: Schema file not found: {self.schema_path}")
+                print("Falling back to hardcoded order for compatibility")
+                return [
+                    "title", "standard_id", "aliases", "tags", "kb-id", "info-type",
+                    "primary-topic", "related-standards", "version", "date-created",
+                    "date-modified", "primary_domain", "sub_domain", "scope_application",
+                    "criticality", "lifecycle_gatekeeper", "impact_areas"
+                ]
+            
+            with open(self.schema_path, 'r', encoding='utf-8') as f:
+                schema_data = yaml.safe_load(f)
+            
+            field_order = schema_data.get('field_order', [])
+            if not field_order:
+                print(f"WARNING: No field_order found in {self.schema_path}")
+                print("Falling back to hardcoded order for compatibility")
+                return [
+                    "title", "standard_id", "aliases", "tags", "kb-id", "info-type",
+                    "primary-topic", "related-standards", "version", "date-created",
+                    "date-modified", "primary_domain", "sub_domain", "scope_application",
+                    "criticality", "lifecycle_gatekeeper", "impact_areas"
+                ]
+            
+            print(f"SUCCESS: Loaded {len(field_order)} canonical keys from {self.schema_path}")
+            return field_order
+            
+        except Exception as e:
+            print(f"ERROR: Failed to load schema file {self.schema_path}: {e}")
+            print("Falling back to hardcoded order for compatibility")
+            return [
+                "title", "standard_id", "aliases", "tags", "kb-id", "info-type",
+                "primary-topic", "related-standards", "version", "date-created",
+                "date-modified", "primary_domain", "sub_domain", "scope_application",
+                "criticality", "lifecycle_gatekeeper", "impact_areas"
+            ]
     
     def parse_frontmatter(self, content):
         """Parse YAML frontmatter from markdown content"""
@@ -49,13 +96,13 @@ class FrontmatterOrganizer:
         ordered_items = []
         
         # Add keys in canonical order if they exist
-        for key in CANONICAL_KEY_ORDER:
+        for key in self.canonical_key_order:
             if key in frontmatter_dict:
                 ordered_items.append((key, frontmatter_dict[key]))
         
         # Add any additional keys not in canonical order at the end
         for key, value in frontmatter_dict.items():
-            if key not in CANONICAL_KEY_ORDER:
+            if key not in self.canonical_key_order:
                 ordered_items.append((key, value))
         
         # Manually build YAML string to preserve order
@@ -74,12 +121,12 @@ class FrontmatterOrganizer:
     def needs_reordering(self, frontmatter_dict):
         """Check if frontmatter keys need reordering"""
         keys_in_doc = list(frontmatter_dict.keys())
-        canonical_keys_in_doc = [k for k in keys_in_doc if k in CANONICAL_KEY_ORDER]
+        canonical_keys_in_doc = [k for k in keys_in_doc if k in self.canonical_key_order]
         
         # Check if canonical keys are in correct relative order
         last_canonical_idx = -1
         for key in canonical_keys_in_doc:
-            current_canonical_idx = CANONICAL_KEY_ORDER.index(key)
+            current_canonical_idx = self.canonical_key_order.index(key)
             if current_canonical_idx < last_canonical_idx:
                 return True
             last_canonical_idx = current_canonical_idx
@@ -154,6 +201,7 @@ def main():
     parser.add_argument("--file", "-f", help="Single file to organize")
     parser.add_argument("--directory", "-d", help="Directory to scan for markdown files")
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without applying them")
+    parser.add_argument("--repo-base", default=".", help="Path to the repository root (default: current directory)")
     
     args = parser.parse_args()
     
@@ -161,7 +209,7 @@ def main():
         parser.print_help()
         return
     
-    organizer = FrontmatterOrganizer()
+    organizer = FrontmatterOrganizer(args.repo_base)
     
     if args.file:
         file_path = Path(args.file)

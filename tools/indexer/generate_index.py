@@ -97,9 +97,9 @@ def main():
     parser.add_argument("--repo-base", default=".", 
                         help="Path to the repository root. Default is current directory.")
     parser.add_argument("--src-dirs", nargs='+', 
-                        default=[os.path.join("master-knowledge-base", "standards", "src")], 
+                        default=[os.path.join("standards", "src")], 
                         help="Source directories for standards files, relative to repo-base. Can specify multiple.")
-    parser.add_argument("--output-dir", default=os.path.join("master-knowledge-base", "dist"), 
+    parser.add_argument("--output-dir", default="dist", 
                         help="Output directory for the index file, relative to repo-base.")
     parser.add_argument("--schema-file", default=os.path.join("master-knowledge-base", "tools", "indexer", "standards_index.schema.json"), 
                         help="Path to the JSON schema for the index, relative to repo-base.")
