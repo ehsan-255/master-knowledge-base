@@ -12,6 +12,46 @@
   "kb:modified": "2025-06-11T00:34:31.255166Z",
   "kb:version": "1.0.0",
   "kb:status": "active",
+  "kb:namingConventions": {
+    "@id": "kb:naming-conventions-set",
+    "@type": "kb:NamingConventions",
+    "kb:comment": "Defines standard regex patterns for various naming contexts.",
+    "kb:defaultFilePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "kb:description": "Default pattern for files (kebab-case)."
+    },
+    "kb:defaultDirectoryPattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "kb:description": "Default pattern for directories (kebab-case)."
+    },
+    "kb:kebabCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "kb:description": "Standard kebab-case pattern."
+    },
+    "kb:snakeCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+      "kb:description": "Standard snake_case pattern."
+    },
+    "kb:pascalCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[A-Z][a-zA-Z0-9]*$",
+      "kb:description": "Standard PascalCase pattern."
+    },
+    "kb:camelCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z][a-zA-Z0-9]*$",
+      "kb:description": "Standard camelCase pattern."
+    },
+    "kb:upperSnakeCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[A-Z0-9]+(_[A-Z0-9]+)*$",
+      "kb:description": "Standard UPPER_SNAKE_CASE pattern."
+    }
+  },
   "kb:fieldDefinitions": [
     {
       "@type": "kb:FieldDefinition",
@@ -725,7 +765,7 @@
           "@id": "kb:tag-build-process",
           "kb:tagId": "build-process",
           "kb:fullTag": "topic/build-process",
-          "kb:description": "Documents about the assembly or build process for the KB"
+          "kb:description": "Documents related to the assembly or build process for the KB"
         },
         {
           "@type": "kb:Tag",

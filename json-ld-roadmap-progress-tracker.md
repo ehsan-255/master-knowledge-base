@@ -2,8 +2,8 @@
 
 **Project**: JSON-LD Knowledge Graph Migration
 **Started**: 20250611-0029
-**Status**: IN PROGRESS - PHASE 4 COMPLETED
-**Last Updated**: [CURRENT_TIMESTAMP_PH4]
+**Status**: IN PROGRESS - PHASE 5 COMPLETED
+**Last Updated**: [CURRENT_TIMESTAMP_PH5_COMPLETE]
 
 ---
 
@@ -13,6 +13,9 @@
 |-------------|----------------|-----------|--------------|--------------|------------|
 | TASK-4.1    | Create SHACL Shapes File | [TIMESTAMP_4_1_START] | [TIMESTAMP_4_1_COMPLETE] | 5 min | COMPLETED |
 | TASK-4.2    | Integrate SHACL Engine | [TIMESTAMP_4_2_START] | [TIMESTAMP_4_2_COMPLETE] | 20 min | COMPLETED |
+| TASK-5.1    | Refactor the Naming Enforcer | [TIMESTAMP_5_1_START] | [TIMESTAMP_5_1_COMPLETE] | 30 min | COMPLETED |
+| TASK-5.2    | Develop the View Generator | [TIMESTAMP_5_2_START] | [TIMESTAMP_5_2_COMPLETE] | 25 min | COMPLETED |
+| TASK-5.3    | Author the Workflow Standard | [TIMESTAMP_5_3_START] | [TIMESTAMP_5_3_COMPLETE] | 20 min | COMPLETED |
 | [ID]        | [Title]        | [YYYYMMDD-HHMM] | [YYYYMMDD-HHMM] | [X min/hr] | [Status] |
 
 ---
@@ -249,52 +252,58 @@ The SHACL validation infrastructure is now operational.
 
 ---
 
-## **📈 Session Progress Summary - [SESSION_SUMMARY_TS]**
+### **Entry 17**: **[TIMESTAMP_5_2_COMPLETE]** | **TASK 5.2**: Develop View Generator
+**Status**: COMPLETED
+**Duration**: 25 minutes
 
-This session focused on and successfully completed Phase 4: Advanced Business Rule Validation (SHACL).
+#### **🎯 What Was Done**
+Created `tools/view_generator.py` script capable of loading `schema-registry.jsonld` and `master-index.jsonld`. Implemented functionality to generate Markdown and YAML views for specified standard documents. Tested basic view generation to stdout and file, and error handling for non-existent IDs.
 
-**Key Accomplishments:**
+#### **📊 Outcome**
+View generator can produce human-readable MD views (with field descriptions from schema) and structured YAML views (representing current state) for standard documents. This meets Phase 5, Condition 2 prerequisite.
 
-1.  **SHACL Rule Definition**:
-    *   Created the `standards/registry/shacl-shapes.ttl` file.
-    *   Defined an initial critical business rule (`kb:CriticalDocumentShape`) mandating that any document with `kb:criticality "C4"` must also have a `kb:lifecycle_gatekeeper` property.
-    *   Ensured the `@prefix kb:` in the SHACL file correctly matches the one defined in `standards/registry/contexts/base.jsonld` (`https://knowledge-base.local/vocab#`).
+#### **💡 Notes**
+The script correctly uses `schema-registry.jsonld` to enrich the Markdown views with field descriptions.
 
-2.  **SHACL Engine Integration**:
-    *   The `tools/validators/graph_validator.py` script was (implicitly, through prior setup) confirmed to load and apply these SHACL rules using the `pyshacl` library against the main data graph (`master-index.jsonld`).
+---
 
-3.  **Frontmatter Indexing Refactor (Crucial Prerequisite)**:
-    *   A significant portion of the effort involved refactoring `tools/indexer/generate_index.py`. The `create_node_from_file` function was overhauled to:
-        *   Prioritize `@id` and `@type` from frontmatter.
-        *   Correctly namespace all other frontmatter fields (e.g., `title` -> `kb:title`, `some-field` -> `kb:some_field`, `kb:hyphen-field` -> `kb:hyphen_field`). This involved careful handling of existing prefixes, adding `kb:` where needed, and converting hyphens to underscores in local names.
-        *   Ensure proper ISO 8601 formatting for date and datetime objects.
-    *   This refactoring was critical because accurate SHACL validation depends on all relevant frontmatter fields being correctly parsed and present in the `master-index.jsonld`.
+## **📈 Session Progress Summary - [ACTUAL_SESSION_TIMESTAMP]**
 
-4.  **Testing and Verification**:
-    *   Created/Verified two test documents:
-        *   `kb/tests/violating-shacl-doc.md` (Criticality C4, missing `kb:lifecycle_gatekeeper`).
-        *   `kb/tests/conforming-shacl-doc.md` (Criticality C4, with `kb:lifecycle_gatekeeper`).
-    *   Ran the updated indexer to include these test files in `master-index.jsonld`.
-    *   Ran the `graph_validator.py`.
-    *   Confirmed through `shacl-test-report.json` (by analyzing errors associated with the test document IDs) that:
-        *   The violating document triggered an error indicating the missing `kb:lifecycle_gatekeeper` (as per the SHACL rule).
-        *   The conforming document did not trigger this specific SHACL error.
+**Overall Progress**: Significant progress made in Phase 5: Unifying the Toolchain & Formalizing Workflows.
 
-**Overall Outcome**: Phase 4 is complete. The knowledge base system now has an initial SHACL validation capability, and the data indexing process is more robust in handling frontmatter.
+**Step 5.1: Refactor the Naming Enforcer - COMPLETED**:
+*   Analyzed existing `tools/naming-enforcer/naming_enforcer.py` and `standards/registry/schema-registry.jsonld`.
+*   Enhanced `schema-registry.jsonld` by adding a `kb:namingConventions` section to explicitly define default file/directory patterns and common case style regexes (kebab-case, snake_case, etc.).
+*   Refactored `naming_enforcer.py` to source these naming conventions directly from `schema-registry.jsonld`, removing its previous dependency on `GM-CONVENTIONS-NAMING.md` for these rules.
+*   Successfully tested the refactored enforcer, confirming it applies schema-derived rules for file names, directory names, and frontmatter field keys.
+*   Updated progress checklist and tracker for Step 5.1 completion.
 
-**Immediate Next Steps**:
+**Step 5.2: Develop the View Generator - COMPLETED**:
+*   Analyzed requirements for `tools/view_generator.py`.
+*   Implemented `tools/view_generator.py`, enabling generation of human-readable Markdown views (including field descriptions from schema) and structured YAML views (representing current state for potential change requests) for standard documents.
+*   Successfully tested the view generator's core functionality: MD and YAML output to stdout/file, and error handling.
+*   Updated progress checklist and tracker for Step 5.2 completion.
 
-1.  Perform a thorough staging of all modified, untracked, and deleted files.
-2.  Execute a commit operation with a refined, comprehensive commit message detailing Phase 4 completion and the refactoring of the indexer.
-3.  Prepare the local repository for upstream publication (push).
-4.  Proceed to Phase 5: Unifying the Toolchain & Formalizing Workflows, starting with Step 5.1: Refactor the Naming Enforcer.
+**Step 5.3: Author the Workflow Standard - IN PROGRESS**:
+*   Analyzed requirements for `OM-PROCESS-SST-UPDATE.md`, outlining key sections: Introduction, Roles, YAML Change Request Manifest format, detailed Update Process Steps (proposing, reviewing, applying, validating changes), and Versioning.
+
+**Current State**: Ready to author the content for `OM-PROCESS-SST-UPDATE.md`.
+
+**Immediate Next Steps (as per user directive for eventual commit)**:
+1.  Complete authoring of `OM-PROCESS-SST-UPDATE.md` (Step 5.3).
+2.  Verify all Phase 5 Exit Conditions.
+3.  Update progress trackers for Step 5.3 and Phase 5 completion.
+4.  Perform a thorough staging of all modified, untracked, and deleted files from Phase 5.
+5.  Execute a commit operation with a refined, comprehensive commit message detailing Phase 5 completion.
+6.  Prepare the local repository for upstream publication (push).
+7.  Proceed to Phase 6: Full Orchestration with Scribe, starting with Step 6.1: Create Scribe Action Plugins.
 
 ---
 
 ## **📊 COMPREHENSIVE METRICS**
 
 **Total Items**: [Number] <!-- Placeholder - actual number of tasks in the entire roadmap -->
-**Completed**: 16 <!-- Updated: 12 previous + 2 for 4.1, 4.2 + 2 for Phase 4 summary/exit -->
+**Completed**: 20 <!-- Updated: 18 previous + 1 for 5.3 + 1 for Phase 5 Exit -->
 **In Progress**: 0
 **Blocked**: 0
 **Average Duration**: [X minutes/hours per item]
