@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-10 18:16:06  
+**Generated**: 2025-06-11 01:20:29  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -22,8 +22,7 @@
 🗃️ archive ALWAYS ARCHIVE HERE
 ⚖️ standards
 │   🔠 registry
-│   │   📄 mt-registry-tag-glossary.yaml
-│   │   📄 mt-schema-frontmatter.yaml
+│   │   📁 contexts
 │   ⚖️ src
 │   │   📄 AS-KB-DIRECTORY-STRUCTURE.md
 │   │   📄 AS-MAP-STANDARDS-KB.md
@@ -170,6 +169,7 @@
 │   │   📄 standards_index.schema.json
 │   🔧 linter
 │   │   📄 kb_linter.py
+│   📁 migration
 │   📁 naming-enforcer
 │   │   📄 .namingignore
 │   │   📄 .naminginclude
@@ -195,6 +195,11 @@
 │   │   📄 quarantine-logic-test-results-20250608-1225.txt
 │   │   📄 standards-registry-complete-dependency-analysis-20250609-2320.md
 │   │   📄 tools-readme-revision-migration-scripts-removal-20250609-2310.md
+│   │   📄 validation-report-20250611-0052.json
+│   │   📄 validation-report-with-links-20250611-0103.json
+│   │   📄 validation-report-with-relationships-20250611-0106.json
+│   │   📄 validation-report-with-relationships-20250611-0107.json
+│   │   📄 validation-report-with-relationships-20250611-0108.json
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
@@ -231,6 +236,7 @@
 │   │   📄 README-repo-tree.md
 │   │   📄 todo_tracker.py
 │   🔧 validators
+│   │   📄 graph_validator.py
 │   │   📄 validate_registry.py
 │   📄 changelog.md
 │   📄 README.md
@@ -238,7 +244,9 @@
 📄 .cursorrules
 📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
-📄 json-ld-implementation-analysis.md
+📄 json-ld-roadmap-checklist.md
+📄 json-ld-roadmap-progress-tracker.md
+📄 json-ld-roadmap.md
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py

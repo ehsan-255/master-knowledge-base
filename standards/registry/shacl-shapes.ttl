@@ -1,0 +1,16 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix kb: <https://knowledge-base.local/vocab#> . # Adjusted this prefix
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Shape for validating documents with kb:criticality "C4"
+kb:CriticalDocumentShape
+    a sh:NodeShape ;
+    sh:targetObjectsWith [
+        sh:targetClass kb:Document ; # Assuming documents have @type kb:Document
+        kb:criticality "C4"
+    ] ;
+    sh:property [
+        sh:path kb:lifecycle_gatekeeper ;
+        sh:minCount 1 ;
+        sh:message "Critical documents (criticality C4) must have a lifecycle_gatekeeper defined."
+    ] .

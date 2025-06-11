@@ -1,0 +1,1157 @@
+{
+  "@context": [
+    "contexts/base.jsonld",
+    "contexts/fields.jsonld"
+  ],
+  "@type": "kb:SchemaRegistry",
+  "@id": "kb:schema-registry",
+  "kb:schemaVersion": "1.0.0",
+  "kb:title": "Knowledge Base Schema Registry",
+  "kb:description": "Unified JSON-LD schema registry for the knowledge base system",
+  "kb:created": "2025-06-11T00:34:31.255166Z",
+  "kb:modified": "2025-06-11T00:34:31.255166Z",
+  "kb:version": "1.0.0",
+  "kb:status": "active",
+  "kb:namingConventions": {
+    "@id": "kb:naming-conventions-set",
+    "@type": "kb:NamingConventions",
+    "kb:comment": "Defines standard regex patterns for various naming contexts.",
+    "kb:defaultFilePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "kb:description": "Default pattern for files (kebab-case)."
+    },
+    "kb:defaultDirectoryPattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "kb:description": "Default pattern for directories (kebab-case)."
+    },
+    "kb:kebabCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "kb:description": "Standard kebab-case pattern."
+    },
+    "kb:snakeCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+      "kb:description": "Standard snake_case pattern."
+    },
+    "kb:pascalCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[A-Z][a-zA-Z0-9]*$",
+      "kb:description": "Standard PascalCase pattern."
+    },
+    "kb:camelCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[a-z][a-zA-Z0-9]*$",
+      "kb:description": "Standard camelCase pattern."
+    },
+    "kb:upperSnakeCasePattern": {
+      "@type": "kb:NamingRule",
+      "kb:pattern": "^[A-Z0-9]+(_[A-Z0-9]+)*$",
+      "kb:description": "Standard UPPER_SNAKE_CASE pattern."
+    }
+  },
+  "kb:fieldDefinitions": [
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-title",
+      "kb:fieldName": "title",
+      "kb:description": "The official title of the document",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Must not be empty"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-standard_id",
+      "kb:fieldName": "standard_id",
+      "kb:description": "A unique identifier for a standard document",
+      "kb:mandatory": "conditional",
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "MUST follow regex pattern: ^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\\-]+$",
+        "Filename (excluding .md extension) SHOULD be identical to standard_id"
+      ],
+      "kb:mandatoryConditions": [
+        "Required for info-type: standard-definition, policy-document",
+        "Optional for other document types, but recommended if document has canonical identifier"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-aliases",
+      "kb:fieldName": "aliases",
+      "kb:description": "A list of alternative names or titles by which the document might be known",
+      "kb:mandatory": false,
+      "kb:dataType": "list_of_strings",
+      "kb:validationRules": [
+        "None beyond being a list of strings"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-tags",
+      "kb:fieldName": "tags",
+      "kb:description": "A list of keywords or labels used to categorize the document",
+      "kb:mandatory": true,
+      "kb:dataType": "list_of_strings",
+      "kb:validationRules": [
+        "All tags MUST be in kebab-case",
+        "MUST include tags from specific categories: status/*, content-type/*, topic/*",
+        "Refer to mt-registry-tag-glossary.yaml for comprehensive list"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-kb_id",
+      "kb:fieldName": "kb-id",
+      "kb:description": "An identifier for the knowledge base this document belongs to",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Must be in kebab-case",
+        "Value must come from controlled vocabulary in mt-registry-tag-glossary.yaml"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-info_type",
+      "kb:fieldName": "info-type",
+      "kb:description": "Specifies the type or category of information the document represents",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Must be in kebab-case",
+        "MUST be one of the predefined values in controlled_vocabularies.info_type"
+      ],
+      "kb:hasControlledVocabulary": true
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-primary_topic",
+      "kb:fieldName": "primary-topic",
+      "kb:description": "A concise statement describing the main subject or purpose of the document",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Must not be empty"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-related_standards",
+      "kb:fieldName": "related-standards",
+      "kb:description": "A list of other standards that are related to this document",
+      "kb:mandatory": false,
+      "kb:dataType": "list_of_strings",
+      "kb:validationRules": [
+        "Each string MUST be a valid standard_id or valid internal link format [[STANDARD_ID]]"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-version",
+      "kb:fieldName": "version",
+      "kb:description": "The version number of the document",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Semantic versioning preferred (e.g., '1.0.0', '0.2.1-alpha')"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-date_created",
+      "kb:fieldName": "date-created",
+      "kb:description": "The date and time when the document was originally created",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "MUST be in ISO-8601 date-time format: YYYY-MM-DDTHH:MM:SSZ"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-date_modified",
+      "kb:fieldName": "date-modified",
+      "kb:description": "The date and time when the document was last modified",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "MUST be in ISO-8601 date-time format: YYYY-MM-DDTHH:MM:SSZ"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-primary_domain",
+      "kb:fieldName": "primary_domain",
+      "kb:description": "The primary domain code (e.g., IT, HR, MT for Meta)",
+      "kb:mandatory": "conditional",
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Must be 2 uppercase letters",
+        "Value MUST exist in controlled_vocabularies.primary_domain"
+      ],
+      "kb:hasControlledVocabulary": true,
+      "kb:mandatoryConditions": [
+        "Mandatory for standards documents",
+        "Optional otherwise"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-sub_domain",
+      "kb:fieldName": "sub_domain",
+      "kb:description": "The sub-domain code (e.g., SECURITY, NETWORK, SCHEMA)",
+      "kb:mandatory": "conditional",
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Must be 2-6 uppercase letters",
+        "Value MUST exist in controlled_vocabularies.sub_domain for the given primary_domain"
+      ],
+      "kb:hasControlledVocabulary": true,
+      "kb:mandatoryConditions": [
+        "Mandatory for standards documents",
+        "Optional otherwise"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-scope_application",
+      "kb:fieldName": "scope_application",
+      "kb:description": "Defines the scope to which this document applies",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Must not be empty"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-criticality",
+      "kb:fieldName": "criticality",
+      "kb:description": "The criticality level of the document or the standard it defines",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Value MUST come from controlled_vocabularies.criticality",
+        "Valid values: P0-Critical, P1-High, P2-Medium, P3-Low, P4-Informational"
+      ],
+      "kb:hasControlledVocabulary": true
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-lifecycle_gatekeeper",
+      "kb:fieldName": "lifecycle_gatekeeper",
+      "kb:description": "Specifies the role or team responsible for approving transitions in the document's lifecycle",
+      "kb:mandatory": true,
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "Value MUST come from controlled_vocabularies.lifecycle_gatekeeper",
+        "Valid values: Architect-Review, Security-Team-Approval, Stakeholder-Review, No-Gatekeeper"
+      ],
+      "kb:hasControlledVocabulary": true
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-impact_areas",
+      "kb:fieldName": "impact_areas",
+      "kb:description": "A list of areas or systems that are affected by this document or standard",
+      "kb:mandatory": true,
+      "kb:dataType": "list_of_strings",
+      "kb:validationRules": [
+        "None beyond being a list of strings"
+      ]
+    },
+    {
+      "@type": "kb:FieldDefinition",
+      "@id": "kb:field-change_log_url",
+      "kb:fieldName": "change_log_url",
+      "kb:description": "A URL or relative path pointing to the document's changelog",
+      "kb:mandatory": "conditional",
+      "kb:dataType": "string",
+      "kb:validationRules": [
+        "If relative path, MUST start with ./",
+        "Linter SHOULD check for existence of linked file if relative path"
+      ],
+      "kb:mandatoryConditions": [
+        "Mandatory for standards"
+      ]
+    }
+  ],
+  "kb:controlledVocabularies": [
+    {
+      "@type": "kb:ControlledVocabulary",
+      "@id": "kb:vocab-info-type",
+      "kb:vocabularyName": "info_type",
+      "kb:values": [
+        "standard-definition",
+        "policy-document",
+        "guide-document",
+        "glossary-document",
+        "template-document",
+        "registry-document",
+        "schema-document",
+        "chapter-document",
+        "key-definition-set",
+        "kb-definition-map",
+        "how-to-guide",
+        "tutorial-document",
+        "troubleshooting-guide",
+        "reference-document",
+        "architecture-overview",
+        "design-specification",
+        "meeting-notes",
+        "report-document",
+        "process-definition",
+        "role-definition",
+        "service-definition",
+        "api-specification",
+        "data-model-definition",
+        "security-standard",
+        "compliance-guideline",
+        "collection-document",
+        "changelog"
+      ]
+    },
+    {
+      "@type": "kb:ControlledVocabulary",
+      "@id": "kb:vocab-audience-type",
+      "kb:vocabularyName": "audience_type",
+      "kb:values": [
+        {
+          "id": "AUTHOR",
+          "preferred_label": "Author",
+          "description": "Primary content producers and maintainers"
+        },
+        {
+          "id": "ENGINEER",
+          "preferred_label": "Engineer",
+          "description": "Technical stakeholders integrating or tooling the KB"
+        },
+        {
+          "id": "REVIEWER",
+          "preferred_label": "Reviewer",
+          "description": "Subject‑matter or governance reviewers"
+        }
+      ]
+    },
+    {
+      "@type": "kb:ControlledVocabulary",
+      "@id": "kb:vocab-criticality",
+      "kb:vocabularyName": "criticality",
+      "kb:values": [
+        {
+          "level": "P0-Critical",
+          "tag": "criticality/P0-Critical",
+          "description": "Essential for system operation, core understanding, or carries significant regulatory/compliance implications"
+        },
+        {
+          "level": "P1-High",
+          "tag": "criticality/P1-High",
+          "description": "Important for system operation, key processes, or best practices"
+        },
+        {
+          "level": "P2-Medium",
+          "tag": "criticality/P2-Medium",
+          "description": "Useful for consistency, best practices, or operational efficiency"
+        },
+        {
+          "level": "P3-Low",
+          "tag": "criticality/P3-Low",
+          "description": "Optional or advisory content"
+        },
+        {
+          "level": "P4-Informational",
+          "tag": "criticality/P4-Informational",
+          "description": "Purely informational content with no direct operational impact"
+        }
+      ]
+    },
+    {
+      "@type": "kb:ControlledVocabulary",
+      "@id": "kb:vocab-primary-domain",
+      "kb:vocabularyName": "primary_domain",
+      "kb:values": [
+        {
+          "id": "AS",
+          "preferred_label": "Architecture & Structure",
+          "description": "Rules defining directory structure, modularity, and single‑source build patterns"
+        },
+        {
+          "id": "CS",
+          "preferred_label": "Content & Semantics",
+          "description": "Standards governing meaning, metadata keys, and controlled vocabularies"
+        },
+        {
+          "id": "MT",
+          "preferred_label": "Metadata & Tagging",
+          "description": "Rules for metadata schemas and tagging mechanisms"
+        },
+        {
+          "id": "SF",
+          "preferred_label": "Syntax & Formatting",
+          "description": "Constraints on markdown syntax and formatting rules"
+        },
+        {
+          "id": "OM",
+          "preferred_label": "Operational Management",
+          "description": "Automation, deployment, and operational processes"
+        },
+        {
+          "id": "GM",
+          "preferred_label": "Governance & Meta‑Standards",
+          "description": "Policies, decision records, and governance standards"
+        },
+        {
+          "id": "UA",
+          "preferred_label": "Utility & Assets",
+          "description": "Reusable assets, utilities, and ancillary resources"
+        },
+        {
+          "id": "QM",
+          "preferred_label": "Quality & Metrics",
+          "description": "Quality criteria, metrics definition, and validation"
+        }
+      ]
+    },
+    {
+      "@type": "kb:ControlledVocabulary",
+      "@id": "kb:vocab-lifecycle-gatekeeper",
+      "kb:vocabularyName": "lifecycle_gatekeeper",
+      "kb:values": [
+        {
+          "gatekeeper": "Architect-Review",
+          "name": "Architect Review",
+          "description": "Requires review and approval from a designated system/solution architect or architectural body"
+        },
+        {
+          "gatekeeper": "SME-Consensus",
+          "name": "Subject Matter Expert (SME) Consensus",
+          "description": "Requires consensus agreement from a defined group of subject matter experts"
+        },
+        {
+          "gatekeeper": "Automated-Validation",
+          "name": "Automated Validation",
+          "description": "Requires passing automated checks, linters, or validation scripts"
+        },
+        {
+          "gatekeeper": "Peer-Review",
+          "name": "Peer Review",
+          "description": "Requires review and feedback from peers or team members"
+        },
+        {
+          "gatekeeper": "Editorial-Board-Approval",
+          "name": "Editorial Board Approval",
+          "description": "Requires approval from a designated editorial board or governance committee"
+        },
+        {
+          "gatekeeper": "No-Formal-Gatekeeper",
+          "name": "No Formal Gatekeeper",
+          "description": "Does not require a formal gatekeeper for progression; may rely on author discretion or informal review"
+        }
+      ]
+    },
+    {
+      "@type": "kb:ControlledVocabulary",
+      "@id": "kb:vocab-maturity-level",
+      "kb:vocabularyName": "maturity_level",
+      "kb:values": [
+        {
+          "id": "IDEA",
+          "preferred_label": "Idea",
+          "description": "Initial brainstorming—no formal draft exists yet"
+        },
+        {
+          "id": "DRAFT",
+          "preferred_label": "Draft",
+          "description": "Actively being written and refined"
+        },
+        {
+          "id": "REVIEW",
+          "preferred_label": "Review Needed",
+          "description": "Awaiting peer or SME review"
+        },
+        {
+          "id": "FINAL",
+          "preferred_label": "Final",
+          "description": "Approved and considered stable"
+        },
+        {
+          "id": "DEPREC",
+          "preferred_label": "Deprecated",
+          "description": "Superseded or archived; retained for historical reference"
+        }
+      ]
+    },
+    {
+      "@type": "kb:ControlledVocabulary",
+      "@id": "kb:vocab-sub-domain",
+      "kb:vocabularyName": "sub_domain",
+      "kb:values": []
+    }
+  ],
+  "kb:tagCategories": [
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-status",
+      "kb:categoryName": "status",
+      "kb:prefix": "status/",
+      "kb:description": "Content lifecycle status indicators",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-draft",
+          "kb:tagId": "draft",
+          "kb:fullTag": "status/draft",
+          "kb:description": "Content is in initial draft stage, subject to significant change"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-in-review",
+          "kb:tagId": "in-review",
+          "kb:fullTag": "status/in-review",
+          "kb:description": "Content is under review by subject matter experts or stakeholders"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-approved",
+          "kb:tagId": "approved",
+          "kb:fullTag": "status/approved",
+          "kb:description": "Content has been formally approved and is considered stable"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-published",
+          "kb:tagId": "published",
+          "kb:fullTag": "status/published",
+          "kb:description": "Content has been formally published (if applicable to workflow)"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-deprecated",
+          "kb:tagId": "deprecated",
+          "kb:fullTag": "status/deprecated",
+          "kb:description": "Content is no longer current or recommended for use"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-archived",
+          "kb:tagId": "archived",
+          "kb:fullTag": "status/archived",
+          "kb:description": "Content is preserved for historical reference but is not actively maintained"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-kb_id",
+      "kb:categoryName": "kb_id",
+      "kb:prefix": "kb-id/",
+      "kb:description": "Knowledge base identification tags",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-standards",
+          "kb:tagId": "standards",
+          "kb:fullTag": "kb-id/standards",
+          "kb:description": "For notes belonging to the Standards KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-research-methodology",
+          "kb:tagId": "research-methodology",
+          "kb:fullTag": "kb-id/research-methodology",
+          "kb:description": "For notes belonging to the Research Methodology KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-llm-cookbook",
+          "kb:tagId": "llm-cookbook",
+          "kb:fullTag": "kb-id/llm-cookbook",
+          "kb:description": "For notes belonging to the LLM Content Generation Cookbook KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-global",
+          "kb:tagId": "global",
+          "kb:fullTag": "kb-id/global",
+          "kb:description": "For vault-level utility files not specific to one KB"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-structural",
+      "kb:categoryName": "structural",
+      "kb:prefix": "",
+      "kb:description": "Structural tags without category prefix",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-kb-master-index",
+          "kb:tagId": "kb-master-index",
+          "kb:fullTag": "kb-master-index",
+          "kb:description": "Applied to kb-directory.md"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-kb-root",
+          "kb:tagId": "kb-root",
+          "kb:fullTag": "kb-root",
+          "kb:description": "Applied to the root.md file of each KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-kb-part-overview",
+          "kb:tagId": "kb-part-overview",
+          "kb:fullTag": "kb-part-overview",
+          "kb:description": "Applied to _overview.md files for Parts within a KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-kb-utility",
+          "kb:tagId": "kb-utility",
+          "kb:fullTag": "kb-utility",
+          "kb:description": "Applied to utility documents like this glossary"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-topic",
+      "kb:categoryName": "topic",
+      "kb:prefix": "topic/",
+      "kb:description": "Topic classification tags",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-metadata",
+          "kb:tagId": "metadata",
+          "kb:fullTag": "topic/metadata",
+          "kb:description": "Documents about metadata standards, structure, or management"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-governance",
+          "kb:tagId": "governance",
+          "kb:fullTag": "topic/governance",
+          "kb:description": "Documents about governance, versioning, or change management"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-yaml",
+          "kb:tagId": "yaml",
+          "kb:fullTag": "topic/yaml",
+          "kb:description": "Documents about YAML syntax or usage"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-tagging",
+          "kb:tagId": "tagging",
+          "kb:fullTag": "topic/tagging",
+          "kb:description": "Documents about tagging strategy or tag management"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-standards-governance",
+          "kb:tagId": "standards-governance",
+          "kb:fullTag": "topic/standards-governance",
+          "kb:description": "Documents about standards governance or glossary"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-architecture",
+          "kb:tagId": "architecture",
+          "kb:fullTag": "topic/architecture",
+          "kb:description": "Documents about KB or file/folder architecture"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-structure",
+          "kb:tagId": "structure",
+          "kb:fullTag": "topic/structure",
+          "kb:description": "Documents about document or section structure"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-content-guidelines",
+          "kb:tagId": "content-guidelines",
+          "kb:fullTag": "topic/content-guidelines",
+          "kb:description": "Documents about content creation, schemas, or tone"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-schemas",
+          "kb:tagId": "schemas",
+          "kb:fullTag": "topic/schemas",
+          "kb:description": "Documents about content schemas or templates"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-markdown",
+          "kb:tagId": "markdown",
+          "kb:fullTag": "topic/markdown",
+          "kb:description": "Documents about Markdown syntax or formatting"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-syntax",
+          "kb:tagId": "syntax",
+          "kb:fullTag": "topic/syntax",
+          "kb:description": "Documents about syntax rules"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-obsidian",
+          "kb:tagId": "obsidian",
+          "kb:fullTag": "topic/obsidian",
+          "kb:description": "Documents about Obsidian-specific usage and conventions"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-support-docs",
+          "kb:tagId": "support-docs",
+          "kb:fullTag": "topic/support-docs",
+          "kb:description": "Documents about supporting documentation, onboarding, or guides"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-llm",
+          "kb:tagId": "llm",
+          "kb:fullTag": "topic/llm",
+          "kb:description": "Documents about LLMs, prompt engineering, or automation"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-content-generation",
+          "kb:tagId": "content-generation",
+          "kb:fullTag": "topic/content-generation",
+          "kb:description": "Documents about content generation workflows"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-project-management",
+          "kb:tagId": "project-management",
+          "kb:fullTag": "topic/project-management",
+          "kb:description": "Documents about project management or TODO tracking"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-research-methodology",
+          "kb:tagId": "research-methodology",
+          "kb:fullTag": "topic/research-methodology",
+          "kb:description": "Documents about research methodology KB or standards"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-glossary",
+          "kb:tagId": "glossary",
+          "kb:fullTag": "topic/glossary",
+          "kb:description": "Documents about glossaries or terminology"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-utility-standards",
+          "kb:tagId": "utility-standards",
+          "kb:fullTag": "topic/utility-standards",
+          "kb:description": "Documents about utility standards or supporting processes"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-build-process",
+          "kb:tagId": "build-process",
+          "kb:fullTag": "topic/build-process",
+          "kb:description": "Documents related to the assembly or build process for the KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-scripting",
+          "kb:tagId": "scripting",
+          "kb:fullTag": "topic/scripting",
+          "kb:description": "Documents outlining scripts or automation logic"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-linking",
+          "kb:tagId": "linking",
+          "kb:fullTag": "topic/linking",
+          "kb:description": "Documents focused on interlinking content"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-frontmatter",
+          "kb:tagId": "frontmatter",
+          "kb:fullTag": "topic/frontmatter",
+          "kb:description": "Documents related to YAML frontmatter"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-schema",
+          "kb:tagId": "schema",
+          "kb:fullTag": "topic/schema",
+          "kb:description": "Documents related to schema definitions"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-content_type",
+      "kb:categoryName": "content_type",
+      "kb:prefix": "content-type/",
+      "kb:description": "Content type classification tags",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-technical-standard",
+          "kb:tagId": "technical-standard",
+          "kb:fullTag": "content-type/technical-standard",
+          "kb:description": "Describes technical rules, specifications"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-procedural-guideline",
+          "kb:tagId": "procedural-guideline",
+          "kb:fullTag": "content-type/procedural-guideline",
+          "kb:description": "Outlines steps for a process"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-conceptual-explanation",
+          "kb:tagId": "conceptual-explanation",
+          "kb:fullTag": "content-type/conceptual-explanation",
+          "kb:description": "Explains concepts or principles"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-reference-material",
+          "kb:tagId": "reference-material",
+          "kb:fullTag": "content-type/reference-material",
+          "kb:description": "Provides data or information for lookup"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-troubleshooting-guide",
+          "kb:tagId": "troubleshooting-guide",
+          "kb:fullTag": "content-type/troubleshooting-guide",
+          "kb:description": "Helps resolve issues"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-example-code",
+          "kb:tagId": "example-code",
+          "kb:fullTag": "content-type/example-code",
+          "kb:description": "Provides code examples"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-standard-definition",
+          "kb:tagId": "standard-definition",
+          "kb:fullTag": "content-type/standard-definition",
+          "kb:description": "For documents that define a standard"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-policy-document",
+          "kb:tagId": "policy-document",
+          "kb:fullTag": "content-type/policy-document",
+          "kb:description": "For documents that define a policy"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-guide-document",
+          "kb:tagId": "guide-document",
+          "kb:fullTag": "content-type/guide-document",
+          "kb:description": "For documents that provide guidance"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-glossary-document",
+          "kb:tagId": "glossary-document",
+          "kb:fullTag": "content-type/glossary-document",
+          "kb:description": "For documents that define terms"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-template-document",
+          "kb:tagId": "template-document",
+          "kb:fullTag": "content-type/template-document",
+          "kb:description": "For documents that serve as templates"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-registry-document",
+          "kb:tagId": "registry-document",
+          "kb:fullTag": "content-type/registry-document",
+          "kb:description": "For documents that act as registries"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-schema-document",
+          "kb:tagId": "schema-document",
+          "kb:fullTag": "content-type/schema-document",
+          "kb:description": "For documents that define a schema"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-criticality",
+      "kb:categoryName": "criticality",
+      "kb:prefix": "criticality/",
+      "kb:description": "Criticality level tags (align with criticality field values)",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-P0-Critical",
+          "kb:tagId": "P0-Critical",
+          "kb:fullTag": "criticality/P0-Critical",
+          "kb:description": "Essential for system operation, core understanding, or carries significant regulatory/compliance implications",
+          "kb:fieldValue": "P0-Critical"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-P1-High",
+          "kb:tagId": "P1-High",
+          "kb:fullTag": "criticality/P1-High",
+          "kb:description": "Important for system operation, key processes, or best practices",
+          "kb:fieldValue": "P1-High"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-P2-Medium",
+          "kb:tagId": "P2-Medium",
+          "kb:fullTag": "criticality/P2-Medium",
+          "kb:description": "Useful for consistency, best practices, or operational efficiency",
+          "kb:fieldValue": "P2-Medium"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-P3-Low",
+          "kb:tagId": "P3-Low",
+          "kb:fullTag": "criticality/P3-Low",
+          "kb:description": "Optional or advisory content",
+          "kb:fieldValue": "P3-Low"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-P4-Informational",
+          "kb:tagId": "P4-Informational",
+          "kb:fullTag": "criticality/P4-Informational",
+          "kb:description": "Purely informational content with no direct operational impact",
+          "kb:fieldValue": "P4-Informational"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-lifecycle_gatekeeper",
+      "kb:categoryName": "lifecycle_gatekeeper",
+      "kb:prefix": "lifecycle_gatekeeper/",
+      "kb:description": "Lifecycle gatekeeper tags (align with lifecycle_gatekeeper field values)",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-Architect-Review",
+          "kb:tagId": "Architect-Review",
+          "kb:fullTag": "lifecycle_gatekeeper/Architect-Review",
+          "kb:description": "Requires review and approval by the architecture review board or designated architects",
+          "kb:fieldValue": "Architect-Review"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-Security-Team-Approval",
+          "kb:tagId": "Security-Team-Approval",
+          "kb:fullTag": "lifecycle_gatekeeper/Security-Team-Approval",
+          "kb:description": "Requires review and approval by the security team",
+          "kb:fieldValue": "Security-Team-Approval"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-Stakeholder-Review",
+          "kb:tagId": "Stakeholder-Review",
+          "kb:fullTag": "lifecycle_gatekeeper/Stakeholder-Review",
+          "kb:description": "Requires review and approval by defined business or technical stakeholders",
+          "kb:fieldValue": "Stakeholder-Review"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-No-Gatekeeper",
+          "kb:tagId": "No-Gatekeeper",
+          "kb:fullTag": "lifecycle_gatekeeper/No-Gatekeeper",
+          "kb:description": "Lifecycle managed by the author or immediate team; no formal external gatekeeper",
+          "kb:fieldValue": "No-Gatekeeper"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-standards_kb",
+      "kb:categoryName": "standards_kb",
+      "kb:prefix": "standards-kb/",
+      "kb:description": "Standards KB specific tags",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-core",
+          "kb:tagId": "core",
+          "kb:fullTag": "standards-kb/core",
+          "kb:description": "Core standards and meta-structure documents"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-universal",
+          "kb:tagId": "universal",
+          "kb:fullTag": "standards-kb/universal",
+          "kb:description": "Universal standards applicable to all KBs"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-kb-specific",
+          "kb:tagId": "kb-specific",
+          "kb:fullTag": "standards-kb/kb-specific",
+          "kb:description": "Standards unique to a specific KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-markdown",
+          "kb:tagId": "markdown",
+          "kb:fullTag": "standards-kb/markdown",
+          "kb:description": "Standards related to Markdown syntax and formatting"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-obsidian",
+          "kb:tagId": "obsidian",
+          "kb:fullTag": "standards-kb/obsidian",
+          "kb:description": "Standards related to Obsidian-specific usage and conventions"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-utility_process",
+      "kb:categoryName": "utility_process",
+      "kb:prefix": "",
+      "kb:description": "Utility and process tags without category prefix",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-utility-standards",
+          "kb:tagId": "utility-standards",
+          "kb:fullTag": "utility-standards",
+          "kb:description": "Documents or sections related to utility standards or supporting processes"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-build-process",
+          "kb:tagId": "build-process",
+          "kb:fullTag": "build-process",
+          "kb:description": "Documents related to the assembly or build process for the KB"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-scripting",
+          "kb:tagId": "scripting",
+          "kb:fullTag": "scripting",
+          "kb:description": "Documents outlining scripts or automation logic"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-linking",
+          "kb:tagId": "linking",
+          "kb:fullTag": "linking",
+          "kb:description": "Standards or documents focused on interlinking content"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-metadata",
+          "kb:tagId": "metadata",
+          "kb:fullTag": "metadata",
+          "kb:description": "Standards or documents focused on metadata and tagging"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-governance",
+          "kb:tagId": "governance",
+          "kb:fullTag": "governance",
+          "kb:description": "Standards or documents related to governance, versioning, and change management"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-support-docs",
+          "kb:tagId": "support-docs",
+          "kb:fullTag": "support-docs",
+          "kb:description": "Supporting documentation, onboarding, and guides"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-schemas",
+          "kb:tagId": "schemas",
+          "kb:fullTag": "schemas",
+          "kb:description": "Standards or templates for content schemas"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-syntax-rules",
+          "kb:tagId": "syntax-rules",
+          "kb:fullTag": "syntax-rules",
+          "kb:description": "Rules for Markdown or other syntax"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-obsidian-usage",
+          "kb:tagId": "obsidian-usage",
+          "kb:fullTag": "obsidian-usage",
+          "kb:description": "Conventions for using Obsidian features"
+        }
+      ]
+    },
+    {
+      "@type": "kb:TagCategory",
+      "@id": "kb:tag-category-kb_specific",
+      "kb:categoryName": "kb_specific",
+      "kb:prefix": "",
+      "kb:description": "KB-specific tags without category prefix",
+      "kb:tags": [
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-research-methodology",
+          "kb:tagId": "research-methodology",
+          "kb:fullTag": "research-methodology",
+          "kb:description": "Used for the Research Methodology KB and related standards"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-llm-cookbook",
+          "kb:tagId": "llm-cookbook",
+          "kb:fullTag": "llm-cookbook",
+          "kb:description": "Used for the LLM Content Generation Cookbook KB and related standards"
+        }
+      ]
+    }
+  ],
+  "kb:fieldOrder": [
+    "title",
+    "standard_id",
+    "aliases",
+    "tags",
+    "kb-id",
+    "info-type",
+    "primary-topic",
+    "related-standards",
+    "version",
+    "date-created",
+    "date-modified",
+    "primary_domain",
+    "sub_domain",
+    "scope_application",
+    "criticality",
+    "lifecycle_gatekeeper",
+    "impact_areas",
+    "change_log_url"
+  ]
+}

@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 """
-Naming Convention Enforcer v2.0 - Single Source of Truth
-Parses GM-CONVENTIONS-NAMING.md directly for all naming rules and configurations.
-
-This enforcer eliminates JSON configuration files by extracting everything
-from the authoritative markdown document.
+Naming Convention Enforcer v3.0 - Schema-Driven
+Derives naming conventions directly from schema-registry.jsonld.
 """
 
 import os
@@ -23,14 +20,17 @@ import yaml
 from uuid import uuid4
 import fnmatch
 
+# Note: NamingRule dataclass might be deprecated or simplified if rules are directly consumed.
+# For now, it's kept if the structure of storing patterns relies on it.
 @dataclass
 class NamingRule:
-    """Represents a naming rule extracted from the standard"""
-    context: str
-    rule_type: str  # 'pattern', 'protected', 'exception'
-    pattern: str
-    examples: List[str] = field(default_factory=list)
-    rationale: str = ""
+    """Represents a naming rule (primarily pattern and description)."""
+    context: str # Context where this rule applies, e.g., "kebab-case", "standard_ids"
+    pattern: str # Regex pattern string
+    description: str = "" # Description of the rule/pattern
+    examples: List[str] = field(default_factory=list) # Examples are now in schema, could be loaded if needed
+    rationale: str = "" # Rationale is now in schema, could be loaded if needed
+
 
 @dataclass
 class NamingViolation:
@@ -555,346 +555,148 @@ class SafetyLogger:
 class NamingStandardParser:
     """Parse naming standards from the official document"""
     
-    def __init__(self, standard_path: str = None):
-        if standard_path is None:
-            # Get the repo root by going up from the current script location
+    def __init__(self, schema_registry_path: str = None):
+        if schema_registry_path is None:
             script_dir = Path(__file__).parent
-            repo_root = script_dir.parent.parent  # Go up from tools/naming-enforcer to repo root
-            self.standard_path = repo_root / "master-knowledge-base" / "standards" / "src" / "GM-CONVENTIONS-NAMING.md"
+            repo_root = script_dir.parent.parent
+            # Default path to schema-registry.jsonld
+            self.schema_path = repo_root / "standards" / "registry" / "schema-registry.jsonld"
         else:
-            self.standard_path = Path(standard_path)
-        self.raw_content = ""
-        self.rules: Dict[str, List[NamingRule]] = {}
-        self.protected_names: Dict[str, Set[str]] = {}
-        self.exceptions: Dict[str, List[str]] = {}
-        self.patterns: Dict[str, str] = {}
+            self.schema_path = Path(schema_registry_path)
         
-        if self.standard_path.exists():
-            self.load_and_parse()
+        self.schema_data: Dict = {}
+        self.patterns: Dict[str, str] = {} # Stores regex patterns by context name
+        self.standard_id_prefixes: List[str] = [] # Might be useful for standard ID context
+        self.protected_names: Dict[str, Set[str]] = {} # Add back for main() compatibility
+        self.exceptions: Dict[str, List[str]] = {}   # Add back for main() compatibility
+        
+        if self.schema_path.exists():
+            self.load_and_parse_schema()
         else:
-            raise FileNotFoundError(f"Naming standard not found: {self.standard_path}")
-    
-    def load_and_parse(self):
-        """Load and parse the naming standard document"""
-        with open(self.standard_path, 'r', encoding='utf-8') as f:
-            self.raw_content = f.read()
-        
-        self.extract_context_patterns()
-        self.extract_protected_names()
-        self.extract_exceptions()
-        self.extract_validation_rules()
-    
-    def extract_context_patterns(self):
-        """Extract naming patterns for different contexts"""
-        # Section 1: CONTEXT-SPECIFIC NAMING RULES
-        patterns = {
-            'kebab-case': r'^[a-z0-9]+(-[a-z0-9]+)*$',
-            'kebab-case-with-prefix': r'^-?[a-z0-9]+(-[a-z0-9]+)*$',  # Allow optional leading hyphen for sorting
-            'snake_case': r'^[a-z_][a-z0-9_]*$',
-            'tool_reports': r'^[a-zA-Z0-9_-]+$',  # Lenient pattern for tool-generated reports
-            'PascalCase': r'^[A-Z][a-zA-Z0-9]*$',
-            'camelCase': r'^[a-z][a-zA-Z0-9]*$',
-            'UPPER_SNAKE_CASE': r'^[A-Z_][A-Z0-9_]*$'
+            raise FileNotFoundError(f"Schema registry not found: {self.schema_path}")
+
+    def load_and_parse_schema(self):
+        """Load and parse the schema-registry.jsonld file."""
+        with open(self.schema_path, 'r', encoding='utf-8') as f:
+            self.schema_data = json.load(f)
+
+        self.extract_patterns_from_schema()
+        # Protected names and exceptions are now primarily handled by ExcludeManager (.namingignore)
+        # Or could be added as a new convention type in schema if needed.
+
+    def extract_patterns_from_schema(self):
+        """Extract naming patterns from the loaded schema data."""
+        naming_conventions = self.schema_data.get("kb:namingConventions", {})
+        if not isinstance(naming_conventions, dict):
+            logging.warning("kb:namingConventions is not a dictionary or is missing. Using defaults.")
+            naming_conventions = {}
+
+        # Load fundamental patterns
+        pattern_keys = [
+            "kb:defaultFilePattern", "kb:defaultDirectoryPattern",
+            "kb:kebabCasePattern", "kb:snakeCasePattern",
+            "kb:pascalCasePattern", "kb:camelCasePattern", "kb:upperSnakeCasePattern"
+        ]
+        # Map schema keys to simpler keys for self.patterns
+        key_map = {
+            "kb:defaultFilePattern": "default_file",
+            "kb:defaultDirectoryPattern": "default_directory",
+            "kb:kebabCasePattern": "kebab-case",
+            "kb:snakeCasePattern": "snake_case",
+            "kb:pascalCasePattern": "PascalCase",
+            "kb:camelCasePattern": "camelCase",
+            "kb:upperSnakeCasePattern": "UPPER_SNAKE_CASE"
         }
-        
-        # Extract Standard ID pattern from the document dynamically
-        standard_id_match = re.search(
-            r'### 1\.5 Standard IDs.*?- \*\*Pattern\*\*: `([^`]+)`', 
-            self.raw_content, 
-            re.DOTALL
-        )
-        if standard_id_match:
-            patterns['DOMAIN-SUBDOMAIN-NAME'] = standard_id_match.group(1)
-        else:
-            # Fallback to default if not found
-            patterns['DOMAIN-SUBDOMAIN-NAME'] = r'^[A-Z]{1,3}-[A-Z]{2,15}-[A-Z0-9\-]+$'
-        
-        # Extract standard ID prefixes from the document
-        self.standard_id_prefixes = self.extract_standard_id_prefixes()
-        
-        # Extract specific contexts from document
-        context_mapping = {
-            'files_and_directories': 'kebab-case',
-            'directories_with_prefix': 'kebab-case-with-prefix',  # For active project directories that start with -
-            'python_variables': 'snake_case',
-            'python_functions': 'snake_case',
-            'python_classes': 'PascalCase',
-            'python_constants': 'UPPER_SNAKE_CASE',
-            'frontmatter_fields': 'snake_case',
-            'json_yaml_keys': 'snake_case',
-            'standard_ids': 'DOMAIN-SUBDOMAIN-NAME',
-            'tool_reports': 'tool_reports',  # Lenient naming for tool-generated files
-            'javascript_variables': 'camelCase',
-            'javascript_functions': 'camelCase',
-            'javascript_classes': 'PascalCase',
-            'javascript_constants': 'UPPER_SNAKE_CASE',
-            'tags_metadata': 'kebab-case',
-            'key_references': 'camelCase'
-        }
-        
-        # Store patterns with contexts
-        for context, pattern_name in context_mapping.items():
-            if pattern_name in patterns:
-                self.patterns[context] = patterns[pattern_name]
-    
-    def extract_protected_names(self):
-        """Extract protected names from Section 2"""
-        # Find Section 2: PROTECTED NAMES
-        protected_section_match = re.search(
-            r'## 2\. PROTECTED NAMES.*?(?=## 3\.|$)', 
-            self.raw_content, 
-            re.DOTALL
-        )
-        
-        if not protected_section_match:
-            return
-        
-        protected_content = protected_section_match.group(0)
-        
-        # Extract different categories of protected names
-        categories = {
-            'python_variables': r'### 2\.1 Python Variable Dependencies\s*```\s*([^`]+)```',
-            'frontmatter_fields': r'### 2\.2 Frontmatter Field Names.*?```\s*([^`]+)```',
-            'config_files': r'### 2\.3 Configuration File Names\s*```\s*([^`]+)```',
-            'tool_scripts': r'### 2\.4 Tool Script Names\s*```\s*([^`]+)```',
-            'json_keys': r'### 2\.5 JSON/YAML Configuration Keys\s*```\s*([^`]+)```',
-            'environment_vars': r'### 2\.6 Environment Variables\s*```\s*([^`]+)```'
-        }
-        
-        for category, pattern in categories.items():
-            match = re.search(pattern, protected_content, re.DOTALL)
-            if match:
-                names_text = match.group(1).strip()
-                # Better parsing: split by newlines and commas, clean up
-                names = []
-                for line in names_text.split('\n'):
-                    line = line.strip()
-                    if line and not line.startswith('#'):
-                        # Split by commas and clean each name
-                        line_names = [name.strip().rstrip(',') for name in line.split(',')]
-                        names.extend([name for name in line_names if name])
-                self.protected_names[category] = set(names)
-        
-        # Add additional protected files based on standard conventions
-        additional_protected_files = {
-            'LICENSE', 'README.md', 'CHANGELOG.md', 'Makefile',
-            'Dockerfile', '.gitignore', '.eslintrc.js'
-        }
-        if 'config_files' not in self.protected_names:
-            self.protected_names['config_files'] = set()
-        self.protected_names['config_files'].update(additional_protected_files)
-    
-    def extract_exceptions(self):
-        """Extract validation exceptions from Section 3 and Section 4.2"""
-        # Find Section 3: VALIDATION RULES
-        validation_section_match = re.search(
-            r'## 3\. VALIDATION RULES.*?(?=## 4\.|$)', 
-            self.raw_content, 
-            re.DOTALL
-        )
-        
-        if validation_section_match:
-            validation_content = validation_section_match.group(0)
+
+        for schema_key in pattern_keys:
+            pattern_data = naming_conventions.get(schema_key, {})
+            if isinstance(pattern_data, dict):
+                regex_pattern = pattern_data.get("kb:pattern")
+                if regex_pattern:
+                    internal_key = key_map.get(schema_key, schema_key.replace("kb:", "").replace("Pattern", ""))
+                    self.patterns[internal_key] = regex_pattern
+                else:
+                    logging.warning(f"Pattern string missing for {schema_key} in schema. Using fallback if available.")
+            else:
+                logging.warning(f"{schema_key} data is not a dictionary in schema. Skipping.")
+
+        # Fallback for default file/directory if not explicitly defined
+        if "default_file" not in self.patterns:
+            self.patterns["default_file"] = self.patterns.get("kebab-case", r"^[a-z0-9]+(-[a-z0-9]+)*$")
+        if "default_directory" not in self.patterns:
+            self.patterns["default_directory"] = self.patterns.get("kebab-case", r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+
+        # Extract standard_id pattern from fieldDefinitions
+        field_defs = self.schema_data.get("kb:fieldDefinitions", [])
+        if not isinstance(field_defs, list):
+            logging.warning("kb:fieldDefinitions is not a list or is missing. Cannot extract standard_id pattern.")
+            field_defs = []
             
-            # Extract exception patterns
-            temp_files_match = re.search(r'Skip validation for files matching `([^`]+)`', validation_content)
-            if temp_files_match:
-                temp_patterns = [p.strip('`').strip() for p in temp_files_match.group(1).split('`,')]
-                self.exceptions['temp_files'] = temp_patterns
-            
-            system_dirs_match = re.search(r'Exclude `([^`]+)`', validation_content)
-            if system_dirs_match:
-                system_dirs = [d.strip('`').strip() for d in system_dirs_match.group(1).split('`,')]
-                self.exceptions['system_directories'] = system_dirs
+        found_standard_id_pattern = False
+        for field_def in field_defs:
+            if isinstance(field_def, dict) and field_def.get("kb:fieldName") == "standard_id":
+                validation_rules = field_def.get("kb:validationRules", [])
+                if not isinstance(validation_rules, list): validation_rules = []
+                for rule_str in validation_rules:
+                    if isinstance(rule_str, str) and "MUST follow regex pattern:" in rule_str:
+                        self.patterns["standard_ids"] = rule_str.split("MUST follow regex pattern:")[1].strip()
+                        found_standard_id_pattern = True
+                        break
+                if found_standard_id_pattern:
+                    break
         
-        # Look for Section 4.2 Naming Exceptions JSON Generation template
-        exceptions_template_match = re.search(
-            r'### 4\.2 Naming Exceptions JSON Generation.*?```json\s*({.*?})\s*```',
-            self.raw_content,
-            re.DOTALL
-        )
-        
-        if exceptions_template_match:
-            try:
-                import json
-                template_json = json.loads(exceptions_template_match.group(1))
-                
-                # Merge with existing exceptions
-                if 'directories' in template_json:
-                    self.exceptions.setdefault('system_directories', []).extend(template_json['directories'])
-                
-                if 'files' in template_json:
-                    self.exceptions.setdefault('protected_files', []).extend(template_json['files'])
-                
-                if 'patterns' in template_json:
-                    self.exceptions.setdefault('temp_files', []).extend(template_json['patterns'])
-                
-                # Remove duplicates
-                for key in self.exceptions:
-                    if isinstance(self.exceptions[key], list):
-                        self.exceptions[key] = list(set(self.exceptions[key]))
-                        
-            except (json.JSONDecodeError, KeyError):
-                pass
-        
-        # Add commonly excluded patterns if not found
-        if 'system_directories' not in self.exceptions:
-            self.exceptions['system_directories'] = []
-        
-        common_system_dirs = [
-            '__pycache__', 'node_modules', '.git', '.vscode',
-            'dist', 'build', 'target', 'bin', 'obj',
-            '.obsidian', '.space', 'archive'  # Add Obsidian and archive exclusions
-        ]
-        self.exceptions['system_directories'].extend(common_system_dirs)
-        self.exceptions['system_directories'] = list(set(self.exceptions['system_directories']))
-        
-        if 'temp_files' not in self.exceptions:
-            self.exceptions['temp_files'] = []
-        
-        common_temp_patterns = [
-            '*.min.js', '*.bundle.*', '*.tmp', '*.temp', '*.bak',
-            '*.log', '*.pid', '.*'
-        ]
-        self.exceptions['temp_files'].extend(common_temp_patterns)
-        self.exceptions['temp_files'] = list(set(self.exceptions['temp_files']))
-    
-    def extract_standard_id_prefixes(self):
-        """Extract standard ID prefixes from the document examples and references"""
-        prefixes = set()
-        
-        # Extract from Section 1.5 examples
-        section_1_5_match = re.search(
-            r'### 1\.5 Standard IDs.*?- \*\*Examples\*\*: `([^`]+)`', 
-            self.raw_content, 
-            re.DOTALL
-        )
-        if section_1_5_match:
-            examples = section_1_5_match.group(1)
-            # Extract standard IDs like GM-CONVENTIONS-NAMING, MT-SCHEMA-FRONTMATTER
-            standard_ids = re.findall(r'([A-Z]{1,6})-[A-Z0-9-]+', examples)
-            prefixes.update(standard_ids)
-        
-        # Extract from Section 5.1 references
-        section_5_1_match = re.search(
-            r'### 5\.1 Standards That Must Reference.*?(?=### 5\.2|## 6\.)', 
-            self.raw_content, 
-            re.DOTALL
-        )
-        if section_5_1_match:
-            references = section_5_1_match.group(0)
-            # Extract standard IDs from references like **SF-SYNTAX-YAML-FRONTMATTER**
-            standard_ids = re.findall(r'\*\*([A-Z]{1,6})-[A-Z0-9-]+\*\*', references)
-            prefixes.update(standard_ids)
-        
-        # Also scan for any standard_id in frontmatter examples
-        frontmatter_examples = re.findall(r'standard_id:\s*([A-Z]{1,6})-[A-Z0-9-]+', self.raw_content)
-        prefixes.update(frontmatter_examples)
-        
-        # Scan entire document for any standard ID patterns to catch all prefixes
-        all_standard_ids = re.findall(r'\b([A-Z]{1,6})-[A-Z]{1,15}-[A-Z0-9\-]+\b', self.raw_content)
-        prefixes.update(all_standard_ids)
-        
-        # More aggressive scan for patterns like U-ARCH-003, QM-VALIDATION, etc.
-        simple_patterns = re.findall(r'\b([A-Z]{1,6})-[A-Z]+', self.raw_content)
-        prefixes.update(simple_patterns)
-        
-        # Default fallback prefixes if extraction fails
-        if not prefixes:
-            prefixes = {'SF', 'MT', 'UA', 'AS', 'CS', 'GM', 'OM', 'QM', 'U'}
-        
-        return sorted(prefixes)
-    
-    def extract_validation_rules(self):
-        """Extract validation hierarchy and rules"""
-        # This would extract the validation hierarchy from Section 3.3
-        # For now, implementing the basic hierarchy
-        self.validation_hierarchy = [
-            'protected_names',
-            'context_rules',
-            'exception_patterns',
-            'default_rule'
-        ]
-    
+        if not found_standard_id_pattern:
+            logging.warning("standard_id pattern not found in schema. Using a default.")
+            self.patterns["standard_ids"] = r'^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$' # Default from old parser
+
+        # Placeholder for standard_id_prefixes if needed for context; schema doesn't explicitly list them
+        # This could be derived by analyzing existing standard_ids or by adding another convention to schema.
+        # For now, let's use a basic set or leave it empty if get_context_for_path is simplified.
+        self.standard_id_prefixes = ['AS', 'CS', 'MT', 'SF', 'OM', 'GM', 'UA', 'QM']
+
+        # REMOVED Temporary print statements for verification
+
     def get_naming_pattern(self, context: str) -> Optional[str]:
         """Get regex pattern for a specific context"""
         return self.patterns.get(context)
-    
+
     def is_protected_name(self, name: str, category: str = None) -> bool:
-        """Check if a name is protected"""
-        if category:
-            return name in self.protected_names.get(category, set())
-        
-        # Check all categories if no specific category given
-        for protected_set in self.protected_names.values():
-            if name in protected_set:
-                return True
+        """Protected names are now primarily handled by ExcludeManager or need a schema update."""
+        # This method can be simplified or removed if .namingignore is the sole source of such exceptions.
+        # For now, returning False to indicate no built-in protected names from parsing.
         return False
-    
+
     def is_exception(self, path: Path) -> bool:
-        """Check if path matches any exception patterns"""
-        path_str = str(path).replace('\\', '/')
-        
-        # Check system directories
-        for sys_dir in self.exceptions.get('system_directories', []):
-            if sys_dir in path_str:
-                return True
-        
-        # Check protected files
-        if path.is_file():
-            filename = path.name
-            
-            # Check protected files list
-            for protected_file in self.exceptions.get('protected_files', []):
-                if filename == protected_file:
-                    return True
-            
-            # Check if it's in the protected config files
-            if filename in self.protected_names.get('config_files', set()):
-                return True
-            
-            # Check temp file patterns
-            for pattern in self.exceptions.get('temp_files', []):
-                # Handle glob patterns
-                if '*' in pattern:
-                    if fnmatch.fnmatch(filename, pattern):
-                        return True
-                elif filename == pattern:
-                    return True
-        
-        # Check if directory name itself is protected
-        if path.is_dir():
-            dir_name = path.name
-            for sys_dir in self.exceptions.get('system_directories', []):
-                if dir_name == sys_dir.rstrip('/'):
-                    return True
-        
+        """Exception paths are now primarily handled by ExcludeManager or need a schema update."""
+        # This method can be simplified or removed.
         return False
 
 class NamingEnforcerV2:
     """Advanced naming convention enforcer with comprehensive violation detection"""
     
-    def __init__(self, standard_path: str = None):
-        if standard_path is None:
-            # Get the repo root by going up from the current script location
+    def __init__(self, schema_registry_path: str = None):
+        if schema_registry_path is None:
             script_dir = Path(__file__).parent
-            repo_root = script_dir.parent.parent  # Go up from tools/naming-enforcer to repo root
-            standard_path = str(repo_root / "master-knowledge-base" / "standards" / "src" / "GM-CONVENTIONS-NAMING.md")
+            repo_root = script_dir.parent.parent
+            schema_registry_path = str(repo_root / "standards" / "registry" / "schema-registry.jsonld")
         
-        self.parser = NamingStandardParser(standard_path)
+        self.parser = NamingStandardParser(schema_registry_path)
         self.violations: List[NamingViolation] = []
         self.rename_operations: List[RenameOperation] = []
         self.exclude_manager = ExcludeManager()
         self.include_manager = IncludeManager()
         
         # Load automatic ignore/include files if they exist
-        self._load_automatic_files()
+        self._load_automatic_files() # This remains useful
         
-        # Compiled regex patterns for performance
-        self.compiled_patterns = {
-            context: re.compile(pattern)
-            for context, pattern in self.parser.patterns.items()
-        }
+        # Compile patterns loaded by the parser
+        self.compiled_patterns = {}
+        for context, pattern_str in self.parser.patterns.items():
+            try:
+                self.compiled_patterns[context] = re.compile(pattern_str)
+            except re.error as e:
+                logging.error(f"Invalid regex pattern for context '{context}': {pattern_str}. Error: {e}")
     
     def _load_automatic_files(self, scan_directory: Path = None):
         """Load .namingignore and .naminginclude files automatically"""
@@ -1180,10 +982,11 @@ class NamingEnforcerV2:
             base_name = name_part
         
         # Check if this is a standard ID format (special case)
-        if self.compiled_patterns.get('standard_ids', re.compile(r'$')).match(base_name):
-            return None
+        standard_id_regex = self.compiled_patterns.get('standard_ids')
+        if standard_id_regex and standard_id_regex.match(base_name):
+            return None # Valid if it matches the standard_id pattern directly
         
-        # Check extension case
+        # Check extension case (must be lowercase)
         if extensions and extensions != extensions.lower():
             return NamingViolation(
                 path=str(file_path),
@@ -1196,9 +999,20 @@ class NamingEnforcerV2:
             )
         
         # Validate base name
-        context = self.get_context_for_path(file_path)
-        is_valid, suggestion = self.validate_name(base_name, context)
-        
+        context = self.get_context_for_path(file_path) # This might need adjustment or simplification
+        # Fallback to default_file pattern if context specific one is not found or context is generic
+        pattern_to_use = self.compiled_patterns.get(context, self.compiled_patterns.get("default_file"))
+
+        if pattern_to_use and pattern_to_use.match(base_name):
+             is_valid, suggestion = True, None
+        elif pattern_to_use:
+            suggestion = self.convert_to_context_convention(base_name, context)
+            is_valid = False
+        else: # Should not happen if default_file pattern is always set
+            is_valid, suggestion = False, base_name # No specific pattern, no suggestion
+            logging.warning(f"No pattern found for context '{context}' or default_file for {file_path}")
+
+
         if not is_valid and suggestion:
             suggested_name = suggestion + extensions
             if suggested_name != full_name:
@@ -1211,18 +1025,27 @@ class NamingEnforcerV2:
                     reason=f"Filename should follow {context} convention: {base_name} -> {suggestion}",
                     context=context
                 )
-        
         return None
-    
+
     def validate_directory_name(self, dir_path: Path) -> Optional[NamingViolation]:
         """Validate a directory name"""
-        if self.parser.is_exception(dir_path):
+        # ExcludeManager handles .namingignore, parser.is_exception is for schema-level if any.
+        if self.parser.is_exception(dir_path): # This might be removed if no such concept in schema
             return None
         
         dir_name = dir_path.name
-        context = self.get_context_for_path(dir_path)
-        is_valid, suggestion = self.validate_name(dir_name, context)
-        
+        context = self.get_context_for_path(dir_path) # Simplified to 'default_directory' usually
+        pattern_to_use = self.compiled_patterns.get(context, self.compiled_patterns.get("default_directory"))
+
+        if pattern_to_use and pattern_to_use.match(dir_name):
+            is_valid, suggestion = True, None
+        elif pattern_to_use:
+            suggestion = self.convert_to_context_convention(dir_name, context)
+            is_valid = False
+        else: # Should not happen
+            is_valid, suggestion = False, dir_name
+            logging.warning(f"No pattern found for context '{context}' or default_directory for {dir_path}")
+
         if not is_valid and suggestion:
             return NamingViolation(
                 path=str(dir_path),
@@ -1233,94 +1056,80 @@ class NamingEnforcerV2:
                 reason=f"Directory should follow {context} convention: {dir_name} -> {suggestion}",
                 context=context
             )
-        
         return None
-    
+
     def validate_frontmatter_fields(self, file_path: Path) -> List[NamingViolation]:
-        """Validate frontmatter field names"""
+        """Validate frontmatter field names against schema-defined snake_case pattern for kb namespaced keys."""
         violations = []
-        
+        snake_case_pattern_str = self.parser.patterns.get('snake_case', r"^[a-z0-9]+(_[a-z0-9]+)*$")
+        snake_case_regex = re.compile(snake_case_pattern_str)
+
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            # Check for frontmatter
             if not content.startswith('---'):
                 return violations
             
-            # Extract frontmatter
             first_line_end = content.find('\n')
-            if first_line_end == -1:
-                return violations
+            if first_line_end == -1: return violations
             
             frontmatter_start = first_line_end + 1
             fm_end_match = re.search(r'^---\s*$', content[frontmatter_start:], re.MULTILINE)
-            if not fm_end_match:
-                return violations
+            if not fm_end_match: return violations
             
             frontmatter_content = content[frontmatter_start:frontmatter_start + fm_end_match.start()]
             
-            # Parse YAML to get only top-level keys, avoiding nested values
-            try:
-                import yaml
-                fm_data = yaml.safe_load(frontmatter_content)
-                if not isinstance(fm_data, dict):
-                    return violations
+            fm_data = yaml.safe_load(frontmatter_content)
+            if not isinstance(fm_data, dict):
+                return violations
                 
-                # Only validate top-level frontmatter fields, not nested values
-                for field in fm_data.keys():
-                    if not isinstance(field, str):
+            for key in fm_data.keys():
+                if not isinstance(key, str) or key.startswith('@'): # Skip @id, @type etc.
+                    continue
+
+                # Determine the effective key to check against snake_case
+                # If already kb:prefixed, check local part. If not, it implies kb: will be added.
+                local_part_to_check = key
+                if ':' in key:
+                    prefix, name = key.split(':', 1)
+                    if prefix == 'kb':
+                        local_part_to_check = name.replace('-', '_') # Convert kb:some-thing to some_thing before check
+                    else: # Non-kb prefixed keys are not subject to this specific snake_case rule by this logic
                         continue
-                        
-                    # Check if it's a protected frontmatter field
-                    if self.parser.is_protected_name(field, 'frontmatter_fields'):
-                        continue
+                else: # Not prefixed, implies it will become kb:key_name, so check 'key-name' as 'key_name'
+                    local_part_to_check = key.replace('-', '_')
+
+                if not snake_case_regex.match(local_part_to_check):
+                    suggested_local_part = self.to_snake_case(local_part_to_check)
+                    original_key_display = key # The key as it appears in YAML
                     
-                    is_valid, suggestion = self.validate_name(field, 'frontmatter_fields')
-                    if not is_valid and suggestion:
-                        violations.append(NamingViolation(
-                            path=str(file_path),
-                            current_name=f"frontmatter field: {field}",
-                            suggested_name=suggestion,
-                            violation_type="frontmatter_field",
-                            severity="warning",
-                            reason=f"Frontmatter field should use snake_case: {field} -> {suggestion}",
-                            context="frontmatter_fields"
-                        ))
-            
-            except yaml.YAMLError:
-                # Fall back to regex if YAML parsing fails, but be more conservative
-                # Only match fields that start at the beginning of a line (top-level)
-                field_pattern = re.compile(r'^([a-zA-Z][a-zA-Z0-9_-]*)\s*:', re.MULTILINE)
-                fields = field_pattern.findall(frontmatter_content)
-                
-                for field in fields:
-                    # Check if it's a protected frontmatter field
-                    if self.parser.is_protected_name(field, 'frontmatter_fields'):
-                        continue
+                    # Construct suggested key based on original form
+                    suggested_key_display = suggested_local_part
+                    if ':' in original_key_display:
+                         prefix, _ = original_key_display.split(':',1)
+                         suggested_key_display = f"{prefix}:{suggested_local_part}"
                     
-                    is_valid, suggestion = self.validate_name(field, 'frontmatter_fields')
-                    if not is_valid and suggestion:
-                        violations.append(NamingViolation(
-                            path=str(file_path),
-                            current_name=f"frontmatter field: {field}",
-                            suggested_name=suggestion,
-                            violation_type="frontmatter_field",
-                            severity="warning",
-                            reason=f"Frontmatter field should use snake_case: {field} -> {suggestion}",
-                            context="frontmatter_fields"
-                        ))
-        
-        except Exception:
-            pass
-        
+                    violations.append(NamingViolation(
+                        path=str(file_path),
+                        current_name=f"frontmatter field: {original_key_display}",
+                        suggested_name=suggested_key_display,
+                        violation_type="frontmatter_field_case",
+                        severity="warning",
+                        reason=f"Local part of kb-namespaced frontmatter field ('{local_part_to_check}') should be snake_case. Suggestion: '{suggested_local_part}' for key '{original_key_display}'",
+                        context="frontmatter_fields_kb_local_part"
+                    ))
+        except yaml.YAMLError as e:
+            logging.warning(f"Could not parse YAML frontmatter for {file_path}: {e}")
+        except Exception as e:
+            logging.error(f"Error validating frontmatter for {file_path}: {e}")
+
         return violations
-    
+
     def print_report(self, show_all: bool = False):
         """Print a detailed report of violations"""
         if not self.violations:
             print("No naming violations found!")
-            # Show inclusion/exclusion summary even when no violations
             if self.include_manager.include_patterns or self.exclude_manager.exclude_patterns:
                 if self.include_manager.include_patterns:
                     print(f"\n{self.include_manager.get_inclusion_summary()}")
@@ -1330,7 +1139,7 @@ class NamingEnforcerV2:
         
         print(f"\nNAMING VIOLATIONS REPORT")
         print(f"{'='*60}")
-        print(f"Source of Truth: {self.parser.standard_path}")
+        print(f"Source of Truth: {self.parser.schema_path}") # Updated path
         print(f"Total violations: {len(self.violations)}")
         
         # Show inclusion/exclusion summary if any patterns are configured
