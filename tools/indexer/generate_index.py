@@ -17,6 +17,7 @@ import yaml
 import argparse
 import logging
 import hashlib
+import re # Added re
 from pathlib import Path
 
 def get_frontmatter_from_content(file_content):
@@ -44,13 +45,29 @@ def extract_frontmatter_metadata(filepath_rel_to_repo, file_content):
     """
     frontmatter_str = get_frontmatter_from_content(file_content)
     if not frontmatter_str:
+        logging.debug(f"No frontmatter string extracted by get_frontmatter_from_content for {filepath_rel_to_repo}")
         return None
 
+    # Pre-process frontmatter_str to quote keys starting with @
+    def quote_at_keys(line):
+        # This regex finds lines starting with optional spaces, then @, then word characters (key), then a colon.
+        # It captures the indentation (group 1), the @key (group 2), and the rest of the line after the colon (group 3).
+        match = re.match(r'^(\s*)(@\w+):\s*(.*)$', line)
+        if match:
+            indent, key, value = match.groups()
+            # Reconstruct the line with the @key quoted.
+            return f'{indent}"{key}": {value}'
+        return line
+
+    processed_frontmatter_str = "\n".join([quote_at_keys(line) for line in frontmatter_str.splitlines()])
+
     try:
-        frontmatter_data = yaml.safe_load(frontmatter_str)
+        frontmatter_data = yaml.safe_load(processed_frontmatter_str)
         if not isinstance(frontmatter_data, dict):
+            logging.debug(f"Frontmatter data is not a dict for {filepath_rel_to_repo}: {type(frontmatter_data)}. Data: {frontmatter_data}")
             return None
-    except yaml.YAMLError:
+    except yaml.YAMLError as e:
+        logging.debug(f"YAML parsing error for {filepath_rel_to_repo}: {e}\nProcessed frontmatter string was:\n{processed_frontmatter_str}")
         return None
 
     return frontmatter_data
@@ -62,28 +79,52 @@ def create_node_from_file(filepath_rel_to_repo, file_content, file_stats):
     frontmatter = extract_frontmatter_metadata(filepath_rel_to_repo, file_content)
     content_hash = calculate_content_hash(file_content)
     
-    # Create base node structure
+    # Initial node structure with generated values - this part is from the existing code
     node = {
-        "@type": "kb:Document",
-        "@id": f"kb:doc-{filepath_rel_to_repo.replace('/', '-').replace('.md', '')}",
+        "@type": "kb:Document", # Default @type
+        "@id": f"kb:doc-{filepath_rel_to_repo.replace('/', '-').replace('.md', '')}", # Default @id
         "kb:filepath": filepath_rel_to_repo,
         "kb:contentHash": content_hash,
         "kb:fileSize": len(file_content),
         "kb:lastModified": datetime.datetime.fromtimestamp(file_stats.st_mtime, datetime.timezone.utc).isoformat(),
         "kb:indexed": datetime.datetime.now(datetime.timezone.utc).isoformat()
     }
-    
-    # Add frontmatter fields if they exist
+
+    logging.debug(f"Processing file: {filepath_rel_to_repo}")
     if frontmatter:
+        logging.debug(f"Raw frontmatter for {filepath_rel_to_repo}: {frontmatter}")
         for key, value in frontmatter.items():
-            # Convert frontmatter keys to kb: namespace
-            kb_key = f"kb:{key.replace('-', '_')}"
-            # Ensure dates are converted to strings for JSON serialization
-            if hasattr(value, 'isoformat'):
-                node[kb_key] = value.isoformat()
-            else:
-                node[kb_key] = value
+            processed_key = key # By default, assume key is already processed (e.g. @id, @type or correctly namespaced kb:key)
+
+            if key == '@id':
+                node['@id'] = str(value) # Ensure @id from frontmatter is used
+                logging.debug(f"  Processed @id: {node['@id']}")
+                continue # Move to next frontmatter item
+            elif key == '@type':
+                node['@type'] = str(value) # Ensure @type from frontmatter is used
+                logging.debug(f"  Processed @type: {node['@type']}")
+                continue # Move to next frontmatter item
+            elif ':' not in key: # Simple key like 'title' or 'info-type'
+                processed_key = f"kb:{key.replace('-', '_')}"
+            elif key.startswith('kb:') and '-' in key: # Already kb: namespaced but with hyphen, e.g. kb:some-field
+                 prefix, local_name = key.split(':', 1)
+                 processed_key = f"{prefix}:{local_name.replace('-', '_')}"
+            # If key is already correctly namespaced like 'kb:foo_bar' (e.g. kb:standard_id) or 'dcterms:creator',
+            # it will be used as processed_key = key (initial default)
+
+            # Value processing
+            final_value = value # Default for most types
+            if isinstance(value, datetime.datetime):
+                final_value = value.isoformat()
+            elif isinstance(value, datetime.date): # Handle datetime.date objects specifically
+                final_value = value.isoformat() + "T00:00:00Z" # Append time and Z for UTC
+
+            node[processed_key] = final_value
+            logging.debug(f"  Key: '{key}', Value: '{value}', ProcessedKey: '{processed_key}', FinalValue: '{final_value}'")
+    else:
+        logging.debug(f"No frontmatter found for {filepath_rel_to_repo}")
     
+    logging.debug(f"Final node for {filepath_rel_to_repo}: {node}")
     return node
 
 def load_existing_index(index_filepath):

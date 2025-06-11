@@ -14,9 +14,13 @@ import os
 import argparse
 import logging
 import re
+import sys # Added sys import
 from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
+from rdflib import Graph as RDFGraph, URIRef, Literal, Namespace # Added RDFGraph alias
+from rdflib.namespace import RDF, RDFS # Added RDFS
+from pyshacl import validate # Added pyshacl
 
 # Supported schema versions
 SUPPORTED_SCHEMA_VERSIONS = ["1.0.0"]
@@ -40,6 +44,11 @@ class GraphValidator:
         # Relationship graph data
         self.relationships = []  # List of relationship objects
         self.relationship_graph = {}  # Graph structure for analysis
+
+        # SHACL related attributes
+        self.shacl_shapes_path = self.registry_path / "shacl-shapes.ttl"
+        self.shacl_shapes = None # This might not be strictly needed if pyshacl loads from path
+        self.shacl_validation_errors = []
         
     def _load_schema_registry(self):
         """Load and validate the schema registry."""
@@ -499,6 +508,188 @@ class GraphValidator:
         analysis['isolated_documents'] = list(all_documents - connected_documents)
         
         return analysis
+
+    def _load_shacl_shapes(self):
+        """Load the SHACL shapes file."""
+        if not self.shacl_shapes_path.exists():
+            logging.warning(f"SHACL shapes file not found: {self.shacl_shapes_path}")
+            self.shacl_shapes = None # Or an empty graph
+            return
+
+        try:
+            # pyshacl's validate function can take the path to the shapes file directly
+            # So, we might not need to load it into a graph object here unless
+            # we want to inspect it or if pyshacl preferred a graph object.
+            # For now, let's assume pyshacl will handle loading from path.
+            # If direct path loading isn't ideal, we'd use rdflib to parse it:
+            # from rdflib import Graph
+            # self.shacl_shapes = Graph()
+            # self.shacl_shapes.parse(str(self.shacl_shapes_path), format="turtle")
+            # logging.info(f"Loaded SHACL shapes from {self.shacl_shapes_path}")
+
+            # Simpler approach: store the path and let pyshacl load it.
+            # No specific loading into an rdflib graph object here unless validate needs it.
+            # For this task, we'll let _validate_shacl_rules handle the direct file path.
+            logging.info(f"SHACL shapes file found at {self.shacl_shapes_path}")
+        except Exception as e:
+            logging.error(f"Could not load or parse SHACL shapes file: {e}")
+            self.shacl_shapes = None
+
+    def _validate_shacl_rules(self):
+        """Validate the knowledge graph against SHACL shapes."""
+        self._load_shacl_shapes() # Ensure shapes are "loaded" (path checked)
+
+        if not self.shacl_shapes_path.exists(): # Check again, in case loading failed silently or path was removed
+            logging.warning("SHACL validation skipped: Shapes file not found or failed to load.")
+            return []
+
+        if self.master_index is None:
+            # Try to load master_index if not already loaded.
+            # This might happen if validate_all_documents was not called before specific SHACL validation
+            try:
+                self._load_master_index()
+            except Exception as e:
+                logging.error(f"Failed to load master index for SHACL validation: {e}")
+                return [f"SHACL Engine Error: Master index not loaded - {e}"]
+
+        if self.master_index is None: # Check again
+             logging.warning("SHACL validation skipped: Master index not loaded.")
+             return [f"SHACL Engine Error: Master index not loaded."]
+
+
+        # Construct the data graph for SHACL validation
+        data_graph = RDFGraph() # Use alias RDFGraph
+
+        # Define namespaces (ensure these are consistent with your JSON-LD contexts)
+        # The kb: prefix should match what's in shacl-shapes.ttl and base.jsonld
+
+        # Load base.jsonld to get the 'kb' namespace URI
+        base_context_path = self.registry_path / "contexts" / "base.jsonld"
+        kb_namespace_uri = 'https://knowledge-base.local/vocab#' # Default
+        try:
+            with open(base_context_path, 'r', encoding='utf-8') as f:
+                base_context_data = json.load(f)
+            # Ensure base_context_data itself has @context and kb is in it
+            if isinstance(base_context_data, dict) and '@context' in base_context_data and isinstance(base_context_data['@context'], dict):
+                kb_namespace_uri = base_context_data['@context'].get('kb', kb_namespace_uri)
+            else:
+                logging.warning(f"Could not find 'kb' namespace in {base_context_path}, using default: {kb_namespace_uri}")
+
+        except Exception as e:
+            logging.error(f"Could not load {base_context_path} to determine kb namespace: {e}. Using default: {kb_namespace_uri}")
+
+        if not kb_namespace_uri.endswith('#') and not kb_namespace_uri.endswith('/'):
+            kb_namespace_uri += '#'
+        KB = Namespace(kb_namespace_uri)
+        # Define SH namespace for accessing validation report properties from pyshacl results
+        SH = Namespace("http://www.w3.org/ns/shacl#")
+
+        # Add master_index documents to data_graph
+        for doc in self.master_index.get('kb:documents', []):
+            doc_uri_str = doc.get('@id')
+            if not doc_uri_str:
+                logging.warning(f"Document in master_index missing '@id'. Skipping: {doc.get('kb:title', 'Untitled')}")
+                continue
+            doc_uri = URIRef(doc_uri_str)
+
+            # Add type kb:Document as targeted by the SHACL shape
+            data_graph.add((doc_uri, RDF.type, KB.Document))
+
+            for key, value in doc.items():
+                if key == '@id' or key == '@type':
+                    continue
+                if key.startswith('kb:'):
+                    prop_local_name = key.split('kb:')[1]
+                    # Ensure property names are valid for Namespace (e.g. no spaces, map info-type to info_type if needed)
+                    # This should align with how properties are defined in your actual ontology/shapes
+                    prop_uri = KB[prop_local_name.replace('-', '_')] # Example: kb:info-type -> KB.info_type
+
+                    if isinstance(value, list):
+                        for item in value:
+                            if isinstance(item, str):
+                                data_graph.add((doc_uri, prop_uri, Literal(item)))
+                            elif isinstance(item, dict) and '@id' in item: # For linked entities
+                                data_graph.add((doc_uri, prop_uri, URIRef(item['@id'])))
+                    elif isinstance(value, str):
+                        data_graph.add((doc_uri, prop_uri, Literal(value)))
+                    elif isinstance(value, dict) and '@id' in value: # For linked entity
+                         data_graph.add((doc_uri, prop_uri, URIRef(value['@id'])))
+
+        # Ensure relationships are generated if not already
+        if not self.relationships:
+            logging.info("Generating relationships for SHACL validation...")
+            # Simplified relationship generation for validation context
+            # This assumes _validate_document_node or similar has populated necessary lookups
+            # Or that relationships are already loaded/generated by another process
+            # For now, we rely on validate_all_documents having run first.
+            # If validate_all_documents hasn't run, self.relationships might be empty.
+            # This is a potential area for improvement if SHACL validation needs to be standalone.
+            pass # Relationships should be populated by validate_all_documents
+
+        # Add relationships to data_graph
+        for rel in self.relationships: # self.relationships should be populated by validate_all_documents
+            source_uri_str = rel.get('kb:source')
+            target_uri_str = rel.get('kb:target')
+            rel_type_str = rel.get('kb:relationship_type')
+
+            if not all([source_uri_str, target_uri_str, rel_type_str]):
+                logging.warning(f"Relationship missing source, target, or type. Skipping: {rel}")
+                continue
+
+            source_uri = URIRef(source_uri_str)
+            target_uri = URIRef(target_uri_str)
+            # Ensure relationship type is a valid local name for Namespace
+            rel_type_uri = KB[rel_type_str.replace('-', '_')]
+
+            data_graph.add((source_uri, rel_type_uri, target_uri))
+
+        logging.info(f"Data graph constructed with {len(data_graph)} triples for SHACL validation.")
+
+        if not data_graph:
+            logging.warning("SHACL validation skipped: Data graph is empty or could not be constructed.")
+            return ["SHACL Engine Error: Data graph empty"]
+
+        try:
+            conforms, v_graph, v_text = validate(
+                data_graph,
+                shacl_graph=str(self.shacl_shapes_path),
+                ont_graph=None,
+                inference='none',
+                abort_on_first=False,
+                allow_warnings=False,
+                meta_shacl=False,
+                advanced=False,
+                js=False,
+                debug=False
+            )
+
+            current_shacl_errors = []
+            if not conforms:
+                for report in v_graph.subjects(RDF.type, SH.ValidationReport):
+                    for result in v_graph.objects(report, SH.result):
+                        message_values = list(v_graph.objects(result, SH.resultMessage))
+                        message = str(message_values[0]) if message_values else "No message"
+
+                        focus_node_values = list(v_graph.objects(result, SH.focusNode))
+                        focus_node = str(focus_node_values[0]) if focus_node_values else "N/A"
+
+                        result_path_values = list(v_graph.objects(result, SH.resultPath))
+                        result_path = str(result_path_values[0]) if result_path_values else "N/A"
+
+                        scc_values = list(v_graph.objects(result, SH.sourceConstraintComponent))
+                        source_constraint_component = str(scc_values[0]) if scc_values else "N/A"
+
+                        error_detail = f"SHACL Violation: Node <{focus_node}> - Path <{result_path}> - Message: {message} (Constraint: {source_constraint_component})"
+                        current_shacl_errors.append(error_detail)
+                        logging.warning(error_detail)
+
+            self.shacl_validation_errors.extend(current_shacl_errors) # Append to class attribute
+            return current_shacl_errors # Return errors from this specific validation run
+        except Exception as e:
+            logging.error(f"Error during SHACL validation: {e}")
+            error_msg = f"SHACL Engine Error: {str(e)}"
+            self.shacl_validation_errors.append(error_msg)
+            return [error_msg]
     
     def validate_all_documents(self):
         """Validate all documents in the master index."""
@@ -530,13 +721,18 @@ class GraphValidator:
     
     def generate_validation_report(self, errors):
         """Generate a validation report."""
+        # Ensure SHACL errors are included if validation ran
+        # errors list passed here typically comes from validate_all_documents's own checks
+        combined_errors = errors + self.shacl_validation_errors
+        unique_errors = sorted(list(set(combined_errors))) # Avoid duplicates if any overlap
+
         report = {
             "validation_timestamp": datetime.now().isoformat(),
-            "schema_version": self.schema_registry.get('kb:schemaVersion'),
-            "total_documents": len(self.master_index.get('kb:documents', [])),
-            "total_errors": len(errors),
+            "schema_version": self.schema_registry.get('kb:schemaVersion') if self.schema_registry else "Unknown",
+            "total_documents": len(self.master_index.get('kb:documents', [])) if self.master_index else 0,
+            "total_errors": len(unique_errors),
             "total_broken_links": len(self.broken_links),
-            "errors": errors,
+            "errors": unique_errors, # Use the combined and unique list
             "broken_links": self.broken_links,
             "link_validation_summary": {
                 "internal_content_links": len([link for link in self.broken_links if link['link_type'] == 'internal_content_link']),
@@ -623,12 +819,33 @@ def main():
                 json.dump(report, f, indent=2, ensure_ascii=False)
             logging.info(f"Validation report saved to: {args.output_report}")
         
+        # Validate SHACL rules after other validations
+        # Call on the instance 'validator', not 'self'
+        shacl_errors = validator._validate_shacl_rules()
+        # Errors from validate_all_documents are already in 'errors' list
+        # SHACL errors are in shacl_errors and also appended to self.shacl_validation_errors
+
+        # Generate report (now includes SHACL errors via self.shacl_validation_errors)
+        report = validator.generate_validation_report(errors) # errors are from non-SHACL checks
+
+        # Output results
+        total_report_errors = report['total_errors'] # This now includes SHACL errors
+
+        if total_report_errors > 0:
+            logging.error(f"Validation completed with {total_report_errors} total errors (incl. SHACL):")
+            for error_idx, error_msg in enumerate(report['errors'][:10]):  # Show first 10 errors from the combined list
+                logging.error(f"  - {error_msg}")
+            if total_report_errors > 10:
+                logging.error(f"  ... and {total_report_errors - 10} more errors")
+        else:
+            logging.info("Validation completed successfully with no errors (incl. SHACL)!")
+
         # Return appropriate exit code
-        return 1 if errors else 0
+        return 1 if total_report_errors > 0 else 0
         
     except Exception as e:
         logging.error(f"Validation failed: {e}")
         return 1
 
 if __name__ == "__main__":
-    exit(main()) 
+    sys.exit(main()) # Changed to sys.exit
