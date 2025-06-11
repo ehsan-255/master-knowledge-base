@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-10 18:16:06  
+**Generated**: 2025-06-11 00:26:02  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -238,7 +238,9 @@
 📄 .cursorrules
 📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
-📄 json-ld-implementation-analysis.md
+📄 json-ld-roadmap-checklist.md
+📄 json-ld-roadmap-progress-tracker.md
+📄 json-ld-roadmap.md
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py

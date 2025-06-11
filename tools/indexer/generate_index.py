@@ -1,23 +1,23 @@
-# generate_index.py
-# Standards Index Generator with Schema Validation and Enhanced Reporting
+#!/usr/bin/env python3
+"""
+Knowledge Base Reconciliation Engine
+Refactored from generate_index.py to implement three-way reconciliation logic
+
+This script:
+1. Loads existing master-index.jsonld (if it exists)
+2. Scans the entire knowledge base for all .md files
+3. Implements three-way reconciliation: ADD new file nodes, UPDATE existing nodes if frontmatter changed, REMOVE nodes for deleted files
+4. Outputs the updated master-index.jsonld file in JSON-LD format
+"""
 
 import json
 import os
 import datetime
-import yaml 
-import jsonschema # For JSON schema validation
-from jsonschema import validate
-import argparse # Added for CLI arguments
-import re # Added for regex checks
-import logging # For better debug/info messages
-
-# Fields required by standards_index.schema.json for each standard entry
-# These must be present and non-null in the frontmatter for a standard to be indexed.
-INDEX_REQUIRED_FIELDS = [
-    "standard_id", "title", "primary_domain", "sub_domain", 
-    "info-type", "version", "status", "filepath", "date-modified",
-    "date-created", "criticality", "lifecycle_gatekeeper"
-]
+import yaml
+import argparse
+import logging
+import hashlib
+from pathlib import Path
 
 def get_frontmatter_from_content(file_content):
     """Extracts YAML frontmatter string from file content."""
@@ -29,84 +29,218 @@ def get_frontmatter_from_content(file_content):
         if line.startswith("---"):
             fm_end_index = i
             break
-    if fm_end_index == -1: return None
+    if fm_end_index == -1: 
+        return None
     return "".join(lines[1:fm_end_index])
 
-def get_status_from_tags(tags_list):
-    """Extracts status (e.g., 'draft') from a list of tags."""
-    if not isinstance(tags_list, list): return None
-    for tag in tags_list:
-        if isinstance(tag, str) and tag.startswith("status/"):
-            return tag.split("/", 1)[1]
-    return None # If no status tag found
+def calculate_content_hash(file_content):
+    """Calculate SHA-256 hash of file content for change detection."""
+    return hashlib.sha256(file_content.encode('utf-8')).hexdigest()
 
-def extract_metadata(filepath_rel_to_repo, file_content):
+def extract_frontmatter_metadata(filepath_rel_to_repo, file_content):
     """
-    Extracts metadata required for the index.
-    Returns a dictionary or None if essential data for schema compliance is missing or invalid.
+    Extracts frontmatter metadata from a markdown file.
+    Returns a dictionary with the frontmatter data or None if no frontmatter.
     """
     frontmatter_str = get_frontmatter_from_content(file_content)
     if not frontmatter_str:
-        return None, "No frontmatter found"
+        return None
 
     try:
         frontmatter_data = yaml.safe_load(frontmatter_str)
         if not isinstance(frontmatter_data, dict):
-            return None, "Frontmatter is not a valid dictionary"
-    except yaml.YAMLError as e:
-        return None, f"Invalid YAML in frontmatter: {e.problem}"
+            return None
+    except yaml.YAMLError:
+        return None
 
-    metadata = {"filepath": filepath_rel_to_repo.replace(os.sep, '/')}
+    return frontmatter_data
+
+def create_node_from_file(filepath_rel_to_repo, file_content, file_stats):
+    """
+    Creates a JSON-LD node from a markdown file.
+    """
+    frontmatter = extract_frontmatter_metadata(filepath_rel_to_repo, file_content)
+    content_hash = calculate_content_hash(file_content)
     
-    # Populate metadata from frontmatter based on INDEX_REQUIRED_FIELDS
-    for field in INDEX_REQUIRED_FIELDS:
-        if field == "filepath": # Already set
+    # Create base node structure
+    node = {
+        "@type": "kb:Document",
+        "@id": f"kb:doc-{filepath_rel_to_repo.replace('/', '-').replace('.md', '')}",
+        "kb:filepath": filepath_rel_to_repo,
+        "kb:contentHash": content_hash,
+        "kb:fileSize": len(file_content),
+        "kb:lastModified": datetime.datetime.fromtimestamp(file_stats.st_mtime, datetime.timezone.utc).isoformat(),
+        "kb:indexed": datetime.datetime.now(datetime.timezone.utc).isoformat()
+    }
+    
+    # Add frontmatter fields if they exist
+    if frontmatter:
+        for key, value in frontmatter.items():
+            # Convert frontmatter keys to kb: namespace
+            kb_key = f"kb:{key.replace('-', '_')}"
+            # Ensure dates are converted to strings for JSON serialization
+            if hasattr(value, 'isoformat'):
+                node[kb_key] = value.isoformat()
+            else:
+                node[kb_key] = value
+    
+    return node
+
+def load_existing_index(index_filepath):
+    """
+    Loads existing master-index.jsonld file if it exists.
+    Returns the index data or creates a new empty index structure.
+    """
+    if os.path.exists(index_filepath):
+        try:
+            with open(index_filepath, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError) as e:
+            logging.warning(f"Could not load existing index from {index_filepath}: {e}")
+            logging.warning("Creating new index from scratch.")
+    
+    # Create new index structure
+    return {
+        "@context": [
+            "contexts/base.jsonld",
+            "contexts/fields.jsonld"
+        ],
+        "@type": "kb:MasterIndex",
+        "@id": "kb:master-index",
+        "kb:schemaVersion": "1.0.0",
+        "kb:title": "Knowledge Base Master Index",
+        "kb:description": "Complete inventory of all knowledge base documents",
+        "kb:created": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "kb:modified": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "kb:version": "1.0.0",
+        "kb:documents": []
+    }
+
+def scan_knowledge_base(repo_base_path, exclude_dirs=None):
+    """
+    Scans the entire knowledge base for all .md files.
+    Returns a dictionary mapping relative file paths to file info.
+    """
+    if exclude_dirs is None:
+        exclude_dirs = {'.git', 'node_modules', '__pycache__', '.vscode', 'archive'}
+    
+    found_files = {}
+    repo_path = Path(repo_base_path)
+    
+    for md_file in repo_path.rglob('*.md'):
+        # Skip files in excluded directories
+        if any(excluded in md_file.parts for excluded in exclude_dirs):
             continue
-        elif field == "status":
-            tags = frontmatter_data.get("tags", [])
-            metadata[field] = get_status_from_tags(tags)
+            
+        rel_path = md_file.relative_to(repo_path).as_posix()
+        
+        try:
+            with open(md_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            file_stats = md_file.stat()
+            found_files[rel_path] = {
+                'content': content,
+                'stats': file_stats,
+                'abs_path': str(md_file)
+            }
+        except (IOError, UnicodeDecodeError) as e:
+            logging.warning(f"Could not read file {rel_path}: {e}")
+            continue
+    
+    return found_files
+
+def reconcile_index(existing_index, current_files):
+    """
+    Implements three-way reconciliation logic:
+    - ADD: New files not in existing index
+    - UPDATE: Existing files with changed content
+    - REMOVE: Files in index but no longer exist
+    """
+    reconciliation_stats = {
+        'added': 0,
+        'updated': 0,
+        'removed': 0,
+        'unchanged': 0
+    }
+    
+    # Create lookup for existing documents by filepath
+    existing_docs = {}
+    for doc in existing_index.get('kb:documents', []):
+        filepath = doc.get('kb:filepath')
+        if filepath:
+            existing_docs[filepath] = doc
+    
+    new_documents = []
+    
+    # Process current files (ADD and UPDATE)
+    for filepath, file_info in current_files.items():
+        content = file_info['content']
+        stats = file_info['stats']
+        content_hash = calculate_content_hash(content)
+        
+        if filepath in existing_docs:
+            # File exists in index - check if it needs updating
+            existing_doc = existing_docs[filepath]
+            existing_hash = existing_doc.get('kb:contentHash')
+            
+            if existing_hash != content_hash:
+                # Content changed - UPDATE
+                updated_node = create_node_from_file(filepath, content, stats)
+                new_documents.append(updated_node)
+                reconciliation_stats['updated'] += 1
+                logging.debug(f"UPDATE: {filepath}")
+            else:
+                # Content unchanged - keep existing
+                new_documents.append(existing_doc)
+                reconciliation_stats['unchanged'] += 1
         else:
-            metadata[field] = frontmatter_data.get(field)
-            # Ensure version is a string if it's a number
-            if field == "version" and isinstance(metadata[field], (int, float)):
-                metadata[field] = str(metadata[field])
+            # New file - ADD
+            new_node = create_node_from_file(filepath, content, stats)
+            new_documents.append(new_node)
+            reconciliation_stats['added'] += 1
+            logging.debug(f"ADD: {filepath}")
+    
+    # Check for removed files (REMOVE)
+    current_filepaths = set(current_files.keys())
+    for filepath in existing_docs.keys():
+        if filepath not in current_filepaths:
+            reconciliation_stats['removed'] += 1
+            logging.debug(f"REMOVE: {filepath}")
+    
+    # Update the index
+    existing_index['kb:documents'] = new_documents
+    existing_index['kb:modified'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    existing_index['kb:documentCount'] = len(new_documents)
+    
+    return existing_index, reconciliation_stats
 
-    # Check if all fields required by the index schema are present and not None after attempting to populate them
-    missing_or_empty_fields = []
-    for req_field in INDEX_REQUIRED_FIELDS:
-        if metadata.get(req_field) is None:
-            missing_or_empty_fields.append(req_field)
-            
-    if missing_or_empty_fields:
-        return None, f"Missing/empty required field(s) for index: {', '.join(missing_or_empty_fields)}"
-            
-    return metadata, None # metadata, error_reason
-
-def load_json_schema(schema_filepath_abs):
+def save_index(index_data, output_filepath):
+    """
+    Saves the master index to the specified file.
+    """
+    os.makedirs(os.path.dirname(output_filepath), exist_ok=True)
+    
     try:
-        with open(schema_filepath_abs, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print(f"CRITICAL ERROR: JSON Schema file not found at {schema_filepath_abs}.")
-    except json.JSONDecodeError:
-        print(f"CRITICAL ERROR: Could not parse JSON Schema file at {schema_filepath_abs}.")
-    return None
+        with open(output_filepath, 'w', encoding='utf-8') as f:
+            json.dump(index_data, f, indent=2, ensure_ascii=False)
+        return True
+    except IOError as e:
+        logging.error(f"Error writing index file: {e}")
+        return False
 
 def main():
-    parser = argparse.ArgumentParser(description="Knowledge Base Index Generator")
+    parser = argparse.ArgumentParser(description="Knowledge Base Reconciliation Engine")
     parser.add_argument("--repo-base", default=".", 
                         help="Path to the repository root. Default is current directory.")
-    parser.add_argument("--src-dirs", nargs='+', 
-                        default=[os.path.join("standards", "src")], 
-                        help="Source directories for standards files, relative to repo-base. Can specify multiple.")
-    parser.add_argument("--output-dir", default="dist", 
-                        help="Output directory for the index file, relative to repo-base.")
-    parser.add_argument("--schema-file", default=os.path.join("master-knowledge-base", "tools", "indexer", "standards_index.schema.json"), 
-                        help="Path to the JSON schema for the index, relative to repo-base.")
-    parser.add_argument("--output-filename", default="standards_index.json", 
-                        help="Filename for the generated index.")
-    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+    parser.add_argument("--index-file", default="standards/registry/master-index.jsonld", 
+                        help="Path to the master index file, relative to repo-base.")
+    parser.add_argument("--log-level", default="INFO", 
+                        choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
                         help="Set the logging level (default: INFO).")
+    parser.add_argument("--exclude-dirs", nargs='+', 
+                        default=['.git', 'node_modules', '__pycache__', '.vscode', 'archive'],
+                        help="Directories to exclude from scanning.")
 
     args = parser.parse_args()
 
@@ -114,135 +248,41 @@ def main():
     logging.basicConfig(level=getattr(logging, args.log_level.upper()),
                         format='%(levelname)s: %(message)s')
 
-    logging.debug("generate_index.py main() started.")
+    logging.info("Starting Knowledge Base Reconciliation Engine...")
+    
     repo_base_abs_path = os.path.abspath(args.repo_base)
+    index_file_abs = os.path.join(repo_base_abs_path, args.index_file)
     
-    # Process multiple source directories
-    source_directories_abs = [os.path.join(repo_base_abs_path, src_dir_rel) for src_dir_rel in args.src_dirs]
+    # Load existing index
+    logging.info("Loading existing master index...")
+    existing_index = load_existing_index(index_file_abs)
     
-    output_dir_abs = os.path.join(repo_base_abs_path, args.output_dir)
-    output_file_abs = os.path.join(output_dir_abs, args.output_filename)
-    schema_file_abs = os.path.join(repo_base_abs_path, args.schema_file)
-
-    # Check all source directories
-    for s_dir_abs in source_directories_abs:
-        if not os.path.isdir(s_dir_abs):
-            logging.error(f"Standards source directory not found at {s_dir_abs}")
-            logging.debug(f"Exiting because {s_dir_abs} is not a directory.")
-            return # Consider sys.exit(1) for critical errors
+    # Scan knowledge base for current files
+    logging.info("Scanning knowledge base for markdown files...")
+    current_files = scan_knowledge_base(repo_base_abs_path, set(args.exclude_dirs))
+    logging.info(f"Found {len(current_files)} markdown files")
     
-    logging.debug(f"Using source directories: {source_directories_abs}")
-    logging.debug("Attempting to load JSON schema...")
-    index_schema = load_json_schema(schema_file_abs)
-    if not index_schema:
-        # load_json_schema already prints critical errors
-        logging.debug("Exiting because index_schema could not be loaded.")
-        return # Consider sys.exit(1)
+    # Perform reconciliation
+    logging.info("Performing three-way reconciliation...")
+    updated_index, stats = reconcile_index(existing_index, current_files)
     
-    logging.debug("JSON schema loaded successfully.")
-
-    index_data = {
-        "schemaVersion": "1.0.0", 
-        "generatedDate": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        "standards": []
-    }
-
-    total_files_found = 0
-    files_indexed_count = 0
-    skipped_file_details = []
-    processed_standard_ids = set()
-    processed_filepaths = set()
-
-    for s_dir_abs in source_directories_abs:
-        logging.info(f"Scanning for Markdown files in: {s_dir_abs}...")
-        for root, _, files in os.walk(s_dir_abs):
-            for file in files:
-                if file.endswith(".md"):
-                    total_files_found += 1
-                    filepath_abs = os.path.normpath(os.path.join(root, file)) # Normalize path
-
-                    if filepath_abs in processed_filepaths:
-                        logging.debug(f"Skipping already processed file: {filepath_abs}")
-                        skipped_file_details.append((os.path.relpath(filepath_abs, start=repo_base_abs_path).replace(os.sep, '/'), "Skipped (already processed path)"))
-                        continue
-                    processed_filepaths.add(filepath_abs)
-
-                    filepath_for_index = os.path.relpath(filepath_abs, start=repo_base_abs_path).replace(os.sep, '/')
-                    
-                    file_content = ""
-                    try:
-                        with open(filepath_abs, 'r', encoding='utf-8') as f_content:
-                            file_content = f_content.read()
-                    except Exception as e:
-                        reason = f"Error reading file: {e}"
-                        logging.warning(f"SKIP: {filepath_for_index} ({reason})")
-                        skipped_file_details.append((filepath_for_index, reason))
-                        continue
-                    
-                    parsed_meta, reason = extract_metadata(filepath_for_index, file_content)
-
-                    if parsed_meta:
-                        current_std_id = parsed_meta.get("standard_id")
-                        if current_std_id in processed_standard_ids:
-                            reason = f"Duplicate standard_id '{current_std_id}' found. Original in index, this one skipped."
-                            logging.error(f"{reason} File: {filepath_for_index}") # Changed to logging.error
-                            skipped_file_details.append((filepath_for_index, reason))
-                        else:
-                            processed_standard_ids.add(current_std_id)
-                            index_data["standards"].append(parsed_meta)
-                            files_indexed_count += 1
-                            logging.debug(f"INDEXED: ID: {current_std_id}, File: {filepath_for_index}")
-                    else:
-                        skipped_file_details.append((filepath_for_index, reason))
-
-    logging.info(f"\n--- Index Generation Summary ---")
-    logging.info(f"Total .md files found: {total_files_found}")
-    logging.info(f"Successfully indexed: {files_indexed_count}")
-    skipped_count = len(skipped_file_details)
-    logging.info(f"Skipped (due to errors/missing fields): {skipped_count}")
-    if skipped_file_details:
-        logging.info("Skipped file details:")
-        for filepath, reason_text in skipped_file_details:
-            logging.info(f"  - {filepath}: {reason_text}")
-
-    logging.debug("\nPerforming Python-level regex check on standard_ids before jsonschema validation...")
-    current_regex = r"^[A-Z]{2}-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-    for i, std_entry in enumerate(index_data["standards"]):
-        std_id_to_check = std_entry.get("standard_id", "MISSING_ID_IN_ENTRY")
-        if not re.match(current_regex, std_id_to_check):
-            logging.debug(f"Python re.match failed for standards[{i}]->standard_id: '{std_id_to_check}' with regex: {current_regex}")
-    logging.debug("Python-level regex check complete.")
-
-    # Validate generated index data against the schema
-    validation_passed = False
-    try:
-        validate(instance=index_data, schema=index_schema)
-        logging.info(f"\nGenerated index successfully validated against schema.")
-        validation_passed = True
-    except jsonschema.ValidationError as ve:
-        logging.error(f"\nGenerated index is NOT VALID against schema {args.schema_file} (resolved: {schema_file_abs}):")
-        error_path = " -> ".join(str(p) for p in ve.path)
-        logging.error(f"  Error Path: {error_path}")
-        logging.error(f"  Error Message: {ve.message}")
-        logging.error("Index will NOT be written due to schema validation errors.")
-    except Exception as e: 
-        logging.error(f"\nAn unexpected error occurred during JSON schema validation: {e}")
-        logging.error("Index will NOT be written due to validation error.")
-
-    if validation_passed:
-        os.makedirs(output_dir_abs, exist_ok=True)
-        logging.info(f"\nWriting index to: {output_file_abs}...")
-        try:
-            with open(output_file_abs, 'w', encoding='utf-8') as f:
-                json.dump(index_data, f, indent=2)
-            logging.info(f"Successfully generated {os.path.join(args.output_dir, args.output_filename)}")
-        except IOError as e:
-            logging.error(f"Error writing index file: {e}")
-        except Exception as e:
-            logging.error(f"An unexpected error occurred during file writing: {e}")
+    # Save updated index
+    logging.info("Saving updated master index...")
+    if save_index(updated_index, index_file_abs):
+        logging.info(f"Successfully saved master index to: {args.index_file}")
     else:
-        logging.info("No index file written due to schema validation failures.")
-
+        logging.error("Failed to save master index")
+        return 1
+    
+    # Report reconciliation statistics
+    logging.info("\n--- Reconciliation Summary ---")
+    logging.info(f"Added: {stats['added']} files")
+    logging.info(f"Updated: {stats['updated']} files")
+    logging.info(f"Removed: {stats['removed']} files")
+    logging.info(f"Unchanged: {stats['unchanged']} files")
+    logging.info(f"Total documents in index: {len(updated_index['kb:documents'])}")
+    
+    return 0
 
 if __name__ == "__main__":
-    main()
+    exit(main()) 

@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "kb": "https://knowledge-base.local/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "kb:title": {
+      "@type": "xsd:string"
+    },
+    "kb:standard_id": {
+      "@type": "xsd:string"
+    },
+    "kb:aliases": {
+      "@type": "@id",
+      "@container": "@list"
+    },
+    "kb:tags": {
+      "@type": "@id",
+      "@container": "@list"
+    },
+    "kb:kb_id": {
+      "@type": "xsd:string"
+    },
+    "kb:info_type": {
+      "@type": "xsd:string"
+    },
+    "kb:primary_topic": {
+      "@type": "xsd:string"
+    },
+    "kb:related_standards": {
+      "@type": "@id",
+      "@container": "@list"
+    },
+    "kb:version": {
+      "@type": "xsd:string"
+    },
+    "kb:date_created": {
+      "@type": "xsd:string"
+    },
+    "kb:date_modified": {
+      "@type": "xsd:string"
+    },
+    "kb:primary_domain": {
+      "@type": "xsd:string"
+    },
+    "kb:sub_domain": {
+      "@type": "xsd:string"
+    },
+    "kb:scope_application": {
+      "@type": "xsd:string"
+    },
+    "kb:criticality": {
+      "@type": "xsd:string"
+    },
+    "kb:lifecycle_gatekeeper": {
+      "@type": "xsd:string"
+    },
+    "kb:impact_areas": {
+      "@type": "@id",
+      "@container": "@list"
+    },
+    "kb:change_log_url": {
+      "@type": "xsd:string"
+    }
+  }
+}
