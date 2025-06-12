@@ -314,7 +314,13 @@
         "security-standard",
         "compliance-guideline",
         "collection-document",
-        "changelog"
+        "changelog",
+        "mandate-document",
+        "navigation-document",
+        "log-file",
+        "project-guideline",
+        "internal-guideline",
+        "template"
       ]
     },
     {
@@ -491,7 +497,27 @@
       "@type": "kb:ControlledVocabulary",
       "@id": "kb:vocab-sub-domain",
       "kb:vocabularyName": "sub_domain",
-      "kb:values": []
+      "kb:values": [
+        "AUTOMATION",
+        "CALLOUTS",
+        "CONDITIONAL",
+        "CONVENTIONS",
+        "FRONTMATTER",
+        "GLOSSARY",
+        "GUIDE",
+        "INDEXING",
+        "KEYDEFS",
+        "LIFECYCLE",
+        "LINKS",
+        "MARKDOWN",
+        "POLICY",
+        "REGISTRY",
+        "SCHEMA",
+        "STRUCTURE",
+        "TAGGING",
+        "TRANSCLUSION",
+        "VALIDATION"
+      ]
     }
   ],
   "kb:tagCategories": [
@@ -543,6 +569,13 @@
           "kb:tagId": "archived",
           "kb:fullTag": "status/archived",
           "kb:description": "Content is preserved for historical reference but is not actively maintained"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-live",
+          "kb:tagId": "live",
+          "kb:fullTag": "status/live",
+          "kb:description": "Content is actively in use and maintained"
         }
       ]
     },
@@ -794,6 +827,13 @@
           "kb:tagId": "schema",
           "kb:fullTag": "topic/schema",
           "kb:description": "Documents related to schema definitions"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-indexing",
+          "kb:tagId": "indexing",
+          "kb:fullTag": "topic/indexing",
+          "kb:description": "Documents related to indexing and directory structures"
         }
       ]
     },
@@ -942,6 +982,46 @@
           "kb:tagId": "P4-Informational",
           "kb:fullTag": "criticality/P4-Informational",
           "kb:description": "Purely informational content with no direct operational impact",
+          "kb:fieldValue": "P4-Informational"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-p0-critical",
+          "kb:tagId": "p0-critical",
+          "kb:fullTag": "criticality/p0-critical",
+          "kb:description": "Essential for system operation, core understanding, or carries significant regulatory/compliance implications (lowercase variant)",
+          "kb:fieldValue": "P0-Critical"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-p1-high",
+          "kb:tagId": "p1-high",
+          "kb:fullTag": "criticality/p1-high",
+          "kb:description": "Important for system operation, key processes, or best practices (lowercase variant)",
+          "kb:fieldValue": "P1-High"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-p2-medium",
+          "kb:tagId": "p2-medium",
+          "kb:fullTag": "criticality/p2-medium",
+          "kb:description": "Useful for consistency, best practices, or operational efficiency (lowercase variant)",
+          "kb:fieldValue": "P2-Medium"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-p3-low",
+          "kb:tagId": "p3-low",
+          "kb:fullTag": "criticality/p3-low",
+          "kb:description": "Optional or advisory content (lowercase variant)",
+          "kb:fieldValue": "P3-Low"
+        },
+        {
+          "@type": "kb:Tag",
+          "@id": "kb:tag-p4-informational",
+          "kb:tagId": "p4-informational",
+          "kb:fullTag": "criticality/p4-informational",
+          "kb:description": "Purely informational content with no direct operational impact (lowercase variant)",
           "kb:fieldValue": "P4-Informational"
         }
       ]

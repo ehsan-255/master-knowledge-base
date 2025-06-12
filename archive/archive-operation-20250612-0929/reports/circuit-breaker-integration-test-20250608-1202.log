@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\scribe-tests\test_circuit_breaker_integration.py", line 302, in <module>
+    success = main()
+              ^^^^^^
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\scribe-tests\test_circuit_breaker_integration.py", line 278, in main
+    print("\U0001f3af Starting Circuit Breaker Integration Tests")
+  File "C:\ProgramData\miniconda3\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f3af' in position 0: character maps to <undefined>

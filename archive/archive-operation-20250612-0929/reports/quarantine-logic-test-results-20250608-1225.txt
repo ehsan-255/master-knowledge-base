@@ -1,0 +1,86 @@
+test_circuit_breaker_triggers_quarantine (test_quarantine_logic.TestQuarantineLogic.test_circuit_breaker_triggers_quarantine)
+2025-06-08 12:24:55 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:55 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpxdg2uute\quarantine security_enabled=False
+2025-06-08 12:24:55 [info     ] Dispatching actions for rule match actions_count=0 file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpxdg2uute\test_files\test_document.md rule_id=TEST-RULE-005
+2025-06-08 12:24:55 [warning  ] Action dispatch blocked by circuit breaker circuit_state=OPEN failure_count=5 file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpxdg2uute\test_files\test_document.md last_failure_time=1749410695.8764088 rule_id=TEST-RULE-005
+2025-06-08 12:24:55 [info     ] File quarantined successfully  original_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpxdg2uute\test_files\test_document.md quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpxdg2uute\quarantine\Users\ELIANA~1\AppData\Local\Temp\tmpxdg2uute\test_files\test_document_20250608_122455.md reason=circuit_breaker_open rule_id=TEST-RULE-005
+Test that circuit breaker error triggers quarantine. ... ok
+test_quarantine_error_handling (test_quarantine_logic.TestQuarantineLogic.test_quarantine_error_handling)
+2025-06-08 12:24:55 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:55 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpg8uol4ma\quarantine security_enabled=False
+Test quarantine error handling for permission issues. ... ERROR
+test_quarantine_file_nonexistent (test_quarantine_logic.TestQuarantineLogic.test_quarantine_file_nonexistent)
+2025-06-08 12:24:56 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:56 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpgwsfihko\quarantine security_enabled=False
+2025-06-08 12:24:56 [warning  ] Cannot quarantine file - file does not exist file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpgwsfihko\test_files\nonexistent.md reason=test rule_id=TEST-RULE-002
+Test quarantine of non-existent file. ... ok
+test_quarantine_file_success (test_quarantine_logic.TestQuarantineLogic.test_quarantine_file_success)
+2025-06-08 12:24:56 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:56 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmph7176qcx\quarantine security_enabled=False
+2025-06-08 12:24:56 [info     ] File quarantined successfully  original_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmph7176qcx\test_files\test_document.md quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmph7176qcx\quarantine\Users\ELIANA~1\AppData\Local\Temp\tmph7176qcx\test_files\test_document_20250608_122456.md reason=circuit_breaker_open rule_id=TEST-RULE-001
+Test successful file quarantine. ... ok
+test_quarantine_filename_timestamping (test_quarantine_logic.TestQuarantineLogic.test_quarantine_filename_timestamping)
+2025-06-08 12:24:56 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:56 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpiarhi5yn\quarantine security_enabled=False
+2025-06-08 12:24:56 [info     ] File quarantined successfully  original_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpiarhi5yn\test_files\test_document.md quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpiarhi5yn\quarantine\Users\ELIANA~1\AppData\Local\Temp\tmpiarhi5yn\test_files\test_document_20250608_122456.md reason=test rule_id=TEST-RULE-004
+2025-06-08 12:24:57 [info     ] File quarantined successfully  original_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpiarhi5yn\test_files\test_document.md quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpiarhi5yn\quarantine\Users\ELIANA~1\AppData\Local\Temp\tmpiarhi5yn\test_files\test_document_20250608_122457.md reason=test rule_id=TEST-RULE-004
+Test that quarantined files get timestamped names. ... ok
+test_quarantine_preserves_directory_structure (test_quarantine_logic.TestQuarantineLogic.test_quarantine_preserves_directory_structure)
+2025-06-08 12:24:57 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:57 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmp09lu7uyx\quarantine security_enabled=False
+2025-06-08 12:24:57 [info     ] File quarantined successfully  original_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmp09lu7uyx\test_files\subdir\nested\nested_file.md quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmp09lu7uyx\quarantine\Users\ELIANA~1\AppData\Local\Temp\tmp09lu7uyx\test_files\subdir\nested\nested_file_20250608_122457.md reason=test rule_id=TEST-RULE-003
+Test that quarantine preserves directory structure. ... ok
+test_quarantine_stats_in_execution_stats (test_quarantine_logic.TestQuarantineLogic.test_quarantine_stats_in_execution_stats)
+2025-06-08 12:24:57 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:57 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpoxh8obu6\quarantine security_enabled=False
+2025-06-08 12:24:57 [info     ] File quarantined successfully  original_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpoxh8obu6\test_files\test_document.md quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpoxh8obu6\quarantine\Users\ELIANA~1\AppData\Local\Temp\tmpoxh8obu6\test_files\test_document_20250608_122457.md reason=test rule_id=TEST-RULE-006
+Test that quarantine statistics are included in execution stats. ... ok
+test_reset_stats_includes_quarantine (test_quarantine_logic.TestQuarantineLogic.test_reset_stats_includes_quarantine)
+2025-06-08 12:24:57 [info     ] CircuitBreakerManager initialized
+2025-06-08 12:24:57 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmp26r65urn\quarantine security_enabled=False
+2025-06-08 12:24:57 [info     ] File quarantined successfully  original_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmp26r65urn\test_files\test_document.md quarantine_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmp26r65urn\quarantine\Users\ELIANA~1\AppData\Local\Temp\tmp26r65urn\test_files\test_document_20250608_122457.md reason=test rule_id=TEST-RULE-008
+2025-06-08 12:24:57 [debug    ] Execution statistics reset
+Test that reset_stats resets quarantine statistics. ... ok
+
+======================================================================
+ERROR: test_quarantine_error_handling (test_quarantine_logic.TestQuarantineLogic.test_quarantine_error_handling)
+Test quarantine error handling for permission issues.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\tools\scribe\core\action_dispatcher.py", line 659, in quarantine_file
+    source_path.unlink()
+  File "C:\ProgramData\miniconda3\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\miniconda3\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\miniconda3\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+PermissionError: Permission denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\scribe-tests\test_quarantine_logic.py", line 253, in test_quarantine_error_handling
+    result = self.dispatcher.quarantine_file(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\tools\scribe\core\action_dispatcher.py", line 680, in quarantine_file
+    logger.error("Failed to quarantine file",
+  File "C:\Users\E L I A N A\AppData\Roaming\Python\Python312\site-packages\structlog\_native.py", line 144, in meth
+    return self._proxy_to_logger(name, event, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\E L I A N A\AppData\Roaming\Python\Python312\site-packages\structlog\_base.py", line 223, in _proxy_to_logger
+    return getattr(self._logger, method_name)(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\E L I A N A\AppData\Roaming\Python\Python312\site-packages\structlog\_output.py", line 110, in msg
+    print(message, file=f, flush=True)
+  File "C:\ProgramData\miniconda3\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 216-217: character maps to <undefined>
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.754s
+
+FAILED (errors=1)

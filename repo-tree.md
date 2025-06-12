@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-11 01:20:29  
+**Generated**: 2025-06-12 09:22:01  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -20,6 +20,10 @@
 │   📄 roadmap-progress-tracker-template.md
 │   📄 roadmap-template.md
 🗃️ archive ALWAYS ARCHIVE HERE
+📁 kb
+│   📁 tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
+│       📄 conforming-shacl-doc.md
+│       📄 violating-shacl-doc.md
 ⚖️ standards
 │   🔠 registry
 │   │   📁 contexts
@@ -72,6 +76,7 @@
 │   │   📄 OM-OVERVIEW-PUBLISHING-PIPELINE.md
 │   │   📄 OM-POLICY-STANDARDS-DEPRECATION.md
 │   │   📄 OM-POLICY-STANDARDS-GOVERNANCE.md
+│   │   📄 OM-PROCESS-SST-UPDATE.md
 │   │   📄 OM-VERSIONING-CHANGELOGS.md
 │   │   📄 QM-VALIDATION-METADATA.md
 │   │   📄 SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md
@@ -188,26 +193,42 @@
 │   │   📄 config-folder-relocation-20250609-2315.md
 │   │   📄 dependency-analysis-archive-operation-20250609-2305.md
 │   │   📄 frontmatter-organizer-sst-integration-20250610-0113.md
+│   │   📄 json-ld-roadmap-audit-report-20250611-1216.md
+│   │   📄 json-ld-roadmap-audit-report-20250611-1305.md
+│   │   📄 json-ld-roadmap-detailed-audit-findings-20250611-1306.md
 │   │   📄 phase4-circuit-breaker-completion-20250608-2207.md
 │   │   📄 phase5-queue-backpressure-completion-20250608-2212.md
 │   │   📄 project-completion-scribe-refinements-20250608-2216.md
 │   │   📄 quarantine-logic-test-results-20250608-1224.txt
 │   │   📄 quarantine-logic-test-results-20250608-1225.txt
+│   │   📄 shacl-test-20250611-1239.json
 │   │   📄 standards-registry-complete-dependency-analysis-20250609-2320.md
 │   │   📄 tools-readme-revision-migration-scripts-removal-20250609-2310.md
+│   │   📄 validation-final-complete-20250612-0743.json
+│   │   📄 validation-post-fix-20250612-0743.json
+│   │   📄 validation-post-fix-final-20250612-0743.json
 │   │   📄 validation-report-20250611-0052.json
+│   │   📄 validation-report-20250611-1304.json
 │   │   📄 validation-report-with-links-20250611-0103.json
 │   │   📄 validation-report-with-relationships-20250611-0106.json
 │   │   📄 validation-report-with-relationships-20250611-0107.json
 │   │   📄 validation-report-with-relationships-20250611-0108.json
+│   │   📄 validation-test-20250611-1239.json
+│   │   📄 vocabulary-remediation-complete-20250612-0743.md
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
 │   │   │   📄 base.py
+│   │   │   📄 base_action.py
+│   │   │   📄 graph_validation_action.py
+│   │   │   📄 naming_enforcement_action.py
+│   │   │   📄 reconciliation_action.py
 │   │   │   📄 run_command_action.py
+│   │   │   📄 view_generation_action.py
 │   │   📁 config
 │   │   │   📄 config.json
 │   │   │   📄 config.schema.json
+│   │   │   📄 sst-update-workflow.json
 │   │   📁 core
 │   │   │   📄 __init__.py
 │   │   │   📄 action_dispatcher.py
@@ -240,6 +261,7 @@
 │   │   📄 validate_registry.py
 │   📄 changelog.md
 │   📄 README.md
+│   📄 view_generator.py
 📄 .cursorignore
 📄 .cursorrules
 📄 .prettierignore
@@ -250,6 +272,7 @@
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py
+📄 shacl-test-report.json
 ```
 
 ---

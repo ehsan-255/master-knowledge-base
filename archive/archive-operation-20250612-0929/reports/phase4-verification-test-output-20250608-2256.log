@@ -1,0 +1,117 @@
+Phase 4 Circuit Breaker Verification Test
+==================================================
+
+=== Testing ActionChainFailedError Exception ===
+Exception message: Test action chain failure
+Rule ID: TEST_RULE_123
+Failed actions: 3
+Total actions: 5
+Successfully caught ActionChainFailedError: Test action chain failure
+=== Phase 4 Verification Test: Circuit Breaker Action Chain Failure ===
+2025-06-08 22:57:01 [debug    ] JSON schema loaded successfully schema_path=config\config.schema.json
+2025-06-08 22:57:01 [debug    ] Configuration validation successful
+2025-06-08 22:57:01 [info     ] Configuration loaded and validated successfully config_version=1.0 rules_count=1
+2025-06-08 22:57:01 [info     ] Hot-reload watcher started     watch_directory=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5
+2025-06-08 22:57:01 [info     ] ConfigManager initialized      auto_reload=True config_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\config.json schema_path=config\config.schema.json
+2025-06-08 22:57:01 [info     ] PluginLoader initialized       plugins_directory='C:\\Users\\E L I A N A\\Downloads\\_apmdd_vault\\master-knowledge-base\\tools\\scribe\\actions'
+2025-06-08 22:57:01 [info     ] CircuitBreakerManager initialized
+2025-06-08 22:57:01 [info     ] ActionDispatcher initialized   circuit_breaker_enabled=True quarantine_path=archive/scribe/quarantine/ security_enabled=False
+2025-06-08 22:57:01 [debug    ] Configuration change callback added
+2025-06-08 22:57:01 [debug    ] Rule pattern compiled successfully pattern='# Test Document' rule_id=RULE-001
+2025-06-08 22:57:01 [info     ] Rules compiled successfully    enabled_rules=1 total_rules=1
+2025-06-08 22:57:01 [info     ] RuleProcessor initialized      rules_count=1
+2025-06-08 22:57:01 [info     ] CircuitBreaker initialized     failure_threshold=5 recovery_timeout_seconds=60 rule_id=RULE-001 success_threshold=3
+2025-06-08 22:57:01 [debug    ] Created new circuit breaker    failure_threshold=5 recovery_timeout_seconds=60 rule_id=RULE-001
+Initial circuit breaker state: CircuitState.CLOSED
+Circuit breaker failure threshold: 5
+
+--- Attempt 1/7 ---
+2025-06-08 22:57:01 [debug    ] File path matches rule glob    file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md glob_pattern=*.md rule_id=RULE-001
+2025-06-08 22:57:01 [debug    ] Found matching rules for file  file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matching_rule_ids=['RULE-001']
+2025-06-08 22:57:01 [debug    ] Pattern match found            match_end=15 match_start=0 matched_text='# Test Document' rule_id=RULE-001
+2025-06-08 22:57:01 [info     ] Rule match found               event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md match_line=1 rule_id=RULE-001
+2025-06-08 22:57:01 [info     ] File processing complete       file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matched_rule_ids=['RULE-001'] total_matches=1
+Found 1 rule matches
+2025-06-08 22:57:01 [info     ] Dispatching actions for rule match actions_count=1 event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001
+2025-06-08 22:57:01 [warning  ] Action type not found          action_type=always_fail
+2025-06-08 22:57:01 [error    ] Action plugin not found        action_type=always_fail
+2025-06-08 22:57:01 [error    ] Action chain failure triggering circuit breaker event_id=None failed_actions=1 failure_rate=1.0 file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001 total_actions=1
+2025-06-08 22:57:01 [warning  ] Failure recorded               error_message="Action chain failure in rule 'RULE-001': 1/1 actions failed. Failures: always_fail: Action 'always_fail' failed: Action plugin not found" error_type=ActionChainFailedError failure_count=1 failure_threshold=5 rule_id=RULE-001 state=closed
+Exception during processing: 'charmap' codec can't encode characters in position 331-332: character maps to <undefined>
+Circuit breaker state: CircuitState.CLOSED
+Circuit breaker failure count: 1
+
+--- Attempt 2/7 ---
+2025-06-08 22:57:01 [debug    ] File path matches rule glob    file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md glob_pattern=*.md rule_id=RULE-001
+2025-06-08 22:57:01 [debug    ] Found matching rules for file  file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matching_rule_ids=['RULE-001']
+2025-06-08 22:57:01 [debug    ] Pattern match found            match_end=15 match_start=0 matched_text='# Test Document' rule_id=RULE-001
+2025-06-08 22:57:01 [info     ] Rule match found               event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md match_line=1 rule_id=RULE-001
+2025-06-08 22:57:01 [info     ] File processing complete       file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matched_rule_ids=['RULE-001'] total_matches=1
+Found 1 rule matches
+2025-06-08 22:57:01 [info     ] Dispatching actions for rule match actions_count=1 event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001
+2025-06-08 22:57:01 [warning  ] Action type not found          action_type=always_fail
+2025-06-08 22:57:01 [error    ] Action plugin not found        action_type=always_fail
+2025-06-08 22:57:01 [error    ] Action chain failure triggering circuit breaker event_id=None failed_actions=1 failure_rate=1.0 file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001 total_actions=1
+2025-06-08 22:57:01 [warning  ] Failure recorded               error_message="Action chain failure in rule 'RULE-001': 1/1 actions failed. Failures: always_fail: Action 'always_fail' failed: Action plugin not found" error_type=ActionChainFailedError failure_count=2 failure_threshold=5 rule_id=RULE-001 state=closed
+Exception during processing: 'charmap' codec can't encode characters in position 331-332: character maps to <undefined>
+Circuit breaker state: CircuitState.CLOSED
+Circuit breaker failure count: 2
+
+--- Attempt 3/7 ---
+2025-06-08 22:57:02 [debug    ] File path matches rule glob    file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md glob_pattern=*.md rule_id=RULE-001
+2025-06-08 22:57:02 [debug    ] Found matching rules for file  file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matching_rule_ids=['RULE-001']
+2025-06-08 22:57:02 [debug    ] Pattern match found            match_end=15 match_start=0 matched_text='# Test Document' rule_id=RULE-001
+2025-06-08 22:57:02 [info     ] Rule match found               event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md match_line=1 rule_id=RULE-001
+2025-06-08 22:57:02 [info     ] File processing complete       file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matched_rule_ids=['RULE-001'] total_matches=1
+Found 1 rule matches
+2025-06-08 22:57:02 [info     ] Dispatching actions for rule match actions_count=1 event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001
+2025-06-08 22:57:02 [warning  ] Action type not found          action_type=always_fail
+2025-06-08 22:57:02 [error    ] Action plugin not found        action_type=always_fail
+2025-06-08 22:57:02 [error    ] Action chain failure triggering circuit breaker event_id=None failed_actions=1 failure_rate=1.0 file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001 total_actions=1
+2025-06-08 22:57:02 [warning  ] Failure recorded               error_message="Action chain failure in rule 'RULE-001': 1/1 actions failed. Failures: always_fail: Action 'always_fail' failed: Action plugin not found" error_type=ActionChainFailedError failure_count=3 failure_threshold=5 rule_id=RULE-001 state=closed
+Exception during processing: 'charmap' codec can't encode characters in position 331-332: character maps to <undefined>
+Circuit breaker state: CircuitState.CLOSED
+Circuit breaker failure count: 3
+
+--- Attempt 4/7 ---
+2025-06-08 22:57:02 [debug    ] File path matches rule glob    file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md glob_pattern=*.md rule_id=RULE-001
+2025-06-08 22:57:02 [debug    ] Found matching rules for file  file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matching_rule_ids=['RULE-001']
+2025-06-08 22:57:02 [debug    ] Pattern match found            match_end=15 match_start=0 matched_text='# Test Document' rule_id=RULE-001
+2025-06-08 22:57:02 [info     ] Rule match found               event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md match_line=1 rule_id=RULE-001
+2025-06-08 22:57:02 [info     ] File processing complete       file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matched_rule_ids=['RULE-001'] total_matches=1
+Found 1 rule matches
+2025-06-08 22:57:02 [info     ] Dispatching actions for rule match actions_count=1 event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001
+2025-06-08 22:57:02 [warning  ] Action type not found          action_type=always_fail
+2025-06-08 22:57:02 [error    ] Action plugin not found        action_type=always_fail
+2025-06-08 22:57:02 [error    ] Action chain failure triggering circuit breaker event_id=None failed_actions=1 failure_rate=1.0 file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001 total_actions=1
+2025-06-08 22:57:02 [warning  ] Failure recorded               error_message="Action chain failure in rule 'RULE-001': 1/1 actions failed. Failures: always_fail: Action 'always_fail' failed: Action plugin not found" error_type=ActionChainFailedError failure_count=4 failure_threshold=5 rule_id=RULE-001 state=closed
+Exception during processing: 'charmap' codec can't encode characters in position 331-332: character maps to <undefined>
+Circuit breaker state: CircuitState.CLOSED
+Circuit breaker failure count: 4
+
+--- Attempt 5/7 ---
+2025-06-08 22:57:02 [debug    ] File path matches rule glob    file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md glob_pattern=*.md rule_id=RULE-001
+2025-06-08 22:57:02 [debug    ] Found matching rules for file  file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matching_rule_ids=['RULE-001']
+2025-06-08 22:57:02 [debug    ] Pattern match found            match_end=15 match_start=0 matched_text='# Test Document' rule_id=RULE-001
+2025-06-08 22:57:02 [info     ] Rule match found               event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md match_line=1 rule_id=RULE-001
+2025-06-08 22:57:02 [info     ] File processing complete       file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md matched_rule_ids=['RULE-001'] total_matches=1
+Found 1 rule matches
+2025-06-08 22:57:02 [info     ] Dispatching actions for rule match actions_count=1 event_id=None file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001
+2025-06-08 22:57:02 [warning  ] Action type not found          action_type=always_fail
+2025-06-08 22:57:02 [error    ] Action plugin not found        action_type=always_fail
+2025-06-08 22:57:02 [error    ] Action chain failure triggering circuit breaker event_id=None failed_actions=1 failure_rate=1.0 file_path=C:\Users\ELIANA~1\AppData\Local\Temp\tmpraooeno5\test.md rule_id=RULE-001 total_actions=1
+2025-06-08 22:57:02 [warning  ] Failure recorded               error_message="Action chain failure in rule 'RULE-001': 1/1 actions failed. Failures: always_fail: Action 'always_fail' failed: Action plugin not found" error_type=ActionChainFailedError failure_count=5 failure_threshold=5 rule_id=RULE-001 state=closed
+2025-06-08 22:57:02 [info     ] Circuit breaker state changed  failure_count=5 new_state=open old_state=closed reason='Failure threshold exceeded (5/5)' rule_id=RULE-001 success_count=0
+Exception during processing: 'charmap' codec can't encode characters in position 331-332: character maps to <undefined>
+Circuit breaker state: CircuitState.OPEN
+Circuit breaker failure count: 5
+Traceback (most recent call last):
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\scribe-tests\test_phase4_verification.py", line 214, in <module>
+    test2_success = test_circuit_breaker_action_chain_failure()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\test-environment\scribe-tests\test_phase4_verification.py", line 159, in test_circuit_breaker_action_chain_failure
+    print(f"\n\U0001f389 SUCCESS: Circuit breaker opened after {failure_count} failures!")
+  File "C:\ProgramData\miniconda3\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f389' in position 2: character maps to <undefined>

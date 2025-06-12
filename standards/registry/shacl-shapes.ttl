@@ -1,16 +1,85 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix kb: <https://knowledge-base.local/vocab#> . # Adjusted this prefix
+@prefix kb: <https://knowledge-base.local/vocab#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Shape for validating documents with kb:criticality "C4"
 kb:CriticalDocumentShape
     a sh:NodeShape ;
-    sh:targetObjectsWith [
-        sh:targetClass kb:Document ; # Assuming documents have @type kb:Document
-        kb:criticality "C4"
+    sh:targetClass kb:Document ;
+    sh:property [
+        sh:path kb:criticality ;
+        sh:hasValue "C4" ;
+        sh:property [
+            sh:path kb:lifecycle_gatekeeper ;
+            sh:minCount 1 ;
+            sh:message "Critical documents (criticality C4) must have a lifecycle_gatekeeper defined."
+        ]
+    ] .
+
+# Shape for validating standard documents must have standard_id
+kb:StandardDocumentShape
+    a sh:NodeShape ;
+    sh:targetClass kb:Document ;
+    sh:property [
+        sh:path kb:info_type ;
+        sh:in ( "standard-definition" "policy-document" ) ;
+        sh:property [
+            sh:path kb:standard_id ;
+            sh:minCount 1 ;
+            sh:pattern "^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\\-]+$" ;
+            sh:message "Standard documents must have a valid standard_id following the pattern."
+        ]
+    ] .
+
+# Shape for validating P0-Critical documents must have Architect-Review gatekeeper
+kb:P0CriticalDocumentShape
+    a sh:NodeShape ;
+    sh:targetClass kb:Document ;
+    sh:property [
+        sh:path kb:criticality ;
+        sh:hasValue "P0-Critical" ;
+        sh:property [
+            sh:path kb:lifecycle_gatekeeper ;
+            sh:in ( "Architect-Review" "Editorial-Board-Approval" ) ;
+            sh:message "P0-Critical documents must have Architect-Review or Editorial-Board-Approval gatekeeper."
+        ]
+    ] .
+
+# Shape for validating documents with related-standards must reference existing documents
+kb:RelatedStandardsShape
+    a sh:NodeShape ;
+    sh:targetClass kb:Document ;
+    sh:property [
+        sh:path kb:related_standards ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Related standards must reference valid document IRIs."
+    ] .
+
+# Shape for validating mandatory fields for all documents
+kb:MandatoryFieldsShape
+    a sh:NodeShape ;
+    sh:targetClass kb:Document ;
+    sh:property [
+        sh:path kb:title ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "All documents must have a title."
     ] ;
     sh:property [
-        sh:path kb:lifecycle_gatekeeper ;
+        sh:path kb:version ;
         sh:minCount 1 ;
-        sh:message "Critical documents (criticality C4) must have a lifecycle_gatekeeper defined."
+        sh:datatype xsd:string ;
+        sh:message "All documents must have a version."
+    ] ;
+    sh:property [
+        sh:path kb:date_created ;
+        sh:minCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "All documents must have a creation date."
+    ] ;
+    sh:property [
+        sh:path kb:date_modified ;
+        sh:minCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "All documents must have a modification date."
     ] .
