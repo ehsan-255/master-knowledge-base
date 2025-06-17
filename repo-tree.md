@@ -1,23 +1,6 @@
----
-title: Untitled Document
-info-type: general
-version: 0.0.1
-date-created: '2025-06-17'
-date-modified: '2025-06-17T02:29:12Z'
-tags:
-- content-type/general
-- criticality/p0-critical
-- kb-id/global
-kb-id: '[AUTO_GENERATED_KB_ID]'
-primary-topic: '[MISSING_PRIMARY_TOPIC]'
-scope_application: '[MISSING_SCOPE_APPLICATION]'
-criticality: P0-Critical
-lifecycle_gatekeeper: Architect-Review
-impact_areas: []
----
 # Repository Tree Structure
 
-**Generated**: 2025-06-16 23:36:57  
+**Generated**: 2025-06-17 06:29:52  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -178,6 +161,9 @@ impact_areas: []
 │   📄 test-summary-20250607-091041.md
 │   📄 test-todos.json
 🔧 tools
+│   📁 analysis
+│   │   📄 analyze_document_types.py
+│   │   📄 document_type_analyzer.py
 │   📁 file-format-utils
 │   │   📄 add_readme_frontmatter.py
 │   │   📄 crlf_to_lf_converter.py
@@ -202,17 +188,26 @@ impact_areas: []
 │   │   📄 refactor_criticality_field.py
 │   │   📄 refactor_ids_filenames.py
 │   │   📄 refactor_tag_casing.py
+│   │   📄 universal_kb_id_migration.py
 │   📊 reports
 │   │   📄 architecture-protection-completion-20250616-2321.md
 │   │   📄 comprehensive-architecture-audit-20250616-2310.md
 │   │   📄 comprehensive-standards-analysis-20250616-1433.md
 │   │   📄 critical-architecture-audit-20250616-2304.md
+│   │   📄 gm-conventions-naming-reduction-completion-report.md
+│   │   📄 gm-guide-kb-usage-reduction-completion-report-20250616-2352.md
+│   │   📄 post-migration-validation-report-20250617-0212.json
+│   │   📄 shacl-base-schema-validation-20250617-0209.json
 │   │   📄 standards-consolidation-completion-report-20250616-2212.md
+│   │   📄 ultimate-frontmatter-enhancement-implementation-prompt.md
+│   │   📄 validation-report-after-vocab-update-20250617-0216.json
+│   │   📄 validation-test-report-20250617-0209.json
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
 │   │   │   📄 base.py
 │   │   │   📄 base_action.py
+│   │   │   📄 enhanced_frontmatter_action.py
 │   │   │   📄 graph_validation_action.py
 │   │   │   📄 naming_enforcement_action.py
 │   │   │   📄 reconciliation_action.py
@@ -233,6 +228,14 @@ impact_areas: []
 │   │   │   📄 plugin_loader.py
 │   │   │   📄 rule_processor.py
 │   │   │   📄 security_manager.py
+│   │   📁 error_handling
+│   │   │   📄 llm_error_handler.py
+│   │   📁 integrations
+│   │   │   📄 llm_integration.py
+│   │   📁 prompts
+│   │   │   📄 schema_constraint_prompts.py
+│   │   📁 validation
+│   │   │   📄 llm_shacl_validator.py
 │   │   📄 __init__.py
 │   │   📄 engine.py
 │   │   📄 pyproject.toml
@@ -249,6 +252,8 @@ impact_areas: []
 │   │   │   📄 main_repo_tree.py
 │   │   📄 README-repo-tree.md
 │   │   📄 todo_tracker.py
+│   📁 validation
+│   │   📄 on_demand_validator.py
 │   🔧 validators
 │   │   📄 graph_validator.py
 │   │   📄 validate_registry.py
@@ -258,12 +263,16 @@ impact_areas: []
 │   📄 view_generator.py
 📄 .cursorignore
 📄 .cursorrules
+📄 .pre-commit-config.yaml
 📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
 📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
+📄 frontmatter-analysis.md
+📄 frontmatter-enhancements.md
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py
+📄 ultimate-frontmatter-enhancement-guideline-20250617-0312.md
 ```
 
 ---
