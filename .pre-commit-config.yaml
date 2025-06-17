@@ -1,0 +1,21 @@
+# FRONTMATTER VALIDATION PRE-COMMIT HOOKS
+# CURRENTLY DISABLED - Uncomment to activate after approval
+
+repos:
+  # - repo: local
+  #   hooks:
+  #     - id: frontmatter-shacl-validation
+  #       name: "Frontmatter SHACL Validation"
+  #       entry: python tools/validators/graph_validator.py --staged-files
+  #       language: python
+  #       files: '\.md$'
+  #       fail_fast: true
+  #       always_run: false
+  
+  # ACTIVATION INSTRUCTIONS:
+  # 1. Uncomment the above configuration
+  # 2. Run: pre-commit install
+  # 3. Test with: pre-commit run --all-files
+
+# ON-DEMAND VALIDATION (ALWAYS AVAILABLE):
+# python tools/validators/graph_validator.py --full-repository

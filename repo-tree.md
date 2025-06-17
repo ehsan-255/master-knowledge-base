@@ -1,23 +1,6 @@
----
-title: Untitled Document
-info-type: general
-version: 0.0.1
-date-created: '2025-06-17'
-date-modified: '2025-06-17T02:29:12Z'
-tags:
-- content-type/general
-- criticality/p0-critical
-- kb-id/global
-kb-id: '[AUTO_GENERATED_KB_ID]'
-primary-topic: '[MISSING_PRIMARY_TOPIC]'
-scope_application: '[MISSING_SCOPE_APPLICATION]'
-criticality: P0-Critical
-lifecycle_gatekeeper: Architect-Review
-impact_areas: []
----
 # Repository Tree Structure
 
-**Generated**: 2025-06-16 23:36:57  
+**Generated**: 2025-06-17 11:26:37  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -31,10 +14,10 @@ impact_areas: []
 │   🦮 project-guidelines
 │   │   📄 project-reminders.md
 │   │   📄 project-work-ethic-guidelines.md
+│   📄 README.md
 │   📄 current-state.md
 │   📄 master-analysis-report-creation-guide.md
 │   📄 master-roadmap-development-guide.md
-│   📄 README.md
 │   📄 roadmap-checklist-template.md
 │   📄 roadmap-progress-tracker-template.md
 │   📄 roadmap-template.md
@@ -122,8 +105,8 @@ impact_areas: []
 │   🧬 templates
 │   │   📄 UA-TPL-CANONICAL-FRONTMATTER.md
 │   │   📄 UA-TPL-CHANGELOG-DOCUMENT.md
-│   📄 changelog.md
 │   📄 README.md
+│   📄 changelog.md
 🧪 test-environment ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
 │   💾 backup
 │   │   📄 no-frontmatter.md
@@ -170,8 +153,8 @@ impact_areas: []
 │   │   📁 test-data
 │   │       📄 conforming-shacl-doc.md
 │   │       📄 violating-shacl-doc.md
-│   📄 naming-enforcer-test-files.md
 │   📄 README.md
+│   📄 naming-enforcer-test-files.md
 │   📄 run_all_tests.py
 │   📄 safety-test-suite.py
 │   📄 test-results-20250607-091041.json
@@ -185,8 +168,8 @@ impact_areas: []
 │   │   📄 date_time_manager.py
 │   │   📄 frontmatter_organizer.py
 │   🔧 indexer
-│   │   📄 generate_index.py
 │   │   📄 OM-SPEC-STANDARDS-INDEX-JSONLD.md
+│   │   📄 generate_index.py
 │   │   📄 standards_index.schema.json
 │   🔧 linter
 │   │   📄 kb_linter.py
@@ -202,12 +185,6 @@ impact_areas: []
 │   │   📄 refactor_criticality_field.py
 │   │   📄 refactor_ids_filenames.py
 │   │   📄 refactor_tag_casing.py
-│   📊 reports
-│   │   📄 architecture-protection-completion-20250616-2321.md
-│   │   📄 comprehensive-architecture-audit-20250616-2310.md
-│   │   📄 comprehensive-standards-analysis-20250616-1433.md
-│   │   📄 critical-architecture-audit-20250616-2304.md
-│   │   📄 standards-consolidation-completion-report-20250616-2212.md
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
@@ -233,10 +210,10 @@ impact_areas: []
 │   │   │   📄 plugin_loader.py
 │   │   │   📄 rule_processor.py
 │   │   │   📄 security_manager.py
+│   │   📄 README.md
 │   │   📄 __init__.py
 │   │   📄 engine.py
 │   │   📄 pyproject.toml
-│   │   📄 README.md
 │   │   📄 requirements.txt
 │   │   📄 watcher.py
 │   │   📄 worker.py
@@ -252,18 +229,20 @@ impact_areas: []
 │   🔧 validators
 │   │   📄 graph_validator.py
 │   │   📄 validate_registry.py
+│   📄 README.md
 │   📄 archive-logger.ps1
 │   📄 changelog.md
-│   📄 README.md
 │   📄 view_generator.py
 📄 .cursorignore
 📄 .cursorrules
-📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
-📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
 📄 README.md
+📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
+📄 frontmatter-analysis.md
+📄 frontmatter-enhancements.md
 📄 repo-tree.md
 📄 repo_tree.py
+📄 ultimate-frontmatter-enhancement-guideline-20250617-0312.md
 ```
 
 ---
