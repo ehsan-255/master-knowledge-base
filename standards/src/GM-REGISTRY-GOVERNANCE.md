@@ -2,19 +2,23 @@
 title: 'Standard: Registry Governance Framework'
 standard_id: GM-REGISTRY-GOVERNANCE
 aliases:
-  - Registry Management
-  - Governance Framework
+- Registry Management
+- Governance Framework
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/conventions
+- topic/gm
 kb-id: standards
 info-type: standard-definition
 primary-topic: Registry Governance Framework
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: GM
 sub_domain: CONVENTIONS
 scope_application: Defines the governance framework for managing registries and controlled
@@ -22,9 +26,10 @@ scope_application: Defines the governance framework for managing registries and 
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Registry management
-  - Vocabulary control
-  - Standards consistency
+- Registry management
+- Vocabulary control
+- Standards consistency
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Registry Governance Policy (GM-REGISTRY-GOVERNANCE)
 

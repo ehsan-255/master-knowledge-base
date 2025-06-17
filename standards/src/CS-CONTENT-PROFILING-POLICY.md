@@ -6,9 +6,12 @@ aliases:
 - Content Profiling Strategy
 - Audience Targeting
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Content Profiling Strategy
@@ -17,10 +20,11 @@ related-standards:
 - SF-CONDITIONAL-SYNTAX-ATTRIBUTES
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:30:16Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Governs the strategy, implementation, and management of content profiling and conditional text display within knowledge base documents.
+scope_application: Governs the strategy, implementation, and management of content
+  profiling and conditional text display within knowledge base documents.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -29,8 +33,8 @@ impact_areas:
 - Authoring complexity
 - Maintenance of profiled content
 - User experience
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Policy: Content Profiling and Conditional Text (CS-CONTENT-PROFILING-POLICY)
 
 ## 1. Policy Statement

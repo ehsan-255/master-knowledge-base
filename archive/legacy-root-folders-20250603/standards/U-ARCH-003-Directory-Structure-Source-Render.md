@@ -1,23 +1,32 @@
 ---
-title: 'Standard: Directory Structure for Source and Rendered Content (U-ARCH-003) - DEPRECATED'
+title: 'Standard: Directory Structure for Source and Rendered Content (U-ARCH-003)
+  - DEPRECATED'
 tags:
 - architecture
 - content-type/standard-document
+- criticality/p0-critical
 - file-system
+- kb-id/global
 - kb-id/standards
 - source-and-render
 - standards-kb/universal
 - status/deprecated
 date-created: 2025-05-19
-date-modified: '2025-06-02T00:42:23Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
-primary-topic: Defines the directory structure for managing source and rendered knowledge base content.
+primary-topic: Defines the directory structure for managing source and rendered knowledge
+  base content.
 related-standards:
 - U-ARCH-001
 - U-ARCH-002
 aliases:
 - Source-Render Directory Standard
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Concepts integrated into [[AS-KB-DIRECTORY-STRUCTURE]] and other architectural standards..
 
@@ -47,4 +56,4 @@ This document defines the standard directory structure for managing the "source"
 | 1.5    | Both `master-knowledge-base/` and `master-knowledge-base-rendered/` directories MUST be under version control (Git).                            | `git add master-knowledge-base/ master-knowledge-base-rendered/` | Allows tracking of both source and the history of its rendered states.       |
 | 1.6    | The "Resolver Script" is responsible for reading from `master-knowledge-base/` and writing to `master-knowledge-base-rendered/`.                 | N/A                                                          | The script ensures synchronization.                                          |
 
-**Cross-References to Other Standard IDs:** [[root#III. Core Operational Model: Source-and-Render|Core Operational Model: Source-and-Render]], [[COL-ARCH-UNIVERSAL#Standard: KB Root Structure and Top-Level Part Organization (U-ARCH-001)|U-ARCH-001]], [[COL-ARCH-UNIVERSAL#Standard: Master KB Directory and Unique KB Identification (U-ARCH-002)|U-ARCH-002]] 
+**Cross-References to Other Standard IDs:** [[root#III. Core Operational Model: Source-and-Render|Core Operational Model: Source-and-Render]], [[COL-ARCH-UNIVERSAL#Standard: KB Root Structure and Top-Level Part Organization (U-ARCH-001)|U-ARCH-001]], [[COL-ARCH-UNIVERSAL#Standard: Master KB Directory and Unique KB Identification (U-ARCH-002)|U-ARCH-002]]

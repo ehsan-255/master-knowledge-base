@@ -1,6 +1,23 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:12Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: '[AUTO_GENERATED_KB_ID]'
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Repository Tree Structure
 
-**Generated**: 2025-06-12 09:22:01  
+**Generated**: 2025-06-16 23:36:57  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -15,15 +32,14 @@
 │   │   📄 project-reminders.md
 │   │   📄 project-work-ethic-guidelines.md
 │   📄 current-state.md
+│   📄 master-analysis-report-creation-guide.md
+│   📄 master-roadmap-development-guide.md
 │   📄 README.md
 │   📄 roadmap-checklist-template.md
 │   📄 roadmap-progress-tracker-template.md
 │   📄 roadmap-template.md
 🗃️ archive ALWAYS ARCHIVE HERE
-📁 kb
-│   📁 tests NEVER TEST HERE (content must be moved to test-environment folder and this folder must be deleted)
-│       📄 conforming-shacl-doc.md
-│       📄 violating-shacl-doc.md
+📁 change-requests
 ⚖️ standards
 │   🔠 registry
 │   │   📁 contexts
@@ -48,10 +64,8 @@
 │   │   📄 CS-MODULARITY-TRANSCLUSION-POLICY.md
 │   │   📄 CS-POLICY-ACCESSIBILITY.md
 │   │   📄 CS-POLICY-DIGITAL-ABSTRACTION.md
-│   │   📄 CS-POLICY-DOC-CHAPTER-CONTENT.md
 │   │   📄 CS-POLICY-KB-IDENTIFICATION.md
 │   │   📄 CS-POLICY-KB-PART-CONTENT.md
-│   │   📄 CS-POLICY-KB-ROOT.md
 │   │   📄 CS-POLICY-LAYERED-INFORMATION.md
 │   │   📄 CS-POLICY-PART-OVERVIEW.md
 │   │   📄 CS-POLICY-SCOPE-EXCLUSION.md
@@ -61,7 +75,6 @@
 │   │   📄 GM-CONVENTIONS-NAMING.md
 │   │   📄 GM-GLOSSARY-STANDARDS-TERMS.md
 │   │   📄 GM-GUIDE-KB-USAGE.md
-│   │   📄 GM-GUIDE-STANDARDS-BY-TASK.md
 │   │   📄 GM-MANDATE-KB-USAGE-GUIDE.md
 │   │   📄 GM-MANDATE-STANDARDS-GLOSSARY.md
 │   │   📄 GM-REGISTRY-GOVERNANCE.md
@@ -110,6 +123,7 @@
 │   │   📄 UA-TPL-CANONICAL-FRONTMATTER.md
 │   │   📄 UA-TPL-CHANGELOG-DOCUMENT.md
 │   📄 changelog.md
+│   📄 README.md
 🧪 test-environment ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
 │   💾 backup
 │   │   📄 no-frontmatter.md
@@ -152,6 +166,10 @@
 │   │   │   📄 test_generate_index.py
 │   │   📁 linter-tests
 │   │       📄 test_kb_linter.py
+│   📁 validator-tests
+│   │   📁 test-data
+│   │       📄 conforming-shacl-doc.md
+│   │       📄 violating-shacl-doc.md
 │   📄 naming-enforcer-test-files.md
 │   📄 README.md
 │   📄 run_all_tests.py
@@ -166,15 +184,12 @@
 │   📁 frontmatter-management
 │   │   📄 date_time_manager.py
 │   │   📄 frontmatter_organizer.py
-│   │   📄 generate_frontmatter_registry.py
-│   │   📄 generate_schema_docs.py
 │   🔧 indexer
 │   │   📄 generate_index.py
 │   │   📄 OM-SPEC-STANDARDS-INDEX-JSONLD.md
 │   │   📄 standards_index.schema.json
 │   🔧 linter
 │   │   📄 kb_linter.py
-│   📁 migration
 │   📁 naming-enforcer
 │   │   📄 .namingignore
 │   │   📄 .naminginclude
@@ -188,33 +203,11 @@
 │   │   📄 refactor_ids_filenames.py
 │   │   📄 refactor_tag_casing.py
 │   📊 reports
-│   │   📄 action-2-2-3-3-quarantine-logic-completion-20250608-1225.md
-│   │   📄 circuit-breaker-integration-test-20250608-1203.md
-│   │   📄 config-folder-relocation-20250609-2315.md
-│   │   📄 dependency-analysis-archive-operation-20250609-2305.md
-│   │   📄 frontmatter-organizer-sst-integration-20250610-0113.md
-│   │   📄 json-ld-roadmap-audit-report-20250611-1216.md
-│   │   📄 json-ld-roadmap-audit-report-20250611-1305.md
-│   │   📄 json-ld-roadmap-detailed-audit-findings-20250611-1306.md
-│   │   📄 phase4-circuit-breaker-completion-20250608-2207.md
-│   │   📄 phase5-queue-backpressure-completion-20250608-2212.md
-│   │   📄 project-completion-scribe-refinements-20250608-2216.md
-│   │   📄 quarantine-logic-test-results-20250608-1224.txt
-│   │   📄 quarantine-logic-test-results-20250608-1225.txt
-│   │   📄 shacl-test-20250611-1239.json
-│   │   📄 standards-registry-complete-dependency-analysis-20250609-2320.md
-│   │   📄 tools-readme-revision-migration-scripts-removal-20250609-2310.md
-│   │   📄 validation-final-complete-20250612-0743.json
-│   │   📄 validation-post-fix-20250612-0743.json
-│   │   📄 validation-post-fix-final-20250612-0743.json
-│   │   📄 validation-report-20250611-0052.json
-│   │   📄 validation-report-20250611-1304.json
-│   │   📄 validation-report-with-links-20250611-0103.json
-│   │   📄 validation-report-with-relationships-20250611-0106.json
-│   │   📄 validation-report-with-relationships-20250611-0107.json
-│   │   📄 validation-report-with-relationships-20250611-0108.json
-│   │   📄 validation-test-20250611-1239.json
-│   │   📄 vocabulary-remediation-complete-20250612-0743.md
+│   │   📄 architecture-protection-completion-20250616-2321.md
+│   │   📄 comprehensive-architecture-audit-20250616-2310.md
+│   │   📄 comprehensive-standards-analysis-20250616-1433.md
+│   │   📄 critical-architecture-audit-20250616-2304.md
+│   │   📄 standards-consolidation-completion-report-20250616-2212.md
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
@@ -259,6 +252,7 @@
 │   🔧 validators
 │   │   📄 graph_validator.py
 │   │   📄 validate_registry.py
+│   📄 archive-logger.ps1
 │   📄 changelog.md
 │   📄 README.md
 │   📄 view_generator.py
@@ -266,13 +260,10 @@
 📄 .cursorrules
 📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
-📄 json-ld-roadmap-checklist.md
-📄 json-ld-roadmap-progress-tracker.md
-📄 json-ld-roadmap.md
+📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py
-📄 shacl-test-report.json
 ```
 
 ---

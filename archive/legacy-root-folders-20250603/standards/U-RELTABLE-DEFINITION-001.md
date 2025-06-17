@@ -2,6 +2,8 @@
 title: 'Standard: Relationship Table Definition (U-RELTABLE-DEFINITION-001) - DEPRECATED'
 tags:
 - content-type/standard-document
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - linking
 - semantics
@@ -9,15 +11,21 @@ tags:
 - status/deprecated
 - utility-standards
 date-created: '2025-05-19T00:00:00Z'
-date-modified: '2025-06-02T05:48:59Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
-primary-topic: Defines the structure for defining non-hierarchical relationships between topics
+primary-topic: Defines the structure for defining non-hierarchical relationships between
+  topics
 related-standards:
 - AS-SCHEMA-RELTABLE-DEFINITION
 aliases:
 - Reltable Standard
 - Semantic Linking Definition
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[AS-SCHEMA-RELTABLE-DEFINITION]].
 
@@ -84,4 +92,4 @@ reltable:
       - link: some-kb/references/main-concept-api.md
 ```
 
-**Cross-References to Other Standard IDs:** [[COL-ARCH-UNIVERSAL#Standard: KB Root Structure and Top-Level Part Organization (U-ARCH-001)|U-ARCH-001]], [[COL-TOOLING-OBSIDIAN#Standard: Obsidian Internal Linking Conventions (O-USAGE-LINKS-001)|O-USAGE-LINKS-001]], [[M-SYNTAX-YAML-001|M-SYNTAX-YAML-001]] 
+**Cross-References to Other Standard IDs:** [[COL-ARCH-UNIVERSAL#Standard: KB Root Structure and Top-Level Part Organization (U-ARCH-001)|U-ARCH-001]], [[COL-TOOLING-OBSIDIAN#Standard: Obsidian Internal Linking Conventions (O-USAGE-LINKS-001)|O-USAGE-LINKS-001]], [[M-SYNTAX-YAML-001|M-SYNTAX-YAML-001]]

@@ -2,20 +2,23 @@
 title: 'Policy: Clarity, Objectivity, and Consistency in Language'
 standard_id: CS-POLICY-TONE-LANGUAGE
 aliases:
-  - Tone and Language Policy
-  - Writing Style Guide
+- Tone and Language Policy
+- Writing Style Guide
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/policy-document
+- content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Tone and Language Standards
 related-standards:
-  - GM-GLOSSARY-STANDARDS-TERMS
+- GM-GLOSSARY-STANDARDS-TERMS
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T19:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
 scope_application: All written content within the knowledge base, including standard
@@ -23,11 +26,12 @@ scope_application: All written content within the knowledge base, including stan
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
-  - Content readability
-  - User comprehension
-  - Professionalism of content
-  - Consistency across KB
-  - Accessibility
+- Content readability
+- User comprehension
+- Professionalism of content
+- Consistency across KB
+- Accessibility
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Clarity, Objectivity, and Consistency in Language (CS-POLICY-TONE-LANGUAGE)
 
@@ -72,8 +76,21 @@ This policy applies to all textual content within all Knowledge Bases, including
 *   Descriptive texts within schemas and templates
 *   Content of `primary-topic`, `scope_application`, and similar metadata fields
 
-## 4. Cross-References
+## 4. Semantic Use of Mandating Keywords
+
+To ensure unambiguous interpretation and consistent enforcement, the following keywords MUST be used strictly according to these definitions across all Knowledge Base documents, especially within standards and policies:
+
+### Rule 3.1: "MUST" / "SHALL" / "REQUIRED"
+These terms are **MANDATORY**. They indicate an absolute requirement. If a statement contains "MUST", "SHALL", or "REQUIRED", there is no permissible alternative and no circumstances under which the requirement can be waived, unless explicitly stated otherwise via a formal exception process (which should be defined in a separate standard). Failure to comply constitutes a critical violation.
+
+### Rule 3.2: "SHOULD" / "RECOMMENDED" / "ADVISED"
+These terms are **RECOMMENDED**. They indicate that among several possibilities, one is preferred, or that a certain course of action is suggested. There may be valid reasons in particular circumstances to ignore a "SHOULD" but the full implications must be understood and carefully weighed. Non-compliance is considered a deviation from best practice and may lead to reduced quality or efficiency.
+
+### Rule 3.3: "MAY" / "OPTIONAL" / "CAN"
+These terms are **OPTIONAL**. They indicate that an item is truly optional. An item or course of action is entirely permissible and left to the discretion of the implementer. There is no implication of preference or recommendation.
+
+## 5. Cross-References
 - [[GM-GLOSSARY-STANDARDS-TERMS]] - For definitions of standard terms used across the knowledge base (if such a glossary exists).
 
 ---
-*This policy (CS-POLICY-TONE-LANGUAGE) is based on rules 1.1 through 1.5 previously defined in U-TONE-LANG-001 from COL-CONTENT-UNIVERSAL.md.*
+*This policy (CS-POLICY-TONE-LANGUAGE) is based on rules 1.1 through 1.5 previously defined in U-TONE-LANG-001 from COL-CONTENT-UNIVERSAL.md. This revision also incorporates and formalizes the definitions of mandating keywords for strict interpretation.*

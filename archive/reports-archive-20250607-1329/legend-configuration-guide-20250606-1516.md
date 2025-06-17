@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Repository Tree Legend Configuration Guide
 
 **Generated**: 2025-01-06 15:16:00  
@@ -206,4 +223,4 @@ python main_repo_tree.py
 - Coordinate with team on icon standards
 
 **Configuration Location**: `master-knowledge-base/tools/utilities/repo-tree/.treelegend`  
-**Last Updated**: 2025-01-06 15:16:00 
+**Last Updated**: 2025-01-06 15:16:00

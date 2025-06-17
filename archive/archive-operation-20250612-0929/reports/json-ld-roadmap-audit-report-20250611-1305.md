@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:13Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # JSON-LD ROADMAP EXECUTION AUDIT REPORT
 
 **Audit Date**: 2025-06-11 13:05  
@@ -166,4 +183,4 @@ However, the **DATA QUALITY CRISIS** prevents immediate production deployment. T
 **Audit Completed**: 2025-06-11 13:05  
 **Validation Report Reference**: `validation-report-20250611-1304.json`  
 **Total Issues Identified**: 865 validation errors + 3 broken links + schema gaps  
-**Estimated Remediation Time**: 3-5 days for full compliance 
+**Estimated Remediation Time**: 3-5 days for full compliance

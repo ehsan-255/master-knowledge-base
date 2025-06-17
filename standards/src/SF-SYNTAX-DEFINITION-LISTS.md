@@ -2,19 +2,23 @@
 title: 'Standard: Definition List Syntax'
 standard_id: SF-SYNTAX-DEFINITION-LISTS
 aliases:
-  - Definition Lists
-  - Term Definitions
+- Definition Lists
+- Term Definitions
 tags:
-  - status/draft
-  - criticality/p3-low
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p3-low
+- kb-id/standards
+- status/draft
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Definition List Syntax
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines the syntax for creating definition lists in knowledge base
@@ -22,49 +26,45 @@ scope_application: Defines the syntax for creating definition lists in knowledge
 criticality: P3-Low
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content structure
-  - Term definitions
-  - Document formatting
+- Content structure
+- Term definitions
+- Document formatting
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown Syntax for Definition Lists (SF-SYNTAX-DEFINITION-LISTS)
 
 ## 1. Standard Statement
 
-This standard defines the recommended syntax for creating definition lists within Markdown documents. Definition lists are used to present a series of terms, each followed by one or more definitions or descriptions. While not part of the core CommonMark specification, definition list syntax is a common extension supported by many Markdown processors.
+This standard **MANDATES** the exclusive syntax for creating definition lists within Markdown documents. Definition lists **MUST** present a series of terms, each followed by one or more definitions or descriptions. Adherence to this syntax is **CRITICAL** for consistency and compatibility with Markdown processors.
 
-Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also important for definition lists.
+Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around definition list blocks is also **MANDATORY**.
 
-## 2. Core Definition List Syntax (Common Extension)
-
-The most common syntax for definition lists, often associated with PHP Markdown Extra or Pandoc, is as follows:
+## 2. Core Definition List Syntax
 
 ### Rule 2.1: Term
-The term to be defined is placed on a line by itself.
+The term to be defined **MUST** be placed on a line by itself.
 *   **Syntax:** `Term to be defined`
 
 ### Rule 2.2: Definition(s)
-Each definition for the term MUST start on a new line, be preceded by a colon (`:`), and be indented (typically by one to four spaces, with **four spaces recommended for clarity and compatibility**).
+Each definition for the term **MUST** start on a new line, be preceded by a colon (`:`), and be indented by **four spaces**.
 *   **Syntax (Single Definition):**
     ```markdown
     Term
     :    Definition of the term.
     ```
 *   **Syntax (Multiple Definitions or Paragraphs per Term):**
-    Multiple definition lines for the same term MUST each start with an indented colon. Blank lines between definition paragraphs for the same term must also start with an indented colon (or be sufficiently indented to be part of the definition block).
+    Multiple definition lines for the same term **MUST** each start with an indented colon. Blank lines between definition paragraphs for the same term **MUST** also start with an indented colon (or be sufficiently indented).
     ```markdown
     Term
-    :    First definition or first paragraph of a definition.
-    :    Second definition or second paragraph of the same definition.
+    :    First definition or first paragraph.
+    :    Second definition or second paragraph.
     ```
-*   **Indentation:** Consistent indentation for the definition lines is crucial. Four spaces after the colon (before the definition text) is a common and robust convention.
-    `Term`
-    `:    Definition text`
+*   **Indentation:** Consistent four-space indentation after the colon is **MANDATORY**.
 
 ### Rule 2.3: Blank Lines
-*   A blank line SHOULD precede the first term of a definition list.
-*   A blank line SHOULD separate a term from its definition(s) if the term itself contains internal formatting or if it improves readability, though many parsers do not strictly require this.
-*   A blank line MUST be used to separate one term-definition group from the next term in the list if there's ambiguity or if the definition itself spans multiple paragraphs without explicit colons on each line. However, the most robust method is to ensure each definition line starts with an indented colon.
-*   A blank line MUST follow the entire definition list block.
+*   A blank line **MUST** precede the first term of a definition list.
+*   A blank line **MUST** be used to separate one term-definition group from the next term in the list. Each definition line **MUST** start with an indented colon.
+*   A blank line **MUST** follow the entire definition list block.
 
 ## 3. Illustrative Examples
 
@@ -77,49 +77,24 @@ Apple
 Banana
 :    An elongated, curved fruit with yellow skin when ripe.
 ```
-**Conceptual Rendered Output:**
-<dl>
-  <dt>Apple</dt>
-  <dd>A round fruit, typically red, green, or yellow.</dd>
-  <dd>Keeps the doctor away if consumed daily.</dd>
-  <dt>Banana</dt>
-  <dd>An elongated, curved fruit with yellow skin when ripe.</dd>
-</dl>
 
-### Example 3.2: Definition List with More Spacing for Readability
-```markdown
-Markdown
-:    A lightweight markup language with plain-text-formatting syntax. Its design allows it to be converted to many output formats, but the original tool by the same name only supported HTML.
+## 4. Parser Compatibility
 
-Parser
-:    A program that processes input text to determine its grammatical structure with respect to a given formal grammar.
-:    Markdown parsers interpret Markdown text and convert it into another format, typically HTML.
-```
+Definition list syntax is a Markdown extension. The chosen authoring and publishing toolchain for the Knowledge Base **MUST** support this syntax.
 
-## 4. Parser Compatibility and Extensions
-
-*   **Not Core CommonMark:** Definition list syntax as described is an extension to Markdown and is not part of the core CommonMark specification.
-*   **Supported Environments:** This syntax is supported by many popular Markdown processors, including:
-    *   Pandoc
-    *   PHP Markdown Extra and derivatives (e.g., Parsedown with extensions)
-    *   Some static site generators (Jekyll, Hugo, etc., often via configuration or plugins)
-    *   Some note-taking applications.
-*   **Consideration:** Authors should be aware that rendering of definition lists may vary or not be supported in all Markdown environments or viewers. If broad compatibility with basic Markdown renderers is a primary concern, alternative formatting (e.g., using headings and paragraphs, or bolded terms followed by descriptions) might be considered.
-*   **Recommendation:** When definition lists are used, the chosen authoring and publishing toolchain MUST support the specified syntax.
-
-## 5. Importance of Consistent Definition List Syntax
+## 5. Importance of Strict Definition List Syntax
 
 *   **Semantic Representation:** Clearly and semantically represents term-definition pairs.
-*   **Readability:** Improves the readability of glossaries, data dictionaries, and other definitional content.
-*   **Authoring Consistency:** Ensures all authors use the same method for creating definition lists when the feature is employed.
-*   **Potential for Styling:** Allows specific CSS styling to be applied to definition lists in rendered HTML output.
+*   **Readability:** Improves readability of glossaries and definitional content.
+*   **Authoring Consistency:** Ensures all authors use the same method for creating definition lists.
+*   **Styling:** Allows specific CSS styling in rendered HTML.
 
 ## 6. Scope of Application
 
-This standard applies to all Markdown documents within the knowledge base repository where definition lists are used to present terms and their corresponding definitions or descriptions.
+This standard applies to **ALL** Markdown documents within the Knowledge Base repository where definition lists are used. Adherence to these rules is **MANDATORY** for all content creators, automated systems, and tooling interacting with KB Markdown files.
 
 ## 7. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements.
+*   [[SF-FORMATTING-FILE-HYGIENE]]
 
 ---
-*This standard (SF-SYNTAX-DEFINITION-LISTS) is based on common Markdown extension syntax for definition lists.*
+*This standard (SF-SYNTAX-DEFINITION-LISTS) has been revised to mandate a strict, singular syntax for definition lists, ensuring consistency and reliable rendering across the Knowledge Base.*

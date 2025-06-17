@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 ## Definitive Sequential Instructions for Project File Organization and Archival
 
 **Overall Strategy:**
@@ -380,4 +397,3 @@ Links within archived documents may be broken as they point to files that might 
 * **Rationale:** Provides essential clarity on the purpose and organization of archived materials.
 
 ---
-

@@ -2,19 +2,23 @@
 title: 'Standard: Text Emphasis Syntax'
 standard_id: SF-SYNTAX-EMPHASIS
 aliases:
-  - Text Emphasis
-  - Bold and Italic
+- Text Emphasis
+- Bold and Italic
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Text Emphasis Syntax
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines the syntax for text emphasis (bold, italic) in knowledge
@@ -22,62 +26,54 @@ scope_application: Defines the syntax for text emphasis (bold, italic) in knowle
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Text formatting
-  - Content emphasis
-  - Readability
+- Text formatting
+- Content emphasis
+- Readability
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown Syntax for Emphasis (SF-SYNTAX-EMPHASIS)
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for applying emphasis—specifically italic, bold, and bold italic—to text within all knowledge base documents. Consistent application of these syntax rules enhances readability, ensures correct rendering across different Markdown processors, and supports semantic interpretation of emphasis.
+This standard **MANDATES** the exclusive Markdown syntax for applying emphasis—specifically italic, bold, and bold italic—to text within all knowledge base documents. Strict and consistent application of these syntax rules is **CRUCIAL** for ensuring consistent rendering across all Markdown processors, enabling robust automated processing, and maintaining a unified visual and semantic style across the entire Knowledge Base.
 
 ## 2. Core Emphasis Syntax Rules
 
-### Rule 2.1: Italic Text (Derived from M-SYNTAX-EMPHASIS-001, Rule 1.1)
-Italic text MUST be created by enclosing the text in either single asterisks (`*`) or single underscores (`_`).
-*   **Syntax Options:**
-    *   `*text to be italicized*`
-    *   `_text to be italicized_`
-*   **Consistency:** While both syntaxes are valid, authors SHOULD choose one style (either asterisks or underscores) for italics and use it consistently within a single document to maintain stylistic uniformity. Project-wide consistency is also encouraged but not strictly mandated by this syntax rule if intra-document consistency is met.
-*   **Example (using asterisks):** `This is *important* to note.` will render as: This is *important* to note.
-*   **Example (using underscores):** `This is _also important_ to note.` will render as: This is _also important_ to note.
-*   **Rationale:** Provides standard ways to apply light emphasis, typically used for highlighting key terms, foreign words, or for subtle emphasis.
+### Rule 2.1: Italic Text
+Italic text **MUST** be created by enclosing the text in single asterisks (`*`).
+*   **Mandatory Syntax:** `*text to be italicized*`
+*   **Prohibited Syntax:** Underscores (`_text to be italicized_`) **MUST NOT** be used for italics.
+*   **Example:** `This is *important* to note.` will render as: This is *important* to note.
+*   **Rationale:** Ensures a single, consistent approach to italicization, simplifying parsing and reducing ambiguity.
 
-### Rule 2.2: Bold Text (Derived from M-SYNTAX-EMPHASIS-001, Rule 1.2)
-Bold text MUST be created by enclosing the text in either double asterisks (`**`) or double underscores (`__`).
-*   **Syntax Options:**
-    *   `**text to be bolded**`
-    *   `__text to be bolded__`
-*   **Consistency:** Similar to italics, authors SHOULD choose one style (either double asterisks or double underscores) for bold text and use it consistently within a single document.
-*   **Example (using double asterisks):** `This is **very important** for the user.` will render as: This is **very important** for the user.
-*   **Example (using double underscores):** `This is __also very important__ for the user.` will render as: This is __also very important__ for the user.
-*   **Rationale:** Provides standard ways to apply strong emphasis, typically used for highlighting critical information, warnings, or for strong emphasis.
+### Rule 2.2: Bold Text
+Bold text **MUST** be created by enclosing the text in double asterisks (`**`).
+*   **Mandatory Syntax:** `**text to be bolded**`
+*   **Prohibited Syntax:** Double underscores (`__text to be bolded__`) **MUST NOT** be used for bold text.
+*   **Example:** `This is **very important** for the user.` will render as: This is **very important** for the user.
+*   **Rationale:** Establishes a singular, unambiguous method for bolding, vital for automated processing and visual uniformity.
 
-### Rule 2.3: Bold and Italic Text (Derived from M-SYNTAX-EMPHASIS-001, Rule 1.3)
-Text that requires both bold and italic emphasis MUST be created by enclosing the text in either triple asterisks (`***`) or triple underscores (`___`).
-*   **Syntax Options:**
-    *   `***text to be bolded and italicized***`
-    *   `___text to be bolded and italicized___`
-*   **Consistency:** The choice between triple asterisks or triple underscores should naturally follow from the chosen styles for italic and bold emphasis within the document (e.g., if using `*italic*` and `**bold**`, then `***bold italic***` is the consistent choice).
-*   **Example (using triple asterisks):** `This is ***extremely critical*** information.` will render as: This is ***extremely critical*** information.
-*   **Example (using triple underscores):** `This is ___also extremely critical___ information.` will render as: This is ___also extremely critical___ information.
-*   **Alternative Combination:** It is also syntactically valid to combine asterisk and underscore styles, such as `**_bold italic_**` or `*__bold italic__*`. However, for simplicity and maximum compatibility, using triple asterisks or triple underscores is recommended. If combining, ensure the opening and closing tags are correctly mirrored.
-*   **Rationale:** Provides a standard way to apply the strongest level of combined emphasis.
+### Rule 2.3: Bold and Italic Text
+Text that requires both bold and italic emphasis **MUST** be created by enclosing the text in triple asterisks (`***`).
+*   **Mandatory Syntax:** `***text to be bolded and italicized***`
+*   **Prohibited Syntax:** Triple underscores (`___text to be bolded and italicized___`) and any combination of asterisks and underscores (e.g., `**_text_**`, `*__text__*`) **MUST NOT** be used.
+*   **Example:** `This is ***extremely critical*** information.` will render as: This is ***extremely critical*** information.
+*   **Rationale:** Ensures a definitive and singular syntax for combined emphasis, critical for consistent rendering and machine readability.
 
 ## 3. Importance of Consistent Emphasis Syntax
 
-*   **Readability:** Consistent use of emphasis syntax makes raw Markdown easier to read and edit.
-*   **Predictable Rendering:** Ensures that emphasis is rendered correctly and predictably across different Markdown platforms and tools.
-*   **Semantic Meaning:** While Markdown emphasis is primarily presentational, consistent usage can subtly reinforce semantic meaning (e.g., italics for terms, bold for warnings).
-*   **Authoring Efficiency:** Clear rules reduce ambiguity for authors when deciding how to apply emphasis.
+*   **Unambiguous Interpretation:** A single, mandated syntax eliminates confusion for authors and ensures Markdown processors interpret emphasis consistently.
+*   **Predictable Rendering:** Guarantees that emphasis is rendered identically across all platforms and tools, maintaining visual integrity.
+*   **Automated Processing Reliability:** Simplifies the development of parsing, linting, and transformation tools by providing a single target syntax to process.
+*   **Enhanced Readability and Maintainability:** A uniform approach makes the raw Markdown easier to read, write, and maintain over time, reducing errors and enabling more efficient content management.
+*   **Unified KB Aesthetic:** Contributes to a professional and consistent visual aesthetic across the entire Knowledge Base.
 
 ## 4. Scope of Application
 
-This standard applies to all Markdown documents within the knowledge base repository where textual emphasis is required.
+This standard applies to all Markdown documents within the knowledge base repository where textual emphasis is required. Adherence is **MANDATORY** for all content creators and automated systems.
 
 ## 5. Cross-References
-*(None directly applicable for basic emphasis syntax, but related to overall Markdown authoring.)*
+- [[CS-POLICY-TONE-LANGUAGE]] - For definitions of mandating keywords (MUST, SHOULD, MAY) and general language policy.
 
 ---
-*This standard (SF-SYNTAX-EMPHASIS) is based on rules 1.1 through 1.3 previously defined in M-SYNTAX-EMPHASIS-001 from COL-SYNTAX-MARKDOWN.md.*
+*This standard (SF-SYNTAX-EMPHASIS) replaces previous flexible guidelines with strict mandates for emphasis syntax, ensuring universal consistency as required for the Knowledge Base. It is derived from previous concepts in M-SYNTAX-EMPHASIS-001 from COL-SYNTAX-MARKDOWN.md, with updated enforcement.*

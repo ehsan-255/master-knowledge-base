@@ -2,10 +2,22 @@
 title: CamelCase Filename Test
 standard_id: TEST-CAMELCASE-VIOLATION
 date-created: 2025-01-11
+info-type: general
+version: 0.0.1
+date-modified: '2025-06-17T02:29:16Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: test-environment
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 # CamelCase Filename Violation
 
 This file has a CamelCase filename that should be converted to kebab-case.
 
-Expected: camel-case-file.md 
+Expected: camel-case-file.md

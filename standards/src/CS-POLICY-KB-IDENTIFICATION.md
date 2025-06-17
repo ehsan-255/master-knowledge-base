@@ -5,9 +5,12 @@ aliases:
 - KB Naming Policy
 - Unique KB ID Policy
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Knowledge Base Identification
@@ -16,10 +19,11 @@ related-standards:
 - GM-CONVENTIONS-NAMING
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:34:47Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Ensures unique identification and clear naming for all Knowledge Bases (KBs) within the repository.
+scope_application: Ensures unique identification and clear naming for all Knowledge
+  Bases (KBs) within the repository.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -27,8 +31,8 @@ impact_areas:
 - Repository organization
 - Link integrity
 - Authoring clarity
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Policy: Unique Knowledge Base Identification and Naming (CS-POLICY-KB-IDENTIFICATION)
 
 ## 1. Policy Statement

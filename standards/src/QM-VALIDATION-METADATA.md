@@ -2,26 +2,27 @@
 title: 'Standard: Metadata Validation Procedures'
 standard_id: QM-VALIDATION-METADATA
 aliases:
-  - Frontmatter Validation Rules
-  - Metadata Quality Assurance
+- Frontmatter Validation Rules
+- Metadata Quality Assurance
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/standard-definition
-  - topic/metadata
-  - topic/validation
-  - topic/quality-assurance
-  - kb-id/standards
+- content-type/standard-definition
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/metadata
+- topic/qm
+- topic/quality-assurance
+- topic/validation
 kb-id: standards
 info-type: standard-definition
 primary-topic: Defines the procedures and rules for validating document metadata (YAML
   frontmatter) against the official schema to ensure accuracy, consistency, and completeness.
 related-standards:
-  - MT-SCHEMA-FRONTMATTER
-  - MT-REGISTRY-TAG-GLOSSARY
+- MT-SCHEMA-FRONTMATTER
+- MT-REGISTRY-TAG-GLOSSARY
 version: 0.1.0
 date-created: '2025-05-29T15:49:24Z'
-date-modified: '2025-05-30T14:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: QM
 sub_domain: VALIDATION
 scope_application: Applies to the YAML frontmatter of all Markdown documents across
@@ -29,13 +30,14 @@ scope_application: Applies to the YAML frontmatter of all Markdown documents acr
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Metadata integrity
-  - Data quality
-  - Content validation
-  - Authoring consistency
-  - Automated processing
-  - Interoperability
-  - Search accuracy
+- Metadata integrity
+- Data quality
+- Content validation
+- Authoring consistency
+- Automated processing
+- Interoperability
+- Search accuracy
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Metadata Validation Procedures (QM-VALIDATION-METADATA)
 

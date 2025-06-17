@@ -1,20 +1,29 @@
 ---
-title: 'Master TODO List'
-aliases: ['KB TODOs', 'Project Tasks']
+title: Master TODO List
+aliases:
+- KB TODOs
+- Project Tasks
 tags:
-  - kb-id/global
-  - content-type/utility-document 
-  - status/live 
-  - topic/project-management
+- content-type/todo-master-list
+- content-type/utility-document
+- criticality/p0-critical
+- kb-id/global
+- status/live
+- topic/project-management
 kb-id: global
-info-type: todo-master-list 
-primary-topic: 'A centralized list for tracking pending tasks, issues, and planned enhancements for the knowledge base system and its standards.'
-related-standards: ['M-SYNTAX-TODO-001']
-version: '0.1.0'
+info-type: todo-master-list
+primary-topic: A centralized list for tracking pending tasks, issues, and planned
+  enhancements for the knowledge base system and its standards.
+related-standards:
+- M-SYNTAX-TODO-001
+version: 0.1.0
 date-created: '2025-05-22'
-date-modified: '2025-05-22'
+date-modified: '2025-06-17T02:29:15Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 # Master TODO List
 
 This document tracks all major pending tasks, issues, and planned enhancements for the knowledge base system. In-document TODOs (using `<!-- TODO ... -->` comments) should be periodically summarized or referenced here for broader visibility and prioritization.
@@ -55,4 +64,4 @@ This document tracks all major pending tasks, issues, and planned enhancements f
 -   Task: Document Scripts in `scripts/docs/` (beyond initial file creation).
 -   Task: Populate placeholder content in `scripts/docs/GUIDE-ASSEMBLY-SCRIPT-RUN.md` and `scripts/docs/DOC-ASSEMBLY-SCRIPT-LOGIC.md`.
 
-*(Add more tasks here as they are identified from in-document TODOs or planning sessions.)* 
+*(Add more tasks here as they are identified from in-document TODOs or planning sessions.)*

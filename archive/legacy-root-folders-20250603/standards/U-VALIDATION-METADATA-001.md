@@ -2,7 +2,9 @@
 title: 'Standard: Metadata Value Validation (U-VALIDATION-METADATA-001) - DEPRECATED'
 tags:
 - content-type/standard-document
+- criticality/p0-critical
 - data-integrity
+- kb-id/global
 - kb-id/standards
 - metadata
 - standards-kb/universal
@@ -10,15 +12,21 @@ tags:
 - utility-standards
 - validation
 date-created: '2025-05-19T00:00:00Z'
-date-modified: '2025-06-02T05:53:31Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
-primary-topic: Defines rules for validating the semantic values of specific metadata fields
+primary-topic: Defines rules for validating the semantic values of specific metadata
+  fields
 related-standards:
 - QM-VALIDATION-METADATA
 aliases:
 - Metadata Validation Standard
 - YAML Value Validation
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[QM-VALIDATION-METADATA]].
 
@@ -69,4 +77,4 @@ This document defines standards for validating the *semantic values* of specific
 
 - Existence/Referential Integrity: Each ID in related-standards must correspond to an existing standard file or section. All tags must be defined in tag-glossary-definition.md.
 
-**Cross-References to Other Standard IDs:** [[M-SYNTAX-YAML-001|M-SYNTAX-YAML-001]], [[U-TAG-001|U-TAG-001]], [[../../_backup/master-knowledge-base-backup/standards/U-PROFILING-ATTRIBUTES-001|U-PROFILING-ATTRIBUTES-001]] 
+**Cross-References to Other Standard IDs:** [[M-SYNTAX-YAML-001|M-SYNTAX-YAML-001]], [[U-TAG-001|U-TAG-001]], [[../../_backup/master-knowledge-base-backup/standards/U-PROFILING-ATTRIBUTES-001|U-PROFILING-ATTRIBUTES-001]]

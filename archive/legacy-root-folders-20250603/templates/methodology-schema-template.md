@@ -1,22 +1,28 @@
 ---
 title: '{METHODOLOGY_NAME}'
-aliases: "N/A"
+aliases: N/A
 tags:
-  - kb-id/templates
-  - content-type/content-template
-  - status/draft
-  - topic/methodology
+- content-type/content-template
+- content-type/content-template-methodology
+- criticality/p0-critical
+- kb-id/global
+- kb-id/templates
+- status/draft
+- topic/methodology
 kb-id: templates
 info-type: content-template-methodology
 primary-topic: Template for U-SCHEMA-METHOD-001 compliant documents
 related-standards:
-  - U-STRUC-002
-  - U-SCHEMA-METHOD-001
-version: '0.1.2'
+- U-STRUC-002
+- U-SCHEMA-METHOD-001
+version: 0.1.2
 date-created: '2025-05-15'
-date-modified: '2025-05-23'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 # {METHODOLOGY_NAME}
 
 {Abstract summarizing the method (per U-STRUC-002).}

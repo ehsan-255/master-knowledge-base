@@ -7,38 +7,55 @@ aliases:
 - Standards KB Root
 - Root of Standards KB
 tags:
-- status/active
-- criticality/p0-critical
 - content-type/navigation-document
-- topic/architecture
+- content-type/standard-definition
+- criticality/p0-critical
 - kb-id/standards
+- status/active
+- topic/architecture
+- topic/as
 - topic/kb-root
+- topic/structure
 kb-id: standards
 info-type: standard-definition
-primary-topic: Main entry point and master table of contents for the Standards Knowledge Base.
+primary-topic: Main entry point and master table of contents for the Standards Knowledge
+  Base.
 related-standards:
 - AS-STRUCTURE-KB-ROOT
 - AS-MAP-STANDARDS-KB
 - AS-STRUCTURE-MASTER-KB-INDEX
-version: '0.2.0' # Incremented version
+version: 0.2.0
 date-created: '2025-05-29T16:10:25Z'
-date-modified: '2025-06-02T06:40:45Z' # Current UTC
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Serves as the primary navigational hub for the Standards Knowledge Base.
+scope_application: Serves as the primary navigational hub for the Standards Knowledge
+  Base.
 criticality: P0-Critical
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - KB navigation
 - Content discoverability
 - User orientation
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Standards Knowledge Base Root (AS-ROOT-STANDARDS-KB)
 
-Welcome to the Standards Knowledge Base (KB). This document serves as the main entry point and master table of contents for all standards, policies, guidelines, and supporting documentation related to the knowledge management ecosystem.
+Welcome to the Standards Knowledge Base (KB). This document serves as the main entry point and master table of contents for all standards as part of a **sophisticated three-layer enterprise architecture**. This document represents the **Presentation Layer** of the architecture, focusing on user navigation and content discovery.
 
-The purpose of this KB is to ensure consistency, quality, and interoperability across all managed knowledge domains. For a conceptual map of how this KB is organized, please refer to `[[AS-MAP-STANDARDS-KB]]`.
+**🏗️ ARCHITECTURAL CONTEXT:**
+- **Physical Layer:** `AS-KB-DIRECTORY-STRUCTURE.md` (file system organization)
+- **Logical/Semantic Layer:** `AS-MAP-STANDARDS-KB.md` (DITA map + ontological structure)
+- **Presentation Layer (This Document):** Navigation interface, user experience, content discovery
+
+**🎯 DITA/RDF INSPIRATION:**
+- **User Interface Function:** Provides navigation structure following DITA topic-based principles
+- **Content Discovery:** Enables users to find and access atomic topic documents
+- **Semantic Navigation:** Leverages ontological relationships defined in the logical layer
+
+**⚠️ CRITICAL:** This three-layer separation is **INTENTIONAL SOPHISTICATED DESIGN** inspired by enterprise architecture best practices. Each layer serves a distinct purpose in the overall information architecture.
+
+The purpose of this KB is to ensure consistency, quality, and interoperability across all managed knowledge domains through sophisticated DITA-inspired and RDF/OWL-inspired design patterns. For the conceptual map of how this KB is organized, please refer to `[[AS-MAP-STANDARDS-KB]]`.
 
 ## Master Table of Contents
 
@@ -68,10 +85,10 @@ The following sections categorize and link to the core documents that define our
     - [[CS-MODULARITY-TRANSCLUSION-POLICY|Policy: Content Modularity and Use of Transclusion]]
     - [[CS-POLICY-ACCESSIBILITY|Policy: Content Accessibility]]
     - [[CS-POLICY-DIGITAL-ABSTRACTION|Policy: Translating Non-Digital Concepts for Digital Workflows]]
-    - [[CS-POLICY-DOC-CHAPTER-CONTENT|Policy: Content Organization and Heading Usage in Chapters]]
+    - [[AS-STRUCTURE-DOC-CHAPTER|Standard: Content Document (Chapter) Internal Structure]]
     - [[CS-POLICY-KB-IDENTIFICATION|Policy: Unique Knowledge Base Identification and Naming]]
     - [[CS-POLICY-KB-PART-CONTENT|Policy: Content Organization within Knowledge Base Parts]]
-    - [[CS-POLICY-KB-ROOT|Policy: Consistent Application of Knowledge Base Root Structure]]
+    - [[AS-STRUCTURE-KB-ROOT|Standard: Knowledge Base Root Structure]]
     - [[CS-POLICY-LAYERED-INFORMATION|Policy: Layered Information Presentation and Progressive Disclosure]]
 
 ### 4. Metadata, Tagging, and Registries (MT Domain)

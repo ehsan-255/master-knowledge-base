@@ -2,19 +2,23 @@
 title: 'Standard: General Markdown Formatting Guidelines'
 standard_id: SF-FORMATTING-MARKDOWN-GENERAL
 aliases:
-  - Markdown Guidelines
-  - General Formatting
+- Markdown Guidelines
+- General Formatting
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: General Markdown Formatting Guidelines
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines general formatting guidelines for Markdown documents in
@@ -22,21 +26,22 @@ scope_application: Defines general formatting guidelines for Markdown documents 
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Document formatting
-  - Consistency
-  - Readability
+- Document formatting
+- Consistency
+- Readability
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown General Formatting Conventions (SF-FORMATTING-MARKDOWN-GENERAL)
 
 ## 1. Standard Statement
 
-This standard defines general Markdown formatting conventions for paragraphs, line breaks, horizontal rules, and the use of blank lines. Adherence to these conventions is important for ensuring the readability, consistency, and correct parsing of Markdown documents across the knowledge base. These rules complement the file-level hygiene rules defined in [[SF-FORMATTING-FILE-HYGIENE]].
+This standard **MANDATES** general Markdown formatting conventions for paragraphs, line breaks, horizontal rules, and blank lines. Adherence to these conventions is **CRITICAL** for ensuring readability, consistency, and correct parsing of Markdown documents. These rules complement file-level hygiene rules in [[SF-FORMATTING-FILE-HYGIENE]].
 
 ## 2. Core General Formatting Rules
 
 ### Rule 2.1: Paragraphs
 Paragraphs are sequences of text separated by one or more blank lines.
-*   **Requirement:** A single blank line (i.e., a line containing no characters or only whitespace) MUST be used to separate distinct paragraphs.
+*   **Mandatory:** A single blank line (**MUST**) separate distinct paragraphs.
 *   **Example:**
     ```markdown
     This is the first paragraph. It can span multiple lines of text
@@ -44,45 +49,28 @@ Paragraphs are sequences of text separated by one or more blank lines.
 
     This is the second paragraph, separated from the first by a single blank line.
     ```
-*   **Rationale:** Clearly delineates paragraphs for both raw text readability and correct rendering in HTML or other formats.
+*   **Rationale:** Clearly delineates paragraphs for both raw text readability and correct rendering.
 
 ### Rule 2.2: Line Breaks (Soft vs. Hard)
-Markdown treats most newlines within a paragraph as "soft" line breaks, which are typically rendered as a single space, joining lines together into a continuous paragraph.
+Markdown treats most newlines within a paragraph as "soft" line breaks, rendering as a single space.
 *   **Soft Line Breaks (Standard Behavior):**
     ```markdown
     This line is part of the first paragraph.
     This line will join the previous one, separated by a space.
     ```
-    *Renders as:* This line is part of the first paragraph. This line will join the previous one, separated by a space.
 *   **Hard Line Breaks (Explicit Breaks within a Paragraph):**
-    If an explicit hard line break (forcing a line to end and the next text to start on a new line *within the same paragraph block*) is absolutely necessary, the following methods MAY be used, but their use should be minimized in favor of starting new paragraphs for distinct ideas.
-    1.  **Two or More Spaces at End of Line (Recommended for Markdown Purity):** End a line with two or more spaces before the newline character.
-        ```markdown
-        Line one with a hard break.  
-        Line two, still in the same paragraph.
-        ```
-        *Renders as:*
-        Line one with a hard break.
-        Line two, still in the same paragraph.
-    2.  **HTML `<br>` Tag (Use Sparingly):** The HTML break tag `<br>` can be used.
-        ```markdown
-        Line one with an HTML break.<br>
-        Line two, same paragraph.
-        ```
-        *Renders as:*
-        Line one with an HTML break.
-        Line two, same paragraph.
-*   **Guidance:** Prefer distinct paragraphs for separate thoughts. Use hard line breaks only when semantically appropriate (e.g., lines of an address, poetry) and not for creating artificial spacing between paragraphs (use blank lines for that). The two-space method is generally preferred over `<br>` for maintaining Markdown purity.
-*   **Rationale:** Understanding line break behavior is crucial for predictable rendering. Overuse of hard line breaks can make raw Markdown harder to read and edit.
+    If an explicit hard line break is absolutely necessary within a paragraph, it **MUST** be created by ending a line with two or more spaces before the newline character. The use of HTML `<br>` tags is **PROHIBITED**.
+    ```markdown
+    Line one with a hard break.  
+    Line two, still in the same paragraph.
+    ```
+*   **Rationale:** Ensures predictable rendering and maintains Markdown purity.
 
 ### Rule 2.3: Horizontal Rules
-Horizontal rules are used to create a thematic break between sections of content.
-*   **Syntax:** MUST be created using three or more hyphens (`---`), asterisks (`***`), or underscores (`___`) on a line by themselves.
-*   **Consistency:** For consistency across the knowledge base, **three or more hyphens (`---`) ARE THE PREFERRED STYLE.**
-*   **Spacing:**
-    *   The characters forming the rule MAY be separated by spaces.
-    *   A blank line MUST precede and follow a horizontal rule, as per [[SF-FORMATTING-FILE-HYGIENE]].
-*   **Example (Preferred):**
+Horizontal rules **MUST** be created using three or more hyphens (`---`) on a line by themselves. The use of asterisks (`***`) or underscores (`___`) is **PROHIBITED**.
+*   **Spacing:** The characters forming the rule **MAY** be separated by spaces.
+*   **Blank Lines:** A blank line **MUST** precede and follow a horizontal rule, as per [[SF-FORMATTING-FILE-HYGIENE]].
+*   **Example:**
     ```markdown
     Some content above.
 
@@ -90,35 +78,25 @@ Horizontal rules are used to create a thematic break between sections of content
 
     Some content below.
     ```
-*   **Example (Alternative, also valid but less preferred):**
-    ```markdown
-    Some content above.
-
-    * * *
-
-    Some content below.
-    ```
-*   **Rationale:** Provides a clear visual separation between content sections. Standardizing on one style (`---`) improves consistency.
+*   **Rationale:** Provides clear visual separation and standardizes consistency.
 
 ### Rule 2.4: Use of Multiple Blank Lines
-The use of more than one consecutive blank line to separate content elements (e.g., between paragraphs, before/after headings, lists, code blocks) SHOULD generally be avoided.
-*   **Standard Separation:** A single blank line is typically sufficient to separate block-level elements in Markdown.
-*   **Exception:** Using more than one blank line (e.g., two blank lines) before or after complex elements like code blocks or tables MAY be acceptable if it significantly improves the readability of the *raw Markdown source*, but this should not be a common practice. Excessive blank lines do not usually affect the rendered HTML output but can make the raw source less compact.
-*   **Rationale:** Maintains consistency in raw Markdown formatting and avoids excessive vertical spacing that can make documents harder to scroll through and read in their source form.
+The use of more than one consecutive blank line to separate content elements (e.g., between paragraphs, before/after headings, lists, code blocks) is **PROHIBITED**.
+*   **Rationale:** Maintains consistency in raw Markdown formatting and avoids excessive vertical spacing.
 
-## 3. Importance of General Formatting Conventions
+## 3. Importance of Strict General Formatting Conventions
 
 *   **Readability:** Consistent formatting makes raw Markdown documents easier to read, edit, and review.
-*   **Predictable Rendering:** Ensures that Markdown is parsed and rendered as intended across different platforms and tools.
+*   **Predictable Rendering:** Ensures Markdown is parsed and rendered as intended across different platforms and tools.
 *   **Authoring Efficiency:** Clear rules reduce ambiguity for authors.
 *   **Maintainability:** Well-formatted documents are easier to maintain over time.
 
 ## 4. Scope of Application
 
-This standard applies to all Markdown documents within the knowledge base repository.
+This standard applies to **ALL** Markdown documents within the Knowledge Base repository. Adherence to these rules is **MANDATORY** for all content creators, automated systems, and tooling interacting with KB Markdown files.
 
 ## 5. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE]] - For file-level hygiene rules including blank lines around block elements and EOF characters.
+*   [[SF-FORMATTING-FILE-HYGIENE]]
 
 ---
-*This standard (SF-FORMATTING-MARKDOWN-GENERAL) is based on common Markdown conventions for paragraphs, line breaks, horizontal rules, and blank line usage.*
+*This standard (SF-FORMATTING-MARKDOWN-GENERAL) has been revised to mandate strict general Markdown formatting conventions, including explicit rules for paragraphs, line breaks, horizontal rules, and blank line usage, ensuring consistency and predictable rendering.*

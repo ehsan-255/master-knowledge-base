@@ -2,8 +2,20 @@
 title: Naming Enforcer Test Files Inventory
 standard_id: TEST-NAMING-ENFORCER
 date-created: 2025-01-11
+info-type: general
+version: 0.0.1
+date-modified: '2025-06-17T02:29:16Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: test-environment
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 # Naming Enforcer Test File Inventory
 
 ## Test Categories
@@ -43,4 +55,4 @@ date-created: 2025-01-11
 ### 8. Context-Specific Tests
 - JSON files with different naming contexts
 - JavaScript files with camelCase requirements
-- Registry files requiring snake_case 
+- Registry files requiring snake_case

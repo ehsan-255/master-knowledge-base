@@ -5,9 +5,12 @@ aliases:
 - Progressive Disclosure Policy
 - Information Layering
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Layered Information Presentation
@@ -19,10 +22,11 @@ related-standards:
 - '[[AS-SCHEMA-CONCEPT-DEFINITION]]'
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:34:47Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: All content creation and structuring within the knowledge base, ensuring information is presented in a layered and progressively disclosed manner.
+scope_application: All content creation and structuring within the knowledge base,
+  ensuring information is presented in a layered and progressively disclosed manner.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -31,8 +35,8 @@ impact_areas:
 - Comprehension
 - Knowledge retention
 - Catering to diverse expertise levels
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Policy: Layered Information Presentation and Progressive Disclosure (CS-POLICY-LAYERED-INFORMATION)
 
 ## 1. Policy Statement

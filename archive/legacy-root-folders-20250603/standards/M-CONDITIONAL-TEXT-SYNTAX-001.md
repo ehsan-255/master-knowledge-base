@@ -1,14 +1,17 @@
 ---
-title: 'Standard: Markdown Syntax for Conditional Text (M-CONDITIONAL-TEXT-SYNTAX-001) - DEPRECATED'
+title: 'Standard: Markdown Syntax for Conditional Text (M-CONDITIONAL-TEXT-SYNTAX-001)
+  - DEPRECATED'
 tags:
 - content-profiling
 - content-type/standard-document
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - standards-kb/markdown
 - status/deprecated
 - syntax-rules
 date-created: 2025-05-19
-date-modified: '2025-06-02T00:39:05Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
 primary-topic: Defines the Markdown syntax for marking conditional text blocks.
@@ -18,6 +21,11 @@ related-standards:
 aliases:
 - Conditional Text Syntax
 - Profiling Markdown Syntax
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Superseded by [[SF-CONDITIONAL-SYNTAX-ATTRIBUTES]] and [[CS-CONTENT-PROFILING-POLICY]].
 
@@ -63,4 +71,4 @@ General introduction text.
 General concluding text.
 ```
 
-**Cross-References to Other Standard IDs:** [[../../_backup/master-knowledge-base-backup/standards/U-PROFILING-ATTRIBUTES-001|U-PROFILING-ATTRIBUTES-001]], [[COL-TOOLING-OBSIDIAN#Standard: Obsidian Callout Usage (O-USAGE-CALLOUTS-001)|O-USAGE-CALLOUTS-001]] 
+**Cross-References to Other Standard IDs:** [[../../_backup/master-knowledge-base-backup/standards/U-PROFILING-ATTRIBUTES-001|U-PROFILING-ATTRIBUTES-001]], [[COL-TOOLING-OBSIDIAN#Standard: Obsidian Callout Usage (O-USAGE-CALLOUTS-001)|O-USAGE-CALLOUTS-001]]

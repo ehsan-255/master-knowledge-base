@@ -2,13 +2,15 @@
 title: 'Standard: Markdown Syntax for TODO Items (M-SYNTAX-TODO-001) - DEPRECATED'
 tags:
 - content-type/standard-document
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - standards-kb/markdown
 - status/deprecated
 - syntax-rules
 - utility-standards
 date-created: 2025-05-19
-date-modified: '2025-06-02T00:41:04Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
 primary-topic: Defines the Markdown syntax for marking TODO items within documents.
@@ -17,6 +19,11 @@ related-standards:
 aliases:
 - TODO Syntax
 - Task Tracking Markdown
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[SF-SYNTAX-TODO]].
 
@@ -65,4 +72,4 @@ Obsidian Callout TODO (if chosen as an alternative or supplement):
 ```
 *(Note: If using callouts for scripted TODO tracking, the script needs to parse this specific callout format.)*
 
-**Cross-References to Other Standard IDs:** [[COL-TOOLING-OBSIDIAN#Standard: Obsidian Callout Usage (O-USAGE-CALLOUTS-001)|O-USAGE-CALLOUTS-001]] (if using callout alternative). 
+**Cross-References to Other Standard IDs:** [[COL-TOOLING-OBSIDIAN#Standard: Obsidian Callout Usage (O-USAGE-CALLOUTS-001)|O-USAGE-CALLOUTS-001]] (if using callout alternative).

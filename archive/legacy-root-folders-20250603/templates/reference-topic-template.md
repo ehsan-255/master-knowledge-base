@@ -1,22 +1,28 @@
 ---
 title: '{REFERENCE_ITEM_NAME}'
-aliases: "N/A"
+aliases: N/A
 tags:
-  - kb-id/templates
-  - content-type/content-template
-  - status/draft
-  - topic/reference
+- content-type/content-template
+- content-type/content-template-reference
+- criticality/p0-critical
+- kb-id/global
+- kb-id/templates
+- status/draft
+- topic/reference
 kb-id: templates
 info-type: content-template-reference
 primary-topic: Template for U-SCHEMA-REFERENCE-001 compliant documents
 related-standards:
-  - U-STRUC-002
-  - U-SCHEMA-REFERENCE-001
-version: '0.1.1'
+- U-STRUC-002
+- U-SCHEMA-REFERENCE-001
+version: 0.1.1
 date-created: '2025-05-19'
-date-modified: '2025-05-23'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 # {REFERENCE_ITEM_NAME}
 
 {Abstract summarizing the reference item and its purpose (per U-STRUC-002).}
@@ -75,4 +81,4 @@ date-modified: '2025-05-23'
 
 ## See Also
 
-- [[templates/related-reference|Related Reference]] 
+- [[templates/related-reference|Related Reference]]

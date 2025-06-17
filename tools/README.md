@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:16Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: tools
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Knowledge Base Tools - Comprehensive Documentation
 
 **Generated**: 2025-06-09 23:10:50  
@@ -204,38 +221,66 @@ date-modified, primary_domain, sub_domain, scope_application,
 criticality, lifecycle_gatekeeper, impact_areas
 ```
 
-#### `generate_frontmatter_registry.py`
-**Purpose**: Generates comprehensive registry of all frontmatter fields and values  
+#### `view_generator.py`
+**Purpose**: Generates human-readable views from JSON-LD Single Source of Truth  
 **Functionality**:
-- Scans all markdown files for frontmatter
-- Extracts and catalogs all field names and values
-- Generates statistical analysis of field usage
-- Creates registry files for validation
+- Converts JSON-LD schema definitions to markdown documentation
+- Creates YAML views for human editing
+- Supports multiple output formats (markdown, YAML, JSON)
+- Maintains bidirectional workflow with change request system
 
 **Usage**:
 ```bash
-python tools/frontmatter-management/generate_frontmatter_registry.py
-python tools/frontmatter-management/generate_frontmatter_registry.py --output-dir ./registry
+# Generate markdown documentation from JSON-LD
+python tools/view_generator.py --id AS-SCHEMA-FRONTMATTER --format markdown
+
+# Generate YAML view for editing
+python tools/view_generator.py --id AS-SCHEMA-FRONTMATTER --format yaml
+
+# Generate all views
+python tools/view_generator.py --generate-all
 ```
 
-**Output Files**:
-- Field usage statistics
-- Value frequency analysis
-- Validation vocabularies
-- Registry YAML files
+**Features**:
+- JSON-LD to human-readable conversion
+- Schema validation and consistency checking
+- Integration with change request workflow
+- Multiple output format support
 
-#### `generate_schema_docs.py`
-**Purpose**: Generates documentation from frontmatter schema definitions  
-**Functionality**:
-- Parses schema YAML files
-- Generates human-readable documentation
-- Creates field reference guides
-- Validates schema consistency
+---
 
-**Usage**:
+## 📝 Change Request Workflow
+
+**Location**: `change-requests/`  
+**Purpose**: Human-friendly interface for modifying JSON-LD Single Source of Truth
+
+### Workflow Process
+
+1. **Generate Human-Readable View**: Use `tools/view_generator.py` to create YAML/MD from JSON-LD
+2. **Edit YAML File**: Make changes to the human-readable YAML file
+3. **Submit Change Request**: Place edited YAML in `change-requests/` directory
+4. **Automated Processing**: Scribe workflow processes changes and updates JSON-LD SST
+5. **Validation**: Changes are validated against schema and applied to authoritative JSON-LD files
+
+### Directory Structure
+```
+change-requests/
+├── .gitkeep                    # Ensures directory exists in git
+├── schema-updates/             # Schema modification requests
+├── vocabulary-updates/         # Controlled vocabulary changes
+└── processed/                  # Completed change requests (archived)
+```
+
+### Usage Example
 ```bash
-python tools/frontmatter-management/generate_schema_docs.py
-python tools/frontmatter-management/generate_schema_docs.py --schema-file custom-schema.yaml
+# 1. Generate editable YAML from JSON-LD
+python tools/view_generator.py --id AS-SCHEMA-FRONTMATTER --format yaml --output change-requests/schema-updates/
+
+# 2. Edit the generated YAML file
+# 3. Commit changes - Scribe workflow will process automatically
+
+# 4. Verify changes applied to JSON-LD
+python tools/validators/validate_registry.py
 ```
 
 ---

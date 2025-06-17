@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:14Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Naming Enforcer Include & Exclude Functionality - Implementation Summary
 
 ## Overview
@@ -349,4 +366,4 @@ Both include and exclude functionality have been successfully implemented with c
 - ✅ **Comprehensive documentation**: Full user guides and examples provided
 - ✅ **Thorough testing**: All functionality verified with test scripts
 
-Users can now precisely control which files the naming enforcer processes using flexible command-line options or pattern files, making the tool much more practical for real-world usage scenarios. The include functionality allows focusing on specific files/directories, while exclude functionality provides fine-grained control to skip unwanted files within the included scope. 
+Users can now precisely control which files the naming enforcer processes using flexible command-line options or pattern files, making the tool much more practical for real-world usage scenarios. The include functionality allows focusing on specific files/directories, while exclude functionality provides fine-grained control to skip unwanted files within the included scope.

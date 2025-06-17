@@ -2,22 +2,25 @@
 title: 'Policy: Universal Principles for Content Exclusion'
 standard_id: CS-POLICY-SCOPE-EXCLUSION
 aliases:
-  - Content Exclusion Policy
-  - Scope Exclusion Principles
+- Content Exclusion Policy
+- Scope Exclusion Principles
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/policy-document
+- content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Content Exclusion Principles
 related-standards:
-  - CS-POLICY-SCOPE-INCLUSION
-  - SF-FORMATTING-CITATIONS
-  - SF-LINKS-INTERNAL-SYNTAX
+- CS-POLICY-SCOPE-INCLUSION
+- SF-FORMATTING-CITATIONS
+- SF-LINKS-INTERNAL-SYNTAX
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T14:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
 scope_application: All knowledge base content planning, creation, curation, and review
@@ -25,11 +28,12 @@ scope_application: All knowledge base content planning, creation, curation, and 
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
-  - Legal compliance
-  - Ethical considerations
-  - Data security
-  - KB quality and focus
-  - User trust
+- Legal compliance
+- Ethical considerations
+- Data security
+- KB quality and focus
+- User trust
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Universal Principles for Content Exclusion (CS-POLICY-SCOPE-EXCLUSION)
 

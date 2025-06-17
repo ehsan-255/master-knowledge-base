@@ -4,9 +4,12 @@ standard_id: CS-POLICY-KB-ROOT
 aliases:
 - KB Root Consistency Policy
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: KB Root Structure Application Policy
@@ -14,10 +17,11 @@ related-standards:
 - AS-STRUCTURE-KB-ROOT
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:34:47Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Ensures consistent application of the KB root structure choices defined in AS-STRUCTURE-KB-ROOT across all Knowledge Bases.
+scope_application: Ensures consistent application of the KB root structure choices
+  defined in AS-STRUCTURE-KB-ROOT across all Knowledge Bases.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -25,8 +29,8 @@ impact_areas:
 - KB navigability
 - Authoring consistency
 - Maintainability
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Policy: Consistent Application of Knowledge Base Root Structure (CS-POLICY-KB-ROOT)
 
 ## 1. Policy Statement

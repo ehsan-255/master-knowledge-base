@@ -4,6 +4,7 @@ aliases:
 - N/A
 tags:
 - content-type/kb-definition-map
+- criticality/p0-critical
 - kb-id/standards
 - status/deprecated
 - topic/governance
@@ -14,7 +15,7 @@ related-standards:
 - AS-MAP-STANDARDS-KB
 version: 0.2.0
 date-created: '2025-05-15T00:00:00Z'
-date-modified: '2025-06-02T00:25:05Z'
+date-modified: '2025-06-17T02:29:13Z'
 parts:
 - entry_file: Standards/root.md
   part_id: overview_meta
@@ -41,6 +42,10 @@ parts:
   part_id: kb_specific_standards
   title: KB-Specific Standards Overview
 root_file: Standards/root.md
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[AS-MAP-STANDARDS-KB]].
 

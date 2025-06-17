@@ -5,9 +5,12 @@ aliases:
 - Chapter Content Policy
 - Heading Usage Policy
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Document Chapter Content Organization
@@ -16,10 +19,11 @@ related-standards:
 - SF-SYNTAX-HEADINGS
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:34:47Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Governs the use of Markdown headings for content organization within 'Chapters' and ensures that H2 sections represent major sub-topics.
+scope_application: Governs the use of Markdown headings for content organization within
+  'Chapters' and ensures that H2 sections represent major sub-topics.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -28,8 +32,8 @@ impact_areas:
 - Semantic structure
 - Automated processing
 - Authoring consistency
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Policy: Content Organization and Heading Usage in Chapters (CS-POLICY-DOC-CHAPTER-CONTENT)
 
 ## 1. Policy Statement

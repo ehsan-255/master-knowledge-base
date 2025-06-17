@@ -3,12 +3,14 @@ title: 'Standard: Content Schema for "Task Topics" (U-SCHEMA-TASK-001) - DEPRECA
 tags:
 - content-type/standard-document
 - content-type/task-topic
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - schemas
 - standards-kb/universal
 - status/deprecated
 date-created: '2025-05-19T00:00:00Z'
-date-modified: '2025-06-02T05:51:59Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
 primary-topic: Defines the structure for step-by-step procedural task documents
@@ -17,6 +19,11 @@ related-standards:
 aliases:
 - Task Topic Schema
 - Procedural Content Schema
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[AS-SCHEMA-TASK]].
 
@@ -93,4 +100,4 @@ The following H2 sections are typically MANDATORY for a Task Topic:
 -   **`## Summary`** (per `U-STRUC-002`)
 -   **`## See Also`** (per `U-STRUC-002`)
 
-**Cross-References to Other Standard IDs:** [[COL-ARCH-UNIVERSAL#Standard: Content Document ("Chapter") Internal Structure (U-STRUC-002)|U-STRUC-002]], [[COL-CONTENT-UNIVERSAL#Standard: Content Schema for "Methodology/Technique Descriptions" (U-SCHEMA-METHOD-001)|U-SCHEMA-METHOD-001]] 
+**Cross-References to Other Standard IDs:** [[COL-ARCH-UNIVERSAL#Standard: Content Document ("Chapter") Internal Structure (U-STRUC-002)|U-STRUC-002]], [[COL-CONTENT-UNIVERSAL#Standard: Content Schema for "Methodology/Technique Descriptions" (U-SCHEMA-METHOD-001)|U-SCHEMA-METHOD-001]]

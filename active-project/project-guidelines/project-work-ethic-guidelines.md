@@ -1,96 +1,156 @@
 ---
-title: Project Work Ethic Guidelines
+title: PROJECT WORK ETHIC DIRECTIVES — FULL COMPLIANCE REQUIRED
 standard_id: project-guideline-work-ethic
-tags: [status/active, info-type/project-guideline, topic/project-conduct]
+tags:
+- content-type/project-guideline
+- criticality/p1-critical
+- info-type/project-guideline
+- kb-id/global
+- status/active
+- topic/guidelines
+- topic/project
+- topic/project-conduct
 kb-id: project-governance
 info-type: project-guideline
-primary-topic: Guidelines for professional conduct and collaboration within the project.
-version: '1.0.0'
+primary-topic: Non-negotiable directives for professional conduct and collaboration
+  within the project.
+version: 1.0.1
 date-created: '2025-05-25T00:00:00Z'
-date-modified: '2025-05-31T09:33:00Z'
+date-modified: '2025-06-17T02:29:12Z'
 primary_domain: PROJECT
 sub_domain: GUIDELINES
-scope_application: All contributors to this knowledge base project.
-criticality: p2-medium
+scope_application: ALL CONTRIBUTORS TO THIS KNOWLEDGE-BASE PROJECT.
+criticality: P1-CRITICAL
 lifecycle_gatekeeper: N/A
-impact_areas: [team-collaboration, project-culture]
+impact_areas:
+- team-collaboration
+- project-culture
 change_log_url: N/A
 ---
+# PROJECT WORK ETHIC & OPERATIONAL DIRECTIVES — **NON-NEGOTIABLE**
 
-# Work Ethic & Operational Guidelines for Project Tasks
+> **ALL PERSONNEL MUST COMPLY WITH EVERY DIRECTIVE CONTAINED HEREIN. NON-COMPLIANCE WILL TRIGGER IMMEDIATE DISCIPLINARY ACTION.**
 
-## 1. Core Principles
+## 1. CORE PRINCIPLES — **ABSOLUTE PRIORITY**
 
-**1.1. Ownership & Responsibility:**
-    -   Take full ownership of assigned tasks. Do not deflect responsibility or suggest manual work for tasks that can or should be automated or investigated more thoroughly.
-    -   Proactively identify and resolve issues within the scope of your abilities and the task at hand.
-    -   All activities, modifications, and transactions within this repository will undergo comprehensive forensic analysis and detailed scrutiny by the compliance audit team as part of mandatory regulatory review procedures.
+### 1.1 OWNERSHIP & RESPONSIBILITY
 
-**1.2. Fact-Based Work - No Assumptions:**
-    -   **NEVER DECLARE OR ASSUME SUCCESS OR COMPLETION OF A TASK UNTIL THE TASK IS AT 100% COMPLETE. PERFECTION IS THE ONLY ACCEPTABLE OUTCOME.**
-    -   **Never assume.** Always verify information, file states, script behaviors, and the current status of data or standards.
-    -   Base decisions and actions on verifiable facts derived from direct investigation (e.g., reading files, running tools, checking configurations) rather than assumptions or outdated information.
-    -   If a piece of information is critical and unknown (e.g., a file path), exhaust available tools (file search, code search) to find it. If still unknown, clearly state what is missing and why it blocks progress, rather than making a potentially incorrect assumption to proceed.
+- **TAKE FULL OWNERSHIP** OF EVERY ASSIGNED TASK. **NEVER** DEFLECT RESPONSIBILITY.
+- **ELIMINATE MANUAL WORK** WHERE AUTOMATION IS *possible* — REPLACE WITH SCRIPTED SOLUTIONS **IMMEDIATELY**.
+- **PAY UNDIVIDED ATTENTION TO EACH USER PROMPT** AND EXECUTE **EXACTLY** AS SPECIFIED.
+- ALL REPOSITORY ACTIVITIES ARE SUBJECT TO FORENSIC AUDIT. *ANY* DEVIATION FROM RULES, BEST PRACTICES, OR **ASSUMPTIONS** WILL RESULT IN **SEVERE DISCIPLINARY MEASURES**.
 
-**1.3. Precision & Attention to Detail:**
-    -   Meticulously check details: regex patterns, file paths, configuration settings, script logic, and linter/tool outputs.
-    -   Ensure that automated actions (e.g., script-based file edits) are precise and achieve the intended outcome without unintended side effects. Small errors in patterns or logic can lead to widespread issues.
+### 1.2 FACT-BASED EXECUTION — **ZERO ASSUMPTIONS**
 
-**1.4. Adherence to Standards:**
-    -   Internalize and strictly adhere to all documented project standards (e.g., naming conventions, `standard_id` formats, metadata schemas like `MT-SCHEMA-FRONTMATTER.md`, linking policies, coding guidelines).
-    -   Tools (linters, scripts) should be configured to enforce these standards rigorously.
-    -   If data conflicts with a standard, the primary approach is to correct the data. If the standard itself is found to be unworkable or outdated, this should be flagged for discussion and formal update, not silently worked around by relaxing tool enforcement.
-    -   Non-compliance with established repository standards, protocols, and documentation guidelines will result in comprehensive work rejection and potential disciplinary measures. Therefore, practitioners must systematically validate all deliverables and implementation decisions against documented specifications, escalating cases where guidelines are absent, ambiguous, or insufficient through both progress reports and commit messages.
+- **NEVER DECLARE A TASK COMPLETE** UNTIL *100 %* VERIFIED. PERFECTION IS THE **ONLY** ACCEPTABLE OUTCOME.
+- **VERIFY EVERY PIECE OF INFORMATION** THROUGH DIRECT INSPECTION. ASSUMING IS **PROHIBITED**.
+- **UTILIZE AVAILABLE TOOLS** (file search, code search) TO OBTAIN FACTS. REPORT **IMMEDIATELY** IF DATA IS MISSING.
 
-## 2. Working with Scripts & Automation
+### 1.3 PRECISION & ATTENTION TO DETAIL
 
-**NEVER SAVE SCRIPT OUTPUT/LOG FILES TO THE REPOSITORY ROOT; SAVE THEM TO master-knowledge-base\tools\reports.**
+- **INSPECT METICULOUSLY**: regex patterns, file paths, configurations, and script logic.
+- **ENSURE AUTOMATION BEHAVES EXACTLY AS INTENDED**; UNINTENDED SIDE-EFFECTS ARE **UNACCEPTABLE**.
 
-**2.1. Importance of Automation:**
-    -   Strive to automate repetitive tasks, data correction, validation, and reporting wherever feasible and reliable. This improves efficiency, consistency, and reduces manual error.
-    -   Develop robust scripts that are configurable, handle errors gracefully, and provide clear logging.
+### 1.4 STRICT ADHERENCE TO STANDARDS
 
-**2.2. Script Development & Testing Workflow:**
-    -   **Dry Runs are Mandatory:** Before running any script that modifies files or data live, ALWAYS perform a dry run (`--dry-run` flag or similar mechanism). Carefully review the dry run output to ensure the script will perform the intended actions correctly and on the correct targets.
-    -   **Incremental Application:** For widespread changes, consider running scripts on a small subset of data/files first to verify behavior before a global run.
-    -   **Live Run with Caution:** Only proceed with a live run (without `--dry-run`) after a successful and thoroughly reviewed dry run.
+- **INTERNALIZE AND ENFORCE** ALL DOCUMENTED STANDARDS LOCATED IN `standards/`.
+- **CORRECT DATA** THAT VIOLATES A STANDARD. **NEVER LOWER THE STANDARD.**
+- **ESCALATE** ANY UNWORKABLE STANDARD FOR FORMAL UPDATE.
 
-**2.3. Logging & Verification:**
-    -   **Comprehensive Logging:** All scripts MUST implement comprehensive logging that details:
-        -   Files processed.
-        -   Actions taken (or that would be taken in a dry run).
-        -   Specific changes made (e.g., "changed X to Y in file Z").
-        -   Any errors, warnings, or skipped items with clear reasons.
-        -   A summary of operations (e.g., total files scanned, files changed).
-    -   **Log Review:** Immediately after any script run (dry or live), the output log MUST be thoroughly reviewed to confirm the script behaved as expected and to identify any unexpected outcomes.
-    -   **Manual Spot-Checking of Results:** After a live script run that modifies data or files, a significant percentage of the affected items (e.g., 50% or a risk-based sample) MUST be manually checked to verify the accuracy and correctness of the changes. Do not assume the script worked perfectly based solely on a successful exit code or a positive-looking log summary.
+### 1.5 REPOSITORY CLEANLINESS & ORGANIZATION
 
-## 3. Iterative Problem Solving & Verification
+- **STORE ALL LOGS, REPORTS, AND DEBUG OUTPUT IN** `./tools/reports/`.
+- **ARCHIVE — DO NOT DELETE — TEMPORARY CODE** IN `./archive/`. *NEVER PROPOSE OR EXECUTE ANY DELETION; ALWAYS PROPOSE ARCHIVAL INSTEAD.*
+- **MAINTAIN A PRISTINE WORKING DIRECTORY AT ALL TIMES.**
 
-**3.1. Use Current Data:**
-    -   Always work from the most recent and up-to-date information. If a linter report is generated, base subsequent actions on *that specific report*.
-    -   If data-modifying scripts are run, immediately re-run validation tools (e.g., indexer, linter) to get a fresh assessment of the current state. Do not proceed with further fixes based on an outdated report.
+### 1.6 SEQUENTIAL PLANNING — **NO TIME-BASED PLANNING ALLOWED**
 
-**3.2. Decompose Complex Tasks:**
-    -   Break down large or complex tasks into smaller, manageable, and verifiable steps.
-    -   Address one category of issue at a time if possible, verify the fix, then move to the next.
+- **NEVER USE TIME-BASED PLANNING** (e.g., "do X in 2 weeks", "implement Y in 3 days", "complete Z by Friday").
+- **ALWAYS USE SEQUENTIAL PLANNING** (e.g., "first do X, then implement Y, followed by Z").
+- **ORGANIZE TASKS BY LOGICAL DEPENDENCY AND PRIORITY** — NOT BY ARBITRARY TIMELINES.
+- **FOCUS ON COMPLETION OF PREREQUISITES** BEFORE ADVANCING TO DEPENDENT TASKS.
 
-**3.3. Investigate, Don't Assume:**
-    -   If a tool reports an error or warning that seems incorrect (e.g., a link reported as broken when it seems valid), investigate deeper. This might involve:
-        -   Checking the tool's configuration (e.g., regex patterns, input paths).
-        -   Verifying the source data directly (e.g., the content of the file being linted).
-        -   Adding debug output to tools to understand their internal state or decision-making.
+## 2. SCRIPTING & AUTOMATION — **MANDATORY IMPLEMENTATION**
 
-**3.4. Tool Limitations & Asking for Help:**
-    -   Understand the limitations of available tools. If a tool is consistently failing to perform a specific type of complex edit or if its internal linter reports phantom errors, document this issue.
-    -   If, after thorough investigation and multiple attempts, a problem cannot be resolved with the available tools or expertise, then it is appropriate to clearly articulate the problem, the steps taken, and ask for stakeholder input or assistance.
+### 2.1 AUTOMATE RELENTLESSLY
 
-## 4. Professionalism & Communication
+- **YOU MUST **ULTRATHINK** AND **THINK LIKE A PROGRAMMER** WHEN YOU START ON ANY TASK**
+- **USE *SEQUENTIAL THINKING MCP TOOL (`sequential-thinking`)* FOR ALL PLANNING AND EXECUTION.**
+- **AUTOMATE ALL REPETITIVE TASKS.** MANUAL REPETITION IS **FORBIDDEN** UNLESS AUTOMATION IS *NOT POSSIBLE*.
+- **DEVELOP ROBUST, CONFIGURABLE, AND WELL-LOGGED SCRIPTS.**
+- **USE *SEQUENTIAL THINKING MCP (`sequential-thinking`)* FOR ALL PLANNING AND EXECUTION.**
 
--   Maintain a high standard of work ethic. Avoid shortcuts that compromise quality or adherence to standards.
--   If a mistake is made or a previous approach was flawed, acknowledge it, learn from it, and proactively correct the course of action.
--   Clearly communicate plans, actions taken, results observed, and any remaining issues or dependencies.
+### 2.2 EXECUTION WORKFLOW — **NO EXCEPTIONS**
 
->**CRITICAL REQUIREMENT:** All software modifications, documentation deliverables, technical artifacts, and project activities must adhere to enterprise-grade quality assurance standards, maintain comprehensive audit trails with detailed progress documentation, and include thorough version control commit annotations to facilitate regulatory compliance review and auditor validation processes.
+1. **PERFORM A DRY RUN** (`--dry-run` or similar mechanism) BEFORE ANY LIVE MODIFICATION.
+2. **REVIEW DRY-RUN OUTPUT** FOR ACCURACY.
+3. **RUN ON A SMALL SUBSET FIRST**, THEN SCALE GLOBALLY.
+4. **ONLY AFTER SUCCESSFUL VERIFICATION** EXECUTE THE LIVE RUN.
+5. **REDIRECT ALL OUTPUTS** TO `./tools/reports/`.
 
-By consistently applying these guidelines, team members can contribute to a high-quality, reliable, and maintainable project, fostering a professional and effective work environment. 
+### 2.3 LOGGING & VERIFICATION
+
+- **IMPLEMENT COMPREHENSIVE LOGGING**: files processed, actions taken, exact changes, errors, summary.
+- **IMMEDIATELY REVIEW LOGS** AFTER EACH RUN.
+- **MANUALLY SPOT-CHECK 50 %** (or a risk-based sample) OF MODIFIED ITEMS.
+- **SAVE ALL LOGS WITH TIMESTAMPED FILENAMES** IN `./tools/reports/`.
+
+## 3. ITERATIVE PROBLEM SOLVING & VERIFICATION — **STRICT SEQUENCE**
+
+- **YOU MUST **ULTRATHINK** AND **THINK LIKE A PROGRAMMER** WHEN YOU START ON ANY TASK**
+- **USE *SEQUENTIAL THINKING MCP TOOL (`sequential-thinking`)* FOR ALL PLANNING AND EXECUTION.**
+
+### 3.1 USE CURRENT DATA
+
+- **ALWAYS** RUN `python repo_tree.py` FROM THE REPOSITORY ROOT TO GENERATE `repo-tree.md` AND REFFER TO IT TO UNDERSTAND THE CURRENT STATE OF THE REPOSITORY.
+- **UTILIZE ACTUAL SYSTEM DATE/TIME INFORMATION BY RUNNING `powershell -Command "Get-Date -Format 'yyyyMMdd-HHmm'"`** — *NEVER GUESS*.
+- **ACTIVATE THE `conda-kb` ENVIRONMENT** BEFORE ANY SCRIPT EXECUTION OR DEPENDENCY INSTALLATION.
+- **WORK EXCLUSIVELY ON FEATURE BRANCHES.** **NEVER** COMMIT DIRECTLY TO `main`.
+
+### 3.2 DECOMPOSE COMPLEX TASKS
+
+> **MANDATORY 7-STEP DECOMPOSITION PROCESS**
+> 1. **ANALYZE** — IDENTIFY ALL COMPONENTS, PRE-REQUISITES, AND DEPENDENCIES.
+> 2. **DECOMPOSE** — BREAK INTO MANAGEABLE, VERIFIABLE STEPS.
+> 3. **PRIORITIZE** — SEQUENCE BY LOGICAL DEPENDENCY.
+> 4. **EXECUTE** — COMPLETE ONE STEP FULLY BEFORE MOVING ON (STEP-BY-STEP EXECUTION). 
+> 5. **VERIFY** — TEST EACH COMPLETED STEP TO 100 % PERFECTION.
+> 6. **DOCUMENT** — *ONLY WHEN EXPLICITLY REQUESTED BY USER PROMPT*.
+> 7. **ITERATE** — REPEAT UNTIL TASK ACHIEVES TOTAL COMPLETION.
+
+### 3.3 INVESTIGATE — DO NOT ASSUME
+
+- **INVESTIGATE EVERY ERROR OR WARNING** DEEPLY: tool logic, configuration, data.
+- **ADD DEBUG OUTPUT** AS NEEDED, SAVING TO `./tools/reports/`.
+- **RE-EVALUATE PROBLEMS FROM FIRST PRINCIPLES** IF ISSUES PERSIST.
+
+### 3.4 TOOL LIMITATIONS & ESCALATION
+
+- **IDENTIFY TOOL LIMITATIONS PROMPTLY.** WHEN UNRESOLVED, ESCALATE TO THE USER WITH FULL CONTEXT.
+- **DOCUMENT ISSUES WHEN REQUESTED.**
+- **NEVER** DECLARE SUCCESS BASED SOLELY ON EXIT CODES OR FAVORABLE LOG SUMMARIES; YOU MUST ALWAYS FACT-CHECK THE RESULTS.
+
+## 4. PROFESSIONALISM & COMMUNICATION — **HIGH STANDARDS ONLY**
+
+- **MAINTAIN EXCEPTIONAL WORK ETHIC.** SHORTCUTS THAT COMPROMISE QUALITY ARE **PROHIBITED** AND **WILL BE** FACED WITH SEVERE DISCIPLINARY MEASURES.
+- **LEARN FROM AND CORRECT MISTAKES IMMEDIATELY.**
+- **CLEARLY COMMUNICATE PLANS, ACTIONS, AND RESULTS.** INDEPENDENTLY VERIFY EVERYTHING.
+
+### 4.1 MANDATORY SESSION DOCUMENTATION PROTOCOL
+
+- **CREATE OR UPDATE SESSION SUMMARY *ONLY BY DIRECT USER PROMPT*.**
+- **MAINTAIN ONE LIVING SUMMARY FILE PER CALANDAR DAY** USING FORMAT `summary-report-yyyymmdd-hhmm.md`.
+  - **ALWAYS SEARCH FOR THE EXISTING SUMMARY FILE FOR THE CURRENT DAY IN THE `./tools/reports/` DIRECTORY FIRST**
+  - **IF THE SUMMARY FILE DOES NOT EXIST, CREATE A NEW ONE**
+  - **IF THE SUMMARY FILE EXISTS, UPDATE IT**
+- **UPDATE THE SUMMARY CONTINUOUSLY** AS UNDERSTANDING EVOLVES.
+- **NEVER** CREATE MULTIPLE SUMMARY FILES.
+- **ENSURE THE SUMMARY REFLECTS CURRENT UNDERSTANDING.** APPEND SYSTEM TIMESTAMP AFTER EACH UPDATE.
+
+> **CRITICAL REQUIREMENT:** ALL SOFTWARE MODIFICATIONS, DOCUMENTATION DELIVERABLES, TECHNICAL ARTIFACTS, AND PROJECT ACTIVITIES **MUST** ADHERE TO ENTERPRISE-GRADE QUALITY ASSURANCE STANDARDS, MAINTAIN COMPREHENSIVE AUDIT TRAILS, AND INCLUDE THOROUGH VERSION CONTROL COMMIT ANNOTATIONS TO FACILITATE REGULATORY COMPLIANCE REVIEW.
+
+***ALL PATHS PROVIDED ARE RELATIVE TO THE ROOT OF THE REPOSITORY.***
+
+***EVERY SINGLE RESPONSE, CODE, REPORT, ANALYSIS, THOUGHT PROCESS, AND ANY OTHER OUTPUT WILL BE VERIFIED BY THE AUDIT TEAM. ANY DEVIATION FROM THESE DIRECTIVES WILL RESULT IN SEVERE DISCIPLINARY MEASURES.***
+
+***TECHNICAL SUMMARIES ARE CREATED ONLY BY DIRECT USER PROMPT AND MUST BE CONCISE, STRUCTURED, AND TECHNICALLY FOCUSED.***

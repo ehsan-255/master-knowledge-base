@@ -2,42 +2,45 @@
 title: 'Standard: Heading Syntax'
 standard_id: SF-SYNTAX-HEADINGS
 aliases:
-  - Headings
-  - Header Syntax
+- Headings
+- Header Syntax
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Heading Syntax
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines the syntax for creating headings in knowledge base documents.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Document structure
-  - Navigation
-  - Content hierarchy
+- Document structure
+- Navigation
+- Content hierarchy
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown Syntax for Headings (SF-SYNTAX-HEADINGS)
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for creating headings (H1 through H6) in all knowledge base documents. Consistent and correct heading syntax is fundamental for document structure, readability, accessibility, and reliable automated processing (such as Table of Contents generation).
-
-While this document specifies the *syntax*, the *semantic application* of these headings (e.g., using a single H1 for the document title, not skipping levels, how H2s structure a chapter) is governed by content structure standards like [[AS-STRUCTURE-DOC-CHAPTER]] and policies like [[CS-POLICY-DOC-CHAPTER-CONTENT]]. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around headings is also critical.
+This standard **MANDATES** the exclusive Markdown syntax for creating headings (H1 through H6) in all Knowledge Base documents. Consistent and absolutely correct heading syntax is **CRITICAL** for robust document structure, predictable rendering, guaranteed accessibility, and reliable automated processing (e.g., Table of Contents generation, semantic analysis). This document is the **single authoritative source** for how headings **MUST** be formed and applied hierarchically.
 
 ## 2. Core Heading Syntax Rules
 
-### Rule 2.1: ATX Style Headings (Derived from M-SYNTAX-HEADINGS-001, Rule 1.1)
-Headings MUST be created using the ATX style, which employs hash symbols (`#`) at the beginning of the line. The number of hash symbols corresponds to the heading level (one `#` for H1, two `##` for H2, and so on, up to six `######` for H6).
-*   **Example:**
+### Rule 2.1: ATX Style Headings
+Headings **MUST** be created exclusively using the ATX style, employing hash symbols (`#`) at the line's beginning. The number of hash symbols **MUST** directly correspond to the heading level (one `#` for H1, two `##` for H2, up to six `######` for H6).
+*   **Mandatory Syntax:**
     ```markdown
     # This is an H1 Heading
     ## This is an H2 Heading
@@ -46,17 +49,17 @@ Headings MUST be created using the ATX style, which employs hash symbols (`#`) a
     ##### This is an H5 Heading
     ###### This is an H6 Heading
     ```
-*   **Prohibition:** Setext style headings (using `=` for H1 and `-` for H2 on the line below the text) MUST NOT be used.
-*   **Rationale:** ATX style is more widely supported, visually clearer in raw Markdown, and less prone to ambiguity than Setext style.
+*   **Prohibited Syntax:** Setext style headings (using `=` for H1 and `-` for H2 below text) **MUST NOT** be used.
+*   **Rationale:** ATX style is universally supported, visually unambiguous, and essential for machine readability and automated parsing.
 
-### Rule 2.2: Space After Hash Symbols (Derived from M-SYNTAX-HEADINGS-001, Rule 1.2)
-There MUST be a single space character between the hash symbol(s) and the heading text.
-*   **Example (Correct):** `# My Heading`
-*   **Example (Incorrect):** `#My Heading` (missing space), ` # My Heading` (leading space before `#`)
-*   **Rationale:** Ensures correct parsing by Markdown processors and improves readability of the raw text.
+### Rule 2.2: Single Space After Hash Symbols
+There **MUST** be a single space character immediately following the hash symbol(s) and preceding the heading text.
+*   **Correct Example:** `# My Heading`
+*   **Prohibited Examples:** `#My Heading` (missing space), ` # My Heading` (leading space before `#`)
+*   **Rationale:** Ensures correct parsing by all Markdown processors and maintains high raw source readability.
 
-### Rule 2.3: Blank Lines Around Headings (Derived from M-SYNTAX-HEADINGS-001, Rule 1.5)
-A single blank line MUST precede and a single blank line MUST follow every heading.
+### Rule 2.3: Blank Lines Around Headings
+A single blank line **MUST** precede and a single blank line **MUST** follow every heading.
 *   **Example:**
     ```markdown
     Some paragraph text.
@@ -66,40 +69,35 @@ A single blank line MUST precede and a single blank line MUST follow every headi
     More paragraph text.
     ```
 *   **Exceptions:**
-    *   A heading at the very beginning of a document (typically the H1 title) does not require a blank line before it (as it's preceded by the YAML frontmatter).
-    *   A heading at the very end of a document does not require a blank line after it (though the file should still end with a single newline character as per [[SF-FORMATTING-FILE-HYGIENE]]).
-*   **Rationale:** Improves readability of the raw Markdown source and prevents potential parsing issues with some Markdown processors, ensuring headings are correctly rendered as distinct blocks.
+    *   An H1 heading at the document's beginning (immediately after YAML frontmatter) **MUST NOT** have a blank line before it.
+    *   A heading at the document's very end **MUST NOT** have a blank line after it, though the file **MUST** still end with a single newline character as per [[SF-FORMATTING-FILE-HYGIENE]].
+*   **Rationale:** Strictly defined blank lines prevent parsing ambiguities and ensure headings are correctly rendered as distinct blocks.
 
-## 3. Semantic Application of Headings (Context from M-SYNTAX-HEADINGS-001, Rules 1.3 & 1.4)
+### Rule 2.4: Single H1 Heading for Document Title
+Each Markdown document **MUST** contain **exactly one** H1 heading, and this H1 heading **MUST** be the very first content element (after the YAML frontmatter), serving exclusively as the document's main title. No other H1 headings **MUST** appear anywhere else.
+*   **Rationale:** Ensures a clear, singular title for every document, critical for navigation, indexing, and overall document identity.
 
-While this document focuses on syntax, the following semantic rules are critical for proper document structure and are primarily governed by other standards:
+### Rule 2.5: Strict Hierarchical Heading Progression
+Heading levels **MUST** be used in strict hierarchical order without skipping levels. For example, an H2 heading **MUST** be followed directly by an H3 if subdivision is needed; it **MUST NOT** be followed directly by an H4 or a lower level.
+*   **Correct Sequence Example:** H1 -> H2 -> H3 -> H3 -> H2 -> H3 -> H4
+*   **Prohibited Sequence Example:** H1 -> H3 (skips H2), H2 -> H4 (skips H3)
+*   **Rationale:** Essential for accessibility (screen reader navigation), automated Table of Contents generation, and maintaining a logical, scannable document structure.
 
-### Rule 3.1: Single H1 Heading for Document Title
-Each document MUST begin with a single H1 heading, which serves as the document's main title. No other H1 headings should appear in the document.
-*   **Syntax Example:** `# Document Title Here`
-*   **Governance:** This rule's application and how it forms the basis of chapter structure is detailed in [[AS-STRUCTURE-DOC-CHAPTER]].
+## 3. Importance of Strict Heading Syntax and Hierarchy
 
-### Rule 3.2: No Skipping Heading Levels
-Heading levels MUST be used hierarchically without skipping levels. For example, an H2 heading can be followed by an H3, but not directly by an H4.
-*   **Correct Sequence Example:** H1 -> H2 -> H3 -> H2 -> H3
-*   **Incorrect Sequence Example:** H1 -> H3 (skips H2)
-*   **Governance:** The policy ensuring correct hierarchical heading usage for content organization is detailed in [[CS-POLICY-DOC-CHAPTER-CONTENT]].
+*   **Universal Readability and Scannability:** Consistent syntax and logical hierarchy make documents easy to read and understand.
+*   **Guaranteed Accessibility:** Correct heading structure is fundamental for users relying on screen readers and assistive technologies.
+*   **Reliable Automated Processing:** Tools for Table of Contents generation, content indexing, search, and semantic analysis depend entirely on strict heading syntax and hierarchy.
+*   **Enhanced Maintainability:** Uniform approach simplifies document creation, editing, and long-term maintenance.
+*   **Unified KB Structure:** Establishes a professional and consistent architectural foundation for all documentation.
 
-## 4. Importance of Correct Heading Syntax
+## 4. Scope of Application
 
-*   **Readability:** Clear headings make documents easier to read and scan, both in raw Markdown and rendered views.
-*   **Accessibility:** Screen readers and other assistive technologies rely on correct heading syntax and hierarchy to provide navigation and structure to users with disabilities.
-*   **Automated Processing:** Tools that generate Tables of Contents, parse document structure for indexing, or convert Markdown to other formats depend on valid heading syntax.
-*   **Maintainability:** Consistent heading usage simplifies document maintenance and refactoring.
+This standard applies to **ALL** Markdown documents within the Knowledge Base repository. Adherence to these rules is **MANDATORY** for all content creators, automated systems, and tooling interacting with KB Markdown files.
 
-## 5. Scope of Application
-
-This standard applies to all Markdown documents within the knowledge base repository.
-
-## 6. Cross-References
-- [[AS-STRUCTURE-DOC-CHAPTER]] - Defines the overall internal structure for Chapter documents, including the use of the H1 as the title.
-- [[CS-POLICY-DOC-CHAPTER-CONTENT]] - Governs the semantic use of headings (H2-H6) for content organization within Chapters.
-- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines and EOF characters that interact with heading formatting.
+## 5. Cross-References
+*   [[CS-POLICY-TONE-LANGUAGE]]
+*   [[SF-FORMATTING-FILE-HYGIENE]]
 
 ---
-*This standard (SF-SYNTAX-HEADINGS) is based on rules 1.1, 1.2, and 1.5 previously defined in M-SYNTAX-HEADINGS-001 from COL-SYNTAX-MARKDOWN.md. Rules 1.3 and 1.4 regarding semantic application are noted and deferred to content structure standards.*
+*This standard (SF-SYNTAX-HEADINGS) has been revised to provide strict, singular mandates for heading syntax and hierarchical usage, consolidating previously distributed semantic rules. It replaces and supersedes any prior interpretations from M-SYNTAX-HEADINGS-001 or content structure policies where conflicts existed, ensuring a single source of truth for heading application.*

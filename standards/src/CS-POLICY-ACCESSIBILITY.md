@@ -5,9 +5,12 @@ aliases:
 - Accessibility Policy
 - WCAG Compliance Goals
 tags:
-- status/draft
-- criticality/p1-high
 - content-type/policy-document
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Content Accessibility Principles
@@ -16,10 +19,11 @@ related-standards:
 - SF-SYNTAX-HEADINGS
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:30:16Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: All content created and maintained within the knowledge base, aiming to ensure accessibility for all users, including those with disabilities.
+scope_application: All content created and maintained within the knowledge base, aiming
+  to ensure accessibility for all users, including those with disabilities.
 criticality: P1-High
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -27,8 +31,8 @@ impact_areas:
 - Inclusivity
 - Legal compliance (e.g., ADA, WCAG)
 - Content reach
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Policy: Content Accessibility (CS-POLICY-ACCESSIBILITY)
 
 ## 1. Policy Statement

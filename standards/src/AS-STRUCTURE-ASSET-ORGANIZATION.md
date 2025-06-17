@@ -5,9 +5,13 @@ aliases:
 - Asset Management Standard
 - Static File Organization
 tags:
-- status/draft
-- criticality/p2-medium
+- content-type/standard-definition
 - content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/structure
 kb-id: standards
 info-type: standard-definition
 primary-topic: Asset File Organization
@@ -17,10 +21,11 @@ related-standards:
 - AS-KB-DIRECTORY-STRUCTURE
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:24:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the standards for organizing, naming, and formatting non-Markdown assets (e.g., images, diagrams, PDFs, code snippets) within any Knowledge Base.
+scope_application: Defines the standards for organizing, naming, and formatting non-Markdown
+  assets (e.g., images, diagrams, PDFs, code snippets) within any Knowledge Base.
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -29,8 +34,8 @@ impact_areas:
 - Link integrity for assets
 - Authoring consistency
 - Build processes
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Standard: Asset Organization and Naming (AS-STRUCTURE-ASSET-ORGANIZATION)
 
 ## 1. Standard Statement

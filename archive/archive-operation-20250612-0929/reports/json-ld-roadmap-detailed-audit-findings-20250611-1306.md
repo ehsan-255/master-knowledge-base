@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:13Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # JSON-LD ROADMAP DETAILED AUDIT FINDINGS
 
 **Report Date**: 2025-06-11 13:06  
@@ -340,4 +357,4 @@ IMMEDIATE ACTIONS POSSIBLE:
 **Investigation Completed**: 2025-06-11 13:06  
 **Total Issues Catalogued**: 865 validation errors + 3 broken links + schema gaps  
 **Data Recovery Feasibility**: 100% - All missing data available in archived files  
-**Remediation Complexity**: Medium - Systematic but straightforward data updates required 
+**Remediation Complexity**: Medium - Systematic but straightforward data updates required

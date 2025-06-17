@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:13Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Frontmatter Organizer SST Integration Report
 
 **Report ID:** frontmatter-organizer-sst-integration-20250610-0113  
@@ -183,4 +200,4 @@ The tool is now fully integrated with the repository's SST architecture and read
 
 ---
 **Report Generated:** 2025-06-10 01:13:32  
-**Modification Status:** COMPLETE ✅ 
+**Modification Status:** COMPLETE ✅

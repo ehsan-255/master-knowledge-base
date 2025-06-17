@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:16Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: test-environment
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Test Environment
 
 **Purpose**: Centralized location for ALL test setup, execution, and output in the Master Knowledge Base repository.
@@ -126,4 +143,4 @@ cd test-environment/tool-tests-consolidated-20250607-0942
 ---
 
 **Last Updated**: 2025-06-07 09:45:00 (Consolidated tool tests and updated structure)
-**Maintained By**: Repository automation and project teams 
+**Maintained By**: Repository automation and project teams

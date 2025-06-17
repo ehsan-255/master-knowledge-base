@@ -5,9 +5,13 @@ aliases:
 - Templates Directory Standard
 - Document Templates Location
 tags:
-- status/draft
-- criticality/p2-medium
+- content-type/standard-definition
 - content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/structure
 kb-id: standards
 info-type: standard-definition
 primary-topic: Templates Directory and Usage
@@ -18,10 +22,11 @@ related-standards:
 - '[[UA-TPL-CANONICAL-FRONTMATTER]]'
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:26:37Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the mandatory location, naming conventions, and content requirements for the directory housing standard document templates.
+scope_application: Defines the mandatory location, naming conventions, and content
+  requirements for the directory housing standard document templates.
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -29,8 +34,8 @@ impact_areas:
 - Content consistency
 - Standards adherence
 - Onboarding new authors
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Standard: Templates Directory Structure and Usage (AS-STRUCTURE-TEMPLATES-DIRECTORY)
 
 ## 1. Standard Statement

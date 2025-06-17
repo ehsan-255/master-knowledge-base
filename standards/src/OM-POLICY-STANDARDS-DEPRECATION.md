@@ -2,19 +2,22 @@
 title: 'Policy: Standards Deprecation Process'
 standard_id: OM-POLICY-STANDARDS-DEPRECATION
 aliases:
-  - Deprecation Policy
-  - Standards Retirement
+- Deprecation Policy
+- Standards Retirement
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/policy-document
+- content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/lifecycle
+- topic/om
 kb-id: standards
 info-type: policy-document
 primary-topic: Standards Deprecation Process
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
 scope_application: Defines the process and criteria for deprecating standards within
@@ -22,9 +25,10 @@ scope_application: Defines the process and criteria for deprecating standards wi
 criticality: P2-Medium
 lifecycle_gatekeeper: Governance-Board-Approval
 impact_areas:
-  - Standards lifecycle
-  - Change management
-  - Documentation integrity
+- Standards lifecycle
+- Change management
+- Documentation integrity
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Deprecation of Standards (OM-POLICY-STANDARDS-DEPRECATION)
 

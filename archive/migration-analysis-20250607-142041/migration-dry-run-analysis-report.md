@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:13Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Migration Dry-Run Analysis Report
 
 **Generated**: 2025-06-07 13:10:00  
@@ -93,4 +110,4 @@ The validation step correctly reported missing items because **this was a simula
 
 **Risk Level**: 🟢 **LOW** (with comprehensive safety measures)  
 **Confidence Level**: 🟢 **HIGH** (thorough dry-run validation)  
-**Recommendation**: ✅ **PROCEED WITH LIVE MIGRATION** 
+**Recommendation**: ✅ **PROCEED WITH LIVE MIGRATION**

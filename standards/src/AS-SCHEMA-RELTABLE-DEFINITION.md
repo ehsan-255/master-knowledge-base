@@ -5,35 +5,39 @@ aliases:
 - Reltable Standard
 - Semantic Linking Definition
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/standard-definition
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/data-structure
 - topic/linking
 - topic/semantics
+- topic/structure
 - topic/yaml
-- topic/data-structure
-- kb-id/standards
 kb-id: standards
 info-type: standard-definition
-primary-topic: Defines the standard structure for 'Relationship Tables' (reltables) used to explicitly define typed, non-hierarchical relationships between topics.
+primary-topic: Defines the standard structure for 'Relationship Tables' (reltables)
+  used to explicitly define typed, non-hierarchical relationships between topics.
 related-standards:
 - '[[AS-STRUCTURE-KB-ROOT]]'
 - '[[SF-LINKS-INTERNAL-SYNTAX]]'
 - '[[SF-SYNTAX-YAML-FRONTMATTER]]'
 version: 0.1.2
 date-created: '2025-05-19T00:00:00Z'
-date-modified: '2025-06-01T23:24:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the standard structure for 'Relationship Tables' (reltables) using YAML to define typed, non-hierarchical relationships between topics.
+scope_application: Defines the standard structure for 'Relationship Tables' (reltables)
+  using YAML to define typed, non-hierarchical relationships between topics.
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Semantic linking
 - Knowledge graph generation
 - Content navigability
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Standard: Relationship Table (Reltable) Definition (AS-SCHEMA-RELTABLE-DEFINITION)
 
 > [!TODO] This standard's content has been migrated from `U-RELTABLE-DEFINITION-001`. However, the overall concept of Reltables, their precise implementation details (especially the defined relationship types and their YAML structure), and their integration with other architectural and schema standards require further review and refinement. The relationship types listed are initial suggestions and need validation against broader use cases and semantic consistency.

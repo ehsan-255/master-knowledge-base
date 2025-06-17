@@ -1,35 +1,88 @@
-# Active Projects: Workflow and Organization
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:12Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: active-project
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
+# Active Projects: **MANDATORY** Workflow and Organization
 
-This document outlines the standardized structure and workflow for all projects managed within the `active-project/` directory. Adherence to these guidelines is crucial for maintaining clarity and efficiency.
+**THIS DOCUMENT ESTABLISHES THE NON-NEGOTIABLE STANDARDIZED STRUCTURE AND WORKFLOW FOR ALL PROJECTS MANAGED WITHIN THE `active-project/` DIRECTORY. ADHERENCE TO THESE GUIDELINES IS ABSOLUTELY MANDATORY FOR MAINTAINING CLARITY AND EFFICIENCY.**
 
-## Core Principles
+## **CORE PRINCIPLES — ABSOLUTE COMPLIANCE REQUIRED**
 
-*   **Iterative Workflow**: Projects are often broken down into iterative sub-tasks, managed in levels (`l[n]`) and turns (`t[n]`).
-*   **Single Source of Truth**: Each project and sub-task will have dedicated analysis, roadmap, and progress files.
-*   **Status Tracking**: Folder names include status suffixes to clearly indicate the current state of a project or sub-task.
+*   **ITERATIVE WORKFLOW**: Projects **MUST** be broken down into iterative sub-tasks, managed in levels (`l[n]`) and turns (`t[n]`).
+*   **SINGLE SOURCE OF TRUTH**: Each project and sub-task **WILL** have dedicated analysis, roadmap, and progress files.
+*   **STATUS TRACKING**: Folder names **MUST** include status suffixes to clearly indicate the current state of a project or sub-task.
 
-## Folder and File Naming Conventions
+## **MASTER PROJECT DOCUMENTS — MANDATORY IMPLEMENTATION**
 
-### Project & Sub-level Folder Naming:
+### **MASTER-ANALYSIS-REPORT — PRIMARY BLUEPRINT**
+
+>**THE `master-analysis-report` IS THE PRIMARY BLUEPRINT FOR THE PROJECT, PROVIDING A COMPREHENSIVE OVERVIEW THAT INCLUDES THE PROJECT'S OBJECTIVES, SUCCESS CRITERIA, RATIONALE, AFFECTED DOMAINS, AND AN OVERARCHING STRATEGY FOR ACHIEVING ITS GOALS.**
+
+**CRITICAL SPECIFICATIONS:**
+- **PROVIDES** a high-level, 30,000-foot view with sufficient granularity to enable the creation of individual sub-tasks without ambiguity about requirements
+- **SERVES** as the foundational document from which all other project documentation derives
+- **CONTAINS** comprehensive project definition, scope boundaries, success metrics, and strategic approach
+
+**DETAILED GUIDELINES:** [Master Analysis Report Creation Guide](./master-analysis-report-creation-guide.md)
+
+### **MASTER-ROADMAP — EXECUTION SEQUENCE AUTHORITY**
+
+>**THE `master-roadmap` DERIVES FROM THE `master-analysis-report` AND SPECIFIES THE MANDATORY SEQUENCE IN WHICH ALL PROJECT TASKS MUST BE EXECUTED TO ACHIEVE COMPLETION.**
+
+**CRITICAL SPECIFICATIONS:**
+- **OUTLINES** various high-level steps, each of which **WILL** be treated as an independent job or project requiring its own `analysis-report` and `roadmap`
+- **WORK DECOMPOSITION** begins with identifying the largest segments of work and progresses incrementally to smaller, actionable units
+- **THE SMALLEST GRANULAR TASK** must be executable within a single sprint and **MUST** follow the format in `active-project/roadmap-template`
+- **DECOMPOSITION STRUCTURE**: Uses "sub-levels" (`sl[n]`) for hierarchical task breakdown
+
+**EXCEPTION FOR MINOR PROJECTS:** Minor projects may not require a separate `master-roadmap`. In such cases, direct task execution via the `active-project/roadmap-template` alone **WILL** suffice, and this scenario **MUST** be explicitly documented.
+
+**DETAILED GUIDELINES:** [Master Roadmap Development Guide](./master-roadmap-development-guide.md)
+
+### **MASTER-PROGRESS — CENTRALIZED PROGRESS AUTHORITY**
+
+>**THE `master-progress` IS DISTINCT FROM THE `active-project/roadmap-progress-tracker-template.md` AND `active-project/roadmap-checklist-template.md`. WHILE THE LATTER TWO FOCUS ON ROADMAP-SPECIFIC PROGRESS, THE `master-progress` TRACKS OVERALL PROJECT PROGRESS, MAJOR CHANGES, DECISIONS, DEVIATIONS FROM THE `master-analysis-report` OR `master-roadmap`, AND JUSTIFICATIONS FOR SUCH CHANGES.**
+
+**CRITICAL SPECIFICATIONS:**
+- **MAINTAINS** a single `master-progress` document at the project's highest level, consolidating all progress metrics, changes, and insights into one centralized resource
+- **TRACKS** overall project progress, major changes, decisions, deviations, and justifications
+- **AFTER** a roadmap reaches its lowest level of decomposition and tasks are assigned using `active-project/roadmap-template`, progress at this granular level **MUST** be tracked in `active-project/roadmap-progress-tracker-template.md`
+
+## **FOLDER AND FILE NAMING CONVENTIONS — STRICT ADHERENCE REQUIRED**
+
+### **Project & Sub-level Folder Naming:**
 
 *   **Project Folders**: `-[project-name]-initiative-[status-suffix]`
     *   Example: `-project-alpha-initiative-active`, `-project-beta-initiative-completed`
-*   **Sub-task Folders (Iterative Levels)**: `l[level]-t[turn]-[descriptive-name]-[status-suffix]`
-    *   Example: `l2-t1-fix-authentication-module-active`
-    *   These are nested within their parent project or parent sub-task folder.
+*   **Sub-task Folders (Iterative Levels)**: `l[level]-sl[sub-level]-[descriptive-name]-[status-suffix]`
+    *   Example: `l2-sl1-fix-authentication-module-active`
+    *   These **MUST** be nested within their parent project or parent sub-task folder.
 
-### File Naming (within project and l[n]-t[n] folders):
+### **File Naming (within project and l[n]-t[n] folders):**
 
 *   **Master Project Files (at project `...-initiative-[status]` level):**
     *   `master-analysis-report.md`
     *   `master-roadmap.md`
     *   `master-progress.md`
-*   **Sub-task Files (within `l[n]-t[n]-...-[status]` folders):**
-    *   `l[n]-t[n]-analysis-report.md`
-    *   `l[n]-t[n]-roadmap.md`
-    *   `l[n]-t[n]-progress.md`
+*   **Sub-task Files (within `l[n]-sl[n]-...-[status]` folders):**
+    *   `l[n]-sl[n]-analysis-report.md`
+    *   `l[n]-sl[n]-roadmap.md`
+    *   `l[n]-sl[n]-progress.md`
 
-### Status Suffixes (kebab-case):
+### **Status Suffixes (kebab-case) — MANDATORY APPLICATION:**
 
 Applied to project and sub-task folders:
 
@@ -39,19 +92,19 @@ Applied to project and sub-task folders:
 *   `-planned`
 *   `-on-hold`
 
-### Branch Naming Convention
+### **Branch Naming Convention — STRICT COMPLIANCE**
 
-When working on any task related to `active-project/`, branches should be named according to the following pattern:
+When working on any task related to `active-project/`, branches **MUST** be named according to the following pattern:
 
-`[folder-name-minus-status]-YYYYMMDD`
+`[folder-name-minus-status]-YYYYMMDD-HHMM`
 
 Where:
-*   `[folder-name-minus-status]` is the full name of the project initiative folder (e.g., `my-new-project-initiative`) or the sub-task folder (e.g., `l2-t1-some-feature`) with its status suffix (e.g., `-active`, `-completed`, `-planned`) removed.
-*   `YYYYMMDD` is the current date when the branch is created.
+*   `[folder-name-minus-status]` is the full name of the project initiative folder (e.g., `my-new-project-initiative`) or the sub-task folder (e.g., `l2-sl1-some-feature`) with its status suffix (e.g., `-active`, `-completed`, `-planned`) removed.
+*   `YYYYMMDD-HHMM` is the current date and time when the branch is created.
 
-**Examples:**
-*   If working on tasks for a project initiative folder named `active-project/my-new-project-initiative-planned/`, a branch name could be: `my-new-project-initiative-20240716`.
-*   If working on a sub-task in `active-project/my-new-project-initiative-active/l2-t1-some-feature-active/`, a branch name could be: `l2-t1-some-feature-20240716`.
+**MANDATORY EXAMPLES:**
+*   If working on tasks for a project initiative folder named `active-project/my-new-project-initiative-planned/`, a branch name **MUST** be: `my-new-project-initiative-20240716-1430`.
+*   If working on a sub-task in `active-project/my-new-project-initiative-active/l2-sl1-some-feature-active/`, a branch name **MUST** be: `l2-sl1-some-feature-20240716-1430`.
 
 ## Overall Directory Structure Visualized
 
@@ -71,99 +124,116 @@ active-project/
 │   ├── master-analysis-report.md           # L1: Project Definition Analysis
 │   ├── master-roadmap.md                   # L1: Project Definition Roadmap
 │   │
-│   ├── l2-t1-[descriptive-name]-[status]/    # L2, T1: First sub-task from L1 roadmap
+│   ├── l2-sl1-[descriptive-name]-[status]/    # L2, SL1: First sub-task from L1 roadmap
 │   │   │
-│   │   ├── l2-t1-progress.md               # L2-T1 Progress File
+│   │   ├── l2-sl1-progress.md               # L2-SL1 Progress File
 │   │   │
-│   │   ├── l2-t1-analysis-report.md        # L2-T1 Analysis
-│   │   └── l2-t1-roadmap.md                # L2-T1 Roadmap
+│   │   ├── l2-sl1-analysis-report.md        # L2-SL1 Analysis
+│   │   └── l2-sl1-roadmap.md                # L2-SL1 Roadmap
 │   │   │
-│   │   ├── l3-t1-[descriptive-name]-[status]/ # L3, T1: First sub-task from L2-T1 roadmap
+│   │   ├── l3-sl1-[descriptive-name]-[status]/ # L3, SL1: First sub-task from L2-SL1 roadmap
 │   │   │   │
-│   │   │   ├── l3-t1-progress.md           # L3-T1 Progress File
+│   │   │   ├── l3-sl1-progress.md           # L3-SL1 Progress File
 │   │   │   │
-│   │   │   ├── l3-t1-analysis-report.md    # L3-T1 Analysis
-│   │   │   └── l3-t1-roadmap.md            # L3-T1 Roadmap
+│   │   │   ├── l3-sl1-analysis-report.md    # L3-SL1 Analysis
+│   │   │   └── l3-sl1-roadmap.md            # L3-SL1 Roadmap
 │   │   │   └── ... (Can nest further to L4, etc.)
 │   │   │
-│   │   └── l3-t2-[descriptive-name]-[status]/ # L3, T2: Second sub-task from L2-T1 roadmap
+│   │   └── l3-sl2-[descriptive-name]-[status]/ # L3, SL2: Second sub-task from L2-SL1 roadmap
 │   │       │
-│   │       ├── l3-t2-progress.md
-│   │       ├── l3-t2-analysis-report.md
-│   │       └── l3-t2-roadmap.md
+│   │       ├── l3-sl2-progress.md
+│   │       ├── l3-sl2-analysis-report.md
+│   │       └── l3-sl2-roadmap.md
 │   │
-│   └── l2-t2-[descriptive-name]-[status]/    # L2, T2: Second sub-task from L1 roadmap
+│   └── l2-sl2-[descriptive-name]-[status]/    # L2, SL2: Second sub-task from L1 roadmap
 │       │
-│       ├── l2-t2-progress.md
-│       ├── l2-t2-analysis-report.md
-│       └── l2-t2-roadmap.md
+│       ├── l2-sl2-progress.md
+│       ├── l2-sl2-analysis-report.md
+│       └── l2-sl2-roadmap.md
 │       └── ...
 │
 └── -[project-beta-name]-initiative-[status]/ # Another top-level project.
     └── ...
 ```
 
-## Project Lifecycle
+## **PROJECT LIFECYCLE — MANDATORY EXECUTION SEQUENCE**
 
-### 1. Initiating a New Project:
+### **1. Initiating a New Project — STRICT PROTOCOL:**
 
-1.  Create a new folder: `active-project/-[project-name]-initiative-planned/`.
-2.  Inside, create `master-analysis-report.md` and `master-roadmap.md` using the linked templates.
-3.  Create `master-progress.md`.
-4.  All files **MUST** have full frontmatter (see frontmatter template).
-5.  When work begins, rename the folder to `-[project-name]-initiative-active/`.
+1.  **CREATE** a new folder: `active-project/-[project-name]-initiative-planned/`.
+2.  **GENERATE** `master-analysis-report.md` and `master-roadmap.md` using the linked templates.
+3.  **CREATE** `master-progress.md`.
+4.  **ALL FILES MUST HAVE** full frontmatter (see frontmatter template).
+5.  **WHEN WORK BEGINS**, rename the folder to `-[project-name]-initiative-active/`.
 
-### 2. Spawning a New l[n]-t[n] Sub-level:
+### **2. Spawning a New l[n]-sl[n] Sub-level — MANDATORY PROCESS:**
 
-This occurs when a roadmap (either `master-roadmap.md` or an `l[n]-t[m]-roadmap.md`) encounters a significant complication requiring a dedicated sub-task.
+This occurs when a roadmap (either `master-roadmap.md` or an `l[n]-sl[m]-roadmap.md`) encounters a significant complication requiring a dedicated sub-task.
 
-1.  The parent folder (e.g., `-[project-name]-initiative-active/` or `l[n]-t[m]-...-active/`) is **RENAMED** to append/update its status to `-blocked`.
-2.  A **NEW** sub-folder `l[child-level]-t1-[complication-descriptive-name]-active/` is created **INSIDE** the now `-blocked` parent folder.
+1.  The parent folder (e.g., `-[project-name]-initiative-active/` or `l[n]-sl[m]-...-active/`) **MUST BE RENAMED** to append/update its status to `-blocked`.
+2.  A **NEW** sub-folder `l[child-level]-sl1-[complication-descriptive-name]-active/` **MUST BE CREATED INSIDE** the now `-blocked` parent folder.
     *   `[child-level]` is `[parent-level] + 1`.
-    *   `t1` signifies the first turn/attempt at this new child-level task.
-3.  This new sub-folder gets its own:
-    *   `l[child-level]-t1-analysis-report.md`
-    *   `l[child-level]-t1-roadmap.md`
-    *   `l[child-level]-t1-progress.md`
+    *   `sl1` signifies the first sub-level at this new child-level task.
+3.  This new sub-folder **MUST RECEIVE** its own:
+    *   `l[child-level]-sl1-analysis-report.md`
+    *   `l[child-level]-sl1-roadmap.md`
+    *   `l[child-level]-sl1-progress.md`
     *   (All using appropriate templates and including frontmatter).
 
-### 3. Completing Sub-levels & Returning to Parent Control:
+### **3. Completing Sub-levels & Returning to Parent Control — MANDATORY SEQUENCE:**
 
-1.  The active `l[child-level]-t[x]-...-active/` folder is **RENAMED** to `-completed`.
-2.  Its `l[child-level]-t[x]-progress.md` content (a summary of commits/actions) is summarized and **APPENDED** to its parent folder's progress file (e.g., `master-progress.md` or `l[parent-level]-t[m]-progress.md`).
-3.  The parent folder (e.g., `...-blocked/`) is **RENAMED** back to `-active`.
-4.  Work on the parent folder's roadmap is resumed or updated based on the sub-task's outcome.
+1.  The active `l[child-level]-sl[x]-...-active/` folder **MUST BE RENAMED** to `-completed`.
+2.  Its `l[child-level]-sl[x]-progress.md` content (a summary of commits/actions) **MUST BE SUMMARIZED AND APPENDED** to its parent folder's progress file (e.g., `master-progress.md` or `l[parent-level]-sl[m]-progress.md`).
+3.  The parent folder (e.g., `...-blocked/`) **MUST BE RENAMED** back to `-active`.
+4.  Work on the parent folder's roadmap **MUST BE RESUMED** or updated based on the sub-task's outcome.
 
-### 4. Progress File Management:
+### **4. Progress File Management — CONTINUOUS REQUIREMENT:**
 
-*   Each `master-progress.md` and `l[n]-t[n]-progress.md` is populated by appending commit messages or concise task updates.
-*   Upon an `l[n]-t[n]` task completion, its progress file content is summarized into its parent's progress file.
+*   Each `master-progress.md` and `l[n]-sl[n]-progress.md` **MUST BE POPULATED** by appending commit messages or concise task updates.
+*   Upon an `l[n]-sl[n]` task completion, its progress file content **MUST BE SUMMARIZED** into its parent's progress file.
 
-### 5. Archival Process:
+### **5. Archival Process — MANDATORY PROTOCOL:**
 
-*   Individual `l[n]-t[n]-...-completed/` sub-task folders **REMAIN** within their parent project structure in `active-project/` until the **ENTIRE** `-[project-name]-initiative-...` project is completed.
-*   Once a `-[project-name]-initiative-[status]/` is marked `-completed`, its **WHOLE FOLDER** (containing all its master files and all nested `l[n]-t[n]-...-completed/` sub-folders) is **MOVED** from `active-project/` to the centralized, external `archive/` directory (located at the repository root).
+*   Individual `l[n]-sl[n]-...-completed/` sub-task folders **MUST REMAIN** within their parent project structure in `active-project/` until the **ENTIRE** `-[project-name]-initiative-...` project is completed.
+*   Once a `-[project-name]-initiative-[status]/` is marked `-completed`, its **WHOLE FOLDER** (containing all its master files and all nested `l[n]-sl[n]-...-completed/` sub-folders) **MUST BE MOVED** from `active-project/` to the centralized, external `archive/` directory (located at the repository root).
 
-## Document Templates
+## **DOCUMENT TEMPLATES — MANDATORY USAGE**
 
 These templates are located in `standards/templates/`:
 
 *   **Analysis Report Template**: [Analysis Report Template](../standards/templates/analysis-report-template.md)
 *   **Roadmap Template**: [Roadmap Template](../standards/templates/roadmap-template.md)
 *   **Frontmatter Template**: [Frontmatter Template](../standards/templates/tpl-canonical-frontmatter.md)
-    *   *Note: This is the canonical frontmatter template to be used for all content files.*
+    *   *Note: This is the canonical frontmatter template that **MUST** be used for all content files.*
 
-## External Dependencies and Notes
+## **EXTERNAL DEPENDENCIES AND NOTES**
 
-### Templates
+### **Templates**
 Centralized document templates (e.g., for Analysis Reports, Roadmaps, Frontmatter) are located externally in the `standards/templates/` directory. This `active-project/README.md` contains direct relative links to these templates.
 
-### Archive
-The centralized archive for completed projects is located at the repository root in the `/archive/` directory. Once an entire `-[project-name]-initiative-[status]/` (e.g., `-my-project-initiative-completed/`) is marked as completed, its whole folder, including all master files and nested sub-task folders, is moved from `active-project/` to this `/archive/` directory.
+### **Archive**
+The centralized archive for completed projects is located at the repository root in the `/archive/` directory. Once an entire `-[project-name]-initiative-[status]/` (e.g., `-my-project-initiative-completed/`) is marked as completed, its whole folder, including all master files and nested sub-task folders, **MUST BE MOVED** from `active-project/` to this `/archive/` directory.
 
-## Universal Project Guidelines
+## **CURRENT STATE TRACKING — MANDATORY MAINTENANCE**
 
-Refer to the following guidelines for universal practices applicable to all project work:
+### **current-state.md — PROJECT PORTFOLIO LOG**
+
+**PURPOSE:** Centralized chronological log tracking **TOP-LEVEL PROJECT STATUS CHANGES ONLY**
+
+**MANDATORY UPDATES:**
+1. **PROJECT INITIATION**: Log when new `-[project-name]-initiative-planned/` folders are created
+2. **STATUS TRANSITIONS**: Log only when top-level projects change status (`-planned` → `-active` → `-completed`/`-blocked`/`-on-hold`)
+3. **COMPLETION SUMMARY**: Brief achievement summary for completed projects
+
+**UPDATE FORMAT:** Always append entries with UTC timestamps. Keep summaries to **1-2 sentences maximum**.
+
+**SCOPE RESTRICTION:** **DO NOT** log sub-task (`l[n]-sl[n]`) status changes - only top-level project initiatives.
+
+---
+
+## **UNIVERSAL PROJECT GUIDELINES — MANDATORY COMPLIANCE**
+
+**REFER TO THE FOLLOWING GUIDELINES FOR UNIVERSAL PRACTICES APPLICABLE TO ALL PROJECT WORK:**
 
 *   [Work Ethic Guidelines](./project-guidelines/project-work-ethic-guidelines.md)
 *   [Project Reminders](./project-guidelines/project-reminders.md)

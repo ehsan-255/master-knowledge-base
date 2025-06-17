@@ -1,15 +1,18 @@
 ---
-title: 'Standard: Publishing Pipeline Overview (U-PUBLISHING-PIPELINE-OVERVIEW-001) - DEPRECATED'
+title: 'Standard: Publishing Pipeline Overview (U-PUBLISHING-PIPELINE-OVERVIEW-001)
+  - DEPRECATED'
 tags:
 - automation
 - content-type/standard-document
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - publishing
 - standards-kb/universal
 - status/deprecated
 - utility-standards
 date-created: '2025-05-19T00:00:00Z'
-date-modified: '2025-06-02T05:47:19Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
 primary-topic: Describes the conceptual overview of the automated publishing workflow
@@ -18,6 +21,11 @@ related-standards:
 aliases:
 - Publishing Workflow Standard
 - KB Export Process
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[OM-OVERVIEW-PUBLISHING-PIPELINE]].
 
@@ -103,4 +111,4 @@ This document provides a high-level overview of the intended automated publishin
 -   Git for version control of source and potentially rendered output.
 -   CI/CD systems (e.g., GitHub Actions) for automating builds.
 
-**Cross-References to Other Standard IDs:** [[U-ARCH-003-Directory-Structure-Source-Render|U-ARCH-003-Directory-Structure-Source-Render]], [[U-KEYREF-SYNTAX-001|U-KEYREF-SYNTAX-001]], [[M-CONDITIONAL-TEXT-SYNTAX-001|M-CONDITIONAL-TEXT-SYNTAX-001]], [[../scripts/export_vault_with_markdown_links.py]] 
+**Cross-References to Other Standard IDs:** [[U-ARCH-003-Directory-Structure-Source-Render|U-ARCH-003-Directory-Structure-Source-Render]], [[U-KEYREF-SYNTAX-001|U-KEYREF-SYNTAX-001]], [[M-CONDITIONAL-TEXT-SYNTAX-001|M-CONDITIONAL-TEXT-SYNTAX-001]], [[../scripts/export_vault_with_markdown_links.py]]

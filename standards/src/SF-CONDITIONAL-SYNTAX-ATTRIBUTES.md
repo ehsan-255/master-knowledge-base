@@ -2,21 +2,25 @@
 title: 'Standard: Syntax for Conditional Attributes in IF Callouts'
 standard_id: SF-CONDITIONAL-SYNTAX-ATTRIBUTES
 aliases:
-  - Conditional Syntax
-  - IF Callout Condition Syntax
+- Conditional Syntax
+- IF Callout Condition Syntax
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/conditional
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Conditional Attribute Syntax
 related-standards:
-  - SF-CALLOUTS-SYNTAX
-  - CS-CONTENT-PROFILING-POLICY
+- SF-CALLOUTS-SYNTAX
+- CS-CONTENT-PROFILING-POLICY
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T12:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: SF
 sub_domain: CONDITIONAL
 scope_application: Defines the syntax for the condition string used within `[!IF condition]`
@@ -24,9 +28,10 @@ scope_application: Defines the syntax for the condition string used within `[!IF
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content profiling logic
-  - Automated content filtering
-  - Authoring consistency for conditional text
+- Content profiling logic
+- Automated content filtering
+- Authoring consistency for conditional text
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Syntax for Conditional Attributes in IF Callouts (SF-CONDITIONAL-SYNTAX-ATTRIBUTES)
 

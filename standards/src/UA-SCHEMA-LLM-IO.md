@@ -2,24 +2,26 @@
 title: 'Schema: LLM Input/Output Data Structures'
 standard_id: UA-SCHEMA-LLM-IO
 aliases:
-  - LLM IO Schema
-  - LLM Data Schema
+- LLM IO Schema
+- LLM Data Schema
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/schema-document
-  - topic/llm
-  - topic/automation
-  - topic/schemas
-  - topic/data-interchange
-  - kb-id/standards
+- content-type/schema-document
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/automation
+- topic/data-interchange
+- topic/keydefs
+- topic/llm
+- topic/schemas
+- topic/ua
 kb-id: standards
 info-type: schema-document
 primary-topic: LLM Input/Output Data Structures
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: UA
 sub_domain: KEYDEFS
 scope_application: Defines the data structures and schemas for LLM input and output
@@ -27,9 +29,9 @@ scope_application: Defines the data structures and schemas for LLM input and out
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - LLM integration
-  - Data consistency
-  - Automation reliability
+- LLM integration
+- Data consistency
+- Automation reliability
 ---
 # Standard: LLM Automation Input/Output Schema (UA-SCHEMA-LLM-IO)
 

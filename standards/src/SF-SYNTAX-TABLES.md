@@ -2,135 +2,115 @@
 title: 'Standard: Table Syntax'
 standard_id: SF-SYNTAX-TABLES
 aliases:
-  - Tables
-  - Markdown Tables
+- Tables
+- Markdown Tables
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Table Syntax
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Defines the syntax for creating tables in knowledge base documents.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Table formatting
-  - Data presentation
-  - Content structure
+- Table formatting
+- Data presentation
+- Content structure
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown Syntax for Tables (SF-SYNTAX-TABLES)
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for creating tables to structure and present data within all knowledge base documents. Consistent and correct table syntax is essential for readability, clear data presentation, and reliable parsing by Markdown processors. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also important for tables.
+This standard **MANDATES** the exclusive Markdown syntax for creating tables to structure and present data within all Knowledge Base documents. Strict and consistent table syntax is **CRITICAL** for ensuring universal readability, precise data presentation, and reliable automated parsing. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around table blocks is also **MANDATORY**.
 
 ## 2. Core Table Syntax Rules
 
 ### Rule 2.1: Basic Table Structure
-Tables are created using pipes (`|`) to define column borders and hyphens (`-`) to create the header row separator.
-*   **Header Row:** The first row defines the table headers.
-*   **Separator Row:** The second row MUST be a separator line consisting of hyphens (`-`) for each column, separating the header cells from the body cells.
-*   **Body Rows:** Subsequent rows define the table data.
-*   **Columns:** Pipes (`|`) are used to separate cells within a row.
+Tables **MUST** be created using pipes (`|`) for column borders and hyphens (`-`) for the header row separator. Every row (**MUST** include header, separator, and body rows), **MUST** begin and end with a pipe (`|`).
+*   **Header Row:** The first row **MUST** define table headers.
+*   **Separator Row:** The second row **MUST** be a separator line of hyphens (`-`), separating header cells from body cells.
+*   **Body Rows:** Subsequent rows **MUST** define table data.
+*   **Columns:** Pipes (`|`) **MUST** separate cells within a row.
+*   **Example (Mandatory Syntax):**
+    ```markdown
+    | Header 1 | Header 2 |
+    |----------|----------|
+    | Cell 1.1 | Cell 1.2 |
+    ```
+*   **Prohibited:** Omitting outer pipes (`|`) at the beginning or end of any row.
+*   **Rationale:** Ensures clear, universally parsable, and visually consistent table structure.
 
-### Rule 2.2: Header Row Separator
-The separator line between the header and the table body MUST use at least three hyphens (`---`) per column.
-*   **Example (Minimum):**
+### Rule 2.2: Header Row Separator Length
+The separator line **MUST** use at least three hyphens (`---`) per column segment. For readability, it is **RECOMMENDED** that hyphen count roughly matches header cell content length.
+*   **Example (Minimum Valid):**
     ```markdown
     | Header 1 | Header 2 |
     |---|---|
     | Cell 1.1 | Cell 1.2 |
     ```
-*   **Example (More readable in raw text):**
+*   **Example (Recommended for Readability):**
     ```markdown
-    | Header 1 | Header 2 |
-    |----------|----------|
-    | Cell 1.1 | Cell 1.2 |
+    | Long Header Name | Another Header |
+    |------------------|----------------|
+    | Data Value       | More Data      |
     ```
-*   **Rationale:** Clearly distinguishes the header from the table body.
+*   **Rationale:** Distinguishes header from body and aids raw Markdown source readability.
 
-### Rule 2.3: Column Alignment
-Column alignment (left, right, center) can be specified by adding colons (`:`) to the header separator line.
-*   **Left Alignment (Default):** `| :--- |` or `| --- |` (no colon or colon on the left)
-*   **Right Alignment:** `| ---: |` (colon on the right)
-*   **Center Alignment:** `| :---: |` (colons on both sides)
+### Rule 2.3: Column Alignment Specification
+Column alignment (**MUST** be left, right, or center) **MUST** be specified using colons (`:`) within the header separator line. Default is left alignment if no colon is present.
+*   **Left Alignment (Default or Explicit):** `| :--- |` or `| --- |`
+*   **Right Alignment:** `| ---: |`
+*   **Center Alignment:** `| :---: |`
 *   **Example:**
     ```markdown
-    | Left Align | Center Align | Right Align |
-    | :--------- | :----------: | ----------: |
-    | Text       |    Text      |        Text |
-    | Data       |    Data      |        Data |
+    | Left Aligned Column | Center Aligned Column | Right Aligned Column |
+    | :------------------ | :-------------------: | -------------------: |
+    | Text Example        |     Centered Text     |         Right Text   |
+    | Numerical Data      |         123.45        |                 987  |
     ```
-*   **Rationale:** Allows for clear visual formatting of tabular data, improving readability in the rendered output.
+*   **Rationale:** Provides precise visual formatting for tabular data, improving readability.
 
-### Rule 2.4: Outer Pipes (Optional but Recommended)
-Outer pipes (`|`) at the beginning and end of each row are optional in many Markdown parsers but ARE RECOMMENDED for clarity and consistency in the raw Markdown source.
-*   **Example (With outer pipes - Recommended):**
+### Rule 2.4: Blank Lines Around Tables
+A single blank line **MUST** precede and a single blank line **MUST** follow every table block to separate it from surrounding paragraphs or other block elements.
+*   **Example:**
     ```markdown
-    | Header 1 | Header 2 |
+    This is a paragraph before the table.
+
+    | Header A | Header B |
     |----------|----------|
-    | Cell 1.1 | Cell 1.2 |
+    | Data 1   | Data 2   |
+
+    This is a paragraph after the table.
     ```
-*   **Example (Without outer pipes - Allowed but less clear):**
-    ```
-    Header 1 | Header 2
-    -------- | --------
-    Cell 1.1 | Cell 1.2
-    ```
-*   **Rationale:** Including outer pipes makes the table structure more explicit and visually organized in the raw Markdown text, reducing ambiguity.
+*   **Rationale:** Ensures correct table parsing and rendering as a distinct block element, preventing unintended merging.
 
-### Rule 2.5: Blank Lines Around Tables
-A single blank line MUST precede and a single blank line MUST follow every table block to separate it from surrounding paragraphs or other block elements, as per [[SF-FORMATTING-FILE-HYGIENE]].
-*   **Rationale:** Ensures correct table parsing and rendering.
+## 3. Importance of Strict Table Syntax
 
-## 3. Illustrative Example (Comprehensive)
+*   **Guaranteed Data Presentation Clarity:** Ensures tables are clear, readable, and consistent.
+*   **Reliable Automated Processing:** Allows accurate identification, parsing, and processing of tabular data by tools.
+*   **Enhanced Authoring Consistency:** Provides a single, clear method for authors, reducing errors and fostering uniformity.
+*   **Unified KB Aesthetic:** Contributes to professional and consistent visual presentation of tabular data.
 
-```markdown
-This is a paragraph before the table.
+## 4. Scope of Application
 
-| Column A (Left) | Column B (Center) | Column C (Right) | Notes                       |
-| :-------------- | :---------------: | ---------------: | :-------------------------- |
-| Value 1         |   Centered Text   |       Right Text | First row of data           |
-| Value 2         | Another Centered  |     Aligned Data | Second row with more detail |
-| Value 3         |     Item C        |           $10.00 | Numeric data often right-aligned |
+This standard applies to **ALL** Markdown documents within the Knowledge Base repository where tabular data is presented. Adherence to these rules is **MANDATORY** for all content creators, automated systems, and tooling interacting with KB Markdown files.
 
-This is a paragraph after the table.
-```
-**Rendered Output (Conceptual):**
-
-| Column A (Left) | Column B (Center) | Column C (Right) | Notes                       |
-| :-------------- | :---------------: | ---------------: | :-------------------------- |
-| Value 1         |   Centered Text   |       Right Text | First row of data           |
-| Value 2         | Another Centered  |     Aligned Data | Second row with more detail |
-| Value 3         |     Item C        |           $10.00 | Numeric data often right-aligned |
-
-## 4. Best Practices for Table Readability
-
-*   **Consistent Column Widths (Raw Text):** While rendered output varies, try to maintain somewhat consistent column widths in the raw Markdown source using spaces. This can improve the readability of the raw table definition, though it does not affect the final rendered output.
-*   **Clear Headers:** Use concise and descriptive headers for each column.
-*   **Simplicity:** For very complex data, consider if a table is the best presentation format or if the data should be broken down or presented differently. Markdown tables are best suited for relatively simple tabular data.
-*   **Data Formatting:** Ensure data within cells is consistently formatted (e.g., alignment of numbers, date formats) where applicable.
-
-## 5. Importance of Correct Table Syntax
-
-*   **Clear Data Presentation:** Tables are essential for presenting structured data in a clear and understandable way.
-*   **Readability:** Well-formatted tables improve the readability of documents containing tabular data.
-*   **Authoring Consistency:** Ensures all authors use the same method for creating tables.
-*   **Reliable Rendering:** Correct syntax is crucial for Markdown parsers to render tables accurately.
-
-## 6. Scope of Application
-
-This standard applies to all Markdown documents within the knowledge base repository where tabular data is presented.
-
-## 7. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines around block elements like tables.
+## 5. Cross-References
+*   [[CS-POLICY-TONE-LANGUAGE]]
+*   [[SF-FORMATTING-FILE-HYGIENE]]
 
 ---
-*This standard (SF-SYNTAX-TABLES) is based on common Markdown table syntax conventions.*
+*This standard (SF-SYNTAX-TABLES) has been extensively revised to provide strict, singular mandates for table syntax, including specific rules for structure, separators, and alignment. It replaces and supersedes any prior interpretations or practices where conflicts existed, establishing a single source of truth for tabular data representation within the Knowledge Base.*

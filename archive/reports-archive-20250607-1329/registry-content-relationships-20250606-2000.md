@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Registry Content Relationships and Dependencies Analysis - 20250606-2000
 
 **Generated**: 2025-06-06 20:00  
@@ -333,4 +350,4 @@ controlled_vocabularies:
 **Analysis Complete**: 2025-06-06 20:00  
 **Dependencies Mapped**: 8 major chains  
 **Scripts Analyzed**: 4 tools  
-**Ready for**: TASK 1.1.3 - Categorize Content for Target File Assignment 
+**Ready for**: TASK 1.1.3 - Categorize Content for Target File Assignment

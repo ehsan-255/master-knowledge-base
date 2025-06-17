@@ -2,28 +2,30 @@
 title: 'Standard: Frontmatter Schema Definition'
 standard_id: MT-SCHEMA-FRONTMATTER
 aliases:
-  - Frontmatter Schema
-  - Metadata Schema for Frontmatter
+- Frontmatter Schema
+- Metadata Schema for Frontmatter
 tags:
-  - status/draft
-  - criticality/p0-critical
-  - content-type/standard-definition
-  - topic/metadata
-  - topic/frontmatter
-  - topic/schema
+- content-type/standard-definition
+- criticality/p0-critical
+- kb-id/standards
+- status/draft
+- topic/frontmatter
+- topic/metadata
+- topic/mt
+- topic/schema
 kb-id: standards
 info-type: standard-definition
 primary-topic: Defines the comprehensive schema for YAML frontmatter, including all
   keys, their order, data types, validation rules, and controlled vocabularies.
 related-standards:
-  - SF-SYNTAX-YAML-FRONTMATTER
-  - SF-FORMATTING-FILE-HYGIENE
-  - MT-REGISTRY-TAG-GLOSSARY
-  - AS-STRUCTURE-TEMPLATES-DIRECTORY
-  - QM-VALIDATION-METADATA
+- SF-SYNTAX-YAML-FRONTMATTER
+- SF-FORMATTING-FILE-HYGIENE
+- MT-REGISTRY-TAG-GLOSSARY
+- AS-STRUCTURE-TEMPLATES-DIRECTORY
+- QM-VALIDATION-METADATA
 version: 0.1.0
 date-created: '2025-05-29T15:40:18Z'
-date-modified: '2025-05-30T12:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: MT
 sub_domain: FRONTMATTER
 scope_application: Applies to the YAML frontmatter of all Markdown documents in all
@@ -31,11 +33,12 @@ scope_application: Applies to the YAML frontmatter of all Markdown documents in 
 criticality: P0-Critical
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Metadata integrity
-  - Content validation
-  - Authoring consistency
-  - Automated processing
-  - Interoperability
+- Metadata integrity
+- Content validation
+- Authoring consistency
+- Automated processing
+- Interoperability
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Frontmatter Schema Definition
 
@@ -49,12 +52,13 @@ For rules regarding the syntax of YAML frontmatter itself (e.g., the use of `---
 
 ## Single Source of Truth Architecture
 
-**This document is generated from the authoritative YAML source**: `standards/registry/mt-schema-frontmatter.yaml`
+**This document is maintained using the JSON-LD SST workflow**:
 
-- **Field definitions and controlled vocabularies sections** are automatically generated
-- **Manual content** (introduction, examples, governance) is preserved
-- **Updates**: Use `tools/frontmatter-management/generate_schema_docs.py` to regenerate from YAML source
-- **Registry files**: Generated via `tools/frontmatter-management/generate_frontmatter_registry.py`
+- **Authoritative Source**: JSON-LD files in `standards/registry/` (schema-registry.jsonld, contexts/fields.jsonld)
+- **Human-Readable Views**: Generated using `tools/view_generator.py` from JSON-LD SST
+- **Change Process**: Submit YAML change requests to `change-requests/` directory
+- **Updates**: Changes are applied to JSON-LD SST via Scribe workflow automation
+- **Documentation**: This document reflects current JSON-LD schema definitions
 
 ## Overall Structure and Key Order
 

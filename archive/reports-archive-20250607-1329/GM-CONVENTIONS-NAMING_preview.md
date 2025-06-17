@@ -2,39 +2,47 @@
 title: 'Standard: Universal Naming Conventions - Single Source of Truth'
 standard_id: GM-CONVENTIONS-NAMING
 aliases:
-  - Naming Conventions
-  - File Naming
-  - ID Conventions
-  - Universal Naming Standard
-  - Single Source of Truth for Naming
+- Naming Conventions
+- File Naming
+- ID Conventions
+- Universal Naming Standard
+- Single Source of Truth for Naming
 tags:
-  - status/active
-  - criticality/p0-critical
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p0-critical
+- kb-id/standards
+- status/active
+- topic/conventions
+- topic/gm
 kb-id: standards
 info-type: standard-definition
-primary-topic: Universal naming conventions for all entities in the knowledge base system
+primary-topic: Universal naming conventions for all entities in the knowledge base
+  system
 related-standards: []
 version: 3.0.0
 date-created: '2025-05-29'
-date-modified: '2025-01-11'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: GM
 sub_domain: CONVENTIONS
-scope_application: Defines ALL naming conventions for files, directories, identifiers, variables, fields, and other named entities across the entire knowledge base system. This is the SINGLE SOURCE OF TRUTH - all other standards must reference this document rather than defining their own naming rules.
+scope_application: Defines ALL naming conventions for files, directories, identifiers,
+  variables, fields, and other named entities across the entire knowledge base system.
+  This is the SINGLE SOURCE OF TRUTH - all other standards must reference this document
+  rather than defining their own naming rules.
 criticality: P0-Critical
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - File organization
-  - Standard identification
-  - System consistency
-  - Tool compatibility
-  - Code integrity
-  - Configuration management
-  - Frontmatter schema
-  - Variable naming
-  - API consistency
+- File organization
+- Standard identification
+- System consistency
+- Tool compatibility
+- Code integrity
+- Configuration management
+- Frontmatter schema
+- Variable naming
+- API consistency
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
-
 # Standard: Universal Naming Conventions - Single Source of Truth
 
 ## AUTHORITY AND PRECEDENCE

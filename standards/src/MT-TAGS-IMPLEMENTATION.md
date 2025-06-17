@@ -2,21 +2,25 @@
 title: 'Standard: Tag Implementation Guidelines'
 standard_id: MT-TAGS-IMPLEMENTATION
 aliases:
-  - Tag Implementation
-  - Tagging Guidelines
+- Tag Implementation
+- Tagging Guidelines
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/mt
+- topic/tagging
 kb-id: standards
 info-type: standard-definition
 primary-topic: Tag Implementation Guidelines
 related-standards:
-  - MT-SCHEMA-FRONTMATTER
-  - MT-TAGGING-STRATEGY-POLICY
+- MT-SCHEMA-FRONTMATTER
+- MT-TAGGING-STRATEGY-POLICY
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: MT
 sub_domain: TAGGING
 scope_application: Defines the implementation guidelines for tags in frontmatter across
@@ -24,9 +28,10 @@ scope_application: Defines the implementation guidelines for tags in frontmatter
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content categorization
-  - Metadata consistency
-  - Search optimization
+- Content categorization
+- Metadata consistency
+- Search optimization
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Tag Implementation and Syntax (MT-TAGS-IMPLEMENTATION)
 

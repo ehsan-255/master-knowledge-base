@@ -1,13 +1,16 @@
 ---
-title: 'Standard: Content Schema for "Reference Topics" (U-SCHEMA-REFERENCE-001) - DEPRECATED'
+title: 'Standard: Content Schema for "Reference Topics" (U-SCHEMA-REFERENCE-001) -
+  DEPRECATED'
 tags:
 - content-type/standard-document
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - schemas
 - standards-kb/universal
 - status/deprecated
 date-created: '2025-05-19T00:00:00Z'
-date-modified: '2025-06-02T05:50:31Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
 primary-topic: Defines the structure for reference-type content documents
@@ -15,6 +18,11 @@ related-standards:
 - AS-SCHEMA-REFERENCE
 aliases:
 - Reference Topic Schema
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[AS-SCHEMA-REFERENCE]].
 
@@ -70,4 +78,4 @@ While flexible, most Reference Topics will benefit from some of the following H2
 -   **`## Summary`** (per `U-STRUC-002`)
 -   **`## See Also`** (per `U-STRUC-002`)
 
-**Cross-References to Other Standard IDs:** [[COL-ARCH-UNIVERSAL#Standard: Content Document ("Chapter") Internal Structure (U-STRUC-002)|U-STRUC-002]] 
+**Cross-References to Other Standard IDs:** [[COL-ARCH-UNIVERSAL#Standard: Content Document ("Chapter") Internal Structure (U-STRUC-002)|U-STRUC-002]]

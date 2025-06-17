@@ -2,19 +2,23 @@
 title: 'Standard: Image Alt Text for Accessibility'
 standard_id: SF-ACCESSIBILITY-IMAGE-ALT-TEXT
 aliases:
-  - Alt Text
-  - Image Accessibility
+- Alt Text
+- Image Accessibility
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Image Alt Text for Accessibility
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Applies to all images embedded in knowledge base documents to ensure
@@ -22,9 +26,10 @@ scope_application: Applies to all images embedded in knowledge base documents to
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Accessibility compliance
-  - User experience
-  - Legal compliance
+- Accessibility compliance
+- User experience
+- Legal compliance
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Image Accessibility and Alternative Text (SF-ACCESSIBILITY-IMAGE-ALT-TEXT)
 

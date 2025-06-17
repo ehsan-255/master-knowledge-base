@@ -1,35 +1,38 @@
 ---
-title: 'Tools Changelog'
+title: Tools Changelog
 standard_id: OM-TOOLS-CHANGELOG
 aliases:
-  - Knowledge Base Tools Change Log
-  - Tools History
+- Knowledge Base Tools Change Log
+- Tools History
 tags:
-  - status/active
-  - content-type/changelog
-  - topic/tools-management
-  - topic/automation
-  - criticality/p4-informational
+- content-type/changelog
+- criticality/p4-informational
+- kb-id/global
+- status/active
+- topic/automation
+- topic/om
+- topic/tools-management
 kb-id: tools
 info-type: changelog
-primary-topic: 'Tracks changes, decisions, and major updates for all tools in the master knowledge base'
+primary-topic: Tracks changes, decisions, and major updates for all tools in the master
+  knowledge base
 related-standards: []
-version: '1.0.0'
+version: 1.0.0
 date-created: '2025-01-11T00:00:00Z'
-date-modified: '2025-06-03T06:18:44Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: OM
 sub_domain: AUTOMATION
-scope_application: 'Documents changes and decisions affecting tools in tools/ and its subdirectories'
+scope_application: Documents changes and decisions affecting tools in tools/ and its
+  subdirectories
 criticality: P4-Informational
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Tools development
-  - Automation workflows
-  - Build processes
-  - Maintenance operations
+- Tools development
+- Automation workflows
+- Build processes
+- Maintenance operations
 change_log_url: ./changelog.md
 ---
-
 # Tools Changelog
 
 This document tracks changes, decisions, and major updates for all tools in the master knowledge base.
@@ -111,4 +114,4 @@ This document tracks changes, decisions, and major updates for all tools in the 
 
 ---
 
-*This changelog follows the requirements defined in [[OM-VERSIONING-CHANGELOGS]]* 
+*This changelog follows the requirements defined in [[OM-VERSIONING-CHANGELOGS]]*

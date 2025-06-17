@@ -2,27 +2,28 @@
 title: Standards Knowledge Base Definition Map
 standard_id: AS-MAP-STANDARDS-KB
 aliases:
-  - Standards KB Map
-  - Standards KB Structure Definition
+- Standards KB Map
+- Standards KB Structure Definition
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/kb-definition-map
-  - topic/architecture
-  - topic/indexing
-  - kb-id/standards
+- content-type/kb-definition-map
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/architecture
+- topic/as
+- topic/indexing
 kb-id: standards
 info-type: kb-definition-map
 primary-topic: Defines the logical structure, parts, and organization of the Standards
   Knowledge Base itself.
 related-standards:
-  - AS-STRUCTURE-KB-ROOT
-  - AS-STRUCTURE-KB-PART
-  - MT-SCHEMA-FRONTMATTER
-  - AS-STRUCTURE-MASTER-KB-INDEX
+- AS-STRUCTURE-KB-ROOT
+- AS-STRUCTURE-KB-PART
+- MT-SCHEMA-FRONTMATTER
+- AS-STRUCTURE-MASTER-KB-INDEX
 version: 0.1.0
 date-created: '2025-05-29T16:04:35Z'
-date-modified: '2025-05-30T17:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: INDEXING
 scope_application: Applies specifically to the Standards Knowledge Base, defining
@@ -30,16 +31,28 @@ scope_application: Applies specifically to the Standards Knowledge Base, definin
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - KB navigation
-  - Content organization
-  - Discoverability of standards
-  - Authoring within the Standards KB
+- KB navigation
+- Content organization
+- Discoverability of standards
+- Authoring within the Standards KB
 ---
 # Standards Knowledge Base Definition Map (AS-MAP-STANDARDS-KB)
 
 ## 1. Standard Statement
 
-This document defines the logical structure, primary parts (categories), and overall organization of the Standards Knowledge Base (KB) itself. It serves as a high-level map to help users navigate and understand the layout and content of the standards documentation.
+This document defines the logical structure, primary parts (categories), and overall organization of the Standards Knowledge Base (KB) itself as part of a **sophisticated three-layer enterprise architecture**. This document represents the **Logical/Semantic Layer** of the architecture, functioning as a **DITA Map equivalent** with ontological structure definition.
+
+**🏗️ ARCHITECTURAL CONTEXT:**
+- **Physical Layer:** `AS-KB-DIRECTORY-STRUCTURE.md` (file system organization)
+- **Logical/Semantic Layer (This Document):** DITA map + ontological structure, semantic relationships
+- **Presentation Layer:** `AS-ROOT-STANDARDS-KB.md` (navigation interface)
+
+**🎯 DITA/RDF INSPIRATION:**
+- **DITA Map Function:** Serves as `content-type/kb-definition-map` defining logical organization
+- **Semantic Web Function:** Provides ontological structure for knowledge graph generation
+- **Topic-Based Architecture:** Organizes atomic standards into semantic relationships
+
+**⚠️ CRITICAL:** This three-layer separation is **INTENTIONAL SOPHISTICATED DESIGN**. This document's role as a DITA map equivalent is essential for maintaining semantic richness and automated processing capabilities.
 
 The Standards KB is the authoritative source for all standards, policies, and guidelines governing the creation, management, and use of all knowledge bases within the ecosystem.
 

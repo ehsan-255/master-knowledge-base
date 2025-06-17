@@ -1,15 +1,28 @@
 ---
-title: "Metadata, Tagging & Registry Standards"
-description: "A collection of key standards for document metadata (frontmatter), tagging strategy, key references, and registry management from the MT (Metadata & Tagging) domain."
-date_generated: "2025-06-07T15:01:09.952538+00:00"
-source_collection_definition_id: "coll_mt_metadata_tagging"
+title: Metadata, Tagging & Registry Standards
+description: A collection of key standards for document metadata (frontmatter), tagging
+  strategy, key references, and registry management from the MT (Metadata & Tagging)
+  domain.
+date_generated: '2025-06-07T15:01:09.952538+00:00'
+source_collection_definition_id: coll_mt_metadata_tagging
 number_of_standards: 6
-tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
-info-type: "collection-document" 
-# Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-MT-METADATA-TAGGING" 
+tags:
+- content-type/collection-document
+- criticality/p0-critical
+- kb-id/global
+- status/published
+- topic/derived-view
+info-type: collection-document
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 ## Table of Contents
 - [Standard: Key Definition Management and Storage (`MT-KEYREF-MANAGEMENT`)](#standard-key-definition-management-and-storage-mt-keyref-management)
 - [Master Tag Glossary and Registry (`MT-REGISTRY-TAG-GLOSSARY`)](#master-tag-glossary-and-registry-mt-registry-tag-glossary)
@@ -51,4 +64,4 @@ info-type: "collection-document"
 
 ## Standard: Tag Implementation Guidelines (MT-TAGS-IMPLEMENTATION)
 
-*Error: Content for 'Standard: Tag Implementation Guidelines' (`MT-TAGS-IMPLEMENTATION`) could not be loaded. File not found.* 
+*Error: Content for 'Standard: Tag Implementation Guidelines' (`MT-TAGS-IMPLEMENTATION`) could not be loaded. File not found.*

@@ -2,28 +2,30 @@
 title: Global Key Definitions Set
 standard_id: UA-KEYDEFS-GLOBAL
 aliases:
-  - Key Definitions
-  - Global Keys
-  - Keyref Definitions
+- Key Definitions
+- Global Keys
+- Keyref Definitions
 tags:
-  - status/draft
-  - criticality/p0-critical
-  - content-type/key-definition-set
-  - topic/keyrefs
-  - topic/structured-data
-  - kb-id/global
-  - kb-id/standards
+- content-type/key-definition-set
+- criticality/p0-critical
+- kb-id/global
+- kb-id/standards
+- status/draft
+- topic/keydefs
+- topic/keyrefs
+- topic/structured-data
+- topic/ua
 kb-id: standards
 info-type: key-definition-set
 primary-topic: Defines the centrally managed set of global keys and their corresponding
   text expansions for use with the keyref system across all knowledge bases.
 related-standards:
-  - MT-KEYREF-MANAGEMENT
-  - SF-SYNTAX-KEYREF
-  - GM-REGISTRY-GOVERNANCE
+- MT-KEYREF-MANAGEMENT
+- SF-SYNTAX-KEYREF
+- GM-REGISTRY-GOVERNANCE
 version: 0.1.0
 date-created: '2025-05-29T16:04:35Z'
-date-modified: '2025-05-30T16:00:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: UA
 sub_domain: KEYDEFS
 scope_application: Applies to all knowledge bases and documents utilizing key-based
@@ -31,11 +33,11 @@ scope_application: Applies to all knowledge bases and documents utilizing key-ba
 criticality: P0-Critical
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content reuse
-  - Maintainability
-  - Consistency
-  - Reducing redundancy
-  - Single-sourcing of terms
+- Content reuse
+- Maintainability
+- Consistency
+- Reducing redundancy
+- Single-sourcing of terms
 keys:
   placeholder-key: This is an example placeholder value. Replace with actual keys.
   product-name-alpha: Project AlphaX

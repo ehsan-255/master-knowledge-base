@@ -1,41 +1,57 @@
 ---
-title: "Master Progress - Active Project Organization Initiative"
-id: "-apo-initiative-master-progress"
-kb: "active-project-organization-initiative"
-file_type: "master_progress_file"
-source_path: "active-project/-active-project-organization-initiative-active/master-progress.md"
-description: "Progress tracking for the Active Project Organization Initiative."
-status: "active"
-linked_documents: ["master-analysis-report.md", "master-roadmap.md"]
-standard_id: "-apo-initiative-master-progress"
-aliases: ["APO Progress"]
+title: Master Progress - Active Project Organization Initiative
+id: -apo-initiative-master-progress
+kb: active-project-organization-initiative
+file_type: master_progress_file
+source_path: active-project/-active-project-organization-initiative-active/master-progress.md
+description: Progress tracking for the Active Project Organization Initiative.
+status: active
+linked_documents:
+- master-analysis-report.md
+- master-roadmap.md
+standard_id: -apo-initiative-master-progress
+aliases:
+- APO Progress
 tags:
-  - status/active
-  - criticality/P1-High
-  - content-type/progress-log
-kb-id: "active-project-organization-initiative"
-info-type: "progress-log"
-primary-topic: "Tracks the progress of the Active Project Organization initiative."
+- content-type/progress-log
+- criticality/p1-high
+- kb-id/global
+- status/active
+- topic/gm
+- topic/project_mgmt
+kb-id: active-project-organization-initiative
+info-type: progress-log
+primary-topic: Tracks the progress of the Active Project Organization initiative.
 related-standards: []
-version: "0.1.2"
-date-created: "YYYY-MM-DDTHH:MM:SSZ"
-date-modified: "YYYY-MM-DDTHH:MM:SSZ"
-primary_domain: "GM"
-sub_domain: "PROJECT_MGMT"
-scope_application: "Active project organization initiative."
-criticality: "P1-High"
-lifecycle_gatekeeper: "TBD"
-impact_areas: ["project-tracking", "reporting", "documentation_standards"]
-change_log_url: "TBD"
-maturity: "Low"
-lifecycle_stage: "Execution"
-target_audience: ["all_contributors", "project_managers"]
-project_phase: "Execution"
-task_type: "Initiative Progress Log"
-jira_issue: "TBD"
-history_summary: "Initial progress log for the APO initiative. Parent folder renamed to '-active-project-organization-initiative-active'. Added summary of standards definition and README enhancement work."
-key_takeaways: ["Tracks key milestones and updates for APO. Active project guidelines significantly refined in active-project/README.md."]
-next_steps: ["Update regularly as the initiative progresses."]
+version: 0.1.2
+date-created: YYYY-MM-DDTHH:MM:SSZ
+date-modified: '2025-06-17T02:29:13Z'
+primary_domain: GM
+sub_domain: PROJECT_MGMT
+scope_application: Active project organization initiative.
+criticality: P1-High
+lifecycle_gatekeeper: TBD
+impact_areas:
+- project-tracking
+- reporting
+- documentation_standards
+change_log_url: TBD
+maturity: Low
+lifecycle_stage: Execution
+target_audience:
+- all_contributors
+- project_managers
+project_phase: Execution
+task_type: Initiative Progress Log
+jira_issue: TBD
+history_summary: Initial progress log for the APO initiative. Parent folder renamed
+  to '-active-project-organization-initiative-active'. Added summary of standards
+  definition and README enhancement work.
+key_takeaways:
+- Tracks key milestones and updates for APO. Active project guidelines significantly
+  refined in active-project/README.md.
+next_steps:
+- Update regularly as the initiative progresses.
 ---
 # Master Progress - Active Project Organization Initiative
 

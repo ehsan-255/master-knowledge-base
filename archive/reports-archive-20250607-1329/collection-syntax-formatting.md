@@ -1,15 +1,27 @@
 ---
-title: "Syntax & Formatting Standards"
-description: "A collection of key standards related to Markdown syntax, content formatting conventions, and file hygiene from the SF (Syntax & Formatting) domain."
-date_generated: "2025-06-07T15:01:09.933628+00:00"
-source_collection_definition_id: "coll_sf_syntax_formatting"
+title: Syntax & Formatting Standards
+description: A collection of key standards related to Markdown syntax, content formatting
+  conventions, and file hygiene from the SF (Syntax & Formatting) domain.
+date_generated: '2025-06-07T15:01:09.933628+00:00'
+source_collection_definition_id: coll_sf_syntax_formatting
 number_of_standards: 25
-tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
-info-type: "collection-document" 
-# Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-SF-SYNTAX-FORMATTING" 
+tags:
+- content-type/collection-document
+- criticality/p0-critical
+- kb-id/global
+- status/published
+- topic/derived-view
+info-type: collection-document
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 ## Table of Contents
 - [Standard: Image Alt Text for Accessibility (`SF-ACCESSIBILITY-IMAGE-ALT-TEXT`)](#standard-image-alt-text-for-accessibility-sf-accessibility-image-alt-text)
 - [Standard: Callout and Admonition Syntax (`SF-CALLOUTS-SYNTAX`)](#standard-callout-and-admonition-syntax-sf-callouts-syntax)
@@ -184,4 +196,4 @@ info-type: "collection-document"
 
 ## Standard: Transclusion Syntax for Content Embedding (SF-TRANSCLUSION-SYNTAX)
 
-*Error: Content for 'Standard: Transclusion Syntax for Content Embedding' (`SF-TRANSCLUSION-SYNTAX`) could not be loaded. File not found.* 
+*Error: Content for 'Standard: Transclusion Syntax for Content Embedding' (`SF-TRANSCLUSION-SYNTAX`) could not be loaded. File not found.*

@@ -5,6 +5,7 @@ aliases:
 - GUIDE-TASK-BASED
 tags:
 - content-type/standards-guide
+- criticality/p0-critical
 - kb-id/standards
 - status/deprecated
 - topic/automation
@@ -13,11 +14,16 @@ tags:
 - topic/workflow
 kb-id: standards
 info-type: standards-guide
-primary-topic: Task-oriented guide to Universal KB Standards, categorizing them by common activities and priority.
+primary-topic: Task-oriented guide to Universal KB Standards, categorizing them by
+  common activities and priority.
 related-standards: N/A
 version: 0.2.0
 date-created: '2025-05-16'
-date-modified: '2025-06-02T00:18:23Z'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[GM-GUIDE-STANDARDS-BY-TASK]].
 
