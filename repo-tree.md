@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-17 06:29:52  
+**Generated**: 2025-06-17 14:16:14  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -14,10 +14,10 @@
 │   🦮 project-guidelines
 │   │   📄 project-reminders.md
 │   │   📄 project-work-ethic-guidelines.md
+│   📄 README.md
 │   📄 current-state.md
 │   📄 master-analysis-report-creation-guide.md
 │   📄 master-roadmap-development-guide.md
-│   📄 README.md
 │   📄 roadmap-checklist-template.md
 │   📄 roadmap-progress-tracker-template.md
 │   📄 roadmap-template.md
@@ -105,8 +105,8 @@
 │   🧬 templates
 │   │   📄 UA-TPL-CANONICAL-FRONTMATTER.md
 │   │   📄 UA-TPL-CHANGELOG-DOCUMENT.md
-│   📄 changelog.md
 │   📄 README.md
+│   📄 changelog.md
 🧪 test-environment ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
 │   💾 backup
 │   │   📄 no-frontmatter.md
@@ -153,8 +153,8 @@
 │   │   📁 test-data
 │   │       📄 conforming-shacl-doc.md
 │   │       📄 violating-shacl-doc.md
-│   📄 naming-enforcer-test-files.md
 │   📄 README.md
+│   📄 naming-enforcer-test-files.md
 │   📄 run_all_tests.py
 │   📄 safety-test-suite.py
 │   📄 test-results-20250607-091041.json
@@ -171,8 +171,8 @@
 │   │   📄 date_time_manager.py
 │   │   📄 frontmatter_organizer.py
 │   🔧 indexer
-│   │   📄 generate_index.py
 │   │   📄 OM-SPEC-STANDARDS-INDEX-JSONLD.md
+│   │   📄 generate_index.py
 │   │   📄 standards_index.schema.json
 │   🔧 linter
 │   │   📄 kb_linter.py
@@ -190,18 +190,11 @@
 │   │   📄 refactor_tag_casing.py
 │   │   📄 universal_kb_id_migration.py
 │   📊 reports
-│   │   📄 architecture-protection-completion-20250616-2321.md
-│   │   📄 comprehensive-architecture-audit-20250616-2310.md
-│   │   📄 comprehensive-standards-analysis-20250616-1433.md
-│   │   📄 critical-architecture-audit-20250616-2304.md
-│   │   📄 gm-conventions-naming-reduction-completion-report.md
-│   │   📄 gm-guide-kb-usage-reduction-completion-report-20250616-2352.md
-│   │   📄 post-migration-validation-report-20250617-0212.json
-│   │   📄 shacl-base-schema-validation-20250617-0209.json
-│   │   📄 standards-consolidation-completion-report-20250616-2212.md
-│   │   📄 ultimate-frontmatter-enhancement-implementation-prompt.md
-│   │   📄 validation-report-after-vocab-update-20250617-0216.json
-│   │   📄 validation-test-report-20250617-0209.json
+│   │   📁 documentation-backups
+│   │   │   📄 MT-SCHEMA-FRONTMATTER-backup-20250617-1136.md
+│   │   📄 auto-doc-change-report-20250617-1136.json
+│   │   📄 document-type-analysis-20250617-1126.json
+│   │   📄 frontmatter-enhancement-implementation-summary-20250617-1150.md
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
@@ -236,10 +229,10 @@
 │   │   │   📄 schema_constraint_prompts.py
 │   │   📁 validation
 │   │   │   📄 llm_shacl_validator.py
+│   │   📄 README.md
 │   │   📄 __init__.py
 │   │   📄 engine.py
 │   │   📄 pyproject.toml
-│   │   📄 README.md
 │   │   📄 requirements.txt
 │   │   📄 watcher.py
 │   │   📄 worker.py
@@ -257,19 +250,18 @@
 │   🔧 validators
 │   │   📄 graph_validator.py
 │   │   📄 validate_registry.py
+│   📄 README.md
 │   📄 archive-logger.ps1
 │   📄 changelog.md
-│   📄 README.md
 │   📄 view_generator.py
 📄 .cursorignore
 📄 .cursorrules
 📄 .pre-commit-config.yaml
-📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
+📄 README.md
 📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
 📄 frontmatter-analysis.md
 📄 frontmatter-enhancements.md
-📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py
 📄 ultimate-frontmatter-enhancement-guideline-20250617-0312.md

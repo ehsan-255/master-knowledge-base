@@ -97,12 +97,12 @@ The following aspects of the frontmatter MUST be validated, as detailed in `[[MT
 
 ### 6.4. Specific Key Constraints
 - **`title`:** String, not empty.
-- **`standard_id`:** (If applicable) String, MUST follow regex `^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$`. Filename (sans `.md`) SHOULD equal `standard_id`.
+- **`standard_id`:** (If applicable) String, MUST follow regex `^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$`. Filename (sans `.md`) MUST equal `standard_id`.
 - **`version`:** String, semantic versioning preferred.
 - **`date-created` / `date-modified`:** String, ISO-8601 format `YYYY-MM-DDTHH:MM:SSZ`.
 - **`primary-topic`:** String, not empty.
 - **`related-standards`:** List of Strings, each must be a valid `standard_id` or internal link `[[STANDARD_ID]]`.
-- **`change_log_url`:** String. If relative path, MUST start `./`. Existence of local file SHOULD be checked.
+- **`change_log_url`:** String. If relative path, MUST start `./`. Existence of local file MUST be checked.
 
 ### 6.5. File Hygiene for Frontmatter
 - Frontmatter must be valid YAML.
@@ -119,7 +119,7 @@ The following aspects of the frontmatter MUST be validated, as detailed in `[[MT
 
 - Validation errors MUST be reported clearly, indicating the file, the problematic key(s), and the nature of the error.
 - Authors or designated content maintainers are responsible for correcting validation errors promptly.
-- Automated reports on metadata quality SHOULD be generated periodically.
+- Automated reports on metadata quality MUST be generated periodically.
 
 ## 9. Scope of Application
 This standard applies to all individuals involved in creating, reviewing, or managing content within the knowledge base ecosystem, as well as developers creating tooling for the KB.
