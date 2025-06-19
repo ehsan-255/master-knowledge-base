@@ -28,7 +28,6 @@ impact_areas:
 - Content organization
 - Searchability
 - Metadata consistency
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Core Tagging Strategy (MT-TAGGING-STRATEGY-POLICY)
 
@@ -91,4 +90,4 @@ This policy applies to all documents within the knowledge base ecosystem that ut
 - [[MT-SCHEMA-FRONTMATTER]] - Defines the `info-type` key and overall frontmatter structure.
 
 ---
-*This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*
+*This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 (now deprecated and superseded by [[MT-TAGS-IMPLEMENTATION]] and this policy).*

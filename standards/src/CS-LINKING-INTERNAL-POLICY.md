@@ -32,7 +32,6 @@ impact_areas:
 - Content cohesion
 - User experience
 - Information architecture
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Internal Knowledge Base Linking Strategy (CS-LINKING-INTERNAL-POLICY)
 
@@ -87,4 +86,4 @@ This policy applies to all content creators, editors, and curators working withi
 - [[AS-STRUCTURE-DOC-CHAPTER]] - Defines the requirement for "See Also" sections in documents.
 
 ---
-*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 from COL-LINKING-UNIVERSAL.md. Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*
+*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 (now deprecated and superseded by this policy). Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*

@@ -35,7 +35,6 @@ impact_areas:
 - Infrastructure automation
 - Quality gate enforcement
 - System reliability
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: CI/CD Infrastructure and Pipeline Requirements (OM-CI-CD-INFRASTRUCTURE)
 

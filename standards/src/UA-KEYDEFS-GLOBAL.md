@@ -38,7 +38,6 @@ impact_areas:
 - Consistency
 - Reducing redundancy
 - Single-sourcing of terms
-change_log_url: 'standards/changelog.md'
 keys:
   # Repository Structure Keys
   master-kb-root: "master-knowledge-base"

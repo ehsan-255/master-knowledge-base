@@ -29,7 +29,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Text formatting
 - Content emphasis
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Emphasis Syntax (SF-SYNTAX-EMPHASIS)
 

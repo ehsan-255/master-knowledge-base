@@ -28,7 +28,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Terminology management
 - Glossary content
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Definition List Syntax (SF-SYNTAX-DEFINITION-LISTS)
 

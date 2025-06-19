@@ -33,7 +33,6 @@ impact_areas:
 - Maintainability
 - Authoring tools
 - KB rendering systems
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Transclusion Syntax for Content Embedding (SF-TRANSCLUSION-SYNTAX)
 

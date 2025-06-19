@@ -29,7 +29,6 @@ impact_areas:
 - Navigation
 - Document structure
 - Content organization
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Table of Contents (ToC) Markdown Syntax (SF-TOC-SYNTAX)
 

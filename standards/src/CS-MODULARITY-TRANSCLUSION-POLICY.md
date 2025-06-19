@@ -35,7 +35,6 @@ impact_areas:
 - Authoring efficiency
 - Consistency
 - Single-sourcing
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Content Modularity and Use of Transclusion (CS-MODULARITY-TRANSCLUSION-POLICY)
 
@@ -104,4 +103,4 @@ This policy applies to all content creators and editors within the knowledge bas
 - [[AS-SCHEMA-CONCEPT-DEFINITION]] - Another example of a content type that can be designed for modularity.
 
 ---
-*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 from COL-LINKING-UNIVERSAL.md, and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX]].*
+*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 (now deprecated and superseded by this policy), and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX]].*

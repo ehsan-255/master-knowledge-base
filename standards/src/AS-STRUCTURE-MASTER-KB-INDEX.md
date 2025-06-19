@@ -32,7 +32,6 @@ impact_areas:
 - Repository organization
 - Automated KB listing
 - Inter-KB navigation
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Master Knowledge Base Directory and Index Structure (AS-STRUCTURE-MASTER-KB-INDEX)
 

@@ -30,7 +30,6 @@ impact_areas:
 - Content presentation
 - User attention
 - Information hierarchy
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Callout/Admonition Block Syntax (SF-CALLOUTS-SYNTAX)
 

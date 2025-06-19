@@ -34,7 +34,6 @@ impact_areas:
 - Content consistency
 - Standards adherence
 - Onboarding new authors
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Templates Directory Structure and Usage (AS-STRUCTURE-TEMPLATES-DIRECTORY)
 
@@ -85,4 +84,4 @@ This standard applies to the management of the templates directory and the creat
 - [[UA-TPL-CANONICAL-FRONTMATTER]] - Reference to the existing canonical frontmatter template. (Note: This is a direct reference to a template file, not a standard. It's included as it's a key example of a utility template.)
 
 ---
-*This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 from COL-GOVERNANCE-UNIVERSAL.md, adapting them for the new directory structure and emphasizing established naming conventions.*
+*This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 (now deprecated and superseded by this standard), adapting them for the new directory structure and emphasizing established naming conventions.*

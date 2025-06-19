@@ -37,7 +37,6 @@ impact_areas:
 - KB navigation
 - Content discoverability
 - User orientation
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standards Knowledge Base Root (AS-ROOT-STANDARDS-KB)
 

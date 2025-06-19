@@ -29,7 +29,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Content management
 - Variable substitution
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Key Reference Syntax (SF-SYNTAX-KEY-REFERENCES)
 

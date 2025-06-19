@@ -30,7 +30,6 @@ impact_areas:
 - User experience
 - Consistent highlighting of information
 - Authoring practices
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Usage of Admonitions and Callouts (CS-ADMONITIONS-POLICY)
 

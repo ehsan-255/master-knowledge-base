@@ -29,7 +29,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Character handling
 - Literal text display
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Character Escaping Syntax (SF-SYNTAX-CHARACTER-ESCAPING)
 

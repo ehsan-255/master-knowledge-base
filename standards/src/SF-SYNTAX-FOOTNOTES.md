@@ -29,7 +29,6 @@ impact_areas:
 - Reference formatting
 - Content annotation
 - Document structure
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown Syntax for Footnotes (SF-SYNTAX-FOOTNOTES)
 

@@ -36,7 +36,6 @@ impact_areas:
 - Automation
 - Knowledge base accessibility
 - Operational efficiency
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Publishing Pipeline Overview (OM-OVERVIEW-PUBLISHING-PIPELINE)
 

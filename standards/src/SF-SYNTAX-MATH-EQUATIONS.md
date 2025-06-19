@@ -29,7 +29,6 @@ impact_areas:
 - Mathematical notation
 - Content presentation
 - Technical documentation
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown Syntax for Math Equations (SF-SYNTAX-MATH-EQUATIONS)
 

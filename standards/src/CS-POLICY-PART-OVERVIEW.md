@@ -32,7 +32,6 @@ impact_areas:
 - Content discoverability
 - Clarity of KB structure
 - Authoring consistency
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Knowledge Base Part Overviews (CS-POLICY-PART-OVERVIEW)
 

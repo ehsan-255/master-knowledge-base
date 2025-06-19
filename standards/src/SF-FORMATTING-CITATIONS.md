@@ -29,7 +29,6 @@ impact_areas:
 - Citation consistency
 - Reference formatting
 - Academic standards
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Citing External Sources (APA 7th Edition) (SF-FORMATTING-CITATIONS)
 

@@ -29,7 +29,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Visual content
 - Accessibility
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Image Syntax (SF-SYNTAX-IMAGES)
 

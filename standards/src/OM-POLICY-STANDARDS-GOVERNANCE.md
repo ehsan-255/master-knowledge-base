@@ -34,7 +34,6 @@ impact_areas:
 - Change control
 - Authority hierarchy
 - Tool integration
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Standards Governance Framework (OM-POLICY-STANDARDS-GOVERNANCE)
 
@@ -297,4 +296,4 @@ This policy applies to all standard documents within the knowledge base ecosyste
 - [[CS-POLICY-COMPLIANCE-ENFORCEMENT]] - Policy for enforcement mechanisms that implement governance decisions.
 
 ---
-*This policy (OM-POLICY-STANDARDS-GOVERNANCE) is based on rules 1.1 through 1.3 previously defined in U-GOVERNANCE-001 from COL-GOVERNANCE-UNIVERSAL.md.*
+*This policy (OM-POLICY-STANDARDS-GOVERNANCE) is based on rules 1.1 through 1.3 previously defined in U-GOVERNANCE-001 (now deprecated and superseded by this policy).*

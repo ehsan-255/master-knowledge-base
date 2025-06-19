@@ -32,7 +32,6 @@ impact_areas:
 - User experience
 - Authoring efficiency
 - Content accessibility
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Table of Contents (ToC) Usage and Generation (CS-TOC-POLICY)
 

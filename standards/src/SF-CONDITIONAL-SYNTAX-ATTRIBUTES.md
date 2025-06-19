@@ -30,7 +30,6 @@ impact_areas:
 - Content profiling logic
 - Automated content filtering
 - Authoring consistency for conditional text
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Syntax for Conditional Attributes in IF Callouts (SF-CONDITIONAL-SYNTAX-ATTRIBUTES)
 

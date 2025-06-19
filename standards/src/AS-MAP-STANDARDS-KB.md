@@ -35,7 +35,6 @@ impact_areas:
 - Content organization
 - Discoverability of standards
 - Authoring within the Standards KB
-change_log_url: 'standards/changelog.md'
 kb_definition:
   parts:
     - part_id: "architecture-structure"

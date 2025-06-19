@@ -37,7 +37,6 @@ impact_areas:
 - Workflow integration
 - Data consistency
 - Automation reliability
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: LLM Automation Input/Output Schemas (OM-AUTOMATION-LLM-IO-SCHEMAS)
 

@@ -35,7 +35,6 @@ impact_areas:
 - Content discoverability
 - Automation
 - Search accuracy
-change_log_url: ./changelog.md
 ---
 
 > **⚠️ DEPRECATION NOTICE ⚠️**

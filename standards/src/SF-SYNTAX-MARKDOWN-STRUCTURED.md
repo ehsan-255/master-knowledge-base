@@ -34,7 +34,6 @@ impact_areas:
 - Data presentation
 - Code representation
 - Content accessibility
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Structured Markdown Syntax (SF-SYNTAX-MARKDOWN-STRUCTURED)
 

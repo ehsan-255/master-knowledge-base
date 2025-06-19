@@ -30,7 +30,6 @@ impact_areas:
 - Content validation
 - Quality assurance
 - Tool integration
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Automation Validation Requirements (OM-AUTOMATION-VALIDATION-REQUIREMENTS)
 

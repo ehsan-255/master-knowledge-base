@@ -29,7 +29,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Navigation
 - Cross-references
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Link Syntax (SF-SYNTAX-LINKS)
 
