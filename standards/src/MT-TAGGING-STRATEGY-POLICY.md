@@ -34,7 +34,7 @@ change_log_url: '[MISSING_CHANGE_LOG_URL]'
 
 ## 1. Policy Statement
 
-This policy defines the core strategy for applying tags to knowledge base documents. It mandates the use of specific tag categories to ensure consistent metadata, enhance content discoverability, support faceted search and filtering, and provide semantic meaning for automated processing. All tags MUST conform to the syntax defined in [[MT-TAGS-IMPLEMENTATION]] and be defined in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+This policy defines the core strategy for applying tags to knowledge base documents. It mandates the use of specific tag categories to ensure consistent metadata, enhance content discoverability, support faceted search and filtering, and provide semantic meaning for automated processing. All tags MUST conform to the syntax defined in [[MT-TAGS-IMPLEMENTATION]] and be defined in the [[MT-REGISTRY-TAG-GLOSSARY]].
 
 ## 2. Mandatory Tag Categories and Usage
 
@@ -48,7 +48,7 @@ Every content document (e.g., standards, guides, detailed concepts, methodologie
 
 ### Rule 2.2: `status/*` Tag (Derived from U-TAG-001, Rule 1.6)
 Every document MUST include exactly ONE `status/*` tag to indicate its current lifecycle stage.
-*   **Guidance:** Valid status values (e.g., `status/draft`, `status/in-review`, `status/approved`, `status/deprecated`) are defined in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+*   **Guidance:** Valid status values (e.g., `status/draft`, `status/in-review`, `status/approved`, `status/deprecated`) are defined in the [[MT-REGISTRY-TAG-GLOSSARY]].
 *   **Example:** `status/draft`
 *   **Rationale:** Clearly communicates the maturity and reliability of the document content.
 
@@ -62,13 +62,13 @@ Specific tags MUST be used to identify key structural documents within the knowl
 
 ### Rule 2.4: `content-type/*` Tag (Derived from U-TAG-001, Rule 1.8)
 Every document MUST include at least one `content-type/*` tag that describes its nature or format.
-*   **Guidance:** The controlled vocabulary for the `{type}` part of `content-type/{type}` (e.g., `standard-document`, `policy-document`, `guide-document`) is defined in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`). This aligns with, but is distinct from, the `info-type` frontmatter key detailed in [[MT-SCHEMA-FRONTMATTER]].
+*   **Guidance:** The controlled vocabulary for the `{type}` part of `content-type/{type}` (e.g., `standard-document`, `policy-document`, `guide-document`) is defined in the `tag-glossary-definition.md` file, referenced as [[MT-REGISTRY-TAG-GLOSSARY]]. This aligns with, but is distinct from, the `info-type` frontmatter key detailed in [[MT-SCHEMA-FRONTMATTER]].
 *   **Example:** `content-type/technical-standard`, `content-type/conceptual-explanation`
 *   **Rationale:** Allows users and systems to filter content based on its type, facilitating easier access to specific kinds of information.
 
 ## 3. Conformance to Tag Glossary (Derived from U-TAG-001, Rule 1.9 - part)
 
-All tag values used in any document's frontmatter (across all categories like `topic/*`, `status/*`, `content-type/*`, `criticality/*`, etc.) MUST strictly conform to a tag explicitly defined in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+All tag values used in any document's frontmatter (across all categories like `topic/*`, `status/*`, `content-type/*`, `criticality/*`, etc.) MUST strictly conform to a tag explicitly defined in the official Tag Glossary document ([[MT-REGISTRY-TAG-GLOSSARY]]).
 *   **Rationale:** Ensures that the tagging system remains controlled, consistent, and meaningful. Prevents the proliferation of ad-hoc or redundant tags, which would degrade the quality and utility of the metadata. The Tag Glossary is the single source of truth for all approved tags.
 
 ## 4. Rationale for Tagging Strategy
@@ -87,7 +87,7 @@ This policy applies to all documents within the knowledge base ecosystem that ut
 
 ## 6. Cross-References
 - [[MT-TAGS-IMPLEMENTATION]] - Defines the syntax and declaration rules for tags.
-- [[OM-PROCESS-SST-UPDATE]] - The process for updating tag definitions in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+- [[MT-REGISTRY-TAG-GLOSSARY]] - The official glossary of all approved tags, their hierarchies, and definitions.
 - [[MT-SCHEMA-FRONTMATTER]] - Defines the `info-type` key and overall frontmatter structure.
 
 ---

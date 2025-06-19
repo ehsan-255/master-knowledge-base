@@ -42,7 +42,7 @@ Registries typically reside in the `/standards/registry/` directory.
 ## 2. Scope
 
 This policy applies to all documented controlled vocabularies, including but not limited to:
-- JSON-LD schema registries (e.g., `standards/registry/schema-registry.jsonld`)
+- Tag glossaries (e.g., `[[MT-REGISTRY-TAG-GLOSSARY]]`)
 - Frontmatter schema and controlled vocabularies (e.g., `[[MT-SCHEMA-FRONTMATTER]]`)
 - Key definition files (e.g., `[[UA-KEYDEFS-GLOBAL]]`)
 - Other formally managed lists of terms or identifiers.
@@ -57,27 +57,27 @@ This policy applies to all documented controlled vocabularies, including but not
 - **Justification:** All change proposals MUST include a clear justification for the change.
 
 ### 3.2. Versioning of Registries
-- Registries that are subject to evolution (e.g., tag glossaries, key definition files) MUST be versioned.
+- Registries that are subject to evolution (e.g., tag glossaries, key definition files) SHOULD be versioned.
 - **Semantic Versioning (`MAJOR.MINOR.PATCH`)** (as defined in `[[OM-VERSIONING-CHANGELOGS]]`) is the preferred method:
     - **MAJOR** increment for incompatible schema changes to the registry itself or changes that would break existing usage significantly.
     - **MINOR** increment for new entries, non-breaking schema additions, or significant new descriptive information.
     - **PATCH** increment for minor corrections (e.g., typos in descriptions, formatting fixes) that do not alter meaning or add new entries.
-- The version of a registry MUST be documented within the registry file itself (e.g., in its frontmatter if it's a Markdown file, or via a version key if YAML/JSON).
+- The version of a registry SHOULD be documented within the registry file itself (e.g., in its frontmatter if it's a Markdown file, or via a version key if YAML/JSON).
 
 ### 3.3. Deprecation of Registry Entries
-- Individual entries within a registry (e.g., a specific tag, a keyref) MUST NOT be deleted if they have been in active use.
+- Individual entries within a registry (e.g., a specific tag, a keyref) SHOULD NOT be deleted if they have been in active use.
 - Instead, they MUST be marked with a `status: "deprecated"` or equivalent mechanism.
-- A `deprecated_reason` or `deprecation_notes` field MUST be added, explaining why the term is deprecated and what alternatives (if any) should be used.
-- A `deprecated_date` MUST also be included.
+- A `deprecated_reason` or `deprecation_notes` field SHOULD be added, explaining why the term is deprecated and what alternatives (if any) should be used.
+- A `deprecated_date` SHOULD also be included.
 
 ### 3.4. Release and Publication Workflow (for version-controlled registries)
 - **Merge:** Approved changes are merged into the main branch of the version control system.
-- **Validation (Automated):** Where applicable (e.g., for YAML or JSON registries), automated validation against a defined schema for that registry type MUST be performed by a continuous integration (CI) process upon merge.
-- **Tagging (Version Control):** For significant registry versions (e.g., MINOR or MAJOR updates), a version control tag (e.g., `git tag registry/{registry_name}/v{X.Y.Z}`) MUST be applied to the repository commit corresponding to the release.
+- **Validation (Automated):** Where applicable (e.g., for YAML or JSON registries), automated validation against a defined schema for that registry type SHOULD be performed by a continuous integration (CI) process upon merge.
+- **Tagging (Version Control):** For significant registry versions (e.g., MINOR or MAJOR updates), a version control tag (e.g., `git tag registry/{registry_name}/v{X.Y.Z}`) SHOULD be applied to the repository commit corresponding to the release.
 
 ### 3.5. Registry Documentation and Cataloging
 - Each managed registry MUST be documented. This documentation should include its purpose, scope, structure, and how it is maintained.
-- A central catalog or index of all official registries MUST be maintained to ensure discoverability. (e.g., potentially a future `GM-REGISTRY-CATALOG.md` standard). This catalog should provide a brief description of each registry and a link to it.
+- A central catalog or index of all official registries SHOULD be maintained to ensure discoverability. (e.g., potentially a future `GM-REGISTRY-CATALOG.md` standard). This catalog should provide a brief description of each registry and a link to it.
 
 ## 4. Responsibilities
 - **Registry Custodians/SMEs:** Responsible for the accuracy, relevance, and clarity of the content within specific registries.

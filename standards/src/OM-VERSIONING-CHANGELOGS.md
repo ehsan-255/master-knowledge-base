@@ -42,7 +42,7 @@ This standard defines the mandatory requirements for versioning individual stand
 Each individual standard document (including standard definitions, policies, guides, and schemas) MUST include the following keys in its YAML frontmatter, as defined in [[MT-SCHEMA-FRONTMATTER]]:
 
 *   **`version`**: Specifies the current version of the standard document.
-*   **`date-created`**: Specifies the date (and time) the standard document was initially created. This value MUST NOT change after initial creation.
+*   **`date-created`**: Specifies the date (and time) the standard document was initially created. This value SHOULD NOT change after initial creation.
 *   **`date-modified`**: Specifies the date (and time) the standard document was last significantly modified. This MUST be updated upon every substantive change that also warrants a version increment.
 
 *   **Notes:**
@@ -73,7 +73,7 @@ The `version` key for all standard documents MUST use Semantic Versioning 2.0.0 
 
 ## 3. Changelog Maintenance (Derived from U-VERSIONING-001, Rule 1.3)
 
-Standard documents MUST maintain human-readable changelog information. The changelog approach MUST be selected based on the scope and maturity of the knowledge base:
+Standard documents MUST maintain human-readable changelog information. The changelog approach SHOULD be selected based on the scope and maturity of the knowledge base:
 
 *   **Location Option 1 (For Isolated Standards):** A dedicated section within the standard document itself, typically an H2 or H3 heading titled "Changelog" or "Revision History" near the end of the document.
 *   **Location Option 2 (For Individual Standards):** A separate linked changelog file, referenced by the `change_log_url` frontmatter key as defined in [[MT-SCHEMA-FRONTMATTER]].
@@ -110,7 +110,7 @@ The changelog MUST record, at a minimum:
     
     ### Changed
     - MT-SCHEMA-FRONTMATTER: Updated mandatory keys list
-    - CS-POLICY-TONE-LANGUAGE: Updated mandatory language requirements
+    - CS-POLICY-ACCESSIBILITY: Clarified WCAG compliance requirements
     
     ### Deprecated
     - SF-LEGACY-SYNTAX-OLD: Replaced by SF-SYNTAX-ENHANCED-LINKS

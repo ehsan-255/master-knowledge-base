@@ -23,6 +23,7 @@ primary-topic: Quick-start guide for users on how to navigate, understand, apply
   and contribute to the knowledge base system and its standards.
 related-standards:
 - AS-ROOT-STANDARDS-KB
+- GM-GUIDE-STANDARDS-BY-TASK
 - AS-STRUCTURE-DOC-CHAPTER
 - MT-SCHEMA-FRONTMATTER
 - GM-CONVENTIONS-NAMING
@@ -50,7 +51,7 @@ Quick-start guide for navigating, understanding, and contributing to this knowle
 
 ### 1.1 Navigation Entry Points
 - **Standards KB Root:** Start at [[AS-ROOT-STANDARDS-KB]] for master table of contents
-- **Task-Based Guide:** TODO: Create new task-oriented navigation system to replace archived GM-GUIDE-STANDARDS-BY-TASK
+- **Task-Based Guide:** Use [[GM-GUIDE-STANDARDS-BY-TASK]] for task-oriented navigation
 - **Search:** Use your editor's search to find standards by ID or keywords
 
 ### 1.2 KB Structure Overview
@@ -106,7 +107,7 @@ All documents MUST include canonical YAML frontmatter per [[MT-SCHEMA-FRONTMATTE
 ### 4.2 Common Patterns
 - **Standard References:** `[[STANDARD_ID|Display Text]]`
 - **Section Links:** `[[STANDARD_ID#Section Title]]`
-- **Task Guidance:** TODO: Develop new workflow-specific standards navigation system
+- **Task Guidance:** Consult [[GM-GUIDE-STANDARDS-BY-TASK]] for workflow-specific standards
 
 ---
 *This quick-start guide replaces the comprehensive tutorial format. For detailed guidance, consult individual standards referenced above.*

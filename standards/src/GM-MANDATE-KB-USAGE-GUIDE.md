@@ -58,7 +58,7 @@ The [[GM-GUIDE-KB-USAGE]] document MUST briefly outline the process for:
 
 ### Rule 2.4: Core Content - Pointers to Key Resources (Derived from U-ONBOARDING-001, Rule 1.4)
 The [[GM-GUIDE-KB-USAGE]] document SHOULD include pointers (links) to:
-    a.  The master JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+    a.  The master Tag Glossary (expected to be [[MT-REGISTRY-TAG-GLOSSARY]]).
     b.  The directory or standard defining available document templates (expected to be [[AS-STRUCTURE-TEMPLATES-DIRECTORY]] or similar).
 *   **Rationale:** Helps users leverage essential supporting resources for understanding and creating content.
 
@@ -79,7 +79,7 @@ This standard applies to the governance body responsible for the knowledge base 
 ## 5. Cross-References
 - [[GM-GUIDE-KB-USAGE]] - The actual guide document whose existence and core content are mandated by this standard.
 - [[OM-POLICY-STANDARDS-GOVERNANCE]] - Detailed governance processes.
-- [[OM-PROCESS-SST-UPDATE]] - The process for updating the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+- [[MT-REGISTRY-TAG-GLOSSARY]] - The Tag Glossary.
 - [[AS-STRUCTURE-TEMPLATES-DIRECTORY]] - Standard defining the templates directory.
 - [[AS-STRUCTURE-MASTER-KB-INDEX]] - Relevant for explaining navigation via `kb-directory.md`.
 

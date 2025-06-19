@@ -53,12 +53,12 @@ Key definitions within `_key_definitions.md` MUST be stored within its YAML fron
 *   **Rationale:** Using YAML frontmatter allows for structured data storage that is easily parsable by automated tools and aligns with existing metadata practices.
 
 ### Rule 2.3: Key Naming and Value Types
-Each key under `keys:` MUST be a string representing the key name (e.g., `productName`). Key names MUST follow camelCase convention and are case-sensitive. Values can be strings, numbers, or booleans. Complex objects or lists are discouraged for simple keyrefs.
+Each key under `keys:` MUST be a string representing the key name (e.g., `productName`). Key names SHOULD follow camelCase convention and are case-sensitive. Values can be strings, numbers, or booleans. Complex objects or lists are discouraged for simple keyrefs.
 *   **Example Key Names:** `productName`, `companyFullName`, `apiVersion`, `supportEmail`
 *   **Rationale:** Consistent naming conventions improve readability and predictability. Simple value types ensure straightforward replacement by resolver scripts.
 
 ### Rule 2.4: Documentation in Markdown Body
-The Markdown body of `_key_definitions.md` ([[UA-KEYDEFS-GLOBAL]]) MUST be used to document the purpose, scope, and usage guidelines for the defined keys, or to categorize them.
+The Markdown body of `_key_definitions.md` ([[UA-KEYDEFS-GLOBAL]]) SHOULD be used to document the purpose, scope, and usage guidelines for the defined keys, or to categorize them.
 *   **Example:**
     ```markdown
     # Key Definitions Documentation

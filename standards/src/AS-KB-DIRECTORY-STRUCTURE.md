@@ -59,9 +59,9 @@ Within `standards/`, the following specialized directories are used:
     *   **Naming:** Files in this directory MUST follow the [[GM-CONVENTIONS-NAMING#Atomic File Naming Convention|File Naming Convention]] (Note: Link to be updated once actual naming convention doc ID is set).
 
 *   **`/standards/registry/` (Task 0.4.2)**
-    *   **Purpose:** This directory houses all controlled vocabulary manifests and registry definition files using JSON-LD format as the Single Source of Truth.
-    *   **Content:** JSON-LD files (`.jsonld`), Turtle files (`.ttl`), and context files that define terms, codes, schemas, and their meanings for various metadata fields (e.g., domain codes, status tags, criticality levels).
-    *   **Examples:** `schema-registry.jsonld`, `master-index.jsonld`, `contexts/*.jsonld`, `shacl-shapes.ttl`.
+    *   **Purpose:** This directory houses all controlled vocabulary manifests and registry definition files.
+    *   **Content:** YAML files (`.yaml`) or Markdown files (`.md`) that define terms, codes, and their meanings for various metadata fields (e.g., domain codes, status tags, criticality levels).
+    *   **Examples:** `mt-schema-frontmatter.yaml`, `mt-registry-tag-glossary.yaml`.
 
 *   **`/standards/templates/` (Task 0.4.3)**
     *   **Purpose:** This directory contains standard templates for creating new documents.

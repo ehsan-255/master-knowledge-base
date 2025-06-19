@@ -45,7 +45,7 @@ When a standard is superseded by a new standard or is deemed no longer relevant,
 ### Rule 2.2: Update Frontmatter Status (Derived from U-DEPRECATION-001, Rule 1.2)
 The YAML frontmatter of a deprecated standard MUST be updated to reflect its new status. Specifically, its `status/*` tag MUST be changed to `status/deprecated`.
 *   **Guidance:** The `status/archived` tag may be used if the standard is not only deprecated but also moved to a separate archive location and is no longer considered part of the active, albeit deprecated, set of standards. The choice between `status/deprecated` (still in place but not active) and `status/archived` (moved and inactive) should be applied consistently based on the archiving strategy (see Rule 2.4).
-*   **Reference:** The list of valid status tags is maintained in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+*   **Reference:** The list of valid status tags is maintained in [[MT-REGISTRY-TAG-GLOSSARY]].
 *   **Version Update:** The `version` of the standard should be incremented (typically a MINOR or PATCH update, e.g., from `1.2.0` to `1.3.0` or `1.2.1`) and `date-modified` updated to reflect the deprecation event, as per [[OM-VERSIONING-CHANGELOGS]].
 
 ### Rule 2.3: Prominent Deprecation Notice (Derived from U-DEPRECATION-001, Rule 1.3)
@@ -86,7 +86,7 @@ A formal deprecation policy is essential for:
 This policy applies to all standard documents within the knowledge base ecosystem that are subject to lifecycle changes, including supersession or obsolescence.
 
 ## 5. Cross-References
-- [[OM-PROCESS-SST-UPDATE]] - For updating status tags in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+- [[MT-REGISTRY-TAG-GLOSSARY]] - For the `status/deprecated` and `status/archived` tags.
 - [[SF-CALLOUTS-SYNTAX]] - For the syntax of the deprecation notice callout.
 - [[OM-VERSIONING-CHANGELOGS]] - For versioning changes related to deprecation.
 - [[OM-POLICY-STANDARDS-GOVERNANCE]] - As the decision to deprecate a standard is a governance action.

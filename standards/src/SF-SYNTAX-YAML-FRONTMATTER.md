@@ -9,21 +9,20 @@ tags:
 - content-type/technical-standard
 - criticality/p1-high
 - kb-id/standards
-- status/active
+- status/draft
 - topic/markdown
 - topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: YAML Frontmatter Syntax
-related-standards:
-- MT-SCHEMA-FRONTMATTER
-- SF-FORMATTING-FILE-HYGIENE
+related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-06-18T03:10:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the syntax for creating YAML frontmatter in knowledge base documents.
+scope_application: Defines the syntax for creating YAML frontmatter in knowledge base
+  documents.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -36,13 +35,15 @@ change_log_url: '[MISSING_CHANGE_LOG_URL]'
 
 ## 1. Standard Statement
 
-This standard **MANDATES** the exclusive syntax for YAML frontmatter in all Knowledge Base documents. While this standard governs the *syntax* of the YAML block, the *schema and content rules* are defined in [[MT-SCHEMA-FRONTMATTER]]. File encoding and line endings are governed by [[SF-FORMATTING-FILE-HYGIENE]].
+This standard **MANDATES** the exclusive syntax for YAML frontmatter in all Knowledge Base documents. Adherence is **CRITICAL** for reliable metadata parsing, content validation, authoring consistency, and interoperability with tooling.
+
+While this standard governs the *syntax* of the YAML block, the *schema and content rules* (e.g., allowed keys, value formats, mandatory fields) are defined in [[MT-SCHEMA-FRONTMATTER]]. File encoding (UTF-8 without BOM) and line endings (LF) are governed by [[SF-FORMATTING-FILE-HYGIENE]].
 
 ## 2. Core YAML Syntax Rules for Frontmatter
 
 ### Rule 2.1: Delimiters and Placement
-A YAML frontmatter block enclosed by triple hyphens (`---`) **MUST** be present at the very beginning of every Markdown document.
-*   **Requirement:** No content, blank lines, or whitespace permitted before the opening `---` delimiter. The document **MUST** start with this delimiter on line 1.
+A single YAML frontmatter block, enclosed by triple hyphens (`---`) on the line immediately before and after the YAML content, **MUST** be present at the very beginning of every Markdown document.
+*   **Requirement:** No content, blank lines, or whitespace are permitted before the opening `---` delimiter. The document **MUST** start with this delimiter on line 1.
 *   **Example:**
     ```yaml
     ---
@@ -50,39 +51,44 @@ A YAML frontmatter block enclosed by triple hyphens (`---`) **MUST** be present 
     ---
     # Markdown content starts here
     ```
+*   **Rationale:** Ensures consistent and unambiguous detection of the frontmatter block by parsers and other tools.
 
 ### Rule 2.2: Key Naming Convention (kebab-case)
-All keys within the YAML frontmatter block **MUST** use **kebab-case** (lowercase words separated by hyphens).
-*   **Correct:** `date-created: 2023-10-28`, `primary-topic: "Example Topic"`
-*   **Prohibited:** `date_created: 2023-10-28`, `PrimaryTopic: "Example Topic"`
+All keys within the YAML frontmatter block **MUST** use **kebab-case** (all lowercase words separated by single hyphens).
+*   **Example (Correct):** `date-created: 2023-10-28`, `primary-topic: "Example Topic"`
+*   **Example (Incorrect):** `date_created: 2023-10-28`, `PrimaryTopic: "Example Topic"`
+*   **Rationale:** Enforces a single, consistent style for all YAML keys, simplifying parsing and improving readability. This is also mandated by [[MT-SCHEMA-FRONTMATTER]].
 
 ### Rule 2.3: Appropriate Data Types
-Values **MUST** use appropriate YAML data types.
-*   **Strings:** Do not typically require quotes. Use quotes if the string:
-    *   Contains special characters that could be misinterpreted (colons, hashes, brackets)
-    *   Is a number/boolean that should be treated as string (`version: '1.0'`, `status: 'true'`)
-*   **Numbers:** `version: 1.0` (float), `count: 15` (integer)
-*   **Booleans:** `draft: true`, `is-archived: false`
-*   **Nulls:** `not-applicable: null`
+Values for YAML keys **MUST** use appropriate YAML data types (e.g., string, number, boolean, list, dictionary/map).
+*   **Strings:** Strings do not typically require quotes. However, quotes (preferably single quotes for consistency, unless double quotes are needed for specific character escaping) **MUST** be used if the string:
+    *   Contains special characters that could be misinterpreted by the YAML parser (e.g., colons, hashes, brackets, leading/trailing whitespace that is significant).
+    *   Is a number, boolean, or null-like value that should be treated as a string (e.g., `version: '1.0'`, `status: 'true'`).
+*   **Numbers:** `version: 1.0` (float), `count: 15` (integer).
+*   **Booleans:** `draft: true`, `is-archived: false`.
+*   **Nulls:** `not-applicable: null` (use `null` explicitly, not empty strings if null is intended).
+*   **Rationale:** Correct data typing is essential for reliable parsing and processing of metadata. [[MT-SCHEMA-FRONTMATTER]] specifies expected data types.
 
 ### Rule 2.4: List Syntax (Block Style)
-Lists **MUST** use block list syntax with hyphens and spaces (`- `).
-*   **Correct:**
+Lists (arrays) in YAML frontmatter **MUST** use the block list syntax, where each item is preceded by a hyphen and a space (`- `).
+*   **Example (Correct):**
     ```yaml
     tags:
       - standards
       - metadata
       - yaml
     ```
-*   **Prohibited (Inline Style):**
+*   **Incorrect (Inline Style PROHIBITED):**
     ```yaml
     tags: [standards, metadata, yaml]
     ```
+*   **Rationale:** Block list syntax is generally more readable for multi-item lists and is the mandated style for consistency.
 
 ### Rule 2.5: No Non-YAML Metadata
-HTML comments or non-YAML content **MUST NOT** be used within the YAML frontmatter block.
+HTML comments (e.g., `<!-- comment -->`), or any other non-YAML content or comments, **MUST NOT** be used within the YAML frontmatter block.
+*   **Rationale:** The frontmatter block is exclusively for machine-readable YAML metadata. Comments or other content can break parsers. YAML's own comment syntax (`# comment`) should be used if comments are necessary, though generally discouraged for standardized metadata fields.
 
-## 3. Complete Example
+## 3. Illustrative Example of Correct Frontmatter Syntax
 
 ```yaml
 ---
@@ -109,11 +115,11 @@ This section illustrates the start of the Markdown content, immediately followin
 
 ## 4. Scope of Application
 
-This standard applies to the YAML frontmatter block of **ALL** Markdown documents within the Knowledge Base repository. Adherence is **MANDATORY** for all content creators, automated systems, and tooling.
+This standard applies to the YAML frontmatter block of all Markdown documents within the Knowledge Base repository. Adherence to these rules is **MANDATORY** for all content creators, automated systems, and tooling interacting with KB Markdown files.
 
 ## 5. Cross-References
 *   [[MT-SCHEMA-FRONTMATTER]]
 *   [[SF-FORMATTING-FILE-HYGIENE]]
 
 ---
-*This standard (SF-SYNTAX-YAML-FRONTMATTER) establishes strict YAML frontmatter syntax requirements, ensuring consistent metadata structure across the Knowledge Base.*
+*This standard (SF-SYNTAX-YAML-FRONTMATTER) is based on rules 1.1 through 1.5 previously defined in M-SYNTAX-YAML-001 from COL-SYNTAX-MARKDOWN.md.*
