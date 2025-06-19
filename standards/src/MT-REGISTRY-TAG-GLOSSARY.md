@@ -1,5 +1,5 @@
 ---
-title: Master Tag Glossary and Registry
+title: 'DEPRECATED: Master Tag Glossary and Registry - See JSON-LD Registry'
 standard_id: MT-REGISTRY-TAG-GLOSSARY
 aliases:
 - Tag Glossary
@@ -10,26 +10,24 @@ tags:
 - criticality/p0-critical
 - kb-id/global
 - kb-id/standards
-- status/draft
+- status/deprecated
 - topic/metadata
 - topic/mt
 - topic/registry
 - topic/tagging
 kb-id: kb-id/standards
 info-type: registry-document
-primary-topic: Defines all official tags, their meanings, hierarchy, and usage guidelines.
-  Serves as the master registry for tags.
+primary-topic: '[DEPRECATED] Previously defined official tags. Now migrated to JSON-LD schema registry.'
 related-standards:
+- OM-PROCESS-SST-UPDATE
 - MT-TAGGING-STRATEGY-POLICY
 - GM-REGISTRY-GOVERNANCE
-- MT-SCHEMA-FRONTMATTER
-version: 1.0.0
+version: 1.1.0
 date-created: '2025-05-15T00:00:00Z'
-date-modified: '2025-06-17T02:29:15Z'
+date-modified: '2025-06-18T00:52:00Z'
 primary_domain: MT
 sub_domain: REGISTRY
-scope_application: Applies to all knowledge bases and documents for tag usage and
-  frontmatter validation.
+scope_application: '[DEPRECATED] Tag definitions now maintained in JSON-LD schema registry.'
 criticality: P0-Critical
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -39,11 +37,31 @@ impact_areas:
 - Search accuracy
 change_log_url: ./changelog.md
 ---
-# Master Tag Glossary and Registry (MT-REGISTRY-TAG-GLOSSARY)
 
-This document defines all official tags used across knowledge bases, their intended meaning, hierarchy, and usage guidelines. It serves as the master registry for tags. Refer to `[[MT-TAGGING-STRATEGY-POLICY]]` for the core tagging strategy and `[[GM-REGISTRY-GOVERNANCE]]` for how this registry is managed. This glossary is referenced by `[[MT-SCHEMA-FRONTMATTER]]` for validating tags in document frontmatter.
+> **⚠️ DEPRECATION NOTICE ⚠️**
+>
+> **This document has been DEPRECATED as of June 18, 2025.**
+>
+> **NEW AUTHORITATIVE LOCATION:** All tag definitions, controlled vocabularies, and schema validation rules are now maintained in the **JSON-LD schema registry** system:
+>
+> - **Primary Registry:** `standards/registry/schema-registry.jsonld`
+> - **Master Index:** `standards/registry/master-index.jsonld`
+> - **Context Files:** `standards/registry/contexts/*.jsonld`
+> - **Validation Shapes:** `standards/registry/shacl-shapes.ttl`
+>
+> **Update Process:** For changes to tag definitions or controlled vocabularies, follow the process defined in [[OM-PROCESS-SST-UPDATE]].
+>
+> **Migration Status:** This content has been migrated to the JSON-LD registry system. This document is preserved for historical reference only.
 
-## Tag Categories
+# [DEPRECATED] Master Tag Glossary and Registry (MT-REGISTRY-TAG-GLOSSARY)
+
+**⚠️ This document is DEPRECATED. The authoritative tag definitions are now maintained in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).**
+
+For the current tagging strategy, refer to [[MT-TAGGING-STRATEGY-POLICY]]. For registry governance, see [[GM-REGISTRY-GOVERNANCE]]. For updating tag definitions, follow the process in [[OM-PROCESS-SST-UPDATE]].
+
+## [HISTORICAL REFERENCE] Tag Categories 
+
+**⚠️ The content below is preserved for historical reference only. Current tag definitions are maintained in `standards/registry/schema-registry.jsonld`.**
 
 ### Status Tags (`status/*`)
 - `status/draft`: Content is in initial draft stage, subject to significant change.

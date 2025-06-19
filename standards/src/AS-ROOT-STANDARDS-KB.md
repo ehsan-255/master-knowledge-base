@@ -83,12 +83,10 @@ The following sections categorize and link to the core documents that define our
     - [[CS-CONTENT-PROFILING-POLICY|Policy: Content Profiling and Conditional Text]]
     - [[CS-LINKING-INTERNAL-POLICY|Policy: Internal Knowledge Base Linking Strategy]]
     - [[CS-MODULARITY-TRANSCLUSION-POLICY|Policy: Content Modularity and Use of Transclusion]]
-    - [[CS-POLICY-ACCESSIBILITY|Policy: Content Accessibility]]
+    - [[CS-POLICY-TONE-LANGUAGE|Policy: Tone and Language]]
     - [[CS-POLICY-DIGITAL-ABSTRACTION|Policy: Translating Non-Digital Concepts for Digital Workflows]]
-    - [[AS-STRUCTURE-DOC-CHAPTER|Standard: Content Document (Chapter) Internal Structure]]
     - [[CS-POLICY-KB-IDENTIFICATION|Policy: Unique Knowledge Base Identification and Naming]]
     - [[CS-POLICY-KB-PART-CONTENT|Policy: Content Organization within Knowledge Base Parts]]
-    - [[AS-STRUCTURE-KB-ROOT|Standard: Knowledge Base Root Structure]]
     - [[CS-POLICY-LAYERED-INFORMATION|Policy: Layered Information Presentation and Progressive Disclosure]]
 
 ### 4. Metadata, Tagging, and Registries (MT Domain)

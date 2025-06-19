@@ -72,15 +72,15 @@ Tags MAY use forward slashes (`/`) to indicate an internal hierarchy or categori
 ## 2. Tag Glossary Requirement (Derived from U-TAG-001, Rule 1.9 - part)
 
 A dedicated Tag Glossary document MUST exist and be maintained. This glossary serves as the single source of truth for all officially recognized tags.
-*   **Identification:** This glossary is identified by the standard ID [[MT-REGISTRY-TAG-GLOSSARY]].
-*   **Purpose:** The Tag Glossary lists all official tags, defines their intended meaning and scope, and illustrates their correct hierarchy and usage.
-*   **Mandate for Conformance:** All tags used in any document's frontmatter MUST conform to a tag defined in the [[MT-REGISTRY-TAG-GLOSSARY]]. The strategic application of these tags is further defined in [[MT-TAGGING-STRATEGY-POLICY]].
+*   **Identification:** The authoritative tag definitions are maintained in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
+*   **Purpose:** The JSON-LD schema registry lists all official tags, defines their intended meaning and scope, and illustrates their correct hierarchy and usage.
+*   **Mandate for Conformance:** All tags used in any document's frontmatter MUST conform to tag definitions in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`). The strategic application of these tags is further defined in [[MT-TAGGING-STRATEGY-POLICY]].
 *   **Rationale:** Ensures that tags are used consistently and meaningfully across the entire knowledge base, preventing tag proliferation and ambiguity.
 
 ## 3. Cross-References
 - [[MT-SCHEMA-FRONTMATTER]] - Defines general YAML frontmatter structure and rules.
 - [[MT-TAGGING-STRATEGY-POLICY]] - Outlines the strategic application of different tag categories.
-- [[MT-REGISTRY-TAG-GLOSSARY]] - The official glossary of all approved tags and their definitions.
+- [[OM-PROCESS-SST-UPDATE]] - The process for updating tag definitions in the JSON-LD schema registry (`standards/registry/schema-registry.jsonld`).
 
 ---
 *This standard (MT-TAGS-IMPLEMENTATION) is based on rules 1.1, 1.2, 1.3, 1.4, and part of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*

@@ -51,7 +51,6 @@ keys:
   
   # Change Log Management
   change-log-url: "standards/changelog.md"
-  missing-change-log-url: "standards/changelog.md"
   
   # Primary Topics (Common Placeholders)
   primary-topic-standards: "Standards infrastructure and governance"
@@ -131,7 +130,7 @@ keys:
 ### 3.1. Naming Conventions for Keys
 - Keys MUST be descriptive and use lowercase letters, numbers, and hyphens (kebab-case).
 - Avoid overly generic names to prevent conflicts. Consider prefixing with a relevant domain if applicable (e.g., `change-log-url` vs. just `url`).
-- Keys for common placeholders SHOULD follow the pattern `missing-{purpose}` for replacement values.
+- Keys for common placeholders MUST follow the pattern `missing-{purpose}` for replacement values.
 
 ### 3.2. Key Categories
 

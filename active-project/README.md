@@ -163,22 +163,25 @@ active-project/
 1.  **CREATE** a new folder: `active-project/-[project-name]-initiative-planned/`.
 2.  **GENERATE** `master-analysis-report.md` and `master-roadmap.md` using the linked templates.
 3.  **CREATE** `master-progress.md`.
-4.  **ALL FILES MUST HAVE** full frontmatter (see frontmatter template).
-5.  **WHEN WORK BEGINS**, rename the folder to `-[project-name]-initiative-active/`.
+4.  **PRE-POPULATE PLANNED PHASES**: Based on the `master-roadmap.md`, create a sub-folder for each major phase of work (e.g., `l2-sl1-[phase-one-name]-planned/`, `l2-sl2-[phase-two-name]-planned/`, etc.). These folders **MUST** receive the `-planned` status suffix.
+5.  **ALL FILES MUST HAVE** full frontmatter (see frontmatter template).
+6.  **WHEN WORK BEGINS** on the first phase, follow the sub-level activation protocol below.
 
-### **2. Spawning a New l[n]-sl[n] Sub-level — MANDATORY PROCESS:**
+### **2. Managing Sub-level Lifecycles — MANDATORY PROCESS:**
 
-This occurs when a roadmap (either `master-roadmap.md` or an `l[n]-sl[m]-roadmap.md`) encounters a significant complication requiring a dedicated sub-task.
+This section covers activating a planned task or spawning a new one for unforeseen complications. In all cases, only one `l[n]-sl[n]` sub-task can be `-active` within a parent project at any given time.
 
-1.  The parent folder (e.g., `-[project-name]-initiative-active/` or `l[n]-sl[m]-...-active/`) **MUST BE RENAMED** to append/update its status to `-blocked`.
-2.  A **NEW** sub-folder `l[child-level]-sl1-[complication-descriptive-name]-active/` **MUST BE CREATED INSIDE** the now `-blocked` parent folder.
-    *   `[child-level]` is `[parent-level] + 1`.
-    *   `sl1` signifies the first sub-level at this new child-level task.
-3.  This new sub-folder **MUST RECEIVE** its own:
-    *   `l[child-level]-sl1-analysis-report.md`
-    *   `l[child-level]-sl1-roadmap.md`
-    *   `l[child-level]-sl1-progress.md`
-    *   (All using appropriate templates and including frontmatter).
+**A. Activating a Planned Task:**
+1.  The parent project folder (e.g., `-[project-name]-initiative-active/` or `...-planned/`) **MUST BE RENAMED** to append/update its status to `-blocked`.
+2.  The target sub-folder (e.g., `l[child-level]-sl[x]-...-planned/`) **MUST BE RENAMED** from `-planned` to `-active`.
+3.  **RE-EVALUATE AND UPDATE PLANS**: Before generating documents, the plan for this newly activated phase **MUST** be re-evaluated. Any learnings, new decisions, or changes from previously completed sub-tasks **MUST** be incorporated. The `analysis-report` and `roadmap` created in the next step must reflect the *current* state of understanding, not just the initial plan.
+4.  This now `-active` sub-folder **MUST RECEIVE** its own `analysis-report`, `roadmap`, and `progress` files, reflecting the re-evaluated plan.
+
+**B. Spawning a New (Unplanned) Task:**
+This occurs when a roadmap encounters a significant complication requiring a dedicated sub-task.
+1.  The parent folder (e.g., `-[project-name]-initiative-active/`) **MUST BE RENAMED** to append/update its status to `-blocked`.
+2.  A **NEW** sub-folder `l[child-level]-sl[x]-[complication-descriptive-name]-active/` **MUST BE CREATED INSIDE** the now `-blocked` parent folder.
+3.  This new sub-folder **MUST RECEIVE** its own `analysis-report`, `roadmap`, and `progress` files.
 
 ### **3. Completing Sub-levels & Returning to Parent Control — MANDATORY SEQUENCE:**
 
@@ -202,7 +205,7 @@ This occurs when a roadmap (either `master-roadmap.md` or an `l[n]-sl[m]-roadmap
 These templates are located in `standards/templates/`:
 
 *   **Analysis Report Template**: [Analysis Report Template](../standards/templates/analysis-report-template.md)
-*   **Roadmap Template**: [Roadmap Template](../standards/templates/roadmap-template.md)
+*   **Roadmap Template**: [Roadmap Template](./roadmap-template.md)
 *   **Frontmatter Template**: [Frontmatter Template](../standards/templates/tpl-canonical-frontmatter.md)
     *   *Note: This is the canonical frontmatter template that **MUST** be used for all content files.*
 

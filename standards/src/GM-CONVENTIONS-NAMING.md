@@ -120,8 +120,8 @@ lifecycle_gatekeeper, impact_areas, change_log_url
 ```
 standards_index.json, standards_index.schema.json,
 naming_exceptions.json, protected_names.json,
-collection_definitions.yaml, mt-schema-frontmatter.yaml,
-mt-registry-tag-glossary.yaml
+collection_definitions.yaml, schema-registry.jsonld,
+master-index.jsonld, shacl-shapes.ttl
 ```
 
 ### 2.4 Tool Script Names

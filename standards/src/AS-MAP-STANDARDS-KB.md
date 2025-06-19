@@ -56,10 +56,9 @@ kb_definition:
     - part_id: "content-style-policies"
       part_name: "Content Style and Policies (CS)"
       description: "Standards and policies related to content authoring, tone, language, presentation, and accessibility"
-      standard_count: 11
+      standard_count: 10
       key_standards:
         - "CS-POLICY-TONE-LANGUAGE"
-        - "CS-POLICY-ACCESSIBILITY"
         - "CS-POLICY-DIGITAL-ABSTRACTION"
         - "CS-CONTENT-PROFILING-POLICY"
         - "CS-LINKING-INTERNAL-POLICY"
@@ -86,7 +85,7 @@ kb_definition:
         - "MT-SCHEMA-FRONTMATTER"
         - "MT-TAGGING-STRATEGY-POLICY"
         - "MT-KEYREF-MANAGEMENT"
-        - "MT-REGISTRY-TAG-GLOSSARY"
+        - "OM-PROCESS-SST-UPDATE"
         - "MT-STRATEGY-PRIMARY-TOPIC-KEYWORD"
         - "MT-TAGS-IMPLEMENTATION"
       
@@ -189,12 +188,11 @@ The Standards Knowledge Base is organized into 8 logical "Parts," aligned with t
 - `[[AS-STRUCTURE-TEMPLATES-DIRECTORY]]` - Template organization
 - `[[AS-ROOT-STANDARDS-KB]]` - Standards KB root presentation
 
-### 3.2. Part 2: Content Style and Policies (CS) - 11 Standards
-**Overview:** Standards and policies related to content authoring, tone, language, presentation, and accessibility.
+### 3.2. Part 2: Content Style and Policies (CS) - 10 Standards
+**Overview:** Standards and policies related to content authoring, tone, language, presentation, accessibility, and comprehensive compliance enforcement.
 
 **Key Documents:**
 - `[[CS-POLICY-TONE-LANGUAGE]]` - Tone and language guidelines
-- `[[CS-POLICY-ACCESSIBILITY]]` - Accessibility requirements
 - `[[CS-POLICY-DIGITAL-ABSTRACTION]]` - Digital abstraction principles
 - `[[CS-CONTENT-PROFILING-POLICY]]` - Content profiling methodology
 - `[[CS-LINKING-INTERNAL-POLICY]]` - Internal linking policies
@@ -204,6 +202,7 @@ The Standards Knowledge Base is organized into 8 logical "Parts," aligned with t
 - `[[CS-POLICY-KB-PART-CONTENT]]` - Part content guidelines
 - `[[CS-POLICY-LAYERED-INFORMATION]]` - Information layering
 - `[[CS-POLICY-SCOPE-INCLUSION]]` and `[[CS-POLICY-SCOPE-EXCLUSION]]` - Scope policies
+- `[[CS-POLICY-COMPLIANCE-ENFORCEMENT]]` - Comprehensive enforcement mechanisms implementing governance decisions
 
 ### 3.3. Part 3: General Management (GM) - 6 Standards
 **Overview:** Guidance documents, glossaries, and policies for overall KB management, user onboarding, and understanding the standards ecosystem.
@@ -223,21 +222,21 @@ The Standards Knowledge Base is organized into 8 logical "Parts," aligned with t
 - `[[MT-SCHEMA-FRONTMATTER]]` - YAML frontmatter schema (auto-generated)
 - `[[MT-TAGGING-STRATEGY-POLICY]]` - Tagging strategy and implementation
 - `[[MT-KEYREF-MANAGEMENT]]` - Key reference management
-- `[[MT-REGISTRY-TAG-GLOSSARY]]` - Tag glossary registry
+- `[[OM-PROCESS-SST-UPDATE]]` - Process for updating JSON-LD schema registry
 - `[[MT-STRATEGY-PRIMARY-TOPIC-KEYWORD]]` - Primary topic strategy
 - `[[MT-TAGS-IMPLEMENTATION]]` - Tag implementation guidelines
 
 ### 3.5. Part 5: Operational Management and Lifecycles (OM) - 6 Standards
-**Overview:** Policies and procedures for the operational aspects of standards and content, including governance, versioning, deprecation, and publishing pipelines.
+**Overview:** Policies and procedures for the operational aspects of standards and content, including comprehensive governance with authority structures, versioning, deprecation, and publishing pipelines.
 
 **Key Documents:**
-- `[[OM-POLICY-STANDARDS-GOVERNANCE]]` - Standards governance framework
-- `[[OM-POLICY-STANDARDS-DEPRECATION]]` - Deprecation lifecycle management
+- `[[OM-POLICY-STANDARDS-GOVERNANCE]]` - Comprehensive standards governance framework with Governance Board authority, Standards Committee structure, and enforcement integration
+- `[[OM-POLICY-STANDARDS-DEPRECATION]]` - Deprecation lifecycle management integrated with governance authority
 - `[[OM-OVERVIEW-PUBLISHING-PIPELINE]]` - Publishing pipeline overview
 - `[[OM-VERSIONING-CHANGELOGS]]` - Versioning and changelog standards
 - `[[OM-AUTOMATION-LLM-IO-SCHEMAS]]` - LLM automation schemas
 - `[[OM-AUTOMATION-LLM-PROMPT-LIBRARY]]` - LLM prompt standardization
-- `[[OM-PROCESS-SST-UPDATE]]` - Standards update process
+- `[[OM-PROCESS-SST-UPDATE]]` - Standards update process integrated with governance workflows
 
 ### 3.6. Part 6: Quality, Metrics, and Validation (QM) - 1 Standard
 **Overview:** Standards and procedures related to ensuring content quality, defining metrics, and validating metadata and content against defined rules.
@@ -298,9 +297,25 @@ The Standards Knowledge Base is organized into 8 logical "Parts," aligned with t
 
 ## 5. Maintenance and Governance
 
-The Standards KB follows the governance frameworks defined in:
-- `[[OM-POLICY-STANDARDS-GOVERNANCE]]` - Overall governance
-- `[[GM-REGISTRY-GOVERNANCE]]` - Registry management
-- `[[OM-POLICY-STANDARDS-DEPRECATION]]` - Lifecycle management
+The Standards KB follows a comprehensive governance and enforcement framework with clear authority separation:
 
-This map serves as the authoritative guide to the comprehensive standards ecosystem supporting the knowledge base infrastructure.
+### 5.1. Governance Authority (Standards Creation and Lifecycle)
+- `[[OM-POLICY-STANDARDS-GOVERNANCE]]` - Comprehensive governance framework with Governance Board authority, Standards Committee structure, lifecycle management, and tool integration
+- `[[GM-REGISTRY-GOVERNANCE]]` - Registry management and JSON-LD schema governance  
+- `[[OM-POLICY-STANDARDS-DEPRECATION]]` - Deprecation lifecycle management integrated with governance authority
+
+### 5.2. Enforcement Authority (Standards Compliance)
+- `[[CS-POLICY-COMPLIANCE-ENFORCEMENT]]` - Comprehensive enforcement mechanisms, violation classification, disciplinary procedures, and automated validation implementing governance decisions
+
+### 5.3. Integration and Authority Hierarchy
+**Governance → Enforcement Flow:**
+- Standards approved by Governance Board automatically become enforceable under CS compliance framework
+- Governance decisions trigger enforcement rule updates and validation adjustments
+- Governance authority takes precedence for standards definition and modification decisions
+
+**Enforcement → Governance Escalation:**
+- Systemic violation patterns escalated to Standards Committee for potential standards revision
+- Exception requests involving standards interpretation escalated to governance authority
+- Complex appeals involving standards validity processed through governance review procedures
+
+This map serves as the authoritative guide to the comprehensive standards ecosystem supporting the knowledge base infrastructure with integrated governance and enforcement mechanisms.

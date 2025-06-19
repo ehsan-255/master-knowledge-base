@@ -28,7 +28,7 @@ impact_areas: []
 ### **FUNDAMENTAL CHARACTERISTICS**
 - **OUTLINES** various high-level steps, each of which **WILL** be treated as an independent job or project requiring its own `analysis-report` and `roadmap`
 - **WORK DECOMPOSITION** begins with identifying the largest segments of work and progresses incrementally to smaller, actionable units
-- **THE SMALLEST GRANULAR TASK** must be executable within a single sprint and **MUST** follow the format in `active-project/roadmap-template`
+- **THE SMALLEST GRANULAR TASK** must be executable within a single sprint and **MUST** follow the format in `active-project/roadmap-template.md`
 - **DECOMPOSITION STRUCTURE**: Uses "sub-levels" (`sl[n]`) for hierarchical task breakdown
 
 ---
@@ -153,7 +153,7 @@ impact_areas: []
 ## **TEMPLATE INTEGRATION — MANDATORY COMPLIANCE**
 
 ### **ROADMAP TEMPLATE USAGE**
-- **LOWEST LEVEL TASKS** must follow `active-project/roadmap-template` format
+- **LOWEST LEVEL TASKS** must follow `active-project/roadmap-template.md` format
 - **CONSISTENT STRUCTURE** across all roadmap documents
 - **STANDARDIZED TERMINOLOGY** using established hierarchy
 - **MANDATORY CHECKLISTS** for all roadmaps
@@ -192,7 +192,7 @@ impact_areas: []
 
 ### **DIRECT ROADMAP EXECUTION**
 - **MINOR PROJECTS** may not require separate master roadmap
-- **DIRECT USAGE** of `active-project/roadmap-template` for task execution
+- **DIRECT USAGE** of `active-project/roadmap-template.md` for task execution
 - **EXPLICIT DOCUMENTATION** of this decision and rationale
 - **SIMPLIFIED TRACKING** with reduced overhead
 

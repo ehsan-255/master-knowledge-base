@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-17 06:29:52  
+**Generated**: 2025-06-17 12:19:45  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -46,6 +46,7 @@
 │   │   📄 CS-LINKING-INTERNAL-POLICY.md
 │   │   📄 CS-MODULARITY-TRANSCLUSION-POLICY.md
 │   │   📄 CS-POLICY-ACCESSIBILITY.md
+│   │   📄 CS-POLICY-COMPLIANCE-ENFORCEMENT.md
 │   │   📄 CS-POLICY-DIGITAL-ABSTRACTION.md
 │   │   📄 CS-POLICY-KB-IDENTIFICATION.md
 │   │   📄 CS-POLICY-KB-PART-CONTENT.md
@@ -69,6 +70,7 @@
 │   │   📄 MT-TAGS-IMPLEMENTATION.md
 │   │   📄 OM-AUTOMATION-LLM-IO-SCHEMAS.md
 │   │   📄 OM-AUTOMATION-LLM-PROMPT-LIBRARY.md
+│   │   📄 OM-AUTOMATION-VALIDATION-REQUIREMENTS.md
 │   │   📄 OM-OVERVIEW-PUBLISHING-PIPELINE.md
 │   │   📄 OM-POLICY-STANDARDS-DEPRECATION.md
 │   │   📄 OM-POLICY-STANDARDS-GOVERNANCE.md
@@ -191,15 +193,22 @@
 │   │   📄 universal_kb_id_migration.py
 │   📊 reports
 │   │   📄 architecture-protection-completion-20250616-2321.md
+│   │   📄 audit-analysis-20250617-0630.json
+│   │   📄 audit-analysis-20250617-0632.json
 │   │   📄 comprehensive-architecture-audit-20250616-2310.md
+│   │   📄 comprehensive-frontmatter-enhancement-audit-20250617-0633.md
 │   │   📄 comprehensive-standards-analysis-20250616-1433.md
 │   │   📄 critical-architecture-audit-20250616-2304.md
 │   │   📄 gm-conventions-naming-reduction-completion-report.md
 │   │   📄 gm-guide-kb-usage-reduction-completion-report-20250616-2352.md
+│   │   📄 kb-id-migration-report-20250617-0632.json
+│   │   📄 kb-id-migration-report-20250617-0633.json
+│   │   📄 p0-critical-placeholder-completion-report-20250617-0648.md
 │   │   📄 post-migration-validation-report-20250617-0212.json
 │   │   📄 shacl-base-schema-validation-20250617-0209.json
 │   │   📄 standards-consolidation-completion-report-20250616-2212.md
 │   │   📄 ultimate-frontmatter-enhancement-implementation-prompt.md
+│   │   📄 validation-full-repository-20250617-0633.json
 │   │   📄 validation-report-after-vocab-update-20250617-0216.json
 │   │   📄 validation-test-report-20250617-0209.json
 │   📁 scribe

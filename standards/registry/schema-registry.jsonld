@@ -329,19 +329,19 @@
       "kb:vocabularyName": "audience_type",
       "kb:values": [
         {
-          "id": "AUTHOR",
-          "preferred_label": "Author",
-          "description": "Primary content producers and maintainers"
+          "id": "architect-llm",
+          "preferred_label": "Architect and LLM",
+          "description": "For the architect and LLM consumption"
         },
         {
-          "id": "ENGINEER",
-          "preferred_label": "Engineer",
-          "description": "Technical stakeholders integrating or tooling the KB"
+          "id": "llm",
+          "preferred_label": "LLM Only",
+          "description": "For LLM-only consumption"
         },
         {
-          "id": "REVIEWER",
-          "preferred_label": "Reviewer",
-          "description": "Subject‑matter or governance reviewers"
+          "id": "machine-llm",
+          "preferred_label": "Machine and LLM",
+          "description": "For machine-readable, script-specific and LLM consumptions"
         }
       ]
     },

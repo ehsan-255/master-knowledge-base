@@ -1,0 +1,10 @@
+--- Starting frontmatter migration for: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base\archive\legacy-root-content-20250602 (Dry Run: True) ---
+Processing file: archive\legacy-root-content-20250602\kb-directory.md
+  Added/Updated field 'date-modified' with value '2025-06-17'
+  Dry run: Would migrate archive\legacy-root-content-20250602\kb-directory.md
+Processing file: archive\legacy-root-content-20250602\_key_definitions.md
+  Added/Updated field 'date-modified' with value '2025-06-17'
+  Dry run: Would migrate archive\legacy-root-content-20250602\_key_definitions.md
+--- Migration Finished ---
+Total processed: 2
+Total skipped (no changes/errors): 0
