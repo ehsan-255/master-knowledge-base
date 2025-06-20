@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Heading Syntax'
 standard_id: SF-SYNTAX-HEADINGS
 aliases:
@@ -29,7 +30,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Document structure
 - Content hierarchy
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Heading Syntax (SF-SYNTAX-HEADINGS)
 

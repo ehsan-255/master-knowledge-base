@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Content Document (Chapter) Internal Structure'
 standard_id: AS-STRUCTURE-DOC-CHAPTER
 aliases:
@@ -39,7 +40,6 @@ impact_areas:
 - Accessibility
 - Semantic structure
 - Content organization
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Content Document (Chapter) Internal Structure (AS-STRUCTURE-DOC-CHAPTER)
 

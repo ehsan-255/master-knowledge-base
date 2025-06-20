@@ -67,4 +67,4 @@ This standard applies to the governance body responsible for the knowledge base 
 - [[CS-POLICY-TONE-LANGUAGE]] - Which emphasizes consistent use of terminology.
 
 ---
-*This standard (GM-MANDATE-STANDARDS-GLOSSARY) is based on rules 1.1 and 1.2 previously defined in U-GLOSSARY-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the standards terminology glossary.*
+*This standard (GM-MANDATE-STANDARDS-GLOSSARY) is based on rules 1.1 and 1.2 previously defined in U-GLOSSARY-001 (now deprecated and superseded by this standard), rephrasing them as mandates for the existence and content of the standards terminology glossary.*

@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Tag Implementation Guidelines'
 standard_id: MT-TAGS-IMPLEMENTATION
 aliases:
@@ -31,7 +32,6 @@ impact_areas:
 - Content categorization
 - Metadata consistency
 - Search optimization
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Tag Implementation and Syntax (MT-TAGS-IMPLEMENTATION)
 
@@ -83,4 +83,4 @@ A dedicated Tag Glossary document MUST exist and be maintained. This glossary se
 - [[MT-REGISTRY-TAG-GLOSSARY]] - The official glossary of all approved tags and their definitions.
 
 ---
-*This standard (MT-TAGS-IMPLEMENTATION) is based on rules 1.1, 1.2, 1.3, 1.4, and part of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*
+*This standard (MT-TAGS-IMPLEMENTATION) is based on rules 1.1, 1.2, 1.3, 1.4, and part of 1.9 previously defined in U-TAG-001 (now deprecated and superseded by this standard and [[MT-TAGGING-STRATEGY-POLICY]]).*

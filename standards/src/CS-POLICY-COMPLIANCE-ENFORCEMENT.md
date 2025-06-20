@@ -35,7 +35,6 @@ impact_areas:
 - Enforcement operations
 - Risk management
 - Operational integrity
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Standards Compliance Enforcement (CS-POLICY-COMPLIANCE-ENFORCEMENT)
 

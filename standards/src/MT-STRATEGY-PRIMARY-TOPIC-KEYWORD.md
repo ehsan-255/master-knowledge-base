@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Primary Topic Keyword Strategy'
 standard_id: MT-STRATEGY-PRIMARY-TOPIC-KEYWORD
 aliases:
@@ -30,7 +31,6 @@ impact_areas:
 - Content categorization
 - Search optimization
 - Metadata consistency
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Primary Topic Keyword Strategy
 

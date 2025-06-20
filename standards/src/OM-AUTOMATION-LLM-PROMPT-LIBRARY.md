@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: LLM Automation Prompt Library'
 standard_id: OM-AUTOMATION-LLM-PROMPT-LIBRARY
 aliases:
@@ -32,7 +33,6 @@ impact_areas:
 - Prompt management
 - Template standardization
 - Workflow integration
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: LLM Automation Prompt Library
 

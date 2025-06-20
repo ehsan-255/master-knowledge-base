@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Layered Information Presentation and Progressive Disclosure'
 standard_id: CS-POLICY-LAYERED-INFORMATION
 aliases:
@@ -35,7 +36,6 @@ impact_areas:
 - Comprehension
 - Knowledge retention
 - Catering to diverse expertise levels
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Layered Information Presentation and Progressive Disclosure (CS-POLICY-LAYERED-INFORMATION)
 

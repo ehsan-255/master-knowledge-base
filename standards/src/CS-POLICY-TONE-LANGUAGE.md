@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Clarity, Objectivity, and Consistency in Language'
 standard_id: CS-POLICY-TONE-LANGUAGE
 aliases:
@@ -31,7 +32,6 @@ impact_areas:
 - Professionalism of content
 - Consistency across KB
 - Accessibility
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Clarity, Objectivity, and Consistency in Language (CS-POLICY-TONE-LANGUAGE)
 

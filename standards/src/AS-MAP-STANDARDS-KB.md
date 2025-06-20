@@ -35,13 +35,12 @@ impact_areas:
 - Content organization
 - Discoverability of standards
 - Authoring within the Standards KB
-change_log_url: 'standards/changelog.md'
 kb_definition:
   parts:
     - part_id: "architecture-structure"
       part_name: "Architecture and Structure (AS)"
       description: "Standards defining the overall organization of knowledge bases, individual documents, and metadata structures"
-      standard_count: 13
+    standard_count: 15
       key_standards:
         - "AS-KB-DIRECTORY-STRUCTURE"
         - "AS-STRUCTURE-KB-ROOT"
@@ -56,7 +55,7 @@ kb_definition:
     - part_id: "content-style-policies"
       part_name: "Content Style and Policies (CS)"
       description: "Standards and policies related to content authoring, tone, language, presentation, and accessibility"
-      standard_count: 10
+    standard_count: 14
       key_standards:
         - "CS-POLICY-TONE-LANGUAGE"
         - "CS-POLICY-DIGITAL-ABSTRACTION"
@@ -68,7 +67,7 @@ kb_definition:
     - part_id: "general-management"
       part_name: "General Management (GM)"
       description: "Guidance documents, glossaries, and policies for overall KB management, user onboarding, and understanding the standards ecosystem"
-      standard_count: 6
+    standard_count: 7
       key_standards:
         - "GM-GUIDE-KB-USAGE"
         - "GM-CONVENTIONS-NAMING"
@@ -80,7 +79,7 @@ kb_definition:
     - part_id: "metadata-tagging"
       part_name: "Metadata, Tagging, and Registries (MT)"
       description: "Standards for document metadata (frontmatter), tagging strategies, keyref systems, and the governance of controlled vocabularies"
-      standard_count: 6
+    standard_count: 6
       key_standards:
         - "MT-SCHEMA-FRONTMATTER"
         - "MT-TAGGING-STRATEGY-POLICY"
@@ -92,7 +91,7 @@ kb_definition:
     - part_id: "operational-management"
       part_name: "Operational Management and Lifecycles (OM)"
       description: "Policies and procedures for the operational aspects of standards and content, including governance, versioning, deprecation, and publishing pipelines"
-      standard_count: 6
+    standard_count: 9
       key_standards:
         - "OM-POLICY-STANDARDS-GOVERNANCE"
         - "OM-POLICY-STANDARDS-DEPRECATION"
@@ -104,14 +103,14 @@ kb_definition:
     - part_id: "quality-validation"
       part_name: "Quality, Metrics, and Validation (QM)"
       description: "Standards and procedures related to ensuring content quality, defining metrics, and validating metadata and content against defined rules"
-      standard_count: 1
+    standard_count: 1
       key_standards:
         - "QM-VALIDATION-METADATA"
       
     - part_id: "syntax-formatting"
       part_name: "Syntax, Formatting, and Conventions (SF)"
       description: "Specific rules for Markdown syntax, file formatting, naming conventions, and other presentational aspects of content"
-      standard_count: 26
+    standard_count: 25
       key_standards:
         - "SF-FORMATTING-MARKDOWN-GENERAL"
         - "SF-SYNTAX-YAML-FRONTMATTER"
@@ -133,7 +132,7 @@ kb_definition:
     - part_id: "utilities-assets"
       part_name: "Utilities, Assets, and Automation (UA)"
       description: "Standards for supporting utilities (like keyrefs), management of assets (like images), and schemas for automation processes (like LLM I/O)"
-      standard_count: 2
+    standard_count: 4
       key_standards:
         - "UA-KEYDEFS-GLOBAL"
         - "UA-SCHEMA-LLM-IO"

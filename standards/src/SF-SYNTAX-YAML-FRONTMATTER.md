@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: YAML Frontmatter Syntax'
 standard_id: SF-SYNTAX-YAML-FRONTMATTER
 aliases:
@@ -29,7 +30,6 @@ impact_areas:
 - Frontmatter syntax
 - Metadata structure
 - Document parsing
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown YAML Frontmatter Syntax (SF-SYNTAX-YAML-FRONTMATTER)
 

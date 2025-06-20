@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: TODO Comment Syntax'
 standard_id: SF-SYNTAX-TODO-COMMENTS
 aliases:
@@ -28,7 +29,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Task tracking
 - Content workflow
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: TODO Comment Syntax (SF-SYNTAX-TODO-COMMENTS)
 

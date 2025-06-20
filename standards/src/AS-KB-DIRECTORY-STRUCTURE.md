@@ -1,4 +1,5 @@
 ---
+
 title: Knowledge Base Directory Structure Standard
 standard_id: AS-KB-DIRECTORY-STRUCTURE
 aliases:
@@ -28,7 +29,6 @@ impact_areas:
 - Authoring workflow
 - Build process
 - Navigation
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # AS-KB-DIRECTORY-STRUCTURE: Knowledge Base Directory Structure Standard
 

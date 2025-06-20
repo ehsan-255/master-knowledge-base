@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Asset Organization and Naming'
 standard_id: AS-STRUCTURE-ASSET-ORGANIZATION
 aliases:
@@ -34,7 +35,6 @@ impact_areas:
 - Link integrity for assets
 - Authoring consistency
 - Build processes
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Asset Organization and Naming (AS-STRUCTURE-ASSET-ORGANIZATION)
 
@@ -105,4 +105,4 @@ This standard applies to all non-Markdown files that are part of a Knowledge Bas
 - [[AS-KB-DIRECTORY-STRUCTURE]] - For the overall KB directory structure, including the location of the KB-specific `assets` folder.
 
 ---
-*This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 from COL-LINKING-UNIVERSAL.md.*
+*This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 (now deprecated and superseded by this standard).*

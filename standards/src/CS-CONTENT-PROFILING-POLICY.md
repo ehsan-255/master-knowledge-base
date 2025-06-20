@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Content Profiling and Conditional Text'
 standard_id: CS-CONTENT-PROFILING-POLICY
 aliases:
@@ -33,7 +34,6 @@ impact_areas:
 - Authoring complexity
 - Maintenance of profiled content
 - User experience
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Content Profiling and Conditional Text (CS-CONTENT-PROFILING-POLICY)
 

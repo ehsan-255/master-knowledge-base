@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Metadata Validation Procedures'
 standard_id: QM-VALIDATION-METADATA
 aliases:
@@ -37,7 +38,6 @@ impact_areas:
 - Automated processing
 - Interoperability
 - Search accuracy
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Metadata Validation Procedures (QM-VALIDATION-METADATA)
 

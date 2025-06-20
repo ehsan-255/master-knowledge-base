@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: LLM Automation Input/Output Schemas'
 standard_id: OM-AUTOMATION-LLM-IO-SCHEMAS
 aliases:
@@ -37,7 +38,6 @@ impact_areas:
 - Workflow integration
 - Data consistency
 - Automation reliability
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: LLM Automation Input/Output Schemas (OM-AUTOMATION-LLM-IO-SCHEMAS)
 

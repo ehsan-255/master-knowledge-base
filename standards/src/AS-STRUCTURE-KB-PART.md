@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Knowledge Base Part Structure and Overview'
 standard_id: AS-STRUCTURE-KB-PART
 aliases:
@@ -33,7 +34,6 @@ impact_areas:
 - Content discoverability
 - Authoring consistency
 - User onboarding
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Knowledge Base Part Structure and Overview (AS-STRUCTURE-KB-PART)
 

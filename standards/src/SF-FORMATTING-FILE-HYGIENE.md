@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: File Hygiene and Formatting'
 standard_id: SF-FORMATTING-FILE-HYGIENE
 aliases:
@@ -32,7 +33,6 @@ impact_areas:
 - Cross-platform compatibility
 - File integrity
 - Automated processing
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: File Hygiene and Formatting (SF-FORMATTING-FILE-HYGIENE)
 

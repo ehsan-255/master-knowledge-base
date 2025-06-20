@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Publishing Pipeline Overview'
 standard_id: OM-OVERVIEW-PUBLISHING-PIPELINE
 aliases:
@@ -36,7 +37,6 @@ impact_areas:
 - Automation
 - Knowledge base accessibility
 - Operational efficiency
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Publishing Pipeline Overview (OM-OVERVIEW-PUBLISHING-PIPELINE)
 

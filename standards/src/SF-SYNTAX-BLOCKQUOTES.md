@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Blockquote Syntax'
 standard_id: SF-SYNTAX-BLOCKQUOTES
 aliases:
@@ -29,7 +30,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Quote formatting
 - Content attribution
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Blockquote Syntax (SF-SYNTAX-BLOCKQUOTES)
 

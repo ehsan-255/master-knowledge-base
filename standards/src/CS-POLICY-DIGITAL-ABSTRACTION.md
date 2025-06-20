@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Translating Non-Digital Concepts for Digital Workflows'
 standard_id: CS-POLICY-DIGITAL-ABSTRACTION
 aliases:
@@ -33,7 +34,6 @@ impact_areas:
 - KB scope adherence
 - User understanding of abstracted processes
 - Methodology documentation
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Translating Non-Digital Concepts for Digital Workflows (CS-POLICY-DIGITAL-ABSTRACTION)
 

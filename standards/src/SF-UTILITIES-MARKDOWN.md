@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Markdown Utilities Syntax'
 standard_id: SF-UTILITIES-MARKDOWN
 aliases:
@@ -34,7 +35,6 @@ impact_areas:
 - Character handling
 - Task tracking
 - Content maintenance
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Markdown Utilities Syntax (SF-UTILITIES-MARKDOWN)
 

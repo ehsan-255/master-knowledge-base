@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Content Schema for Concept Definitions'
 standard_id: AS-SCHEMA-CONCEPT-DEFINITION
 aliases:
@@ -31,7 +32,6 @@ impact_areas:
 - Clarity of definitions
 - User understanding of terminology
 - Knowledge base coherence
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Content Schema for Concept Definitions (AS-SCHEMA-CONCEPT-DEFINITION)
 

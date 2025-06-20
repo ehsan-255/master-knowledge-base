@@ -84,4 +84,4 @@ This standard applies to the governance body responsible for the knowledge base 
 - [[AS-STRUCTURE-MASTER-KB-INDEX]] - Relevant for explaining navigation via `kb-directory.md`.
 
 ---
-*This standard (GM-MANDATE-KB-USAGE-GUIDE) is based on rules 1.1 through 1.4 previously defined in U-ONBOARDING-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the guide.*
+*This standard (GM-MANDATE-KB-USAGE-GUIDE) is based on rules 1.1 through 1.4 previously defined in U-ONBOARDING-001 (now deprecated and superseded by this standard), rephrasing them as mandates for the existence and content of the guide.*

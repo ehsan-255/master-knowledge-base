@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Unique Knowledge Base Identification and Naming'
 standard_id: CS-POLICY-KB-IDENTIFICATION
 aliases:
@@ -31,7 +32,6 @@ impact_areas:
 - Repository organization
 - Link integrity
 - Authoring clarity
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Unique Knowledge Base Identification and Naming (CS-POLICY-KB-IDENTIFICATION)
 

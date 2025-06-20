@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Universal Principles for Content Inclusion'
 standard_id: CS-POLICY-SCOPE-INCLUSION
 aliases:
@@ -32,7 +33,6 @@ impact_areas:
 - User trust
 - KB utility
 - Maintainability
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Universal Principles for Content Inclusion (CS-POLICY-SCOPE-INCLUSION)
 

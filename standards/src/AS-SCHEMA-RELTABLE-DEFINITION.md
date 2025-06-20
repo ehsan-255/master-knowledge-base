@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Relationship Table (Reltable) Definition'
 standard_id: AS-SCHEMA-RELTABLE-DEFINITION
 aliases:
@@ -36,7 +37,6 @@ impact_areas:
 - Semantic linking
 - Knowledge graph generation
 - Content navigability
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Relationship Table (Reltable) Definition (AS-SCHEMA-RELTABLE-DEFINITION)
 

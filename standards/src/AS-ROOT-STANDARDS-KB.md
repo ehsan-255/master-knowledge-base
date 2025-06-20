@@ -2,13 +2,10 @@
 title: Standards Knowledge Base Root
 standard_id: AS-ROOT-STANDARDS-KB
 aliases:
-- Standards KB Main Page
-- Root for Standards KB
-- Standards KB Root
-- Root of Standards KB
+- Standards Root
+- Standards Index
 tags:
 - content-type/navigation-document
-- content-type/standard-definition
 - criticality/p0-critical
 - kb-id/standards
 - status/active
@@ -17,7 +14,7 @@ tags:
 - topic/kb-root
 - topic/structure
 kb-id: standards
-info-type: standard-definition
+info-type: navigation-document
 primary-topic: Main entry point and master table of contents for the Standards Knowledge
   Base.
 related-standards:
@@ -37,7 +34,6 @@ impact_areas:
 - KB navigation
 - Content discoverability
 - User orientation
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standards Knowledge Base Root (AS-ROOT-STANDARDS-KB)
 
@@ -62,9 +58,9 @@ The purpose of this KB is to ensure consistency, quality, and interoperability a
 The following sections categorize and link to the core documents that define our knowledge management standards.
 
 ### 1. Foundational Concepts
-    - [[CONCEPT-HYPOTHESIS-TESTING|Concept: Hypothesis Testing]]
-    - [[CONCEPT-P-VALUE|Concept: P-Value]]
-    - [[CONCEPT-CORE-RESEARCH-METHODOLOGY|Concept: Core Research Methodology]]
+
+_Foundational concept documents are planned for future development._
+_This section will be populated as concept documents are created with IDs starting with 'CONCEPT-'._
 
 ### 2. Architecture and Structure (AS Domain)
     - [[AS-KB-DIRECTORY-STRUCTURE|Knowledge Base Directory Structure Standard]]

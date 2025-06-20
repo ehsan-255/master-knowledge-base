@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Standards Deprecation Process'
 standard_id: OM-POLICY-STANDARDS-DEPRECATION
 aliases:
@@ -28,7 +29,6 @@ impact_areas:
 - Standards lifecycle
 - Change management
 - Documentation integrity
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Deprecation of Standards (OM-POLICY-STANDARDS-DEPRECATION)
 
@@ -92,4 +92,4 @@ This policy applies to all standard documents within the knowledge base ecosyste
 - [[OM-POLICY-STANDARDS-GOVERNANCE]] - As the decision to deprecate a standard is a governance action.
 
 ---
-*This policy (OM-POLICY-STANDARDS-DEPRECATION) is based on rules 1.1 through 1.4 previously defined in U-DEPRECATION-001 from COL-GOVERNANCE-UNIVERSAL.md.*
+*This policy (OM-POLICY-STANDARDS-DEPRECATION) is based on rules 1.1 through 1.4 previously defined in U-DEPRECATION-001 (now deprecated and superseded by this policy).*

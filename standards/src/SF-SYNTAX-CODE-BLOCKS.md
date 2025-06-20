@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Code Block Syntax'
 standard_id: SF-SYNTAX-CODE-BLOCKS
 aliases:
@@ -28,7 +29,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Technical content
 - Code representation
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Code Block Syntax (SF-SYNTAX-CODE-BLOCKS)
 

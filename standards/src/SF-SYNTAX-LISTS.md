@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: List Syntax'
 standard_id: SF-SYNTAX-LISTS
 aliases:
@@ -29,7 +30,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Content organization
 - Document hierarchy
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: List Syntax (SF-SYNTAX-LISTS)
 

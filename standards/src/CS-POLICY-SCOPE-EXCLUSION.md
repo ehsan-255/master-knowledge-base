@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Universal Principles for Content Exclusion'
 standard_id: CS-POLICY-SCOPE-EXCLUSION
 aliases:
@@ -33,7 +34,6 @@ impact_areas:
 - Data security
 - KB quality and focus
 - User trust
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Universal Principles for Content Exclusion (CS-POLICY-SCOPE-EXCLUSION)
 

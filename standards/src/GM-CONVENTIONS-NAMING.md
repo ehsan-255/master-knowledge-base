@@ -41,7 +41,6 @@ impact_areas:
 - Frontmatter schema
 - Variable naming
 - API consistency
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Universal Naming Conventions - Single Source of Truth
 

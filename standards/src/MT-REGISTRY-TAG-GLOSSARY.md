@@ -1,4 +1,5 @@
 ---
+
 title: Master Tag Glossary and Registry
 standard_id: MT-REGISTRY-TAG-GLOSSARY
 aliases:
@@ -37,7 +38,6 @@ impact_areas:
 - Content discoverability
 - Automation
 - Search accuracy
-change_log_url: ./changelog.md
 ---
 # Master Tag Glossary and Registry (MT-REGISTRY-TAG-GLOSSARY)
 

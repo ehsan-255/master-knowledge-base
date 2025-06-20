@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Table Syntax'
 standard_id: SF-SYNTAX-TABLES
 aliases:
@@ -29,7 +30,6 @@ lifecycle_gatekeeper: Architect-Review
 impact_areas:
 - Data presentation
 - Content structure
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Table Syntax (SF-SYNTAX-TABLES)
 

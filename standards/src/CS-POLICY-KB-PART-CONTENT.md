@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Content Organization within Knowledge Base Parts'
 standard_id: CS-POLICY-KB-PART-CONTENT
 aliases:
@@ -32,7 +33,6 @@ impact_areas:
 - User navigation
 - Learning pathways
 - Information architecture
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Policy: Content Organization within Knowledge Base Parts (CS-POLICY-KB-PART-CONTENT)
 

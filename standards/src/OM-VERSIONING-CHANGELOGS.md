@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Versioning and Changelogs for Standard Files'
 standard_id: OM-VERSIONING-CHANGELOGS
 aliases:
@@ -31,7 +32,6 @@ impact_areas:
 - Change tracking
 - Historical record keeping
 - User awareness of changes
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Versioning and Changelogs for Standard Files (OM-VERSIONING-CHANGELOGS)
 
@@ -128,4 +128,4 @@ The changelog MUST record, at a minimum:
 - [[MT-SCHEMA-FRONTMATTER]] - Defines the mandatory frontmatter keys (`version`, `date-created`, `date-modified`, `change_log_url`) and their formats.
 
 ---
-*This standard (OM-VERSIONING-CHANGELOGS) is based on rules 1.1 through 1.3 previously defined in U-VERSIONING-001 from COL-GOVERNANCE-UNIVERSAL.md.*
+*This standard (OM-VERSIONING-CHANGELOGS) is based on rules 1.1 through 1.3 previously defined in U-VERSIONING-001 (now deprecated and superseded by this standard).*

@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Registry Governance Framework'
 standard_id: GM-REGISTRY-GOVERNANCE
 aliases:
@@ -29,7 +30,6 @@ impact_areas:
 - Registry management
 - Vocabulary control
 - Standards consistency
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Registry Governance Policy (GM-REGISTRY-GOVERNANCE)
 

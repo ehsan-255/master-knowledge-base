@@ -1,4 +1,5 @@
 ---
+
 title: 'Standard: Knowledge Base Root Structure'
 standard_id: AS-STRUCTURE-KB-ROOT
 aliases:
@@ -38,7 +39,6 @@ impact_areas:
 - Build system
 - User experience
 - Maintainability
-change_log_url: '[MISSING_CHANGE_LOG_URL]'
 ---
 # Standard: Knowledge Base Root Structure (AS-STRUCTURE-KB-ROOT)
 
