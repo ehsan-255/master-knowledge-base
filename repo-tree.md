@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-06-17 12:19:45  
+**Generated**: 2025-07-13 03:11:09  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -12,8 +12,9 @@
 📁 master-knowledge-base
 🏗️ active-project
 │   🦮 project-guidelines
+│   │   📄 main-project-guidelines.md
 │   │   📄 project-reminders.md
-│   │   📄 project-work-ethic-guidelines.md
+│   │   📄 sequential-thinking-guidelines.md
 │   📄 current-state.md
 │   📄 master-analysis-report-creation-guide.md
 │   📄 master-roadmap-development-guide.md
@@ -23,10 +24,41 @@
 │   📄 roadmap-template.md
 🗃️ archive ALWAYS ARCHIVE HERE
 📁 change-requests
+📁 llm-reports
+│   📄 audit-project-initiation-quality-20250120-0200.md
+│   📄 audit-remediation-execution-quality-20250620-0000.md
+│   📄 audit-remediation-execution-quality-20250621-0000.md
+│   📄 audit-remediation-implementation-summary-20250619-2103.md
+│   📄 audit-remediation-investigation-plan-20250619-0000.md
+│   📄 audit-report-remediation-plan-20250120-0100.md
+│   📄 audit-report-remediation-plan-20250619-01.md
+│   📄 comprehensive-standards-analysis-fact-verified-20250120.md
+│   📄 comprehensive-standards-analysis-final-20250618-2300.md
+│   📄 guideline-conflict-analysis-report.md
+│   📄 investigation-draft-discrepancy-20250620-0100.md
+│   📄 master-knowledge-base-redesign-implementation-20250617-2151.md
+│   📄 project-management-methodology-analysis-20250619-0700.md
+│   📄 project-progression-decomposition-report-20250619-064000.md
+│   📄 project-protocol-refinement-analysis-20250619.md
+│   📄 remediation-investigation-plan-20250619.md
+│   📄 sf-domain-consolidation-phase-1-completion-20250618-0250.md
+│   📄 sf-domain-governance-consolidation-project-final-completion-20250618-0350.md
+│   📄 summary-report-20250620-1000.md
+│   📄 summary-report-20250620-1030.md
+│   📄 summary-report-20250621-0000.md
+│   📄 summary-report-audit-remediation-r2-20250620.md
+│   📄 tactical-redundancy-elimination-completion-20250618-1008.md
+│   📄 validation-framework-consolidation-completion-20250618-0120.md
+│   📄 verbosity-consolidation-reversal-completion-20250120.md
+│   📄 yaml-to-jsonld-registry-migration-20250618-0052.md
 ⚖️ standards
+│   🗃️ archive ALWAYS ARCHIVE HERE
+│   │   📁 sf-standards-consolidation-deprecation-20250618-0335
 │   🔠 registry
 │   │   📁 contexts
 │   ⚖️ src
+│   │   🗃️ archive ALWAYS ARCHIVE HERE
+│   │   │   📁 sf-standards-consolidation-deprecation-
 │   │   📄 AS-KB-DIRECTORY-STRUCTURE.md
 │   │   📄 AS-MAP-STANDARDS-KB.md
 │   │   📄 AS-ROOT-STANDARDS-KB.md
@@ -45,7 +77,6 @@
 │   │   📄 CS-CONTENT-PROFILING-POLICY.md
 │   │   📄 CS-LINKING-INTERNAL-POLICY.md
 │   │   📄 CS-MODULARITY-TRANSCLUSION-POLICY.md
-│   │   📄 CS-POLICY-ACCESSIBILITY.md
 │   │   📄 CS-POLICY-COMPLIANCE-ENFORCEMENT.md
 │   │   📄 CS-POLICY-DIGITAL-ABSTRACTION.md
 │   │   📄 CS-POLICY-KB-IDENTIFICATION.md
@@ -71,37 +102,40 @@
 │   │   📄 OM-AUTOMATION-LLM-IO-SCHEMAS.md
 │   │   📄 OM-AUTOMATION-LLM-PROMPT-LIBRARY.md
 │   │   📄 OM-AUTOMATION-VALIDATION-REQUIREMENTS.md
+│   │   📄 OM-CI-CD-INFRASTRUCTURE.md
+│   │   📄 OM-MONITORING-SYSTEM.md
 │   │   📄 OM-OVERVIEW-PUBLISHING-PIPELINE.md
 │   │   📄 OM-POLICY-STANDARDS-DEPRECATION.md
 │   │   📄 OM-POLICY-STANDARDS-GOVERNANCE.md
 │   │   📄 OM-PROCESS-SST-UPDATE.md
 │   │   📄 OM-VERSIONING-CHANGELOGS.md
 │   │   📄 QM-VALIDATION-METADATA.md
+│   │   📄 SA-PROCESS-DRAFT-REVIEW.md
 │   │   📄 SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md
 │   │   📄 SF-CALLOUTS-SYNTAX.md
 │   │   📄 SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md
 │   │   📄 SF-FORMATTING-CITATIONS.md
 │   │   📄 SF-FORMATTING-FILE-HYGIENE.md
-│   │   📄 SF-FORMATTING-MARKDOWN-GENERAL.md
-│   │   📄 SF-LINKS-INTERNAL-SYNTAX.md
 │   │   📄 SF-SYNTAX-BLOCKQUOTES.md
-│   │   📄 SF-SYNTAX-CODE.md
-│   │   📄 SF-SYNTAX-COMMENT-TODO.md
+│   │   📄 SF-SYNTAX-CHARACTER-ESCAPING.md
+│   │   📄 SF-SYNTAX-CODE-BLOCKS.md
 │   │   📄 SF-SYNTAX-DEFINITION-LISTS.md
 │   │   📄 SF-SYNTAX-DIAGRAMS-MERMAID.md
 │   │   📄 SF-SYNTAX-EMPHASIS.md
-│   │   📄 SF-SYNTAX-ESCAPING-CHARACTERS.md
 │   │   📄 SF-SYNTAX-FOOTNOTES.md
 │   │   📄 SF-SYNTAX-HEADINGS.md
 │   │   📄 SF-SYNTAX-IMAGES.md
-│   │   📄 SF-SYNTAX-KEYREF.md
-│   │   📄 SF-SYNTAX-LINKS-GENERAL.md
+│   │   📄 SF-SYNTAX-KEY-REFERENCES.md
+│   │   📄 SF-SYNTAX-LINKS.md
 │   │   📄 SF-SYNTAX-LISTS.md
+│   │   📄 SF-SYNTAX-MARKDOWN-STRUCTURED.md
 │   │   📄 SF-SYNTAX-MATH-EQUATIONS.md
 │   │   📄 SF-SYNTAX-TABLES.md
+│   │   📄 SF-SYNTAX-TODO-COMMENTS.md
 │   │   📄 SF-SYNTAX-YAML-FRONTMATTER.md
 │   │   📄 SF-TOC-SYNTAX.md
 │   │   📄 SF-TRANSCLUSION-SYNTAX.md
+│   │   📄 SF-UTILITIES-MARKDOWN.md
 │   │   📄 UA-KEYDEFS-GLOBAL.md
 │   │   📄 UA-SCHEMA-LLM-IO.md
 │   🧬 templates
@@ -166,6 +200,7 @@
 │   📁 analysis
 │   │   📄 analyze_document_types.py
 │   │   📄 document_type_analyzer.py
+│   │   📄 list_draft_standards.py
 │   📁 file-format-utils
 │   │   📄 add_readme_frontmatter.py
 │   │   📄 crlf_to_lf_converter.py
@@ -187,30 +222,42 @@
 │   │   📄 protected-names.json
 │   │   📄 recover_backup.py
 │   🔧 refactoring-scripts
+│   │   📄 correct_collection_references.py
 │   │   📄 refactor_criticality_field.py
 │   │   📄 refactor_ids_filenames.py
 │   │   📄 refactor_tag_casing.py
+│   │   📄 remove_changelog_metadata.py
+│   │   📄 revert_draft_status_fix.ps1
+│   │   📄 synchronize_draft_status.py
 │   │   📄 universal_kb_id_migration.py
 │   📊 reports
-│   │   📄 architecture-protection-completion-20250616-2321.md
-│   │   📄 audit-analysis-20250617-0630.json
-│   │   📄 audit-analysis-20250617-0632.json
-│   │   📄 comprehensive-architecture-audit-20250616-2310.md
-│   │   📄 comprehensive-frontmatter-enhancement-audit-20250617-0633.md
-│   │   📄 comprehensive-standards-analysis-20250616-1433.md
-│   │   📄 critical-architecture-audit-20250616-2304.md
-│   │   📄 gm-conventions-naming-reduction-completion-report.md
-│   │   📄 gm-guide-kb-usage-reduction-completion-report-20250616-2352.md
-│   │   📄 kb-id-migration-report-20250617-0632.json
-│   │   📄 kb-id-migration-report-20250617-0633.json
-│   │   📄 p0-critical-placeholder-completion-report-20250617-0648.md
-│   │   📄 post-migration-validation-report-20250617-0212.json
-│   │   📄 shacl-base-schema-validation-20250617-0209.json
-│   │   📄 standards-consolidation-completion-report-20250616-2212.md
-│   │   📄 ultimate-frontmatter-enhancement-implementation-prompt.md
-│   │   📄 validation-full-repository-20250617-0633.json
-│   │   📄 validation-report-after-vocab-update-20250617-0216.json
-│   │   📄 validation-test-report-20250617-0209.json
+│   │   📄 circular-reference-detection-20250618-1005.md
+│   │   📄 comprehensive-validation-infrastructure-analysis-20250620-0031.md
+│   │   📄 comprehensive-validation-results-20250620-0031.json
+│   │   📄 comprehensive_validation_dry_run.py
+│   │   📄 document-type-analysis-standards-src-only-20250620-0014.json
+│   │   📄 draft-standards-20250619-2205.txt
+│   │   📄 draft-standards-20250619-2246.txt
+│   │   📄 draft-standards-20250619-2318.txt
+│   │   📄 governance-enforcement-integration-completion-20250618-0130.md
+│   │   📄 kb-id-migration-standards-src-only-20250619-2256.json
+│   │   📄 kb-id-migration-standards-src-only-20250619-2257.json
+│   │   📄 key-definition-validation-20250618-1005.md
+│   │   📄 key-definition-validation-20250618-1006.md
+│   │   📄 missing-mandatory-fields-table.md
+│   │   📄 parse_missing_fields.py
+│   │   📄 phase-0-rationale-removal-completion-.md
+│   │   📄 phase-0-rationale-removal-completion-20250618-0220.md
+│   │   📄 phase-2-specialized-standards-rationalization-completion-20250618-0315.md
+│   │   📄 phase-3-ecosystem-migration-completion-20250618-0350.md
+│   │   📄 registry-integrity-validation-20250618-1005.md
+│   │   📄 run_document_type_analyzer_standards_only.py
+│   │   📄 run_kb_migration_standards_only.py
+│   │   📄 unified-redundancy-validation-20250618-1006.json
+│   │   📄 unified-redundancy-validation-20250618-1006.md
+│   │   📄 validation-standards-20250619-1900.json
+│   │   📄 validation-standards-only-20250619-1900.json
+│   │   📄 validation-standards-only-20250619-1930.json
 │   📁 scribe
 │   │   📁 actions
 │   │   │   📄 __init__.py
@@ -262,7 +309,16 @@
 │   │   📄 README-repo-tree.md
 │   │   📄 todo_tracker.py
 │   📁 validation
+│   │   🔧 tools
+│   │   │   📊 reports
+│   │   │       📄 unified-redundancy-validation-20250618-1005.json
+│   │   │       📄 unified-redundancy-validation-20250618-1005.md
+│   │   📄 circular_reference_detector.py
+│   │   📄 key_definition_validator.py
 │   │   📄 on_demand_validator.py
+│   │   📄 registry_integrity_validator.py
+│   │   📄 unified_redundancy_validator.py
+│   │   📄 verify_audit_remediation_r2.py
 │   🔧 validators
 │   │   📄 graph_validator.py
 │   │   📄 validate_registry.py
@@ -274,14 +330,20 @@
 📄 .cursorrules
 📄 .pre-commit-config.yaml
 📄 .prettierignore
+📄 antifragile-os-v3.0.md
+📄 aos-comprehensive-critique-report.md
+📄 aos-v3.0-analysis-gemini.md
 📄 AS-INDEX-KB-MASTER.md
 📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
-📄 frontmatter-analysis.md
-📄 frontmatter-enhancements.md
+📄 frontmatter-implementation-damage-assessment-20250617-1328.md
+📄 merge-reports.md
+📄 mermaid-diagram-guidelines.md
+📄 project-initiation-execution-methodology.md
+📄 proposal-1-universal-methodology-framework.md
+📄 proposal-2-universal-methodology-framework.md
 📄 README.md
 📄 repo-tree.md
 📄 repo_tree.py
-📄 ultimate-frontmatter-enhancement-guideline-20250617-0312.md
 ```
 
 ---
