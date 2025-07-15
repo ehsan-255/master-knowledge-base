@@ -1,6 +1,6 @@
 ### Appendix G: Sustainability & Environmental Impact (Critique 50)
 
-AOS v4.1 acknowledges that high-compute operations have an environmental cost. The following Green-Ops guidelines are recommended for any implementation.
+AOS v4.0 acknowledges that high-compute operations have an environmental cost. The following Green-Ops guidelines are recommended for any implementation.
 
 - **Efficiency Measurement:** Track and report on energy-efficiency metrics. The `telemetry` object SHOULD be extended with a `sustainability_metrics` block.
   - `watts_per_1k_queries`: Target for knowledge graph query efficiency.

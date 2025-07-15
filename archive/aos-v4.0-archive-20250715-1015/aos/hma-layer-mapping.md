@@ -1,7 +1,7 @@
-# HMA Layer Mapping for AOS v4.1
+# HMA Layer Mapping for AOS v4.0
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
@@ -18,8 +18,7 @@ This mapping is a critical step in resolving multiple architectural critiques, i
 | **Human User / External System** | **L0: Actor Layer** | Actor | The initiators of requests and consumers of results. |
 | **CLI, Web UI, API Endpoints** | **L1: Interface Layer** | Driving Adapter | Provides the technology-specific entry points into the system, translating external calls into internal port invocations. |
 | **Request Router, Plugin Mgr.** | **L2: Core Layer** | Microkernel Core | The minimal, non-domain-specific heart of the system responsible for routing and lifecycle management. |
-| **Meta-Orchestrator Logic** | **L2: Core Layer** | L2 Orchestrator Plugin | A minimal plugin responsible only for routing projects between phases based on a recipe. |
-| **Phase-Specific Workflow Logic** | **L2: Core Layer** | L2 Orchestrator Plugin | Each phase (Define, Diagnose, etc.) is its own swappable L2 plugin, encapsulating the logic for that specific stage. |
+| **5D Journey Workflow Logic** | **L2: Core Layer** | L2 Orchestrator Plugin | The complex, adaptive logic for coordinating the 5D Journey is encapsulated in a replaceable plugin, not in the core itself. |
 | **OTEL SDK, Compliance Validator** | **L2.5: Instrumentation** | Instrumentation | The cross-cutting components for telemetry and architectural rule enforcement. |
 | **Wardley, TOC, TRIZ, etc.** | **L3: Capability Layer** | L3 Capability Plugin | Each distinct methodology is an independent, swappable plugin, encapsulating its specific domain logic. |
 | **Kafka, NATS, RabbitMQ** | **L4: Infrastructure Layer** | External System (Broker) | The concrete message broker technology used by the `EventBusPort`'s adapter. |

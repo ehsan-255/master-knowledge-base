@@ -5,53 +5,52 @@
 **Purpose**: Establish strategic context and identify the critical constraint
 
 ```python
-# This is the logic for the Meta-Orchestrator (aos-process-router)
-# It is triggered by events.
-PROCEDURE META_ORCHESTRATOR_ON_EVENT(event):
-    pdp = event.data.pdp
+PROCEDURE DEFINE_STRATEGIC_CONTEXT(problem_statement):
+    # Invoke L2 Orchestrator for strategic analysis
+    orchestrator = L2_StrategicOrchestratorPlugin()
     
-    # Check if the process is complete
-    IF pdp.is_complete():
-        FINALIZE_PROJECT(pdp)
-        return
-
-    # Get the next step from the PDP's recipe
-    next_phase_name = pdp.get_next_phase_from_recipe()
-    
-    IF next_phase_name is None:
-        pdp.mark_as_complete()
-        FINALIZE_PROJECT(pdp)
-        return
-
-    # Route to the correct L2 Phase Orchestrator
-    # The Core's router knows which plugin corresponds to "DefinePhase", etc.
-    task = {'plugin': f'{next_phase_name}Orchestrator', 'action': 'execute_phase', 'params': pdp}
-    Core.invoke('PluginExecutionPort', task)
-
-# --- Example Logic for a Phase Orchestrator ---
-# This is the logic for the DefinePhaseOrchestrator
-PROCEDURE DEFINE_PHASE_ORCHESTRATOR(pdp):
-    # This orchestrator is only responsible for the DEFINE phase.
-    # It calls its relevant L3 capability plugins.
-    wardley_map_task = {'plugin': 'WardleyMapPlugin', 'action': 'MAP_VALUE_CHAIN', 'params': pdp.problem_statement}
+    # Create Wardley Map using L3 plugin, invoked via the Core's standard execution port
+    wardley_map_task = {'plugin': 'WardleyMapPlugin', 'action': 'MAP_VALUE_CHAIN', 'params': problem_statement}
     wardley_map = Core.invoke('PluginExecutionPort', wardley_map_task)
-    pdp.update({'wardley_map': wardley_map})
     
-    toc_task = {'plugin': 'TOCAnalyzerPlugin', 'action': 'GENERATE_CONSTRAINT_HYPOTHESIS', 'params': pdp.problem_statement}
-    constraint_hypothesis = Core.invoke('PluginExecutionPort', toc_task)
-    pdp.update({'constraint_hypothesis': constraint_hypothesis})
-    
-    # Mark its phase as complete
-    pdp.mark_phase_as_complete("Define")
-    
-    # Publish a generic event to return control to the Meta-Orchestrator
-    completion_event = create_event(
-        type='aos.phase.completed.v1', 
-        data={'pdp': pdp, 'completed_phase': 'Define'}
-    )
-    Core.invoke('EventBusPort', {'action': 'publish', 'event': completion_event})
+    evolution_states_task = {'plugin': 'WardleyMapPlugin', 'action': 'ASSESS_COMPONENT_EVOLUTION', 'params': wardley_map}
+    evolution_states = Core.invoke('PluginExecutionPort', evolution_states_task)
 
-    RETURN pdp # Returns the updated PDP from its own execution
+    strategic_moves_task = {'plugin': 'WardleyMapPlugin', 'action': 'IDENTIFY_MOVEMENTS', 'params': evolution_states}
+    strategic_moves = Core.invoke('PluginExecutionPort', strategic_moves_task)
+    
+    # Theory of Constraints Analysis produces a hypothesis, not a definitive answer.
+    # This addresses Critique 5 (Single-Cause Fallacy) and Critique 15 (Assumption of Identifiable Constraints).
+    system_model_task = {'plugin': 'TOCAnalyzerPlugin', 'action': 'MODEL_SYSTEM', 'params': problem_statement}
+    system_model = Core.invoke('PluginExecutionPort', system_model_task)
+
+    constraints_task = {'plugin': 'TOCAnalyzerPlugin', 'action': 'IDENTIFY_ALL_CONSTRAINTS', 'params': system_model}
+    constraints = Core.invoke('PluginExecutionPort', constraints_task)
+
+    constraint_hypothesis_task = {'plugin': 'TOCAnalyzerPlugin', 'action': 'GENERATE_CONSTRAINT_HYPOTHESIS', 'params': constraints}
+    constraint_hypothesis = Core.invoke('PluginExecutionPort', constraint_hypothesis_task) # Returns hypothesis with confidence score
+    
+    # Strategic Options Generation
+    options = []
+    # Options are generated based on the highest-confidence constraint in the hypothesis
+    primary_constraint_candidate = constraint_hypothesis.get_primary_candidate()
+    FOR move IN strategic_moves:
+        IF move.addresses(primary_constraint_candidate):
+            option_task = {'plugin': 'StrategicOptionPlugin', 'action': 'EVALUATE_STRATEGIC_OPTION', 'params': {'move': move, 'constraint': primary_constraint_candidate}}
+            option = Core.invoke('PluginExecutionPort', option_task)
+            options.append(option)
+    
+    FOR hypothesis IN constraint_hypothesis.top_n(3): 
+        child_pdp = CREATE_EXPLORATORY_PDP(hypothesis)
+        # Publish event via the Core's standard event bus port
+        event = create_event(type='aos.pdp.exploration.requested.v1', data={'pdp': child_pdp})
+        Core.invoke('EventBusPort', {'action': 'publish', 'event': event})
+
+    RETURN StrategicContext(
+        wardley_map=wardley_map,
+        constraint_hypothesis=constraint_hypothesis,
+        strategic_options=options
+    )
 ```
 
 ### 3.2 Phase 2: DIAGNOSE (Enhanced with Antifragility Assessment and Bias Mitigation)
@@ -263,7 +262,7 @@ PROCEDURE DELIVER_WITH_LEARNING(pdp):
     RETURN pdp
 ```
 
-## 📌 New Additions for AOS v4.1 Conceptual Completion  <!-- C-5 -->
+## 📌 New Additions for AOS V4.0 Conceptual Completion  <!-- C-5 -->
 
 ### Emergent Response Templates (Chaotic Domain)
 * Rapid *sense–act–learn* loops

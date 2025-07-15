@@ -1,13 +1,13 @@
 # AOS Implementation Profiles
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
 ## 1. The Principle of Proportionality
 
-A one-size-fits-all methodology creates an impractical resource burden for smaller projects and lacks sufficient governance for large-scale programs. AOS v4.1 adopts the **Principle of Proportionality**, where the level of rigor, documentation, and tooling is proportional to the scale and complexity of the problem.
+A one-size-fits-all methodology creates an impractical resource burden for smaller projects and lacks sufficient governance for large-scale programs. AOS v4.0 adopts the **Principle of Proportionality**, where the level of rigor, documentation, and tooling is proportional to the scale and complexity of the problem.
 
 This is achieved through Implementation Profiles, which directly addresses Critique #18 (Resource Bottlenecks) by making the framework accessible and practical for all scales of work.
 
@@ -25,12 +25,12 @@ Before the 5D Journey begins, every new initiative enters a mandatory "Phase 0: 
 
 *   ### **AOS-Standard**
     *   **Use Case:** The default profile for significant, complex projects that require the full analytical and adaptive power of AOS.
-    *   **PDP:** Uses the complete, unabridged PDP v4.1 specification.
+    *   **PDP:** Uses the complete, unabridged PDP v4.0 specification.
     *   **HMA Mapping:** Deploys the full HMA architecture with a distinct Core, multiple L2 Orchestrator plugins for the 5D journey, and a suite of L3 Capability Plugins.
     *   **Goal:** Robust, resilient, and antifragile project delivery.
 
 *   ### **AOS-Enterprise**
     *   **Use Case:** Large-scale, strategic programs of work that consist of multiple interconnected projects.
-    *   **PDP:** Utilizes the full PDP v4.1 specification, but also introduces a new "Portfolio PDP" artifact that aggregates status and metrics from child PDPs.
+    *   **PDP:** Utilizes the full PDP v4.0 specification, but also introduces a new "Portfolio PDP" artifact that aggregates status and metrics from child PDPs.
     *   **HMA Mapping:** Deploys a federated HMA architecture. Includes additional plugins for enterprise concerns like advanced portfolio reporting, cross-project dependency management, and enterprise-wide risk aggregation.
     *   **Goal:** Strategic alignment and governance across a portfolio of complex initiatives. 

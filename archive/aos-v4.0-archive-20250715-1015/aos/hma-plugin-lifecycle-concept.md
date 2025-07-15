@@ -1,13 +1,13 @@
 # HMA Plugin Lifecycle Concept for AOS
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
 ## 1. Context
 
-The Hexagonal Microkernel Architecture (HMA) relies on a minimal Core that manages the lifecycle of external plugins. While the HMA specification outlines this responsibility, this document details the conceptual states and transitions for plugins specifically within the AOS v4.1 ecosystem. This provides clarity on how new capabilities are integrated, versioned, and maintained.
+The Hexagonal Microkernel Architecture (HMA) relies on a minimal Core that manages the lifecycle of external plugins. While the HMA specification outlines this responsibility, this document details the conceptual states and transitions for plugins specifically within the AOS v4.0 ecosystem. This provides clarity on how new capabilities are integrated, versioned, and maintained.
 
 ## 2. Plugin States
 

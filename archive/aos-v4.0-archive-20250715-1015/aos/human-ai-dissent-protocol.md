@@ -1,13 +1,13 @@
 # Human-AI Dissent and Synergy Protocol
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
 ## 1. Guiding Principle: AI as Assistant, Human as Authority
 
-While AOS v4.1 leverages AI for analysis and orchestration, it operates on the core principle that human judgment, creativity, and ethical oversight are irreplaceable. The AI is a powerful assistant, but the human is the final authority.
+While AOS v4.0 leverages AI for analysis and orchestration, it operates on the core principle that human judgment, creativity, and ethical oversight are irreplaceable. The AI is a powerful assistant, but the human is the final authority.
 
 This document formalizes the protocols for managing the interaction between humans and the AI, ensuring that human expertise is preserved and that AI recommendations are treated with professional skepticism. It directly addresses Critiques #13 (Human Input vs. AI Automation) and #36 (Over-reliance on AI and Skill Atrophy).
 
@@ -36,7 +36,7 @@ This protocol acknowledges that expert intuition is a valid, valuable form of da
 
 ## 4. Preventing Skill Atrophy
 
-To ensure human strategic capabilities are maintained and enhanced, AOS v4.1 mandates the following:
+To ensure human strategic capabilities are maintained and enhanced, AOS v4.0 mandates the following:
 
 *   **Periodic Human-Led Exercises:** The execution roadmap for any major project must include periodic "AI-off" exercises where a specific strategic challenge (e.g., re-evaluating the primary constraint) must be performed entirely by the human team.
 *   **Tracking Human Overrides:** The system will track and analyze the frequency and nature of human overrides and dissents. A high frequency of overrides in a specific domain is not seen as a failure, but as an indicator of where human expertise provides the most value, guiding future improvements in the Human-AI partnership. 

@@ -1,13 +1,13 @@
 # Decomposition and Coupling Policy
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
 ## 1. Replacing MECE with "Sufficiently Decoupled"
 
-In AOS v4.1, the rigid validation for Mutually Exclusive, Collectively Exhaustive (MECE) decomposition is replaced with a more pragmatic, heuristic-based approach. The new goal is to produce components that are **"Sufficiently Decoupled"** for independent execution, acknowledging that perfect MECE is often impossible or impractical in complex systems.
+In AOS v4.0, the rigid validation for Mutually Exclusive, Collectively Exhaustive (MECE) decomposition is replaced with a more pragmatic, heuristic-based approach. The new goal is to produce components that are **"Sufficiently Decoupled"** for independent execution, acknowledging that perfect MECE is often impossible or impractical in complex systems.
 
 This change directly addresses Critique #14 (Assumption of MECE Decomposability) from the `aos-upgrade.md` remediation plan, preventing the system from stalling in infinite validation loops.
 

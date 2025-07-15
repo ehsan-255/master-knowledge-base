@@ -1,7 +1,7 @@
 # HMA Traceability and Context Propagation
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
@@ -9,7 +9,7 @@
 
 Moving from a monolithic architecture to a distributed, plugin-based system like HMA introduces a challenge: ensuring a clear, unbroken line of sight from high-level strategic intent down to the smallest execution detail.
 
-This document outlines the conceptual mechanisms used in AOS v4.1 to ensure end-to-end traceability and the correct propagation of context, addressing Critiques #21 (Strategy-to-Execution Gaps) and #24 (Integration and Inheritance Gaps).
+This document outlines the conceptual mechanisms used in AOS v4.0 to ensure end-to-end traceability and the correct propagation of context, addressing Critiques #21 (Strategy-to-Execution Gaps) and #24 (Integration and Inheritance Gaps).
 
 ## 2. The Correlation ID
 

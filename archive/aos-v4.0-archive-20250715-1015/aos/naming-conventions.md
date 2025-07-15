@@ -1,7 +1,7 @@
 # AOS Naming Conventions
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 

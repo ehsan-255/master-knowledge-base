@@ -1,7 +1,7 @@
 # The AOS Plain Language Handbook
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
@@ -13,7 +13,7 @@ Its purpose is to make the framework accessible to a wider audience, from execut
 
 ## 2. The Plain Language Abstraction Layer
 
-Every major artifact and concept in AOS v4.1 is required to have a `plain_language_summary` field in its schema. This field describes the purpose and findings of the artifact without using jargon.
+Every major artifact and concept in AOS v4.0 is required to have a `plain_language_summary` field in its schema. This field describes the purpose and findings of the artifact without using jargon.
 
 ## 3. Key Concept Translations
 

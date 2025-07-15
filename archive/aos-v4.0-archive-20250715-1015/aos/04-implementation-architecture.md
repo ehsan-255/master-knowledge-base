@@ -1,12 +1,12 @@
 ## Part IV: Implementation Architecture
 
-This document outlines the implementation architecture for the Antifragile OS (AOS) v4.1, which is a direct realization of the **Hexagonal Microkernel Architecture (HMA) v1.3**. This new architecture replaces the previous monolithic, three-layer model to resolve critical issues related to fragility, separation of concerns, and academic theory dependency (Critiques #38, #10, #41).
+This document outlines the implementation architecture for the Antifragile OS (AOS) v4.0, which is a direct realization of the **Hexagonal Microkernel Architecture (HMA) v1.3**. This new architecture replaces the previous monolithic, three-layer model to resolve critical issues related to fragility, separation of concerns, and academic theory dependency (Critiques #38, #10, #41).
 
 The normative source for the HMA architecture is the `HMA v1.3` specification located in the repository. This implementation adheres strictly to the layers, zones, and interaction patterns defined therein.
 
 ## HMA L0-L4 Layered Model Adoption
 
-AOS v4.1 fully adopts the HMA layered reference model to enforce a strict separation of concerns:
+AOS v4.0 fully adopts the HMA layered reference model to enforce a strict separation of concerns:
 
 *   **L0: Actor Layer:** Human users (e.g., System Architects, Project Managers) and external systems that interact with AOS.
 *   **L1: Interface Layer:** Technology-specific Driving Adapters (e.g., a future command-line interface, a web UI's GraphQL API) that translate actor requests into calls on the L2 Core's ports.
@@ -33,9 +33,7 @@ The modular nature of HMA allows AOS to treat its core intellectual property as 
     *   `design-thinking-plugin`
     *   `triz-methods-plugin`
 
-*   **L2 Orchestrator Plugins:** The complex, multi-step logic of AOS is managed by a system of cooperating L2 Orchestrator Plugins. This replaces the previous monolithic model to enhance flexibility and architectural purity.
-    *   **`Meta-Orchestrator` (`Process-Router`):** A minimal L2 plugin that acts as the primary entry point. It reads a "Process Recipe" from the Project Digital Twin (PDP) and routes the project to the appropriate Phase Orchestrator.
-    *   **`Phase Orchestrators`:** Each phase of a process is encapsulated in its own L2 Orchestrator plugin (e.g., `DefinePhaseOrchestrator`, `DiagnosePhaseOrchestrator`, `DMAIC-Analysis-Orchestrator`). These plugins execute the logic for a single phase and then publish a generic event upon completion, returning control to the Meta-Orchestrator.
+*   **L2 Orchestrator Plugins:** The complex, multi-step logic of the 5D Journey (Define, Diagnose, Design, Develop, Deliver & Learn) is managed by one or more specialized L2 Orchestrator Plugins. These plugins are responsible for invoking the various L3 Capability Plugins in the correct sequence, adapting the workflow based on real-time context, and managing the state of a Project Digital Twin (PDP).
 
 This plugin-based structure forces all interactions to be mediated through the HMA Core via well-defined ports, directly resolving the "Composition Fallacy" (Critique #1).
 
@@ -45,33 +43,22 @@ AOS utilizes the three primary HMA interaction patterns:
 
 1.  **Direct Synchronous:** An actor uses an L1 interface to request a specific analysis (e.g., "Generate a Wardley Map"). The L2 Core routes this request directly to the `wardley-mapping-plugin` for immediate execution and response.
 2.  **Asynchronous Event-Driven:** A plugin publishes a significant finding as an event (e.g., `ConstraintIdentifiedEvent`). Other plugins can subscribe to this event to react and perform their own analysis, decoupling the components.
-3.  **Orchestrated Multi-Plugin Workflow:** The `Meta-Orchestrator` receives a project and routes it to the `DesignPhaseOrchestrator`. This Phase Orchestrator then synchronously calls the `design-thinking-plugin` and `triz-methods-plugin` (both L3), reconciles their outputs, updates the PDP, and publishes a `phase.completed` event.
+3.  **Orchestrated Multi-Plugin Workflow:** An L2 Orchestrator Plugin managing the "Design" phase of the 5D journey would synchronously call the `design-thinking-plugin` and `triz-methods-plugin`, then reconcile their outputs to formulate a robust solution.
 
 ## Conceptual Configuration
 
-The following YAML snippet illustrates the conceptual configuration for an HMA-based AOS v4.1 instance. It defines which plugins are active and provides configuration for core infrastructure components like the event bus.
+The following YAML snippet illustrates the conceptual configuration for an HMA-based AOS v4.0 instance. It defines which plugins are active and provides configuration for core infrastructure components like the event bus.
 
 ```yaml
-# Conceptual HMA Configuration for an AOS v4.1 Instance
+# Conceptual HMA Configuration for an AOS v4.0 Instance
 version: 1.3
 hma_core:
   plugin_registry:
-    # L2 Meta-Orchestrator
-    - name: "aos-process-router"
+    # L2 Orchestrator Plugins managing the 5D Journey
+    - name: "aos-5d-journey-orchestrator"
       version: "1.0.0"
       state: "active"
       type: "L2-Orchestrator"
-
-    # L2 Phase Orchestrator Plugins for the 5D Journey
-    - name: "aos-define-phase-orchestrator"
-      version: "1.0.0"
-      state: "active"
-      type: "L2-Orchestrator"
-    - name: "aos-diagnose-phase-orchestrator"
-      version: "1.0.0"
-      state: "active"
-      type: "L2-Orchestrator"
-    # ... (add other 5D phase orchestrators as needed) ...
 
     # L3 Capability Plugins providing specific methodologies
     - name: "aos-wardley-mapping-plugin"
@@ -112,7 +99,7 @@ Because guidance is expressed as data (rules) rather than code branches, new dec
 
 ### Standard HMA Port Catalogue  <!-- HMA ALIGNMENT -->
 
-AOS v4.1 now *inherits verbatim* the five canonical port types defined in HMA v1.3 Part 3 §10.
+AOS v4.0 now *inherits verbatim* the five canonical port types defined in HMA v1.3 Part 3 §10.
 
 | Port | Layer | Purpose |
 |------|-------|---------|
@@ -134,7 +121,7 @@ Lifecycle transitions emit events (`plugin.registered.v1`, `plugin.failed.v1`, e
 
 ### LLM Operating Mode & Gateway  <!-- LLM INTEGRATION -->
 
-AOS v4.1 treats Large-Language-Model calls as **L3 Capability Plugins** that are strictly *single-responsibility*:
+AOS v4.0 treats Large-Language-Model calls as **L3 Capability Plugins** that are strictly *single-responsibility*:
 
 1. A Core component (LLM-Gateway Adapter) implements `PluginExecutionPort` and proxies requests to OpenAI, Anthropic, or a local model.
 2. Every LLM-driven feature (Clarifier-LLM, Brainstorm-LLM, WBS-LLM, etc.) is a *thin wrapper* that:
@@ -145,4 +132,3 @@ AOS v4.1 treats Large-Language-Model calls as **L3 Capability Plugins** that are
 4. Provenance metadata (`llm_model`, `prompt_hash`, `temperature`, `response_tokens`) is added to every LLM result node so humans can audit and reproduce.
 
 This pattern keeps the Core algorithm in charge while still letting LLMs perform high-leverage reasoning or code generation for each toolkit step. 
-

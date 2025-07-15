@@ -11,7 +11,7 @@
 9. OMG (2013). BPMN 2.0.2: Business Process Model and Notation
 10. OMG (2019). DMN 1.3: Decision Model and Notation 
 
-### New Conceptual Documents (AOS v4.1 Remediation)
+### New Conceptual Documents (AOS v4.0 Remediation)
 
 - [Decomposition and Coupling Policy](./decomposition-and-coupling-policy.md)
 - [Option Stub Policy](./option-stub-policy.md)
@@ -19,7 +19,7 @@
 - [The Citable AI Charter](./citable-ai-charter.md)
 - [The Volatility Playbook](./volatility-playbook.md)
 - [Experiment Registry and Innovation Policy](./experiment-registry-concept.md)
-- [HMA Layer Mapping for AOS v4.1](./hma-layer-mapping.md)
+- [HMA Layer Mapping for AOS v4.0](./hma-layer-mapping.md)
 - [Knowledge Graph Lifecycle & Governance Policy](./graph-lifecycle-governance.md)
 - [HMA Plugin Lifecycle Concept for AOS](./hma-plugin-lifecycle-concept.md)
 - [HMA Traceability and Context Propagation](./hma-traceability-concept.md)

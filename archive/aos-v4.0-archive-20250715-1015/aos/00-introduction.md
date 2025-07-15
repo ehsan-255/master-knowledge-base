@@ -1,15 +1,15 @@
-# The Antifragile OS (AOS) v4.1
+# The Antifragile OS (AOS) v4.0
 ## The Antifragile Standard for Adaptive Intelligence
 
-### Version 4.1 | Technical Specification Document | Release Date: July 14, 2025
+### Version 4.0 | Technical Specification Document | Release Date: July 14, 2025
 
 ---
 
-## The Antifragile OS (AOS) v4.1
+## The Antifragile OS (AOS) v4.0
 
-AOS v4.1 is a comprehensive, AI-augmented methodology for navigating complex problem spaces and delivering resilient solutions. It integrates a suite of battle-tested strategic, tactical, and execution frameworks into a single, coherent system.
+AOS v4.0 is a comprehensive, AI-augmented methodology for navigating complex problem spaces and delivering resilient solutions. It integrates a suite of battle-tested strategic, tactical, and execution frameworks into a single, coherent system.
 
-The core of AOS v4.1 is built upon the **Hexagonal Microkernel Architecture (HMA) v1.3**, a resilient, modular, and plugin-based system. This architecture replaces the previous monolithic model, enabling true antifragility not just in the projects it manages, but in the OS itself. Methodologies like Wardley Mapping, Theory of Constraints, and Design Thinking are implemented as swappable "Capability Plugins," coordinated by intelligent "Orchestrator Plugins" that manage the 5D Journey. This ensures the system is adaptable, scalable, and not rigidly dependent on any single academic theory.
+The core of AOS v4.0 is built upon the **Hexagonal Microkernel Architecture (HMA) v1.3**, a resilient, modular, and plugin-based system. This architecture replaces the previous monolithic model, enabling true antifragility not just in the projects it manages, but in the OS itself. Methodologies like Wardley Mapping, Theory of Constraints, and Design Thinking are implemented as swappable "Capability Plugins," coordinated by intelligent "Orchestrator Plugins" that manage the 5D Journey. This ensures the system is adaptable, scalable, and not rigidly dependent on any single academic theory.
 
 This document provides an overview of the five core phases of the AOS journey, known as the "5D Journey":
 
@@ -47,13 +47,13 @@ This phase ensures that the process is right-sized for the project's complexity 
 - [Appendix A: Semantic Ontology Core Classes](./appendix-a-ontology.md)
 - [Appendix B: Tool Ecosystem](./appendix-b-tools.md)
 - [Appendix C: References](./appendix-c-references.md)
-- [Appendix D: Migrating to AOS v4.1](./appendix-d-migrating-to-aos-v4.1.md)
+- [Appendix D: Migrating to AOS v4.0](./appendix-d-migrating-to-aos-v4.0.md)
 - [Appendix E: Adoption and Change Management](./appendix-e-adoption-and-change-management.md)
 - [Appendix F: Governance & Operational Excellence](./appendix-f-governance.md)
 - [Appendix G: Sustainability & Environmental Impact](./appendix-g-sustainability.md)
 
 ### HMA Integration and Standards
-- **[HMA Layer Mapping for AOS v4.1](./hma-layer-mapping.md):** The definitive mapping of AOS concepts to HMA layers.
+- **[HMA Layer Mapping for AOS v4.0](./hma-layer-mapping.md):** The definitive mapping of AOS concepts to HMA layers.
 - **[HMA Plugin Lifecycle Concept for AOS](./hma-plugin-lifecycle-concept.md):** Details the lifecycle states and transitions for HMA plugins within the AOS ecosystem.
 - **[HMA Traceability and Context Propagation](./hma-traceability-concept.md):** Outlines the mechanisms for ensuring end-to-end traceability in the distributed HMA architecture.
 - **[AOS Control Plane Services](./control-plane-services.md):** Details the essential, centralized services like the Credential Broker and Event Bus access that the Core provides to all plugins.
@@ -81,7 +81,7 @@ The following documents provide detailed policies, charters, and conceptual deep
 
 ```mermaid
 C4Context
-    title AOS v4.1 – System Context
+    title AOS v4.0 – System Context
     Person(user, "Human / External System")
     System(aos, "Antifragile OS Core", "L2 Microkernel Core")
     System_Ext(plugins, "Capability & Orchestrator Plugins", "L3 Zone")
@@ -101,29 +101,25 @@ C4Context
 
 ```mermaid
 C4Container
-        title AOS v4.1 – Container Diagram (Composable Orchestrator Model)
-        System_Boundary(aos, "AOS Core & Services") {
-          Container(meta_orch, "Meta-Orchestrator (Process Router)", "Python/HMA L2 Plugin", "Routes PDPs to the correct Phase Orchestrator based on a recipe.")
-          Container(phase_orch, "Phase Orchestrator (e.g., DefinePhase)", "Python/HMA L2 Plugin", "Executes all logic for a single phase by calling L3 plugins.")
-          Container(plm, "Plugin Lifecycle Manager", "Python", "Manages all plugins (L2 and L3).")
-          Container(control, "Control-Plane Services", "Python", "CredBroker, ObservabilityPort facade.")
-        }
-        ContainerDb(kg, "Knowledge Graph", "Neo4j", "Stores PDP twins, ontologies, telemetry.")
-        Container(bus, "Event Bus", "NATS", "Asynchronous communication between orchestrators.")
-        ContainerExt(capability_plugin, "Capability Plugin (e.g., WardleyMap)", "Containerised Service / L3", "Executes a specific domain task.")
-        Person(user, "Human User")
+    title AOS v4.0 – Container Diagram
+    System_Boundary(aos, "AOS Core & Services") {
+      Container(core, "Core Runtime", "Python", "Routes requests, enforces lifecycle")
+      Container(plm, "Plugin Lifecycle Manager", "Python", "State machine Discovered→Deprecated")
+      Container(advisor, "Intelligent Plugin Advisor", "OPA/Drools", "Suggests plugins based on Problem & Tool ontologies")
+      Container(control, "Control-Plane Services", "Python", "CredBroker, ObservabilityPort facade")
+    }
+    ContainerDb(kg, "Knowledge Graph", "Neo4j", "Stores PDP twins, ontologies, telemetry")
+    Container(bus, "Event Bus", "NATS", "Asynchronous communication")
+    ContainerExt(plugin, "Capability Plugin (example)", "Containerised Service", "Executes domain logic via standard ports")
+    Person(user, "Human User")
 
-        user -> meta_orch : API / CLI Call to start project
-        meta_orch -> phase_orch : Routes PDP for phase execution
-        phase_orch -> capability_plugin : Invokes L3 tool
-        phase_orch -> bus : Publishes 'phase.completed' event
-        bus -> meta_orch : Event triggers routing to next phase
-        meta_orch -> plm : Queries plugin status
-        plm -> phase_orch : Manages lifecycle
-        plm -> capability_plugin : Manages lifecycle
-        
-        phase_orch --> kg : Writes phase results to PDP
-        capability_plugin --> kg : May read/write its own data
-        control <-- phase_orch : Requests credentials
-        control <-- capability_plugin : Requests credentials
+    user -> core : API / CLI Calls
+    core -> advisor : Query for recommended plugins
+    core -> plm : Activate / deactivate plugins
+    plm -> plugin : Lifecycle commands
+    plugin -> bus : Publish domain events
+    core -> bus : Publish checkpoint events
+    core --> kg : Read/write PDP data
+    plugin --> kg : Domain data access (optional)
+    control <-- core : Cred & telemetry
 ``` 

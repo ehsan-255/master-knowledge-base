@@ -1,7 +1,7 @@
 # AOS Security and Trust Boundaries
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v4.0
 
 ---
 
@@ -9,7 +9,7 @@
 
 The Antifragile OS (AOS) implements the Hexagonal Microkernel Architecture (HMA) security model, which is based on the principle of "Security by Design." This means security is not an afterthought but is woven into the architecture through clearly defined trust boundaries and mandatory security controls.
 
-This document outlines the security framework for a compliant AOS v4.1 implementation.
+This document outlines the security framework for a compliant AOS v4.0 implementation.
 
 ## 2. HMA Trust Boundaries
 
