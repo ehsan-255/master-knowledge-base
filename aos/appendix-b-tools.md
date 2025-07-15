@@ -25,4 +25,19 @@ recommended_tools:
       purpose: "Graph database"
     - name: "Stardog"
       purpose: "Semantic graph with reasoning"
+
+  taxonomy:
+    - name: "Generic Problem-Solving Toolkit"
+      purpose: "Starter library of lightweight L3 plugins implementing classic techniques such as 5-Whys, Fishbone Diagram, SCAMPER, Decision Matrix, Impact/Effort Matrix, Critical Path Method, etc."
+
+  - name: "RequirementsClarifier-LLM"
+    purpose: "Uses an LLM Q&A chain to refine acceptance criteria; returns JSON patch for PDP."
+  - name: "Brainstorm-LLM"
+    purpose: "LLM generates SCAMPER and mind-map option lists tagged with novelty scores."
+  - name: "DecisionMatrix-LLM"
+    purpose: "LLM reasons over candidate options, fills a weighted decision matrix, and justifies scores."
+  - name: "WBS-LLM"
+    purpose: "LLM converts clarified requirements into a work-breakdown structure (max depth 3)."
+  - name: "CodeStub-LLM"
+    purpose: "LLM scaffolds boilerplate code or scripts requested by other plugins; output verified by linter."
 ``` 

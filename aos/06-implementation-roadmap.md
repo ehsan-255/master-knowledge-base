@@ -1,15 +1,15 @@
-## Part VII: Implementation Roadmap
+## Part VI: Implementation Roadmap
 
 ### Phase 1: Foundation & Standards
 - Finalize semantic ontology and SHACL shapes (see [Appendix A](./appendix-a-ontology.md))
 - Implement immutable PDP store with event sourcing (see [PDP Digital Twin](./02-pdp-digital-twin.md#23-immutable-versioning-protocol))
-- Deploy knowledge graph infrastructure (see [Knowledge Graph Ecosystem](./04-knowledge-graph-ecosystem.md))
-- Train teams on Wardley Mapping and TOC (see [Three-Layer Architecture](./01-three-layer-architecture.md#11-layer-1-strategic-the-why))
+- Deploy knowledge graph infrastructure (see [Knowledge Graph Ecosystem](./03-knowledge-graph-ecosystem.md))
+- Train teams on Wardley Mapping and TOC (see [Implementation Architecture](./04-implementation-architecture.md))
 
 ### Phase 2: Strategic & Orchestration Layers
 - Build Wardley Mapping engine
 - Implement TOC analyzer
-- Deploy 5D Journey orchestrator (see [Enhanced 5D Journey](./03-enhanced-5d-journey.md))
+- Deploy 5D Journey orchestrator (see [Enhanced 5D Journey](./01-enhanced-5d-journey.md))
 - Integrate Design Thinking + TRIZ synthesis
 
 ### Phase 3: Execution & Antifragility
@@ -22,7 +22,7 @@
 - Train ML models on project patterns
 - Deploy recommendation engine
 - Implement autonomous re-diagnosis
-- Enable full AI orchestration (see [AI Orchestration Architecture](./05-implementation-architecture.md#52-ai-orchestration-architecture))
+- Enable full AI orchestration (see [Implementation Architecture](./04-implementation-architecture.md))
 
 ### Phase 5: Enterprise Scale
 - Organization-wide rollout

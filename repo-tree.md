@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-07-13 03:11:09  
+**Generated**: 2025-07-14 00:32:04  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -22,8 +22,47 @@
 │   📄 roadmap-checklist-template.md
 │   📄 roadmap-progress-tracker-template.md
 │   📄 roadmap-template.md
+📁 aos
+│   📄 00-introduction.md
+│   📄 01-enhanced-5d-journey.md
+│   📄 02-pdp-digital-twin.md
+│   📄 03-knowledge-graph-ecosystem.md
+│   📄 04-implementation-architecture.md
+│   📄 05-metrics-and-evolution.md
+│   📄 06-implementation-roadmap.md
+│   📄 07-conclusion.md
+│   📄 appendix-a-ontology.md
+│   📄 appendix-b-tools.md
+│   📄 appendix-c-references.md
+│   📄 appendix-d-migrating-to-aos-v4.0.md
+│   📄 appendix-e-adoption-and-change-management.md
+│   📄 appendix-f-governance.md
+│   📄 appendix-g-sustainability.md
+│   📄 citable-ai-charter.md
+│   📄 decomposition-and-coupling-policy.md
+│   📄 experiment-registry-concept.md
+│   📄 graph-lifecycle-governance.md
+│   📄 hma-layer-mapping.md
+│   📄 hma-plugin-lifecycle-concept.md
+│   📄 hma-traceability-concept.md
+│   📄 human-ai-dissent-protocol.md
+│   📄 implementation-profiles-concept.md
+│   📄 option-stub-policy.md
+│   📄 plain-language-handbook.md
+│   📄 volatility-playbook.md
 🗃️ archive ALWAYS ARCHIVE HERE
 📁 change-requests
+📁 HMA v1.3
+│   📄 HMA v1.3 - Part 0 - Table of Contents.md
+│   📄 HMA v1.3 - Part 1 - Overview and Context.md
+│   📄 HMA v1.3 - Part 2 - High-Level Structure.md
+│   📄 HMA v1.3 - Part 3 - Internal Components and Interfaces.md
+│   📄 HMA v1.3 - Part 4 - Detailed Specifications and Standards.md
+│   📄 HMA v1.3 - Part 5 - Cross-Cutting Concerns.md
+│   📄 HMA v1.3 - Part 6 - Supporting Information.md
+│   📄 HMA v1.3 - Part LP - Fact Sheet.md
+│   📄 HMA v1.3 - Part LP - Story Guide.md
+│   📄 HMA v1.3.md
 📁 llm-reports
 │   📄 audit-project-initiation-quality-20250120-0200.md
 │   📄 audit-remediation-execution-quality-20250620-0000.md
@@ -332,10 +371,15 @@
 📄 .prettierignore
 📄 antifragile-os-v3.0.md
 📄 aos-comprehensive-critique-report.md
+📄 aos-roadmap.md
+📄 aos-upgrade.md
 📄 aos-v3.0-analysis-gemini.md
+📄 aos-v4.0-conceptual-remediation-roadmap.md
+📄 aos-v4.0-discrepancy-remediation-roadmap.md
 📄 AS-INDEX-KB-MASTER.md
 📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
 📄 frontmatter-implementation-damage-assessment-20250617-1328.md
+📄 llm-discrepancy-resolution-roadmap.md
 📄 merge-reports.md
 📄 mermaid-diagram-guidelines.md
 📄 project-initiation-execution-methodology.md
