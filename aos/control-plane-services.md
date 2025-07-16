@@ -1,7 +1,7 @@
 # AOS Control Plane Services
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v5.0
 
 ---
 
@@ -11,7 +11,7 @@ In accordance with the Hexagonal Microkernel Architecture (HMA), the Antifragile
 
 By centralizing these functions, AOS ensures that core concerns like security, messaging, and observability are handled uniformly, allowing autonomous plugins to focus solely on their business capabilities. Access to these services is provided exclusively through well-defined, versioned Core Ports.
 
-This document details the mandatory Control Plane services required for a compliant AOS v4.1 implementation, addressing a key HMA adoption requirement.
+This document details the mandatory Control Plane services required for a compliant AOS v5.0 implementation, addressing a key HMA adoption requirement.
 
 ## 2. The Core Services
 

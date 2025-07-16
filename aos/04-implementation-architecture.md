@@ -1,12 +1,12 @@
 ## Part IV: Implementation Architecture
 
-This document outlines the implementation architecture for the Antifragile OS (AOS) v4.1, which is a direct realization of the **Hexagonal Microkernel Architecture (HMA) v1.3**. This new architecture replaces the previous monolithic, three-layer model to resolve critical issues related to fragility, separation of concerns, and academic theory dependency (Critiques #38, #10, #41).
+This document outlines the implementation architecture for the Antifragile OS (AOS) v5.0, which is a direct realization of the **Hexagonal Microkernel Architecture (HMA) v1.3**. This new architecture replaces the previous monolithic, three-layer model to resolve critical issues related to fragility, separation of concerns, and academic theory dependency (Critiques #38, #10, #41).
 
 The normative source for the HMA architecture is the `HMA v1.3` specification located in the repository. This implementation adheres strictly to the layers, zones, and interaction patterns defined therein.
 
 ## HMA L0-L4 Layered Model Adoption
 
-AOS v4.1 fully adopts the HMA layered reference model to enforce a strict separation of concerns:
+AOS v5.0 fully adopts the HMA layered reference model to enforce a strict separation of concerns:
 
 *   **L0: Actor Layer:** Human users (e.g., System Architects, Project Managers) and external systems that interact with AOS.
 *   **L1: Interface Layer:** Technology-specific Driving Adapters (e.g., a future command-line interface, a web UI's GraphQL API) that translate actor requests into calls on the L2 Core's ports.
@@ -49,10 +49,10 @@ AOS utilizes the three primary HMA interaction patterns:
 
 ## Conceptual Configuration
 
-The following YAML snippet illustrates the conceptual configuration for an HMA-based AOS v4.1 instance. It defines which plugins are active and provides configuration for core infrastructure components like the event bus.
+The following YAML snippet illustrates the conceptual configuration for an HMA-based AOS v5.0 instance. It defines which plugins are active and provides configuration for core infrastructure components like the event bus.
 
 ```yaml
-# Conceptual HMA Configuration for an AOS v4.1 Instance
+# Conceptual HMA Configuration for an AOS v5.0 Instance
 version: 1.3
 hma_core:
   plugin_registry:
@@ -112,7 +112,7 @@ Because guidance is expressed as data (rules) rather than code branches, new dec
 
 ### Standard HMA Port Catalogue  <!-- HMA ALIGNMENT -->
 
-AOS v4.1 now *inherits verbatim* the five canonical port types defined in HMA v1.3 Part 3 §10.
+AOS v5.0 now *inherits verbatim* the five canonical port types defined in HMA v1.3 Part 3 §10.
 
 | Port | Layer | Purpose |
 |------|-------|---------|
@@ -134,7 +134,7 @@ Lifecycle transitions emit events (`plugin.registered.v1`, `plugin.failed.v1`, e
 
 ### LLM Operating Mode & Gateway  <!-- LLM INTEGRATION -->
 
-AOS v4.1 treats Large-Language-Model calls as **L3 Capability Plugins** that are strictly *single-responsibility*:
+AOS v5.0 treats Large-Language-Model calls as **L3 Capability Plugins** that are strictly *single-responsibility*:
 
 1. A Core component (LLM-Gateway Adapter) implements `PluginExecutionPort` and proxies requests to OpenAI, Anthropic, or a local model.
 2. Every LLM-driven feature (Clarifier-LLM, Brainstorm-LLM, WBS-LLM, etc.) is a *thin wrapper* that:

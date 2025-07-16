@@ -1,13 +1,13 @@
 ### Appendix F: Governance & Operational Excellence
 
 #### F.1 Semantic Ontology Management (Critique 27)
-AOS v4.1 adopts a federated ontology model to ensure scalability and manageability.
+AOS v5.0 adopts a federated ontology model to ensure scalability and manageability.
 - **CORE Ontology:** A minimal, centrally governed set of classes and properties essential for framework interoperability (as defined in `appendix-a-ontology.md`). Changes require approval from an **Ontology Steward Circle**.
 - **CONTEXT Ontologies:** Team- or domain-specific extensions that import the CORE ontology. These can be evolved more rapidly by local teams.
 - **Governance:** Changes to the CORE ontology are managed via pull requests with automated diff-reporting and require at least two approvals from the Steward Circle.
 
 #### F.2 Informal Knowledge Capture (Critique 47)
-To capture innovation that occurs outside formal processes, AOS v4.1 supports:
+To capture innovation that occurs outside formal processes, AOS v5.0 supports:
 - **Always-Open Idea Backlog:** A dedicated channel (e.g., Slack, Teams) integrated via ChatOps where any team member can submit an idea. Ideas can be upvoted by the community.
 - **Sandbox PDP:** A lightweight, unstructured PDP type (`@type: "SandboxPDP"`) for exploring speculative ideas without the full process overhead. Successful sandbox experiments can be formally promoted to an `AOS-Lite` or `AOS-Standard` project.
 

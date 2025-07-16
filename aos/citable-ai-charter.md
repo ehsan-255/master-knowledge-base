@@ -1,13 +1,13 @@
 # The Citable AI Charter
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v5.0
 
 ---
 
 ## 1. Principle: Treating AI Outputs with Professional Skepticism
 
-AOS v4.1 rejects the assumption of AI perfection. All AI-generated artifacts (analyses, recommendations, code, documentation) must be treated with the same professional skepticism as a junior team member's first draft. They are proposals to be validated, not truths to be accepted.
+AOS v5.0 rejects the assumption of AI perfection. All AI-generated artifacts (analyses, recommendations, code, documentation) must be treated with the same professional skepticism as a junior team member's first draft. They are proposals to be validated, not truths to be accepted.
 
 This charter establishes the core policies for ensuring AI-generated content is traceable, verifiable, and accountable, directly addressing Critique #17 (Assumption of AI/Automation Perfection).
 

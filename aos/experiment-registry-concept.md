@@ -1,13 +1,13 @@
 # Experiment Registry and Innovation Policy
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v5.0
 
 ---
 
 ## 1. Principle: From Anecdote to Evidence
 
-AOS v4.1 moves away from making sweeping claims based on limited data. Instead, it adopts a culture of scientific discipline where all strategic patterns and methodological claims are treated as falsifiable hypotheses that must be validated through controlled experimentation.
+AOS v5.0 moves away from making sweeping claims based on limited data. Instead, it adopts a culture of scientific discipline where all strategic patterns and methodological claims are treated as falsifiable hypotheses that must be validated through controlled experimentation.
 
 This policy directly addresses Critique #6 (Hasty Generalization) and #45 (Algorithmic Homogenization) by creating a formal system for tracking experiments and actively encouraging novelty.
 

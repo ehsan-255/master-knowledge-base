@@ -105,7 +105,7 @@ IF self.detect_drift(): self.trigger_retraining();
 
 ### 4.3 Problem & Tool Ontologies  <!-- NEW INTEGRATION C-1 -->
 
-AOS v4.1 now formalises two lightweight ontologies that live inside the Enterprise Knowledge Graph:
+AOS v5.0 now formalises two lightweight ontologies that live inside the Enterprise Knowledge Graph:
 
 * **Problem Ontology** – captures key attributes required for intelligent plugin selection.
   - `f:problem_domain` (e.g., technical, business, social)

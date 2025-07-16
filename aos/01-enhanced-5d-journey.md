@@ -75,8 +75,18 @@ PROCEDURE DIAGNOSE_COMPLEXITY(pdp):
     
     # Bias Checkpoint: L3-Red-Team-Plugin challenges the human's classification
     red_team_task = {'plugin': 'RedTeamPlugin', 'action': 'challenge_classification', 'params': pdp}
-    bias_report = Core.invoke('PluginExecutionPort', red_team_task)
-    pdp.bias_checkpoint = bias_report
+    pdp.bias_checkpoint = Core.invoke('PluginExecutionPort', red_team_task)
+
+    # NEW: Delegation of Authority Check
+    policy = pdp.get_delegation_policy("3.2") # Get policy for this specific step
+    IF policy == "HumanInLoop":
+        # Present diagnosis to human and await final classification
+        final_classification = AWAIT_HUMAN_JUDGMENT(pdp.diagnosis, pdp.bias_checkpoint)
+        pdp.update({'final_classification': final_classification})
+    ELIF policy == "FullAutonomy":
+        # Invoke AI Decider to make the classification
+        decision = Core.invoke('AIDeciderPlugin', {'pdp': pdp, 'step_id': "3.2"})
+        pdp.update(decision)
     
     IF pdp.complexity_assessment.secondary: 
         hybrid_response = GENERATE_HYBRID(pdp.complexity_assessment.primary, pdp.complexity_assessment.secondary); 
@@ -263,7 +273,7 @@ PROCEDURE DELIVER_WITH_LEARNING(pdp):
     RETURN pdp
 ```
 
-## 📌 New Additions for AOS v4.1 Conceptual Completion  <!-- C-5 -->
+## 📌 New Additions for AOS v5.0 Conceptual Completion  <!-- C-5 -->
 
 ### Emergent Response Templates (Chaotic Domain)
 * Rapid *sense–act–learn* loops
@@ -311,7 +321,4 @@ Every task inside each 5D phase now follows an inner **Understand → Plan → D
 The Orchestrator inserts explicit checkpoints to enforce deliberate reflection:
 
 * `checkpoint.problem_reframe.v1` – triggered after **Understand** to confirm the problem statement still holds.
-* `checkpoint.contradiction_diagnostic.v1` – triggered before **Plan**; if a fundamental contradiction is detected the TRIZ workflow is auto-suggested.
-* `checkpoint.robustness_check.v1` – triggered before returning to the parent 5D phase; prompts a Systems-Thinking impact scan to catch unintended consequences.
-
-Workflow execution pauses until a human reviewer or authorised AI validator acknowledges each checkpoint, ensuring high-quality decision-making and preventing runaway automation.
+* `

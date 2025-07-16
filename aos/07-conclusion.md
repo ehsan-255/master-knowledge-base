@@ -1,6 +1,6 @@
 ## Part VII: Conclusion
 
-The Antifragile OS (AOS) v4.1 represents a fundamental evolution in how we approach complexity. By combining:
+The Antifragile OS (AOS) v5.0 represents a fundamental evolution in how we approach complexity. By combining:
 
 - **[Strategic awareness](./01-enhanced-5d-journey.md)** through Wardley Mapping and TOC
 - **Antifragile design** that gains from disorder
@@ -13,4 +13,4 @@ We create a system that doesn't just solve problems—it evolves to solve them b
 
 This is not merely a framework; it's an organizational nervous system that senses, adapts, and thrives in an uncertain world.
 
-The Antifragile OS v4.1 is more than a methodology—it is a complete operating system for turning strategic intent into delivered value. It creates a common language for problem-solving where humans provide vision, creativity, and judgment, while AI provides analysis, orchestration, and continuous learning. Together, they form a symbiotic system that is greater than the sum of its parts. 
+The Antifragile OS v5.0 is more than a methodology—it is a complete operating system for turning strategic intent into delivered value. It creates a common language for problem-solving where humans provide vision, creativity, and judgment, while AI provides analysis, orchestration, and continuous learning. Together, they form a symbiotic system that is greater than the sum of its parts. 

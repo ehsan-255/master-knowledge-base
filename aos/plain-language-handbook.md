@@ -1,7 +1,7 @@
 # The AOS Plain Language Handbook
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v5.0
 
 ---
 
@@ -13,7 +13,7 @@ Its purpose is to make the framework accessible to a wider audience, from execut
 
 ## 2. The Plain Language Abstraction Layer
 
-Every major artifact and concept in AOS v4.1 is required to have a `plain_language_summary` field in its schema. This field describes the purpose and findings of the artifact without using jargon.
+Every major artifact and concept in AOS v5.0 is required to have a `plain_language_summary` field in its schema. This field describes the purpose and findings of the artifact without using jargon.
 
 ## 3. Key Concept Translations
 
@@ -30,5 +30,7 @@ This section serves as a living glossary.
 | **L3 Capability Plugin** | A self-contained piece of software that does one specific job, like "analyze user feedback" or "generate a Wardley Map". | How can we add new features to our system without breaking existing ones? |
 | **L2 Orchestrator Plugin** | A "manager" plugin that coordinates a complex workflow by telling different capability plugins what to do and when. | How do we manage a complex, multi-step process like onboarding a new customer? |
 | **Event-Driven Communication** | A style of communication where components announce that something has happened, and other components can choose to react to it, rather than components giving each other direct orders. | How can we make our system components less dependent on each other, so a failure in one doesn't bring down the whole system? |
+| **Solution Architecture** | The structural blueprint of the chosen solution. | How do we create a clear, agreed-upon plan for the solution before we start building it? (This could be a software diagram, a business process map, or an experimental protocol). |
+| **DEVELOP Phase** | Breaking the approved plan down into detailed, actionable tasks. | How do we turn our high-level solution blueprint into a concrete work plan? |
 
 This handbook should be regularly updated as the AOS framework evolves. 

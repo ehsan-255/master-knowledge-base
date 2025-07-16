@@ -1,7 +1,7 @@
-# HMA Layer Mapping for AOS v4.1
+# HMA Layer Mapping for AOS v5.0
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v5.0
 
 ---
 

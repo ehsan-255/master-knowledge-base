@@ -1,7 +1,7 @@
 # Knowledge Graph Lifecycle & Governance Policy
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v5.0
 
 ---
 

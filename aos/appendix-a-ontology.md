@@ -47,6 +47,10 @@ f:InheritanceMap a owl:Class ;
 f:PreMortemAnalysis a owl:Class ;
     rdfs:label "Pre-Mortem Analysis" ;
     rdfs:comment "An artifact capturing the results of a workshop designed to identify potential project failure modes before they occur." .
+
+f:DelegationPolicy a owl:Class ;
+    rdfs:label "Delegation of Authority Policy" ;
+    rdfs:comment "Defines whether a human or an AI agent is the final authority for decision gates in the AOS process." .
 ```
 
 # --- Additions for Problem & Tool Ontologies (C-1) ---

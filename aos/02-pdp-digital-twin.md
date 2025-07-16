@@ -1,4 +1,4 @@
-## Part II: The PDP Digital Twin v4.1
+## Part II: The PDP Digital Twin v5.0
 
 ### 2.1 Semantic Data Model (JSON-LD)
 
@@ -16,7 +16,12 @@
   "@id": "pdp:550e8400-e29b-41d4-a716-446655440000",
   "@type": "ProjectDefinitionPacket",
   
-  "schema_version": "4.1",
+  "schema_version": "5.0",
+  "delegation_policy": {
+    "@type": "DelegationPolicy",
+    "mode": "HumanInLoop",
+    "step_overrides": {}
+  },
   "immutable_id": "550e8400-e29b-41d4-a716-446655440000",
   "parent_pdp": {"@id": "pdp:parent-id"},
   "created_at": {"@type": "xsd:dateTime", "@value": "2025-07-14T10:00:00Z"},
@@ -319,7 +324,7 @@ class ImmutablePDP:
         return f"{major}.{minor}.{patch + 1}"
 ``` 
 
-### 📌 Conceptual Extensions for AOS v4.1
+### 📌 Conceptual Extensions for AOS v5.0
 
 ```jsonc
 {

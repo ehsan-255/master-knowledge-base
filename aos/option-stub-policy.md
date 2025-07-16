@@ -1,7 +1,7 @@
 # Option Stub Policy
 
 **Version:** 1.0
-**Applies to:** AOS v4.1
+**Applies to:** AOS v5.0
 
 ---
 
@@ -13,7 +13,7 @@ This policy addresses Critique #12 (Antifragile Optionality vs. Digital Twins) f
 
 ## 2. "Option Stubs": Lightweight Placeholders
 
-AOS v4.1 introduces the concept of an **"Option Stub"** (or a "Lightweight PDP"). This is a minimal, lightweight artifact that acts as a placeholder for a strategic option that has been identified but not yet pursued.
+AOS v5.0 introduces the concept of an **"Option Stub"** (or a "Lightweight PDP"). This is a minimal, lightweight artifact that acts as a placeholder for a strategic option that has been identified but not yet pursued.
 
 ## 3. Structure of an Option Stub
 
