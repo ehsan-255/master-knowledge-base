@@ -14,12 +14,9 @@ from typing import Dict, List, Type, Optional, Any
 import structlog
 
 from .logging_config import get_scribe_logger
-
-# Import BaseAction for type checking
 from ..actions.base import BaseAction
-# Need these for type hints in the modified methods
-from ..core.config_manager import ConfigManager
-from ..core.security_manager import SecurityManager
+from .config_manager import ConfigManager
+from .security_manager import SecurityManager
 
 
 logger = get_scribe_logger(__name__)

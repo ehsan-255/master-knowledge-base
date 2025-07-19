@@ -96,6 +96,15 @@ IF self.detect_drift(): self.trigger_retraining();
     def create_pdp_summary(self, pdp: ImmutablePDP) -> PDPSummary:
         """Create summary node for PDP aggregation"""
         return PDPSummary(pdp)  # Implementation details omitted
+
+    def prune_graph(self):
+        # Analyze graph for bloat (e.g., low-relevance nodes)
+        low_relevance_nodes = self.identify_low_relevance_nodes(threshold=0.7)
+        for node in low_relevance_nodes:
+            if self.validate_with_shacl(node):
+                self.archive_node(node)
+        self.create_snapshot()
+
 ```
 
 ### 4.2 Strategic Query Examples

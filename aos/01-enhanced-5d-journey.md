@@ -92,6 +92,11 @@ PROCEDURE DIAGNOSE_COMPLEXITY(pdp):
         hybrid_response = GENERATE_HYBRID(pdp.complexity_assessment.primary, pdp.complexity_assessment.secondary); 
         pdp.update({"response_type": hybrid_response});
 
+    # NEW: Invoke WorstCaseSimulationPlugin
+    worst_case_task = {'plugin': 'WorstCaseSimulationPlugin', 'action': 'RUN_SIMULATIONS', 'params': pdp.volatility_assessment}
+    worst_case_results = Core.invoke('PluginExecutionPort', worst_case_task)
+    pdp.update({'worst_case_analysis': worst_case_results})
+
     RETURN pdp
 ```
 

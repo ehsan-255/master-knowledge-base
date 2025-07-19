@@ -81,7 +81,6 @@ This phase ensures that the process is right-sized for the project's complexity 
 - [Appendix D: Migrating to AOS v5.0](./appendix-d-migrating-to-aos-v5.0.md)
 - [Appendix E: Adoption and Change Management](./appendix-e-adoption-and-change-management.md)
 - [Appendix F: Governance & Operational Excellence](./appendix-f-governance.md)
-- [Appendix G: Sustainability & Environmental Impact](./appendix-g-sustainability.md)
 
 ### HMA Integration and Standards
 - **[HMA Layer Mapping for AOS v5.0](./hma-layer-mapping.md):** The definitive mapping of AOS concepts to HMA layers.

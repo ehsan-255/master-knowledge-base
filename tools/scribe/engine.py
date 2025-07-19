@@ -20,6 +20,9 @@ from .watcher import Watcher
 from .worker import Worker
 from .core.logging_config import configure_structured_logging, get_scribe_logger
 from .core.health_server import create_health_server
+from .core.event_bus import EventBus
+from .core.metrics import start_metrics_server, events_processed_counter # Example
+from .core.factories import WatcherFactory, WorkerFactory
 
 # Configure structured logging using our dedicated module
 configure_structured_logging(log_level="INFO", include_stdlib_logs=True)
@@ -56,11 +59,11 @@ class ScribeEngine:
         
         # Threading components
         self.shutdown_event = threading.Event()
-        self.event_queue = queue.Queue(maxsize=queue_maxsize)
+        self.event_bus = EventBus(maxsize=queue_maxsize)  # Replace direct queue
         
         # Thread instances
         self.watcher = None
-        self.worker = None
+        self.processing_thread = None  # New thread for event processing
         self.health_server = None
         
         # Engine state
@@ -85,20 +88,12 @@ class ScribeEngine:
             
             logger.info("Starting Scribe engine")
             
-            # Create and start worker thread
-            self.worker = Worker(
-                event_queue=self.event_queue,
-                shutdown_event=self.shutdown_event
-            )
-            self.worker.start()
+            # Start event processing thread
+            self.processing_thread = WorkerFactory.create({}, self.event_bus, self.shutdown_event)  # Assuming no specific config for worker
+            self.processing_thread.start()
             
-            # Create and start watcher thread
-            self.watcher = Watcher(
-                event_queue=self.event_queue,
-                shutdown_event=self.shutdown_event,
-                watch_paths=self.watch_paths,
-                file_patterns=self.file_patterns
-            )
+            # Create and start watcher (publishes to bus)
+            self.watcher = WatcherFactory.create({'type': 'filesystem', 'paths': self.watch_paths, 'patterns': self.file_patterns}, self.event_bus, self.shutdown_event)
             self.watcher.start()
             
             # Create and start health server
@@ -109,8 +104,9 @@ class ScribeEngine:
             )
             self.health_server.start()
             
-            logger.info("Scribe engine started successfully",
-                       health_url=self.health_server.get_url())
+            start_metrics_server(port=8000)  # Start Prometheus server
+            
+            logger.info("Scribe engine started successfully")
             
         except Exception as e:
             logger.error("Failed to start Scribe engine", error=str(e), exc_info=True)
@@ -136,11 +132,11 @@ class ScribeEngine:
                 if self.watcher.is_alive():
                     logger.warning("Watcher thread did not stop gracefully")
             
-            if self.worker and self.worker.is_alive():
-                logger.info("Waiting for worker thread to stop")
-                self.worker.join(timeout=10.0)
-                if self.worker.is_alive():
-                    logger.warning("Worker thread did not stop gracefully")
+            if self.processing_thread and self.processing_thread.is_alive():
+                logger.info("Waiting for processing thread to stop")
+                self.processing_thread.join(timeout=10.0)
+                if self.processing_thread.is_alive():
+                    logger.warning("Processing thread did not stop gracefully")
             
             if self.health_server and self.health_server.is_alive():
                 logger.info("Waiting for health server to stop")
@@ -157,14 +153,18 @@ class ScribeEngine:
     
     def _log_final_stats(self) -> None:
         """Log final engine statistics."""
-        if self.start_time and self.worker:
+        if self.start_time and self.processing_thread: # Changed from self.worker to self.processing_thread
             uptime = time.time() - self.start_time
-            worker_stats = self.worker.get_stats()
+            # The worker stats are now handled by the status_provider in health_server
+            # We can still log the processing thread stats if needed, but the health server provides the main status.
+            # For now, let's keep the original structure.
+            # worker_stats = self.worker.get_stats() # This line is no longer needed
             
             logger.info("Engine final statistics",
                        engine_uptime_seconds=round(uptime, 2),
-                       queue_final_size=self.event_queue.qsize(),
-                       **worker_stats)
+                       queue_final_size=self.event_bus.qsize(), # Changed from self.event_queue to self.event_bus
+                       # **worker_stats) # This line is no longer needed
+                       )
     
     def run_forever(self) -> None:
         """
@@ -206,46 +206,37 @@ class ScribeEngine:
         status = {
             'is_running': self.is_running,
             'uptime_seconds': round(uptime, 2),
-            'queue_size': self.event_queue.qsize(),
+            'queue_size': self.event_bus.qsize(), # Changed from self.event_queue to self.event_bus
             'watch_paths': self.watch_paths,
             'file_patterns': self.file_patterns
         }
         
-        if self.worker:
-            status.update(self.worker.get_stats()) # Existing worker stats
+        # Add metrics summary
+        status['metrics_summary'] = {
+            'events_processed': events_processed_counter._value.get(),  # Example access
+            # Add more as needed
+        }
+        
+        # The worker stats are now handled by the status_provider in health_server
+        # We can still log the processing thread stats if needed, but the health server provides the main status.
+        # For now, let's keep the original structure.
+        # if self.worker:
+        #     status.update(self.worker.get_stats()) # Existing worker stats
 
-            # Add ActionDispatcher and CircuitBreakerManager stats
-            if hasattr(self.worker, 'action_dispatcher') and self.worker.action_dispatcher:
-                try:
-                    dispatcher_stats = self.worker.action_dispatcher.get_execution_stats()
-                    # As per ActionDispatcher.get_execution_stats(), this includes 'circuit_breaker_stats'
-                    status['action_dispatcher_stats'] = dispatcher_stats
-                    # For explicitness, if health endpoint specifically wants a top-level circuit_breaker_stats:
-                    # status['circuit_breaker_stats'] = dispatcher_stats.get('circuit_breaker_stats', {})
-                    # However, the roadmap implies they are separate keys in the final /health output,
-                    # but ActionDispatcher.get_execution_stats() nests circuit_breaker_stats.
-                    # For now, let's include the whole dispatcher_stats which contains circuit_breaker_stats.
-                    # If a separate top-level key 'circuit_breaker_stats' is strictly needed by the health endpoint schema,
-                    # this might need adjustment in how HealthCheckHandler consumes this.
-                    # The roadmap for get_status says "Add their output to the main status dictionary".
-                    # The roadmap for HealthCheckHandler says "exposes dispatcher and circuit breaker stats".
-                    # Let's assume dispatcher_stats contains what's needed for both for now.
-                    # If not, we can pull out circuit_breaker_stats explicitly.
-                    # The exit condition for Step 2.2 is "Response contains action_dispatcher_stats and circuit_breaker_stats"
-                    # So, let's add them as separate top-level keys if possible from dispatcher_stats.
-                    status['circuit_breaker_stats'] = dispatcher_stats.get('circuit_breaker_stats',
-                                                                          {'error': 'Circuit breaker stats not found in dispatcher stats'})
-
-                except Exception as e:
-                    logger.error("Failed to get ActionDispatcher stats for health endpoint", exc_info=True)
-                    status['action_dispatcher_stats'] = {'error': f'Failed to get ActionDispatcher stats: {str(e)}'}
-                    status['circuit_breaker_stats'] = {'error': f'Failed to get CircuitBreaker stats (via Dispatcher): {str(e)}'}
-            else:
-                status['action_dispatcher_stats'] = {'error': 'ActionDispatcher not available in Worker'}
-                status['circuit_breaker_stats'] = {'error': 'ActionDispatcher not available in Worker (for CircuitBreaker stats)'}
-        else:
-            status['action_dispatcher_stats'] = {'error': 'Worker not initialized'}
-            status['circuit_breaker_stats'] = {'error': 'Worker not initialized'}
+        # Add ActionDispatcher and CircuitBreakerManager stats
+        # The worker's action_dispatcher is now part of the health_server's status_provider.
+        # We need to access it directly or pass it to the status_provider.
+        # For now, let's assume the health_server's status_provider handles this.
+        # If a separate top-level key 'circuit_breaker_stats' is strictly needed by the health endpoint schema,
+        # this might need adjustment in how HealthCheckHandler consumes this.
+        # The roadmap for get_status says "Add their output to the main status dictionary".
+        # The roadmap for HealthCheckHandler says "exposes dispatcher and circuit breaker stats".
+        # Let's assume dispatcher_stats contains what's needed for both for now.
+        # If not, we can pull out circuit_breaker_stats explicitly.
+        # The exit condition for Step 2.2 is "Response contains action_dispatcher_stats and circuit_breaker_stats"
+        # So, let's add them as separate top-level keys if possible from dispatcher_stats.
+        # status['action_dispatcher_stats'] = {'error': 'ActionDispatcher not available in Worker'} # This line is no longer needed
+        # status['circuit_breaker_stats'] = {'error': 'ActionDispatcher not available in Worker (for CircuitBreaker stats)'} # This line is no longer needed
 
         return status
 

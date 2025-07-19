@@ -6,9 +6,9 @@ import yaml # Requires PyYAML
 import hashlib
 import logging
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Set
+from typing import Dict, Any, List, Optional, Set, Tuple
 
-from .base_action import BaseAction # Assuming BaseAction is in the same directory
+from .base import BaseAction, ActionExecutionError
 
 # Helper functions (adapted from tools/indexer/generate_index.py)
 # These can be static methods, part of a helper class, or module-level functions
@@ -89,17 +89,16 @@ def _create_node_from_file(filepath_rel_to_repo: str, file_content: str, file_st
     return node
 
 class ReconciliationAction(BaseAction):
-    def __init__(self, action_config: dict, global_config: dict, logger=None):
-        super().__init__(action_config, global_config, logger)
-        self.master_index_path_str = self.action_config.get("master_index_path", "standards/registry/master-index.jsonld")
-        self.kb_root_dirs_str = self.action_config.get("kb_root_dirs", ["."]) # Scan whole repo by default relative to repo_root
-        self.exclude_dirs_set = set(self.action_config.get("exclude_dirs",
+    def __init__(self, action_type: str, params: Dict[str, Any], config_manager: 'ConfigManager', security_manager: 'SecurityManager'):
+        super().__init__(action_type, params, config_manager, security_manager)
+        self.master_index_path_str = self.params.get("master_index_path", "standards/registry/master-index.jsonld")
+        self.kb_root_dirs_str = self.params.get("kb_root_dirs", ["."]) # Scan whole repo by default relative to repo_root
+        self.exclude_dirs_set = set(self.params.get("exclude_dirs",
             ['.git', 'node_modules', '__pycache__', '.vscode', 'archive', 'tools', 'temp-naming-enforcer-test']))
+        self.repo_root = Path(self.config_manager.get_repo_root())
 
 
     def setup(self):
-        if not super().setup(): # Basic repo_root check
-            return False
 
         self.master_index_file = self.repo_root / self.master_index_path_str
         self.kb_root_paths = [self.repo_root / Path(p) for p in self.kb_root_dirs_str]
@@ -186,10 +185,10 @@ class ReconciliationAction(BaseAction):
             self.logger.error(f"Error writing index file {self.master_index_file}: {e}")
             return False
 
-    def execute(self, execution_context: dict) -> dict:
-        self.logger.info(f"Executing ReconciliationAction. Context: {execution_context}")
+    def execute(self, file_content: str, match, file_path: str, params: Dict[str, Any]) -> str:
+        self.logger.info(f"Executing ReconciliationAction. Context: {params}")
         if not self.setup(): # Call setup if not already called or if it can be re-entrant
-             return {'status': 'failure', 'message': "Setup failed."}
+             raise ActionExecutionError(self.action_type, "Setup failed.")
 
         existing_index = self._load_existing_index()
         current_files = self._scan_knowledge_base()
@@ -199,16 +198,11 @@ class ReconciliationAction(BaseAction):
         if self._save_index(updated_index):
             msg = f"Reconciliation complete. Stats: Added {stats['added']}, Updated {stats['updated']}, Removed {stats['removed']}, Unchanged {stats['unchanged']}."
             self.logger.info(msg)
-            return {
-                'status': 'success',
-                'message': msg,
-                'updated_master_index_path': str(self.master_index_file.relative_to(self.repo_root)),
-                'stats': stats
-            }
+            return file_content
         else:
             msg = "Reconciliation failed: Could not save master index."
             self.logger.error(msg)
-            return {'status': 'failure', 'message': msg}
+            raise ActionExecutionError(self.action_type, msg)
 
 # Example usage (for testing, not part of the class itself)
 if __name__ == '__main__':
@@ -227,7 +221,7 @@ if __name__ == '__main__':
         "exclude_dirs": ['.git', 'node_modules', 'archive', 'tools', 'temp-naming-enforcer-test']
     }
 
-    action = ReconciliationAction(action_config=mock_action_config, global_config=mock_global_config, logger=logger)
+    action = ReconciliationAction(action_type="reconciliation", params=mock_action_config, config_manager=None, security_manager=None) # Mock ConfigManager and SecurityManager
 
     if action.setup():
         test_context = {} # Provide any necessary execution context

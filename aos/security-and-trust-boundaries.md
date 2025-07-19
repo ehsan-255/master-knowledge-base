@@ -27,7 +27,7 @@ The following controls are REQUIRED for any AOS implementation.
 
 *   **Secure Communication:**
     *   **TLS:** Mandatory for all external network traffic.
-    *   **mTLS (Mutual TLS):** Recommended for all internal communication between components (Core-to-Plugin, Plugin-to-Infrastructure) to ensure mutual authentication.
+    *   **mTLS (Mutual TLS):** Required for Core-Plugin comms (HMA v1.3 Part 5, Section 17.2). Configure with mutual cert validation.
 
 *   **Centralized Credential Management:**
     *   Plugins MUST obtain all credentials exclusively through the Core's **`CredBrokerQueryPort`**.

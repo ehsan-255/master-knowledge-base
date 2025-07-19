@@ -22,6 +22,12 @@ An AOS plugin (both L2 Orchestrator and L3 Capability types) can exist in one of
 *   **`Failed`**: The plugin has encountered an unrecoverable error during activation or runtime. It will not be sent new requests until it is moved back to an `Inactive` state by an administrator.
 *   **`Deprecated`**: The plugin has been superseded by a newer version or a different plugin. The Core will no longer activate new instances of this version and will actively route traffic to the preferred alternative.
 
+See HMA v1.3 Part 3, Section 11 for states.
+
+#### Detailed Lifecycle Steps
+- Discovery: Automated scan (HMA v1.3 Part 3, Section 11.1).
+- Validation: Check manifest and signatures.
+
 ## 3. State Transition Diagram
 
 ```mermaid

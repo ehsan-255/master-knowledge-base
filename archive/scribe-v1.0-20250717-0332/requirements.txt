@@ -1,0 +1,18 @@
+# Scribe Engine Dependencies
+# File system monitoring
+watchdog>=3.0.0
+
+# Structured logging
+structlog>=23.0.0
+
+# YAML configuration parsing
+pyyaml>=6.0
+
+# JSON schema validation
+jsonschema>=4.0.0
+
+# System and process utilities
+psutil>=5.9.0
+
+# HTTP server for health endpoint
+# (using built-in http.server, no additional dependency needed) 

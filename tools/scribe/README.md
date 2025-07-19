@@ -223,6 +223,14 @@ These checks significantly reduce the risk of executing malicious or unsafe code
 
 ---
 
+### New Features in v1.1
+- **Central Event Bus**: Decouples producers and consumers with pub/sub pattern.
+- **Explicit Ports and Adapters**: Implements IEventSource and IFileWriter for swappability.
+- **Metrics Integration**: Prometheus counters and gauges for monitoring.
+- **Factories and DI**: WatcherFactory and WorkerFactory for configurable instantiation.
+
+---
+
 ## Testing
 
 ### Running Tests

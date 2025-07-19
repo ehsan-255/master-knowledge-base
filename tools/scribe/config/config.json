@@ -22,11 +22,18 @@
       "node_modules/"
     ]
   },
+  "watchers": [
+    {
+      "type": "filesystem",
+      "paths": ["."],
+      "patterns": ["*.md"]
+    }
+  ],
   "rules": [
     {
       "id": "RULE-001",
       "name": "Update Task Timestamp on State Change",
-      "enabled": true,
+      "enabled": false,
       "file_glob": "**/tasks/*.md",
       "trigger_pattern": "^(> \\[!TASK\\].*?\\| state: (\\w+).*)$",
       "actions": [
@@ -48,7 +55,7 @@
     {
       "id": "RULE-002",
       "name": "Log File Modifications",
-      "enabled": true,
+      "enabled": false,
       "file_glob": "*.md",
       "trigger_pattern": ".*",
       "actions": [
@@ -64,7 +71,7 @@
     {
       "id": "RULE-003",
       "name": "Run Git Status on Repository Changes",
-      "enabled": true,
+      "enabled": false,
       "file_glob": "*.md",
       "trigger_pattern": ".*",
       "actions": [

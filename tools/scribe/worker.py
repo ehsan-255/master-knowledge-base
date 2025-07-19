@@ -17,6 +17,9 @@ from .core.security_manager import SecurityManager
 from .core.rule_processor import RuleProcessor
 from .core.action_dispatcher import ActionDispatcher
 from .core.atomic_write import atomic_write
+from .core.event_bus import EventBus
+from .core.ports import AtomicFileWriter
+from .core.metrics import events_processed_counter, events_failed_counter, queue_size_gauge
 
 logger = get_scribe_logger(__name__)
 
@@ -30,7 +33,7 @@ class Worker(threading.Thread):
     """
     
     def __init__(self, 
-                 event_queue: queue.Queue,
+                 event_bus: EventBus,  # Changed from event_queue
                  shutdown_event: threading.Event,
                  queue_timeout: float = 1.0):
         """
@@ -42,7 +45,7 @@ class Worker(threading.Thread):
             queue_timeout: Timeout in seconds for queue.get() operations
         """
         super().__init__(name="ScribeWorker", daemon=True)
-        self.event_queue = event_queue
+        self.event_bus = event_bus  # Changed from self.event_queue
         self.shutdown_event = shutdown_event
         self.queue_timeout = queue_timeout
         
@@ -67,6 +70,7 @@ class Worker(threading.Thread):
             security_manager=self.security_manager
             # quarantine_path will use its default in ActionDispatcher.
         )
+        self.file_writer = AtomicFileWriter()
 
         # Load all plugins
         self.plugin_loader.load_all_plugins()
@@ -81,33 +85,17 @@ class Worker(threading.Thread):
         self.start_time = None
         
         logger.info("Worker initialized", queue_timeout=queue_timeout)
+        self.pre_hooks = self.config_manager.get('worker_hooks', {}).get('pre_process', [])
+        self.post_hooks = self.config_manager.get('worker_hooks', {}).get('post_process', [])
     
     def run(self) -> None:
         """Main thread execution - consume and process events."""
         self.start_time = time.time()
         logger.info("Event processing worker started")
-        
+        self.event_bus.subscribe('file_event', self._process_event)  # Subscribe to file events
         try:
             while not self.shutdown_event.is_set():
-                try:
-                    # Get event from queue with timeout to allow shutdown checking
-                    event = self.event_queue.get(timeout=self.queue_timeout)
-                    
-                    # Process the event
-                    self._process_event(event)
-                    
-                    # Mark task as done
-                    self.event_queue.task_done()
-                    
-                except queue.Empty:
-                    # Timeout occurred, continue loop to check shutdown
-                    continue
-                except Exception as e:
-                    logger.error("Unexpected error in worker loop", error=str(e), exc_info=True)
-                    self.events_failed += 1
-                    
-        except Exception as e:
-            logger.error("Worker thread error", error=str(e), exc_info=True)
+                time.sleep(self.queue_timeout)  # Wait with timeout to check shutdown
         finally:
             self._log_final_stats()
             logger.info("Event processing worker stopped")
@@ -131,6 +119,10 @@ class Worker(threading.Thread):
                              file_path=file_path,
                              event_timestamp=event.get('timestamp'))
 
+            for hook in self.pre_hooks:
+                # Assuming hooks are callable or action types; simplify as log for now
+                logger.info(f"Pre-hook: {hook}")
+
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     original_content = f.read()
@@ -138,10 +130,12 @@ class Worker(threading.Thread):
             except IOError as e:
                 logger.error(f"IOError reading file {file_path} for event {event_id}: {e}", exc_info=True)
                 self.events_failed += 1
+                events_failed_counter.inc()
                 return
             except Exception as e: # Catch any other unexpected errors during file read
                 logger.error(f"Unexpected error reading file {file_path} for event {event_id}: {e}", exc_info=True)
                 self.events_failed += 1
+                events_failed_counter.inc()
                 return
             
             # Rule Processing
@@ -157,6 +151,7 @@ class Worker(threading.Thread):
             except Exception as e:
                 logger.error(f"Error during rule processing for file {file_path} (event {event_id}): {e}", exc_info=True)
                 self.events_failed += 1
+                events_failed_counter.inc()
                 return
             
             # Action Dispatching
@@ -196,6 +191,7 @@ class Worker(threading.Thread):
                 except Exception as e:
                     logger.error(f"Error during overall action dispatching loop for file {file_path} (event {event_id}): {e}", exc_info=True)
                     self.events_failed += 1
+                    events_failed_counter.inc()
                     return
             else:
                 # No rule_matches, current_content remains original_content. This was logged previously.
@@ -204,15 +200,19 @@ class Worker(threading.Thread):
             # Atomically write the modified content if it has changed
             if current_content != original_content:
                 logger.info(f"Content for {file_path} (event {event_id}) has been modified. Attempting atomic write.")
-                try:
-                    atomic_write(file_path, current_content)
-                    logger.info(f"Successfully wrote modified content to {file_path} (event {event_id}) using atomic_write.")
-                except Exception as e:
-                    logger.error(f"Error during atomic write for file {file_path} (event {event_id}): {e}", exc_info=True)
+                success = self.file_writer.write(file_path, current_content)
+                if success:
+                    logger.info(f"Successfully wrote modified content to {file_path} (event {event_id}).")
+                else:
+                    logger.error(f"Failed to write modified content to {file_path} (event {event_id}).")
                     self.events_failed += 1
-                    return # Critical failure, stop processing this event
+                    events_failed_counter.inc()
+                    return
             else:
                 logger.info(f"Content for {file_path} (event {event_id}) was not modified. No write operation needed.")
+
+            for hook in self.post_hooks:
+                logger.info(f"Post-hook: {hook}")
 
             # If we reach here, all steps were successful or handled (no modification needed).
             processing_time = (time.time() - start_time) * 1000
@@ -224,6 +224,7 @@ class Worker(threading.Thread):
                              content_modified=current_content != original_content,
                              duration_ms=round(processing_time, 2))
             self.events_processed += 1
+            events_processed_counter.inc()  # Increment metric
             
         except Exception as e: # General exception for the whole processing block if anything above failed and wasn't caught
             # This block should ideally not be reached if all specific errors return early.
@@ -265,13 +266,14 @@ class Worker(threading.Thread):
         uptime = time.time() - self.start_time if self.start_time else 0
         total_events = self.events_processed + self.events_failed
         
-        return {
+        status = {
             'uptime_seconds': round(uptime, 2),
             'events_processed': self.events_processed,
             'events_failed': self.events_failed,
             'total_events': total_events,
             'success_rate': round(self.events_processed / max(total_events, 1) * 100, 2),
-            'queue_size': self.event_queue.qsize()
-        } 
+        }
+        queue_size_gauge.set(self.event_bus.get_queue_size())  # Assuming EventBus has get_queue_size method
+        return status 
 
      

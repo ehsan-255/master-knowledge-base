@@ -1,5 +1,7 @@
 actions
+config
 core
-engine
-watcher
-worker
+error_handling
+integrations
+prompts
+validation

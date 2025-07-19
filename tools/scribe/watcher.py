@@ -15,6 +15,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 import structlog
 from .core.logging_config import get_scribe_logger
+from .core.ports import IEventSource
 
 logger = get_scribe_logger(__name__)
 
@@ -22,16 +23,16 @@ logger = get_scribe_logger(__name__)
 class ScribeEventHandler(FileSystemEventHandler):
     """Custom event handler that filters and queues relevant file system events."""
     
-    def __init__(self, event_queue: queue.Queue, file_patterns: Optional[List[str]] = None):
+    def __init__(self, event_bus: 'EventBus', file_patterns: Optional[List[str]] = None):
         """
         Initialize the event handler.
         
         Args:
-            event_queue: Thread-safe queue to push events to
+            event_bus: EventBus to publish events to
             file_patterns: List of file patterns to monitor (e.g., ['*.md', '*.txt'])
         """
         super().__init__()
-        self.event_queue = event_queue
+        self.event_bus = event_bus
         self.file_patterns = file_patterns or ['*.md']  # Default to markdown files
         
     def on_modified(self, event: FileSystemEvent) -> None:
@@ -67,20 +68,14 @@ class ScribeEventHandler(FileSystemEventHandler):
             'timestamp': time.time()
         }
         
-        try:
-            self.event_queue.put_nowait(event_data)
-            logger.debug("Queued event", 
+        self.event_bus.publish('file_event', event_data)
+        logger.debug("Published event", 
                         event_id=event_id,
                         event_type=event_type, 
                         file_path=file_path)
-        except queue.Full:
-            logger.warning("Event queue is full, dropping event", 
-                          event_id=event_id,
-                          event_type=event_type, 
-                          file_path=file_path)
 
 
-class Watcher(threading.Thread):
+class Watcher(IEventSource):
     """
     File system watcher thread (Producer in producer-consumer pattern).
     
@@ -89,7 +84,7 @@ class Watcher(threading.Thread):
     """
     
     def __init__(self, 
-                 event_queue: queue.Queue,
+                 event_bus: 'EventBus',  # Changed from event_queue
                  shutdown_event: threading.Event,
                  watch_paths: List[str],
                  file_patterns: Optional[List[str]] = None):
@@ -97,25 +92,25 @@ class Watcher(threading.Thread):
         Initialize the watcher thread.
         
         Args:
-            event_queue: Thread-safe queue to push events to
+            event_bus: EventBus to publish events to
             shutdown_event: Event to signal graceful shutdown
             watch_paths: List of directory paths to monitor
             file_patterns: List of file patterns to monitor
         """
         super().__init__(name="ScribeWatcher", daemon=True)
-        self.event_queue = event_queue
+        self.event_bus = event_bus  # Changed from self.event_queue
         self.shutdown_event = shutdown_event
         self.watch_paths = watch_paths
         self.file_patterns = file_patterns or ['*.md']
         
         self.observer = Observer()
-        self.event_handler = ScribeEventHandler(event_queue, file_patterns)
+        self.event_handler = ScribeEventHandler(event_bus=self.event_bus, file_patterns=file_patterns)  # Pass event_bus
         
         logger.info("Watcher initialized", 
                    watch_paths=watch_paths, 
                    file_patterns=file_patterns)
     
-    def run(self) -> None:
+    def start(self) -> None:
         """Main thread execution - start watching and handle shutdown."""
         try:
             # Set up file system observers for each watch path
@@ -140,9 +135,9 @@ class Watcher(threading.Thread):
         except Exception as e:
             logger.error("Watcher thread error", error=str(e), exc_info=True)
         finally:
-            self._cleanup()
+            self.stop()
     
-    def _cleanup(self) -> None:
+    def stop(self) -> None:
         """Clean up resources on shutdown."""
         try:
             if self.observer.is_alive():

@@ -12,6 +12,8 @@ from pathlib import Path
 from typing import Union, BinaryIO, TextIO
 import structlog
 from .logging_config import get_scribe_logger
+import time
+import portalocker
 
 logger = get_scribe_logger(__name__)
 
@@ -74,11 +76,27 @@ def atomic_write(filepath: Union[str, Path], data: Union[str, bytes],
         if is_binary:
             if isinstance(data, str):
                 data = data.encode(encoding)
-            os.write(temp_fd, data)
+            with portalocker.Lock(temp_fd.fileno(), 'w', timeout=1) as locked_file:
+                if mode == 'w':
+                    locked_file.write(data)
+                elif mode == 'wb':
+                    locked_file.write(data.encode('utf-8'))
+                else:
+                    raise ValueError(f'Unsupported mode: {mode}')
+                locked_file.flush()
+                os.fsync(locked_file.fileno())
         else:
             if isinstance(data, bytes):
                 data = data.decode(encoding)
-            os.write(temp_fd, data.encode(encoding))
+            with portalocker.Lock(temp_fd.fileno(), 'w', timeout=1) as locked_file:
+                if mode == 'w':
+                    locked_file.write(data)
+                elif mode == 'wb':
+                    locked_file.write(data.encode('utf-8'))
+                else:
+                    raise ValueError(f'Unsupported mode: {mode}')
+                locked_file.flush()
+                os.fsync(locked_file.fileno())
         
         # Force write to disk (fsync)
         os.fsync(temp_fd)
@@ -87,10 +105,18 @@ def atomic_write(filepath: Union[str, Path], data: Union[str, bytes],
         os.close(temp_fd)
         temp_fd = None
         
-        # Atomic rename - this is the critical operation
-        # On POSIX systems, this is guaranteed to be atomic
-        temp_path.rename(filepath)
-        
+        # Atomic rename with retry for concurrent scenarios
+        max_retries = 5
+        for retry in range(max_retries):
+            try:
+                with portalocker.Lock(filepath, 'w', timeout=1, flags=portalocker.LOCK_EX | portalocker.LOCK_NB):
+                    os.replace(str(temp_path), str(filepath))
+                break
+            except (portalocker.LockException, OSError) as e:
+                if retry == max_retries - 1:
+                    raise
+                time.sleep(min(1, 0.1 * (2 ** retry)))  # Exponential backoff up to 1s
+
         logger.info("atomic_write_completed",
                    target_file=str(filepath),
                    data_size=len(data),

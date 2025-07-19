@@ -99,6 +99,7 @@ antifragile_metrics:
     null_hypothesis: "Composite innovation does not exceed baseline."
     confidence_level_required: 0.9
     confidence_interval: "[0.15, 0.25]"
+  auditor: "MetricsAuditorPlugin"
 ```
 
 ### 6.2 Organizational Evolution Metrics (Externally Validated)

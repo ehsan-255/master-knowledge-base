@@ -49,4 +49,8 @@ recommended_tools:
       purpose: "Queries the Knowledge Graph for historical precedents to augment human sense-making."
     - name: "RetrospectiveLLMPlugin"
       purpose: "Generates a concise project summary from the final PDP's telemetry and event log."
+    - name: "WorstCaseSimulationPlugin"
+      purpose: "Runs probabilistic worst-case simulations (e.g., Monte Carlo) for volatility sources to quantify risks and losses."
+    - name: "MetricsAuditorPlugin"
+      purpose: "LLM-based auditing of metrics for objectivity and tamper-proof verification."
 ``` 

@@ -16,3 +16,4 @@ psutil>=5.9.0
 
 # HTTP server for health endpoint
 # (using built-in http.server, no additional dependency needed) 
+portalocker>=2.0.0 

@@ -16,13 +16,14 @@ import logging
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Union
 from datetime import datetime
+import re
 
 # Add tools paths for importing
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 # Import existing scribe components
-from .base_action import BaseAction
+from .base import BaseAction, ActionExecutionError
 
 # Import Phase 3 components
 try:
@@ -115,7 +116,7 @@ class EnhancedFrontmatterAction(BaseAction):
         """Action description."""
         return "Generate enhanced frontmatter with LLM integration and SHACL validation"
     
-    def execute(self, file_path: str, **kwargs) -> Dict[str, Any]:
+    def execute(self, file_content: str, match: re.Match, file_path: str, params: Dict[str, Any]) -> str:
         """
         Step 5: Complete integration with Scribe workflow.
         
@@ -134,10 +135,10 @@ class EnhancedFrontmatterAction(BaseAction):
             content = self._read_file_content(file_path)
             
             # Sub-step 5.2: Detect or specify info-type
-            info_type = kwargs.get('info_type') or self._detect_info_type(content, file_path)
+            info_type = params.get('info_type') or self._detect_info_type(content, file_path)
             
             # Sub-step 5.3: Check if regeneration is needed
-            if not kwargs.get('force_regenerate', False):
+            if not params.get('force_regenerate', False):
                 existing_frontmatter = self._extract_existing_frontmatter(content)
                 if existing_frontmatter and self._is_frontmatter_valid(existing_frontmatter, info_type):
                     self.logger.info(f"Valid frontmatter exists, skipping generation for {file_path}")
@@ -175,7 +176,7 @@ class EnhancedFrontmatterAction(BaseAction):
             # If recovery suggests deterministic fallback, use it
             if recovery_result.get('recovery_strategy') == 'deterministic_fallback':
                 fallback_result = self.validator._generate_deterministic_fallback(
-                    kwargs.get('info_type', 'general-document')
+                    params.get('info_type', 'general-document')
                 )
                 
                 try:
@@ -452,14 +453,14 @@ Generate ONLY the YAML frontmatter block:
         
         return stats
     
-    def process_multiple_files(self, file_paths: List[str], **kwargs) -> Dict[str, Any]:
+    def process_multiple_files(self, file_paths: List[str], params: Dict[str, Any]) -> Dict[str, Any]:
         """Process multiple files with enhanced frontmatter generation."""
         results = {}
         total_start_time = datetime.now()
         
         for file_path in file_paths:
             try:
-                result = self.execute(file_path, **kwargs)
+                result = self.execute(file_path, **params)
                 results[file_path] = result
             except Exception as e:
                 results[file_path] = {

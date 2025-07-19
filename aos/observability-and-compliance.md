@@ -43,3 +43,11 @@ To ensure HMA rules are not just suggestions, AOS relies on automated enforcemen
 *   **Plugin Registry Validation:** The Core's Plugin Lifecycle Manager MUST validate a plugin's manifest and signature before it can be activated, ensuring it complies with all declared dependencies and security policies. 
 
 > **LLM Span Convention**: Any call through the LLM-Gateway MUST create an OTEL span named `llm.call` with attributes `llm.model`, `llm.prompt_hash`, `llm.tokens_in`, `llm.tokens_out`, `llm.latency_ms`. 
+
+In the Architecture Enforcement Mechanisms section, add:
+
+- Static Analysis: Run hma-lint in pipeline (HMA v1.3 Part 5, Section 18.1) to enforce naming and imports.
+
+Example: For Failing state, hma-lint checks lifecycle handlers. 
+
+Enforce with hma-lint in CI/CD to check compliance. 

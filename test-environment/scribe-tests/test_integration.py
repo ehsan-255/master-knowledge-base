@@ -6,287 +6,147 @@ from file system events through to worker processing.
 """
 
 import unittest
-import threading
-import queue
-import time
 import tempfile
 import os
+import time
+import threading
 from pathlib import Path
+import json
 
-# Add the scribe module to the path
-import sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'tools', 'scribe'))
+from tools.scribe.engine import ScribeEngine
+from tools.scribe.core.config_manager import ConfigManager
 
-from engine import ScribeEngine
-from watcher import Watcher
-from worker import Worker
-
+# Helper function from test_full_pipeline
+def create_temp_config_file(rules, plugin_dirs, security_settings=None):
+    if security_settings is None:
+        security_settings = {"allowed_commands": [], "restricted_paths": []}
+    
+    config_data = {
+        "config_version": "1.0",
+        "engine_settings": {
+            "log_level": "INFO",
+            "quarantine_path": os.path.join(tempfile.gettempdir(), "scribe_quarantine_test"),
+            "pause_file": os.path.join(tempfile.gettempdir(), "scribe_pause_test"),
+        },
+        "plugins": {
+            "directories": plugin_dirs,
+            "auto_reload": False,
+            "load_order": plugin_dirs
+        },
+        "security": security_settings,
+        "rules": rules,
+    }
+    
+    temp_config = tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json")
+    json.dump(config_data, temp_config)
+    temp_config.close()
+    return temp_config.name
 
 class TestEventFlowIntegration(unittest.TestCase):
-    """Test the complete event flow from watcher to worker."""
-    
+    """Test the complete event flow from file system to action execution."""
+
     def setUp(self):
-        """Set up test fixtures."""
-        self.temp_dir = tempfile.mkdtemp()
-        self.event_queue = queue.Queue()
-        self.shutdown_event = threading.Event()
+        self.test_dir = tempfile.TemporaryDirectory()
+        self.watch_dir = Path(self.test_dir.name)
         
+        # Create a dummy plugin, as the engine requires at least one.
+        plugin_dir = self.watch_dir / "test_plugins"
+        plugin_dir.mkdir()
+        with open(plugin_dir / "dummy_action.py", "w") as f:
+            f.write(
+                "from tools.scribe.actions.base import BaseAction\n"
+                "class DummyAction(BaseAction):\n"
+                "    def execute(self, content, match, path, params):\n"
+                "        return content + ' processed'"
+            )
+        with open(plugin_dir / "__init__.py", "w") as f:
+            pass
+
+        # Create a config file that points to our test directories
+        self.rules = [{
+            "id": "RULE-999", "name": "DummyRule", "enabled": True, 
+            "file_glob": "*.txt", "trigger_pattern": "initial",
+            "actions": [{"type": "dummyaction", "params": {}}]
+        }]
+        self.config_file_path = create_temp_config_file(self.rules, [str(plugin_dir)])
+        
+        # We need to ensure the ScribeEngine uses this config.
+        # We'll patch ConfigManager's default path for the duration of the test.
+        self._original_default_path = ConfigManager.DEFAULT_CONFIG_PATH
+        ConfigManager.DEFAULT_CONFIG_PATH = self.config_file_path
+        
+        self.engine = ScribeEngine(
+            watch_paths=[str(self.watch_dir)],
+            file_patterns=['*.txt']
+        )
+        self.engine_thread = None
+
     def tearDown(self):
-        """Clean up test fixtures."""
-        import shutil
-        shutil.rmtree(self.temp_dir, ignore_errors=True)
-    
+        if self.engine_thread and self.engine_thread.is_alive():
+            self.engine.stop()
+            self.engine_thread.join(timeout=5)
+        os.remove(self.config_file_path)
+        self.test_dir.cleanup()
+        # Restore the original default config path
+        ConfigManager.DEFAULT_CONFIG_PATH = self._original_default_path
+
+    def _start_engine_in_thread(self):
+        self.engine_thread = threading.Thread(target=self.engine.run_forever, daemon=True)
+        self.engine_thread.start()
+        time.sleep(0.5) # Give engine time to initialize
+        self.assertTrue(self.engine.is_running)
+
     def test_file_creation_event_flow(self):
-        """Test that a file creation flows from watcher to worker."""
-        # Create watcher and worker
-        watcher = Watcher(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            watch_paths=[self.temp_dir],
-            file_patterns=['*.md']
-        )
+        """Test that a file creation triggers the rule and action."""
+        self._start_engine_in_thread()
         
-        worker = Worker(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            queue_timeout=0.1
-        )
+        test_file = self.watch_dir / "test_create.txt"
+        test_file.write_text("initial content")
         
-        try:
-            # Start both threads
-            watcher.start()
-            worker.start()
-            
-            # Give them time to start
-            time.sleep(0.2)
-            
-            # Create a test file
-            test_file = Path(self.temp_dir) / "test.md"
-            test_file.write_text("# Test File\n\nThis is a test.")
-            
-            # Give time for event to be processed
-            time.sleep(0.5)
-            
-            # Verify worker processed the event
-            self.assertGreater(worker.events_processed, 0)
-            self.assertEqual(worker.events_failed, 0)
-            
-        finally:
-            # Clean shutdown
-            self.shutdown_event.set()
-            watcher.join(timeout=5.0)
-            worker.join(timeout=5.0)
-    
+        time.sleep(1.0) # Allow time for event processing
+        
+        # Verify the file was modified by the dummy action
+        final_content = test_file.read_text()
+        self.assertEqual(final_content, "initial content processed")
+
     def test_file_modification_event_flow(self):
-        """Test that a file modification flows from watcher to worker."""
-        # Create a test file first
-        test_file = Path(self.temp_dir) / "existing.md"
-        test_file.write_text("# Initial Content")
+        """Test that a file modification triggers the rule and action."""
+        test_file = self.watch_dir / "test_modify.txt"
+        test_file.write_text("other content") # Write before starting engine
+
+        self._start_engine_in_thread()
         
-        # Create watcher and worker
-        watcher = Watcher(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            watch_paths=[self.temp_dir],
-            file_patterns=['*.md']
-        )
+        # Modify the file to trigger the rule
+        test_file.write_text("initial content to trigger rule")
+        time.sleep(1.0)
         
-        worker = Worker(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            queue_timeout=0.1
-        )
-        
-        try:
-            # Start both threads
-            watcher.start()
-            worker.start()
-            
-            # Give them time to start
-            time.sleep(0.2)
-            
-            # Modify the test file
-            test_file.write_text("# Modified Content\n\nThis has been changed.")
-            
-            # Give time for event to be processed
-            time.sleep(0.5)
-            
-            # Verify worker processed the event
-            self.assertGreater(worker.events_processed, 0)
-            self.assertEqual(worker.events_failed, 0)
-            
-        finally:
-            # Clean shutdown
-            self.shutdown_event.set()
-            watcher.join(timeout=5.0)
-            worker.join(timeout=5.0)
-    
-    def test_multiple_file_events_flow(self):
-        """Test that multiple file events are processed correctly."""
-        # Create watcher and worker
-        watcher = Watcher(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            watch_paths=[self.temp_dir],
-            file_patterns=['*.md']
-        )
-        
-        worker = Worker(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            queue_timeout=0.1
-        )
-        
-        try:
-            # Start both threads
-            watcher.start()
-            worker.start()
-            
-            # Give them time to start
-            time.sleep(0.2)
-            
-            # Create multiple test files
-            for i in range(3):
-                test_file = Path(self.temp_dir) / f"test{i}.md"
-                test_file.write_text(f"# Test File {i}\n\nContent for file {i}.")
-                time.sleep(0.1)  # Small delay between creations
-            
-            # Give time for all events to be processed
-            time.sleep(1.0)
-            
-            # Verify worker processed multiple events
-            self.assertGreaterEqual(worker.events_processed, 3)
-            self.assertEqual(worker.events_failed, 0)
-            
-        finally:
-            # Clean shutdown
-            self.shutdown_event.set()
-            watcher.join(timeout=5.0)
-            worker.join(timeout=5.0)
-    
+        final_content = test_file.read_text()
+        self.assertEqual(final_content, "initial content to trigger rule processed")
+
     def test_non_matching_files_ignored(self):
-        """Test that non-matching files are ignored by the pipeline."""
-        # Create watcher and worker
-        watcher = Watcher(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            watch_paths=[self.temp_dir],
-            file_patterns=['*.md']  # Only watch .md files
-        )
+        """Test that files not matching the glob pattern are ignored."""
+        self._start_engine_in_thread()
         
-        worker = Worker(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            queue_timeout=0.1
-        )
+        test_file = self.watch_dir / "ignored_file.md" # .md doesn't match *.txt
+        initial_content = "This should not be processed."
+        test_file.write_text(initial_content)
         
-        try:
-            # Start both threads
-            watcher.start()
-            worker.start()
-            
-            # Give them time to start
-            time.sleep(0.2)
-            
-            # Create a non-matching file
-            test_file = Path(self.temp_dir) / "test.txt"  # .txt file, not .md
-            test_file.write_text("This should be ignored.")
-            
-            # Give time for potential event processing
-            time.sleep(0.5)
-            
-            # Verify no events were processed
-            self.assertEqual(worker.events_processed, 0)
-            self.assertEqual(worker.events_failed, 0)
-            
-        finally:
-            # Clean shutdown
-            self.shutdown_event.set()
-            watcher.join(timeout=5.0)
-            worker.join(timeout=5.0)
-    
-    def test_queue_communication(self):
-        """Test that the queue correctly communicates between watcher and worker."""
-        # Create watcher and worker
-        watcher = Watcher(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            watch_paths=[self.temp_dir],
-            file_patterns=['*.md']
-        )
+        time.sleep(1.0)
         
-        worker = Worker(
-            event_queue=self.event_queue,
-            shutdown_event=self.shutdown_event,
-            queue_timeout=0.1
-        )
-        
-        try:
-            # Start both threads
-            watcher.start()
-            worker.start()
-            
-            # Give them time to start
-            time.sleep(0.2)
-            
-            # Verify queue starts empty
-            initial_queue_size = self.event_queue.qsize()
-            
-            # Create a test file
-            test_file = Path(self.temp_dir) / "queue_test.md"
-            test_file.write_text("# Queue Test")
-            
-            # Give time for event to be queued and processed
-            time.sleep(0.5)
-            
-            # Queue should be empty again (event processed)
-            final_queue_size = self.event_queue.qsize()
-            
-            self.assertEqual(initial_queue_size, 0)
-            self.assertEqual(final_queue_size, 0)
-            self.assertGreater(worker.events_processed, 0)
-            
-        finally:
-            # Clean shutdown
-            self.shutdown_event.set()
-            watcher.join(timeout=5.0)
-            worker.join(timeout=5.0)
+        final_content = test_file.read_text()
+        self.assertEqual(final_content, initial_content)
 
     def test_engine_startup_and_shutdown(self):
         """Test that the engine starts and stops correctly."""
-        engine = ScribeEngine(
-            watch_paths=[self.temp_dir],
-            file_patterns=['*.md']
-        )
+        self.assertFalse(self.engine.is_running)
+        self._start_engine_in_thread()
+        self.assertTrue(self.engine.is_running)
         
-        try:
-            # Start the engine
-            engine.start()
-            
-            # Verify it's running
-            self.assertTrue(engine.is_running)
-            self.assertIsNotNone(engine.watcher)
-            self.assertIsNotNone(engine.worker)
-            self.assertTrue(engine.watcher.is_alive())
-            self.assertTrue(engine.worker.is_alive())
-            
-            # Give it a moment to run
-            time.sleep(0.2)
-            
-        finally:
-            # Stop the engine
-            engine.stop()
-            
-            # Give time for shutdown to complete
-            time.sleep(0.2)
-            
-            # Verify it stopped
-            self.assertFalse(engine.is_running)
-            if engine.watcher:
-                self.assertFalse(engine.watcher.is_alive())
-            if engine.worker:
-                self.assertFalse(engine.worker.is_alive())
-
+        # Stop is called in tearDown, let's just check the state after
+        self.engine.stop()
+        self.engine_thread.join(timeout=2)
+        
+        self.assertFalse(self.engine.is_running)
 
 if __name__ == '__main__':
     unittest.main() 

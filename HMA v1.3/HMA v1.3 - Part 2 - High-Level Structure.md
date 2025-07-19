@@ -1,6 +1,6 @@
 # Hexagonal Microkernel Architecture (HMA) Specification
 
-_Version 1.3 (C4-Inspired Edition)_
+_Version 2.0 (Mandatory Dependencies Edition)_
 
 **(Companion document to the AI-Powered Model-Driven Development (APMDD) Methodology v2.0)**
 

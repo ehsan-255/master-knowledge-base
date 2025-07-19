@@ -64,7 +64,8 @@ class ConfigManager:
         self.schema_path = Path(schema_path)
         self.auto_reload = auto_reload
         self.config_filename = self.config_path.name
-        
+        self.repo_root = self._find_repo_root()
+
         # Thread safety
         self._config_lock = threading.RLock()
         self._config: Optional[Dict[str, Any]] = None
@@ -90,6 +91,19 @@ class ConfigManager:
                    schema_path=str(self.schema_path),
                    auto_reload=auto_reload)
     
+    def _find_repo_root(self) -> str:
+        """Find the repository root from the current path."""
+        # A simple way is to look for a known marker, like .git directory
+        current_path = Path.cwd()
+        for parent in [current_path] + list(current_path.parents):
+            if (parent / ".git").exists():
+                return str(parent)
+        return str(current_path) # Fallback to current dir
+
+    def get_repo_root(self) -> str:
+        """Get the repository root path."""
+        return self.repo_root
+
     def _load_schema(self) -> None:
         """Load and parse the JSON schema."""
         try:

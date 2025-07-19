@@ -23,6 +23,10 @@ Any human participant has the right to formally challenge any AI-generated recom
     3.  A notification is sent to the designated human authority for that domain (e.g., System Architect, Project Sponsor).
     4.  The dissenting argument is used as a high-priority input for future AI model retraining.
 
+- **Dynamic Timeout Configuration:** Users can set a custom timeout 'n' hours for auto-resolution to AI (e.g., via PDP attribute dissent_timeout). Special values: 'always' (immediate AI resolution) or 'never' (require human input indefinitely).
+
+5. If no response within configured timeout, auto-resolve to AI decision unless set to 'never'.
+
 ## 3. The "Gut Feel" Override
 
 This protocol acknowledges that expert intuition is a valid, valuable form of data that may not yet be quantifiable.

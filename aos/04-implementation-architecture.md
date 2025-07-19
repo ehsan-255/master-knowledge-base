@@ -4,6 +4,8 @@ This document outlines the implementation architecture for the Antifragile OS (A
 
 The normative source for the HMA architecture is the `HMA v1.3` specification located in the repository. This implementation adheres strictly to the layers, zones, and interaction patterns defined therein.
 
+Ref: HMA v1.3 Part 2.
+
 ## HMA L0-L4 Layered Model Adoption
 
 AOS v5.0 fully adopts the HMA layered reference model to enforce a strict separation of concerns:
@@ -14,6 +16,8 @@ AOS v5.0 fully adopts the HMA layered reference model to enforce a strict separa
 *   **L3: Capability Plugin Layer:** Contains all the core AOS methodologies and tools, each encapsulated as an independent, replaceable Capability Plugin (e.g., Wardley Mapping Plugin, TOC Analysis Plugin, TRIZ Plugin).
 *   **L4: Infrastructure Layer:** Contains all Driven Adapters and their corresponding external systems (e.g., databases, knowledge graph backends, event bus brokers).
 
+Ref: HMA v1.3 Part 2.
+
 ## HMA Core Components and Behavior
 
 To fully adopt HMA, the L2 Microkernel Core contains several key components with specific behaviors:
@@ -22,6 +26,8 @@ To fully adopt HMA, the L2 Microkernel Core contains several key components with
 *   **Plugin Lifecycle Manager:** This component governs the entire lifecycle of all plugins as detailed in the **[HMA Plugin Lifecycle Concept](./hma-plugin-lifecycle-concept.md)**.
 *   **Automatic Plugin Registration:** A critical behavior of the Core is that the Router/Dispatcher **must** automatically integrate newly registered and activated plugins into its routing table. When the Lifecycle Manager successfully activates a new plugin, the Router must be able to immediately dispatch tasks to it without requiring any manual reconfiguration or restarts of the Core. This enables true dynamic pluggability.
 *   **Control Plane Services:** The Core provides essential, non-domain-specific services that all plugins can consume via standardized ports. These are detailed in **[AOS Control Plane Services](./control-plane-services.md)**.
+
+Ref: HMA v1.3 Part 2.
 
 ## AOS Capabilities as HMA Plugins
 
@@ -39,6 +45,8 @@ The modular nature of HMA allows AOS to treat its core intellectual property as 
 
 This plugin-based structure forces all interactions to be mediated through the HMA Core via well-defined ports, directly resolving the "Composition Fallacy" (Critique #1).
 
+Ref: HMA v1.3 Part 2.
+
 ## Core Interaction Patterns in AOS
 
 AOS utilizes the three primary HMA interaction patterns:
@@ -46,6 +54,8 @@ AOS utilizes the three primary HMA interaction patterns:
 1.  **Direct Synchronous:** An actor uses an L1 interface to request a specific analysis (e.g., "Generate a Wardley Map"). The L2 Core routes this request directly to the `wardley-mapping-plugin` for immediate execution and response.
 2.  **Asynchronous Event-Driven:** A plugin publishes a significant finding as an event (e.g., `ConstraintIdentifiedEvent`). Other plugins can subscribe to this event to react and perform their own analysis, decoupling the components.
 3.  **Orchestrated Multi-Plugin Workflow:** The `Meta-Orchestrator` receives a project and routes it to the `DesignPhaseOrchestrator`. This Phase Orchestrator then synchronously calls the `design-thinking-plugin` and `triz-methods-plugin` (both L3), reconciles their outputs, updates the PDP, and publishes a `phase.completed` event.
+
+Ref: HMA v1.3 Part 2.
 
 ## Conceptual Configuration
 
@@ -145,4 +155,34 @@ AOS v5.0 treats Large-Language-Model calls as **L3 Capability Plugins** that are
 4. Provenance metadata (`llm_model`, `prompt_hash`, `temperature`, `response_tokens`) is added to every LLM result node so humans can audit and reproduce.
 
 This pattern keeps the Core algorithm in charge while still letting LLMs perform high-leverage reasoning or code generation for each toolkit step. 
+
+Ref: HMA v1.3 Part 2.
+
+#### Explicit HMA References
+This section aligns with HMA v1.3 Part 2, Section 4 (Layered Reference Model).
+
+#### Complete Plugin Lifecycle Implementation
+Detailed steps (aligns with HMA v1.3 Part 3, Section 11):
+- Discovery: Scan registry.
+- Registration: Validate manifest.
+- Activation: Health check and start.
+- Deactivation: Graceful shutdown.
+- Removal: Cleanup resources.
+
+#### Port Schemas
+For PluginExecutionPort (HMA v1.3 Part 3, Section 10.1):
+```json
+{ "invoke": { "taskPayload": { "type": "object" } } }
+```
+
+#### mTLS Configuration
+Enable mTLS for internal comms (HMA v1.3 Part 5, Section 17.2): Use certs from CA, configure in adapters.
+
+#### HMA Enforcement with hma-lint
+Integrate hma-lint in CI/CD (HMA v1.3 Part 5, Section 18.1) to check imports and naming.
+
+#### Practical Example: Handling Failing State
+If a plugin fails health checks (HMA v1.3 Part 3, Section 11), move to Disabled and notify via event. 
+
+Example: Handling Failing State - If plugin fails, Core moves to Disabled and notifies. 
 

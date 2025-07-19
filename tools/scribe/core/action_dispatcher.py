@@ -19,12 +19,9 @@ from .logging_config import get_scribe_logger
 from .plugin_loader import PluginLoader, PluginInfo
 from .rule_processor import RuleMatch
 from .circuit_breaker import CircuitBreakerManager, CircuitBreakerError
-
-# Import action base classes
 from ..actions.base import BaseAction, ActionExecutionError, ValidationError
-# Need these for type hints and passing to plugins
 from .config_manager import ConfigManager
-from .security_manager import SecurityManager, SecurityViolation # Added SecurityViolation
+from .security_manager import SecurityManager, SecurityViolation
 
 
 logger = get_scribe_logger(__name__)
@@ -215,104 +212,36 @@ class ActionDispatcher:
     
     # apply_security_restrictions method is fully removed.
 
-    def execute_action(self, 
-                      action: BaseAction,
-                      file_content: str,
-                      match: re.Match,
-                      file_path: str,
-                      params: Dict[str, Any],
-                      event_id: Optional[str] = None) -> ActionResult:
-        """
-        Execute a single action with error handling and timing.
-        
-        Args:
-            action: The action instance to execute
-            file_content: Current file content
-            match: Regex match that triggered the action
-            file_path: Path to the file being processed
-            params: Action parameters
-            event_id: Unique identifier for the event that triggered this action
-            
-        Returns:
-            ActionResult with execution details
-        """
+    def execute_action(self, action: BaseAction, file_content: str, match: re.Match, file_path: str, params: Dict[str, Any], event_id: Optional[str] = None) -> ActionResult:
         start_time = time.time()
         action_type = action.action_type
-        
-        try:
-            logger.debug("Executing action",
-                        event_id=event_id,
-                        action_type=action_type,
-                        file_path=file_path,
-                        params=params)
-            
-            # Pre-execution hook
-            action.pre_execute(file_content, match, file_path, params)
-            
-            # Execute the action
-            modified_content = action.execute(file_content, match, file_path, params)
-            
-            # Post-execution hook
-            action.post_execute(file_content, modified_content, match, file_path, params)
-            
-            execution_time = time.time() - start_time
-            
-            # Validate that we got a string back
-            if not isinstance(modified_content, str):
-                raise ActionExecutionError(action_type, f"Action returned {type(modified_content)}, expected str")
-            
-            logger.info("Action executed successfully",
-                       event_id=event_id,
-                       action_type=action_type,
-                       file_path=file_path,
-                       execution_time=execution_time,
-                       content_changed=modified_content != file_content)
-            
-            return ActionResult(
-                action_type=action_type,
-                success=True,
-                modified_content=modified_content,
-                execution_time=execution_time,
-                metadata={
-                    'content_changed': modified_content != file_content,
-                    'content_length_before': len(file_content),
-                    'content_length_after': len(modified_content)
-                }
-            )
-            
-        except (ActionExecutionError, ValidationError) as e:
-            execution_time = time.time() - start_time
-            logger.error("Action execution failed",
-                        event_id=event_id,
-                        action_type=action_type,
-                        file_path=file_path,
-                        error=str(e),
-                        execution_time=execution_time)
-            
-            return ActionResult(
-                action_type=action_type,
-                success=False,
-                error=e,
-                execution_time=execution_time
-            )
-            
-        except Exception as e:
-            execution_time = time.time() - start_time
-            logger.error("Unexpected error during action execution",
-                        event_id=event_id,
-                        action_type=action_type,
-                        file_path=file_path,
-                        error=str(e),
-                        execution_time=execution_time,
-                        exc_info=True)
-            
-            wrapped_error = ActionExecutionError(action_type, "Unexpected error", e)
-            return ActionResult(
-                action_type=action_type,
-                success=False,
-                error=wrapped_error,
-                execution_time=execution_time
-            )
+        max_retries = 3
+        for attempt in range(max_retries + 1):
+            try:
+                logger.debug("Executing action", event_id=event_id, action_type=action_type, file_path=file_path, params=params, attempt=attempt)
+                action.pre_execute(file_content, match, file_path, params)
+                modified_content = action.execute(file_content, match, file_path, params)
+                action.post_execute(file_content, modified_content, match, file_path, params)
+                execution_time = time.time() - start_time
+                if not isinstance(modified_content, str):
+                    raise ActionExecutionError(action_type, f"Action returned {type(modified_content)}, expected str")
+                logger.info("Action executed successfully", event_id=event_id, action_type=action_type, file_path=file_path, execution_time=execution_time, content_changed=modified_content != file_content)
+                return ActionResult(action_type=action_type, success=True, modified_content=modified_content, execution_time=execution_time, metadata={'content_changed': modified_content != file_content, 'content_length_before': len(file_content), 'content_length_after': len(modified_content)})
+            except (ActionExecutionError, ValidationError) as e:
+                execution_time = time.time() - start_time
+                logger.error("Action execution failed", event_id=event_id, action_type=action_type, file_path=file_path, error=str(e), execution_time=execution_time, attempt=attempt)
+                if attempt < max_retries:
+                    time.sleep(2 ** attempt)  # Exponential backoff
+                    continue
+                return ActionResult(action_type=action_type, success=False, error=e, execution_time=execution_time)
+            except Exception as e:
+                execution_time = time.time() - start_time
+                logger.error("Unexpected error during action execution", event_id=event_id, action_type=action_type, file_path=file_path, error=str(e), execution_time=execution_time, exc_info=True, attempt=attempt)
+                wrapped_error = ActionExecutionError(action_type, "Unexpected error", e)
+                if attempt < max_retries:
+                    time.sleep(2 ** attempt)
+                    continue
+                return ActionResult(action_type=action_type, success=False, error=wrapped_error, execution_time=execution_time)
     
     def dispatch_actions(self, rule_match: RuleMatch) -> DispatchResult:
         """
@@ -757,7 +686,7 @@ class ActionDispatcher:
     
     def clear_action_cache(self) -> None:
         """Clear the action instance cache."""
-        self._action_cache.clear()
+        # self._action_cache.clear() # Cache removed
         logger.debug("Action cache cleared")
     
     def get_execution_stats(self) -> Dict[str, Any]:
