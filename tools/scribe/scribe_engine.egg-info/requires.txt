@@ -1,7 +1,0 @@
-watchdog>=3.0.0
-structlog>=23.0.0
-pyyaml>=6.0
-jsonschema>=4.0.0
-psutil>=5.9.0
-portalocker>=2.0.0
-prometheus-client>=0.14.0

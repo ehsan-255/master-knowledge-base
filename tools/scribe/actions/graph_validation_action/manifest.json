@@ -1,0 +1,135 @@
+{
+  "manifest_version": "2.0",
+  "plugin_metadata": {
+    "name": "graph_validation_action",
+    "version": "2.0.0",
+    "description": "Validates knowledge graph structures and relationships for consistency",
+    "author": "Scribe Engine Development Team",
+    "license": "MIT"
+  },
+  "hma_compliance": {
+    "hma_version": "2.2",
+    "tier_classification": {
+      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
+      "recommended": ["structured_logging", "health_checks", "metrics"],
+      "alternative": ["graph_database"]
+    },
+    "boundary_interfaces": [
+      {
+        "type": "inbound",
+        "protocol": "event_bus",
+        "endpoint": "file_system_events",
+        "telemetry_enabled": true
+      },
+      {
+        "type": "outbound",
+        "protocol": "file_system",
+        "endpoint": "validation_report_write",
+        "telemetry_enabled": true
+      }
+    ]
+  },
+  "runtime_requirements": {
+    "python_version": ">=3.8",
+    "dependencies": {
+      "required": [
+        {
+          "name": "structlog",
+          "version": ">=23.1.0",
+          "tier": "recommended"
+        }
+      ],
+      "optional": [
+        {
+          "name": "networkx",
+          "version": ">=2.8.0",
+          "feature": "Graph analysis algorithms"
+        },
+        {
+          "name": "rdflib",
+          "version": ">=6.0.0",
+          "feature": "RDF graph validation"
+        }
+      ]
+    },
+    "platform_support": ["windows", "linux", "macos"],
+    "resource_limits": {
+      "max_memory_mb": 300,
+      "max_cpu_percent": 40,
+      "max_file_handles": 75
+    }
+  },
+  "interface_contracts": {
+    "action_interface": {
+      "entry_point": "graph_validation_action.GraphValidationAction",
+      "configuration_schema": {
+        "type": "object",
+        "properties": {
+          "graph_data_path": {
+            "type": "string",
+            "description": "Path to graph data files or directory"
+          },
+          "validation_rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of validation rules to apply"
+          },
+          "output_report_path": {
+            "type": "string",
+            "description": "Path for validation report output"
+          },
+          "strict_mode": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to fail on any validation errors"
+          }
+        }
+      },
+      "event_patterns": [
+        {
+          "event_type": "file_created",
+          "file_patterns": ["*.rdf", "*.ttl", "*.jsonld", "*.owl"],
+          "priority": 7
+        },
+        {
+          "event_type": "file_modified",
+          "file_patterns": ["*.rdf", "*.ttl", "*.jsonld", "*.owl"],
+          "priority": 6
+        }
+      ],
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "validation_passed": {
+            "type": "boolean"
+          },
+          "errors_found": {
+            "type": "integer"
+          },
+          "warnings_found": {
+            "type": "integer"
+          },
+          "nodes_validated": {
+            "type": "integer"
+          },
+          "edges_validated": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "lifecycle_hooks": {
+      "health_check": "health_check"
+    }
+  },
+  "security": {
+    "permissions": [
+      "file_read",
+      "file_write"
+    ],
+    "sandbox_compatible": true,
+    "mtls_required": false
+  }
+}

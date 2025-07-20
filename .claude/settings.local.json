@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(conda:*)",
+      "Bash(pip install:*)",
+      "Bash(python -m pytest scribe-tests/test_baseline_regression.py::TestCoreEngineRegression::test_engine_initialization -v --tb=short)",
+      "Bash(python:*)",
+      "Bash(source:*)",
+      "Bash(PYTHONPATH=tools/scribe python tools/scribe/engine.py --help)",
+      "Bash(timeout 10 python -m tools.scribe.engine:*)",
+      "Bash(timeout 5 python:*)"
+    ],
+    "deny": []
+  }
+}

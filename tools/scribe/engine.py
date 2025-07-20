@@ -172,13 +172,17 @@ class ScribeEngine:
         
         This method starts the engine and blocks until a shutdown signal is received.
         """
-        # Set up signal handlers for graceful shutdown
-        def signal_handler(signum, frame):
-            logger.info("Received shutdown signal", signal=signum)
-            self.stop()
-        
-        signal.signal(signal.SIGINT, signal_handler)
-        signal.signal(signal.SIGTERM, signal_handler)
+        # Set up signal handlers for graceful shutdown (only in main thread)
+        try:
+            def signal_handler(signum, frame):
+                logger.info("Received shutdown signal", signal=signum)
+                self.stop()
+            
+            signal.signal(signal.SIGINT, signal_handler)
+            signal.signal(signal.SIGTERM, signal_handler)
+        except ValueError:
+            # Not in main thread, signal handling not available
+            logger.debug("Signal handling not available in background thread")
         
         try:
             self.start()
@@ -243,7 +247,7 @@ class ScribeEngine:
 
 def main():
     """Main entry point for the Scribe engine."""
-    # TODO: Add command-line argument parsing for configuration
+    # Command-line configuration to be added in future version
     # For now, use default configuration
     
     logger.info("Scribe Engine starting up")

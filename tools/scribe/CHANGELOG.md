@@ -1,16 +1,31 @@
 # Changelog
 
-## [1.1.0] - 2025-07-15
+## [2.0.0] - 2025-07-20
 
-### Added
-- Central Event Bus for decoupled event handling (Rec 1).
-- Explicit Ports and Adapters for improved swappability (Rec 2).
-- Resilience features with retries and fallbacks (Rec 3).
-- Comprehensive observability with Prometheus metrics (Rec 4).
-- Factories and Dependency Injection for core components (Swappability Rec 1).
-- Config-driven extensions with pre/post hooks (Swappability Rec 2).
+### Major Release - Complete Architecture Overhaul
+- **HMA v2.2 Compliance**: Full Hexagonal Microkernel Architecture implementation
+- **Plugin Manifest System**: JSON Schema validation for all plugins
+- **Windows Platform Optimization**: Enhanced file operation compatibility
+- **Mandatory Tier 1 Technologies**:
+  - OpenTelemetry boundary telemetry
+  - mTLS secure network communications
+  - JSON Schema validation
+  - EventBus event-driven architecture
+  - Circuit Breaker resilience pattern
 
-### Changed
-- Updated watcher and worker to use Event Bus.
-- Enhanced engine startup with factories.
-- Improved README and documentation for v1.1 features. 
+### Performance & Scalability
+- **Async Processing Pipeline**: Priority queues with backpressure handling
+- **LRU Caching System**: TTL and memoization for performance optimization
+- **File System Optimization**: Memory mapping and streaming for large files
+- **Health Monitoring**: Real-time HTTP endpoints and system metrics
+
+### Security & Production
+- **Security Auditing**: Real-time threat detection and automated responses
+- **Deployment Automation**: Docker and Kubernetes ready with observability stack
+- **Error Recovery**: Comprehensive error handling with automated recovery strategies
+
+### Breaking Changes
+- Configuration schema updated for HMA v2.2 compliance
+- Plugin manifest format changed to include tier classification
+- API endpoints restructured for boundary compliance
+- Legacy v1.x components removed 

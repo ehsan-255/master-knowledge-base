@@ -1,0 +1,127 @@
+{
+  "manifest_version": "2.0",
+  "plugin_metadata": {
+    "name": "run_command_action",
+    "version": "2.0.0",
+    "description": "Executes system commands safely using SecurityManager with shell injection protection",
+    "author": "Scribe Engine Development Team",
+    "license": "MIT"
+  },
+  "hma_compliance": {
+    "hma_version": "2.2",
+    "tier_classification": {
+      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
+      "recommended": ["structured_logging", "health_checks"],
+      "alternative": []
+    },
+    "boundary_interfaces": [
+      {
+        "type": "inbound",
+        "protocol": "event_bus",
+        "endpoint": "file_system_events",
+        "telemetry_enabled": true
+      },
+      {
+        "type": "outbound", 
+        "protocol": "file_system",
+        "endpoint": "command_execution",
+        "telemetry_enabled": true
+      }
+    ]
+  },
+  "runtime_requirements": {
+    "python_version": ">=3.8",
+    "dependencies": {
+      "required": [
+        {
+          "name": "structlog",
+          "version": ">=23.1.0",
+          "tier": "recommended"
+        }
+      ],
+      "optional": []
+    },
+    "platform_support": ["windows", "linux", "macos"],
+    "resource_limits": {
+      "max_memory_mb": 100,
+      "max_cpu_percent": 25,
+      "max_file_handles": 10
+    }
+  },
+  "interface_contracts": {
+    "action_interface": {
+      "entry_point": "run_command_action.RunCommandAction",
+      "configuration_schema": {
+        "type": "object",
+        "required": ["command"],
+        "properties": {
+          "command": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "description": "Command and arguments as array to prevent shell injection"
+          },
+          "working_directory": {
+            "type": "string",
+            "description": "Working directory for command execution"
+          },
+          "timeout": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3600,
+            "default": 300,
+            "description": "Command timeout in seconds"
+          },
+          "capture_output": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to capture command output"
+          }
+        }
+      },
+      "event_patterns": [
+        {
+          "event_type": "file_created",
+          "file_patterns": ["*.trigger", "*.cmd"],
+          "priority": 5
+        },
+        {
+          "event_type": "file_modified", 
+          "file_patterns": ["*.trigger", "*.cmd"],
+          "priority": 5
+        }
+      ],
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "exit_code": {
+            "type": "integer"
+          },
+          "stdout": {
+            "type": "string"
+          },
+          "stderr": {
+            "type": "string"
+          },
+          "execution_time": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "lifecycle_hooks": {
+      "health_check": "health_check"
+    }
+  },
+  "security": {
+    "permissions": [
+      "file_read",
+      "process_spawn",
+      "environment_access"
+    ],
+    "sandbox_compatible": false,
+    "mtls_required": false
+  }
+}

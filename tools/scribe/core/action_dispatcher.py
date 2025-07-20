@@ -159,8 +159,7 @@ class ActionDispatcher:
         # Circuit breaker manager for rule failure isolation
         self.circuit_breaker_manager = CircuitBreakerManager()
         
-        # Action instances are created per execution, so no cache needed here.
-        # self._action_cache: Dict[str, BaseAction] = {} # Removed
+        # Action instances are created per execution for thread safety
         
         # Execution statistics
         self._execution_stats = {
@@ -178,8 +177,6 @@ class ActionDispatcher:
                    circuit_breaker_enabled=True,
                    quarantine_path=self.quarantine_path)
 
-    # get_action_instance method is fully removed.
-    # Action instances are created directly in _execute_actions_internal.
     
     def validate_action_params(self, action: BaseAction, params: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
         """
@@ -210,7 +207,6 @@ class ActionDispatcher:
         except Exception as e:
             return False, f"Parameter validation error: {e}"
     
-    # apply_security_restrictions method is fully removed.
 
     def execute_action(self, action: BaseAction, file_content: str, match: re.Match, file_path: str, params: Dict[str, Any], event_id: Optional[str] = None) -> ActionResult:
         start_time = time.time()
@@ -488,9 +484,7 @@ class ActionDispatcher:
                            error=sec_validation_error)
                 continue
             
-            # The apply_security_restrictions method was removed. Its core responsibility
-            # (checking parameter values against dangerous patterns) is now part of
-            # self.security_manager.validate_action_params(action_type, params).
+            # Security validation handled by security_manager
             # Other checks like whitelisted action types could be added here if needed,
             # based on a configuration setting (e.g., from self.config_manager).
 
@@ -602,7 +596,7 @@ class ActionDispatcher:
                     relative_path = source_path.relative_to(Path.cwd())
                 except ValueError:
                     # If can't make relative, preserve the full path structure
-                    # Remove drive letter and leading slash for Windows compatibility
+                    # Handle Windows drive letters for cross-platform compatibility
                     path_parts = source_path.parts
                     if len(path_parts) > 1 and ':' in path_parts[0]:
                         # Windows path with drive letter
@@ -647,7 +641,7 @@ class ActionDispatcher:
                 import json
                 json.dump(metadata, f, indent=2)
             
-            # Remove original file after successful quarantine
+            # Clean up original file after successful quarantine
             source_path.unlink()
             
             # Update statistics
@@ -685,9 +679,8 @@ class ActionDispatcher:
             }
     
     def clear_action_cache(self) -> None:
-        """Clear the action instance cache."""
-        # self._action_cache.clear() # Cache removed
-        logger.debug("Action cache cleared")
+        """Clear action cache - no-op in v2.0 as actions are created per execution."""
+        logger.debug("Action cache cleared (no-op in v2.0)")
     
     def get_execution_stats(self) -> Dict[str, Any]:
         """
@@ -706,7 +699,6 @@ class ActionDispatcher:
             stats['success_rate'] = 0.0
             stats['average_execution_time'] = 0.0
         
-        # stats['cached_actions'] = len(self._action_cache) # Cache removed
         stats['available_action_types'] = list(self.plugin_loader.get_all_plugins().keys())
         
         # Add circuit breaker statistics

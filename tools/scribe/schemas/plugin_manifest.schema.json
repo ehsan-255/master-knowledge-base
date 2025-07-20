@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scribe.engine/schemas/plugin-manifest.schema.json",
+  "title": "Scribe Plugin Manifest",
+  "description": "HMA v2.2 compliant plugin manifest schema for Scribe engine plugins",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "plugin_metadata",
+    "hma_compliance",
+    "runtime_requirements",
+    "interface_contracts"
+  ],
+  "properties": {
+    "manifest_version": {
+      "type": "string",
+      "pattern": "^2\\.0$",
+      "description": "Manifest schema version - must be 2.0 for HMA v2.2 compliance"
+    },
+    "plugin_metadata": {
+      "type": "object",
+      "required": ["name", "version", "description", "author"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$",
+          "description": "Plugin identifier in snake_case"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9]+)?$",
+          "description": "Semantic version string"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Human-readable plugin description"
+        },
+        "author": {
+          "type": "string",
+          "description": "Plugin author or organization"
+        },
+        "license": {
+          "type": "string",
+          "description": "SPDX license identifier"
+        },
+        "homepage": {
+          "type": "string",
+          "format": "uri",
+          "description": "Plugin homepage URL"
+        }
+      }
+    },
+    "hma_compliance": {
+      "type": "object",
+      "required": ["hma_version", "tier_classification", "boundary_interfaces"],
+      "properties": {
+        "hma_version": {
+          "type": "string",
+          "pattern": "^2\\.2$",
+          "description": "HMA version this plugin complies with"
+        },
+        "tier_classification": {
+          "type": "object",
+          "required": ["mandatory", "recommended", "alternative"],
+          "properties": {
+            "mandatory": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["json_schema", "opentelemetry", "mtls", "event_bus", "circuit_breaker"]
+              },
+              "description": "Tier 1 mandatory technologies used"
+            },
+            "recommended": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["structured_logging", "health_checks", "metrics", "tracing"]
+              },
+              "description": "Tier 2 recommended technologies used"
+            },
+            "alternative": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Tier 3 alternative technologies used"
+            }
+          }
+        },
+        "boundary_interfaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "protocol", "telemetry_enabled"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["inbound", "outbound", "bidirectional"]
+              },
+              "protocol": {
+                "type": "string",
+                "enum": ["http", "grpc", "websocket", "file_system", "event_bus"]
+              },
+              "endpoint": {
+                "type": "string",
+                "description": "Interface endpoint or pattern"
+              },
+              "telemetry_enabled": {
+                "type": "boolean",
+                "description": "Whether OpenTelemetry boundary telemetry is enabled"
+              }
+            }
+          }
+        }
+      }
+    },
+    "runtime_requirements": {
+      "type": "object",
+      "required": ["python_version", "dependencies"],
+      "properties": {
+        "python_version": {
+          "type": "string",
+          "pattern": "^>=3\\.(8|9|10|11|12)$",
+          "description": "Minimum Python version requirement"
+        },
+        "dependencies": {
+          "type": "object",
+          "properties": {
+            "required": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "version"],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "tier": {
+                    "type": "string",
+                    "enum": ["mandatory", "recommended", "alternative"]
+                  }
+                }
+              }
+            },
+            "optional": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "version"],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "feature": {
+                    "type": "string",
+                    "description": "Feature this optional dependency enables"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "platform_support": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["windows", "linux", "macos", "cross_platform"]
+          },
+          "description": "Supported platforms"
+        },
+        "resource_limits": {
+          "type": "object",
+          "properties": {
+            "max_memory_mb": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "max_cpu_percent": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "max_file_handles": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "interface_contracts": {
+      "type": "object",
+      "required": ["action_interface"],
+      "properties": {
+        "action_interface": {
+          "type": "object",
+          "required": ["entry_point", "configuration_schema"],
+          "properties": {
+            "entry_point": {
+              "type": "string",
+              "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*\\.[a-zA-Z_][a-zA-Z0-9_]*$",
+              "description": "Python module.class path for action entry point"
+            },
+            "configuration_schema": {
+              "type": "object",
+              "description": "JSON Schema for plugin configuration validation"
+            },
+            "event_patterns": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["event_type", "file_patterns"],
+                "properties": {
+                  "event_type": {
+                    "type": "string",
+                    "enum": ["file_created", "file_modified", "file_deleted", "file_moved"]
+                  },
+                  "file_patterns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "default": 5
+                  }
+                }
+              }
+            },
+            "output_schema": {
+              "type": "object",
+              "description": "JSON Schema for action output validation"
+            }
+          }
+        },
+        "lifecycle_hooks": {
+          "type": "object",
+          "properties": {
+            "on_load": {
+              "type": "string",
+              "description": "Method called when plugin is loaded"
+            },
+            "on_unload": {
+              "type": "string",
+              "description": "Method called when plugin is unloaded"
+            },
+            "on_config_change": {
+              "type": "string",
+              "description": "Method called when configuration changes"
+            },
+            "health_check": {
+              "type": "string",
+              "description": "Method for health status checking"
+            }
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "file_read",
+              "file_write", 
+              "file_delete",
+              "network_access",
+              "process_spawn",
+              "environment_access",
+              "registry_access"
+            ]
+          }
+        },
+        "sandbox_compatible": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether plugin can run in sandboxed environment"
+        },
+        "mtls_required": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether plugin requires mTLS for network communications"
+        }
+      }
+    }
+  }
+}

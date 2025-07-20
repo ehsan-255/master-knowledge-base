@@ -72,50 +72,55 @@ def atomic_write(filepath: Union[str, Path], data: Union[str, bytes],
                     data_size=len(data),
                     mode=mode)
         
-        # Write data to temporary file
-        if is_binary:
-            if isinstance(data, str):
-                data = data.encode(encoding)
-            with portalocker.Lock(temp_fd.fileno(), 'w', timeout=1) as locked_file:
-                if mode == 'w':
-                    locked_file.write(data)
-                elif mode == 'wb':
-                    locked_file.write(data.encode('utf-8'))
-                else:
-                    raise ValueError(f'Unsupported mode: {mode}')
-                locked_file.flush()
-                os.fsync(locked_file.fileno())
-        else:
-            if isinstance(data, bytes):
-                data = data.decode(encoding)
-            with portalocker.Lock(temp_fd.fileno(), 'w', timeout=1) as locked_file:
-                if mode == 'w':
-                    locked_file.write(data)
-                elif mode == 'wb':
-                    locked_file.write(data.encode('utf-8'))
-                else:
-                    raise ValueError(f'Unsupported mode: {mode}')
-                locked_file.flush()
-                os.fsync(locked_file.fileno())
+        # Write data to temporary file with proper Windows file handle management
+        try:
+            if is_binary:
+                if isinstance(data, str):
+                    data = data.encode(encoding)
+                # Use low-level file operations for binary mode
+                os.write(temp_fd, data)
+            else:
+                if isinstance(data, bytes):
+                    data = data.decode(encoding)
+                # Use low-level file operations for text mode
+                os.write(temp_fd, data.encode(encoding))
+            
+            # Force write to disk
+            os.fsync(temp_fd)
+            
+        except Exception as write_error:
+            logger.error("temp_file_write_failed",
+                        temp_file=str(temp_path),
+                        error=str(write_error))
+            raise
         
-        # Force write to disk (fsync)
-        os.fsync(temp_fd)
-        
-        # Close the file descriptor before rename
+        # Close the file descriptor before rename (Windows requirement)
         os.close(temp_fd)
         temp_fd = None
         
-        # Atomic rename with retry for concurrent scenarios
+        # Atomic rename with simple retry logic for Windows
         max_retries = 5
         for retry in range(max_retries):
             try:
-                with portalocker.Lock(filepath, 'w', timeout=1, flags=portalocker.LOCK_EX | portalocker.LOCK_NB):
-                    os.replace(str(temp_path), str(filepath))
+                # Perform atomic rename
+                os.replace(str(temp_path), str(filepath))
                 break
-            except (portalocker.LockException, OSError) as e:
+                
+            except (OSError, PermissionError) as e:
                 if retry == max_retries - 1:
+                    logger.error("atomic_rename_failed_final",
+                               temp_file=str(temp_path),
+                               target_file=str(filepath),
+                               retry_count=retry + 1,
+                               error=str(e))
                     raise
-                time.sleep(min(1, 0.1 * (2 ** retry)))  # Exponential backoff up to 1s
+                
+                logger.debug("atomic_rename_retry",
+                            temp_file=str(temp_path),
+                            target_file=str(filepath),
+                            retry_count=retry + 1,
+                            error=str(e))
+                time.sleep(min(1, 0.1 * (2 ** retry)))  # Exponential backoff
 
         logger.info("atomic_write_completed",
                    target_file=str(filepath),

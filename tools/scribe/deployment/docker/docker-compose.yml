@@ -1,0 +1,204 @@
+version: '3.8'
+
+services:
+  scribe-engine:
+    build:
+      context: ../../..
+      dockerfile: tools/scribe/deployment/docker/Dockerfile
+      args:
+        BUILD_VERSION: "2.0.0"
+        BUILD_DATE: ${BUILD_DATE:-}
+        VCS_REF: ${VCS_REF:-}
+    
+    image: scribe-engine:2.0.0
+    
+    container_name: scribe-engine
+    
+    restart: unless-stopped
+    
+    environment:
+      - SCRIBE_CONFIG_PATH=/app/config/config.json
+      - SCRIBE_LOG_LEVEL=${SCRIBE_LOG_LEVEL:-INFO}
+      - SCRIBE_HEALTH_PORT=${SCRIBE_HEALTH_PORT:-9469}
+      - SCRIBE_TELEMETRY_ENDPOINT=${SCRIBE_TELEMETRY_ENDPOINT:-}
+      - SCRIBE_MTLS_ENABLED=${SCRIBE_MTLS_ENABLED:-false}
+    
+    ports:
+      - "${SCRIBE_HEALTH_PORT:-9469}:9469"
+    
+    volumes:
+      # Configuration
+      - ./config:/app/config:ro
+      - ./schemas:/app/schemas:ro
+      
+      # Data directories
+      - scribe-data:/app/data
+      - scribe-logs:/app/logs
+      - scribe-tmp:/app/tmp
+      
+      # Watch directories (customize as needed)
+      - ${SCRIBE_WATCH_DIR:-./watch}:/app/watch:ro
+      
+      # SSL certificates (if using mTLS)
+      - ${SCRIBE_CERTS_DIR:-./certs}:/app/certs:ro
+    
+    networks:
+      - scribe-network
+    
+    depends_on:
+      - scribe-telemetry
+      - scribe-monitoring
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9469/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    security_opt:
+      - no-new-privileges:true
+    
+    tmpfs:
+      - /tmp:noexec,nosuid,size=100m
+
+  # OpenTelemetry Collector for telemetry
+  scribe-telemetry:
+    image: otel/opentelemetry-collector-contrib:latest
+    
+    container_name: scribe-telemetry
+    
+    restart: unless-stopped
+    
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    
+    volumes:
+      - ./telemetry/otel-collector-config.yaml:/etc/otel-collector-config.yaml:ro
+    
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+      - "8888:8888"   # Prometheus metrics
+      - "8889:8889"   # Prometheus exporter metrics
+    
+    networks:
+      - scribe-network
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Prometheus for metrics collection
+  scribe-monitoring:
+    image: prom/prometheus:latest
+    
+    container_name: scribe-monitoring
+    
+    restart: unless-stopped
+    
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=7d'
+      - '--web.enable-lifecycle'
+    
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    
+    ports:
+      - "9090:9090"
+    
+    networks:
+      - scribe-network
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Grafana for metrics visualization
+  scribe-grafana:
+    image: grafana/grafana:latest
+    
+    container_name: scribe-grafana
+    
+    restart: unless-stopped
+    
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    
+    volumes:
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+      - grafana-data:/var/lib/grafana
+    
+    ports:
+      - "3000:3000"
+    
+    networks:
+      - scribe-network
+    
+    depends_on:
+      - scribe-monitoring
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Jaeger for distributed tracing
+  scribe-tracing:
+    image: jaegertracing/all-in-one:latest
+    
+    container_name: scribe-tracing
+    
+    restart: unless-stopped
+    
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "14250:14250"  # Jaeger gRPC
+    
+    networks:
+      - scribe-network
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  scribe-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  scribe-data:
+    driver: local
+  scribe-logs:
+    driver: local
+  scribe-tmp:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local

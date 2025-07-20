@@ -1,6 +1,7 @@
 import unittest
 import time
 import os
+import tempfile
 from pathlib import Path
 from tools.scribe.engine import ScribeEngine
 

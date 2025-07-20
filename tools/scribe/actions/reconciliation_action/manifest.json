@@ -1,0 +1,144 @@
+{
+  "manifest_version": "2.0",
+  "plugin_metadata": {
+    "name": "reconciliation_action",
+    "version": "2.0.0",
+    "description": "Reconciles data inconsistencies and synchronizes knowledge base components",
+    "author": "Scribe Engine Development Team",
+    "license": "MIT"
+  },
+  "hma_compliance": {
+    "hma_version": "2.2",
+    "tier_classification": {
+      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
+      "recommended": ["structured_logging", "health_checks", "metrics"],
+      "alternative": []
+    },
+    "boundary_interfaces": [
+      {
+        "type": "inbound",
+        "protocol": "event_bus",
+        "endpoint": "file_system_events",
+        "telemetry_enabled": true
+      },
+      {
+        "type": "outbound",
+        "protocol": "file_system",
+        "endpoint": "reconciliation_write",
+        "telemetry_enabled": true
+      }
+    ]
+  },
+  "runtime_requirements": {
+    "python_version": ">=3.8",
+    "dependencies": {
+      "required": [
+        {
+          "name": "structlog",
+          "version": ">=23.1.0",
+          "tier": "recommended"
+        },
+        {
+          "name": "pyyaml",
+          "version": ">=6.0",
+          "tier": "mandatory"
+        }
+      ],
+      "optional": [
+        {
+          "name": "deepdiff",
+          "version": ">=6.0.0",
+          "feature": "Advanced difference detection"
+        }
+      ]
+    },
+    "platform_support": ["windows", "linux", "macos"],
+    "resource_limits": {
+      "max_memory_mb": 250,
+      "max_cpu_percent": 35,
+      "max_file_handles": 60
+    }
+  },
+  "interface_contracts": {
+    "action_interface": {
+      "entry_point": "reconciliation_action.ReconciliationAction",
+      "configuration_schema": {
+        "type": "object",
+        "properties": {
+          "source_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Paths to source files for reconciliation"
+          },
+          "reconciliation_rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["merge", "overwrite", "append", "validate"]
+                },
+                "priority": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                }
+              }
+            },
+            "description": "Rules for reconciliation process"
+          },
+          "backup_enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to create backups before reconciliation"
+          },
+          "conflict_resolution": {
+            "type": "string",
+            "enum": ["manual", "automatic", "prefer_newer", "prefer_larger"],
+            "default": "manual",
+            "description": "Conflict resolution strategy"
+          }
+        }
+      },
+      "event_patterns": [
+        {
+          "event_type": "file_modified",
+          "file_patterns": ["*.yaml", "*.json", "*.md"],
+          "priority": 4
+        }
+      ],
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "reconciled_files": {
+            "type": "integer"
+          },
+          "conflicts_resolved": {
+            "type": "integer"
+          },
+          "conflicts_remaining": {
+            "type": "integer"
+          },
+          "backup_created": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "lifecycle_hooks": {
+      "health_check": "health_check"
+    }
+  },
+  "security": {
+    "permissions": [
+      "file_read",
+      "file_write",
+      "file_delete"
+    ],
+    "sandbox_compatible": true,
+    "mtls_required": false
+  }
+}

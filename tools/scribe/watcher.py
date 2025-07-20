@@ -75,7 +75,7 @@ class ScribeEventHandler(FileSystemEventHandler):
                         file_path=file_path)
 
 
-class Watcher(IEventSource):
+class Watcher(threading.Thread, IEventSource):
     """
     File system watcher thread (Producer in producer-consumer pattern).
     
@@ -110,7 +110,7 @@ class Watcher(IEventSource):
                    watch_paths=watch_paths, 
                    file_patterns=file_patterns)
     
-    def start(self) -> None:
+    def run(self) -> None:
         """Main thread execution - start watching and handle shutdown."""
         try:
             # Set up file system observers for each watch path

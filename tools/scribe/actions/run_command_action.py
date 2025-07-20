@@ -39,8 +39,7 @@ class RunCommandAction(BaseAction):
     #     # self.security_manager is already available from super's init.
     #     # No need for self.security_manager = security_manager here again unless super doesn't store it, but it does.
 
-    # Let's remove the old __init__ to ensure it uses the new BaseAction.__init__ correctly.
-    # The PluginLoader will now be responsible for providing all necessary arguments.
+    # Uses BaseAction.__init__ for proper initialization
         
     def get_required_params(self) -> List[str]:
         """Get required parameters for this action."""

@@ -1,0 +1,120 @@
+{
+  "manifest_version": "2.0",
+  "plugin_metadata": {
+    "name": "roadmap_populator_action",
+    "version": "2.0.0",
+    "description": "Populates roadmap documents with structured data and cross-references",
+    "author": "Scribe Engine Development Team",
+    "license": "MIT"
+  },
+  "hma_compliance": {
+    "hma_version": "2.2",
+    "tier_classification": {
+      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
+      "recommended": ["structured_logging", "health_checks"],
+      "alternative": []
+    },
+    "boundary_interfaces": [
+      {
+        "type": "inbound",
+        "protocol": "event_bus",
+        "endpoint": "file_system_events",
+        "telemetry_enabled": true
+      },
+      {
+        "type": "outbound",
+        "protocol": "file_system",
+        "endpoint": "roadmap_document_write",
+        "telemetry_enabled": true
+      }
+    ]
+  },
+  "runtime_requirements": {
+    "python_version": ">=3.8",
+    "dependencies": {
+      "required": [
+        {
+          "name": "pyyaml",
+          "version": ">=6.0",
+          "tier": "mandatory"
+        },
+        {
+          "name": "structlog",
+          "version": ">=23.1.0",
+          "tier": "recommended"
+        }
+      ],
+      "optional": []
+    },
+    "platform_support": ["windows", "linux", "macos"],
+    "resource_limits": {
+      "max_memory_mb": 150,
+      "max_cpu_percent": 20,
+      "max_file_handles": 25
+    }
+  },
+  "interface_contracts": {
+    "action_interface": {
+      "entry_point": "roadmap_populator_action.RoadmapPopulatorAction",
+      "configuration_schema": {
+        "type": "object",
+        "properties": {
+          "roadmap_template_path": {
+            "type": "string",
+            "description": "Path to roadmap template file"
+          },
+          "data_source_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Paths to data source files for population"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["markdown", "yaml", "json"],
+            "default": "markdown",
+            "description": "Output format for populated roadmap"
+          }
+        }
+      },
+      "event_patterns": [
+        {
+          "event_type": "file_created",
+          "file_patterns": ["*roadmap*.md", "*roadmap*.yaml"],
+          "priority": 6
+        },
+        {
+          "event_type": "file_modified",
+          "file_patterns": ["*roadmap*.md", "*roadmap*.yaml"],
+          "priority": 5
+        }
+      ],
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "populated": {
+            "type": "boolean"
+          },
+          "sections_updated": {
+            "type": "integer"
+          },
+          "cross_references_added": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "lifecycle_hooks": {
+      "health_check": "health_check"
+    }
+  },
+  "security": {
+    "permissions": [
+      "file_read",
+      "file_write"
+    ],
+    "sandbox_compatible": true,
+    "mtls_required": false
+  }
+}

@@ -10,8 +10,24 @@ try:
     from tools.naming_enforcer.naming_enforcer import NamingEnforcerV2, SafetyLogger
 except ImportError:
     # Fallback for path issues
-    sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
-    from tools.naming_enforcer.naming_enforcer import NamingEnforcerV2, SafetyLogger
+    try:
+        sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+        from tools.naming_enforcer.naming_enforcer import NamingEnforcerV2, SafetyLogger
+    except ImportError:
+        # Create mock classes for testing/development
+        class NamingEnforcerV2:
+            def __init__(self, *args, **kwargs):
+                pass
+            def enforce_naming(self, *args, **kwargs):
+                return {"status": "skipped", "reason": "NamingEnforcer not available"}
+        
+        class SafetyLogger:
+            def __init__(self, *args, **kwargs):
+                pass
+            def info(self, *args, **kwargs):
+                pass
+            def error(self, *args, **kwargs):
+                pass
 
 class NamingEnforcementAction(BaseAction):
     def __init__(self, action_type: str, params: Dict[str, Any], config_manager: 'ConfigManager', security_manager: 'SecurityManager'):

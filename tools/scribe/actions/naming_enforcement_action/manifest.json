@@ -1,0 +1,132 @@
+{
+  "manifest_version": "2.0",
+  "plugin_metadata": {
+    "name": "naming_enforcement_action",
+    "version": "2.0.0",
+    "description": "Enforces naming conventions using NamingEnforcerV2 with schema registry and safety logging",
+    "author": "Scribe Engine Development Team", 
+    "license": "MIT"
+  },
+  "hma_compliance": {
+    "hma_version": "2.2",
+    "tier_classification": {
+      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
+      "recommended": ["structured_logging", "health_checks"],
+      "alternative": ["naming_enforcer"]
+    },
+    "boundary_interfaces": [
+      {
+        "type": "inbound",
+        "protocol": "event_bus",
+        "endpoint": "file_system_events", 
+        "telemetry_enabled": true
+      },
+      {
+        "type": "outbound",
+        "protocol": "file_system",
+        "endpoint": "file_rename_operations",
+        "telemetry_enabled": true
+      }
+    ]
+  },
+  "runtime_requirements": {
+    "python_version": ">=3.8",
+    "dependencies": {
+      "required": [
+        {
+          "name": "structlog",
+          "version": ">=23.1.0",
+          "tier": "recommended"
+        }
+      ],
+      "optional": [
+        {
+          "name": "rdflib",
+          "version": ">=6.0.0",
+          "feature": "Schema registry JSON-LD support"
+        }
+      ]
+    },
+    "platform_support": ["windows", "linux", "macos"],
+    "resource_limits": {
+      "max_memory_mb": 200,
+      "max_cpu_percent": 30,
+      "max_file_handles": 100
+    }
+  },
+  "interface_contracts": {
+    "action_interface": {
+      "entry_point": "naming_enforcement_action.NamingEnforcementAction",
+      "configuration_schema": {
+        "type": "object",
+        "properties": {
+          "scan_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": ["."],
+            "description": "Paths to scan for naming violations relative to repo root"
+          },
+          "schema_registry_path": {
+            "type": "string",
+            "default": "standards/registry/schema-registry.jsonld",
+            "description": "Path to schema registry file"
+          },
+          "fix_mode": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to automatically fix naming violations"
+          },
+          "namingignore_path": {
+            "type": "string",
+            "description": "Optional path to .namingignore file override"
+          }
+        }
+      },
+      "event_patterns": [
+        {
+          "event_type": "file_created",
+          "file_patterns": ["*"],
+          "priority": 8
+        },
+        {
+          "event_type": "file_moved",
+          "file_patterns": ["*"],
+          "priority": 8
+        }
+      ],
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "violations_found": {
+            "type": "integer"
+          },
+          "violations_fixed": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["success", "partial", "failed", "skipped"]
+          },
+          "scan_duration": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "lifecycle_hooks": {
+      "on_load": "setup",
+      "health_check": "health_check"
+    }
+  },
+  "security": {
+    "permissions": [
+      "file_read",
+      "file_write",
+      "file_delete"
+    ],
+    "sandbox_compatible": true,
+    "mtls_required": false
+  }
+}

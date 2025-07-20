@@ -10,7 +10,7 @@ import queue
 import time
 from typing import Dict, Any, Optional
 import structlog
-from .core.logging_config import get_scribe_logger # Corrected import
+from .core.logging_config import get_scribe_logger
 from .core.config_manager import ConfigManager
 from .core.plugin_loader import PluginLoader
 from .core.security_manager import SecurityManager

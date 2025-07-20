@@ -462,5 +462,10 @@ class CircuitBreakerManager:
                 'open_breakers': open_count,
                 'half_open_breakers': half_open_count,
                 'closed_breakers': closed_count,
-                'breaker_stats': breaker_stats
+                'breaker_stats': breaker_stats,
+                'breakers_by_state': {
+                    'open': open_count,
+                    'half_open': half_open_count,
+                    'closed': closed_count
+                }
             } 

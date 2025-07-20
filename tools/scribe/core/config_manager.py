@@ -48,9 +48,11 @@ class ConfigManager:
     when the configuration file changes.
     """
     
+    DEFAULT_CONFIG_PATH = "scribe-config.json"
+    
     def __init__(self, 
                  config_path: str = "tools/scribe/config/config.json",
-                 schema_path: str = "tools/scribe/config/config.schema.json",
+                 schema_path: str = "tools/scribe/schemas/scribe_config.schema.json",
                  auto_reload: bool = True):
         """
         Initialize the configuration manager.
@@ -229,6 +231,31 @@ class ConfigManager:
             if self._config is None:
                 raise RuntimeError("Configuration not loaded")
             return self._config.copy()
+    
+    def get(self, key: str, default: Any = None) -> Any:
+        """
+        Get a configuration value by key.
+        
+        Args:
+            key: Configuration key (supports dot notation)
+            default: Default value if key not found
+            
+        Returns:
+            Configuration value or default
+        """
+        config = self.get_config()
+        
+        # Support dot notation for nested keys
+        keys = key.split('.')
+        value = config
+        
+        for k in keys:
+            if isinstance(value, dict) and k in value:
+                value = value[k]
+            else:
+                return default
+                
+        return value
     
     def get_engine_settings(self) -> Dict[str, Any]:
         """Get engine settings from configuration."""

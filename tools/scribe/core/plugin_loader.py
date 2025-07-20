@@ -9,9 +9,11 @@ Implements secure plugin loading with error handling and validation.
 import importlib.util
 import inspect
 import sys
+import json
 from pathlib import Path
 from typing import Dict, List, Type, Optional, Any
 import structlog
+import jsonschema
 
 from .logging_config import get_scribe_logger
 from ..actions.base import BaseAction
@@ -44,12 +46,13 @@ class PluginLoadError(Exception):
 
 
 class PluginInfo:
-    """Information about a loaded plugin."""
+    """Information about a loaded plugin with HMA v2.2 manifest support."""
     
     def __init__(self, 
                  action_class: Type[BaseAction], 
                  module_path: str, 
-                 action_type: str):
+                 action_type: str,
+                 manifest: Optional[Dict[str, Any]] = None):
         """
         Initialize plugin information.
         
@@ -57,12 +60,14 @@ class PluginInfo:
             action_class: The action class
             module_path: Path to the module file
             action_type: The action type identifier
+            manifest: Plugin manifest data (HMA v2.2)
         """
         self.action_class = action_class
         self.module_path = module_path
         self.action_type = action_type
         self.class_name = action_class.__name__
         self.module_name = action_class.__module__
+        self.manifest = manifest or {}
     
     def create_instance(self, params: Dict[str, Any],
                         config_manager: 'ConfigManager',
@@ -335,9 +340,61 @@ class PluginLoader:
                     action_type=file_name)
         return file_name
     
+    def load_plugin_manifest(self, plugin_directory: Path) -> Optional[Dict[str, Any]]:
+        """
+        Load and validate plugin manifest file.
+        
+        Args:
+            plugin_directory: Directory containing manifest.json
+            
+        Returns:
+            Validated manifest data or None if not found/invalid
+        """
+        manifest_path = plugin_directory / "manifest.json"
+        
+        if not manifest_path.exists():
+            logger.debug("No manifest found for plugin", plugin_directory=str(plugin_directory))
+            return None
+        
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest_data = json.load(f)
+            
+            # Load schema for validation
+            schema_path = Path(__file__).parent.parent / "schemas" / "plugin_manifest.schema.json"
+            if schema_path.exists():
+                with open(schema_path, 'r', encoding='utf-8') as f:
+                    schema = json.load(f)
+                
+                # Validate manifest against schema
+                jsonschema.validate(manifest_data, schema)
+                logger.debug("Plugin manifest validation passed", 
+                           plugin_directory=str(plugin_directory))
+            else:
+                logger.warning("Plugin manifest schema not found, skipping validation",
+                              schema_path=str(schema_path))
+            
+            return manifest_data
+            
+        except json.JSONDecodeError as e:
+            logger.error("Invalid JSON in plugin manifest",
+                        manifest_path=str(manifest_path),
+                        error=str(e))
+            return None
+        except jsonschema.ValidationError as e:
+            logger.error("Plugin manifest validation failed",
+                        manifest_path=str(manifest_path),
+                        error=str(e))
+            return None
+        except Exception as e:
+            logger.error("Error loading plugin manifest",
+                        manifest_path=str(manifest_path),
+                        error=str(e))
+            return None
+    
     def load_plugin(self, file_path: str) -> List[PluginInfo]:
         """
-        Load a single plugin file and extract action classes.
+        Load a single plugin file and extract action classes with manifest support.
         
         Args:
             file_path: Path to the plugin file
@@ -354,6 +411,19 @@ class PluginLoader:
             # Security validation
             if not self.validate_plugin_security(file_path):
                 raise PluginLoadError(file_path, "Plugin failed security validation")
+            
+            # Check for manifest in plugin directory
+            plugin_file_path = Path(file_path)
+            plugin_directory = plugin_file_path.parent / plugin_file_path.stem
+            manifest = None
+            
+            if plugin_directory.exists() and plugin_directory.is_dir():
+                manifest = self.load_plugin_manifest(plugin_directory)
+                if manifest:
+                    logger.info("HMA v2.2 manifest loaded for plugin",
+                               plugin_path=file_path,
+                               manifest_version=manifest.get('manifest_version'),
+                               hma_version=manifest.get('hma_compliance', {}).get('hma_version'))
             
             # Determine which directory this plugin belongs to
             plugin_file_path = Path(file_path)
@@ -394,18 +464,21 @@ class PluginLoader:
                     # Skip this plugin to avoid conflicts
                     continue
                 
-                plugin_info = PluginInfo(action_class, file_path, action_type)
+                plugin_info = PluginInfo(action_class, file_path, action_type, manifest)
                 plugin_infos.append(plugin_info)
                 
                 # Register the plugin
                 self._plugins[action_type] = plugin_info
                 self._plugin_directory_map[action_type] = plugin_directory
                 
+                # Log HMA compliance status
+                hma_compliance = "HMA v2.2 compliant" if manifest else "Legacy (no manifest)"
                 logger.info("Plugin action loaded successfully",
                            action_type=action_type,
                            action_class=action_class.__name__,
                            plugin_file=file_path,
-                           plugin_directory=plugin_directory)
+                           plugin_directory=plugin_directory,
+                           hma_compliance=hma_compliance)
             
             return plugin_infos
             
