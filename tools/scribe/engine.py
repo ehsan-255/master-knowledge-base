@@ -1,115 +1,132 @@
 #!/usr/bin/env python3
 """
-Scribe Engine - Main Orchestrator
+Scribe Engine v2.2 - HMA Compliant Minimalist Core
 
-This is the main entry point for the Scribe automation engine.
-It implements the L2 Microkernel Core orchestration in the HMA architecture.
+This is the main entry point for the Scribe v2.2 automation engine.
+It implements HMA v2.2 compliant architecture with true minimalist core,
+following dependency injection principles and removing god object anti-patterns.
 """
 
 import sys
 import signal
 import threading
-import queue
 import time
-from pathlib import Path
-from typing import List, Optional
-import structlog
+import asyncio
+from typing import List, Optional, Dict, Any
 
-# Import our components
-from .watcher import Watcher
-from .worker import Worker
-from .core.logging_config import configure_structured_logging, get_scribe_logger
-from .core.health_server import create_health_server
-from .core.event_bus import EventBus
-from .core.metrics import start_metrics_server, events_processed_counter # Example
-from .core.factories import WatcherFactory, WorkerFactory
+# HMA v2.2 Core Components
+from tools.scribe.core.minimal_core import HMAMinimalCore, CoreState
+from tools.scribe.core.engine_factory import create_engine_components, EngineComponents
+from tools.scribe.core.logging_config import configure_structured_logging, get_scribe_logger
 
-# Configure structured logging using our dedicated module
+# Configure structured logging
 configure_structured_logging(log_level="INFO", include_stdlib_logs=True)
-
 logger = get_scribe_logger(__name__)
 
 
 class ScribeEngine:
     """
-    Main Scribe Engine orchestrator.
+    HMA v2.2 Compliant Scribe Engine - Minimalist Core
     
-    This class implements the L2 Microkernel Core that coordinates
-    the producer-consumer pipeline and manages the engine lifecycle.
+    This class implements the HMA v2.2 architecture with:
+    - True minimal core focused only on routing and lifecycle management
+    - Dependency injection to eliminate god object anti-patterns
+    - No component instantiation (handled by factory)
+    - Pure L2 Core responsibilities only
     """
     
     def __init__(self, 
-                 watch_paths: Optional[List[str]] = None,
-                 file_patterns: Optional[List[str]] = None,
-                 queue_maxsize: int = 1000,
-                 health_port: int = 9468):
+                 components: Optional[EngineComponents] = None,
+                 config_path: str = "tools/scribe/config/config.json",
+                 telemetry_config: Optional[Dict[str, Any]] = None,
+                 health_port: int = 9090):
         """
-        Initialize the Scribe engine.
+        Initialize the HMA v2.2 compliant minimalist Scribe engine.
         
         Args:
-            watch_paths: List of directory paths to monitor
-            file_patterns: List of file patterns to monitor
-            queue_maxsize: Maximum size of the event queue
-            health_port: Port for the health check HTTP server
+            components: Pre-created engine components (via factory)
+            config_path: Path to configuration file (fallback if components not provided)
+            telemetry_config: Telemetry configuration (fallback if components not provided)
+            health_port: Health server port (fallback if components not provided)
         """
-        # Default configuration
-        self.watch_paths = watch_paths or ['.']  # Default to current directory
-        self.file_patterns = file_patterns or ['*.md']  # Default to markdown files
-        self.health_port = health_port
+        # Create components via factory if not provided (maintaining backward compatibility)
+        if components is None:
+            logger.info("No components provided, creating via factory")
+            components = create_engine_components(
+                config_path=config_path,
+                telemetry_config=telemetry_config or {},
+                health_port=health_port
+            )
         
-        # Threading components
+        # Injected components (no instantiation in core)
+        self.components = components
+        self.port_registry = components.port_registry
+        self.minimal_core = None
         self.shutdown_event = threading.Event()
-        self.event_bus = EventBus(maxsize=queue_maxsize)  # Replace direct queue
         
-        # Thread instances
-        self.watcher = None
-        self.processing_thread = None  # New thread for event processing
-        self.health_server = None
-        
-        # Engine state
+        # State management (minimal core responsibilities only)
         self.start_time = None
         self.is_running = False
+        self.initialization_complete = False
         
-        logger.info("Scribe engine initialized",
-                   watch_paths=self.watch_paths,
-                   file_patterns=self.file_patterns,
-                   queue_maxsize=queue_maxsize,
-                   health_port=health_port)
+        logger.info("Scribe Engine v2.2 minimalist core initialized")
+    
+    async def initialize_minimal_core(self) -> bool:
+        """Initialize HMA v2.2 minimal core (components already created by factory)"""
+        try:
+            # Components already created by factory, just initialize minimal core
+            core_config = self.components.config_manager.get_engine_settings()
+            self.minimal_core = HMAMinimalCore(self.port_registry, core_config)
+            
+            # Load plugins through the existing plugin loader
+            await self._load_plugins(self.components.plugin_loader)
+            
+            self.initialization_complete = True
+            logger.info("HMA v2.2 minimal core initialized successfully")
+            return True
+            
+        except Exception as e:
+            logger.error("HMA minimal core initialization failed", error=str(e), exc_info=True)
+            return False
     
     def start(self) -> None:
-        """Start the Scribe engine."""
+        """Start the HMA v2.2 compliant minimalist Scribe engine."""
         if self.is_running:
             logger.warning("Engine is already running")
             return
         
         try:
             self.start_time = time.time()
-            self.is_running = True
             
-            logger.info("Starting Scribe engine")
+            logger.info("Starting Scribe Engine v2.2 minimalist core")
             
-            # Start event processing thread
-            self.processing_thread = WorkerFactory.create({}, self.event_bus, self.shutdown_event)  # Assuming no specific config for worker
-            self.processing_thread.start()
+            # Initialize minimal core asynchronously
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
             
-            # Create and start watcher (publishes to bus)
-            self.watcher = WatcherFactory.create({'type': 'filesystem', 'paths': self.watch_paths, 'patterns': self.file_patterns}, self.event_bus, self.shutdown_event)
-            self.watcher.start()
-            
-            # Create and start health server
-            self.health_server = create_health_server(
-                status_provider=self.get_status,
-                port=self.health_port,
-                shutdown_event=self.shutdown_event
-            )
-            self.health_server.start()
-            
-            start_metrics_server(port=8000)  # Start Prometheus server
-            
-            logger.info("Scribe engine started successfully")
+            try:
+                # Start NATS event bus adapter
+                event_bus = self.port_registry.get_port("event_bus")
+                if event_bus and hasattr(event_bus, 'start'):
+                    if not loop.run_until_complete(event_bus.start()):
+                        logger.warning("Failed to start NATS event bus - continuing with limited functionality")
+                
+                # Initialize minimal core (components already created)
+                if not loop.run_until_complete(self.initialize_minimal_core()):
+                    raise RuntimeError("Failed to initialize minimal core")
+                
+                # Start minimal core
+                if not loop.run_until_complete(self.minimal_core.start()):
+                    raise RuntimeError("Failed to start minimal core")
+                
+                self.is_running = True
+                logger.info("Scribe Engine v2.2 started successfully")
+                
+            finally:
+                loop.close()
             
         except Exception as e:
-            logger.error("Failed to start Scribe engine", error=str(e), exc_info=True)
+            logger.error("Failed to start Scribe Engine v2.2", error=str(e), exc_info=True)
             self.stop()
             raise
     
@@ -125,46 +142,58 @@ class ScribeEngine:
             # Signal shutdown to all threads
             self.shutdown_event.set()
             
-            # Wait for threads to finish
-            if self.watcher and self.watcher.is_alive():
-                logger.info("Waiting for watcher thread to stop")
-                self.watcher.join(timeout=10.0)
-                if self.watcher.is_alive():
-                    logger.warning("Watcher thread did not stop gracefully")
+            # Stop HMA minimal core
+            if self.minimal_core:
+                logger.info("Stopping minimal core")
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                try:
+                    loop.run_until_complete(self.minimal_core.stop())
+                finally:
+                    loop.close()
             
-            if self.processing_thread and self.processing_thread.is_alive():
-                logger.info("Waiting for processing thread to stop")
-                self.processing_thread.join(timeout=10.0)
-                if self.processing_thread.is_alive():
-                    logger.warning("Processing thread did not stop gracefully")
-            
-            if self.health_server and self.health_server.is_alive():
-                logger.info("Waiting for health server to stop")
-                self.health_server.stop()
+            # Stop NATS event bus adapter
+            if self.port_registry:
+                event_bus = self.port_registry.get_port("event_bus")
+                if event_bus and hasattr(event_bus, 'stop'):
+                    # NATS adapter requires async stop
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                    try:
+                        loop.run_until_complete(event_bus.stop())
+                    finally:
+                        loop.close()
             
             # Log final statistics
             self._log_final_stats()
             
             self.is_running = False
-            logger.info("Scribe engine stopped")
+            logger.info("Scribe engine stopped successfully")
             
         except Exception as e:
             logger.error("Error during engine shutdown", error=str(e), exc_info=True)
     
     def _log_final_stats(self) -> None:
         """Log final engine statistics."""
-        if self.start_time and self.processing_thread: # Changed from self.worker to self.processing_thread
+        if self.start_time:
             uptime = time.time() - self.start_time
-            # The worker stats are now handled by the status_provider in health_server
-            # We can still log the processing thread stats if needed, but the health server provides the main status.
-            # For now, let's keep the original structure.
-            # worker_stats = self.worker.get_stats() # This line is no longer needed
             
-            logger.info("Engine final statistics",
-                       engine_uptime_seconds=round(uptime, 2),
-                       queue_final_size=self.event_bus.qsize(), # Changed from self.event_queue to self.event_bus
-                       # **worker_stats) # This line is no longer needed
-                       )
+            stats = {
+                "engine_uptime_seconds": round(uptime, 2),
+                "initialization_complete": self.initialization_complete
+            }
+            
+            # Add event bus stats if available
+            if self.port_registry:
+                event_bus = self.port_registry.get_port("event_bus")
+                if event_bus and hasattr(event_bus, 'get_event_statistics'):
+                    stats["event_bus_stats"] = event_bus.get_event_statistics()
+            
+            # Add core stats if available
+            if self.minimal_core:
+                stats["core_status"] = self.minimal_core.get_core_status()
+            
+            logger.info("Engine final statistics", **stats)
     
     def run_forever(self) -> None:
         """
@@ -210,53 +239,81 @@ class ScribeEngine:
         status = {
             'is_running': self.is_running,
             'uptime_seconds': round(uptime, 2),
-            'queue_size': self.event_bus.qsize(), # Changed from self.event_queue to self.event_bus
-            'watch_paths': self.watch_paths,
-            'file_patterns': self.file_patterns
+            'initialization_complete': self.initialization_complete,
+            'engine_version': '2.2.0'
         }
         
-        # Add metrics summary
-        status['metrics_summary'] = {
-            'events_processed': events_processed_counter._value.get(),  # Example access
-            # Add more as needed
-        }
+        # Add HMA components status
+        if self.minimal_core:
+            status['hma_core'] = self.minimal_core.get_core_status()
         
-        # The worker stats are now handled by the status_provider in health_server
-        # We can still log the processing thread stats if needed, but the health server provides the main status.
-        # For now, let's keep the original structure.
-        # if self.worker:
-        #     status.update(self.worker.get_stats()) # Existing worker stats
-
-        # Add ActionDispatcher and CircuitBreakerManager stats
-        # The worker's action_dispatcher is now part of the health_server's status_provider.
-        # We need to access it directly or pass it to the status_provider.
-        # For now, let's assume the health_server's status_provider handles this.
-        # If a separate top-level key 'circuit_breaker_stats' is strictly needed by the health endpoint schema,
-        # this might need adjustment in how HealthCheckHandler consumes this.
-        # The roadmap for get_status says "Add their output to the main status dictionary".
-        # The roadmap for HealthCheckHandler says "exposes dispatcher and circuit breaker stats".
-        # Let's assume dispatcher_stats contains what's needed for both for now.
-        # If not, we can pull out circuit_breaker_stats explicitly.
-        # The exit condition for Step 2.2 is "Response contains action_dispatcher_stats and circuit_breaker_stats"
-        # So, let's add them as separate top-level keys if possible from dispatcher_stats.
-        # status['action_dispatcher_stats'] = {'error': 'ActionDispatcher not available in Worker'} # This line is no longer needed
-        # status['circuit_breaker_stats'] = {'error': 'ActionDispatcher not available in Worker (for CircuitBreaker stats)'} # This line is no longer needed
-
+        # Add event bus statistics
+        if self.port_registry:
+            event_bus = self.port_registry.get_port("event_bus")
+            if event_bus and hasattr(event_bus, 'get_event_statistics'):
+                event_stats = event_bus.get_event_statistics()
+                status['queue_size'] = event_stats.get('queue_size', 0)
+                status['event_bus_stats'] = event_stats
+            else:
+                status['queue_size'] = 0
+        else:
+            status['queue_size'] = 0
+        
+        # Add telemetry status if available
+        if self.components and self.components.telemetry:
+            status['telemetry_active'] = True
+        
         return status
+    
+    async def _load_plugins(self, plugin_loader) -> None:
+        """Load and register all plugins with the minimal core"""
+        try:
+            # Load available plugins
+            plugins = plugin_loader.load_all_plugins()
+            
+            # Register each plugin with the minimal core
+            for plugin_id, plugin_info in plugins.items():
+                try:
+                    # Get plugin manifest
+                    manifest = plugin_info.manifest
+                    if not manifest:
+                        logger.warning("Plugin missing manifest, skipping", plugin_id=plugin_id)
+                        continue
+                    
+                    # Register with minimal core
+                    success = await self.minimal_core.register_plugin(manifest)
+                    if success:
+                        logger.info("Plugin registered successfully", 
+                                   plugin_id=plugin_id, 
+                                   plugin_type=manifest.get("plugin_metadata", {}).get("type"))
+                    else:
+                        logger.error("Plugin registration failed", plugin_id=plugin_id)
+                        
+                except Exception as e:
+                    logger.error("Plugin loading failed", 
+                               plugin_id=plugin_id, 
+                               error=str(e))
+            
+            logger.info("Plugin loading completed", 
+                       total_plugins=len(plugins),
+                       registered_plugins=len(self.minimal_core.lifecycle_manager.plugins))
+            
+        except Exception as e:
+            logger.error("Plugin loading process failed", error=str(e))
+            raise
+    
 
 
 def main():
     """Main entry point for the Scribe engine."""
-    # Command-line configuration to be added in future version
-    # For now, use default configuration
-    
-    logger.info("Scribe Engine starting up")
+    logger.info("Scribe Engine v2.2 starting up")
     
     try:
-        engine = ScribeEngine(
-            watch_paths=['.'],  # Watch current directory
-            file_patterns=['*.md', '*.txt']  # Monitor markdown and text files
-        )
+        # Create engine components via factory (HMA v2.2 compliant)
+        components = create_engine_components()
+        
+        # Create minimalist engine with dependency injection
+        engine = ScribeEngine(components=components)
         
         engine.run_forever()
         
@@ -264,7 +321,7 @@ def main():
         logger.error("Fatal error in Scribe engine", error=str(e), exc_info=True)
         sys.exit(1)
     
-    logger.info("Scribe Engine shutdown complete")
+    logger.info("Scribe Engine v2.2 shutdown complete")
 
 
 if __name__ == "__main__":

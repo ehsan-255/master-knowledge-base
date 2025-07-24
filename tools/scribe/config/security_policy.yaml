@@ -1,0 +1,43 @@
+# HMA v2.2 Compliant Security Policy Configuration
+# This file contains externalized security policies that were previously hard-coded
+
+# Dangerous environment variables that should always be scrubbed for security
+dangerous_env_keys_to_always_scrub:
+  - 'LD_PRELOAD'
+  - 'LD_LIBRARY_PATH'
+  - 'DYLD_INSERT_LIBRARIES'
+  - 'DYLD_LIBRARY_PATH'
+  - 'PYTHONPATH'
+  - 'PATH'  # We'll set a safe PATH
+  - 'SHELL'
+  - 'IFS'
+  - 'PS1'
+  - 'PS2'
+  - 'PS4'
+  - 'PROMPT_COMMAND'
+  - 'BASH_ENV'
+  - 'ENV'
+  - 'FPATH'
+  - 'CDPATH'
+
+# Dangerous patterns to check for in commands and parameters
+dangerous_patterns:
+  - 'rm\s+-rf\s+/'      # Dangerous rm commands
+  - 'sudo\s+'           # Sudo commands  
+  - 'su\s+'             # Su commands
+  - 'chmod\s+777'       # Overly permissive chmod
+  - 'eval\s*\('         # Eval functions
+  - 'exec\s*\('         # Exec functions
+  - '__import__'        # Python imports
+  - 'open\s*\('         # File operations
+  - 'file\s*\('         # File operations
+  - 'subprocess'        # Subprocess calls
+  - 'os\.system'        # OS system calls
+  - 'shell=True'        # Shell execution
+
+# Security policy metadata
+policy_metadata:
+  version: "2.2.0"
+  last_updated: "2025-07-24"
+  compliance_framework: "HMA v2.2"
+  review_frequency: "quarterly"

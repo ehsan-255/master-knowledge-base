@@ -1,31 +1,40 @@
 {
-  "manifest_version": "2.0",
+  "manifest_version": "2.2",
   "plugin_metadata": {
     "name": "roadmap_populator_action",
-    "version": "2.0.0",
+    "version": "2.2.0",
     "description": "Populates roadmap documents with structured data and cross-references",
     "author": "Scribe Engine Development Team",
-    "license": "MIT"
+    "license": "MIT",
+    "type": "L3-Capability"
   },
   "hma_compliance": {
     "hma_version": "2.2",
     "tier_classification": {
-      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
-      "recommended": ["structured_logging", "health_checks"],
+      "mandatory": [
+        "json_schema",
+        "otel_boundary",
+        "mtls"
+      ],
+      "recommended": [
+        "structured_logging",
+        "health_checks",
+        "kubernetes"
+      ],
       "alternative": []
     },
     "boundary_interfaces": [
       {
-        "type": "inbound",
-        "protocol": "event_bus",
-        "endpoint": "file_system_events",
-        "telemetry_enabled": true
+        "port_type": "PluginExecutionPort",
+        "direction": "inbound",
+        "validation": "json_schema",
+        "telemetry": "otel_spans"
       },
       {
-        "type": "outbound",
-        "protocol": "file_system",
-        "endpoint": "roadmap_document_write",
-        "telemetry_enabled": true
+        "port_type": "EventBusPort",
+        "direction": "outbound",
+        "validation": "event_schema",
+        "telemetry": "otel_spans"
       }
     ]
   },
@@ -46,7 +55,11 @@
       ],
       "optional": []
     },
-    "platform_support": ["windows", "linux", "macos"],
+    "platform_support": [
+      "windows",
+      "linux",
+      "macos"
+    ],
     "resource_limits": {
       "max_memory_mb": 150,
       "max_cpu_percent": 20,
@@ -72,7 +85,11 @@
           },
           "output_format": {
             "type": "string",
-            "enum": ["markdown", "yaml", "json"],
+            "enum": [
+              "markdown",
+              "yaml",
+              "json"
+            ],
             "default": "markdown",
             "description": "Output format for populated roadmap"
           }
@@ -81,12 +98,18 @@
       "event_patterns": [
         {
           "event_type": "file_created",
-          "file_patterns": ["*roadmap*.md", "*roadmap*.yaml"],
+          "file_patterns": [
+            "*roadmap*.md",
+            "*roadmap*.yaml"
+          ],
           "priority": 6
         },
         {
           "event_type": "file_modified",
-          "file_patterns": ["*roadmap*.md", "*roadmap*.yaml"],
+          "file_patterns": [
+            "*roadmap*.md",
+            "*roadmap*.yaml"
+          ],
           "priority": 5
         }
       ],
@@ -115,6 +138,6 @@
       "file_write"
     ],
     "sandbox_compatible": true,
-    "mtls_required": false
+    "mtls_required": true
   }
 }

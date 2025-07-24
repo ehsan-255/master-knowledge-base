@@ -16,9 +16,10 @@ import structlog
 import jsonschema
 
 from .logging_config import get_scribe_logger
-from ..actions.base import BaseAction
+from tools.scribe.actions.base import BaseAction
 from .config_manager import ConfigManager
 from .security_manager import SecurityManager
+from .port_adapters import ScribePluginContextAdapter
 
 
 logger = get_scribe_logger(__name__)
@@ -70,24 +71,30 @@ class PluginInfo:
         self.manifest = manifest or {}
     
     def create_instance(self, params: Dict[str, Any],
-                        config_manager: 'ConfigManager',
-                        security_manager: 'SecurityManager') -> BaseAction:
+                        port_registry,
+                        execution_context: Optional[Dict[str, Any]] = None) -> BaseAction:
         """
-        Create an instance of the action plugin with dependencies.
+        Create an instance of the action plugin with HMA v2.2 port-based access.
         
         Args:
             params: Action-specific parameters from the rule.
-            config_manager: The ConfigManager instance.
-            security_manager: The SecurityManager instance.
+            port_registry: The port registry for accessing core functionality.
+            execution_context: Plugin execution context.
 
         Returns:
             New instance of the action plugin.
         """
+        # Create plugin context adapter
+        plugin_context = ScribePluginContextAdapter(
+            plugin_id=self.action_type,
+            port_registry=port_registry,
+            execution_context=execution_context or {}
+        )
+        
         return self.action_class(
             action_type=self.action_type,
             params=params,
-            config_manager=config_manager,
-            security_manager=security_manager
+            plugin_context=plugin_context
         )
     
     def __str__(self) -> str:
@@ -360,6 +367,31 @@ class PluginLoader:
             with open(manifest_path, 'r', encoding='utf-8') as f:
                 manifest_data = json.load(f)
             
+            # HMA v2.2 Mandatory Validation
+            manifest_version = manifest_data.get("manifest_version")
+            hma_version = manifest_data.get("hma_compliance", {}).get("hma_version")
+            
+            # Enforce HMA v2.2 compliance
+            if manifest_version != "2.2":
+                raise jsonschema.ValidationError(
+                    f"Plugin manifest version must be '2.2', found '{manifest_version}'"
+                )
+            
+            if hma_version != "2.2":
+                raise jsonschema.ValidationError(
+                    f"HMA compliance version must be '2.2', found '{hma_version}'"
+                )
+            
+            # Validate mandatory HMA v2.2 fields
+            required_hma_fields = ["hma_version", "tier_classification", "boundary_interfaces"]
+            hma_compliance = manifest_data.get("hma_compliance", {})
+            
+            for field in required_hma_fields:
+                if field not in hma_compliance:
+                    raise jsonschema.ValidationError(
+                        f"Missing mandatory HMA v2.2 field: hma_compliance.{field}"
+                    )
+            
             # Load schema for validation
             schema_path = Path(__file__).parent.parent / "schemas" / "plugin_manifest.schema.json"
             if schema_path.exists():
@@ -368,10 +400,12 @@ class PluginLoader:
                 
                 # Validate manifest against schema
                 jsonschema.validate(manifest_data, schema)
-                logger.debug("Plugin manifest validation passed", 
-                           plugin_directory=str(plugin_directory))
+                logger.debug("Plugin manifest HMA v2.2 validation passed", 
+                           plugin_directory=str(plugin_directory),
+                           manifest_version=manifest_version,
+                           hma_version=hma_version)
             else:
-                logger.warning("Plugin manifest schema not found, skipping validation",
+                logger.warning("Plugin manifest schema not found, skipping schema validation",
                               schema_path=str(schema_path))
             
             return manifest_data

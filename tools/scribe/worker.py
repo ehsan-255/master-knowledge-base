@@ -10,16 +10,16 @@ import queue
 import time
 from typing import Dict, Any, Optional
 import structlog
-from .core.logging_config import get_scribe_logger
-from .core.config_manager import ConfigManager
-from .core.plugin_loader import PluginLoader
-from .core.security_manager import SecurityManager
-from .core.rule_processor import RuleProcessor
-from .core.action_dispatcher import ActionDispatcher
-from .core.atomic_write import atomic_write
-from .core.event_bus import EventBus
-from .core.ports import AtomicFileWriter
-from .core.metrics import events_processed_counter, events_failed_counter, queue_size_gauge
+from tools.scribe.core.logging_config import get_scribe_logger
+from tools.scribe.core.config_manager import ConfigManager
+from tools.scribe.core.plugin_loader import PluginLoader
+from tools.scribe.core.security_manager import SecurityManager
+from tools.scribe.core.rule_processor import RuleProcessor
+from tools.scribe.core.action_dispatcher import ActionDispatcher
+from tools.scribe.core.atomic_write import atomic_write
+from tools.scribe.core.event_bus import EventBus
+from tools.scribe.core.ports import AtomicFileWriter
+from tools.scribe.core.metrics import events_processed_counter, events_failed_counter, queue_size_gauge
 
 logger = get_scribe_logger(__name__)
 
@@ -33,29 +33,54 @@ class Worker(threading.Thread):
     """
     
     def __init__(self, 
-                 event_bus: EventBus,  # Changed from event_queue
-                 shutdown_event: threading.Event,
-                 queue_timeout: float = 1.0):
+                 event_bus=None,  # Can be EventBus or queue-like object
+                 plugin_execution_port=None,  # For HMA v2.1 compatibility
+                 shutdown_event: threading.Event = None,
+                 queue_timeout: float = 1.0,
+                 queue_maxsize: int = 1000,
+                 config_manager=None,
+                 security_manager=None,
+                 event_queue=None):  # Backward compatibility alias
         """
         Initialize the worker thread.
         
         Args:
-            event_queue: Thread-safe queue to consume events from
+            event_bus: Event bus or queue to consume events from
+            plugin_execution_port: HMA v2.1 plugin execution port
             shutdown_event: Event to signal graceful shutdown
             queue_timeout: Timeout in seconds for queue.get() operations
+            queue_maxsize: Maximum queue size (backward compatibility)
+            config_manager: Configuration manager instance
+            security_manager: Security manager instance
         """
         super().__init__(name="ScribeWorker", daemon=True)
-        self.event_bus = event_bus  # Changed from self.event_queue
-        self.shutdown_event = shutdown_event
+        
+        # Handle backward compatibility for event_queue parameter
+        if event_queue is not None and event_bus is None:
+            event_bus = event_queue
+        elif event_bus is None and event_queue is None:
+            raise ValueError("Either event_bus or event_queue must be provided")
+        
+        self.event_bus = event_bus
+        # Add backward compatible property alias
+        self.event_queue = event_bus
+        self.plugin_execution_port = plugin_execution_port
+        self.shutdown_event = shutdown_event or threading.Event()
         self.queue_timeout = queue_timeout
+        self.queue_maxsize = queue_maxsize
+        
+        # Initialize tracking variables for statistics
+        self._events_processed = 0
+        self._events_failed = 0
+        self._start_time = time.time()
         
         # Core service instantiation
-        self.config_manager = ConfigManager()
+        self.config_manager = config_manager or ConfigManager()
         self.plugin_loader = PluginLoader(
             plugin_directories=self.config_manager.get_plugin_directories(),
             load_order=self.config_manager.get_plugin_load_order()
         )
-        self.security_manager = SecurityManager(config_manager=self.config_manager) # Pass config_manager
+        self.security_manager = security_manager or SecurityManager(config_manager=self.config_manager)
         self.rule_processor = RuleProcessor(config_manager=self.config_manager) # Pass the ConfigManager instance
         # ActionDispatcher initialization in the test setup was:
         # ActionDispatcher(plugin_loader=self.worker.plugin_loader, security_config=self.worker.config_manager.get_security_settings())
@@ -79,9 +104,12 @@ class Worker(threading.Thread):
         if self.config_manager.get_plugin_auto_reload():
             self.plugin_loader.enable_hot_reload()
 
-        # Statistics for monitoring
+        # Statistics for monitoring (maintain both for backward compatibility)
         self.events_processed = 0
         self.events_failed = 0
+        # Also update the new tracking variables
+        self._events_processed = 0
+        self._events_failed = 0
         self.start_time = None
         
         logger.info("Worker initialized", queue_timeout=queue_timeout)
@@ -92,7 +120,27 @@ class Worker(threading.Thread):
         """Main thread execution - consume and process events."""
         self.start_time = time.time()
         logger.info("Event processing worker started")
-        self.event_bus.subscribe('file_event', self._process_event)  # Subscribe to file events
+        
+        # Handle different event bus interfaces
+        if hasattr(self.event_bus, 'subscribe') and not hasattr(self.event_bus, 'get'):
+            # New event bus interface - but avoid async/threading issues
+            try:
+                # Use synchronous subscription approach
+                self._setup_event_subscription()
+            except Exception as e:
+                logger.error("Failed to subscribe to events", error=str(e))
+                # Fall back to polling mode
+                self._run_polling_mode()
+                return
+        elif hasattr(self.event_bus, 'get'):
+            # Legacy queue interface
+            self._run_queue_mode()
+            return
+        else:
+            logger.error("Event bus has neither subscribe nor get method")
+            return
+        
+        # Event bus subscription mode - just wait for events
         try:
             while not self.shutdown_event.is_set():
                 time.sleep(self.queue_timeout)  # Wait with timeout to check shutdown
@@ -130,17 +178,19 @@ class Worker(threading.Thread):
             except IOError as e:
                 logger.error(f"IOError reading file {file_path} for event {event_id}: {e}", exc_info=True)
                 self.events_failed += 1
+                self._events_failed += 1
                 events_failed_counter.inc()
                 return
             except Exception as e: # Catch any other unexpected errors during file read
                 logger.error(f"Unexpected error reading file {file_path} for event {event_id}: {e}", exc_info=True)
                 self.events_failed += 1
+                self._events_failed += 1
                 events_failed_counter.inc()
                 return
             
             # Rule Processing
             try:
-                rule_matches = self.rule_processor.process_file(file_path, original_content)
+                rule_matches = self.rule_processor.process_file(file_path, original_content, event_id)
                 if rule_matches:
                     logger.info(f"Found {len(rule_matches)} rule matches for file {file_path} (event {event_id}).")
                     # for match in rule_matches: # Optional: detailed logging of matches
@@ -151,6 +201,7 @@ class Worker(threading.Thread):
             except Exception as e:
                 logger.error(f"Error during rule processing for file {file_path} (event {event_id}): {e}", exc_info=True)
                 self.events_failed += 1
+                self._events_failed += 1
                 events_failed_counter.inc()
                 return
             
@@ -191,6 +242,7 @@ class Worker(threading.Thread):
                 except Exception as e:
                     logger.error(f"Error during overall action dispatching loop for file {file_path} (event {event_id}): {e}", exc_info=True)
                     self.events_failed += 1
+                    self._events_failed += 1
                     events_failed_counter.inc()
                     return
             else:
@@ -206,6 +258,7 @@ class Worker(threading.Thread):
                 else:
                     logger.error(f"Failed to write modified content to {file_path} (event {event_id}).")
                     self.events_failed += 1
+                    self._events_failed += 1
                     events_failed_counter.inc()
                     return
             else:
@@ -224,6 +277,7 @@ class Worker(threading.Thread):
                              content_modified=current_content != original_content,
                              duration_ms=round(processing_time, 2))
             self.events_processed += 1
+            self._events_processed += 1
             events_processed_counter.inc()  # Increment metric
             
         except Exception as e: # General exception for the whole processing block if anything above failed and wasn't caught
@@ -273,7 +327,102 @@ class Worker(threading.Thread):
             'total_events': total_events,
             'success_rate': round(self.events_processed / max(total_events, 1) * 100, 2),
         }
-        queue_size_gauge.set(self.event_bus.get_queue_size())  # Assuming EventBus has get_queue_size method
-        return status 
-
-     
+        
+        # Update queue size gauge if available
+        try:
+            if hasattr(self.event_bus, 'get_queue_size'):
+                queue_size_gauge.set(self.event_bus.get_queue_size())
+            elif hasattr(self.event_bus, 'qsize'):
+                queue_size_gauge.set(self.event_bus.qsize())
+        except:
+            pass
+            
+        return status
+    
+    def get_stats(self) -> Dict[str, Any]:
+        """Get worker statistics for backward compatibility"""
+        uptime = time.time() - self._start_time
+        
+        return {
+            "events_processed": self._events_processed,
+            "events_failed": self._events_failed,
+            "uptime_seconds": round(uptime, 2),
+            "queue_size": self._get_queue_size(),
+            "success_rate": round(self._events_processed / max(self._events_processed + self._events_failed, 1) * 100, 2)
+        }
+    
+    def log_final_stats(self) -> None:
+        """Log final statistics"""
+        stats = self.get_stats()
+        logger.info("Worker final statistics", **stats)
+    
+    def _get_queue_size(self) -> int:
+        """Get current queue size from event bus"""
+        try:
+            if hasattr(self.event_bus, 'get_event_statistics'):
+                return self.event_bus.get_event_statistics().get('queue_size', 0)
+            elif hasattr(self.event_bus, 'qsize'):
+                return self.event_bus.qsize()
+            elif hasattr(self.event_bus, 'get_queue_size'):
+                return self.event_bus.get_queue_size()
+            else:
+                return 0
+        except:
+            return 0
+    
+    def _setup_event_subscription(self):
+        """Setup event subscription using synchronous approach"""
+        # Use the direct subscription method without asyncio complications
+        if hasattr(self.event_bus, 'subscribers'):
+            # Direct access to subscribers dict for backward compatibility
+            self.event_bus.subscribers['file_event'].append({
+                'callback': self._process_event,
+                'subscriber_id': f'worker_{id(self)}'
+            })
+            logger.info("Direct event subscription established")
+        else:
+            # Try the subscribe method but handle async issues
+            try:
+                self.event_bus.subscribe(['file_event'], self._process_event)
+                logger.info("Event subscription established")
+            except Exception as e:
+                logger.warning("Async subscription failed", error=str(e))
+                raise
+    
+    def _run_queue_mode(self):
+        """Run in legacy queue polling mode"""
+        logger.info("Running in queue polling mode")
+        try:
+            while not self.shutdown_event.is_set():
+                try:
+                    event = self.event_bus.get(timeout=self.queue_timeout)
+                    if event:
+                        self._process_event(event)
+                except Exception as e:
+                    # Handle queue.Empty or other queue exceptions
+                    if "Empty" not in str(type(e)):
+                        logger.error("Queue processing error", error=str(e))
+                    continue
+        finally:
+            self._log_final_stats()
+    
+    def _run_polling_mode(self):
+        """Run in polling mode when subscription fails"""
+        logger.info("Running in polling fallback mode")
+        try:
+            while not self.shutdown_event.is_set():
+                # Poll the event bus for events if it supports it
+                if hasattr(self.event_bus, 'event_queue') and hasattr(self.event_bus.event_queue, 'get'):
+                    try:
+                        event = self.event_bus.event_queue.get(timeout=self.queue_timeout)
+                        if event:
+                            self._process_event(event)
+                            self.event_bus.event_queue.task_done()
+                    except Exception as e:
+                        if "Empty" not in str(type(e)):
+                            logger.error("Polling error", error=str(e))
+                        continue
+                else:
+                    time.sleep(self.queue_timeout)
+        finally:
+            self._log_final_stats()

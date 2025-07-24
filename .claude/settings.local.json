@@ -11,7 +11,24 @@
       "Bash(source:*)",
       "Bash(PYTHONPATH=tools/scribe python tools/scribe/engine.py --help)",
       "Bash(timeout 10 python -m tools.scribe.engine:*)",
-      "Bash(timeout 5 python:*)"
+      "Bash(timeout 5 python:*)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/ --tb=short -v)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/ --tb=no -q)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py::TestWorker::test_worker_initialization -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_watcher.py::TestWatcher::test_watcher_initialization -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_baseline_regression.py::TestCoreEngineRegression::test_engine_start_stop_cycle -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py::TestWorker::test_worker_initialization -v --tb=long)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_event_id_traceability.py::TestEventIdTraceability::test_watcher_generates_event_id -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_watcher.py::TestScribeEventHandler::test_queue_event_success -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_watcher.py::TestScribeEventHandler -v --tb=no)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_circuit_breaker_enhancement.py::TestCircuitBreakerEnhancement::test_circuit_breaker_trips_on_all_actions_failing -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_security_manager.py::TestSecurityManager::test_scrub_environment -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_atomic_write.py::TestAtomicWriteExitConditions::test_step_1_2_condition_1_simulated_interruption -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_baseline_regression.py::TestCoreEngineRegression::test_engine_status_reporting -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py test-environment/scribe-tests/test_watcher.py test-environment/scribe-tests/test_baseline_regression.py --tb=no -q)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py::TestWorker::test_worker_processes_single_event -v --tb=short)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_watcher.py::TestWatcher::test_watcher_initialization test-environment/scribe-tests/test_baseline_regression.py::TestCoreEngineRegression::test_engine_start_stop_cycle --tb=no -v)",
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py test-environment/scribe-tests/test_watcher.py test-environment/scribe-tests/test_baseline_regression.py::TestCoreEngineRegression test-environment/scribe-tests/test_event_bus.py --tb=no -q)"
     ],
     "deny": []
   }

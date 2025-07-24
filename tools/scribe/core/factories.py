@@ -1,6 +1,6 @@
 from typing import Dict
-from ..watcher import Watcher
-from ..worker import Worker
+from tools.scribe.watcher import Watcher
+from tools.scribe.worker import Worker
 from .event_bus import EventBus
 from .ports import IEventSource, IFileWriter
 

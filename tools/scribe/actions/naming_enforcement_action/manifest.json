@@ -1,31 +1,40 @@
 {
-  "manifest_version": "2.0",
+  "manifest_version": "2.2",
   "plugin_metadata": {
     "name": "naming_enforcement_action",
-    "version": "2.0.0",
+    "version": "2.2.0",
     "description": "Enforces naming conventions using NamingEnforcerV2 with schema registry and safety logging",
-    "author": "Scribe Engine Development Team", 
-    "license": "MIT"
+    "author": "Scribe Engine Development Team",
+    "license": "MIT",
+    "type": "L3-Capability"
   },
   "hma_compliance": {
     "hma_version": "2.2",
     "tier_classification": {
-      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
-      "recommended": ["structured_logging", "health_checks"],
-      "alternative": ["naming_enforcer"]
+      "mandatory": [
+        "json_schema",
+        "otel_boundary",
+        "mtls"
+      ],
+      "recommended": [
+        "structured_logging",
+        "health_checks",
+        "kubernetes"
+      ],
+      "alternative": []
     },
     "boundary_interfaces": [
       {
-        "type": "inbound",
-        "protocol": "event_bus",
-        "endpoint": "file_system_events", 
-        "telemetry_enabled": true
+        "port_type": "PluginExecutionPort",
+        "direction": "inbound",
+        "validation": "json_schema",
+        "telemetry": "otel_spans"
       },
       {
-        "type": "outbound",
-        "protocol": "file_system",
-        "endpoint": "file_rename_operations",
-        "telemetry_enabled": true
+        "port_type": "EventBusPort",
+        "direction": "outbound",
+        "validation": "event_schema",
+        "telemetry": "otel_spans"
       }
     ]
   },
@@ -47,7 +56,11 @@
         }
       ]
     },
-    "platform_support": ["windows", "linux", "macos"],
+    "platform_support": [
+      "windows",
+      "linux",
+      "macos"
+    ],
     "resource_limits": {
       "max_memory_mb": 200,
       "max_cpu_percent": 30,
@@ -65,7 +78,9 @@
             "items": {
               "type": "string"
             },
-            "default": ["."],
+            "default": [
+              "."
+            ],
             "description": "Paths to scan for naming violations relative to repo root"
           },
           "schema_registry_path": {
@@ -87,12 +102,16 @@
       "event_patterns": [
         {
           "event_type": "file_created",
-          "file_patterns": ["*"],
+          "file_patterns": [
+            "*"
+          ],
           "priority": 8
         },
         {
           "event_type": "file_moved",
-          "file_patterns": ["*"],
+          "file_patterns": [
+            "*"
+          ],
           "priority": 8
         }
       ],
@@ -107,7 +126,12 @@
           },
           "status": {
             "type": "string",
-            "enum": ["success", "partial", "failed", "skipped"]
+            "enum": [
+              "success",
+              "partial",
+              "failed",
+              "skipped"
+            ]
           },
           "scan_duration": {
             "type": "number"
@@ -127,6 +151,6 @@
       "file_delete"
     ],
     "sandbox_compatible": true,
-    "mtls_required": false
+    "mtls_required": true
   }
 }

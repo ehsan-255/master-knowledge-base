@@ -19,7 +19,7 @@ from .logging_config import get_scribe_logger
 from .plugin_loader import PluginLoader, PluginInfo
 from .rule_processor import RuleMatch
 from .circuit_breaker import CircuitBreakerManager, CircuitBreakerError
-from ..actions.base import BaseAction, ActionExecutionError, ValidationError
+from tools.scribe.actions.base import BaseAction, ActionExecutionError, ValidationError
 from .config_manager import ConfigManager
 from .security_manager import SecurityManager, SecurityViolation
 
@@ -55,7 +55,9 @@ class ActionResult:
                  modified_content: Optional[str] = None,
                  error: Optional[Exception] = None,
                  execution_time: float = 0.0,
-                 metadata: Optional[Dict[str, Any]] = None):
+                 metadata: Optional[Dict[str, Any]] = None,
+                 error_message: Optional[str] = None,  # Backward compatibility
+                 execution_time_ms: Optional[float] = None):  # Backward compatibility
         """
         Initialize action result.
         
@@ -70,8 +72,26 @@ class ActionResult:
         self.action_type = action_type
         self.success = success
         self.modified_content = modified_content
-        self.error = error
-        self.execution_time = execution_time
+        
+        # Handle backward compatibility for error_message parameter
+        if error_message is not None and error is None:
+            self.error = Exception(error_message)
+            self.error_message = error_message
+        elif error is not None:
+            self.error = error
+            self.error_message = str(error)
+        else:
+            self.error = error
+            self.error_message = None
+        
+        # Handle backward compatibility for execution_time_ms parameter
+        if execution_time_ms is not None:
+            self.execution_time = execution_time_ms / 1000.0  # Convert ms to seconds
+            self.execution_time_ms = execution_time_ms
+        else:
+            self.execution_time = execution_time
+            self.execution_time_ms = execution_time * 1000.0  # Convert seconds to ms
+            
         self.metadata = metadata or {}
         self.timestamp = time.time()
     
@@ -277,7 +297,44 @@ class ActionDispatcher:
             def execute_actions():
                 return self._execute_actions_internal(rule_match, current_content)
             
-            dispatch_result = circuit_breaker.execute(execute_actions)
+            # Define fallback callback for circuit breaker errors
+            def circuit_breaker_fallback(error):
+                """Fallback handler when circuit breaker is open"""
+                self._execution_stats['circuit_breaker_blocks'] += 1
+                self._execution_stats['failed_dispatches'] += 1
+                
+                logger.warning("Circuit breaker fallback triggered",
+                              event_id=event_id,
+                              rule_id=rule_id,
+                              file_path=file_path,
+                              error_type=type(error).__name__,
+                              error_message=str(error))
+                
+                # Quarantine the file when circuit breaker trips
+                quarantine_result = self.quarantine_file(file_path, rule_id, "circuit_breaker_open")
+                
+                # Return a DispatchResult indicating circuit breaker block
+                circuit_breaker_error = ActionResult(
+                    action_type="circuit_breaker",
+                    success=False,
+                    error_message=str(error),
+                    execution_time_ms=0,
+                    metadata={
+                        "blocked_by_circuit_breaker": True,
+                        "circuit_breaker_state": "open",
+                        "fallback_triggered": True,
+                        "quarantine_reason": "circuit_breaker_open"
+                    }
+                )
+                
+                return DispatchResult(
+                    success=False,
+                    rule_id=rule_id,
+                    final_content=current_content,
+                    action_results=[circuit_breaker_error]
+                )
+            
+            dispatch_result = circuit_breaker.execute(execute_actions, circuit_breaker_fallback)
             
             # Update statistics for successful dispatch
             self._execution_stats['successful_dispatches'] += 1
@@ -295,43 +352,6 @@ class ActionDispatcher:
                        content_changed=dispatch_result.final_content != rule_match.file_content)
             
             return dispatch_result
-            
-        except CircuitBreakerError as e:
-            # Circuit breaker is open - block execution and quarantine file
-            self._execution_stats['circuit_breaker_blocks'] += 1
-            self._execution_stats['failed_dispatches'] += 1
-            
-            logger.warning("Action dispatch blocked by circuit breaker",
-                          event_id=event_id,
-                          rule_id=rule_id,
-                          file_path=file_path,
-                          failure_count=e.failure_count,
-                          last_failure_time=e.last_failure_time,
-                          circuit_state="OPEN")
-            
-            # Quarantine the problematic file
-            quarantine_result = self.quarantine_file(file_path, rule_id, "circuit_breaker_open")
-            
-            # Return result with a synthetic failure to indicate circuit breaker block
-            circuit_breaker_error = ActionResult(
-                action_type="circuit_breaker",
-                success=False,
-                error=e,
-                execution_time=0.0,
-                metadata={
-                    "blocked_by_circuit_breaker": True,
-                    "quarantined": quarantine_result["success"],
-                    "quarantine_path": quarantine_result.get("quarantine_path"),
-                    "quarantine_reason": "circuit_breaker_open"
-                }
-            )
-            
-            return DispatchResult(
-                rule_id=rule_id,
-                file_path=file_path,
-                final_content=current_content,
-                action_results=[circuit_breaker_error]
-            )
             
         except Exception as e:
             # Unexpected error during circuit breaker execution

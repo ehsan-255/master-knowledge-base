@@ -205,4 +205,34 @@ def atomic_write_yaml(filepath: Union[str, Path], data: dict) -> bool:
         logger.error("yaml_serialization_failed",
                     target_file=str(filepath),
                     error=str(e))
-        return False 
+        return False
+
+
+class AtomicWriteTestHelper:
+    """Test helper class for simulating atomic write failures and interruptions"""
+    
+    def __init__(self):
+        self.simulate_interruption = False
+        self.simulate_fsync_failure = False
+        self.simulate_rename_failure = False
+        self.interruption_point = None
+    
+    def simulate_interruption_during_write(self, interruption_point='write'):
+        """Simulate interruption at different points during write operation
+        
+        Args:
+            interruption_point: Where to simulate failure ('write', 'fsync', 'rename')
+        """
+        self.simulate_interruption = True
+        self.interruption_point = interruption_point
+    
+    def reset_simulation(self):
+        """Reset all simulation flags"""
+        self.simulate_interruption = False
+        self.simulate_fsync_failure = False
+        self.simulate_rename_failure = False
+        self.interruption_point = None
+    
+    def should_fail_at_point(self, point):
+        """Check if we should simulate failure at given point"""
+        return self.simulate_interruption and self.interruption_point == point 

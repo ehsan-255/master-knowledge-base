@@ -1,31 +1,58 @@
 {
-  "manifest_version": "2.0",
+  "manifest_version": "2.2",
   "plugin_metadata": {
     "name": "run_command_action",
-    "version": "2.0.0",
-    "description": "Executes system commands safely using SecurityManager with shell injection protection",
+    "version": "2.2.0",
+    "type": "L3-Capability",
+    "description": "Executes system commands safely using HMA v2.2 port-based access with shell injection protection",
     "author": "Scribe Engine Development Team",
     "license": "MIT"
   },
   "hma_compliance": {
     "hma_version": "2.2",
     "tier_classification": {
-      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
-      "recommended": ["structured_logging", "health_checks"],
+      "mandatory": [
+        "json_schema",
+        "otel_boundary",
+        "mtls"
+      ],
+      "recommended": [
+        "structured_logging",
+        "health_checks",
+        "kubernetes"
+      ],
       "alternative": []
     },
     "boundary_interfaces": [
       {
-        "type": "inbound",
-        "protocol": "event_bus",
-        "endpoint": "file_system_events",
-        "telemetry_enabled": true
+        "port_type": "PluginExecutionPort",
+        "direction": "inbound",
+        "validation": "json_schema",
+        "telemetry": "otel_spans"
       },
       {
-        "type": "outbound", 
-        "protocol": "file_system",
-        "endpoint": "command_execution",
-        "telemetry_enabled": true
+        "port_type": "CommandExecutionPort",
+        "direction": "outbound",
+        "validation": "security_policy",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "LoggingPort",
+        "direction": "outbound",
+        "validation": "structured_format",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "EventBusPort",
+        "direction": "outbound",
+        "validation": "event_schema",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "PluginContextPort",
+        "direction": "inbound",
+        "validation": "context_schema",
+        "telemetry": "otel_spans"
       }
     ]
   },
@@ -41,7 +68,11 @@
       ],
       "optional": []
     },
-    "platform_support": ["windows", "linux", "macos"],
+    "platform_support": [
+      "windows",
+      "linux",
+      "macos"
+    ],
     "resource_limits": {
       "max_memory_mb": 100,
       "max_cpu_percent": 25,
@@ -53,7 +84,9 @@
       "entry_point": "run_command_action.RunCommandAction",
       "configuration_schema": {
         "type": "object",
-        "required": ["command"],
+        "required": [
+          "command"
+        ],
         "properties": {
           "command": {
             "type": "array",
@@ -84,12 +117,18 @@
       "event_patterns": [
         {
           "event_type": "file_created",
-          "file_patterns": ["*.trigger", "*.cmd"],
+          "file_patterns": [
+            "*.trigger",
+            "*.cmd"
+          ],
           "priority": 5
         },
         {
-          "event_type": "file_modified", 
-          "file_patterns": ["*.trigger", "*.cmd"],
+          "event_type": "file_modified",
+          "file_patterns": [
+            "*.trigger",
+            "*.cmd"
+          ],
           "priority": 5
         }
       ],
@@ -122,6 +161,6 @@
       "environment_access"
     ],
     "sandbox_compatible": false,
-    "mtls_required": false
+    "mtls_required": true
   }
 }

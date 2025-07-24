@@ -1,0 +1,1 @@
+# HMA v2.2 Compliant Adapters Module

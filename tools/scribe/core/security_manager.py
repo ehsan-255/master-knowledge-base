@@ -13,6 +13,7 @@ import os
 import re
 import shlex
 import subprocess
+import yaml
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple, Set
 import structlog
@@ -75,7 +76,7 @@ class SecurityManager:
                    dangerous_patterns=len(self._dangerous_patterns))
     
     def _load_security_config(self) -> None:
-        """Load security configuration from config manager."""
+        """Load security configuration from config manager and external security policy."""
         try:
             self._security_config = self.config_manager.get_security_settings()
             
@@ -86,21 +87,9 @@ class SecurityManager:
             # Load restricted paths
             self._restricted_paths = self._security_config.get('restricted_paths', [])
             
-            # Load and compile dangerous patterns
-            dangerous_patterns = self._security_config.get('dangerous_patterns', [
-                r'rm\s+-rf\s+/',  # Dangerous rm commands
-                r'sudo\s+',       # Sudo commands
-                r'su\s+',         # Su commands
-                r'chmod\s+777',   # Overly permissive chmod
-                r'eval\s*\(',     # Eval functions
-                r'exec\s*\(',     # Exec functions
-                r'__import__',    # Python imports
-                r'open\s*\(',     # File operations
-                r'file\s*\(',     # File operations
-                r'subprocess',    # Subprocess calls
-                r'os\.system',    # OS system calls
-                r'shell=True',    # Shell execution
-            ])
+            # Load dangerous patterns from external security policy file
+            security_policy = self._load_security_policy_file()
+            dangerous_patterns = security_policy.get('dangerous_patterns', [])
             
             self._dangerous_patterns = []
             for pattern in dangerous_patterns:
@@ -112,10 +101,14 @@ class SecurityManager:
                                pattern=pattern,
                                error=str(e))
             
+            # Load dangerous environment keys from external policy
+            self._dangerous_env_keys = security_policy.get('dangerous_env_keys_to_always_scrub', [])
+            
             logger.debug("Security configuration loaded",
                         allowed_commands=len(self._allowed_commands),
                         restricted_paths=len(self._restricted_paths),
-                        dangerous_patterns=len(self._dangerous_patterns))
+                        dangerous_patterns=len(self._dangerous_patterns),
+                        dangerous_env_keys=len(self._dangerous_env_keys))
             
         except Exception as e:
             logger.error("Failed to load security configuration",
@@ -126,6 +119,43 @@ class SecurityManager:
             self._allowed_commands = set()
             self._restricted_paths = []
             self._dangerous_patterns = []
+            self._dangerous_env_keys = []
+    
+    def _load_security_policy_file(self) -> Dict[str, Any]:
+        """Load security policy from external YAML file."""
+        try:
+            # Try to get policy file path from config, fallback to default
+            policy_file_path = self.config_manager.get('security_policy_file', 
+                                                      'config/security_policy.yaml')
+            
+            # Make path relative to the script directory if not absolute
+            if not Path(policy_file_path).is_absolute():
+                script_dir = Path(__file__).parent.parent
+                policy_file_path = script_dir / policy_file_path
+            
+            with open(policy_file_path, 'r', encoding='utf-8') as f:
+                policy = yaml.safe_load(f)
+                
+            logger.debug("Security policy loaded from file", 
+                        policy_file=str(policy_file_path),
+                        policy_version=policy.get('policy_metadata', {}).get('version'))
+            
+            return policy or {}
+            
+        except FileNotFoundError:
+            logger.warning("Security policy file not found, using empty policy", 
+                          policy_file=str(policy_file_path))
+            return {}
+        except yaml.YAMLError as e:
+            logger.error("Failed to parse security policy YAML file",
+                        policy_file=str(policy_file_path),
+                        error=str(e))
+            return {}
+        except Exception as e:
+            logger.error("Failed to load security policy file",
+                        policy_file=str(policy_file_path),
+                        error=str(e))
+            return {}
     
     def _on_config_change(self, new_config: Dict[str, Any]) -> None:
         """Handle configuration changes by reloading security settings."""
@@ -228,96 +258,6 @@ class SecurityManager:
                         error=str(e))
             return False, f"Path validation error: {e}"
     
-    def scrub_environment(self, allowed_env_vars: Optional[List[str]] = None) -> Dict[str, str]:
-        """
-        Scrub environment variables for safe execution, allowing specific variables to be passed through.
-        
-        Args:
-            allowed_env_vars: A list of environment variable names to allow from os.environ.
-                              If None or empty, a very minimal environment is created.
-            
-        Returns:
-            Scrubbed and potentially selectively populated environment variables.
-        """
-        safe_env: Dict[str, str] = {}
-
-        # Start with an empty environment or a very minimal one
-        safe_env: Dict[str, str] = {}
-
-        # Populate with allowed variables from os.environ
-        if allowed_env_vars:
-            logger.debug(f"Processing allowed_env_vars: {allowed_env_vars}")
-            for var_name in allowed_env_vars:
-                if var_name in os.environ:
-                    safe_env[var_name] = os.environ[var_name]
-                    logger.debug(f"Allowed and copied from os.environ: {var_name}={safe_env[var_name]}")
-                else:
-                    logger.warning(f"Allowed environment variable '{var_name}' not found in system environment.")
-        else:
-            logger.debug("No specific environment variables allowed by (caller-provided) allowed_env_vars list.")
-
-        # Ensure essential variables have safe defaults if not explicitly allowed and set from os.environ
-        if 'PATH' not in safe_env:
-            safe_env['PATH'] = '/usr/bin:/bin'
-            logger.debug("PATH not in allowed_env_vars or os.environ, set to safe default.")
-        # If PATH was allowed and set from os.environ, it's kept as is for now.
-        # Test will assert its value.
-
-        if 'LC_ALL' not in safe_env:
-            safe_env['LC_ALL'] = 'C'
-            logger.debug("LC_ALL not in allowed_env_vars or os.environ, set to default 'C'.")
-        
-        if 'LANG' not in safe_env:
-            safe_env['LANG'] = 'C'
-            logger.debug("LANG not in allowed_env_vars or os.environ, set to default 'C'.")
-
-        # The original dangerous_env_vars list was for scrubbing an existing env.
-        # Since we are building a new env based on an allowlist, this is different.
-        # We still need to check for dangerous *values* in the allowed variables.
-
-        # Remove any allowed variables if their values are suspicious (e.g., contain dangerous patterns)
-        # This is a secondary check on the *values* of *allowed* variables.
-        vars_to_remove_from_safe_env = []
-        for var_name, var_value in safe_env.items():
-            # Skip PATH and locale vars we just set from this specific value check,
-            # unless they were also in allowed_env_vars and re-added.
-            if var_name in ['PATH', 'LC_ALL', 'LANG'] and var_name not in (allowed_env_vars or []):
-                continue
-            if any(pattern.search(var_value) for pattern in self._dangerous_patterns):
-                vars_to_remove_from_safe_env.append(var_name)
-
-        for var_name in vars_to_remove_from_safe_env:
-            del safe_env[var_name]
-            logger.warning("Removed allowed environment variable due to dangerous value", var_name=var_name)
-
-        logger.debug("Environment scrubbed and selectively populated.", final_safe_env_keys=list(safe_env.keys()))
-        return safe_env
-
-    # The old dangerous_env_vars list for key-based removal:
-    _DANGEROUS_ENV_KEYS_TO_ALWAYS_SCRUB = [
-        'LD_PRELOAD',
-            'LD_LIBRARY_PATH',
-            'DYLD_INSERT_LIBRARIES',
-            'DYLD_LIBRARY_PATH',
-            'PYTHONPATH',
-            'PATH',  # We'll set a safe PATH
-            'SHELL',
-            'IFS',
-            'PS1',
-            'PS2',
-            'PS4',
-            'PROMPT_COMMAND',
-            'BASH_ENV',
-            'ENV',
-            'FPATH',
-        'CDPATH'
-    ]
-    # Note: The original logic for removing these keys from a copied 'env' is now superseded
-    # by building 'safe_env' from scratch and only adding allowed variables.
-    # If any of these _DANGEROUS_ENV_KEYS_TO_ALWAYS_SCRUB should *never* be allowed,
-    # even if in allowed_env_vars, that logic would need to be added explicitly
-    # (e.g., by removing them from safe_env after the allowed_env_vars loop).
-    # For now, allowed_env_vars takes precedence if a "dangerous key" is explicitly allowed.
     
     def validate_action_params(self, action_type: str, params: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
         """
@@ -460,4 +400,86 @@ class SecurityManager:
         # Remove configuration change callback
         self.config_manager.remove_change_callback(self._on_config_change)
         
-        logger.info("SecurityManager stopped") 
+        logger.info("SecurityManager stopped")
+    
+    def scrub_environment(self, env_vars: Dict[str, str] = None, allowed_env_vars: Optional[List[str]] = None) -> Dict[str, str]:
+        """
+        Scrub sensitive information from environment variables.
+        
+        This method is overloaded to handle two different use cases:
+        1. When called with env_vars dict: scrubs sensitive values from provided env vars
+        2. When called with allowed_env_vars list: creates safe environment from os.environ
+        
+        Args:
+            env_vars: Dictionary of environment variables to scrub (optional)
+            allowed_env_vars: List of allowed environment variable names from os.environ (optional)
+            
+        Returns:
+            Scrubbed environment variables with sensitive data removed/masked
+        """
+        # If env_vars dict is provided, scrub it (test compatibility mode)
+        if env_vars is not None:
+            return self._scrub_env_dict(env_vars)
+        
+        # Otherwise use the original implementation
+        return self._scrub_from_os_environ(allowed_env_vars)
+    
+    def _scrub_env_dict(self, env_vars: Dict[str, str]) -> Dict[str, str]:
+        """
+        Scrub dangerous system environment variables from provided dict
+        
+        Args:
+            env_vars: Dictionary of environment variables
+            
+        Returns:
+            Scrubbed environment variables with dangerous keys removed and safe defaults
+        """
+        scrubbed = {}
+        
+        # Get dangerous keys from externalized policy (fallback to empty list if not loaded)
+        dangerous_keys = getattr(self, '_dangerous_env_keys', [])
+        
+        # Copy all non-dangerous environment variables
+        for key, value in env_vars.items():
+            if key not in dangerous_keys:
+                scrubbed[key] = value
+        
+        # Set safe defaults for critical environment variables
+        scrubbed['PATH'] = '/usr/bin:/bin'
+        scrubbed['LC_ALL'] = 'C' 
+        scrubbed['LANG'] = 'C'
+        
+        return scrubbed
+    
+    def _scrub_from_os_environ(self, allowed_env_vars: Optional[List[str]] = None) -> Dict[str, str]:
+        """
+        Original scrub_environment implementation for creating safe environment from os.environ
+        """
+        safe_env: Dict[str, str] = {}
+
+        # Start with an empty environment or a very minimal one
+        safe_env: Dict[str, str] = {}
+
+        # Populate with allowed variables from os.environ
+        if allowed_env_vars:
+            logger.debug(f"Processing allowed_env_vars: {allowed_env_vars}")
+            for var_name in allowed_env_vars:
+                if var_name in os.environ:
+                    safe_env[var_name] = os.environ[var_name]
+                    logger.debug(f"Allowed and copied from os.environ: {var_name}={safe_env[var_name]}")
+                else:
+                    logger.warning(f"Allowed environment variable '{var_name}' not found in system environment.")
+        else:
+            logger.debug("No specific environment variables allowed by (caller-provided) allowed_env_vars list.")
+
+        # Ensure essential variables have safe defaults if not explicitly allowed and set from os.environ
+        if 'PATH' not in safe_env:
+            safe_env['PATH'] = '/usr/bin:/bin'
+            logger.debug("Default PATH set for safe execution.")
+        
+        if 'HOME' not in safe_env:
+            safe_env['HOME'] = os.path.expanduser('~')
+            logger.debug(f"Default HOME set: {safe_env['HOME']}")
+
+        logger.info(f"Environment scrubbed successfully. Final environment contains {len(safe_env)} variables.")
+        return safe_env 

@@ -1,31 +1,40 @@
 {
-  "manifest_version": "2.0",
+  "manifest_version": "2.2",
   "plugin_metadata": {
     "name": "view_generation_action",
-    "version": "2.0.0",
+    "version": "2.2.0",
     "description": "Generates dynamic views and reports from knowledge base data",
     "author": "Scribe Engine Development Team",
-    "license": "MIT"
+    "license": "MIT",
+    "type": "L3-Capability"
   },
   "hma_compliance": {
     "hma_version": "2.2",
     "tier_classification": {
-      "mandatory": ["json_schema", "event_bus", "circuit_breaker"],
-      "recommended": ["structured_logging", "health_checks"],
-      "alternative": ["template_engine"]
+      "mandatory": [
+        "json_schema",
+        "otel_boundary",
+        "mtls"
+      ],
+      "recommended": [
+        "structured_logging",
+        "health_checks",
+        "kubernetes"
+      ],
+      "alternative": []
     },
     "boundary_interfaces": [
       {
-        "type": "inbound",
-        "protocol": "event_bus",
-        "endpoint": "file_system_events",
-        "telemetry_enabled": true
+        "port_type": "PluginExecutionPort",
+        "direction": "inbound",
+        "validation": "json_schema",
+        "telemetry": "otel_spans"
       },
       {
-        "type": "outbound",
-        "protocol": "file_system",
-        "endpoint": "view_document_write",
-        "telemetry_enabled": true
+        "port_type": "EventBusPort",
+        "direction": "outbound",
+        "validation": "event_schema",
+        "telemetry": "otel_spans"
       }
     ]
   },
@@ -57,7 +66,11 @@
         }
       ]
     },
-    "platform_support": ["windows", "linux", "macos"],
+    "platform_support": [
+      "windows",
+      "linux",
+      "macos"
+    ],
     "resource_limits": {
       "max_memory_mb": 200,
       "max_cpu_percent": 25,
@@ -84,7 +97,12 @@
                 },
                 "type": {
                   "type": "string",
-                  "enum": ["yaml", "json", "markdown", "csv"]
+                  "enum": [
+                    "yaml",
+                    "json",
+                    "markdown",
+                    "csv"
+                  ]
                 }
               }
             },
@@ -104,7 +122,10 @@
       "event_patterns": [
         {
           "event_type": "file_modified",
-          "file_patterns": ["*.template", "*view*.yaml"],
+          "file_patterns": [
+            "*.template",
+            "*view*.yaml"
+          ],
           "priority": 5
         }
       ],
@@ -133,6 +154,6 @@
       "file_write"
     ],
     "sandbox_compatible": true,
-    "mtls_required": false
+    "mtls_required": true
   }
 }

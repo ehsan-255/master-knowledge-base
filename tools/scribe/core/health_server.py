@@ -1,251 +1,133 @@
+#!/usr/bin/env python3
 """
-Scribe Engine - Health Check HTTP Server
+Health Server Implementation
 
-This module implements a lightweight HTTP server that exposes engine status
-and metrics via a /health endpoint. It runs in a separate thread and provides
-monitoring capabilities for operational visibility.
+Provides HTTP health endpoint for Scribe engine monitoring.
 """
 
-import json
 import threading
 import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from typing import Dict, Any, Callable, Optional
-from urllib.parse import urlparse
-from .logging_config import get_scribe_logger
+import json
+from typing import Callable, Dict, Any
+import socket
+
+from tools.scribe.core.logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)
 
-
-class HealthCheckHandler(BaseHTTPRequestHandler):
-    """HTTP request handler for health check endpoints."""
-    
-    def __init__(self, status_provider: Callable[[], Dict[str, Any]], *args, **kwargs):
-        """
-        Initialize the handler with a status provider function.
-        
-        Args:
-            status_provider: Function that returns current engine status
-        """
-        self.status_provider = status_provider
-        super().__init__(*args, **kwargs)
+class HealthRequestHandler(BaseHTTPRequestHandler):
+    """HTTP request handler for health checks"""
     
     def do_GET(self):
-        """Handle GET requests."""
-        parsed_path = urlparse(self.path)
-        
-        if parsed_path.path == '/health':
+        """Handle GET requests"""
+        if self.path == '/health':
             self._handle_health_check()
-        elif parsed_path.path == '/':
+        elif self.path == '/':
             self._handle_root()
         else:
             self._handle_not_found()
     
     def _handle_health_check(self):
-        """Handle /health endpoint requests."""
+        """Handle /health endpoint"""
         try:
-            # Get current engine status from the provider
-            engine_status_data = self.status_provider() # This now contains the new stats
+            status = self.server.status_provider()
+            response_code = 200 if status.get('is_running', False) else 503
             
-            # Prepare the response payload. Start with all data from engine_status_data.
-            response_payload = engine_status_data.copy() # Make a copy
-
-            # Add/overwrite specific health status fields for the health endpoint itself
-            response_payload['health_api_status'] = 'healthy'
-            response_payload['health_api_timestamp'] = time.time()
-
-            # Determine overall engine health status based on 'is_running' from engine_status_data
-            if 'is_running' in engine_status_data:
-                response_payload['overall_engine_status'] = 'healthy' if engine_status_data['is_running'] else 'unhealthy'
-            else:
-                response_payload['overall_engine_status'] = 'status_unknown'
-            
-            # Send successful response
-            self.send_response(200)
+            self.send_response(response_code)
             self.send_header('Content-Type', 'application/json')
-            self.send_header('Cache-Control', 'no-cache')
             self.end_headers()
             
-            response_json = json.dumps(response_payload, indent=2)
-            self.wfile.write(response_json.encode('utf-8'))
+            response_data = {
+                "status": "healthy" if response_code == 200 else "unhealthy",
+                "timestamp": time.time(),
+                **status
+            }
             
-            logger.debug("Health check request served",
-                        client_ip=self.client_address[0],
-                        overall_status=response_payload.get('overall_engine_status'))
+            self.wfile.write(json.dumps(response_data, indent=2).encode('utf-8'))
             
         except Exception as e:
-            logger.error("Error handling health check request",
-                        error=str(e),
-                        client_ip=self.client_address[0],
-                        exc_info=True)
-            
-            # Send error response
-            self.send_response(500)
-            self.send_header('Content-Type', 'application/json')
-            self.end_headers()
-            
-            error_response = {
-                'status': 'error',
-                'error': str(e),
-                'timestamp': time.time()
-            }
-            self.wfile.write(json.dumps(error_response).encode('utf-8'))
+            logger.error("Health check failed", error=str(e))
+            self._send_error_response(500, "Internal server error")
     
     def _handle_root(self):
-        """Handle root path requests."""
+        """Handle root path"""
         self.send_response(200)
-        self.send_header('Content-Type', 'text/html')
+        self.send_header('Content-Type', 'text/plain')
         self.end_headers()
-        
-        html_response = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Scribe Engine Health</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 40px; }
-                .status { padding: 20px; border-radius: 5px; margin: 20px 0; }
-                .healthy { background-color: #d4edda; color: #155724; }
-                .unhealthy { background-color: #f8d7da; color: #721c24; }
-            </style>
-        </head>
-        <body>
-            <h1>Scribe Engine Health Monitor</h1>
-            <p>Available endpoints:</p>
-            <ul>
-                <li><a href="/health">/health</a> - JSON health status</li>
-            </ul>
-            <p>For monitoring integration, use the <code>/health</code> endpoint.</p>
-        </body>
-        </html>
-        """
-        self.wfile.write(html_response.encode('utf-8'))
+        self.wfile.write(b'Scribe Health Server')
     
     def _handle_not_found(self):
-        """Handle 404 Not Found responses."""
-        self.send_response(404)
+        """Handle 404 responses"""
+        self._send_error_response(404, "Not found")
+    
+    def _send_error_response(self, code: int, message: str):
+        """Send error response"""
+        self.send_response(code)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
-        
-        error_response = {
-            'status': 'not_found',
-            'message': f"Path '{self.path}' not found",
-            'available_paths': ['/health', '/'],
-            'timestamp': time.time()
-        }
-        self.wfile.write(json.dumps(error_response, indent=2).encode('utf-8'))
+        response = {"error": message, "code": code}
+        self.wfile.write(json.dumps(response).encode('utf-8'))
     
     def log_message(self, format, *args):
-        """Override default logging to use our structured logger."""
-        logger.info("HTTP request",
-                   client_ip=self.client_address[0],
-                   method=self.command,
-                   path=self.path,
-                   user_agent=self.headers.get('User-Agent', 'unknown'))
-
+        """Override to use structured logging"""
+        logger.debug("Health server request", message=format % args)
 
 class HealthServer(threading.Thread):
-    """
-    HTTP health check server that runs in a separate thread.
+    """HTTP server for health checks"""
     
-    Provides a /health endpoint that returns JSON status information
-    about the Scribe engine for monitoring and operational visibility.
-    """
-    
-    def __init__(self, 
-                 status_provider: Callable[[], Dict[str, Any]],
-                 host: str = 'localhost',
-                 port: int = 9468,
-                 shutdown_event: Optional[threading.Event] = None):
-        """
-        Initialize the health server.
-        
-        Args:
-            status_provider: Function that returns current engine status
-            host: Host to bind the server to
-            port: Port to bind the server to
-            shutdown_event: Event to signal graceful shutdown
-        """
-        super().__init__(name="ScribeHealthServer", daemon=True)
-        self.status_provider = status_provider
-        self.host = host
+    def __init__(self, port: int = 9090, status_provider: Callable[[], Dict[str, Any]] = None):
+        super().__init__(daemon=True, name="HealthServer")
         self.port = port
-        self.shutdown_event = shutdown_event or threading.Event()
-        
+        self.status_provider = status_provider or (lambda: {"status": "unknown"})
         self.server = None
-        self.is_running = False
-        
-        logger.info("Health server initialized",
-                   host=host,
-                   port=port)
+        self.running = False
     
     def run(self):
-        """Start the HTTP server."""
+        """Start the health server"""
         try:
-            # Create handler class with status provider
-            def handler_factory(*args, **kwargs):
-                return HealthCheckHandler(self.status_provider, *args, **kwargs)
+            # Create the server with retry logic for port binding
+            for attempt in range(5):
+                try:
+                    self.server = HTTPServer(('localhost', self.port), HealthRequestHandler)
+                    break
+                except OSError as e:
+                    if e.errno == 10048:  # Windows: Address already in use
+                        logger.warning(f"Port {self.port} in use, trying {self.port + 1}")
+                        self.port += 1
+                        continue
+                    elif e.errno == 98:  # Linux: Address already in use  
+                        logger.warning(f"Port {self.port} in use, trying {self.port + 1}")
+                        self.port += 1
+                        continue
+                    else:
+                        raise
             
-            # Create and start server
-            self.server = HTTPServer((self.host, self.port), handler_factory)
-            self.server.timeout = 1.0  # 1 second timeout for shutdown checking
-            self.is_running = True
+            if not self.server:
+                raise Exception("Could not bind to any port after 5 attempts")
             
-            logger.info("Health server started",
-                       host=self.host,
-                       port=self.port,
-                       url=f"http://{self.host}:{self.port}/health")
+            self.server.status_provider = self.status_provider
+            self.running = True
             
-            # Server loop with shutdown checking
-            while not self.shutdown_event.is_set():
-                self.server.handle_request()
-                
+            logger.info("Health server started", port=self.port)
+            self.server.serve_forever()
+            
         except Exception as e:
-            logger.error("Health server error",
-                        error=str(e),
-                        host=self.host,
-                        port=self.port,
-                        exc_info=True)
-        finally:
-            self.is_running = False
-            if self.server:
-                self.server.server_close()
-            logger.info("Health server stopped")
+            logger.error("Health server failed to start", port=self.port, error=str(e))
+            self.running = False
     
     def stop(self):
-        """Stop the health server gracefully."""
-        logger.info("Stopping health server")
-        self.shutdown_event.set()
-        
-        if self.is_alive():
-            self.join(timeout=5.0)
-            if self.is_alive():
-                logger.warning("Health server did not stop gracefully")
+        """Stop the health server"""
+        if self.server:
+            self.server.shutdown()
+            self.server.server_close()
+            self.running = False
+            logger.info("Health server stopped")
     
-    def get_url(self) -> str:
-        """Get the health check URL."""
-        return f"http://{self.host}:{self.port}/health"
-
-
-def create_health_server(status_provider: Callable[[], Dict[str, Any]], 
-                        host: str = 'localhost', 
-                        port: int = 9468,
-                        shutdown_event: Optional[threading.Event] = None) -> HealthServer:
-    """
-    Create and return a health server instance.
+    def is_alive(self):
+        """Check if server is running"""
+        return self.running and super().is_alive()
     
-    Args:
-        status_provider: Function that returns current engine status
-        host: Host to bind the server to
-        port: Port to bind the server to
-        shutdown_event: Event to signal graceful shutdown
-        
-    Returns:
-        Configured HealthServer instance
-    """
-    return HealthServer(
-        status_provider=status_provider,
-        host=host,
-        port=port,
-        shutdown_event=shutdown_event
-    ) 
+    def get_port(self):
+        """Get the actual port the server is running on"""
+        return self.port

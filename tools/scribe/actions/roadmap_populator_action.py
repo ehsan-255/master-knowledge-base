@@ -2,7 +2,7 @@ import json
 import yaml
 from pathlib import Path
 from .base import BaseAction
-from ..core.atomic_write import atomic_write
+from tools.scribe.core.atomic_write import atomic_write
 from datetime import datetime
 from typing import Dict, Any
 

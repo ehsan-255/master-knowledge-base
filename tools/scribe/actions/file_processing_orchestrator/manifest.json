@@ -1,0 +1,203 @@
+{
+  "manifest_version": "2.2",
+  "plugin_metadata": {
+    "name": "file_processing_orchestrator",
+    "version": "2.2.0",
+    "type": "L2-Orchestrator",
+    "description": "HMA v2.2 compliant L2 Orchestrator for coordinating complex file processing workflows",
+    "author": "Scribe Engine Development Team",
+    "license": "MIT"
+  },
+  "hma_compliance": {
+    "hma_version": "2.2",
+    "tier_classification": {
+      "mandatory": [
+        "json_schema",
+        "otel_boundary",
+        "mtls"
+      ],
+      "recommended": [
+        "structured_logging",
+        "health_checks",
+        "nats_messaging",
+        "kubernetes"
+      ],
+      "alternative": []
+    },
+    "boundary_interfaces": [
+      {
+        "port_type": "PluginExecutionPort",
+        "direction": "inbound",
+        "validation": "json_schema",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "PluginExecutionPort",
+        "direction": "outbound",
+        "validation": "orchestration_schema",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "LoggingPort",
+        "direction": "outbound",
+        "validation": "structured_format",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "EventBusPort",
+        "direction": "outbound",
+        "validation": "event_schema",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "PluginContextPort",
+        "direction": "inbound",
+        "validation": "context_schema",
+        "telemetry": "otel_spans"
+      }
+    ]
+  },
+  "runtime_requirements": {
+    "python_version": ">=3.8",
+    "dependencies": {
+      "required": [
+        {
+          "name": "asyncio",
+          "version": ">=3.8",
+          "tier": "mandatory"
+        },
+        {
+          "name": "structlog",
+          "version": ">=23.1.0",
+          "tier": "recommended"
+        }
+      ],
+      "optional": []
+    },
+    "platform_support": [
+      "windows",
+      "linux",
+      "macos"
+    ],
+    "resource_limits": {
+      "max_memory_mb": 256,
+      "max_cpu_percent": 40,
+      "max_file_handles": 20
+    }
+  },
+  "interface_contracts": {
+    "action_interface": {
+      "entry_point": "file_processing_orchestrator.FileProcessingOrchestrator",
+      "configuration_schema": {
+        "type": "object",
+        "required": [
+          "workflow_config"
+        ],
+        "properties": {
+          "workflow_config": {
+            "type": "object",
+            "required": [
+              "stages"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Human-readable workflow name"
+              },
+              "stages": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "plugin_id"
+                  ],
+                  "properties": {
+                    "plugin_id": {
+                      "type": "string",
+                      "description": "ID of the L3 capability plugin to execute"
+                    },
+                    "params": {
+                      "type": "object",
+                      "description": "Parameters to pass to the plugin"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parallel_processing": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to execute stages in parallel"
+          },
+          "error_strategy": {
+            "type": "string",
+            "enum": [
+              "fail_fast",
+              "continue_on_error",
+              "retry"
+            ],
+            "default": "fail_fast",
+            "description": "How to handle stage failures"
+          },
+          "max_retries": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10,
+            "default": 3,
+            "description": "Maximum retry attempts per stage"
+          },
+          "timeout_seconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3600,
+            "default": 300,
+            "description": "Timeout per stage in seconds"
+          }
+        }
+      },
+      "event_patterns": [
+        {
+          "event_type": "orchestration_requested",
+          "file_patterns": [
+            "*"
+          ],
+          "priority": 8
+        }
+      ],
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "workflow_executed": {
+            "type": "boolean"
+          },
+          "stages_completed": {
+            "type": "integer"
+          },
+          "stages_failed": {
+            "type": "integer"
+          },
+          "content_modified": {
+            "type": "boolean"
+          },
+          "execution_time_ms": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "lifecycle_hooks": {
+      "health_check": "health_check"
+    }
+  },
+  "security": {
+    "permissions": [
+      "plugin_execution",
+      "event_publish",
+      "logging"
+    ],
+    "sandbox_compatible": true,
+    "mtls_required": true
+  }
+}
