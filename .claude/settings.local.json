@@ -28,7 +28,8 @@
       "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py test-environment/scribe-tests/test_watcher.py test-environment/scribe-tests/test_baseline_regression.py --tb=no -q)",
       "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py::TestWorker::test_worker_processes_single_event -v --tb=short)",
       "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_watcher.py::TestWatcher::test_watcher_initialization test-environment/scribe-tests/test_baseline_regression.py::TestCoreEngineRegression::test_engine_start_stop_cycle --tb=no -v)",
-      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py test-environment/scribe-tests/test_watcher.py test-environment/scribe-tests/test_baseline_regression.py::TestCoreEngineRegression test-environment/scribe-tests/test_event_bus.py --tb=no -q)"
+      "Bash(PYTHONPATH=. python -m pytest test-environment/scribe-tests/test_worker.py test-environment/scribe-tests/test_watcher.py test-environment/scribe-tests/test_baseline_regression.py::TestCoreEngineRegression test-environment/scribe-tests/test_event_bus.py --tb=no -q)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }

@@ -11,7 +11,7 @@ import socket
 import threading
 import urllib3
 from pathlib import Path
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any, Union, List
 import structlog
 import requests
 

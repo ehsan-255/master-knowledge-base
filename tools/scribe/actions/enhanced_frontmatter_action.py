@@ -82,15 +82,19 @@ class EnhancedFrontmatterAction(BaseAction):
     - Error handling with 100% success guarantee
     """
     
-    def __init__(self):
-        super().__init__()
-        self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}")
+    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context: 'PluginContextPort'):
+        super().__init__(action_type, params, plugin_context)
         
-        # Initialize Phase 3 components
-        self.llm_integration = LLMSchemaIntegration(
-            'standards/registry/shacl-shapes.ttl',
-            'standards/registry/contexts/fields.jsonld'
-        )
+        # HMA v2.2 compliant logging through port
+        self.log_port = self.context.get_port("logging")
+        self.log_port.log_info("Enhanced frontmatter action initialized", action_type=action_type)
+        
+        # Initialize Phase 3 components using port-based access
+        config_port = self.context.get_port("configuration")
+        shacl_shapes_path = config_port.get_config_value("shacl_shapes_path", self.context.get_plugin_id(), 'standards/registry/shacl-shapes.ttl')
+        jsonld_context_path = config_port.get_config_value("jsonld_context_path", self.context.get_plugin_id(), 'standards/registry/contexts/fields.jsonld')
+        
+        self.llm_integration = LLMSchemaIntegration(shacl_shapes_path, jsonld_context_path)
         self.validator = LLMSHACLValidator()
         self.prompt_engine = SchemaConstraintPromptEngine()
         self.error_handler = LLMErrorHandler()

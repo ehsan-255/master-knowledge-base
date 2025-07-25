@@ -55,13 +55,24 @@ def _create_node_from_file(filepath_rel_to_repo: str, file_content: str, file_st
     return node
 
 class ReconciliationAction(BaseAction):
-    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context):
+    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context: 'PluginContextPort'):
         super().__init__(action_type, params, plugin_context)
+        
+        # HMA v2.2 compliant port-based access
+        config_port = self.context.get_port("configuration")
+        self.log_port = self.context.get_port("logging")
+        
         self.master_index_path_str = self.params.get("master_index_path", "standards/registry/master-index.jsonld")
         self.kb_root_dirs_str = self.params.get("kb_root_dirs", ["."]) # Scan whole repo by default relative to repo_root
         self.exclude_dirs_set = set(self.params.get("exclude_dirs",
             ['.git', 'node_modules', '__pycache__', '.vscode', 'archive', 'tools', 'temp-naming-enforcer-test']))
-        self.repo_root = Path(self.context.get_port("configuration").get_repo_root())
+        
+        # Get repo root through configuration port
+        try:
+            self.repo_root = Path(config_port.get_config_value("repo_root", self.context.get_plugin_id(), "."))
+        except Exception as e:
+            self.log_port.log_warning("Could not get repo_root from config, using current directory", error=str(e))
+            self.repo_root = Path(".")
 
 
     def setup(self):

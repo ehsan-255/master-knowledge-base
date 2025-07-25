@@ -17,8 +17,8 @@ impact_areas: []
 ---
 # Repository Tree Generator
 
-**Script**: `generate_repository_tree.py`  
-**Output**: `repository-tree.md` (in repository root)  
+**Script**: `generate_repository_tree.py`
+**Output**: `repository-tree.md` (in repository root)
 **Purpose**: Automated generation of repository structure overview with proper folder icons and annotations
 
 ---
@@ -27,7 +27,7 @@ impact_areas: []
 
 ### **🎯 Smart Folder Icons**
 - **📁** Standard directories
-- **📄** Files 
+- **📄** Files
 - **⛔** System/ignored directories (`.vscode`, `.git`, etc.)
 - **✅** Important directories with specific requirements
 - **❌** Restricted directories with usage restrictions
@@ -63,11 +63,11 @@ python tools/utilities/generate_repository_tree.py
 
 ### **Method 2: Quick Runner (from root)**
 ```bash
-python generate_repo_tree.py
+python repo_tree.py
 ```
 
 ### **Output**
-- **File**: `repository-tree.md` (automatically overwrites previous version)
+- **File**: `repo-tree.md` (automatically overwrites previous version)
 - **Location**: Repository root directory
 - **Format**: Markdown with code block containing tree structure
 
@@ -201,6 +201,6 @@ This script generates output that:
 
 ---
 
-**Last Updated**: Auto-generated with each script run  
-**Maintained By**: Repository Tree Generator Script  
+**Last Updated**: Auto-generated with each script run
+**Maintained By**: Repository Tree Generator Script
 **Version**: 1.0

@@ -198,7 +198,7 @@ class SHACLToJSONSchemaAdapter:
     
     def _extract_shacl_violations(self, shacl_graph: Any) -> List[Dict[str, Any]]:
         """
-        Extract violation information from SHACL validation graph.
+        Extract violation information from SHACL validation report graph.
         
         Args:
             shacl_graph: SHACL validation report graph
@@ -209,21 +209,50 @@ class SHACLToJSONSchemaAdapter:
         violations = []
         
         try:
-            # This is a simplified extraction - in a real implementation,
-            # this would parse the RDF graph to extract sh:ValidationResult nodes
-            # For now, we'll create a mock structure for demonstration
+            from rdflib import Graph, Namespace
+            from rdflib.namespace import SH
             
-            if hasattr(shacl_graph, 'serialize'):
-                # If it's an RDF graph, we could parse it properly
-                # For this demonstration, we'll simulate the extraction
-                violations = self._simulate_shacl_extraction(shacl_graph)
+            # Parse the SHACL report graph if it's a string
+            if isinstance(shacl_graph, str):
+                report_graph = Graph()
+                report_graph.parse(data=shacl_graph, format='turtle')
             else:
-                # If it's already processed data, use it directly
-                violations = shacl_graph if isinstance(shacl_graph, list) else []
+                report_graph = shacl_graph
+            
+            # SPARQL query to extract validation results
+            query = """
+            PREFIX sh: <http://www.w3.org/ns/shacl#>
+            SELECT ?result ?severity ?message ?focusNode ?resultPath ?sourceConstraintComponent ?value
+            WHERE {
+                ?result a sh:ValidationResult ;
+                        sh:resultSeverity ?severity ;
+                        sh:resultMessage ?message .
+                OPTIONAL { ?result sh:focusNode ?focusNode }
+                OPTIONAL { ?result sh:resultPath ?resultPath }
+                OPTIONAL { ?result sh:sourceConstraintComponent ?sourceConstraintComponent }
+                OPTIONAL { ?result sh:value ?value }
+            }
+            """
+            
+            # Execute query and extract violations
+            for row in report_graph.query(query):
+                violation = {
+                    "severity": str(row.severity),
+                    "message": str(row.message),
+                    "focusNode": str(row.focusNode) if row.focusNode else None,
+                    "resultPath": str(row.resultPath) if row.resultPath else None,
+                    "sourceConstraintComponent": str(row.sourceConstraintComponent) if row.sourceConstraintComponent else None,
+                    "value": str(row.value) if row.value else None
+                }
+                violations.append(violation)
+                
+            self.logger.info("Extracted SHACL violations",
+                           violation_count=len(violations))
                 
         except Exception as e:
-            self.logger.warning("SHACL violation extraction failed, using fallback",
-                              error=str(e))
+            self.logger.error("SHACL violation extraction failed",
+                            error=str(e))
+            # Fallback to empty list rather than crashing
             violations = []
         
         return violations
@@ -327,6 +356,47 @@ class SHACLToJSONSchemaAdapter:
             
             return json.dumps(error_report, indent=2)
     
+    def _dict_to_rdf_graph(self, data: Dict[str, Any]) -> Any:
+        """
+        Convert dictionary data to RDF graph for SHACL validation.
+        
+        Args:
+            data: Dictionary data to convert
+            
+        Returns:
+            RDF Graph object
+        """
+        try:
+            from rdflib import Graph, Literal, URIRef, Namespace
+            from rdflib.namespace import XSD
+            
+            graph = Graph()
+            EX = Namespace("http://example.org/")
+            
+            # Create a basic RDF representation from the dictionary
+            subject = EX.Document
+            
+            for key, value in data.items():
+                predicate = EX[key.replace('-', '_').replace(' ', '_')]
+                
+                if isinstance(value, str):
+                    graph.add((subject, predicate, Literal(value)))
+                elif isinstance(value, (int, float)):
+                    graph.add((subject, predicate, Literal(value)))
+                elif isinstance(value, bool):
+                    graph.add((subject, predicate, Literal(value, datatype=XSD.boolean)))
+                else:
+                    # Convert complex objects to string
+                    graph.add((subject, predicate, Literal(str(value))))
+            
+            return graph
+            
+        except Exception as e:
+            self.logger.error("Failed to convert dict to RDF graph", error=str(e))
+            # Return empty graph as fallback
+            from rdflib import Graph
+            return Graph()
+    
     def validate_with_compliance_bridge(self, 
                                       data: Any,
                                       shacl_shapes_graph: Any,
@@ -346,15 +416,38 @@ class SHACLToJSONSchemaAdapter:
             ComplianceReport: HMA v2.2 compliant validation report
         """
         try:
-            # In a real implementation, this would use pyshacl:
-            # from pyshacl import validate
-            # conforms, results_graph, results_text = validate(
-            #     data, shacl_graph=shacl_shapes_graph
-            # )
+            # Production SHACL validation using pyshacl
+            from pyshacl import validate
+            from rdflib import Graph
             
-            # For demonstration, simulate validation
-            conforms = self._simulate_shacl_validation(data, shacl_shapes_graph)
-            results_graph = self._create_mock_results_graph(conforms)
+            # Convert data to RDF graph if needed
+            if isinstance(data, dict):
+                data_graph = self._dict_to_rdf_graph(data)
+            elif isinstance(data, str):
+                data_graph = Graph()
+                data_graph.parse(data=data, format='turtle')
+            else:
+                data_graph = data
+            
+            # Convert shapes to RDF graph if needed
+            if isinstance(shacl_shapes_graph, str):
+                shapes_graph = Graph()
+                shapes_graph.parse(data=shacl_shapes_graph, format='turtle')
+            else:
+                shapes_graph = shacl_shapes_graph
+            
+            # Perform SHACL validation
+            conforms, results_graph, results_text = validate(
+                data_graph, 
+                shacl_graph=shapes_graph,
+                inference='rdfs',
+                serialize_report_graph='turtle'
+            )
+            
+            self.logger.info("SHACL validation completed",
+                           conforms=conforms,
+                           data_triples=len(data_graph),
+                           shapes_triples=len(shapes_graph))
             
             # Transform to compliance report
             return self.transform_shacl_report(results_graph, conforms, report_id)

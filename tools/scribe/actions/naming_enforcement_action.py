@@ -30,8 +30,13 @@ except ImportError:
                 pass
 
 class NamingEnforcementAction(BaseAction):
-    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context):
+    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context: 'PluginContextPort'):
         super().__init__(action_type, params, plugin_context)
+        
+        # HMA v2.2 compliant port-based access
+        config_port = self.context.get_port("configuration")
+        self.log_port = self.context.get_port("logging")
+        
         self.scan_paths_str = self.params.get("scan_paths", ["."]) # List of paths relative to repo_root
         self.schema_registry_path_str = self.params.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
         self.fix_mode = self.params.get("fix_mode", False)
@@ -39,7 +44,13 @@ class NamingEnforcementAction(BaseAction):
         self.namingignore_path_str = self.params.get("namingignore_path", None)
         self.enforcer_instance = None
         self.safety_logger_instance = None
-        self.repo_root = Path(self.context.get_port("configuration").get_repo_root())
+        
+        # Get repo root through configuration port
+        try:
+            self.repo_root = Path(config_port.get_config_value("repo_root", self.context.get_plugin_id(), "."))
+        except Exception as e:
+            self.log_port.log_warning("Could not get repo_root from config, using current directory", error=str(e))
+            self.repo_root = Path(".")
 
     def setup(self):
         if not super().setup():

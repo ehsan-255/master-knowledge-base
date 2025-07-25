@@ -94,13 +94,24 @@ def _generate_yaml_view_standard(standard_data: dict, logger: logging.Logger) ->
 
 
 class ViewGenerationAction(BaseAction):
-    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context):
+    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context: 'PluginContextPort'):
         super().__init__(action_type, params, plugin_context)
+        
+        # HMA v2.2 compliant port-based access
+        config_port = self.context.get_port("configuration")
+        self.log_port = self.context.get_port("logging")
+        
         self.schema_registry_path_str = self.params.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
         self.master_index_path_str = self.params.get("master_index_path", "standards/registry/master-index.jsonld")
         self.schema_registry = None
         self.master_index = None
-        self.repo_root = Path(self.context.get_port("configuration").get_repo_root())
+        
+        # Get repo root through configuration port
+        try:
+            self.repo_root = Path(config_port.get_config_value("repo_root", self.context.get_plugin_id(), "."))
+        except Exception as e:
+            self.log_port.log_warning("Could not get repo_root from config, using current directory", error=str(e))
+            self.repo_root = Path(".")
 
 
     def setup(self):

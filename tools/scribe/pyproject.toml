@@ -34,6 +34,11 @@ dependencies = [
     "portalocker==2.7.0",
     "pyyaml==6.0.1",
     "requests==2.31.0",
+    # HMA v2.2 mandatory dependencies for SHACL validation
+    "pyshacl==0.25.0",
+    "rdflib==7.0.0",
+    # HMA v2.2 mandatory dependencies for messaging
+    "nats-py==2.3.1",
 ]
 
 [project.optional-dependencies]
