@@ -1,6 +1,6 @@
 # Repository Tree Structure
 
-**Generated**: 2025-07-24 01:35:51  
+**Generated**: 2025-07-25 07:00:51  
 **Script**: `tools/utilities/repo-tree/main_repo_tree.py`  
 **Output**: Automated repository structure overview  
 
@@ -214,70 +214,8 @@
 │   │   📄 UA-TPL-CHANGELOG-DOCUMENT.md
 │   📄 changelog.md
 │   📄 README.md
-🧪 test-environment ALWAYS SETUP AND EXECUTE TESTS HERE (INCLUDING THEIR OUTPUT; DIFFERENT FROM TOOLS!)
-│   💾 backup
-│   │   📄 no-frontmatter.md
-│   │   📄 sample1.md
-│   │   📄 sample2.md
-│   📁 scribe-tests
-│   │   📄 __init__.py
-│   │   📄 conftest.py
-│   │   📄 manual_test_security_manager.py
-│   │   📄 simulated_24h_soak_test.py
-│   │   📄 simulated_soak_test.py
-│   │   📄 soak_test.py
-│   │   📄 test_actions.py
-│   │   📄 test_atomic_write.py
-│   │   📄 test_baseline_regression.py
-│   │   📄 test_circuit_breaker_enhancement.py
-│   │   📄 test_end_to_end_traceability.py
-│   │   📄 test_event_bus.py
-│   │   📄 test_event_id_traceability.py
-│   │   📄 test_exit_conditions_1_1.py
-│   │   📄 test_full_pipeline.py
-│   │   📄 test_health_endpoint.py
-│   │   📄 test_integration.py
-│   │   📄 test_performance.py
-│   │   📄 test_phase4_verification.py
-│   │   📄 test_plugin_manifest_system.py
-│   │   📄 test_ports.py
-│   │   📄 test_quarantine_logic.py
-│   │   📄 test_queue_backpressure.py
-│   │   📄 test_resilience.py
-│   │   📄 test_security_manager.py
-│   │   📄 test_simple_traceability.py
-│   │   📄 test_step_1_2_exit_conditions.py
-│   │   📄 test_step_2_1_exit_conditions.py
-│   │   📄 test_watcher.py
-│   │   📄 test_windows_compatibility.py
-│   │   📄 test_worker.py
-│   │   📄 verify_step_1_2.py
-│   📁 test-documents
-│   │   📄 CamelCaseFile.md
-│   │   📄 comprehensive-test.md
-│   │   📄 file-with-links.md
-│   │   📄 frontmatter-field-violations.md
-│   │   📄 locked-test.md
-│   │   📄 simple-test.md
-│   │   📄 test-uppercase.md
-│   │   📄 uppercase-extension-test.md
-│   📁 tool-tests-consolidated-20250607-0942
-│   │   📁 indexer-tests
-│   │   │   📄 test_generate_index.py
-│   │   📁 linter-tests
-│   │       📄 test_kb_linter.py
-│   📁 validator-tests
-│   │   📁 test-data
-│   │       📄 conforming-shacl-doc.md
-│   │       📄 violating-shacl-doc.md
-│   📄 naming-enforcer-test-files.md
+🧬 templates
 │   📄 README.md
-│   📄 run_all_tests.py
-│   📄 run_tests.py
-│   📄 safety-test-suite.py
-│   📄 test-results-20250607-091041.json
-│   📄 test-summary-20250607-091041.md
-│   📄 test-todos.json
 🔧 tools
 │   📁 analysis
 │   │   📄 analyze_document_types.py
@@ -342,8 +280,14 @@
 │   │   📄 validation-standards-only-20250619-1900.json
 │   │   📄 validation-standards-only-20250619-1930.json
 │   📁 scribe
+│   │   📁 .claude
+│   │   │   📄 settings.local.json
 │   │   📁 actions
 │   │   │   📁 enhanced_frontmatter_action
+│   │   │   │   📄 manifest.json
+│   │   │   📁 file_processing_orchestrator
+│   │   │   │   📄 __init__.py
+│   │   │   │   📄 file_processing_orchestrator.py
 │   │   │   │   📄 manifest.json
 │   │   │   📁 graph_validation_action
 │   │   │   │   📄 manifest.json
@@ -362,13 +306,23 @@
 │   │   │   📄 enhanced_frontmatter_action.py
 │   │   │   📄 graph_validation_action.py
 │   │   │   📄 naming_enforcement_action.py
+│   │   │   📄 README.md
 │   │   │   📄 reconciliation_action.py
 │   │   │   📄 roadmap_populator_action.py
 │   │   │   📄 run_command_action.py
 │   │   │   📄 view_generation_action.py
+│   │   📁 adapters
+│   │   │   📄 __init__.py
+│   │   │   📄 README.md
+│   │   │   📄 shacl_adapter.py
 │   │   📁 config
 │   │   │   📄 config.json
+│   │   │   📄 README.md
+│   │   │   📄 security_policy.yaml
 │   │   📁 core
+│   │   │   📁 adapters
+│   │   │   │   📄 __init__.py
+│   │   │   │   📄 nats_adapter.py
 │   │   │   📄 __init__.py
 │   │   │   📄 action_dispatcher.py
 │   │   │   📄 async_processor.py
@@ -377,12 +331,10 @@
 │   │   │   📄 cache_manager.py
 │   │   │   📄 circuit_breaker.py
 │   │   │   📄 config_manager.py
+│   │   │   📄 engine_factory.py
 │   │   │   📄 error_recovery.py
-│   │   │   📄 event_bus.py
-│   │   │   📄 factories.py
 │   │   │   📄 file_optimizer.py
 │   │   │   📄 health_monitor.py
-│   │   │   📄 health_server.py
 │   │   │   📄 hma_ports.py
 │   │   │   📄 hma_telemetry.py
 │   │   │   📄 logging_config.py
@@ -392,6 +344,7 @@
 │   │   │   📄 plugin_loader.py
 │   │   │   📄 port_adapters.py
 │   │   │   📄 ports.py
+│   │   │   📄 README.md
 │   │   │   📄 rule_processor.py
 │   │   │   📄 security_audit.py
 │   │   │   📄 security_manager.py
@@ -402,6 +355,14 @@
 │   │   │   │   📄 docker-compose.yml
 │   │   │   📁 kubernetes
 │   │   │       📄 scribe-deployment.yaml
+│   │   📚 docs
+│   │   │   📁 decisions
+│   │   │       📄 ADR-001-nats-message-broker.md
+│   │   │       📄 ADR-002-ports-and-adapters.md
+│   │   │       📄 ADR-003-shacl-json-bridge.md
+│   │   │       📄 ADR-004-python-async-concurrency.md
+│   │   │       📄 ADR-005-hma-compliance-strategy.md
+│   │   │       📄 README.md
 │   │   📁 error_handling
 │   │   │   📄 llm_error_handler.py
 │   │   📁 integrations
@@ -410,7 +371,11 @@
 │   │   │   📄 schema_constraint_prompts.py
 │   │   📁 schemas
 │   │   │   📄 plugin_manifest.schema.json
+│   │   │   📄 README.md
 │   │   │   📄 scribe_config.schema.json
+│   │   📁 utils
+│   │   │   📄 frontmatter_parser.py
+│   │   │   📄 README.md
 │   │   📁 validation
 │   │   │   📄 llm_shacl_validator.py
 │   │   📄 __init__.py
@@ -418,9 +383,9 @@
 │   │   📄 engine.py
 │   │   📄 pyproject.toml
 │   │   📄 README.md
-│   │   📄 requirements.txt
+│   │   📄 remediation-plan.md
+│   │   📄 TODO.md
 │   │   📄 watcher.py
-│   │   📄 worker.py
 │   📁 scripts
 │   │   📄 update_manifests.py
 │   🔧 utilities
@@ -456,8 +421,10 @@
 📄 .pre-commit-config.yaml
 📄 .prettierignore
 📄 AS-INDEX-KB-MASTER.md
+📄 code2prompt-guide.md
 📄 comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
 📄 frontmatter-implementation-damage-assessment-20250617-1328.md
+📄 handlebars-explanation.md
 📄 merge-reports.md
 📄 mermaid-diagram-guidelines.md
 📄 project-initiation-execution-methodology.md
@@ -466,7 +433,6 @@
 📄 repo_tree.py
 📄 roadmap-feedback.md
 📄 scribe-analysis.md
-📄 scribe-diagnostics.md
 📄 scribe-solutions-roadmap.md
 📄 scribe-solutions.md
 ```

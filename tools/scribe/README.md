@@ -21,7 +21,7 @@ Scribe v2.2 is a production-ready automation engine built with complete HMA v2.2
 
 ## Architecture
 
-Scribe v2.0 implements the complete HMA v2.2 specification with mandatory Tier 1 technologies:
+Scribe v2.2 implements the complete HMA v2.2 specification with mandatory Tier 1 technologies and has undergone comprehensive cleanup to remove all legacy components:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -107,7 +107,7 @@ kubectl apply -f .
 
 ## Configuration
 
-Scribe v2.0 uses a comprehensive JSON configuration with HMA v2.2 compliance validation:
+Scribe v2.2 uses a comprehensive JSON configuration with HMA v2.2 compliance validation:
 
 ```json
 {
@@ -316,6 +316,9 @@ kubectl apply -f deployment/kubernetes/
 - [x] Performance optimization
 - [x] Security hardening
 - [x] Production deployment automation
+- [x] **Legacy component cleanup** (removed worker.py, factories.py, health_server.py, etc.)
+- [x] **Modern plugin constructors** (port-based dependency injection)
+- [x] **Consolidated utilities** (shared frontmatter parsing)
 
 ### Future Enhancements
 - [ ] Web-based management interface

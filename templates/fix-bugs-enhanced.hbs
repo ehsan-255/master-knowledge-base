@@ -1,0 +1,86 @@
+You are a Senior Software Engineer and an expert diagnostician. Your mission is to meticulously analyze the provided codebase to identify bugs and then generate a comprehensive, step-by-step guide for a developer to fix them.
+
+## 1. Context: The Codebase
+---
+- **Project Path:** {{absolute_code_path}}
+
+- **Source Tree:**
+  ```
+  {{source_tree}}
+  ```
+
+- **Code Files:**
+  {{#each files}}
+  {{#if code}}
+  --- START OF FILE {{path}} ---
+  ```
+  {{code}}
+  ```
+  --- END OF FILE {{path}} ---
+  {{/if}}
+  {{/each}}
+
+## 2. The Mission: Bug Analysis & Remediation Guide
+---
+Your task is twofold:
+1.  **Analyze:** Systematically identify potential bugs within the provided code.
+2.  **Instruct:** Create a clear, actionable, step-by-step guide that another developer can follow to understand, reproduce, and fix each identified bug.
+
+## 3. Known Bug Categories (Areas of Suspicion)
+---
+Pay special attention to the following common sources of bugs. I suspect the issues may be related to:
+- Incorrect handling of edge cases (e.g., empty arrays, null inputs, zero values).
+- Off-by-one errors in loops or array indexing.
+- Unexpected data types or type coercion issues.
+- Uncaught or improperly handled exceptions.
+- Concurrency problems (e.g., race conditions, deadlocks).
+- Improper or missing configuration settings.
+
+## 4. Your Analysis Process (Systematic Approach)
+---
+Please follow this structured process for your analysis:
+1.  **Review Systematically:** Read the code to understand its purpose, control flow, and data structures.
+2.  **Trace Code Paths:** Mentally trace the execution flow for critical functions, paying close attention to the suspicious areas listed above.
+3.  **Consider Boundaries:** Analyze how the code handles boundary conditions, invalid inputs, and potential error states.
+4.  **Identify Anti-Patterns:** Look for common coding mistakes or anti-patterns that often lead to bugs.
+5.  **Assess Impact:** For each potential bug, determine its severity and the potential impact on the application's functionality, security, or performance.
+
+## 5. Required Output Format: The Step-by-Step Remediation Guide
+---
+Please structure your entire response as a single, comprehensive "Bug Remediation Guide" in Markdown. The guide must contain the following sections:
+
+### Bug Remediation Guide
+
+#### Executive Summary
+Provide a high-level overview of the findings in a Markdown table. This allows for quick prioritization.
+
+| Bug ID | Severity | Title | Location |
+| :--- | :--- | :--- | :--- |
+| BUG-001 | `Critical` | [Short, descriptive title of the bug] | `[file_path]:[line_number]` |
+| BUG-002 | `High` | [Short, descriptive title of the bug] | `[file_path]:[line_number]` |
+| BUG-003 | `Medium` | [Short, descriptive title of the bug] | `[file_path]:[line_number]` |
+
+---
+
+#### Detailed Bug Reports & Fix Guides
+For each bug identified in the summary table, provide a detailed report with the following structure:
+
+**BUG-001: [Bug Title from Summary Table]**
+- **Severity:** `Critical` / `High` / `Medium` / `Low`
+- **Location:** `[file_path]:[line_number]`
+- **Problem Description:** A clear and concise explanation of the bug. What is happening that shouldn't be?
+- **Impact Analysis:** What is the consequence of this bug? (e.g., "Causes incorrect financial calculations," "Leads to application crash on invalid input," "Creates a security vulnerability.")
+- **How to Reproduce:** Provide a specific example of input or a sequence of actions that will reliably trigger the bug.
+
+- **Step-by-Step Fix Instructions:**
+  1.  **Navigate:** Open the file `[file_path]`.
+  2.  **Locate:** Go to line `[line_number]`.
+  3.  **Action:** Describe the specific code change required. Be explicit. (e.g., "Change the loop condition from `i <= items.length` to `i < items.length`.")
+  4.  **Reasoning:** Briefly explain *why* this change fixes the bug. (e.g., "This corrects the off-by-one error and prevents an out-of-bounds array access.")
+
+- **Suggested Regression Test:**
+  - Describe a new unit test, integration test, or manual test case that should be created. This test should fail before the fix and pass after the fix, ensuring the bug does not reappear in the future.
+  (e.g., "Add a unit test for the `calculateTotal` function that passes an empty array and asserts that the result is 0.")
+
+---
+**(Repeat the detailed report structure for BUG-002, BUG-003, etc.)**

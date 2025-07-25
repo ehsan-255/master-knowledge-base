@@ -1,0 +1,118 @@
+You are an expert software architect specializing in the Hexagonal Microkernel Architecture (HMA) v2.2, as defined in the provided specification. Your task is to perform a comprehensive compliance analysis of the following codebase.
+
+**Project Path:**
+```
+{{ absolute_code_path }}
+```
+
+**Source Tree:**
+```
+{{ source_tree }}
+```
+
+**Codebase Files:**
+--- START OF CODEBASE ---
+{{#each files}}
+{{#if code}}
+--- START OF FILE {{ path }} ---
+```
+{{ code }}
+```
+--- END OF FILE {{ path }} ---
+{{/if}}
+{{/each}}
+--- END OF CODEBASE ---
+
+---
+
+**Analysis Task:**
+Analyze the provided codebase for its compliance with the HMA v2.2 specification. Pay close attention to the layered architecture, the roles of the Core and Plugins, the use of Ports & Adapters, and the crucial "Guided Flexibility Framework" with its three-tier technology system (Mandatory, Recommended, Alternative).
+
+Please provide a detailed report in Markdown format that addresses the following checklist. For each item, provide a compliance status (Compliant, Partially Compliant, Non-Compliant, or Not Applicable/Found) and detailed evidence from the code.
+
+---
+
+### **HMA v2.2 Compliance Analysis Checklist**
+
+**1. Architectural Principles & Layering (HMA Part 2)**
+   - **[ ] L0-L4 Layering:** Is the project structured into the logical layers (Actors, Interface, Core/Orchestration, Capability, Infrastructure)?
+   - **[ ] Minimal Core (L2):** Does the Core seem minimal, focusing only on routing, plugin lifecycle, and control plane services? Is business logic correctly placed outside the Core?
+   - **[ ] Plugin Autonomy (L3):** Are Plugins designed as autonomous, independently deployable components?
+   - **[ ] Pluggable Orchestration (L2):** Are complex, multi-plugin workflows handled by dedicated Orchestrator Plugins instead of the Core?
+
+**2. Mandatory Interoperability Standards (Tier 1) (HMA Part 1a)**
+   - **[ ] Boundary Validation:** Is there evidence of JSON Schema validation at external boundaries (e.g., in API adapters)?
+   - **[ ] API Documentation:** Are external APIs documented using OpenAPI 3.0+? (Look for `openapi.yaml`, `swagger.json`, etc.)
+   - **[ ] Secure Communication:** Is there evidence of TLS/mTLS configuration for communication between components?
+   - **[ ] Observability at Boundaries:** Is OpenTelemetry (or a compatible tool) used to emit telemetry at component boundaries with the required HMA attributes?
+   - **[ ] Plugin Manifest:** Do plugins include a `plugin-manifest.json` file? If found, does it conform to the HMA v2.2 schema?
+
+**3. Technology Stack Analysis (Three-Tier Framework) (HMA Part 1b)**
+   - **[ ] Technology Identification:** Identify the key technologies used for:
+     - Message Broker (e.g., NATS, Kafka, RabbitMQ)
+     - Observability Backend (e.g., Prometheus, Grafana, Jaeger)
+     - Container Platform (e.g., Kubernetes, Docker Compose)
+     - Secrets Management (e.g., Vault)
+     - API Management (e.g., Kong, Istio)
+   - **[ ] Tier Classification:** Classify the identified technologies. Do they align with the Tier 2 (Recommended) stack?
+   - **[ ] Alternative Technology Justification (Tier 3):** If alternative (Tier 3) technologies are used, is there documentation justifying their use? Are compliance adapters implemented to maintain Tier 1 boundary standards?
+
+**4. Component & Interface Analysis (HMA Part 3)**
+   - **[ ] Core Components:** Can you identify components within the Core for Request Routing, Plugin Lifecycle Management, and Control Plane Services?
+   - **[ ] Ports & Adapters:** Is the Ports & Adapters pattern evident? Are there clear, technology-agnostic Port definitions (interfaces/traits) and technology-specific Adapter implementations?
+   - **[ ] Standard Port Implementation:** Are standard HMA ports like `PluginExecutionPort`, `CredBrokerQueryPort`, `EventBusPort`, and `ObservabilityPort` implemented or consumed correctly?
+
+**5. Detailed Standards & Conventions (HMA Part 4)**
+   - **[ ] Event Design:** Do events seem to follow the CloudEvents specification with the standard HMA metadata extensions?
+   - **[ ] Naming Conventions:** Do component, port, and event names follow the recommended HMA naming conventions?
+
+**6. Cross-Cutting Concerns (HMA Part 5)**
+   - **[ ] Security Implementation:**
+     - Are trust boundaries clearly defined?
+     - Is a `CredentialBroker` pattern used for secrets management?
+     - Is there evidence of runtime policy enforcement?
+   - **[ ] Observability Implementation:**
+     - Does the implementation align with the recommended stack (Prometheus, Grafana, Jaeger)?
+     - Are standard HMA resource attributes used in telemetry?
+
+---
+
+### **Final Report Structure**
+
+Please structure your final output as follows:
+
+## HMA v2.2 Compliance Analysis Report
+
+### 1. Executive Summary
+- **Overall Compliance Score:** [e.g., 85% - Largely Compliant]
+- **Overall Finding:** [A brief, one-paragraph summary of the codebase's adherence to HMA v2.2. Mention its strengths and key areas for improvement, especially regarding the Guided Flexibility Framework.]
+
+### 2. Compliance Scorecard
+| Area of Analysis | Compliance Status | Evidence & Notes | Recommendations |
+| :--- | :--- | :--- | :--- |
+| **1. Layered Architecture** | `Compliant` / `Partially` / `Non-Compliant` | [Evidence from file paths, class names, etc.] | [Actionable advice] |
+| **2. Tier 1 Standards** | `Compliant` / `Partially` / `Non-Compliant` | [e.g., "Found valid plugin-manifest.json in `plugins/x/`", "No mTLS config found."] | [Actionable advice] |
+| **3. Technology Stack (Tiers)** | `Compliant` / `Partially` / `Non-Compliant` | [List identified tech and their tier. Note any missing justification for Tier 3.] | [e.g., "Consider migrating from custom message queue to recommended NATS/Kafka."] |
+| **4. Components & Interfaces** | `Compliant` / `Partially` / `Non-Compliant` | [e.g., "Clear Port/Adapter separation in `src/adapters`."] | [Actionable advice] |
+| **5. Detailed Standards** | `Compliant` / `Partially` / `Non-Compliant` | [e.g., "Event naming follows spec."] | [Actionable advice] |
+| **6. Cross-Cutting Concerns** | `Compliant` / `Partially` / `Non-Compliant` | [e.g., "Strong security via Vault integration."] | [Actionable advice] |
+
+### 3. Detailed Findings & Recommendations
+[For each `Partially` or `Non-Compliant` item in the scorecard, provide a more detailed explanation here. Include code snippets where relevant.]
+
+#### **Finding 1: [Name of the Issue, e.g., "Missing Compliance Adapter for Tier 3 Database"]**
+- **Area:** Technology Stack Analysis (Three-Tier Framework)
+- **Description:** The project uses a Tier 3 alternative database (e.g., Neo4j), but no compliance adapter was found to ensure its interactions conform to standard HMA data port contracts at the boundary.
+- **Risk:** This can lead to tight coupling and break interoperability with other HMA components that expect a standard interface.
+- **Recommendation:** Implement a `Neo4jToStandardDBAdapter` that exposes a standard data access port, translating calls to Cypher queries internally. Document the rationale for using Neo4j in the project's architecture decision records.
+
+#### **Finding 2: [Name of the Issue]**
+- ...
+
+### 4. Migration & Improvement Plan
+[Provide a prioritized, step-by-step plan to bring the codebase into full HMA v2.2 compliance.]
+
+1.  **Priority 1 (Critical):** Address all Tier 1 standard violations (e.g., Implement mTLS).
+2.  **Priority 2 (High):** Document or create compliance adapters for all Tier 3 technologies.
+3.  **Priority 3 (Medium):** Refactor any business logic found within the L2 Core into dedicated L3 Plugins.
+4.  **Priority 4 (Low):** Consider migrating non-critical Tier 3 technologies to the recommended Tier 2 stack to reduce maintenance overhead.

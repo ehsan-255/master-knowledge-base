@@ -9,6 +9,7 @@ import threading
 import queue
 import time
 import uuid
+import asyncio
 from pathlib import Path
 from typing import List, Optional
 from watchdog.observers import Observer
@@ -23,40 +24,40 @@ logger = get_scribe_logger(__name__)
 class ScribeEventHandler(FileSystemEventHandler):
     """Custom event handler that filters and queues relevant file system events."""
     
-    def __init__(self, event_bus: 'EventBus', file_patterns: Optional[List[str]] = None):
+    def __init__(self, event_bus_port, file_patterns: Optional[List[str]] = None):
         """
         Initialize the event handler.
         
         Args:
-            event_bus: EventBus to publish events to
+            event_bus_port: EventBusPort to publish events to
             file_patterns: List of file patterns to monitor (e.g., ['*.md', '*.txt'])
         """
         super().__init__()
-        self.event_bus = event_bus
+        self.event_bus_port = event_bus_port
         self.file_patterns = file_patterns or ['*.md']  # Default to markdown files
         
     def on_modified(self, event: FileSystemEvent) -> None:
         """Handle file modification events."""
         if not event.is_directory and self._should_process_file(event.src_path):
-            self._queue_event('modified', event.src_path)
+            self._publish_event('modified', event.src_path)
     
     def on_created(self, event: FileSystemEvent) -> None:
         """Handle file creation events."""
         if not event.is_directory and self._should_process_file(event.src_path):
-            self._queue_event('created', event.src_path)
+            self._publish_event('created', event.src_path)
     
     def on_moved(self, event: FileSystemEvent) -> None:
         """Handle file move/rename events."""
         if not event.is_directory and self._should_process_file(event.dest_path):
-            self._queue_event('moved', event.dest_path, event.src_path)
+            self._publish_event('moved', event.dest_path, event.src_path)
     
     def _should_process_file(self, file_path: str) -> bool:
         """Check if file matches our monitoring patterns."""
         path = Path(file_path)
         return any(path.match(pattern) for pattern in self.file_patterns)
     
-    def _queue_event(self, event_type: str, file_path: str, old_path: Optional[str] = None) -> None:
-        """Queue a processed event for the worker thread."""
+    def _publish_event(self, event_type: str, file_path: str, old_path: Optional[str] = None) -> None:
+        """Publish a processed event through the EventBusPort."""
         # Generate unique event_id for traceability
         event_id = str(uuid.uuid4())
         
@@ -68,24 +69,28 @@ class ScribeEventHandler(FileSystemEventHandler):
             'timestamp': time.time()
         }
         
-        # Backward compatibility: handle both event bus and direct queue
-        if hasattr(self.event_bus, 'publish'):
-            # New event bus interface
-            self.event_bus.publish('file_event', event_data)
-        elif hasattr(self.event_bus, 'put'):
-            # Legacy queue interface
+        # Use EventBusPort interface through async wrapper
+        try:
+            # Create an event loop if one doesn't exist
             try:
-                self.event_bus.put(event_data, timeout=1.0)
-            except Exception:
-                # Queue full or other issue - fail silently for tests
-                pass
-        else:
-            # No valid interface - log error but don't crash
-            logger.warning("Event bus has no publish or put method", event_bus_type=type(self.event_bus).__name__)
-        logger.debug("Published event", 
+                loop = asyncio.get_event_loop()
+            except RuntimeError:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+            
+            # Publish via EventBusPort
+            loop.run_until_complete(
+                self.event_bus_port.publish_event('file_event', event_data, correlation_id=event_id)
+            )
+            
+            logger.debug("Published event", 
                         event_id=event_id,
                         event_type=event_type, 
                         file_path=file_path)
+        except Exception as e:
+            logger.error("Failed to publish event", 
+                        event_id=event_id,
+                        error=str(e))
 
 
 class Watcher(threading.Thread, IEventSource):
@@ -99,34 +104,24 @@ class Watcher(threading.Thread, IEventSource):
     def __init__(self, 
                  watch_paths: List[str],
                  file_patterns: Optional[List[str]] = None,
-                 event_bus = None,
+                 event_bus_port = None,
                  shutdown_event: threading.Event = None,
-                 debounce_seconds: float = 0.5,
-                 event_queue=None):  # Backward compatibility alias
+                 debounce_seconds: float = 0.5):
         """
         Initialize the watcher thread.
         
         Args:
             watch_paths: List of directory paths to monitor
             file_patterns: List of file patterns to monitor
-            event_bus: EventBus to publish events to
+            event_bus_port: EventBusPort to publish events to
             shutdown_event: Event to signal graceful shutdown
             debounce_seconds: Debounce delay for file events
         """
         super().__init__(name="ScribeWatcher", daemon=True)
-        
-        # Handle backward compatibility for event_queue parameter  
-        if event_queue is not None and event_bus is None:
-            event_bus = event_queue
-        elif event_bus is None and event_queue is None:
-            # Allow None for testing - some tests may not provide either
-            pass
             
         self.watch_paths = watch_paths
         self.file_patterns = file_patterns or ['*.md']
-        self.event_bus = event_bus
-        # Add backward compatible property alias
-        self.event_queue = event_bus
+        self.event_bus_port = event_bus_port
         self.shutdown_event = shutdown_event or threading.Event()
         self.debounce_seconds = debounce_seconds
         
@@ -135,7 +130,7 @@ class Watcher(threading.Thread, IEventSource):
         
         # Create event handler
         self.event_handler = ScribeEventHandler(
-            event_bus=self.event_bus, 
+            event_bus_port=self.event_bus_port, 
             file_patterns=self.file_patterns
         )
         

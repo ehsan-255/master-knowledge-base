@@ -27,7 +27,7 @@
     "directories": ["actions/"],
     "auto_reload": false,
     "load_order": [],
-    "manifest_required": false
+    "manifest_required": true
   },
   "performance": {
     "async_processing": {

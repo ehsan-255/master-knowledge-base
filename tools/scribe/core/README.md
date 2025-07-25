@@ -51,7 +51,7 @@ The core implements the HMA v2.2 L2 Microkernel pattern with these key principle
 |-----------|---------|-----------|
 | **hma_telemetry.py** | HMA v2.2 compliant OpenTelemetry implementation | L2-Infrastructure |
 | **logging_config.py** | Structured logging configuration | L2-Infrastructure |
-| **health_server.py** | Health check endpoints and monitoring | L2-Infrastructure |
+| **health_monitor.py** | Health check endpoints and monitoring | L2-Infrastructure |
 
 ### Processing and Coordination
 

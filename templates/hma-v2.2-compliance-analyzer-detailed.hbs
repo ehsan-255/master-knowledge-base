@@ -1,0 +1,146 @@
+You are an expert software architect. Your task is to perform a comprehensive compliance analysis of the following codebase against a specific architectural standard called **Hexagonal Microkernel Architecture (HMA) v2.2**.
+
+Since you are not familiar with HMA v2.2, this prompt contains a "Crash Course" section explaining its core principles, followed by a detailed checklist guiding your analysis.
+
+**Project Path:**
+```
+{{ absolute_code_path }}
+```
+
+**Source Tree:**
+```
+{{ source_tree }}
+```
+
+**Codebase Files:**
+--- START OF CODEBASE ---
+{{#each files}}
+{{#if code}}
+--- START OF FILE {{ path }} ---
+```
+{{ code }}
+```
+--- END OF FILE {{ path }} ---
+{{/if}}
+{{/each}}
+--- END OF CODEBASE ---
+
+---
+
+### **HMA v2.2 Crash Course: What You Need to Know**
+
+**1. The Core Philosophy:**
+HMA is designed for building evolvable, AI-friendly systems. It combines three patterns:
+- **Hexagonal (Ports & Adapters):** Business logic is isolated from external technologies (UI, databases, etc.).
+- **Microkernel:** The central "Core" of the application is minimal and stable.
+- **Event-Driven:** Components communicate asynchronously through events to stay decoupled.
+
+**2. The Layered Architecture (L0-L4):**
+- **L2: The Microkernel Core:** This is the heart. Its ONLY jobs are:
+    - **Routing:** Directing incoming requests to the correct Plugin.
+    - **Plugin Lifecycle:** Managing the loading, activation, and unloading of Plugins.
+    - **Control Plane:** Providing essential, non-business services like security credential access.
+    - **CRITICAL RULE:** The Core **MUST NOT** contain any business-specific logic (e.g., calculating an order total, processing user data).
+- **L3: The Plugins:** These are autonomous, replaceable components that contain **ALL** business logic and functionality.
+    - **Capability Plugins:** Handle a single, specific business capability (e.g., "PaymentProcessingPlugin").
+    - **Orchestrator Plugins:** Coordinate complex workflows by calling multiple Capability Plugins.
+- **L1 & L4: The Adapters:** These are the technology-specific "connectors".
+    - **L1 Driving Adapters:** Receive input from the outside world (e.g., a REST API controller, a message queue listener) and call the L2 Core.
+    - **L4 Driven Adapters:** Are called by Plugins to interact with infrastructure (e.g., a PostgreSQL client, an S3 file uploader).
+
+**3. The "Guided Flexibility Framework" (The Most Important Concept):**
+HMA v2.2 uses a three-tier system for technology choices. This is how you will evaluate the codebase's stack.
+- **Tier 1: MANDATORY Standards:** These are **non-negotiable** rules for component boundaries to ensure everything can connect.
+    - **Validation:** All data crossing a boundary **MUST** be validated with **JSON Schema**.
+    - **APIs:** All external REST APIs **MUST** be documented with **OpenAPI 3.0+**.
+    - **Security:** All communication **MUST** use **TLS/mTLS**.
+    - **Observability:** All components **MUST** emit telemetry (logs, metrics, traces) at their boundaries using **OpenTelemetry**.
+    - **Plugin Manifest:** Every plugin **MUST** have a `plugin-manifest.json` file.
+- **Tier 2: RECOMMENDED Technologies:** These are proven, "opinionated defaults" that a project **SHOULD** use unless there's a good reason not to.
+    - **Message Broker:** NATS, Kafka.
+    - **Observability Backend:** Prometheus, Grafana, Jaeger.
+    - **Container Platform:** Kubernetes, Docker Compose.
+    - **Secrets Management:** HashiCorp Vault.
+- **Tier 3: ALTERNATIVE Technologies:** A project **MAY** use a different technology if it's better for a specific, specialized need (e.g., a high-performance database).
+    - **CRITICAL RULE:** If a Tier 3 technology is used, it **MUST** be hidden behind a **Compliance Adapter**. This adapter makes the special technology look like a standard HMA component from the outside, ensuring it still meets all Tier 1 boundary rules. The reason for using a Tier 3 technology **SHOULD** be documented.
+
+---
+
+### **Analysis Task & Checklist**
+
+Now, analyze the provided codebase using the knowledge from the Crash Course. Fill out the following checklist with your findings.
+
+**1. Architectural Structure & Layering**
+   - **[ ] Minimal Core (L2):**
+     - **What to look for:** Search for files in the "core" or "kernel" directory. Read the code.
+     - **How to evaluate:** Is there any business-specific logic (e.g., financial calculations, user profile management, order processing)? If yes, this is **Non-Compliant**. The Core should only contain routing, lifecycle management, and generic service access.
+   - **[ ] Plugin Autonomy (L3):**
+     - **What to look for:** Examine the `import` or `require` statements within plugin files.
+     - **How to evaluate:** Does one plugin directly import code from another plugin's internal logic? This is **Non-Compliant**. Plugins should only communicate through the Core's router or a shared Event Bus.
+
+**2. Tier 1: Mandatory Interoperability Standards**
+   - **[ ] Boundary Validation (JSON Schema):**
+     - **What to look for:** Search for libraries like `ajv`, `jsonschema`, or `pydantic` being used in API controllers or message handlers (L1 Adapters).
+     - **How to evaluate:** If validation logic is present at the entry points of the system, it is **Compliant**.
+   - **[ ] Plugin Manifest (`plugin-manifest.json`):**
+     - **What to look for:** Search the filesystem for any file named `plugin-manifest.json`.
+     - **How to evaluate:** If found, check if it contains required keys like `manifestVersion`, `plugin.id`, `compliance.technology_tier`. If manifests exist and are structured correctly, it is **Compliant**.
+   - **[ ] Observability at Boundaries (OpenTelemetry):**
+     - **What to look for:** Search for usage of an OpenTelemetry SDK (`@opentelemetry/api`, `opentelemetry-api`, etc.).
+     - **How to evaluate:** Check if tracing or metric recording happens at the start and end of public functions in adapters and plugins. If so, it is **Compliant**.
+
+**3. Technology Stack Analysis (The Three Tiers)**
+   - **[ ] Technology Identification & Tier 2 Alignment:**
+     - **What to look for:** Examine dependency files (`package.json`, `pom.xml`, `go.mod`, `docker-compose.yml`) to identify key technologies.
+     - **How to evaluate:** Compare the identified technologies to the Tier 2 list in the Crash Course (NATS/Kafka, Prometheus, Kubernetes, Vault). If the project primarily uses these, it is **Compliant**.
+   - **[ ] Tier 3 Alternatives & Compliance Adapters:**
+     - **What to look for:** Identify any technologies used that are *not* on the Tier 2 list (e.g., RabbitMQ, InfluxDB, a custom database).
+     - **How to evaluate:** If a Tier 3 technology is found, you **MUST** then search for its **Compliance Adapter**. This would be a class or module that wraps the Tier 3 tech and exposes a standard HMA interface. For example, if `RabbitMQ` is used, look for a `RabbitMQEventBusAdapter` class. If a Tier 3 technology is used *without* a compliance adapter, it is **Non-Compliant**.
+
+**4. Ports & Adapters Pattern**
+   - **[ ] Clear Separation:**
+     - **What to look for:** Look for abstract definitions (like TypeScript `interface`, Java `interface`, or Python `ABC`) that are named with a `...Port` suffix (e.g., `DatabasePort`). Then, look for concrete classes that implement these interfaces, named with a `...Adapter` suffix (e.g., `PostgresAdapter`).
+     - **How to evaluate:** The presence of this clear separation between the "what" (Port) and the "how" (Adapter) indicates it is **Compliant**.
+
+---
+
+### **Final Report Structure**
+
+Please generate your analysis in the following Markdown format.
+
+## HMA v2.2 Compliance Analysis Report
+
+### 1. Executive Summary
+- **Overall Compliance Score:** [e.g., 75% - Partially Compliant]
+- **Overall Finding:** [A brief, one-paragraph summary of the codebase's adherence to HMA v2.2. Mention its strengths and key areas for improvement based on your analysis.]
+
+### 2. Compliance Scorecard
+| Area of Analysis | Compliance Status | Evidence & Rationale | Actionable Recommendations |
+| :--- | :--- | :--- | :--- |
+| **1. Architectural Structure** | `Compliant` / `Partially` / `Non-Compliant` | [Provide file paths, class names, and a brief reason for your assessment.] | [e.g., "Refactor business logic out of the Core."] |
+| **2. Tier 1 Mandatory Standards** | `Compliant` / `Partially` / `Non-Compliant` | [e.g., "Found valid `plugin-manifest.json` in `plugins/x/`.", "No OpenTelemetry usage found."] | [e.g., "Instrument all public-facing methods with OpenTelemetry."] |
+| **3. Technology Stack (Tiers)** | `Compliant` / `Partially` / `Non-Compliant` | [List identified tech and their tier. Note any missing justification or adapters for Tier 3.] | [e.g., "Implement a Compliance Adapter for the custom database or migrate to PostgreSQL."] |
+| **4. Ports & Adapters Pattern** | `Compliant` / `Partially` / `Non-Compliant` | [e.g., "Clear Port/Adapter separation found in `src/storage`."] | [e.g., "Define a Port for the external API integration instead of calling it directly."] |
+
+### 3. Detailed Findings & Recommendations
+[For each `Partially` or `Non-Compliant` item in the scorecard, provide a more detailed explanation here. Include code snippets where relevant.]
+
+#### **Finding 1: [Name of the Issue, e.g., "Tier 3 Technology Used Without a Compliance Adapter"]**
+- **Area:** Technology Stack Analysis
+- **Description:** The project uses `RabbitMQ` as a message broker, which is a Tier 3 alternative. However, the code in `src/services/eventing.js` calls the `amqplib` library directly from within business logic. No `RabbitMQEventBusAdapter` was found that implements a standard `EventBusPort`.
+- **Risk:** This creates tight coupling to RabbitMQ, making it difficult to switch to another broker in the future. It violates the core HMA principle of isolating business logic from technology specifics.
+- **Recommendation:**
+  1. Create a technology-agnostic interface named `EventBusPort` with methods like `publish(event)` and `subscribe(topic)`.
+  2. Create a `RabbitMQAdapter` class that implements `EventBusPort` and contains all the `amqplib`-specific logic.
+  3. Refactor the business logic to only depend on the `EventBusPort` interface.
+
+#### **Finding 2: [Name of the Issue]**
+- ...
+
+### 4. Prioritized Improvement Plan
+[Provide a prioritized, step-by-step plan to bring the codebase into full HMA v2.2 compliance.]
+
+1.  **Priority 1 (Critical):** Address all Tier 1 standard violations (e.g., Implement JSON Schema validation at all API endpoints).
+2.  **Priority 2 (High):** Fix architectural violations (e.g., Move business logic out of the Core; implement Compliance Adapters for all Tier 3 technologies).
+3.  **Priority 3 (Medium):** Refactor code to better align with the Ports & Adapters pattern.
+4.  **Priority 4 (Low):** Consider migrating well-justified Tier 3 technologies to the recommended Tier 2 stack if the benefits of the alternative are no longer significant, to reduce long-term maintenance.

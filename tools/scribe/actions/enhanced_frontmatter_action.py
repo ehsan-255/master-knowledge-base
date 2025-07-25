@@ -24,6 +24,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 # Import existing scribe components
 from .base import BaseAction, ActionExecutionError
+from tools.scribe.utils.frontmatter_parser import parse_frontmatter, apply_frontmatter
 
 # Import Phase 3 components
 try:
@@ -139,7 +140,7 @@ class EnhancedFrontmatterAction(BaseAction):
             
             # Sub-step 5.3: Check if regeneration is needed
             if not params.get('force_regenerate', False):
-                existing_frontmatter = self._extract_existing_frontmatter(content)
+                existing_frontmatter = parse_frontmatter(content)
                 if existing_frontmatter and self._is_frontmatter_valid(existing_frontmatter, info_type):
                     self.logger.info(f"Valid frontmatter exists, skipping generation for {file_path}")
                     return self._create_success_result(file_path, existing_frontmatter, 'skipped_valid')
@@ -151,9 +152,7 @@ class EnhancedFrontmatterAction(BaseAction):
             generation_result = self.validator.validate_with_retry_loop(prompt, info_type)
             
             # Sub-step 5.6: Apply frontmatter to document
-            updated_content = self._apply_frontmatter_to_file(
-                file_path, content, generation_result['frontmatter']
-            )
+            updated_content = apply_frontmatter(content, generation_result['frontmatter'])
             
             # Sub-step 5.7: Write updated content back to file
             self._write_file_content(file_path, updated_content)
@@ -181,9 +180,7 @@ class EnhancedFrontmatterAction(BaseAction):
                 
                 try:
                     content = self._read_file_content(file_path)
-                    updated_content = self._apply_frontmatter_to_file(
-                        file_path, content, fallback_result['frontmatter']
-                    )
+                    updated_content = apply_frontmatter(content, fallback_result['frontmatter'])
                     self._write_file_content(file_path, updated_content)
                     
                     processing_time = (datetime.now() - start_time).total_seconds()
@@ -249,19 +246,6 @@ class EnhancedFrontmatterAction(BaseAction):
         else:
             return 'general-document'
     
-    def _extract_existing_frontmatter(self, content: str) -> Optional[Dict[str, Any]]:
-        """Extract existing frontmatter from document content."""
-        try:
-            # Look for YAML frontmatter
-            if content.startswith('---\n'):
-                end_marker = content.find('\n---\n', 4)
-                if end_marker != -1:
-                    frontmatter_yaml = content[4:end_marker]
-                    return yaml.safe_load(frontmatter_yaml)
-            return None
-        except Exception as e:
-            self.logger.warning(f"Could not parse existing frontmatter: {e}")
-            return None
     
     def _is_frontmatter_valid(self, frontmatter: Dict[str, Any], info_type: str) -> bool:
         """Check if existing frontmatter is valid for the info-type."""
@@ -356,23 +340,6 @@ Requirements:
 Generate ONLY the YAML frontmatter block:
 """
     
-    def _apply_frontmatter_to_file(self, file_path: str, content: str, 
-                                 frontmatter: Dict[str, Any]) -> str:
-        """Sub-step 5.6: Apply frontmatter to document content."""
-        # Convert frontmatter to YAML
-        frontmatter_yaml = yaml.dump(frontmatter, default_flow_style=False, sort_keys=False)
-        
-        # Remove existing frontmatter if present
-        if content.startswith('---\n'):
-            end_marker = content.find('\n---\n', 4)
-            if end_marker != -1:
-                # Replace existing frontmatter
-                content = content[end_marker + 5:]  # Skip past the closing ---
-        
-        # Add new frontmatter
-        new_content = f"---\n{frontmatter_yaml}---\n\n{content.lstrip()}"
-        
-        return new_content
     
     def _write_file_content(self, file_path: str, content: str):
         """Write updated content back to file."""

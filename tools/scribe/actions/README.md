@@ -69,6 +69,9 @@ All plugins inherit from `BaseAction` which provides:
    from ..base import BaseAction
    
    class MyNewPlugin(BaseAction):
+       def __init__(self, action_type, params, plugin_context):
+           super().__init__(action_type, params, plugin_context)
+       
        async def execute(self, file_content, match, file_path, params):
            # Use ports for all operations
            await self.execute_command_safely(["echo", "hello"])
@@ -175,16 +178,17 @@ config_port = self.context.get_port("configuration")
 
 ### Breaking Changes from v2.1 to v2.2
 
-- **Constructor**: Now takes `plugin_context` instead of direct dependencies
-- **Port Access**: All operations must go through ports
+- **Constructor**: Now takes `plugin_context` instead of direct dependencies (`config_manager`, `security_manager`)
+- **Port Access**: All operations must go through ports via `self.context.get_port()`
 - **Async Methods**: Prefer async methods for better performance
 - **Manifest Schema**: Updated to version "2.2" with new fields
+- **Removed Legacy Files**: `run_command_action_legacy.py` has been removed
 
 ### Migration Steps
 
 1. Update manifest version to "2.2"
-2. Update constructor to use `plugin_context`
-3. Replace direct dependency calls with port methods
+2. **Update constructor**: Change from `__init__(self, action_type, params, config_manager, security_manager)` to `__init__(self, action_type, params, plugin_context)`
+3. **Replace direct calls**: Change `self.config_manager.get(...)` to `await self.get_config_value(...)` or `self.context.get_port("configuration").get(...)`
 4. Add async support where beneficial
 5. Update error handling and logging
 
@@ -212,4 +216,5 @@ python -c "import json; jsonschema.validate(json.load(open('manifest.json')), sc
 - [Base Action API](base.py) - Plugin base class reference
 - [HMA Ports](../core/hma_ports.py) - Available port interfaces
 - [Plugin Manifests](../schemas/plugin_manifest.schema.json) - Manifest schema
+- [Shared Utilities](../utils/README.md) - Common utilities like frontmatter parsing
 - [Architecture Decision Records](../docs/decisions/) - Design decisions and rationale
