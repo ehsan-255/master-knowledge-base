@@ -1,0 +1,158 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "type": "stat",
+      "title": "L1 Boundary Validation Rate",
+      "targets": [
+        {
+          "expr": "rate(scribe_l1_valid_total[5m])",
+          "legendFormat": "Valid/sec",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(scribe_l1_invalid_total[5m])",
+          "legendFormat": "Invalid/sec",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0,
+          "thresholds": {
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 0.01},
+              {"color": "red", "value": 0.1}
+            ]
+          }
+        }
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}},
+      "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0}
+    },
+    {
+      "type": "stat", 
+      "title": "Action Throughput",
+      "targets": [
+        {
+          "expr": "rate(scribe_action_executions_total[5m])",
+          "legendFormat": "Executions/sec"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0
+        }
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}},
+      "gridPos": {"h": 8, "w": 6, "x": 6, "y": 0}
+    },
+    {
+      "type": "stat",
+      "title": "Plugin Latency P95",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, rate(scribe_action_duration_seconds_bucket[5m]))",
+          "legendFormat": "P95"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0,
+          "thresholds": {
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 0.5},
+              {"color": "red", "value": 1.0}
+            ]
+          }
+        }
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}},
+      "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0}
+    },
+    {
+      "type": "stat",
+      "title": "DLQ Rate",
+      "targets": [
+        {
+          "expr": "rate(scribe_dlq_events_total[5m])",
+          "legendFormat": "DLQ/sec"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0,
+          "thresholds": {
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 0.01},
+              {"color": "red", "value": 0.1}
+            ]
+          }
+        }
+      },
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}},
+      "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0}
+    },
+    {
+      "type": "graph",
+      "title": "Event Processing Pipeline",
+      "targets": [
+        {
+          "expr": "rate(scribe_file_events_total[1m])",
+          "legendFormat": "File Events"
+        },
+        {
+          "expr": "rate(scribe_boundary_calls_total[1m])",
+          "legendFormat": "Boundary Calls"
+        },
+        {
+          "expr": "rate(scribe_action_executions_total[1m])",
+          "legendFormat": "Action Executions"
+        }
+      ],
+      "yAxes": [
+        {"label": "Events/sec", "min": 0}
+      ],
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}
+    },
+    {
+      "type": "graph",
+      "title": "Queue Depth & Workers",
+      "targets": [
+        {
+          "expr": "scribe_queue_size",
+          "legendFormat": "Queue Size"
+        },
+        {
+          "expr": "scribe_active_workers", 
+          "legendFormat": "Active Workers"
+        }
+      ],
+      "yAxes": [
+        {"label": "Count", "min": 0}
+      ],
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["scribe", "hma", "v2.2"],
+  "templating": {"list": []},
+  "time": {"from": "now-1h", "to": "now"},
+  "timezone": "browser",
+  "title": "Scribe HMA v2.2 Overview",
+  "version": 2
+}

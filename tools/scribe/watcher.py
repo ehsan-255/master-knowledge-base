@@ -17,74 +17,46 @@ from watchdog.events import FileSystemEventHandler, FileSystemEvent
 import structlog
 from tools.scribe.core.logging_config import get_scribe_logger
 from tools.scribe.core.ports import IEventSource
-from tools.scribe.core.hma_telemetry import HMATelemetry
-from tools.scribe.core.boundary_validator import BoundaryValidator
+from tools.scribe.core.boundary_validator import create_boundary_validator, BoundaryType
+from tools.scribe.core.telemetry import get_telemetry_manager, initialize_telemetry
+from tools.scribe.core.dlq import write_dlq
 
 logger = get_scribe_logger(__name__)
 
 
 class ScribeEventHandler(FileSystemEventHandler):
-    """Custom event handler that filters and queues relevant file system events."""
+    """Custom event handler that filters and queues relevant file system events with HMA v2.2 L1 boundary validation."""
     
-    def __init__(self, event_bus_port, file_patterns: Optional[List[str]] = None, 
-                 telemetry: Optional[HMATelemetry] = None, 
-                 boundary_validator: Optional[BoundaryValidator] = None):
+    def __init__(self, event_bus_port, file_patterns: Optional[List[str]] = None):
         """
-        Initialize the event handler with HMA v2.2 compliance.
+        Initialize the event handler with sophisticated boundary validation.
         
         Args:
             event_bus_port: EventBusPort to publish events to
             file_patterns: List of file patterns to monitor (e.g., ['*.md', '*.txt'])
-            telemetry: HMA telemetry for boundary operations
-            boundary_validator: Boundary validator for L1 input validation
         """
         super().__init__()
         self.event_bus_port = event_bus_port
         self.file_patterns = file_patterns or ['*.md']  # Default to markdown files
-        self.telemetry = telemetry
-        self.boundary_validator = boundary_validator
         
-        # Log HMA v2.2 compliant initialization
-        logger.info("File system watcher initialized with HMA v2.2 compliance",
-                   file_patterns=self.file_patterns,
-                   telemetry_enabled=telemetry is not None,
-                   boundary_validation_enabled=boundary_validator is not None)
+        # Initialize sophisticated HMA v2.2 L1 boundary validation
+        self.boundary_validator = create_boundary_validator()
+        
+        # Initialize telemetry for boundary tracking  
+        self.telemetry_manager = initialize_telemetry("scribe-file-watcher")
+        
+        logger.info("ScribeEventHandler initialized with HMA v2.2 L1 boundary validation",
+                   file_patterns=self.file_patterns)
         
     def on_modified(self, event: FileSystemEvent) -> None:
-        """Handle file modification events with HMA v2.2 boundary telemetry."""
-        # HMA v2.2 mandatory OTEL boundary telemetry
-        if self.telemetry:
-            with self.telemetry.trace_boundary_operation(
-                "file_system_event", "l1_driving_adapter", "file_system", "scribe_core"
-            ) as span:
-                if hasattr(span, 'set_attribute'):
-                    span.set_attribute("hma.boundary.type", "l1_file_system_input")
-                    span.set_attribute("hma.operation", "file_modified")
-                    span.set_attribute("hma.file.path", event.src_path)
-                
-                if not event.is_directory and self._should_process_file(event.src_path):
-                    self._publish_event('modified', event.src_path)
-        else:
-            if not event.is_directory and self._should_process_file(event.src_path):
-                self._publish_event('modified', event.src_path)
+        """Handle file modification events."""
+        if not event.is_directory and self._should_process_file(event.src_path):
+            self._publish_event('modified', event.src_path)
     
     def on_created(self, event: FileSystemEvent) -> None:
-        """Handle file creation events with HMA v2.2 boundary telemetry."""
-        # HMA v2.2 mandatory OTEL boundary telemetry
-        if self.telemetry:
-            with self.telemetry.trace_boundary_operation(
-                "file_system_event", "l1_driving_adapter", "file_system", "scribe_core"
-            ) as span:
-                if hasattr(span, 'set_attribute'):
-                    span.set_attribute("hma.boundary.type", "l1_file_system_input")
-                    span.set_attribute("hma.operation", "file_created")
-                    span.set_attribute("hma.file.path", event.src_path)
-                
-                if not event.is_directory and self._should_process_file(event.src_path):
-                    self._publish_event('created', event.src_path)
-        else:
-            if not event.is_directory and self._should_process_file(event.src_path):
-                self._publish_event('created', event.src_path)
+        """Handle file creation events."""
+        if not event.is_directory and self._should_process_file(event.src_path):
+            self._publish_event('created', event.src_path)
     
     def on_moved(self, event: FileSystemEvent) -> None:
         """Handle file move/rename events."""
@@ -97,7 +69,7 @@ class ScribeEventHandler(FileSystemEventHandler):
         return any(path.match(pattern) for pattern in self.file_patterns)
     
     def _publish_event(self, event_type: str, file_path: str, old_path: Optional[str] = None) -> None:
-        """Publish a processed event through the EventBusPort with HMA v2.2 boundary validation."""
+        """Publish a processed event with HMA v2.2 L1 boundary validation."""
         # Generate unique event_id for traceability
         event_id = str(uuid.uuid4())
         
@@ -109,27 +81,47 @@ class ScribeEventHandler(FileSystemEventHandler):
             'timestamp': time.time()
         }
         
-        # HMA v2.2 mandatory boundary validation
-        if self.boundary_validator:
-            try:
-                validation_result = self.boundary_validator.validate_input(
-                    event_data, "l1_file_system_input"
-                )
-                if not validation_result.valid:
-                    logger.error("Boundary validation failed for file system event",
-                               event_id=event_id,
-                               file_path=file_path,
-                               validation_errors=validation_result.errors)
-                    return
-                    
-            except Exception as e:
-                logger.error("Boundary validation error",
+        # HMA v2.2 L1 Boundary Validation BEFORE processing
+        with self.telemetry_manager.trace_boundary_call(
+            "inbound", "file_system", "file_watcher", "event_validation"
+        ) as span:
+            # Validate against L1 file_system_event schema using sophisticated boundary validator
+            validation_result = self.boundary_validator.validate_l1_input(event_data, "file_system")
+            
+            span.set_attribute("surface", "file_system")
+            span.set_attribute("event_type", event_type)
+            span.set_attribute("valid", validation_result.valid)
+            span.set_attribute("error_count", len(validation_result.errors))
+            span.set_attribute("event_id", event_id)
+            
+            if not validation_result.valid:
+                # L1 validation failed - drop event and DLQ
+                self.telemetry_manager.action_failures_counter.add(1, {
+                    "surface": "file_system",
+                    "reason": "l1_validation_failed"
+                })
+                
+                write_dlq("file_system", event_id, validation_result.errors, {
+                    "file_path": file_path,
+                    "event_type": event_type,
+                    "component_id": validation_result.component_id
+                })
+                
+                logger.error("L1 boundary validation failed; file system event dropped",
                            event_id=event_id,
+                           event_type=event_type,
                            file_path=file_path,
-                           error=str(e))
+                           errors=validation_result.errors,
+                           boundary_type=validation_result.boundary_type.value)
                 return
+            
+            # Validation passed - record success metrics
+            self.telemetry_manager.file_events_counter.add(1, {
+                "surface": "file_system",
+                "event_type": event_type
+            })
         
-        # Use EventBusPort interface through async wrapper
+        # Publish validated event through EventBusPort
         try:
             # Create an event loop if one doesn't exist
             try:
@@ -143,13 +135,16 @@ class ScribeEventHandler(FileSystemEventHandler):
                 self.event_bus_port.publish_event('file_event', event_data, correlation_id=event_id)
             )
             
-            logger.debug("Published event", 
+            logger.debug("File system event published after L1 validation", 
                         event_id=event_id,
                         event_type=event_type, 
-                        file_path=file_path)
+                        file_path=file_path,
+                        validation_passed=True)
         except Exception as e:
-            logger.error("Failed to publish event", 
+            logger.error("Failed to publish validated event", 
                         event_id=event_id,
+                        event_type=event_type,
+                        file_path=file_path,
                         error=str(e))
 
 
@@ -252,4 +247,4 @@ class Watcher(threading.Thread, IEventSource):
                 self.shutdown_event.set()
                 
         except Exception as e:
-            logger.error("Error during watcher cleanup", error=str(e)) 
+            logger.error("Error during watcher cleanup", error=str(e))

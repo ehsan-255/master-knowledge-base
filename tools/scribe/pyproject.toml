@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "scribe-engine"
-version = "2.0.0-dev"
+name = "scribe"
+version = "0.1.0"
 description = "HMA-compliant event-driven automation engine"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -28,49 +28,74 @@ classifiers = [
 ]
 
 dependencies = [
-    "structlog==23.1.0",
-    "watchdog==3.0.0",
-    "jsonschema==4.17.3",
-    "portalocker==2.7.0",
-    "pyyaml==6.0.1",
-    "requests==2.31.0",
-    # HMA v2.2 mandatory dependencies for SHACL validation
-    "pyshacl==0.25.0",
-    "rdflib==7.0.0",
-    # HMA v2.2 mandatory dependencies for messaging
-    "nats-py==2.3.1",
+  # Core Framework
+  "watchdog>=3.0.0",
+  "structlog>=23.0.0", 
+  "jsonschema>=4.0.0",
+  "pyyaml>=6.0.0",
+  "click>=8.0.0",
+  
+  # Web Framework
+  "fastapi>=0.100.0",
+  "uvicorn>=0.23.0",
+  
+  # OpenTelemetry for HMA v2.2 Telemetry
+  "opentelemetry-api>=1.20.0",
+  "opentelemetry-sdk>=1.20.0",
+  "opentelemetry-exporter-otlp-proto-grpc>=1.20.0",
+  "opentelemetry-exporter-prometheus>=0.56b0",
+  "opentelemetry-instrumentation-fastapi>=0.41b0",
+  "opentelemetry-instrumentation-requests>=0.41b0",
+  "opentelemetry-instrumentation-urllib3>=0.41b0",
+  
+  # NATS for Event Bus
+  "nats-py>=2.6.0",
+  
+  # HTTP and Networking
+  "requests>=2.31.0",
+  "httpx>=0.25.0",
+  
+  # Security and Cryptography (for mTLS)
+  "cryptography>=41.0.0",
+  
+  # HashiCorp Vault Integration
+  "hvac>=2.0.0",
+  
+  # Job Scheduling for Secret Rotation
+  "schedule>=1.2.0",
+  
+  # Data Processing
+  "pandas>=2.0.0",
+  
+  # RDF and Graph Processing (for GraphValidationAction)
+  "rdflib>=7.0.0",
+  "pyshacl>=0.25.0",
+  
+  # File Operations and Atomic Write
+  "portalocker>=2.8.0"
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pytest==7.4.0",
-    "pytest-cov==4.1.0",
-    "pytest-timeout==2.1.0",
-    "pytest-xdist==3.3.1",
-    "black==23.7.0",
-    "isort==5.12.0",
-    "flake8==6.0.0",
-    "mypy==1.5.1",
-    "bandit==1.7.5",
-    "safety==2.3.5",
+test = [
+  "pytest>=7.4.0",
+  "pytest-asyncio>=0.21.0", 
+  "pytest-timeout>=2.1.0",
+  "pytest-cov>=4.1.0",
+  "pytest-json-report>=1.5.0",
+  "docker>=6.1.0",
+  "requests>=2.31.0"
 ]
 
-opentelemetry = [
-    "opentelemetry-api==1.20.0",
-    "opentelemetry-sdk==1.20.0",
-    "opentelemetry-instrumentation==0.41b0",
-    "opentelemetry-exporter-prometheus==1.12.0rc1",
-    "opentelemetry-exporter-jaeger==1.20.0",
+dev = [
+  "black>=23.0.0",
+  "flake8>=6.0.0",
+  "mypy>=1.5.0",
+  "ruff>=0.6.2",
+  "pip-tools>=7.4.1"
 ]
 
 security = [
-    "cryptography==41.0.4",
-    "hvac==1.2.1",  # HashiCorp Vault client
-]
-
-messaging = [
-    "nats-py==2.3.1",
-    "aiokafka==0.8.11",
+    # Additional security tools if needed
 ]
 
 [project.urls]

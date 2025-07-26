@@ -1,0 +1,328 @@
+groups:
+  - name: vault.authentication
+    rules:
+      - alert: VaultAuthenticationFailureHigh
+        expr: rate(scribe_vault_auth_attempts_total{status="failure"}[5m]) / rate(scribe_vault_auth_attempts_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: authentication
+        annotations:
+          summary: "High Vault authentication failure rate"
+          description: "Vault authentication failure rate is {{ $value | humanizePercentage }} over the last 5 minutes for method {{ $labels.auth_method }}"
+          
+      - alert: VaultAuthenticationFailureCritical
+        expr: rate(scribe_vault_auth_attempts_total{status="failure"}[5m]) / rate(scribe_vault_auth_attempts_total[5m]) > 0.5
+        for: 1m
+        labels:
+          severity: critical
+          service: vault
+          component: authentication
+        annotations:
+          summary: "Critical Vault authentication failure rate"
+          description: "Vault authentication failure rate is {{ $value | humanizePercentage }} over the last 5 minutes for method {{ $labels.auth_method }}"
+          
+      - alert: VaultAuthenticationResponseSlow
+        expr: histogram_quantile(0.95, rate(scribe_vault_auth_duration_seconds_bucket[5m])) > 5
+        for: 3m
+        labels:
+          severity: warning
+          service: vault
+          component: authentication
+        annotations:
+          summary: "Vault authentication response time high"
+          description: "95th percentile authentication response time is {{ $value }}s for method {{ $labels.auth_method }}"
+
+  - name: vault.connectivity
+    rules:
+      - alert: VaultDisconnected
+        expr: scribe_vault_vault_connectivity{status="connected"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          service: vault
+          component: connectivity
+        annotations:
+          summary: "Vault server disconnected"
+          description: "Vault server at {{ $labels.vault_url }} is not reachable"
+          
+      - alert: VaultResponseTimeHigh
+        expr: histogram_quantile(0.95, rate(scribe_vault_vault_response_time_seconds_bucket[5m])) > 2
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: connectivity
+        annotations:
+          summary: "Vault response time degraded"
+          description: "95th percentile Vault response time is {{ $value }}s"
+          
+      - alert: VaultServiceDegraded
+        expr: scribe_vault_service_mode{mode="degraded"} == 1
+        for: 1m
+        labels:
+          severity: warning
+          service: vault
+          component: service-mode
+        annotations:
+          summary: "Vault service operating in degraded mode"
+          description: "Vault service has entered degraded operation mode"
+          
+      - alert: VaultServiceEmergency
+        expr: scribe_vault_service_mode{mode="emergency"} == 1
+        for: 30s
+        labels:
+          severity: critical
+          service: vault
+          component: service-mode
+        annotations:
+          summary: "Vault service operating in emergency mode"
+          description: "Vault service has entered emergency operation mode"
+
+  - name: vault.certificates
+    rules:
+      - alert: CertificateExpiringIn24Hours
+        expr: scribe_vault_certificate_expiry_seconds < 86400
+        for: 0s
+        labels:
+          severity: critical
+          service: vault
+          component: certificates
+        annotations:
+          summary: "Certificate expiring within 24 hours"
+          description: "Certificate {{ $labels.common_name }} (serial: {{ $labels.serial_number }}) expires in {{ $value | humanizeDuration }}"
+          
+      - alert: CertificateExpiringIn7Days
+        expr: scribe_vault_certificate_expiry_seconds < 604800
+        for: 0s
+        labels:
+          severity: warning
+          service: vault
+          component: certificates
+        annotations:
+          summary: "Certificate expiring within 7 days"
+          description: "Certificate {{ $labels.common_name }} (serial: {{ $labels.serial_number }}) expires in {{ $value | humanizeDuration }}"
+          
+      - alert: CertificateGenerationFailureHigh
+        expr: rate(scribe_vault_certificate_operations_total{status="failure"}[10m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: certificates
+        annotations:
+          summary: "High certificate generation failure rate"
+          description: "Certificate generation failure rate is {{ $value }} failures/second for operation {{ $labels.operation }}"
+          
+      - alert: CertificateGenerationSlow
+        expr: histogram_quantile(0.95, rate(scribe_vault_certificate_generation_duration_seconds_bucket[5m])) > 10
+        for: 3m
+        labels:
+          severity: warning
+          service: vault
+          component: certificates
+        annotations:
+          summary: "Certificate generation response time high"
+          description: "95th percentile certificate generation time is {{ $value }}s for {{ $labels.common_name }}"
+
+  - name: vault.secrets
+    rules:
+      - alert: SecretOperationFailureHigh
+        expr: rate(scribe_vault_secret_operations_total{status="failure"}[5m]) / rate(scribe_vault_secret_operations_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: secrets
+        annotations:
+          summary: "High secret operation failure rate"
+          description: "Secret operation failure rate is {{ $value | humanizePercentage }} for {{ $labels.operation }} on {{ $labels.mount_point }}"
+          
+      - alert: SecretCacheHitRateLow
+        expr: scribe_vault_secret_cache_hit_ratio < 0.7
+        for: 5m
+        labels:
+          severity: warning
+          service: vault
+          component: secrets
+        annotations:
+          summary: "Low secret cache hit ratio"
+          description: "Secret cache hit ratio is {{ $value | humanizePercentage }} for {{ $labels.cache_type }} cache"
+          
+      - alert: SecretOperationSlow
+        expr: histogram_quantile(0.95, rate(scribe_vault_secret_operation_duration_seconds_bucket[5m])) > 1
+        for: 3m
+        labels:
+          severity: warning
+          service: vault
+          component: secrets
+        annotations:
+          summary: "Secret operation response time high"
+          description: "95th percentile secret operation time is {{ $value }}s for {{ $labels.operation }} on {{ $labels.mount_point }}"
+
+  - name: vault.rotation
+    rules:
+      - alert: RotationFailureHigh
+        expr: rate(scribe_vault_rotation_operations_total{status="failure"}[30m]) / rate(scribe_vault_rotation_operations_total[30m]) > 0.2
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: rotation
+        annotations:
+          summary: "High rotation failure rate"
+          description: "Rotation failure rate is {{ $value | humanizePercentage }} for {{ $labels.rotation_type }} rotations"
+          
+      - alert: RotationStuck
+        expr: scribe_vault_rotation_queue_size{queue_type="active"} > 5
+        for: 10m
+        labels:
+          severity: warning
+          service: vault
+          component: rotation
+        annotations:
+          summary: "Rotation queue backlog"
+          description: "{{ $value }} active rotation operations are queued"
+          
+      - alert: RotationSlow
+        expr: histogram_quantile(0.95, rate(scribe_vault_rotation_duration_seconds_bucket[10m])) > 300
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: rotation
+        annotations:
+          summary: "Rotation operations taking too long"
+          description: "95th percentile rotation duration is {{ $value }}s for {{ $labels.rotation_type }}"
+
+  - name: vault.circuit-breakers
+    rules:
+      - alert: CircuitBreakerOpen
+        expr: scribe_vault_circuit_breaker_state{state="open"} == 1
+        for: 30s
+        labels:
+          severity: warning
+          service: vault
+          component: circuit-breaker
+        annotations:
+          summary: "Circuit breaker opened"
+          description: "Circuit breaker for {{ $labels.operation }} has opened due to failures"
+          
+      - alert: CircuitBreakerTripsHigh
+        expr: rate(scribe_vault_circuit_breaker_trips_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: circuit-breaker
+        annotations:
+          summary: "High circuit breaker trip rate"
+          description: "Circuit breaker trip rate is {{ $value }} trips/second for {{ $labels.operation }} due to {{ $labels.reason }}"
+          
+      - alert: MultipleCircuitBreakersOpen
+        expr: count(scribe_vault_circuit_breaker_state{state="open"} == 1) >= 2
+        for: 1m
+        labels:
+          severity: critical
+          service: vault
+          component: circuit-breaker
+        annotations:
+          summary: "Multiple circuit breakers open"
+          description: "{{ $value }} circuit breakers are currently open, indicating widespread issues"
+
+  - name: vault.degradation
+    rules:
+      - alert: DegradationEventsHigh
+        expr: rate(scribe_vault_degradation_events_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: degradation
+        annotations:
+          summary: "High degradation event rate"
+          description: "Degradation event rate is {{ $value }} events/second due to {{ $labels.reason }} ({{ $labels.severity }})"
+          
+      - alert: CriticalDegradationEvent
+        expr: rate(scribe_vault_degradation_events_total{severity="critical"}[5m]) > 0
+        for: 30s
+        labels:
+          severity: critical
+          service: vault
+          component: degradation
+        annotations:
+          summary: "Critical degradation event occurred"
+          description: "Critical degradation event due to {{ $labels.reason }}"
+
+  - name: vault.retry
+    rules:
+      - alert: RetryAttemptsHigh
+        expr: rate(scribe_vault_retry_attempts_total[5m]) > 1
+        for: 3m
+        labels:
+          severity: warning
+          service: vault
+          component: retry
+        annotations:
+          summary: "High retry attempt rate"
+          description: "Retry attempt rate is {{ $value }} attempts/second for {{ $labels.operation }}"
+          
+      - alert: RetryBackoffTimeHigh
+        expr: histogram_quantile(0.95, rate(scribe_vault_retry_backoff_duration_seconds_bucket[5m])) > 30
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: retry
+        annotations:
+          summary: "High retry backoff duration"
+          description: "95th percentile retry backoff time is {{ $value }}s for {{ $labels.operation }}"
+
+  - name: vault.performance
+    rules:
+      - alert: VaultOperationRateHigh
+        expr: rate(scribe_vault_auth_attempts_total[1m]) + rate(scribe_vault_secret_operations_total[1m]) + rate(scribe_vault_certificate_operations_total[1m]) > 100
+        for: 5m
+        labels:
+          severity: info
+          service: vault
+          component: performance
+        annotations:
+          summary: "High Vault operation rate"
+          description: "Total Vault operation rate is {{ $value }} operations/second"
+          
+      - alert: SecretCacheSizeGrowthHigh
+        expr: increase(scribe_vault_secret_cache_size[10m]) > 100
+        for: 2m
+        labels:
+          severity: warning
+          service: vault
+          component: performance
+        annotations:
+          summary: "Secret cache growing rapidly"
+          description: "Secret cache size increased by {{ $value }} entries in the last 10 minutes"
+
+  - name: vault.availability
+    rules:
+      - alert: VaultUnavailable
+        expr: up{job=~".*vault.*"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: vault
+          component: availability
+        annotations:
+          summary: "Vault service unavailable"
+          description: "Vault service {{ $labels.instance }} is down"
+          
+      - alert: VaultHighFailureRate
+        expr: (rate(scribe_vault_auth_attempts_total{status="failure"}[5m]) + rate(scribe_vault_secret_operations_total{status="failure"}[5m]) + rate(scribe_vault_certificate_operations_total{status="failure"}[5m])) / (rate(scribe_vault_auth_attempts_total[5m]) + rate(scribe_vault_secret_operations_total[5m]) + rate(scribe_vault_certificate_operations_total[5m])) > 0.1
+        for: 3m
+        labels:
+          severity: warning
+          service: vault
+          component: availability
+        annotations:
+          summary: "High overall Vault failure rate"
+          description: "Overall Vault operation failure rate is {{ $value | humanizePercentage }}"

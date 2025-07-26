@@ -1,0 +1,419 @@
+version: '3.8'
+
+# Comprehensive Docker Compose for Scribe HMA v2.2 with Enterprise Vault Integration
+# Includes: Vault, NATS, OTLP Collector, Prometheus, Grafana, Jaeger, and Scribe Engine
+
+services:
+  # HashiCorp Vault - Enterprise Secret Management
+  vault:
+    image: hashicorp/vault:latest
+    container_name: scribe-vault
+    restart: unless-stopped
+    
+    cap_add:
+      - IPC_LOCK
+    
+    environment:
+      VAULT_ADDR: "http://0.0.0.0:8200"
+      VAULT_API_ADDR: "http://0.0.0.0:8200"
+      VAULT_DEV_ROOT_TOKEN_ID: "dev-only-token"
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+    
+    ports:
+      - "8200:8200"
+    
+    volumes:
+      - vault-data:/vault/data
+      - ./vault/vault.hcl:/vault/config/vault.hcl:ro
+      - ./vault/init:/vault/init:ro
+      - ./certificates:/vault/config/certificates:ro
+    
+    command: ["vault", "server", "-dev", "-dev-root-token-id=dev-only-token"]
+    
+    networks:
+      - scribe-network
+    
+    # CRITICAL: Resource limits to prevent system exhaustion
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+          cpus: '0.25'
+    
+    healthcheck:
+      test: ["CMD", "vault", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # NATS Message Bus - Event-Driven Architecture
+  nats:
+    image: nats:latest
+    container_name: scribe-nats
+    restart: unless-stopped
+    
+    command: 
+      - "--cluster_name=scribe-cluster"
+      - "--jetstream"
+      - "--store_dir=/data"
+      - "--http_port=8222"
+      - "--port=4222"
+    
+    ports:
+      - "4222:4222"  # NATS client connections
+      - "8222:8222"  # HTTP monitoring
+      - "6222:6222"  # Routing port for clustering
+    
+    volumes:
+      - nats-data:/data
+    
+    networks:
+      - scribe-network
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8222/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # OpenTelemetry Collector - Enhanced Configuration
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: scribe-otel-collector
+    restart: unless-stopped
+    
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    
+    volumes:
+      - ./observability/otel-collector.yaml:/etc/otel-collector-config.yaml:ro
+    
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+      - "8889:8889"   # Prometheus exporter metrics
+      - "13133:13133" # Health check endpoint
+      - "55679:55679" # zpages extension
+    
+    networks:
+      - scribe-network
+    
+    # CRITICAL: Resource limits to prevent telemetry overload
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.5'
+    
+    depends_on:
+      jaeger:
+        condition: service_healthy
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:13133"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Prometheus - Enhanced Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: scribe-prometheus
+    restart: unless-stopped
+    
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=1d'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+    
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./observability/prometheus/rules:/etc/prometheus/rules:ro
+      - prometheus-data:/prometheus
+    
+    ports:
+      - "9090:9090"
+    
+    networks:
+      - scribe-network
+    
+    # CRITICAL: Resource limits to prevent metrics explosion
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    
+    depends_on:
+      otel-collector:
+        condition: service_healthy
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Grafana - Enhanced Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: scribe-grafana
+    restart: unless-stopped
+    
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel,grafana-clock-panel
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_ANALYTICS_CHECK_FOR_UPDATES=false
+    
+    volumes:
+      - ./observability/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./observability/grafana_datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
+      - grafana-data:/var/lib/grafana
+    
+    ports:
+      - "3000:3000"
+    
+    networks:
+      - scribe-network
+    
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Jaeger - Distributed Tracing
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: scribe-jaeger
+    restart: unless-stopped
+    
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - SPAN_STORAGE_TYPE=memory
+    
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "14250:14250"  # Jaeger gRPC OTLP receiver
+    
+    networks:
+      - scribe-network
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:14269/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Scribe Engine - HMA v2.2 with Vault Integration
+  scribe-engine:
+    build:
+      context: ../../..
+      dockerfile: tools/scribe/deployment/docker/Dockerfile
+      args:
+        BUILD_VERSION: "2.2.0"
+        BUILD_DATE: ${BUILD_DATE:-}
+        VCS_REF: ${VCS_REF:-}
+    
+    image: scribe-engine:2.2.0
+    container_name: scribe-engine
+    restart: unless-stopped
+    
+    environment:
+      # Core Configuration
+      - SCRIBE_CONFIG_PATH=/app/config/config.json
+      - SCRIBE_LOG_LEVEL=${SCRIBE_LOG_LEVEL:-WARNING}
+      - SCRIBE_HEALTH_PORT=${SCRIBE_HEALTH_PORT:-9469}
+      
+      # Vault Configuration
+      - VAULT_ADDR=http://vault:8200
+      - VAULT_TOKEN=dev-only-token
+      - VAULT_AUTH_METHOD=token
+      - VAULT_SKIP_VERIFY=true
+      
+      # OTLP Configuration - REDUCED
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+      - OTEL_SERVICE_NAME=scribe-engine
+      - OTEL_SERVICE_VERSION=2.2.0
+      - OTEL_RESOURCE_ATTRIBUTES=environment=docker
+      
+      # NATS Configuration
+      - NATS_URL=nats://nats:4222
+      - NATS_CLUSTER_NAME=scribe-cluster
+      
+      # mTLS Configuration
+      - SCRIBE_MTLS_ENABLED=${SCRIBE_MTLS_ENABLED:-false}
+      - SCRIBE_CA_CERT_PATH=/app/certificates/ca.crt
+      - SCRIBE_CLIENT_CERT_PATH=/app/certificates/client.crt
+      - SCRIBE_CLIENT_KEY_PATH=/app/certificates/client.key
+    
+    ports:
+      - "${SCRIBE_HEALTH_PORT:-9469}:9469"
+    
+    volumes:
+      # Configuration and schemas
+      - ../../config:/app/config:ro
+      - ../../schemas:/app/schemas:ro
+      
+      # Data directories
+      - scribe-data:/app/data
+      - scribe-logs:/app/logs
+      - scribe-tmp:/app/tmp
+      
+      # Watch directories
+      - ${SCRIBE_WATCH_DIR:-../../watch}:/app/watch:ro
+      
+      # SSL certificates
+      - ./certificates:/app/certificates:ro
+    
+    networks:
+      - scribe-network
+    
+    # CRITICAL: Aggressive resource limits to prevent system crashes
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    
+    depends_on:
+      vault:
+        condition: service_healthy
+      nats:
+        condition: service_healthy
+      otel-collector:
+        condition: service_healthy
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9469/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    security_opt:
+      - no-new-privileges:true
+    
+    tmpfs:
+      - /tmp:noexec,nosuid,size=100m
+
+  # Vault Initialization Helper
+  vault-init:
+    image: hashicorp/vault:latest
+    container_name: scribe-vault-init
+    restart: "no"
+    
+    environment:
+      VAULT_ADDR: "http://vault:8200"
+      VAULT_TOKEN: "dev-only-token"
+    
+    volumes:
+      - ./vault/init:/vault/init:ro
+      - ./certificates:/vault/certificates:ro
+    
+    networks:
+      - scribe-network
+    
+    depends_on:
+      vault:
+        condition: service_healthy
+    
+    command: ["sh", "/vault/init/init-vault.sh"]
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  scribe-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  # Scribe data
+  scribe-data:
+    driver: local
+  scribe-logs:
+    driver: local
+  scribe-tmp:
+    driver: local
+  
+  # Infrastructure data
+  vault-data:
+    driver: local
+  nats-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local

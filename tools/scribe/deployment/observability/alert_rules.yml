@@ -1,0 +1,82 @@
+groups:
+  - name: scribe-hma-compliance
+    rules:
+      - alert: L1InvalidRateHigh
+        expr: (rate(scribe_l1_invalid_total[5m]) / rate(scribe_l1_valid_total[5m])) > 0.01
+        for: 5m
+        labels:
+          severity: critical
+          component: boundary-validation
+        annotations:
+          summary: "HMA v2.2 L1 boundary validation failure rate too high"
+          description: "L1 boundary validation failure rate is {{ $value | humanizePercentage }} over the last 5 minutes (threshold: 1%)"
+          
+      - alert: DLQBacklogGrowing  
+        expr: increase(scribe_dlq_events_total[10m]) > 0
+        for: 10m
+        labels:
+          severity: warning
+          component: dlq
+        annotations:
+          summary: "Dead Letter Queue backlog is growing"
+          description: "DLQ has received {{ $value }} events in the last 10 minutes, indicating validation failures"
+          
+      - alert: PluginLatencyP95High
+        expr: histogram_quantile(0.95, rate(scribe_action_duration_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          component: plugin-execution
+        annotations:
+          summary: "Plugin execution latency P95 too high"
+          description: "95th percentile plugin execution time is {{ $value }}s (threshold: 500ms)"
+          
+      - alert: NoTracesFromBoundary
+        expr: absent_over_time(scribe_boundary_calls_total[10m])
+        for: 10m
+        labels:
+          severity: critical
+          component: telemetry
+        annotations:
+          summary: "No boundary traces received"
+          description: "No boundary interface calls traced in the last 10 minutes - telemetry may be broken"
+          
+      - alert: ScribeEngineDown
+        expr: up{job="scribe-engine"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: engine
+        annotations:
+          summary: "Scribe engine is down"
+          description: "Scribe engine has been down for more than 2 minutes"
+          
+      - alert: HighErrorRate
+        expr: rate(scribe_action_failures_total[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: action-execution
+        annotations:
+          summary: "High action execution error rate"
+          description: "Action execution error rate is {{ $value | humanize }} errors per second"
+          
+      - alert: BoundaryValidationDisabled
+        expr: scribe_boundary_validation_enabled == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: security
+        annotations:
+          summary: "HMA v2.2 boundary validation disabled"
+          description: "Boundary validation is disabled - this violates HMA v2.2 compliance requirements"
+          
+      - alert: MTLSNotEnabled
+        expr: scribe_mtls_enabled == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: security
+        annotations:
+          summary: "mTLS not enabled"
+          description: "mTLS is not enabled - this violates HMA v2.2 mandatory security requirements"

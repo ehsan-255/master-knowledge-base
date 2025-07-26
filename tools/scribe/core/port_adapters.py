@@ -25,6 +25,7 @@ from .hma_ports import (
 from .boundary_validator import BoundaryValidator
 from .hma_telemetry import HMATelemetry
 from .mtls import get_mtls_manager, MTLSConfig
+from .vault_certificate_manager import get_vault_certificate_manager
 from .logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)
@@ -60,33 +61,68 @@ class ScribePluginExecutionAdapter(PluginExecutionPort):
         try:
             # Get mTLS configuration from config manager
             mtls_settings = self.config_manager.get('mtls', {}) if self.config_manager else {}
+            security_settings = self.config_manager.get('security', {}) if self.config_manager else {}
             
-            if mtls_settings.get('enabled', False):
-                cert_file = mtls_settings.get('cert_file')
-                key_file = mtls_settings.get('key_file')
-                ca_file = mtls_settings.get('ca_file')
+            # Check if mTLS is enabled (either explicitly or via security.enable_mtls)
+            mtls_enabled = (
+                mtls_settings.get('enabled', False) or 
+                security_settings.get('enable_mtls', False)
+            )
+            
+            if mtls_enabled:
+                mtls_config = None
                 
-                if cert_file and key_file and ca_file:
-                    # Create mTLS configuration
-                    mtls_config = MTLSConfig(
-                        cert_file=cert_file,
-                        key_file=key_file,
-                        ca_file=ca_file
-                    )
+                # Try Vault certificates first if Vault is enabled
+                if self.config_manager and self.config_manager.is_vault_enabled():
+                    try:
+                        vault_cert_manager = get_vault_certificate_manager(self.config_manager)
+                        mtls_config = vault_cert_manager.get_mtls_config(
+                            common_name="scribe.local",
+                            alt_names=["localhost", "scribe-engine"],
+                            ttl="8760h"
+                        )
+                        
+                        if mtls_config:
+                            logger.info("mTLS configured from Vault certificates")
+                        else:
+                            logger.warning("Failed to get mTLS config from Vault, falling back")
+                            
+                    except Exception as e:
+                        logger.warning("Vault certificate retrieval failed, using fallback",
+                                     error=str(e))
+                
+                # Fallback to configured certificate files
+                if not mtls_config:
+                    cert_file = mtls_settings.get('cert_file') or security_settings.get('cert_path')
+                    key_file = mtls_settings.get('key_file') or security_settings.get('key_path')
+                    ca_file = mtls_settings.get('ca_file') or security_settings.get('ca_path')
                     
-                    # Add to mTLS manager
+                    if cert_file and key_file and ca_file:
+                        # Create mTLS configuration from filesystem
+                        mtls_config = MTLSConfig(
+                            cert_file=cert_file,
+                            key_file=key_file,
+                            ca_file=ca_file
+                        )
+                        
+                        logger.info("mTLS configured from filesystem certificates",
+                                   cert_file=cert_file,
+                                   ca_file=ca_file)
+                    else:
+                        logger.warning("mTLS enabled but certificate files not configured")
+                
+                # Add configuration to mTLS manager if successful
+                if mtls_config:
                     self.mtls_manager.add_configuration("plugin_execution", mtls_config)
-                    
-                    logger.info("mTLS configured for plugin execution",
-                               cert_file=cert_file,
-                               ca_file=ca_file)
+                    logger.info("mTLS configuration added to manager")
                 else:
-                    logger.warning("mTLS enabled but certificate files not configured")
+                    logger.error("Failed to create any mTLS configuration")
+                    
             else:
                 logger.info("mTLS not enabled for plugin execution")
                 
         except Exception as e:
-            logger.error("Failed to configure mTLS", error=str(e))
+            logger.error("Failed to configure mTLS", error=str(e), exc_info=True)
             # Continue without mTLS but log the issue
     
     def _enforce_mtls_security(self, plugin_id: str) -> bool:

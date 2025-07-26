@@ -1,0 +1,191 @@
+name: Scribe HMA v2.2 Compliance Gates
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*' ]
+    paths:
+      - 'tools/scribe/**'
+      - 'test-environment/scribe-tests/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'tools/scribe/**'
+      - 'test-environment/scribe-tests/**'
+
+env:
+  SCRIBE_LOG_DIR: tools/reports
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  hma-compliance-validation:
+    name: HMA v2.2 Compliance Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Create log directory
+      run: mkdir -p ${{ env.SCRIBE_LOG_DIR }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r tools/scribe/requirements.txt
+        pip install pytest pytest-cov pytest-timeout pytest-asyncio jsonschema pyyaml cryptography
+        
+    - name: Install Scribe as editable package
+      working-directory: tools/scribe
+      run: pip install -e .
+      
+    - name: Priority 0.1 - L1 Boundary Validation Tests
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/compliance/test_l1_boundary_validation_comprehensive.py -v --tb=short --timeout=60
+        
+    - name: Priority 0.2 - Manifest Validation Tests  
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/compliance/test_manifest_validation.py -v --tb=short --timeout=60
+        
+    - name: Priority 0.3 - Telemetry Configuration Tests
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/compliance/test_telemetry_otlp_configuration.py -v --tb=short --timeout=60
+        
+    - name: Priority 0.4 - mTLS Deployment Artifacts Tests
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/compliance/test_mtls_deployment_artifacts.py -v --tb=short --timeout=60
+        
+    - name: All Compliance Tests (Priority 0 Gate)
+      working-directory: test-environment
+      run: |
+        echo "Running ALL HMA v2.2 compliance tests..."
+        python -m pytest scribe-tests/compliance/ -v --tb=short --timeout=120 | tee ../${{ env.SCRIBE_LOG_DIR }}/hma-compliance-$(date +%Y%m%d-%H%M%S).log
+        
+    - name: AST Compliance Check - Plugin Import Validation
+      run: |
+        cd tools/scribe
+        echo "Checking for forbidden imports in L3 plugins..."
+        
+        # Check for forbidden direct imports that bypass ports
+        forbidden_patterns=(
+          "import requests"
+          "import urllib"
+          "import http.client"
+          "import socket"
+          "import os.system"
+          "import subprocess.call"
+          "from subprocess import call"
+          "import shutil.rmtree"
+        )
+        
+        violations=()
+        
+        for pattern in "${forbidden_patterns[@]}"; do
+          if grep -r "$pattern" actions/ --include="*.py" 2>/dev/null; then
+            violations+=("Found forbidden import: $pattern")
+          fi
+        done
+        
+        if [ ${#violations[@]} -gt 0 ]; then
+          echo "❌ AST Compliance FAILED:"
+          printf '%s\n' "${violations[@]}"
+          echo "L3 plugins must use ports instead of direct imports"
+          exit 1
+        else
+          echo "✅ AST Compliance PASSED: No forbidden imports found"
+        fi
+        
+    - name: L1 Schema Validation
+      run: |
+        cd tools/scribe
+        echo "Validating L1 boundary schemas..."
+        
+        schemas=(
+          "schemas/l1/file_system_event.schema.json"
+          "schemas/l1/http_request.schema.json" 
+          "schemas/l1/nats_message.schema.json"
+        )
+        
+        for schema in "${schemas[@]}"; do
+          if [ -f "$schema" ]; then
+            python -c "
+            import json, jsonschema
+            with open('$schema') as f:
+                schema_data = json.load(f)
+            # Validate schema is valid JSON Schema
+            jsonschema.Draft7Validator.check_schema(schema_data)
+            print('✅ $schema is valid')
+            " || exit 1
+          else
+            echo "⚠️  Schema $schema not found"
+          fi
+        done
+        
+    - name: Archive compliance reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: hma-compliance-reports
+        path: |
+          ${{ env.SCRIBE_LOG_DIR }}/hma-compliance-*.log
+          test-environment/coverage.xml
+
+  supply-chain-security:
+    name: Supply Chain Security
+    runs-on: ubuntu-latest
+    needs: hma-compliance-validation
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install Syft for SBOM generation
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+        
+    - name: Install Grype for vulnerability scanning
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+        
+    - name: Generate SBOM
+      run: |
+        mkdir -p ${{ env.SCRIBE_LOG_DIR }}
+        syft packages dir:tools/scribe -o json > ${{ env.SCRIBE_LOG_DIR }}/sbom.json
+        echo "✅ SBOM generated successfully"
+        
+    - name: Vulnerability Scan
+      run: |
+        echo "Scanning for vulnerabilities..."
+        grype sbom:${{ env.SCRIBE_LOG_DIR }}/sbom.json -o json > ${{ env.SCRIBE_LOG_DIR }}/vulnerabilities.json
+        
+        # Check for high/critical vulnerabilities
+        critical_count=$(jq '[.matches[] | select(.vulnerability.severity == "Critical")] | length' ${{ env.SCRIBE_LOG_DIR }}/vulnerabilities.json)
+        high_count=$(jq '[.matches[] | select(.vulnerability.severity == "High")] | length' ${{ env.SCRIBE_LOG_DIR }}/vulnerabilities.json)
+        
+        echo "Critical vulnerabilities: $critical_count"
+        echo "High vulnerabilities: $high_count"
+        
+        if [ "$critical_count" -gt 0 ] || [ "$high_count" -gt 5 ]; then
+          echo "❌ FAILED: Too many high/critical vulnerabilities"
+          echo "Critical: $critical_count, High: $high_count"
+          exit 1
+        else
+          echo "✅ PASSED: Acceptable vulnerability level"
+        fi
+        
+    - name: Archive security reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: supply-chain-security
+        path: |
+          ${{ env.SCRIBE_LOG_DIR }}/sbom.json
+          ${{ env.SCRIBE_LOG_DIR }}/vulnerabilities.json

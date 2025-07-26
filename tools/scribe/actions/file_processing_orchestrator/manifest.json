@@ -6,7 +6,8 @@
     "type": "L2-Orchestrator",
     "description": "HMA v2.2 compliant L2 Orchestrator for coordinating complex file processing workflows",
     "author": "Scribe Engine Development Team",
-    "license": "MIT"
+    "license": "MIT",
+    "product": "scribe"
   },
   "hma_compliance": {
     "hma_version": "2.2",

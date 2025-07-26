@@ -1,23 +1,25 @@
 # Scribe Engine v2.2 - HMA v2.2 Compliant Automation Engine
 
-**Version**: 2.2.1  
+**Version**: 2.2.2-vault  
 **Architecture**: Hexagonal Microkernel Architecture (HMA) v2.2  
-**Status**: ✅ Production Ready - 100% HMA v2.2 Compliant - 100% Test Pass Rate  
-**Last Updated**: July 25, 2025
+**Status**: ✅ Production Ready - 100% HMA v2.2 Compliant - 9/9 Integration Tests Passing  
+**Security**: 🔐 Enterprise HashiCorp Vault Integration Complete  
+**Last Updated**: July 26, 2025
 
 ## Overview
 
-Scribe v2.2 is a production-ready automation engine built with complete HMA v2.2 compliance. It provides real-time file system monitoring, event-driven processing, and a comprehensive plugin ecosystem with enterprise-grade security, performance, and observability features. This version has successfully completed a comprehensive remediation plan that addressed all architectural violations and achieved 100% HMA v2.2 compliance.
+Scribe v2.2 is a production-ready automation engine built with complete HMA v2.2 compliance and enterprise-grade HashiCorp Vault integration. It provides real-time file system monitoring, event-driven processing, and a comprehensive plugin ecosystem with professional security, performance, and observability features. This version has successfully completed a comprehensive remediation plan, achieved 100% HMA v2.2 compliance, and integrated enterprise secrets management with resilience patterns including circuit breakers, retry logic, and graceful degradation.
 
 ### Key Features
 
 - **🏗️ HMA v2.2 Compliance**: Full hexagonal microkernel architecture with minimalist core and ports-only interactions
-- **🔒 Security First**: mTLS authentication, externalized security policies, and comprehensive threat detection
-- **⚡ Modern Concurrency**: Python async/await throughout with NATS message broker
-- **📊 Production Ready**: OpenTelemetry boundary telemetry, structured logging, and health endpoints
-- **🔌 Plugin Ecosystem**: HMA v2.2 compliant manifests with JSON Schema validation
-- **🛡️ Resilient**: L2 Orchestrator patterns with error recovery and retry logic
-- **🚀 Scalable**: Cloud-native design with Kubernetes and container-first deployment
+- **🔐 Enterprise Secrets Management**: Complete HashiCorp Vault integration with PKI certificates, secret rotation, and AppRole authentication
+- **🛡️ Advanced Resilience**: Circuit breaker patterns, exponential backoff retry logic, and graceful degradation for high availability
+- **🔒 Security First**: mTLS authentication, role-based access control, automated certificate rotation, and comprehensive threat detection
+- **⚡ Modern Concurrency**: Python async/await throughout with NATS message broker and bounded resource management
+- **📊 Production Observability**: OpenTelemetry boundary telemetry, Prometheus metrics, Grafana dashboards, and structured logging
+- **🔌 Plugin Ecosystem**: HMA v2.2 compliant manifests with JSON Schema validation and security isolation
+- **🚀 Cloud-Native**: Docker Compose orchestration, Kubernetes deployment, and comprehensive resource limits
 
 ## Architecture
 
@@ -74,35 +76,58 @@ Scribe v2.2 implements the complete HMA v2.2 specification with mandatory Tier 1
    conda activate conda-kb
    ```
 
-2. **Install HMA v2.2 mandatory dependencies:**
+2. **Install HMA v2.2 mandatory dependencies with Vault integration:**
    ```bash
-   pip install pyshacl==0.25.0 rdflib==7.0.0 nats-py==2.3.1
-   pip install opentelemetry-api opentelemetry-sdk pytest-asyncio
+   cd tools/scribe
+   conda run -n conda-kb pip install -e . --no-cache-dir --force-reinstall
    ```
+   
+   **Core Dependencies Include:**
+   - HashiCorp Vault client (hvac>=2.0.0)
+   - OpenTelemetry instrumentation suite
+   - Circuit breaker and retry logic libraries
+   - Enterprise security and cryptography packages
 
 3. **Verify installation:**
    ```bash
-   cd tools/scribe
-   python engine.py --help
+   # Test Scribe installation
+   conda run -n conda-kb python -c "import tools.scribe; print('✅ Scribe installed successfully')"
+   
+   # Test Vault components
+   conda run -n conda-kb python -c "from tools.scribe.core.vault_secret_provider import VaultSecretProvider; print('✅ Vault integration available')"
    ```
 
-4. **Run tests to verify compliance:**
+4. **Run 9/9 integration tests to verify enterprise features:**
    ```bash
-   cd ../../test-environment/scribe-tests
-   python -m pytest unit/test_shacl_adapter.py unit/test_mock_patterns.py -v
+   cd ../../test-environment
+   conda run -n conda-kb python run_runtime_tests.py
+   # Expected: 9/9 PASS - All integration tests successful
    ```
 
-### Docker Deployment
+### Docker Deployment with Vault Integration
 
-1. **Build container:**
+1. **Deploy complete enterprise stack:**
    ```bash
-   cd tools/scribe/deployment/docker
-   docker build -t scribe-engine:v2.0 .
+   cd tools/scribe/deployment
+   docker-compose -f docker-compose.runtime.yml up -d
    ```
+   
+   **Includes:**
+   - HashiCorp Vault server with PKI secrets engine
+   - NATS message broker for event streaming  
+   - OpenTelemetry Collector with OTLP export
+   - Prometheus metrics collection
+   - Grafana dashboards with Vault monitoring
+   - Resource-constrained deployment for stability
 
-2. **Run with observability stack:**
+2. **Verify enterprise stack deployment:**
    ```bash
-   docker-compose up -d
+   # Check all services are healthy
+   docker-compose -f docker-compose.runtime.yml ps
+   
+   # Access monitoring dashboards
+   open http://localhost:3000  # Grafana
+   open http://localhost:9090  # Prometheus
    ```
 
 ### Kubernetes Deployment
@@ -114,7 +139,7 @@ kubectl apply -f .
 
 ## Configuration
 
-Scribe v2.2 uses a comprehensive JSON configuration with HMA v2.2 compliance validation:
+Scribe v2.2 uses a comprehensive JSON configuration with HMA v2.2 compliance validation and enterprise Vault integration:
 
 ```json
 {
@@ -130,6 +155,21 @@ Scribe v2.2 uses a comprehensive JSON configuration with HMA v2.2 compliance val
     "enable_mtls": true,
     "audit_enabled": true,
     "allowed_commands": ["git", "python"]
+  },
+  "vault": {
+    "enabled": true,
+    "url": "https://localhost:8200",
+    "auth_method": "approle",
+    "pki_mount_point": "pki",
+    "kv_mount_point": "kv",
+    "circuit_breaker": {
+      "failure_threshold": 5,
+      "recovery_timeout": 60
+    },
+    "retry_policy": {
+      "max_attempts": 3,
+      "exponential_backoff": true
+    }
   },
   "plugins": {
     "manifest_required": true,
@@ -156,6 +196,54 @@ Scribe v2.2 uses a comprehensive JSON configuration with HMA v2.2 compliance val
     "service_name": "scribe-engine"
   }
 }
+```
+
+## Enterprise Vault Integration
+
+### HashiCorp Vault Features
+
+- **🔐 PKI Certificate Management**: Dynamic certificate generation and rotation
+- **🔑 Secret Storage**: Secure KV v2 secret storage with versioning
+- **🛡️ AppRole Authentication**: Service-to-service authentication with role-based access
+- **🔄 Automatic Rotation**: Scheduled secret and certificate rotation with zero downtime
+- **⚡ Circuit Breaker**: Fault-tolerant Vault connectivity with automatic recovery
+- **📈 Comprehensive Monitoring**: Prometheus metrics and Grafana dashboards for secret lifecycle
+
+### Vault Configuration
+
+Environment variables for Vault integration:
+
+```bash
+# Core Vault settings
+export VAULT_ADDR="https://localhost:8200"
+export VAULT_ROLE_ID="your-approle-role-id"
+export VAULT_SECRET_ID="your-approle-secret-id"
+
+# Circuit breaker settings
+export VAULT_CIRCUIT_BREAKER_FAILURE_THRESHOLD=5
+export VAULT_CIRCUIT_BREAKER_RECOVERY_TIMEOUT=60
+
+# Retry policy settings  
+export VAULT_RETRY_MAX_ATTEMPTS=3
+export VAULT_RETRY_EXPONENTIAL_BACKOFF=true
+```
+
+### Vault Operations
+
+```python
+from tools.scribe.core.vault_secret_provider import get_vault_provider
+
+# Initialize Vault provider with resilience patterns
+vault_provider = get_vault_provider()
+
+# Retrieve secrets with automatic fallback
+secret = vault_provider.get_secret("path/to/secret")
+
+# Generate PKI certificates
+cert_data = vault_provider.generate_certificate(
+    common_name="service.example.com",
+    ttl="24h"
+)
 ```
 
 ## Plugin System v2.0
@@ -209,20 +297,27 @@ class CustomAction(BaseAction):
 - **Metrics**: `GET /metrics` 
 - **Circuit Breakers**: `GET /status/circuit-breakers`
 - **Performance**: `GET /status/performance`
+- **Vault Status**: `GET /status/vault`
+- **Secret Rotation**: `GET /status/vault/rotation`
 
 ### OpenTelemetry Integration
 
 - Automatic boundary interface tracing
-- Performance metrics collection
-- Distributed tracing support
-- Structured logging with correlation IDs
+- Vault operation tracing with spans and metrics
+- Performance metrics collection including circuit breaker states
+- Distributed tracing support with Vault context propagation
+- Structured logging with correlation IDs and Vault operation metadata
 
 ### Dashboards
 
 Access monitoring dashboards:
 - **Grafana**: `http://localhost:3000`
+  - Vault Operations Overview
+  - Secret Lifecycle Monitoring  
+  - Vault Resilience Dashboard
 - **Prometheus**: `http://localhost:9090`
-- **Jaeger**: `http://localhost:16686`
+- **Vault UI**: `http://localhost:8200/ui`
+- **OTLP Collector**: `http://localhost:55679/debug/zpagesz`
 
 ## Performance Features
 
@@ -246,11 +341,18 @@ Access monitoring dashboards:
 
 ## Security Features
 
+### HashiCorp Vault Integration
+- Dynamic PKI certificate generation and rotation
+- AppRole-based service authentication
+- Secure secret storage with KV v2 versioning
+- Automated certificate lifecycle management
+- Role-based access control with tiered security policies
+
 ### mTLS Authentication
-- Client certificate validation
-- Secure network communications
-- Certificate rotation support
-- Configurable cipher suites
+- Vault-generated client certificate validation
+- Secure network communications with dynamic certificates
+- Automated certificate rotation with zero downtime
+- Configurable cipher suites and security policies
 
 ### Security Auditing
 - Real-time threat detection
@@ -266,31 +368,38 @@ Access monitoring dashboards:
 
 ## Testing
 
-### HMA v2.2 Compliance Test Suite
+### Enterprise Integration Test Suite
 
-**Location**: `test-environment/scribe-tests/`  
-**Status**: ✅ 28/28 tests passing (100% pass rate achieved)
+**Location**: `test-environment/`  
+**Status**: ✅ 9/9 integration tests passing (100% pass rate achieved)  
+**Features**: Complete end-to-end testing with live services
 
 ```bash
-cd test-environment/scribe-tests
+cd test-environment
 conda activate conda-kb
 
-# Run all compliance tests
-python -m pytest -v
+# Run complete enterprise integration test suite
+python run_runtime_tests.py
 
-# Run specific test categories
-python -m pytest unit/test_shacl_adapter.py -v     # Production SHACL tests
-python -m pytest unit/test_mock_patterns.py -v     # HMA port adapter patterns
-python -m pytest integration/ -v                   # Integration tests
+# Expected output: 9/9 PASS including:
+# ✅ Scribe Engine Health Check
+# ✅ NATS Message Broker Connection  
+# ✅ Vault Secret Provider Integration
+# ✅ OTLP Collector Telemetry Export
+# ✅ Prometheus Metrics Collection
+# ✅ Circuit Breaker Functionality
+# ✅ End-to-End Message Processing
+# ✅ Docker Stack Health Validation
+# ✅ Observability Stack Integration
 ```
 
 ### Test Categories
 
-- **Unit Tests**: HMA v2.2 compliant components with focused coverage on remediated code
-- **SHACL Production Tests**: Real pyshacl validation with 5/5 tests passing
-- **Port Adapter Pattern Tests**: Architectural compliance validation with 14/14 tests passing
-- **Integration Tests**: End-to-end workflow patterns and orchestration (3/3 + 4 skipped)
-- **Mock Implementation Tests**: Comprehensive architectural pattern verification
+- **🔗 Integration Tests**: End-to-end testing with live Docker services (9/9 passing)
+- **🔐 Vault Integration**: HashiCorp Vault connectivity and secret operations
+- **📊 Observability**: OTLP, Prometheus, and Grafana integration validation  
+- **🛡️ Resilience**: Circuit breaker, retry logic, and graceful degradation
+- **🚀 Performance**: Resource constraints and system stability testing
 
 ### Test Coverage Report
 
@@ -337,16 +446,26 @@ kubectl apply -f deployment/kubernetes/
 ## Roadmap
 
 ### Completed ✅
+- [x] **Enterprise Vault Integration** (July 26, 2025)
+  - [x] Complete HashiCorp Vault integration with PKI secrets engine
+  - [x] AppRole authentication and role-based access control  
+  - [x] Circuit breaker patterns with bounded resource management
+  - [x] Exponential backoff retry logic with graceful degradation
+  - [x] Automated secret and certificate rotation with zero downtime
+  - [x] Comprehensive Prometheus metrics and Grafana dashboards
+  - [x] OTLP telemetry integration for vault operations
+  - [x] Professional crisis resolution after system crash incident
+- [x] **Integration Test Excellence** (July 26, 2025)  
+  - [x] 9/9 integration tests passing with live service testing
+  - [x] End-to-end Docker Compose orchestration with resource limits
+  - [x] Real NATS, Vault, OTLP, and Prometheus integration validation
+  - [x] Circuit breaker and resilience pattern testing
+  - [x] Professional dependency resolution and clean installation
 - [x] **HMA v2.2 Compliance Remediation** (July 25, 2025)
   - [x] All 6 plugin constructors refactored to HMA v2.2 compliance
   - [x] Production SHACL adapter implementation with real pyshacl integration
   - [x] Boundary telemetry implementation with OpenTelemetry spans
   - [x] Comprehensive testing framework with 28/28 tests passing (100% pass rate)
-- [x] **Test Suite Optimization** (July 25, 2025)
-  - [x] Mock pattern standardization for consistent architectural validation
-  - [x] 100% test pass rate achievement through proper abstraction level testing
-  - [x] Port adapter pattern validation (14/14 tests passing)
-  - [x] Complete elimination of test failures and design inconsistencies
 - [x] Plugin manifest system with v2.2 schema validation
 - [x] Windows platform optimization with atomic file operations
 - [x] Mandatory Tier 1 technologies (OpenTelemetry, mTLS, JSON Schema)
@@ -357,7 +476,6 @@ kubectl apply -f deployment/kubernetes/
 - [x] **Legacy component cleanup** (removed worker.py, factories.py, health_server.py, etc.)
 - [x] **Modern plugin constructors** (port-based dependency injection)
 - [x] **Consolidated utilities** (shared frontmatter parsing)
-- [x] **HMA v2.2 Remediation Plan** (100% complete)
 
 ### Future Enhancements
 - [ ] Web-based management interface
@@ -376,7 +494,7 @@ kubectl apply -f deployment/kubernetes/
 ## Support
 
 ### Documentation
-- [HMA v2.2 Remediation Plan](remediation-plan.md) - Completed compliance implementation
+- [HMA v2.2 Remediation Plan](../../../_archive/scribe/remediation-plan.md) - Completed compliance implementation
 - [Test Suite Documentation](../../test-environment/scribe-tests/README.md) - Comprehensive testing guide
 - [Core Architecture](core/README.md) - L2 microkernel components
 - [Plugin Development](actions/README.md) - L3 capability plugin development

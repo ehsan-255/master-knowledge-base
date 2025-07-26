@@ -1,387 +1,69 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scribe-engine
-  namespace: scribe
-  labels:
-    app: scribe-engine
-    version: "2.0.0"
-    component: automation-engine
+  name: scribe
 spec:
-  replicas: 3
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-  
+  replicas: 1
   selector:
     matchLabels:
-      app: scribe-engine
-  
+      app: scribe
   template:
     metadata:
       labels:
-        app: scribe-engine
-        version: "2.0.0"
-        component: automation-engine
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9469"
-        prometheus.io/path: "/metrics"
-    
+        app: scribe
     spec:
-      serviceAccountName: scribe-engine
-      
-      # Security context
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        seccompProfile:
-          type: RuntimeDefault
-      
-      # Init container for setup
-      initContainers:
-      - name: setup
-        image: scribe-engine:2.0.0
-        command: ['sh', '-c']
-        args:
-        - |
-          echo "Setting up Scribe Engine..."
-          mkdir -p /app/data /app/logs /app/tmp
-          chmod 755 /app/data /app/logs /app/tmp
-          echo "Setup completed"
-        volumeMounts:
-        - name: data-volume
-          mountPath: /app/data
-        - name: logs-volume
-          mountPath: /app/logs
-        - name: tmp-volume
-          mountPath: /app/tmp
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
-          readOnlyRootFilesystem: true
-      
+      serviceAccountName: scribe-sa
       containers:
-      - name: scribe-engine
-        image: scribe-engine:2.0.0
-        imagePullPolicy: IfNotPresent
-        
-        # Security context
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
-          readOnlyRootFilesystem: true
-        
-        # Environment variables
-        env:
-        - name: SCRIBE_CONFIG_PATH
-          value: "/app/config/config.json"
-        - name: SCRIBE_LOG_LEVEL
-          value: "INFO"
-        - name: SCRIBE_HEALTH_PORT
-          value: "9469"
-        - name: SCRIBE_TELEMETRY_ENDPOINT
-          value: "http://scribe-telemetry:4317"
-        - name: SCRIBE_MTLS_ENABLED
-          value: "true"
-        - name: KUBERNETES_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        
-        # Ports
-        ports:
-        - name: health
-          containerPort: 9469
-          protocol: TCP
-        
-        # Resource requests and limits
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "100m"
-            ephemeral-storage: "1Gi"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
-            ephemeral-storage: "2Gi"
-        
-        # Health checks
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: health
-          initialDelaySeconds: 60
-          periodSeconds: 30
-          timeoutSeconds: 10
-          failureThreshold: 3
-        
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: health
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 3
-        
-        startupProbe:
-          httpGet:
-            path: /health
-            port: health
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 12
-        
-        # Volume mounts
-        volumeMounts:
-        - name: config-volume
-          mountPath: /app/config
-          readOnly: true
-        - name: schemas-volume
-          mountPath: /app/schemas
-          readOnly: true
-        - name: data-volume
-          mountPath: /app/data
-        - name: logs-volume
-          mountPath: /app/logs
-        - name: tmp-volume
-          mountPath: /app/tmp
-        - name: watch-volume
-          mountPath: /app/watch
-          readOnly: true
-        - name: certs-volume
-          mountPath: /app/certs
-          readOnly: true
-      
-      # Volumes
+        - name: scribe
+          image: scribe:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            # mTLS Configuration (HMA v2.2 mandatory)
+            - name: SCRIBE_MTLS_ENABLED
+              value: "true"
+            - name: SCRIBE_TLS_CA
+              value: "/etc/ssl/scribe/ca.crt"
+            - name: SCRIBE_TLS_CERT
+              value: "/etc/ssl/scribe/server.crt"
+            - name: SCRIBE_TLS_KEY
+              value: "/etc/ssl/scribe/server.key"
+            
+            # OpenTelemetry Configuration (Priority 0.3)
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector:4317"
+            - name: OTEL_TRACE_SAMPLING_RATE
+              value: "1.0"
+            
+            # Scribe Configuration
+            - name: SCRIBE_REPORT_DIR
+              value: "/workspace/tools/reports"
+            - name: SCRIBE_CONFIG_PATH
+              value: "/etc/scribe/security_policy.yaml"
+          volumeMounts:
+            # mTLS certificates mount (read-only as required)
+            - name: scribe-tls
+              mountPath: /etc/ssl/scribe
+              readOnly: true
+            # Security policy configuration mount
+            - name: scribe-config
+              mountPath: /etc/scribe
+              readOnly: true
+            # Reports directory for logs and artifacts
+            - name: reports-dir
+              mountPath: /workspace/tools/reports
+          ports:
+            - containerPort: 9469
       volumes:
-      - name: config-volume
-        configMap:
-          name: scribe-config
-      - name: schemas-volume
-        configMap:
-          name: scribe-schemas
-      - name: data-volume
-        persistentVolumeClaim:
-          claimName: scribe-data
-      - name: logs-volume
-        persistentVolumeClaim:
-          claimName: scribe-logs
-      - name: tmp-volume
-        emptyDir:
-          sizeLimit: 1Gi
-      - name: watch-volume
-        persistentVolumeClaim:
-          claimName: scribe-watch
-      - name: certs-volume
-        secret:
-          secretName: scribe-certs
-          defaultMode: 0400
-      
-      # Pod scheduling
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - scribe-engine
-              topologyKey: kubernetes.io/hostname
-      
-      # Tolerations
-      tolerations:
-      - key: "scribe/dedicated"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: scribe-engine
-  namespace: scribe
-  labels:
-    app: scribe-engine
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "9469"
-    prometheus.io/path: "/metrics"
-spec:
-  type: ClusterIP
-  ports:
-  - name: health
-    port: 9469
-    targetPort: health
-    protocol: TCP
-  selector:
-    app: scribe-engine
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: scribe-engine
-  namespace: scribe
-  labels:
-    app: scribe-engine
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  namespace: scribe
-  name: scribe-engine
-  labels:
-    app: scribe-engine
-rules:
-- apiGroups: [""]
-  resources: ["configmaps", "secrets"]
-  verbs: ["get", "list", "watch"]
-- apiGroups: [""]
-  resources: ["events"]
-  verbs: ["create"]
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: scribe-engine
-  namespace: scribe
-  labels:
-    app: scribe-engine
-subjects:
-- kind: ServiceAccount
-  name: scribe-engine
-  namespace: scribe
-roleRef:
-  kind: Role
-  name: scribe-engine
-  apiGroup: rbac.authorization.k8s.io
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: scribe-data
-  namespace: scribe
-  labels:
-    app: scribe-engine
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: fast-ssd
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: scribe-logs
-  namespace: scribe
-  labels:
-    app: scribe-engine
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: standard
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: scribe-watch
-  namespace: scribe
-  labels:
-    app: scribe-engine
-spec:
-  accessModes:
-    - ReadOnlyMany
-  resources:
-    requests:
-      storage: 50Gi
-  storageClassName: shared-nfs
-
----
-apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: scribe-engine
-  namespace: scribe
-  labels:
-    app: scribe-engine
-spec:
-  minAvailable: 2
-  selector:
-    matchLabels:
-      app: scribe-engine
-
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: scribe-engine
-  namespace: scribe
-  labels:
-    app: scribe-engine
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: scribe-engine
-  minReplicas: 3
-  maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
-  behavior:
-    scaleDown:
-      stabilizationWindowSeconds: 300
-      policies:
-      - type: Percent
-        value: 50
-        periodSeconds: 60
-    scaleUp:
-      stabilizationWindowSeconds: 60
-      policies:
-      - type: Percent
-        value: 100
-        periodSeconds: 15
+        # mTLS certificates from secrets
+        - name: scribe-tls
+          secret:
+            secretName: scribe-tls
+            defaultMode: 0400  # Read-only for owner only
+        # Security policy configuration from configmap
+        - name: scribe-config
+          configMap:
+            name: scribe-config
+            defaultMode: 0444  # Read-only for all
+        # Temporary directory for reports and logs
+        - name: reports-dir
+          emptyDir: {}

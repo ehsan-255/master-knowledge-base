@@ -18,9 +18,11 @@ RUN apt-get update && apt-get install -y \
 # Create build directory
 WORKDIR /build
 
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir --user -r requirements.txt
+# Copy source code and dependencies
+COPY tools/scribe/ ./tools/scribe/
+WORKDIR /build/tools/scribe
+RUN pip install --no-cache-dir --user setuptools wheel
+RUN pip install --no-cache-dir --user .
 
 # Production stage
 FROM python:3.12-slim as production

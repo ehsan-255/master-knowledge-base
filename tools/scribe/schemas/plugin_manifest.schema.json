@@ -14,13 +14,18 @@
   "properties": {
     "manifest_version": {
       "type": "string",
-      "pattern": "^2\\.0$",
-      "description": "Manifest schema version - must be 2.0 for HMA v2.2 compliance"
+      "pattern": "^2\\.2(\\.\\d+)?$",
+      "description": "Manifest schema version - must be 2.2 or 2.2.x for HMA v2.2 compliance"
     },
     "plugin_metadata": {
       "type": "object",
-      "required": ["name", "version", "description", "author"],
+      "required": ["name", "version", "description", "author", "product"],
       "properties": {
+        "product": {
+          "type": "string",
+          "const": "scribe",
+          "description": "Product identifier - must be 'scribe' for Scribe engine plugins"
+        },
         "name": {
           "type": "string",
           "pattern": "^[a-z0-9_]+$",
@@ -39,6 +44,10 @@
         "author": {
           "type": "string",
           "description": "Plugin author or organization"
+        },
+        "type": {
+          "type": "string",
+          "description": "Plugin classification type (e.g., L2-Orchestrator, L3-Capability)"
         },
         "license": {
           "type": "string",
@@ -68,7 +77,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": ["json_schema", "opentelemetry", "mtls", "event_bus", "circuit_breaker"]
+                "enum": ["json_schema", "opentelemetry", "otel_boundary", "mtls", "event_bus", "circuit_breaker"]
               },
               "description": "Tier 1 mandatory technologies used"
             },
@@ -76,7 +85,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": ["structured_logging", "health_checks", "metrics", "tracing"]
+                "enum": ["structured_logging", "health_checks", "metrics", "tracing", "kubernetes", "nats_messaging"]
               },
               "description": "Tier 2 recommended technologies used"
             },
@@ -93,23 +102,27 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["type", "protocol", "telemetry_enabled"],
+            "required": ["port_type", "direction"],
             "properties": {
-              "type": {
+              "port_type": {
+                "type": "string",
+                "description": "Type of port (e.g., PluginExecutionPort, FileSystemPort)"
+              },
+              "direction": {
                 "type": "string",
                 "enum": ["inbound", "outbound", "bidirectional"]
               },
-              "protocol": {
+              "validation": {
                 "type": "string",
-                "enum": ["http", "grpc", "websocket", "file_system", "event_bus"]
+                "description": "Validation method for this interface"
+              },
+              "telemetry": {
+                "type": "string",
+                "description": "Telemetry method for this interface"
               },
               "endpoint": {
                 "type": "string",
                 "description": "Interface endpoint or pattern"
-              },
-              "telemetry_enabled": {
-                "type": "boolean",
-                "description": "Whether OpenTelemetry boundary telemetry is enabled"
               }
             }
           }
@@ -221,7 +234,7 @@
                 "properties": {
                   "event_type": {
                     "type": "string",
-                    "enum": ["file_created", "file_modified", "file_deleted", "file_moved"]
+                    "enum": ["file_created", "file_modified", "file_deleted", "file_moved", "orchestration_requested"]
                   },
                   "file_patterns": {
                     "type": "array",
@@ -281,7 +294,10 @@
               "network_access",
               "process_spawn",
               "environment_access",
-              "registry_access"
+              "registry_access",
+              "logging",
+              "plugin_execution",
+              "event_publish"
             ]
           }
         },

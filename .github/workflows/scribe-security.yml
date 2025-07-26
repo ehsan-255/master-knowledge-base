@@ -1,0 +1,16 @@
+name: scribe-security
+on:
+  pull_request:
+jobs:
+  sbom-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anchore/sbom-action@v0
+        with:
+          path: .
+          output-file: tools/reports/sbom.spdx.json
+      - uses: anchore/scan-action@v3
+        with:
+          sbom: tools/reports/sbom.spdx.json
+          fail-build: true

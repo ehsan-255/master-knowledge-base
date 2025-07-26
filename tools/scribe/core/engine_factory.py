@@ -7,6 +7,7 @@ the minimalist core principle. The engine should only handle routing
 and plugin lifecycle management, not component instantiation.
 """
 
+import os
 from typing import Dict, Any, Optional
 from pathlib import Path
 
@@ -14,7 +15,7 @@ from .config_manager import ConfigManager
 from .security_manager import SecurityManager
 from .plugin_loader import PluginLoader
 from .async_processor import AsyncProcessor
-from .hma_telemetry import create_hma_telemetry
+from .telemetry import initialize_telemetry
 from .port_adapters import (
     ScribePluginExecutionAdapter, ScribeConfigurationAdapter, ScribeHealthCheckAdapter,
     ScribeCommandExecutionAdapter, ScribeFileSystemAdapter, ScribeLoggingAdapter
@@ -75,15 +76,16 @@ def create_engine_components(
         components.config_manager = ConfigManager(config_path=config_path)
         logger.debug("ConfigManager created")
         
-        # Initialize telemetry
-        telemetry_config = telemetry_config or {}
-        components.telemetry = create_hma_telemetry(
-            component_type="L2-Core",
-            component_id="scribe-engine",
-            layer="L2",
-            **telemetry_config
+        # Initialize sophisticated TelemetryManager with OTLP endpoint from environment
+        otlp_endpoint = os.getenv('OTEL_EXPORTER_OTLP_ENDPOINT')
+        sampling_rate = float(os.getenv('OTEL_TRACE_SAMPLING_RATE', '1.0'))
+        
+        components.telemetry = initialize_telemetry(
+            service_name="scribe-engine",
+            endpoint=otlp_endpoint,
+            sampling_rate=sampling_rate
         )
-        logger.debug("HMA Telemetry created")
+        logger.debug("Sophisticated TelemetryManager created with OTLP endpoint", endpoint=otlp_endpoint)
         
         # Initialize security manager
         components.security_manager = SecurityManager(

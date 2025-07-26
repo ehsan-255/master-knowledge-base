@@ -371,10 +371,12 @@ class PluginLoader:
             manifest_version = manifest_data.get("manifest_version")
             hma_version = manifest_data.get("hma_compliance", {}).get("hma_version")
             
-            # Enforce HMA v2.2 compliance
-            if manifest_version != "2.2":
+            # Enforce HMA v2.2 compliance with pattern matching (allows 2.2.x)
+            import re
+            version_pattern = r"^2\.2(\.\d+)?$"
+            if not manifest_version or not re.match(version_pattern, manifest_version):
                 raise jsonschema.ValidationError(
-                    f"Plugin manifest version must be '2.2', found '{manifest_version}'"
+                    f"Plugin manifest version must be '2.2' or '2.2.x', found '{manifest_version}'"
                 )
             
             if hma_version != "2.2":
