@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scribe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scribe
+  template:
+    metadata:
+      labels:
+        app: scribe
+    spec:
+      serviceAccountName: scribe-sa
+      containers:
+        - name: scribe
+          image: scribe:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            # mTLS Configuration (HMA v2.2 mandatory)
+            - name: SCRIBE_MTLS_ENABLED
+              value: "true"
+            - name: SCRIBE_TLS_CA
+              value: "/etc/ssl/scribe/ca.crt"
+            - name: SCRIBE_TLS_CERT
+              value: "/etc/ssl/scribe/server.crt"
+            - name: SCRIBE_TLS_KEY
+              value: "/etc/ssl/scribe/server.key"
+            
+            # OpenTelemetry Configuration (Priority 0.3)
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector:4317"
+            - name: OTEL_TRACE_SAMPLING_RATE
+              value: "1.0"
+            
+            # Scribe Configuration
+            - name: SCRIBE_REPORT_DIR
+              value: "/workspace/tools/reports"
+            - name: SCRIBE_CONFIG_PATH
+              value: "/etc/scribe/security_policy.yaml"
+          volumeMounts:
+            # mTLS certificates mount (read-only as required)
+            - name: scribe-tls
+              mountPath: /etc/ssl/scribe
+              readOnly: true
+            # Security policy configuration mount
+            - name: scribe-config
+              mountPath: /etc/scribe
+              readOnly: true
+            # Reports directory for logs and artifacts
+            - name: reports-dir
+              mountPath: /workspace/tools/reports
+          ports:
+            - containerPort: 9469
+      volumes:
+        # mTLS certificates from secrets
+        - name: scribe-tls
+          secret:
+            secretName: scribe-tls
+            defaultMode: 0400  # Read-only for owner only
+        # Security policy configuration from configmap
+        - name: scribe-config
+          configMap:
+            name: scribe-config
+            defaultMode: 0444  # Read-only for all
+        # Temporary directory for reports and logs
+        - name: reports-dir
+          emptyDir: {}

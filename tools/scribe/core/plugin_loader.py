@@ -9,17 +9,17 @@ Implements secure plugin loading with error handling and validation.
 import importlib.util
 import inspect
 import sys
+import json
 from pathlib import Path
 from typing import Dict, List, Type, Optional, Any
 import structlog
+import jsonschema
 
 from .logging_config import get_scribe_logger
-
-# Import BaseAction for type checking
-from ..actions.base import BaseAction
-# Need these for type hints in the modified methods
-from ..core.config_manager import ConfigManager
-from ..core.security_manager import SecurityManager
+from tools.scribe.actions.base import BaseAction
+from .config_manager import ConfigManager
+from .security_manager import SecurityManager
+from .port_adapters import ScribePluginContextAdapter
 
 
 logger = get_scribe_logger(__name__)
@@ -47,12 +47,13 @@ class PluginLoadError(Exception):
 
 
 class PluginInfo:
-    """Information about a loaded plugin."""
+    """Information about a loaded plugin with HMA v2.2 manifest support."""
     
     def __init__(self, 
                  action_class: Type[BaseAction], 
                  module_path: str, 
-                 action_type: str):
+                 action_type: str,
+                 manifest: Optional[Dict[str, Any]] = None):
         """
         Initialize plugin information.
         
@@ -60,32 +61,40 @@ class PluginInfo:
             action_class: The action class
             module_path: Path to the module file
             action_type: The action type identifier
+            manifest: Plugin manifest data (HMA v2.2)
         """
         self.action_class = action_class
         self.module_path = module_path
         self.action_type = action_type
         self.class_name = action_class.__name__
         self.module_name = action_class.__module__
+        self.manifest = manifest or {}
     
     def create_instance(self, params: Dict[str, Any],
-                        config_manager: 'ConfigManager',
-                        security_manager: 'SecurityManager') -> BaseAction:
+                        port_registry,
+                        execution_context: Optional[Dict[str, Any]] = None) -> BaseAction:
         """
-        Create an instance of the action plugin with dependencies.
+        Create an instance of the action plugin with HMA v2.2 port-based access.
         
         Args:
             params: Action-specific parameters from the rule.
-            config_manager: The ConfigManager instance.
-            security_manager: The SecurityManager instance.
+            port_registry: The port registry for accessing core functionality.
+            execution_context: Plugin execution context.
 
         Returns:
             New instance of the action plugin.
         """
+        # Create plugin context adapter
+        plugin_context = ScribePluginContextAdapter(
+            plugin_id=self.action_type,
+            port_registry=port_registry,
+            execution_context=execution_context or {}
+        )
+        
         return self.action_class(
             action_type=self.action_type,
             params=params,
-            config_manager=config_manager,
-            security_manager=security_manager
+            plugin_context=plugin_context
         )
     
     def __str__(self) -> str:
@@ -338,9 +347,90 @@ class PluginLoader:
                     action_type=file_name)
         return file_name
     
+    def load_plugin_manifest(self, plugin_directory: Path) -> Optional[Dict[str, Any]]:
+        """
+        Load and validate plugin manifest file.
+        
+        Args:
+            plugin_directory: Directory containing manifest.json
+            
+        Returns:
+            Validated manifest data or None if not found/invalid
+        """
+        manifest_path = plugin_directory / "manifest.json"
+        
+        if not manifest_path.exists():
+            logger.debug("No manifest found for plugin", plugin_directory=str(plugin_directory))
+            return None
+        
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest_data = json.load(f)
+            
+            # HMA v2.2 Mandatory Validation
+            manifest_version = manifest_data.get("manifest_version")
+            hma_version = manifest_data.get("hma_compliance", {}).get("hma_version")
+            
+            # Enforce HMA v2.2 compliance with pattern matching (allows 2.2.x)
+            import re
+            version_pattern = r"^2\.2(\.\d+)?$"
+            if not manifest_version or not re.match(version_pattern, manifest_version):
+                raise jsonschema.ValidationError(
+                    f"Plugin manifest version must be '2.2' or '2.2.x', found '{manifest_version}'"
+                )
+            
+            if hma_version != "2.2":
+                raise jsonschema.ValidationError(
+                    f"HMA compliance version must be '2.2', found '{hma_version}'"
+                )
+            
+            # Validate mandatory HMA v2.2 fields
+            required_hma_fields = ["hma_version", "tier_classification", "boundary_interfaces"]
+            hma_compliance = manifest_data.get("hma_compliance", {})
+            
+            for field in required_hma_fields:
+                if field not in hma_compliance:
+                    raise jsonschema.ValidationError(
+                        f"Missing mandatory HMA v2.2 field: hma_compliance.{field}"
+                    )
+            
+            # Load schema for validation
+            schema_path = Path(__file__).parent.parent / "schemas" / "plugin_manifest.schema.json"
+            if schema_path.exists():
+                with open(schema_path, 'r', encoding='utf-8') as f:
+                    schema = json.load(f)
+                
+                # Validate manifest against schema
+                jsonschema.validate(manifest_data, schema)
+                logger.debug("Plugin manifest HMA v2.2 validation passed", 
+                           plugin_directory=str(plugin_directory),
+                           manifest_version=manifest_version,
+                           hma_version=hma_version)
+            else:
+                logger.warning("Plugin manifest schema not found, skipping schema validation",
+                              schema_path=str(schema_path))
+            
+            return manifest_data
+            
+        except json.JSONDecodeError as e:
+            logger.error("Invalid JSON in plugin manifest",
+                        manifest_path=str(manifest_path),
+                        error=str(e))
+            return None
+        except jsonschema.ValidationError as e:
+            logger.error("Plugin manifest validation failed",
+                        manifest_path=str(manifest_path),
+                        error=str(e))
+            return None
+        except Exception as e:
+            logger.error("Error loading plugin manifest",
+                        manifest_path=str(manifest_path),
+                        error=str(e))
+            return None
+    
     def load_plugin(self, file_path: str) -> List[PluginInfo]:
         """
-        Load a single plugin file and extract action classes.
+        Load a single plugin file and extract action classes with manifest support.
         
         Args:
             file_path: Path to the plugin file
@@ -357,6 +447,19 @@ class PluginLoader:
             # Security validation
             if not self.validate_plugin_security(file_path):
                 raise PluginLoadError(file_path, "Plugin failed security validation")
+            
+            # Check for manifest in plugin directory
+            plugin_file_path = Path(file_path)
+            plugin_directory = plugin_file_path.parent / plugin_file_path.stem
+            manifest = None
+            
+            if plugin_directory.exists() and plugin_directory.is_dir():
+                manifest = self.load_plugin_manifest(plugin_directory)
+                if manifest:
+                    logger.info("HMA v2.2 manifest loaded for plugin",
+                               plugin_path=file_path,
+                               manifest_version=manifest.get('manifest_version'),
+                               hma_version=manifest.get('hma_compliance', {}).get('hma_version'))
             
             # Determine which directory this plugin belongs to
             plugin_file_path = Path(file_path)
@@ -397,18 +500,21 @@ class PluginLoader:
                     # Skip this plugin to avoid conflicts
                     continue
                 
-                plugin_info = PluginInfo(action_class, file_path, action_type)
+                plugin_info = PluginInfo(action_class, file_path, action_type, manifest)
                 plugin_infos.append(plugin_info)
                 
                 # Register the plugin
                 self._plugins[action_type] = plugin_info
                 self._plugin_directory_map[action_type] = plugin_directory
                 
+                # Log HMA compliance status
+                hma_compliance = "HMA v2.2 compliant" if manifest else "Legacy (no manifest)"
                 logger.info("Plugin action loaded successfully",
                            action_type=action_type,
                            action_class=action_class.__name__,
                            plugin_file=file_path,
-                           plugin_directory=plugin_directory)
+                           plugin_directory=plugin_directory,
+                           hma_compliance=hma_compliance)
             
             return plugin_infos
             

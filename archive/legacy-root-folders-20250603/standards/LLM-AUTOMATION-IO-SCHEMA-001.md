@@ -1,23 +1,32 @@
 ---
-title: 'Standard: LLM Automation Input/Output Schemas (LLM-AUTOMATION-IO-SCHEMA-001) - DEPRECATED'
+title: 'Standard: LLM Automation Input/Output Schemas (LLM-AUTOMATION-IO-SCHEMA-001)
+  - DEPRECATED'
 tags:
 - automation
 - content-type/standard-document
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - llm-integration
 - schemas
 - standards-kb/universal
 - status/deprecated
 date-created: 2025-05-19
-date-modified: '2025-06-02T00:36:57Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
-primary-topic: Governs the definition and management of JSON schemas for LLM inputs and outputs.
+primary-topic: Governs the definition and management of JSON schemas for LLM inputs
+  and outputs.
 related-standards:
 - OM-AUTOMATION-LLM-IO-SCHEMAS
 aliases:
 - LLM IO Schemas
 - LLM Automation Schemas
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[UA-SCHEMA-LLM-IO]].
 
@@ -115,4 +124,4 @@ This document defines the standard for creating, documenting, and managing JSON 
 - Each schema file MUST use the `title` and `description` top-level JSON Schema keywords.
 - Each property within the schema MUST have a `description` field explaining its purpose, data type, and whether it is required or optional.
 
-**Cross-References to Other Standard IDs:** [[../../_backup/master-knowledge-base-backup/standards/LLM-PROMPT-LIBRARY-001|LLM-PROMPT-LIBRARY-001]] 
+**Cross-References to Other Standard IDs:** [[../../_backup/master-knowledge-base-backup/standards/LLM-PROMPT-LIBRARY-001|LLM-PROMPT-LIBRARY-001]]

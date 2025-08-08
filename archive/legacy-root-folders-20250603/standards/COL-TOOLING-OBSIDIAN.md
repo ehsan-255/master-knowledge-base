@@ -5,13 +5,15 @@ aliases:
 - COL-TOOLING-OBSIDIAN
 tags:
 - content-type/standards-collection
+- criticality/p0-critical
 - kb-id/standards
 - status/deprecated
 - topic/obsidian
 - topic/tooling
 kb-id: standards
 info-type: standards-collection
-primary-topic: 'DEPRECATED: Collection of specific conventions for using Obsidian features to enhance knowledge bases.'
+primary-topic: 'DEPRECATED: Collection of specific conventions for using Obsidian
+  features to enhance knowledge bases.'
 related-standards:
 - SF-LINKS-INTERNAL-SYNTAX
 - CS-LINKING-INTERNAL-POLICY
@@ -27,7 +29,11 @@ related-standards:
 - CS-ADMONITIONS-POLICY
 version: 0.5.0
 date-created: '2025-05-15'
-date-modified: '2025-06-01T23:50:44Z'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This collection document is superseded by the new atomic standards architecture. Relevant content has been refactored into individual standard, policy, and guide documents located in `/master-knowledge-base/standards/src/`. Please refer to `[[AS-ROOT-STANDARDS-KB]]` for an overview of the new standards or consult `[[GM-GUIDE-KB-USAGE]]`.
 

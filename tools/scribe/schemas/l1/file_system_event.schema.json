@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scribe.local/schemas/l1/file_system_event.schema.json",
+  "type": "object",
+  "required": ["event_id", "path", "operation", "ts"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "path": {"type": "string", "minLength": 1},
+    "operation": {"enum": ["create", "modify", "delete", "move"]},
+    "ts": {"type": "string", "format": "date-time"},
+    "size": {"type": "integer", "minimum": 0}
+  },
+  "additionalProperties": false
+}

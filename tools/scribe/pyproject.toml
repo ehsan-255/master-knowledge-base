@@ -1,20 +1,222 @@
-[project]
-name = "scribe-engine"
-version = "1.0.1"
-description = "Scribe Automation Engine"
-requires-python = ">=3.9"
-dependencies = [
-    "watchdog>=3.0.0",
-    "structlog>=23.0.0",
-    "pyyaml>=6.0",
-    "jsonschema>=4.0.0",
-    "psutil>=5.9.0",
-]
-
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-py-modules = ["engine", "watcher", "worker"]
-packages = ["core", "actions"] 
+[project]
+name = "scribe"
+version = "0.1.0"
+description = "HMA-compliant event-driven automation engine"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Scribe Development Team", email = "dev@scribe-engine.org"},
+]
+keywords = ["automation", "hma", "hexagonal", "microkernel", "event-driven"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: System :: Monitoring",
+]
+
+dependencies = [
+  # Core Framework
+  "watchdog>=3.0.0",
+  "structlog>=23.0.0", 
+  "jsonschema>=4.0.0",
+  "pyyaml>=6.0.0",
+  "click>=8.0.0",
+  
+  # Web Framework
+  "fastapi>=0.100.0",
+  "uvicorn>=0.23.0",
+  
+  # OpenTelemetry for HMA v2.2 Telemetry
+  "opentelemetry-api>=1.20.0",
+  "opentelemetry-sdk>=1.20.0",
+  "opentelemetry-exporter-otlp-proto-grpc>=1.20.0",
+  "opentelemetry-exporter-prometheus>=0.56b0",
+  "opentelemetry-instrumentation-fastapi>=0.41b0",
+  "opentelemetry-instrumentation-requests>=0.41b0",
+  "opentelemetry-instrumentation-urllib3>=0.41b0",
+  
+  # NATS for Event Bus
+  "nats-py>=2.6.0",
+  
+  # HTTP and Networking
+  "requests>=2.31.0",
+  "httpx>=0.25.0",
+  
+  # Security and Cryptography (for mTLS)
+  "cryptography>=41.0.0",
+  
+  # HashiCorp Vault Integration
+  "hvac>=2.0.0",
+  
+  # Job Scheduling for Secret Rotation
+  "schedule>=1.2.0",
+  
+  # Data Processing
+  "pandas>=2.0.0",
+  
+  # RDF and Graph Processing (for GraphValidationAction)
+  "rdflib>=7.0.0",
+  "pyshacl>=0.25.0",
+  
+  # File Operations and Atomic Write
+  "portalocker>=2.8.0"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=7.4.0",
+  "pytest-asyncio>=0.21.0", 
+  "pytest-timeout>=2.1.0",
+  "pytest-cov>=4.1.0",
+  "pytest-json-report>=1.5.0",
+  "docker>=6.1.0",
+  "requests>=2.31.0"
+]
+
+dev = [
+  "black>=23.0.0",
+  "flake8>=6.0.0",
+  "mypy>=1.5.0",
+  "ruff>=0.6.2",
+  "pip-tools>=7.4.1"
+]
+
+security = [
+    # Additional security tools if needed
+]
+
+[project.urls]
+Homepage = "https://github.com/scribe-engine/scribe"
+Documentation = "https://docs.scribe-engine.org"
+Repository = "https://github.com/scribe-engine/scribe.git"
+Issues = "https://github.com/scribe-engine/scribe/issues"
+
+[project.scripts]
+scribe = "tools.scribe.engine:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tools.scribe*"]
+
+[tool.setuptools.package-data]
+"tools.scribe" = ["*.json", "*.yaml", "*.yml"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = [
+    "../../test-environment/scribe-tests",
+]
+pythonpath = [
+    ".",
+    "../..",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "windows: marks tests as Windows-specific",
+    "security: marks tests as security-related",
+]
+
+[tool.coverage.run]
+source = ["tools/scribe"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/conftest.py",
+    "*/scribe_engine.egg-info/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | scribe_engine\.egg-info
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["tools.scribe"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "watchdog.*",
+    "structlog.*",
+    "portalocker.*",
+]
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = ["tests", "test-environment"]
+skips = ["B101", "B601"]  # Skip assert_used and shell injection for tests
+
+[tool.flake8]
+max-line-length = 88
+exclude = [
+    ".git",
+    "__pycache__",
+    "*.egg-info",
+    "build",
+    "dist",
+]
+ignore = [
+    "E203",  # whitespace before ':'
+    "E501",  # line too long (handled by black)
+    "W503",  # line break before binary operator
+]

@@ -2,39 +2,35 @@
 import logging
 from pathlib import Path
 import json # For loading context if master_index_data is passed as string
+from typing import Dict, Any
 
-from .base_action import BaseAction
-# Assuming GraphValidator is in tools/validators/graph_validator.py
-# Adjust import path if necessary, e.g. if tools is a top-level package
-# For now, let's assume we might need to add tools to sys.path or structure differently
-# For simplicity in this subtask, we'll try a direct relative import path if possible,
-# or rely on Python's path if 'tools' is in PYTHONPATH.
-# A more robust way would be to ensure 'tools' is an importable package.
-# Let's assume for now that the Scribe engine or environment setup handles Python path.
-try:
-    from tools.validators.graph_validator import GraphValidator
-except ImportError:
-    # Fallback if 'tools' is not directly in path, try relative if scribe is run from repo root
-    # This is a common challenge with scripts vs packages.
-    # For a real Scribe engine, it would manage its environment.
-    import sys
-    # Assuming script is run from repo root, and 'tools' is a dir in repo root
-    sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
-    from tools.validators.graph_validator import GraphValidator
+from .base import BaseAction, ActionExecutionError
+from tools.validators.graph_validator import GraphValidator
 
 
 class GraphValidationAction(BaseAction):
-    def __init__(self, action_config: dict, global_config: dict, logger=None):
-        super().__init__(action_config, global_config, logger)
-        self.schema_registry_path_str = self.action_config.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
-        self.master_index_path_str = self.action_config.get("master_index_path", "standards/registry/master-index.jsonld")
-        self.shacl_shapes_path_str = self.action_config.get("shacl_shapes_path", "standards/registry/shacl-shapes.ttl")
-        self.report_output_path_str = self.action_config.get("report_output_path", "scribe_validation_report.json")
+    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context: 'PluginContextPort'):
+        super().__init__(action_type, params, plugin_context)
+        
+        # HMA v2.2 compliant configuration access through port
+        config_port = self.context.get_port("configuration")
+        self.log_port = self.context.get_port("logging")
+        
+        self.schema_registry_path_str = self.params.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
+        self.master_index_path_str = self.params.get("master_index_path", "standards/registry/master-index.jsonld")
+        self.shacl_shapes_path_str = self.params.get("shacl_shapes_path", "standards/registry/shacl-shapes.ttl")
+        self.report_output_path_str = self.params.get("report_output_path", "scribe_validation_report.json")
         self.validator_instance = None
+        
+        # Get repo root through configuration port
+        try:
+            self.repo_root = Path(config_port.get_config_value("repo_root", self.context.get_plugin_id(), "."))
+        except Exception as e:
+            self.log_port.log_warning("Could not get repo_root from config, using current directory", error=str(e))
+            self.repo_root = Path(".")
+
 
     def setup(self):
-        if not super().setup():
-            return False
 
         self.schema_registry_file = self.repo_root / self.schema_registry_path_str
         self.master_index_file = self.repo_root / self.master_index_path_str
@@ -79,18 +75,18 @@ class GraphValidationAction(BaseAction):
         self.logger.info("GraphValidationAction setup complete.")
         return True
 
-    def execute(self, execution_context: dict) -> dict:
-        self.logger.info(f"Executing GraphValidationAction. Context: {execution_context}")
+    def execute(self, file_content: str, match, file_path: str, params: Dict[str, Any]) -> str:
+        self.logger.info(f"Executing GraphValidationAction. Context: {params}")
         if not self.validator_instance:
             self.logger.error("GraphValidator instance not available. Setup might have failed.")
-            return {'status': 'failure', 'message': "Setup failed: GraphValidator not initialized."}
+            raise ActionExecutionError(self.action_type, "Setup failed: GraphValidator not initialized.")
 
         # Handle potential master_index_data from context (e.g., if index was just generated)
         # GraphValidator's _load_master_index currently reads from a file.
         # If master_index_data is in context, we'd ideally pass it to the validator.
         # This might require a small modification to GraphValidator or a temporary file write.
         # For now, assume GraphValidator reads from MASTER_INDEX_PATH as defined.
-        if 'master_index_data' in execution_context and execution_context['master_index_data']:
+        if 'master_index_data' in params and params['master_index_data']:
             self.logger.info("Master index data found in execution_context. Current GraphValidator loads from file; this data is not directly used yet.")
 
 
@@ -127,19 +123,14 @@ class GraphValidationAction(BaseAction):
                 # Distinguish critical? For now, any error is non_critical failure for Scribe.
                 # Critical failure might be if the validator itself crashes.
                 status = 'failure_non_critical'
+                raise ActionExecutionError(self.action_type, f"Graph validation complete. Total errors: {error_count}. SHACL errors: {shacl_error_count}.")
 
-            return {
-                'status': status,
-                'message': f"Graph validation complete. Total errors: {error_count}. SHACL errors: {shacl_error_count}.",
-                'report_path': str(self.report_output_file.relative_to(self.repo_root)),
-                'error_count': error_count,
-                'shacl_error_count': shacl_error_count,
-                'raw_report': report # Optional: include full report data in context for other actions
-            }
+
+            return file_content # Return original content
 
         except Exception as e:
             self.logger.exception(f"Error during graph validation: {e}")
-            return {'status': 'failure_critical', 'message': f"Graph validation failed with exception: {e}"}
+            raise ActionExecutionError(self.action_type, f"Graph validation failed with exception: {e}", original_error=e)
 
 # Example usage (for testing)
 if __name__ == '__main__':
@@ -159,12 +150,12 @@ if __name__ == '__main__':
     # e.g., mock_repo_root/standards/registry/schema-registry.jsonld etc.
     # Actual testing would require these files to be present.
 
-    action = GraphValidationAction(action_config=mock_action_config, global_config=mock_global_config, logger=logger)
+    action = GraphValidationAction(action_type="graph_validation", params=mock_action_config, config_manager=None, security_manager=None) # Mock ConfigManager and SecurityManager
 
     if action.setup():
         # Create dummy master-index if it doesn't exist for the test, to avoid setup failure for path check
         # This is a simplified test setup.
-        mj_path = action.repo_root / action.action_config.get("master_index_path", "standards/registry/master-index.jsonld")
+        mj_path = action.repo_root / action.params.get("master_index_path", "standards/registry/master-index.jsonld")
         mj_path.parent.mkdir(parents=True, exist_ok=True)
         if not mj_path.exists():
             with open(mj_path, 'w') as f:
@@ -173,16 +164,31 @@ if __name__ == '__main__':
 
 
         test_context = {}
-        result = action.execute(test_context)
-        logger.info(f"Test execution result: {result}")
+        # Mock file_content, match, file_path for the test execution
+        test_file_content = '{"kb:documents": [{"@id": "http://example.org/doc1", "kb:name": "Document 1", "kb:content": "This is a test document."}]}'
+        test_match = None # No specific match for this action
+        test_file_path = "test_document.jsonld"
 
-        # Clean up report
-        if Path(result.get('report_path', '')).exists():
-             Path(result['report_path']).unlink()
-             logger.info(f"Cleaned up report: {result['report_path']}")
-        elif (action.repo_root / mock_action_config['report_output_path']).exists():
-             (action.repo_root / mock_action_config['report_output_path']).unlink()
-             logger.info(f"Cleaned up report: {mock_action_config['report_output_path']}")
+        try:
+            result = action.execute(test_file_content, test_match, test_file_path, test_context)
+            logger.info(f"Test execution result: {result}")
+
+            # Clean up report
+            if Path(action.report_output_file).exists():
+                 action.report_output_file.unlink()
+                 logger.info(f"Cleaned up report: {action.report_output_file}")
+            elif (action.repo_root / mock_action_config['report_output_path']).exists():
+                 (action.repo_root / mock_action_config['report_output_path']).unlink()
+                 logger.info(f"Cleaned up report: {mock_action_config['report_output_path']}")
+
+        except ActionExecutionError as e:
+            logger.error(f"Test execution failed with ActionExecutionError: {e}")
+            if Path(action.report_output_file).exists():
+                action.report_output_file.unlink()
+                logger.info(f"Cleaned up report: {action.report_output_file}")
+            elif (action.repo_root / mock_action_config['report_output_path']).exists():
+                (action.repo_root / mock_action_config['report_output_path']).unlink()
+                logger.info(f"Cleaned up report: {mock_action_config['report_output_path']}")
 
 
     else:

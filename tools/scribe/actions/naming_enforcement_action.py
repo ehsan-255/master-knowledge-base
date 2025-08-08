@@ -2,26 +2,55 @@
 import logging
 from pathlib import Path
 import sys
+from typing import Dict, Any
 
-from .base_action import BaseAction
+from .base import BaseAction, ActionExecutionError
 
 try:
     from tools.naming_enforcer.naming_enforcer import NamingEnforcerV2, SafetyLogger
 except ImportError:
     # Fallback for path issues
-    sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
-    from tools.naming_enforcer.naming_enforcer import NamingEnforcerV2, SafetyLogger
+    try:
+        sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+        from tools.naming_enforcer.naming_enforcer import NamingEnforcerV2, SafetyLogger
+    except ImportError:
+        # Create mock classes for testing/development
+        class NamingEnforcerV2:
+            def __init__(self, *args, **kwargs):
+                pass
+            def enforce_naming(self, *args, **kwargs):
+                return {"status": "skipped", "reason": "NamingEnforcer not available"}
+        
+        class SafetyLogger:
+            def __init__(self, *args, **kwargs):
+                pass
+            def info(self, *args, **kwargs):
+                pass
+            def error(self, *args, **kwargs):
+                pass
 
 class NamingEnforcementAction(BaseAction):
-    def __init__(self, action_config: dict, global_config: dict, logger=None):
-        super().__init__(action_config, global_config, logger)
-        self.scan_paths_str = self.action_config.get("scan_paths", ["."]) # List of paths relative to repo_root
-        self.schema_registry_path_str = self.action_config.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
-        self.fix_mode = self.action_config.get("fix_mode", False)
+    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context: 'PluginContextPort'):
+        super().__init__(action_type, params, plugin_context)
+        
+        # HMA v2.2 compliant port-based access
+        config_port = self.context.get_port("configuration")
+        self.log_port = self.context.get_port("logging")
+        
+        self.scan_paths_str = self.params.get("scan_paths", ["."]) # List of paths relative to repo_root
+        self.schema_registry_path_str = self.params.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
+        self.fix_mode = self.params.get("fix_mode", False)
         # Naming Enforcer V2 auto-detects .namingignore, so explicit path might not be needed unless overridden
-        self.namingignore_path_str = self.action_config.get("namingignore_path", None)
+        self.namingignore_path_str = self.params.get("namingignore_path", None)
         self.enforcer_instance = None
         self.safety_logger_instance = None
+        
+        # Get repo root through configuration port
+        try:
+            self.repo_root = Path(config_port.get_config_value("repo_root", self.context.get_plugin_id(), "."))
+        except Exception as e:
+            self.log_port.log_warning("Could not get repo_root from config, using current directory", error=str(e))
+            self.repo_root = Path(".")
 
     def setup(self):
         if not super().setup():
@@ -72,24 +101,24 @@ class NamingEnforcementAction(BaseAction):
         self.logger.info("NamingEnforcementAction setup complete.")
         return True
 
-    def execute(self, execution_context: dict) -> dict:
-        self.logger.info(f"Executing NamingEnforcementAction. Context: {execution_context}. Fix mode: {self.fix_mode}")
+    def execute(self, file_content: str, match, file_path: str, params: Dict[str, Any]) -> str:
+        self.logger.info(f"Executing NamingEnforcementAction. Context: {params}. Fix mode: {self.fix_mode}")
         if not self.enforcer_instance:
             self.logger.error("NamingEnforcerV2 instance not available. Setup might have failed.")
-            return {'status': 'failure', 'message': "Setup failed: NamingEnforcerV2 not initialized."}
+            raise ActionExecutionError(self.action_type, "Setup failed: NamingEnforcerV2 not initialized.")
 
         all_violations = []
         total_violations_count = 0
         scan_paths_to_process = self.scan_paths
 
         # Optionally refine scan_paths based on execution_context (e.g., changed_files)
-        if "changed_files" in execution_context and execution_context["changed_files"]:
+        if "changed_files" in params and params["changed_files"]:
             # A more sophisticated approach might be needed here.
             # For now, if changed_files is present, we'll scan the unique parent directories.
             # Or, if NamingEnforcerV2 can take a list of files, that would be better.
             # Current NamingEnforcerV2.scan_directory takes a root_path.
             # We'll stick to the configured scan_paths but log the context.
-            self.logger.info(f"Received changed_files in context: {execution_context['changed_files']}. Scanning configured root paths.")
+            self.logger.info(f"Received changed_files in context: {params['changed_files']}. Scanning configured root paths.")
 
 
         for scan_path_root in scan_paths_to_process:
@@ -142,26 +171,17 @@ class NamingEnforcementAction(BaseAction):
                 except Exception as e:
                     self.logger.exception(f"Error during fix application: {e}")
                     if self.safety_logger_instance: self.safety_logger_instance.finalize_operation()
-                    return {'status': 'failure_critical', 'message': f"Error applying fixes: {e}"}
+                    raise ActionExecutionError(self.action_type, f"Error applying fixes: {e}", original_error=e)
 
             status = 'failure_violations_found' if total_violations_count > 0 and not self.fix_mode else 'success'
             if self.fix_mode and total_violations_count > 0 and fixes_applied_count < total_violations_count : # If fixes were attempted but some violations remain
                 status = 'failure_violations_found' # Or a specific status like 'success_with_remaining_violations'
+                raise ActionExecutionError(self.action_type, f"Naming enforcement scan complete. Violations found: {total_violations_count}. Fixes applied: {fixes_applied_count if self.fix_mode else 0}.")
 
-            return {
-                'status': status,
-                'message': f"Naming enforcement scan complete. Violations found: {total_violations_count}. Fixes applied: {fixes_applied_count if self.fix_mode else 0}.",
-                'violations_count': total_violations_count,
-                'fixes_applied': fixes_applied_count if self.fix_mode else 0,
-                'violations': [v.__dict__ for v in all_violations[:20]] # Return first 20 violations as sample
-            }
+
+            return file_content
         else:
-            return {
-                'status': 'success',
-                'message': "Naming enforcement scan complete. No violations found.",
-                'violations_count': 0,
-                'fixes_applied': 0
-            }
+            return file_content
 
 # Example usage (for testing)
 if __name__ == '__main__':

@@ -1,0 +1,173 @@
+[33mcommit fb67f671b2f566616ebba448de4ea3e8c67fbdb3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/standards-housekeeping[m[33m, [m[1;31morigin/feature/standards-housekeeping[m[33m)[m
+Author: ehsan-255 <ehsan255@gmail.com>
+Date:   Thu Jun 19 13:26:15 2025 -0700
+
+    feat: comprehensive updates to project guidelines and standards - Added foundational principles as the supreme governing framework - Introduced new files for audit remediation initiative and validation tools - Enhanced existing documentation with updated standards and validation requirements - Removed deprecated project work ethic guidelines - Improved repository organization and structure for better compliance and usability
+
+ .cursorrules                                       |   239 [32m+[m[31m-[m
+ .../l2-sl1-checklist.md                            |    60 [32m+[m
+ .../l2-sl1-progress.md                             |    51 [32m+[m
+ .../l2-sl1-roadmap.md                              |    87 [32m+[m
+ .../l2-sl2-analysis-report.md                      |   146 [32m+[m
+ .../l2-sl2-progress.md                             |    36 [32m+[m
+ .../l2-sl2-roadmap.md                              |   103 [32m+[m
+ .../l2-sl3-analysis-report.md                      |   146 [32m+[m
+ .../l2-sl3-progress.md                             |    36 [32m+[m
+ .../l2-sl3-roadmap.md                              |   103 [32m+[m
+ .../l2-sl4-analysis-report.md                      |   146 [32m+[m
+ .../l2-sl4-progress.md                             |    36 [32m+[m
+ .../l2-sl4-roadmap.md                              |   103 [32m+[m
+ .../l2-sl5-analysis-report.md                      |   146 [32m+[m
+ .../l2-sl5-progress.md                             |    36 [32m+[m
+ .../l2-sl5-roadmap.md                              |   104 [32m+[m
+ .../master-analysis-report.md                      |   125 [32m+[m
+ .../master-progress.md                             |    32 [32m+[m
+ .../master-roadmap.md                              |    94 [32m+[m
+ active-project/README.md                           |    31 [32m+[m[31m-[m
+ active-project/current-state.md                    |     6 [32m+[m[31m-[m
+ active-project/master-roadmap-development-guide.md |     6 [32m+[m[31m-[m
+ .../project-guidelines/main-project-guidelines.md  |   221 [32m+[m
+ .../project-work-ethic-guidelines.md               |   156 [31m-[m
+ .../sequential-thinking-guidelines.md              |    65 [32m+[m
+ .../accessibility-policy-archive-20250617-2312.md  |     0
+ .../OM-AUTOMATION-LLM-IO-SCHEMAS-original.md       |   150 [32m+[m
+ .../UA-SCHEMA-LLM-IO.md                            |    88 [32m+[m
+ ...nular-template-incorrect-use-20250619-062029.md |   131 [32m+[m
+ ...work-ethic-guidelines-original-20250618-0052.md |    93 [32m+[m
+ .../SF-FORMATTING-MARKDOWN-GENERAL.md              |    80 [32m+[m
+ .../SF-LINKS-INTERNAL-SYNTAX.md                    |     0
+ .../SF-SYNTAX-BLOCKQUOTES.md                       |   100 [32m+[m
+ .../SF-SYNTAX-CODE.md                              |     0
+ .../SF-SYNTAX-COMMENT-TODO.md                      |     0
+ .../SF-SYNTAX-DEFINITION-LISTS.md                  |   100 [32m+[m
+ .../SF-SYNTAX-EMPHASIS.md                          |    69 [32m+[m
+ .../SF-SYNTAX-ESCAPING-CHARACTERS.md               |     0
+ .../SF-SYNTAX-HEADINGS.md                          |    90 [32m+[m
+ .../SF-SYNTAX-IMAGES.md                            |    94 [32m+[m
+ .../SF-SYNTAX-KEYREF.md                            |     0
+ .../SF-SYNTAX-LINKS-GENERAL.md                     |     0
+ .../SF-SYNTAX-LISTS.md                             |   120 [32m+[m
+ .../SF-SYNTAX-TABLES.md                            |   116 [32m+[m
+ ...ndards-analysis-report-archive-20250120-1430.md |   310 [32m+[m
+ ...itecture-protection-completion-20250616-2321.md |   189 [32m+[m
+ .../audit-analysis-20250617-0630.json              |  6031 [32m++++++[m
+ .../audit-analysis-20250617-0632.json              |  6031 [32m++++++[m
+ ...mprehensive-architecture-audit-20250616-2310.md |   186 [32m+[m
+ ...-frontmatter-enhancement-audit-20250617-0633.md |   245 [32m+[m
+ ...mprehensive-standards-analysis-20250616-1433.md |   332 [32m+[m
+ ...nsive-standards-analysis-20250617-1222-part2.md |   491 [32m+[m
+ ...mprehensive-standards-analysis-20250617-1222.md |   417 [32m+[m
+ .../critical-architecture-audit-20250616-2304.md   |   125 [32m+[m
+ .../generate-frontmatter-dry-run-20250617-0209.log |     0
+ ...nventions-naming-reduction-completion-report.md |   135 [32m+[m
+ ...ge-reduction-completion-report-20250616-2352.md |   135 [32m+[m
+ .../jsonld-conversion-dry-run-20250617-0208.log    |     0
+ .../kb-id-migration-report-20250617-0632.json      |   589 [32m+[m
+ .../kb-id-migration-report-20250617-0633.json      |   589 [32m+[m
+ .../migration-dry-run-20250617-0211.log            |    10 [32m+[m
+ .../migration-dry-run-20250617-0217.log            |  3222 [32m++++[m
+ .../migration-dry-run-20250617-0231.log            |  1384 [32m++[m
+ .../migration-dry-run-20250617-0232.log            | 16387 [32m+++++++++++++++++[m
+ .../migration-dry-run-20250617-0234.log            | 16387 [32m+++++++++++++++++[m
+ .../migration-live-run-20250617-0212.log           |  2210 [32m+++[m
+ .../migration-live-run-20250617-0217.log           |  3222 [32m++++[m
+ .../migration-live-run-20250617-0221.log           |  2938 [32m+++[m
+ .../migration-live-run-20250617-0222.log           |  1687 [32m++[m
+ .../migration-live-run-20250617-0228.log           |  1384 [32m++[m
+ .../migration-live-run-20250617-0229.log           |  1384 [32m++[m
+ ...gration-validation-cli-output-20250617-0212.log |     0
+ ...-migration-validation-report-20250617-0212.json |  9432 [32m++++++++++[m
+ .../shacl-base-schema-dry-run-20250617-0208.log    |     0
+ ...shacl-base-schema-validation-20250617-0209.json |  9461 [32m++++++++++[m
+ ...-schema-validation-cli-output-20250617-0209.log |     0
+ .../shacl-validation-report-20250617-0217.log      |  9432 [32m++++++++++[m
+ .../shacl-validation-report-20250617-0221.log      |  9432 [32m++++++++++[m
+ .../shacl-validation-report-20250617-0222.log      |  9432 [32m++++++++++[m
+ .../shacl-validation-report-20250617-0226.log      |  9432 [32m++++++++++[m
+ .../shacl-validation-report-20250617-0228.log      |  9432 [32m++++++++++[m
+ .../shacl-validation-report-20250617-0229.log      |  9432 [32m++++++++++[m
+ .../shacl-validation-report-20250617-0230.log      |  9432 [32m++++++++++[m
+ ...onsolidation-completion-report-20250616-2212.md |   167 [32m+[m
+ ...rontmatter-enhancement-implementation-prompt.md |   270 [32m+[m
+ .../validation-full-repository-20250617-0633.json  | 18366 [32m+++++++++++++++++++[m
+ ...on-report-after-vocab-update-20250617-0216.json |  9432 [32m++++++++++[m
+ .../validation-test-cli-output-20250617-0209.log   |     0
+ .../validation-test-report-20250617-0209.json      |  9461 [32m++++++++++[m
+ ...plementation-damage-assessment-20250617-1328.md |   199 [32m+[m
+ ...dit-project-initiation-quality-20250120-0200.md |   258 [32m+[m
+ ...remediation-investigation-plan-20250619-0000.md |    78 [32m+[m
+ .../audit-report-remediation-plan-20250120-0100.md |   182 [32m+[m
+ .../audit-report-remediation-plan-20250619-01.md   |   103 [32m+[m
+ ...ve-standards-analysis-fact-verified-20250120.md |   224 [32m+[m
+ ...nsive-standards-analysis-final-20250618-2300.md |   202 [32m+[m
+ llm-reports/guideline-conflict-analysis-report.md  |    89 [32m+[m
+ ...e-base-redesign-implementation-20250617-2151.md |   235 [32m+[m
+ ...anagement-methodology-analysis-20250619-0700.md |   198 [32m+[m
+ ...ression-decomposition-report-20250619-064000.md |   142 [32m+[m
+ ...roject-protocol-refinement-analysis-20250619.md |    94 [32m+[m
+ .../remediation-investigation-plan-20250619.md     |   121 [32m+[m
+ ...nsolidation-phase-1-completion-20250618-0250.md |   188 [32m+[m
+ ...ation-project-final-completion-20250618-0350.md |   373 [32m+[m
+ llm-reports/summary-report-20250620-1000.md        |    63 [32m+[m
+ llm-reports/summary-report-20250620-1030.md        |    38 [32m+[m
+ ...undancy-elimination-completion-20250618-1008.md |   211 [32m+[m
+ ...logy-framework-proposal-report-20250620-1200.md |    99 [32m+[m
+ ...methodology-framework-analysis-20250120-1130.md |   487 [32m+[m
+ ...dology-framework-design-report-20250620-1200.md |   267 [32m+[m
+ ...framework-merged-design-report-20250619-1309.md |   283 [32m+[m
+ ...ework-consolidation-completion-20250618-0120.md |   247 [32m+[m
+ ...y-consolidation-reversal-completion-20250120.md |   131 [32m+[m
+ ...l-to-jsonld-registry-migration-20250618-0052.md |   183 [32m+[m
+ ...-placeholder-completion-report-20250617-0648.md |   125 [32m+[m
+ repo-tree.md                                       |    11 [32m+[m[31m-[m
+ standards/archive/consolidation-reversal-20250120  |   169 [32m+[m
+ standards/registry/schema-registry.jsonld          |    18 [32m+[m[31m-[m
+ standards/src/AS-KB-DIRECTORY-STRUCTURE.md         |     6 [32m+[m[31m-[m
+ standards/src/AS-MAP-STANDARDS-KB.md               |    47 [32m+[m[31m-[m
+ standards/src/AS-ROOT-STANDARDS-KB.md              |     4 [32m+[m[31m-[m
+ standards/src/CS-POLICY-COMPLIANCE-ENFORCEMENT.md  |   363 [32m+[m
+ standards/src/GM-CONVENTIONS-NAMING.md             |     4 [32m+[m[31m-[m
+ standards/src/GM-GLOSSARY-STANDARDS-TERMS.md       |    73 [32m+[m[31m-[m
+ standards/src/GM-GUIDE-KB-USAGE.md                 |     5 [32m+[m[31m-[m
+ standards/src/GM-MANDATE-KB-USAGE-GUIDE.md         |     4 [32m+[m[31m-[m
+ standards/src/GM-REGISTRY-GOVERNANCE.md            |    18 [32m+[m[31m-[m
+ standards/src/MT-KEYREF-MANAGEMENT.md              |     4 [32m+[m[31m-[m
+ standards/src/MT-REGISTRY-TAG-GLOSSARY.md          |    42 [32m+[m[31m-[m
+ standards/src/MT-TAGGING-STRATEGY-POLICY.md        |    10 [32m+[m[31m-[m
+ standards/src/MT-TAGS-IMPLEMENTATION.md            |     8 [32m+[m[31m-[m
+ standards/src/OM-AUTOMATION-LLM-IO-SCHEMAS.md      |   305 [32m+[m[31m-[m
+ .../src/OM-AUTOMATION-VALIDATION-REQUIREMENTS.md   |    94 [32m+[m
+ standards/src/OM-CI-CD-INFRASTRUCTURE.md           |   297 [32m+[m
+ standards/src/OM-MONITORING-SYSTEM.md              |     1 [32m+[m
+ standards/src/OM-POLICY-STANDARDS-DEPRECATION.md   |     4 [32m+[m[31m-[m
+ standards/src/OM-POLICY-STANDARDS-GOVERNANCE.md    |   257 [32m+[m[31m-[m
+ standards/src/OM-VERSIONING-CHANGELOGS.md          |     6 [32m+[m[31m-[m
+ standards/src/QM-VALIDATION-METADATA.md            |    94 [32m+[m[31m-[m
+ standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md   |     3 [32m+[m[31m-[m
+ standards/src/SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md  |    73 [32m+[m[31m-[m
+ standards/src/SF-FORMATTING-FILE-HYGIENE.md        |    70 [32m+[m[31m-[m
+ standards/src/SF-FORMATTING-MARKDOWN-GENERAL.md    |   102 [31m-[m
+ standards/src/SF-SYNTAX-BLOCKQUOTES.md             |    95 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-CHARACTER-ESCAPING.md      |    69 [32m+[m
+ standards/src/SF-SYNTAX-CODE-BLOCKS.md             |    87 [32m+[m
+ standards/src/SF-SYNTAX-DEFINITION-LISTS.md        |    89 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-EMPHASIS.md                |    78 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-FOOTNOTES.md               |    60 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-HEADINGS.md                |   122 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-IMAGES.md                  |    86 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-KEY-REFERENCES.md          |    69 [32m+[m
+ standards/src/SF-SYNTAX-LINKS.md                   |    82 [32m+[m
+ standards/src/SF-SYNTAX-LISTS.md                   |   131 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-MARKDOWN-STRUCTURED.md     |   201 [32m+[m
+ standards/src/SF-SYNTAX-TABLES.md                  |   110 [32m+[m[31m-[m
+ standards/src/SF-SYNTAX-TODO-COMMENTS.md           |    76 [32m+[m
+ standards/src/SF-SYNTAX-YAML-FRONTMATTER.md        |    58 [32m+[m[31m-[m
+ standards/src/SF-UTILITIES-MARKDOWN.md             |   137 [32m+[m
+ standards/src/UA-KEYDEFS-GLOBAL.md                 |     3 [32m+[m[31m-[m
+ tools/validation/circular_reference_detector.py    |   358 [32m+[m
+ tools/validation/key_definition_validator.py       |   403 [32m+[m
+ tools/validation/registry_integrity_validator.py   |   283 [32m+[m
+ ...nified-redundancy-validation-20250618-1005.json |    55 [32m+[m
+ .../unified-redundancy-validation-20250618-1005.md |   104 [32m+[m
+ tools/validation/unified_redundancy_validator.py   |   295 [32m+[m
+ 166 files changed, 200902 insertions(+), 1239 deletions(-)

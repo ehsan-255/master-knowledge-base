@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Exact Linter Errors Report - GitHub Actions Execution
 
 **Generated:** 2025-06-04 09:57:00  
@@ -170,4 +187,4 @@
 ### Medium Priority (Warnings - 30 total)
 1. **Broken Links:** Create or fix 'SF-CONVENTIONS-NAMING' standard (16 warnings)
 2. **Tag Prefixes:** Update collection document tags (12 warnings)
-3. **Filename Mismatches:** Rename changelog files (2 warnings) 
+3. **Filename Mismatches:** Rename changelog files (2 warnings)

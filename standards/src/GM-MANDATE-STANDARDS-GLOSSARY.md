@@ -2,19 +2,22 @@
 title: 'Mandate: Standards Glossary Requirements'
 standard_id: GM-MANDATE-STANDARDS-GLOSSARY
 aliases:
-  - Glossary Mandate
-  - Standards Terms Requirement
+- Glossary Mandate
+- Standards Terms Requirement
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/mandate-document
+- content-type/mandate-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/glossary
+- topic/gm
 kb-id: standards
 info-type: mandate-document
 primary-topic: Standards Glossary Requirements
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: GM
 sub_domain: GLOSSARY
 scope_application: Defines mandatory requirements for maintaining a comprehensive
@@ -22,9 +25,9 @@ scope_application: Defines mandatory requirements for maintaining a comprehensiv
 criticality: P2-Medium
 lifecycle_gatekeeper: Governance-Board-Approval
 impact_areas:
-  - Terminology consistency
-  - Standards comprehension
-  - Knowledge management
+- Terminology consistency
+- Standards comprehension
+- Knowledge management
 ---
 # Standard: Mandate for Standards Terminology Glossary (GM-MANDATE-STANDARDS-GLOSSARY)
 
@@ -64,4 +67,4 @@ This standard applies to the governance body responsible for the knowledge base 
 - [[CS-POLICY-TONE-LANGUAGE]] - Which emphasizes consistent use of terminology.
 
 ---
-*This standard (GM-MANDATE-STANDARDS-GLOSSARY) is based on rules 1.1 and 1.2 previously defined in U-GLOSSARY-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the standards terminology glossary.*
+*This standard (GM-MANDATE-STANDARDS-GLOSSARY) is based on rules 1.1 and 1.2 previously defined in U-GLOSSARY-001 (now deprecated and superseded by this standard), rephrasing them as mandates for the existence and content of the standards terminology glossary.*

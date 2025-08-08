@@ -1,22 +1,28 @@
 ---
 title: '{TASK_TITLE_VERB_FIRST}'
-aliases: "N/A"
+aliases: N/A
 tags:
-  - kb-id/templates
-  - content-type/content-template
-  - status/draft
-  - topic/task
+- content-type/content-template
+- content-type/content-template-task
+- criticality/p0-critical
+- kb-id/global
+- kb-id/templates
+- status/draft
+- topic/task
 kb-id: templates
 info-type: content-template-task
 primary-topic: Template for U-SCHEMA-TASK-001 compliant documents
 related-standards:
-  - U-STRUC-002
-  - U-SCHEMA-TASK-001
-version: '0.1.1'
+- U-STRUC-002
+- U-SCHEMA-TASK-001
+version: 0.1.1
 date-created: '2025-05-19'
-date-modified: '2025-05-23'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 # {TASK_TITLE_VERB_FIRST}
 
 {Abstract summarizing the task and its purpose (per U-STRUC-002).}
@@ -55,4 +61,4 @@ date-modified: '2025-05-23'
 
 ## See Also
 
-- [[templates/related-task|Related Task]] 
+- [[templates/related-task|Related Task]]

@@ -1,27 +1,35 @@
 ---
-title: 'Standards Index JSON-LD – Spec Sketch'
+title: Standards Index JSON-LD – Spec Sketch
 standard_id: OM-SPEC-STANDARDS-INDEX-JSONLD
-aliases: ['JSON-LD Index Spec']
+aliases:
+- JSON-LD Index Spec
 tags:
-  - kb-id/tools
-  - content-type/specification
-  - status/draft
-  - topic/automation
-  - topic/indexing
-  - topic/json-ld
-kb-id: 'tools'
-info-type: 'design-specification'
-primary-topic: 'Design specification sketch for the standards_index.json in JSON-LD format.'
+- content-type/design-specification
+- content-type/specification
+- criticality/p2-medium
+- kb-id/global
+- kb-id/tools
+- status/draft
+- topic/automation
+- topic/indexing
+- topic/json-ld
+- topic/om
+kb-id: tools
+info-type: design-specification
+primary-topic: Design specification sketch for the standards_index.json in JSON-LD
+  format.
 related-standards: []
-version: '0.1.0'
+version: 0.1.0
 date-created: '2025-05-27T00:00:00Z'
-date-modified: '2025-05-27T00:00:00Z'
+date-modified: '2025-06-17T02:29:16Z'
 primary_domain: OM
 sub_domain: AUTOMATION
 scope_application: Tooling
-criticality: 'P2-Medium'
-lifecycle_gatekeeper: 'Architect-Review'
-impact_areas: ['Automation', 'Indexing']
+criticality: P2-Medium
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Automation
+- Indexing
 change_log_url: ./changelog.md
 ---
 # Standards Index JSON‑LD – Spec Sketch

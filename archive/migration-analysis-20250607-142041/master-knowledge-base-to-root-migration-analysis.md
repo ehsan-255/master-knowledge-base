@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:13Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Master Knowledge Base to Root Migration Analysis
 
 **Generated**: 2025-01-27 (Analysis Date)  
@@ -201,4 +218,4 @@ Moving the contents of `📁 master-knowledge-base` to the root directory requir
 4. **Relative path relationships** between directories
 5. **Tool configuration** files with path patterns
 
-**RECOMMENDATION**: Implement this migration with extreme caution using automated scripts with comprehensive dry-run testing and backup procedures. 
+**RECOMMENDATION**: Implement this migration with extreme caution using automated scripts with comprehensive dry-run testing and backup procedures.

@@ -1,20 +1,24 @@
 ---
+
 title: 'Policy: Tagging Strategy and Implementation'
 standard_id: MT-TAGGING-STRATEGY-POLICY
 aliases:
-  - Tagging Policy
-  - Tag Strategy
+- Tagging Policy
+- Tag Strategy
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/policy-document
+- content-type/policy-document
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/mt
+- topic/tagging
 kb-id: standards
 info-type: policy-document
 primary-topic: Tagging Strategy and Implementation
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: MT
 sub_domain: TAGGING
 scope_application: Defines the strategy and implementation approach for tagging across
@@ -22,9 +26,9 @@ scope_application: Defines the strategy and implementation approach for tagging 
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content organization
-  - Searchability
-  - Metadata consistency
+- Content organization
+- Searchability
+- Metadata consistency
 ---
 # Policy: Core Tagging Strategy (MT-TAGGING-STRATEGY-POLICY)
 
@@ -87,4 +91,4 @@ This policy applies to all documents within the knowledge base ecosystem that ut
 - [[MT-SCHEMA-FRONTMATTER]] - Defines the `info-type` key and overall frontmatter structure.
 
 ---
-*This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*
+*This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 (now deprecated and superseded by [[MT-TAGS-IMPLEMENTATION]] and this policy).*

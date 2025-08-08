@@ -1,87 +1,61 @@
 {
-  "config_version": "1.0",
-  "engine_settings": {
-    "log_level": "INFO",
-    "quarantine_path": "archive/scribe/quarantine/",
-    "pause_file": ".engine-pause"
+  "config_version": "2.0",
+  "engine": {
+    "watch_paths": ["."],
+    "file_patterns": ["*.md", "*.txt", "*.json"],
+    "max_workers": 4,
+    "enable_hot_reload": true,
+    "health_check_port": 9469
   },
-  "plugins": {
-    "directories": ["actions", "custom_plugins"],
-    "auto_reload": true,
-    "load_order": ["actions", "custom_plugins"]
+  "logging": {
+    "level": "INFO",
+    "format": "structured",
+    "output_path": "tools/reports/scribe-engine.log",
+    "max_file_size": "10MB",
+    "backup_count": 5
   },
   "security": {
-    "allowed_commands": [
-      "git",
-      "make",
-      "npm"
-    ],
-    "restricted_paths": [
-      ".git/",
-      ".vscode/",
-      "node_modules/"
-    ]
+    "enable_mtls": false,
+    "cert_path": "",
+    "key_path": "",
+    "ca_path": "",
+    "audit_enabled": true,
+    "allowed_commands": ["git", "python"],
+    "restricted_paths": [".git/", ".vscode/", "node_modules/", "archive/"]
   },
-  "rules": [
-    {
-      "id": "RULE-001",
-      "name": "Update Task Timestamp on State Change",
+  "plugins": {
+    "directories": ["actions/"],
+    "auto_reload": false,
+    "load_order": [],
+    "manifest_required": true
+  },
+  "performance": {
+    "async_processing": {
       "enabled": true,
-      "file_glob": "**/tasks/*.md",
-      "trigger_pattern": "^(> \\[!TASK\\].*?\\| state: (\\w+).*)$",
-      "actions": [
-        {
-          "type": "update_structured_field",
-          "params": {
-            "field": "updated",
-            "value_template": "{timestamp_utc_iso}"
-          }
-        }
-      ],
-      "error_handling": {
-        "circuit_breaker": {
-          "failure_threshold": 3,
-          "recovery_timeout_seconds": 60
-        }
-      }
+      "max_queue_size": 1000,
+      "worker_count": 4,
+      "batch_size": 10
     },
-    {
-      "id": "RULE-002",
-      "name": "Log File Modifications",
+    "caching": {
       "enabled": true,
-      "file_glob": "*.md",
-      "trigger_pattern": ".*",
-      "actions": [
-        {
-          "type": "log_event",
-          "params": {
-            "message": "File modified",
-            "level": "info"
-          }
-        }
-      ]
+      "max_size": 1000,
+      "ttl_seconds": 3600
     },
-    {
-      "id": "RULE-003",
-      "name": "Run Git Status on Repository Changes",
-      "enabled": true,
-      "file_glob": "*.md",
-      "trigger_pattern": ".*",
-      "actions": [
-        {
-          "type": "run_command",
-          "params": {
-            "command": ["git", "status"],
-            "timeout": 10
-          }
-        }
-      ],
-      "error_handling": {
-        "circuit_breaker": {
-          "failure_threshold": 3,
-          "recovery_timeout_seconds": 60
-        }
-      }
+    "file_optimization": {
+      "use_memory_mapping": true,
+      "streaming_threshold": "1MB"
     }
-  ]
-} 
+  },
+  "circuit_breaker": {
+    "failure_threshold": 5,
+    "recovery_timeout_seconds": 300,
+    "success_threshold": 3
+  },
+  "telemetry": {
+    "enabled": true,
+    "endpoint": "http://localhost:4318/v1/traces",
+    "service_name": "scribe-engine",
+    "sample_rate": 1.0
+  },
+  "rules": []
+}

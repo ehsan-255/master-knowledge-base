@@ -2,6 +2,8 @@
 title: 'Standard: Key-Based Referencing Syntax (U-KEYREF-SYNTAX-001) - DEPRECATED'
 tags:
 - content-type/standard-document
+- criticality/p0-critical
+- kb-id/global
 - kb-id/standards
 - keyref
 - standards-kb/universal
@@ -9,7 +11,7 @@ tags:
 - syntax-rules
 - utility-standards
 date-created: 2025-05-19
-date-modified: '2025-06-02T00:45:19Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
 primary-topic: Defines the syntax for key-based referencing (keyrefs) in KB documents.
@@ -17,6 +19,11 @@ related-standards:
 - U-KEYREF-MANAGEMENT-001
 aliases:
 - Keyref Syntax Standard
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[SF-SYNTAX-KEYREF]].
 
@@ -43,4 +50,4 @@ This document defines the universal standard for the syntax of key-based referen
 | 1.2    | Key names within the placeholder SHOULD follow camelCase convention (e.g., `officialCompanyName`) for readability and consistency, though the ultimate source of truth for key names is `_key_definitions.md`. | `{{key.officialCompanyName}}`                               | Consistency in key naming within `_key_definitions.md` is paramount.         |
 | 1.3    | Whitespace within the curly braces, around the key name or `key.` prefix, is NOT PERMITTED.                                                        | Correct: `{{key.productName}}`. Incorrect: `{{ key.productName }}` | Ensures unambiguous parsing by resolution scripts.                           |
 
-**Cross-References to Other Standard IDs:** [[U-KEYREF-MANAGEMENT-001|U-KEYREF-MANAGEMENT-001]] 
+**Cross-References to Other Standard IDs:** [[U-KEYREF-MANAGEMENT-001|U-KEYREF-MANAGEMENT-001]]

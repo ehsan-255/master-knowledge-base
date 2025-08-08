@@ -1,15 +1,28 @@
 ---
-title: "Content Style & Policies"
-description: "A collection of key policies and standards related to content authoring, tone, language, accessibility, and specific content behaviors from the CS (Content Standards) domain."
-date_generated: "2025-06-07T15:01:09.957869+00:00"
-source_collection_definition_id: "coll_cs_content_policies"
+title: Content Style & Policies
+description: A collection of key policies and standards related to content authoring,
+  tone, language, accessibility, and specific content behaviors from the CS (Content
+  Standards) domain.
+date_generated: '2025-06-07T15:01:09.957869+00:00'
+source_collection_definition_id: coll_cs_content_policies
 number_of_standards: 16
-tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
-info-type: "collection-document" 
-# Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-CS-CONTENT-POLICIES" 
+tags:
+- content-type/collection-document
+- criticality/p0-critical
+- kb-id/global
+- status/published
+- topic/derived-view
+info-type: collection-document
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 ## Table of Contents
 - [Policy: Usage of Admonitions and Callouts (`CS-ADMONITIONS-POLICY`)](#policy-usage-of-admonitions-and-callouts-cs-admonitions-policy)
 - [Policy: Content Profiling and Conditional Text (`CS-CONTENT-PROFILING-POLICY`)](#policy-content-profiling-and-conditional-text-cs-content-profiling-policy)
@@ -121,4 +134,4 @@ info-type: "collection-document"
 
 ## Policy: Table of Contents (ToC) Usage and Generation (CS-TOC-POLICY)
 
-*Error: Content for 'Policy: Table of Contents (ToC) Usage and Generation' (`CS-TOC-POLICY`) could not be loaded. File not found.* 
+*Error: Content for 'Policy: Table of Contents (ToC) Usage and Generation' (`CS-TOC-POLICY`) could not be loaded. File not found.*

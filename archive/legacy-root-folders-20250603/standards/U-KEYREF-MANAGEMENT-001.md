@@ -2,22 +2,30 @@
 title: 'Standard: Key-Based Referencing Management (U-KEYREF-MANAGEMENT-001) - DEPRECATED'
 tags:
 - content-type/standard-document
+- criticality/p0-critical
 - governance
+- kb-id/global
 - kb-id/standards
 - keyref
 - standards-kb/universal
 - status/deprecated
 - utility-standards
 date-created: 2025-05-19
-date-modified: '2025-06-02T00:43:42Z'
+date-modified: '2025-06-17T02:29:13Z'
 version: 0.2.0
 info-type: standard-document
-primary-topic: Defines the management process for key-based referencing (keyrefs) in KB documents.
+primary-topic: Defines the management process for key-based referencing (keyrefs)
+  in KB documents.
 related-standards:
 - U-KEYREF-SYNTAX-001
 - M-SYNTAX-YAML-001
 aliases:
 - Keyref Management Standard
+kb-id: archive
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[MT-KEYREF-MANAGEMENT]].
 
@@ -64,4 +72,4 @@ keys:
 ---
 ```
 
-**Cross-References to Other Standard IDs:** [[U-KEYREF-SYNTAX-001|U-KEYREF-SYNTAX-001]], [[M-SYNTAX-YAML-001|M-SYNTAX-YAML-001]] 
+**Cross-References to Other Standard IDs:** [[U-KEYREF-SYNTAX-001|U-KEYREF-SYNTAX-001]], [[M-SYNTAX-YAML-001|M-SYNTAX-YAML-001]]

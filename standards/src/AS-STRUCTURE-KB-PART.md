@@ -1,13 +1,18 @@
 ---
+
 title: 'Standard: Knowledge Base Part Structure and Overview'
 standard_id: AS-STRUCTURE-KB-PART
 aliases:
 - KB Part Structure
 - Section Overview Standard
 tags:
-- status/draft
-- criticality/p1-high
+- content-type/standard-definition
 - content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/structure
 kb-id: standards
 info-type: standard-definition
 primary-topic: KB Part Structure
@@ -17,10 +22,11 @@ related-standards:
 - GM-CONVENTIONS-NAMING
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:26:37Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the structural requirements for primary sections ('Parts') within a Knowledge Base (KB), focusing on the mandatory overview content.
+scope_application: Defines the structural requirements for primary sections ('Parts')
+  within a Knowledge Base (KB), focusing on the mandatory overview content.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -29,7 +35,6 @@ impact_areas:
 - Authoring consistency
 - User onboarding
 ---
-
 # Standard: Knowledge Base Part Structure and Overview (AS-STRUCTURE-KB-PART)
 
 This standard defines the structural requirements for "Parts" (top-level primary sections) within a Knowledge Base (KB). It focuses on the mandatory overview that must introduce each Part, ensuring clarity and navigability.

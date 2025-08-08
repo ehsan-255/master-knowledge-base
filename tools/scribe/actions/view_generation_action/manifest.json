@@ -1,0 +1,160 @@
+{
+  "manifest_version": "2.2",
+  "plugin_metadata": {
+    "name": "view_generation_action",
+    "version": "2.2.0",
+    "description": "Generates dynamic views and reports from knowledge base data",
+    "author": "Scribe Engine Development Team",
+    "license": "MIT",
+    "type": "L3-Capability",
+    "product": "scribe"
+  },
+  "hma_compliance": {
+    "hma_version": "2.2",
+    "tier_classification": {
+      "mandatory": [
+        "json_schema",
+        "otel_boundary",
+        "mtls"
+      ],
+      "recommended": [
+        "structured_logging",
+        "health_checks",
+        "kubernetes"
+      ],
+      "alternative": []
+    },
+    "boundary_interfaces": [
+      {
+        "port_type": "PluginExecutionPort",
+        "direction": "inbound",
+        "validation": "json_schema",
+        "telemetry": "otel_spans"
+      },
+      {
+        "port_type": "EventBusPort",
+        "direction": "outbound",
+        "validation": "event_schema",
+        "telemetry": "otel_spans"
+      }
+    ]
+  },
+  "runtime_requirements": {
+    "python_version": ">=3.8",
+    "dependencies": {
+      "required": [
+        {
+          "name": "structlog",
+          "version": ">=23.1.0",
+          "tier": "recommended"
+        },
+        {
+          "name": "pyyaml",
+          "version": ">=6.0",
+          "tier": "mandatory"
+        }
+      ],
+      "optional": [
+        {
+          "name": "jinja2",
+          "version": ">=3.0.0",
+          "feature": "Advanced template rendering"
+        },
+        {
+          "name": "markdown",
+          "version": ">=3.4.0",
+          "feature": "Markdown processing"
+        }
+      ]
+    },
+    "platform_support": [
+      "windows",
+      "linux",
+      "macos"
+    ],
+    "resource_limits": {
+      "max_memory_mb": 200,
+      "max_cpu_percent": 25,
+      "max_file_handles": 40
+    }
+  },
+  "interface_contracts": {
+    "action_interface": {
+      "entry_point": "view_generation_action.ViewGenerationAction",
+      "configuration_schema": {
+        "type": "object",
+        "properties": {
+          "template_path": {
+            "type": "string",
+            "description": "Path to view template file"
+          },
+          "data_sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "yaml",
+                    "json",
+                    "markdown",
+                    "csv"
+                  ]
+                }
+              }
+            },
+            "description": "Data sources for view generation"
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Output path for generated view"
+          },
+          "refresh_interval": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Auto-refresh interval in seconds (0 = disabled)"
+          }
+        }
+      },
+      "event_patterns": [
+        {
+          "event_type": "file_modified",
+          "file_patterns": [
+            "*.template",
+            "*view*.yaml"
+          ],
+          "priority": 5
+        }
+      ],
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "view_generated": {
+            "type": "boolean"
+          },
+          "data_sources_processed": {
+            "type": "integer"
+          },
+          "output_size_bytes": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "lifecycle_hooks": {
+      "health_check": "health_check"
+    }
+  },
+  "security": {
+    "permissions": [
+      "file_read",
+      "file_write"
+    ],
+    "sandbox_compatible": true,
+    "mtls_required": true
+  }
+}

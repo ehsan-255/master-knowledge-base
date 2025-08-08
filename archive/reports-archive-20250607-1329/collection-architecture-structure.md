@@ -1,15 +1,28 @@
 ---
-title: "Architecture & Structure Standards"
-description: "A collection of key standards related to overall knowledge base architecture, information structure, and schema definitions from the AS (Architecture & Structure) domain."
-date_generated: "2025-06-07T15:01:09.922652+00:00"
-source_collection_definition_id: "coll_as_arch_structure"
+title: Architecture & Structure Standards
+description: A collection of key standards related to overall knowledge base architecture,
+  information structure, and schema definitions from the AS (Architecture & Structure)
+  domain.
+date_generated: '2025-06-07T15:01:09.922652+00:00'
+source_collection_definition_id: coll_as_arch_structure
 number_of_standards: 15
-tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
-info-type: "collection-document" 
-# Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-AS-ARCH-STRUCTURE" 
+tags:
+- content-type/collection-document
+- criticality/p0-critical
+- kb-id/global
+- status/published
+- topic/derived-view
+info-type: collection-document
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 ## Table of Contents
 - [Master Knowledge Base Index (`AS-INDEX-KB-MASTER`)](#master-knowledge-base-index-as-index-kb-master)
 - [Knowledge Base Directory Structure Standard (`AS-KB-DIRECTORY-STRUCTURE`)](#knowledge-base-directory-structure-standard-as-kb-directory-structure)
@@ -114,4 +127,4 @@ info-type: "collection-document"
 
 ## Standard: Templates Directory Structure and Usage (AS-STRUCTURE-TEMPLATES-DIRECTORY)
 
-*Error: Content for 'Standard: Templates Directory Structure and Usage' (`AS-STRUCTURE-TEMPLATES-DIRECTORY`) could not be loaded. File not found.* 
+*Error: Content for 'Standard: Templates Directory Structure and Usage' (`AS-STRUCTURE-TEMPLATES-DIRECTORY`) could not be loaded. File not found.*

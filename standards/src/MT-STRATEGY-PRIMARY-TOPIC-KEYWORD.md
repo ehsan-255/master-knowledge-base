@@ -1,21 +1,26 @@
 ---
+
 title: 'Standard: Primary Topic Keyword Strategy'
 standard_id: MT-STRATEGY-PRIMARY-TOPIC-KEYWORD
 aliases:
-  - Primary Topic Strategy
-  - Topic Keywords
+- Primary Topic Strategy
+- Topic Keywords
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/frontmatter
+- topic/mt
 kb-id: standards
 info-type: standard-definition
 primary-topic: Primary Topic Keyword Strategy
 related-standards:
-  - MT-SCHEMA-FRONTMATTER
+- MT-SCHEMA-FRONTMATTER
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: MT
 sub_domain: FRONTMATTER
 scope_application: Defines the strategy for selecting and formatting primary topic
@@ -23,9 +28,9 @@ scope_application: Defines the strategy for selecting and formatting primary top
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content categorization
-  - Search optimization
-  - Metadata consistency
+- Content categorization
+- Search optimization
+- Metadata consistency
 ---
 # Standard: Primary Topic Keyword Strategy
 
@@ -54,10 +59,10 @@ The `primary-topic` key serves several functions:
 
 ### 3.2. Relationship to Title and `standard_id`
 *   **For Standards and Policies:**
-    *   If the document has a `standard_id` (e.g., `AS-STRUCTURE-KB-ROOT`, `CS-POLICY-KB-ROOT`), the `primary-topic` can often be derived from the descriptive part of the `standard_id`.
+    *   If the document has a `standard_id` (e.g., `AS-STRUCTURE-KB-ROOT`, `AS-STRUCTURE-DOC-CHAPTER`), the `primary-topic` can often be derived from the descriptive part of the `standard_id`.
     *   To ensure differentiation, especially for related concepts (like a standard defining a structure vs. a policy for that structure), the `primary-topic` should clearly reflect the document's specific intent.
         *   Example for `standard_id: AS-STRUCTURE-KB-ROOT` (`info-type: standard-definition`): `primary-topic: "Knowledge Base Root Structure"`
-        *   Example for `standard_id: CS-POLICY-KB-ROOT` (`info-type: policy-document`): `primary-topic: "Policy for Knowledge Base Root"`
+        *   Example for `standard_id: AS-STRUCTURE-DOC-CHAPTER` (`info-type: standard-definition`): `primary-topic: "Document Chapter Structure"`
     *   It MAY be a slightly more descriptive version of the `standard_id`'s core concept if the `standard_id` is very terse.
 *   **For Other Documents:**
     *   The `primary-topic` should generally be a condensed version or the most significant keyword from the `title`.
@@ -83,7 +88,7 @@ The `primary-topic` key serves several functions:
 
 2.  **Policy Document:**
     *   `title: "Policy: Content Review and Approval for KB Root"`
-    *   `standard_id: "CS-POLICY-KB-ROOT-REVIEW"`
+    *   `standard_id: "AS-STRUCTURE-KB-ROOT-REVIEW"`
     *   `info-type: "policy-document"`
     *   `primary-topic: "Policy for KB Root Review"`
 

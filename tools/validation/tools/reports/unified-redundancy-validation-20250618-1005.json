@@ -1,0 +1,55 @@
+{
+  "timestamp": "2025-06-18T10:05:05.476041",
+  "validation_type": "unified_redundancy_validation",
+  "validator_results": {
+    "registry_integrity": {
+      "timestamp": "2025-06-18T10:05:05.476041",
+      "validation_type": "registry_integrity",
+      "errors": [
+        "Critical: AS-MAP-STANDARDS-KB.md not found at standards\\src\\AS-MAP-STANDARDS-KB.md"
+      ],
+      "warnings": [
+        "Cross-validation: 0 standards found in filesystem"
+      ],
+      "summary": {
+        "total_errors": 1,
+        "total_warnings": 1,
+        "status": "FAIL"
+      }
+    },
+    "circular_references": {
+      "timestamp": "2025-06-18T10:05:05.478037",
+      "validation_type": "circular_reference_detection",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "total_errors": 0,
+        "total_warnings": 0,
+        "status": "PASS",
+        "reference_count": 0,
+        "documents_analyzed": 0
+      }
+    },
+    "key_definitions": {
+      "timestamp": "2025-06-18T10:05:05.480037",
+      "validation_type": "key_definition_validation",
+      "errors": [
+        "Critical: UA-KEYDEFS-GLOBAL.md not found at standards\\src\\UA-KEYDEFS-GLOBAL.md"
+      ],
+      "warnings": [],
+      "summary": {
+        "total_errors": 1,
+        "total_warnings": 0,
+        "status": "FAIL",
+        "keys_analyzed": 0,
+        "categories_found": 0
+      }
+    }
+  },
+  "summary": {
+    "total_errors": 2,
+    "total_warnings": 1,
+    "validators_run": 3,
+    "overall_status": "FAIL"
+  }
+}

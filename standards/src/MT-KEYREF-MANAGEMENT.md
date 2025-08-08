@@ -1,26 +1,31 @@
 ---
+
 title: 'Standard: Key Definition Management and Storage'
 standard_id: MT-KEYREF-MANAGEMENT
 aliases:
-  - Keyref Management
-  - Key Definition Standard
-  - U-KEYREF-MANAGEMENT-001
+- Keyref Management
+- Key Definition Standard
+- U-KEYREF-MANAGEMENT-001
 tags:
-  - status/draft
-  - content-type/standard-definition
-  - topic/keyref
-  - topic/metadata-management
+- content-type/standard-definition
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/keyref
+- topic/metadata-management
+- topic/mt
+- topic/registry
 kb-id: standards
 info-type: standard-definition
 primary-topic: Defines the storage, structure, and management process for global key
   definitions used in key-based referencing (keyrefs).
 related-standards:
-  - SF-SYNTAX-KEYREF
-  - SF-SYNTAX-YAML-FRONTMATTER
-  - UA-KEYDEFS-GLOBAL
+- SF-SYNTAX-KEYREF
+- SF-SYNTAX-YAML-FRONTMATTER
+- UA-KEYDEFS-GLOBAL
 version: 1.0.0
 date-created: '2025-05-30T12:00:00Z'
-date-modified: '2025-05-30T21:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: MT
 sub_domain: REGISTRY
 scope_application: Governs the management of the central _key_definitions.md file
@@ -28,10 +33,10 @@ scope_application: Governs the management of the central _key_definitions.md fil
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content consistency
-  - Maintainability
-  - Automation (keyref resolution)
-  - Authoring workflow
+- Content consistency
+- Maintainability
+- Automation (keyref resolution)
+- Authoring workflow
 ---
 # Standard: Key Definition Management and Storage (MT-KEYREF-MANAGEMENT)
 

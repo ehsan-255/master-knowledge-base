@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scribe.engine/schemas/scribe-config.schema.json",
+  "title": "Scribe Engine Configuration",
+  "description": "Configuration schema for Scribe v2.0 engine with HMA v2.2 compliance",
+  "type": "object",
+  "required": ["engine", "logging", "rules"],
+  "properties": {
+    "engine": {
+      "type": "object",
+      "required": ["watch_paths", "file_patterns"],
+      "properties": {
+        "watch_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "Paths to monitor for file system events"
+        },
+        "file_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File patterns to match (glob syntax)"
+        },
+        "queue_maxsize": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 100,
+          "description": "Maximum size of event queue (0 = unlimited)"
+        },
+        "health_port": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 65535,
+          "default": 9469,
+          "description": "Port for health check endpoint"
+        },
+        "worker_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32,
+          "default": 4,
+          "description": "Number of worker threads"
+        },
+        "retry_attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "default": 3,
+          "description": "Maximum retry attempts for failed actions"
+        },
+        "retry_delay_seconds": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 60,
+          "default": 1.0,
+          "description": "Delay between retry attempts"
+        }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+          "default": "INFO",
+          "description": "Logging level"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["structured", "plain"],
+          "default": "structured",
+          "description": "Log format type"
+        },
+        "output_file": {
+          "type": "string",
+          "description": "Path to log output file (optional)"
+        },
+        "max_file_size_mb": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 10,
+          "description": "Maximum log file size in MB"
+        },
+        "backup_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 5,
+          "description": "Number of backup log files to keep"
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "patterns", "actions"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique name for the rule"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the rule"
+          },
+          "patterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "description": "File patterns this rule applies to"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["type", "params"],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Action type (must match plugin action type)"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Action-specific parameters"
+                },
+                "enabled": {
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Whether this action is enabled"
+                },
+                "priority": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10,
+                  "default": 5,
+                  "description": "Action execution priority"
+                }
+              }
+            },
+            "minItems": 1,
+            "description": "Actions to execute when pattern matches"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether this rule is enabled"
+          },
+          "circuit_breaker": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": true,
+                "description": "Whether circuit breaker is enabled for this rule"
+              },
+              "failure_threshold": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 5,
+                "description": "Number of failures before opening circuit"
+              },
+              "recovery_timeout_seconds": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3600,
+                "default": 60,
+                "description": "Seconds to wait before attempting recovery"
+              },
+              "success_threshold": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 3,
+                "description": "Number of successes needed to close circuit"
+              }
+            }
+          }
+        }
+      },
+      "description": "List of rules defining file patterns and actions"
+    },
+    "security": {
+      "type": "object",
+      "properties": {
+        "allowed_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Paths where file operations are allowed"
+        },
+        "blocked_commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Commands that are blocked from execution"
+        },
+        "max_file_size_mb": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 100,
+          "description": "Maximum file size for operations in MB"
+        },
+        "enable_sandbox": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable sandboxed execution"
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether OpenTelemetry is enabled"
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "OpenTelemetry collector endpoint"
+        },
+        "service_name": {
+          "type": "string",
+          "default": "scribe-engine",
+          "description": "Service name for telemetry"
+        },
+        "sampling_rate": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 1.0,
+          "description": "Trace sampling rate (0.0 to 1.0)"
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "max_concurrent_actions": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 10,
+          "description": "Maximum concurrent action executions"
+        },
+        "action_timeout_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600,
+          "default": 300,
+          "description": "Timeout for action execution"
+        },
+        "memory_limit_mb": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 8192,
+          "default": 1024,
+          "description": "Memory limit for engine process"
+        },
+        "enable_caching": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to enable result caching"
+        },
+        "cache_ttl_seconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 86400,
+          "default": 3600,
+          "description": "Cache time-to-live in seconds"
+        }
+      }
+    }
+  }
+}

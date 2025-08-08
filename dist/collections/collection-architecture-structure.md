@@ -1,15 +1,28 @@
 ---
-title: "Architecture & Structure Standards"
-description: "A collection of key standards related to overall knowledge base architecture, information structure, and schema definitions from the AS (Architecture & Structure) domain."
-date_generated: "2025-06-04T22:19:33.618643+00:00"
-source_collection_definition_id: "coll_as_arch_structure"
+title: Architecture & Structure Standards
+description: A collection of key standards related to overall knowledge base architecture,
+  information structure, and schema definitions from the AS (Architecture & Structure)
+  domain.
+date_generated: '2025-06-17T05:20:09.417933+00:00'
+source_collection_definition_id: coll_as_arch_structure
 number_of_standards: 15
-tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
-info-type: "collection-document" 
-# Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-AS-ARCH-STRUCTURE" 
+tags:
+- content-type/collection-document
+- criticality/p0-critical
+- kb-id/global
+- status/published
+- topic/derived-view
+info-type: collection-document
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+kb-id: dist
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 ## Table of Contents
 - [Master Knowledge Base Index (`AS-INDEX-KB-MASTER`)](#master-knowledge-base-index-as-index-kb-master)
 - [Knowledge Base Directory Structure Standard (`AS-KB-DIRECTORY-STRUCTURE`)](#knowledge-base-directory-structure-standard-as-kb-directory-structure)
@@ -30,33 +43,7 @@ info-type: "collection-document"
 
 ## Master Knowledge Base Index (AS-INDEX-KB-MASTER)
 
-# Master Knowledge Base Index
-
-This document provides a centralized directory to all active Knowledge Bases (KBs) within this ecosystem. For the standard defining how this index file should be structured, see `[[AS-STRUCTURE-MASTER-KB-INDEX]]`.
-
-## Available Knowledge Bases
-
-Below is a list of currently available Knowledge Bases. Each KB is a self-contained unit focused on a specific domain or purpose.
-
-1.  **Standards Knowledge Base**
-    *   **Description:** Contains all standards, policies, guidelines, and supporting documentation for creating, managing, and governing content within the entire knowledge ecosystem. This is the meta-KB that defines how other KBs operate.
-    *   **Entry Point:** `[Standards Knowledge Base Root](#standards-knowledge-base-root-as-root-standards-kb)`
-    *   **Primary Folder:** `/standards/`
-
-2.  **LLM Content Generation Cookbook KB**
-    *   **Description:** Provides practical recipes, prompt templates, and best practices for using Large Language Models (LLMs) to assist with content creation, analysis, and other knowledge work.
-    *   **Entry Point:** `[[TODO-LLM-COOKBOOK-ROOT-ID]]` (Link to the root file of the LLM Cookbook KB once its ID is known or it's created)
-    *   **Primary Folder:** `/master-knowledge-base/llm-content-generation-cookbook/` (Assumed path)
-
-3.  **Research Methodology KB**
-    *   **Description:** Focuses on research design, data collection, analysis, and open science practices for generating complex workflows.
-    *   **Entry Point:** `[[TODO-RESEARCH-METHODOLOGY-ROOT-ID]]` (Link to the root file of the Research Methodology KB once its ID is known or it's created)
-    *   **Primary Folder:** `/master-knowledge-base/research-methodology-kb/` (Assumed path)
-
-> [!TODO] This index needs to be kept up-to-date as new Knowledge Bases are added or existing ones are retired. Links to the entry points (`root.md` or equivalent `AS-ROOT-*-KB.md` files) of each KB must be accurate. Placeholder links like `[[TODO-LLM-COOKBOOK-ROOT-ID]]` need to be resolved.
-
----
-This master index is crucial for navigating the multi-KB environment.
+*Error: Content for 'Master Knowledge Base Index' (`AS-INDEX-KB-MASTER`) could not be loaded. File not found.* 
 
 ---
 
@@ -84,7 +71,7 @@ Within `standards/`, the following specialized directories are used:
 *   **`/standards/registry/` (Task 0.4.2)**
     *   **Purpose:** This directory houses all controlled vocabulary manifests and registry definition files.
     *   **Content:** YAML files (`.yaml`) or Markdown files (`.md`) that define terms, codes, and their meanings for various metadata fields (e.g., domain codes, status tags, criticality levels).
-    *   **Examples:** `domain_codes.yaml`, `tag-glossary-definition.md`.
+    *   **Examples:** `mt-schema-frontmatter.yaml`, `mt-registry-tag-glossary.yaml`.
 
 *   **`/standards/templates/` (Task 0.4.3)**
     *   **Purpose:** This directory contains standard templates for creating new documents.
@@ -213,10 +200,10 @@ The following sections categorize and link to the core documents that define our
     - [[CS-MODULARITY-TRANSCLUSION-POLICY|Policy: Content Modularity and Use of Transclusion]]
     - [[CS-POLICY-ACCESSIBILITY|Policy: Content Accessibility]]
     - [[CS-POLICY-DIGITAL-ABSTRACTION|Policy: Translating Non-Digital Concepts for Digital Workflows]]
-    - [[CS-POLICY-DOC-CHAPTER-CONTENT|Policy: Content Organization and Heading Usage in Chapters]]
+    - [[AS-STRUCTURE-DOC-CHAPTER|Standard: Content Document (Chapter) Internal Structure]]
     - [[CS-POLICY-KB-IDENTIFICATION|Policy: Unique Knowledge Base Identification and Naming]]
     - [[CS-POLICY-KB-PART-CONTENT|Policy: Content Organization within Knowledge Base Parts]]
-    - [[CS-POLICY-KB-ROOT|Policy: Consistent Application of Knowledge Base Root Structure]]
+    - [[AS-STRUCTURE-KB-ROOT|Standard: Knowledge Base Root Structure]]
     - [[CS-POLICY-LAYERED-INFORMATION|Policy: Layered Information Presentation and Progressive Disclosure]]
 
 ### 4. Metadata, Tagging, and Registries (MT Domain)
@@ -836,7 +823,7 @@ This standard applies to all non-Markdown files that are part of a Knowledge Bas
 
 # Standard: Content Document (Chapter) Internal Structure (AS-STRUCTURE-DOC-CHAPTER)
 
-This standard defines the mandatory internal structure for primary content documents, typically referred to as "Chapters." Adherence ensures consistency, readability, and supports automated processing.
+This standard defines the mandatory internal structure and content organization for primary content documents, typically referred to as "Chapters." Adherence ensures consistency, readability, semantic structure, and supports automated processing.
 
 ## 1. Rules for Chapter Structure
 
@@ -863,12 +850,32 @@ A Table of Contents (ToC) MUST follow the Topic Abstract. This ToC should link t
     *   Manual creation of the ToC or the use of a user's chosen authoring tool/plugin is acceptable. The key is the presence and accuracy of the ToC.
     *   Links MUST use the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX]].
 
-### Rule 1.4: Concluding "Summary" Section (Derived from U-STRUC-002, Rule 2.6)
+### Rule 1.4: Hierarchical Content Organization (Derived from U-STRUC-002, Rule 2.4)
+Content within a "Chapter" document MUST be organized using hierarchical Markdown headings (H2 through H6). Heading levels MUST NOT be skipped.
+*   **Example:** An H2 heading may be followed by an H3, but not directly by an H4.
+    ```markdown
+    ## Section 1 (H2)
+    ### Subsection 1.1 (H3)
+    #### Detail A (H4)
+    ### Subsection 1.2 (H3)
+    ## Section 2 (H2)
+    ```
+*   **Notes:**
+    *   The H1 heading is reserved for the document title as per Rule 1.1.
+    *   Adherence to the specific Markdown syntax for headings defined in [[SF-SYNTAX-HEADINGS]] is mandatory.
+
+### Rule 1.5: H2 Sections as Major Sub-Topics (Derived from U-STRUC-002, Rule 2.5)
+Each H2 section within a "Chapter" document MUST represent a major sub-topic of that chapter.
+*   **Guidance:**
+    *   H2 sections break down the chapter's primary subject (defined by the H1/title) into its core components or logical divisions.
+    *   If an H2 section becomes too long or covers too many distinct ideas, it should be further subdivided using H3 headings, or potentially split into a separate chapter if the sub-topic is substantial enough.
+
+### Rule 1.6: Concluding "Summary" Section (Derived from U-STRUC-002, Rule 2.6)
 A concluding section, typically titled "Summary" and formatted as an H2 heading, MUST be included at the end of the main content.
 *   **Example:** `## Summary`
 *   **Content:** This section should briefly reiterate the main points or key takeaways of the document.
 
-### Rule 1.5: "See Also" Section (Derived from U-STRUC-002, Rule 2.7)
+### Rule 1.7: "See Also" Section (Derived from U-STRUC-002, Rule 2.7)
 If relevant cross-references exist, a section titled "See Also" and formatted as an H2 heading MUST be included after the "Summary" section.
 *   **Example:**
     ```markdown
@@ -879,7 +886,21 @@ If relevant cross-references exist, a section titled "See Also" and formatted as
 *   **Content:** This section should contain a list of links to related documents, standards, or sections that provide further context or information.
 *   **Notes:** Links MUST use the syntax defined in [[SF-LINKS-INTERNAL-SYNTAX]]. If no relevant cross-references exist, this section may be omitted.
 
-## 2. Illustrative Example
+## 2. Rationale and Importance
+
+Adherence to this standard is crucial for:
+
+*   **Readability and Scannability:** A clear and consistent heading hierarchy allows readers to easily scan the document, understand its structure, and locate specific information.
+*   **Accessibility:** Screen readers and other assistive technologies rely on proper heading structures to provide navigation and context to users with disabilities. Skipping heading levels or using them non-semantically can create significant accessibility barriers.
+*   **Semantic Structure and Machine Processing:** Correct heading hierarchy provides a clear semantic structure that can be understood by machines. This is vital for:
+    *   Automated generation of accurate Tables of Contents.
+    *   Content indexing and search engine optimization.
+    *   AI-driven content summarization, analysis, or repurposing.
+    *   Automated quality checks and validation.
+*   **Authoring Consistency:** Clear rules on heading usage simplify the authoring process and ensure a uniform look and feel across all documents.
+*   **Maintainability:** Well-structured documents are easier to understand, update, and maintain over time.
+
+## 3. Illustrative Example
 
 ### Partial structure of a Chapter document (e.g., `01-introduction.md`):
 
@@ -908,18 +929,22 @@ Research can be broadly categorized into qualitative and quantitative approaches
 This chapter provided an overview of research methodology, defined key terms, and highlighted the importance of a structured approach to investigation.
 
 ## See Also
-- [[CS-POLICY-DOC-CHAPTER-CONTENT]]
+- [[AS-STRUCTURE-KB-PART]]
 - [[CONCEPT-CORE-RESEARCH-METHODOLOGY]]
 ```
 
-## 3. Cross-References
-- [[CS-POLICY-DOC-CHAPTER-CONTENT]] - Policy for content organization and heading usage within Chapters.
+## 4. Scope of Application
+
+This standard applies to all "Chapter" documents across all Knowledge Bases within the repository.
+
+## 5. Cross-References
 - [[SF-SYNTAX-HEADINGS]] - Standard for Markdown Heading Syntax.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Standard for Internal Linking Syntax.
+- [[AS-STRUCTURE-KB-PART]] - Standard for Knowledge Base Part Structure and Overview.
 - [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions (if relevant to chapter file naming).
 
 ---
-*This standard (AS-STRUCTURE-DOC-CHAPTER) is based on rules 2.1, 2.2, 2.3, 2.6, and 2.7 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md.*
+*This standard (AS-STRUCTURE-DOC-CHAPTER) consolidates and is based on rules 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, and 2.7 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md. This version 2.0.0 incorporates content organization requirements previously defined in CS-POLICY-DOC-CHAPTER-CONTENT.*
 
 ---
 
@@ -996,7 +1021,7 @@ This part lays the groundwork for understanding the core principles and initial 
 
 # Standard: Knowledge Base Root Structure (AS-STRUCTURE-KB-ROOT)
 
-This standard defines the mandatory structure for the root level of any Knowledge Base (KB), including the root file (`root.md`) and the organization of its top-level sections, referred to as "Parts."
+This standard defines the mandatory structure for the root level of any Knowledge Base (KB), including the root file (`root.md`), the organization of its top-level sections ("Parts"), and the requirements for consistent application of structural choices within each KB.
 
 ## 1. Rules for KB Root Structure
 
@@ -1017,12 +1042,27 @@ The `root.md` file MUST contain a master Table of Contents (ToC) that links to a
 ### Rule 1.4: Top-Level "Parts" in Larger KBs (Sub-folders)
 For **larger KBs**, top-level "Parts" (primary sections) MUST be implemented as distinct sub-folders within the primary KB folder. Each such sub-folder represents one "Part".
 *   **Example:** `research-methodology-kb/part-i-foundations/`
-*   **Notes:** Folder naming MUST adhere to [[GM-CONVENTIONS-NAMING]]. The decision criterion for "larger" versus "smaller" is further discussed in [[CS-POLICY-KB-ROOT]].
+*   **Notes:** Folder naming MUST adhere to [[GM-CONVENTIONS-NAMING]]. The decision criterion for "larger" versus "smaller" is defined in Rule 1.6.
 
 ### Rule 1.5: Top-Level "Parts" in Smaller KBs (`root.md` Sections)
 For **smaller or moderately sized KBs**, top-level "Parts" (primary sections) MUST be major H1 sections (often rendered as H2 in the context of the `root.md` document itself, following the main H1 title of `root.md`) directly within the `root.md` file. Content for these Parts can be nested directly or linked to subordinate files within the same primary KB folder.
 *   **Example (Heading in `root.md`):** `## Part I: Core Methods`
-*   **Notes:** The decision criterion for "smaller" versus "larger" is further discussed in [[CS-POLICY-KB-ROOT]].
+*   **Notes:** The decision criterion for "smaller" versus "larger" is defined in Rule 1.6.
+
+### Rule 1.6: Consistent Structure for "Parts" (Derived from U-ARCH-001, Rule 1.6)
+The chosen method for organizing top-level "Parts" — either as distinct sub-folders (for larger KBs) or as major H1 sections within the `root.md` file (for smaller KBs) — MUST be consistently applied throughout a single Knowledge Base.
+*   **Guidance:** A KB should not mix these two approaches. For instance, one Part should not be a sub-folder while another Part in the same KB is an H1 section in `root.md`.
+*   **Decision Criteria for "Larger" vs. "Smaller" KBs:**
+    *   **Number of Top-Level Parts:** If a KB is anticipated to have more than 5-7 top-level Parts, using sub-folders is generally recommended.
+    *   **Depth of Content within Parts:** If individual Parts are expected to contain a large number of "Chapters" or deep sub-sections, sub-folders provide better organization from the outset.
+    *   **Complexity of `root.md`:** If the `root.md` file becomes excessively long or difficult to manage due to numerous H1 sections and their inline ToCs, transitioning to sub-folders for Parts is advisable.
+    *   **Team Size and Collaboration:** Larger teams or more complex collaborative environments may benefit from the clearer separation provided by sub-folders.
+*   **Rationale:** 
+    *   **User Experience & Navigability:** A consistent structure makes it easier for users to understand, navigate, and predict how content is organized within any given KB.
+    *   **Authoring Consistency:** Clear rules on KB structure simplify the authoring process, as contributors do not have to guess how to organize new top-level sections.
+    *   **Maintainability:** Uniformity in structure reduces complexity when performing maintenance tasks, refactoring content, or applying batch updates.
+    *   **Automation & Tooling:** Automated tools for validation, indexing, or building KB views rely on predictable structures.
+    *   **Scalability:** This rule ensures that the chosen option is applied uniformly, supporting clearer growth paths for KBs.
 
 ## 2. Illustrative Examples
 
@@ -1049,15 +1089,18 @@ This knowledge base provides comprehensive guidance on research methodologies...
 ```
 *(Note: The example links above are illustrative path-based links. Per [[SF-LINKS-INTERNAL-SYNTAX]], these should ideally be `[[STANDARD_ID]]` or `[[FILENAME_ID_PLACEHOLDER]]` links once target IDs are defined and resolvable.)*
 
-## 3. Cross-References
-- [[CS-POLICY-KB-ROOT]] - Policy for consistent application of KB root structures.
+## 3. Scope of Application
+
+This standard applies to all Knowledge Bases developed and maintained within the organization.
+
+## 4. Cross-References
 - [Knowledge Base Directory Structure Standard](#knowledge-base-directory-structure-standard-as-kb-directory-structure) - Defines overall repository and master knowledge base directory structures.
+- [[AS-STRUCTURE-KB-PART]] - Primary KB Section ("Part") Structure.
 - [[GM-CONVENTIONS-NAMING]] - File and Folder Naming Conventions.
 - [[SF-LINKS-INTERNAL-SYNTAX]] - Internal Linking Syntax Standard.
-- [[AS-STRUCTURE-KB-PART]] - Primary KB Section ("Part") Structure.
 
 ---
-*This standard (AS-STRUCTURE-KB-ROOT) is based on rules 1.1-1.5 previously defined in U-ARCH-001 from COL-ARCH-UNIVERSAL.md.*
+*This standard (AS-STRUCTURE-KB-ROOT) consolidates and is based on rules 1.1-1.6 previously defined in U-ARCH-001 from COL-ARCH-UNIVERSAL.md. This version 2.0.0 incorporates consistency requirements previously defined in CS-POLICY-KB-ROOT.*
 
 ---
 

@@ -1,15 +1,28 @@
 ---
-title: "Metadata, Tagging & Registry Standards"
-description: "A collection of key standards for document metadata (frontmatter), tagging strategy, key references, and registry management from the MT (Metadata & Tagging) domain."
-date_generated: "2025-06-04T22:19:33.653412+00:00"
-source_collection_definition_id: "coll_mt_metadata_tagging"
+title: Metadata, Tagging & Registry Standards
+description: A collection of key standards for document metadata (frontmatter), tagging
+  strategy, key references, and registry management from the MT (Metadata & Tagging)
+  domain.
+date_generated: '2025-06-17T05:20:09.439804+00:00'
+source_collection_definition_id: coll_mt_metadata_tagging
 number_of_standards: 6
-tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
-info-type: "collection-document" 
-# Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-MT-METADATA-TAGGING" 
+tags:
+- content-type/collection-document
+- criticality/p0-critical
+- kb-id/global
+- status/published
+- topic/derived-view
+info-type: collection-document
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+kb-id: dist
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 ## Table of Contents
 - [Standard: Key Definition Management and Storage (`MT-KEYREF-MANAGEMENT`)](#standard-key-definition-management-and-storage-mt-keyref-management)
 - [Master Tag Glossary and Registry (`MT-REGISTRY-TAG-GLOSSARY`)](#master-tag-glossary-and-registry-mt-registry-tag-glossary)
@@ -258,6 +271,16 @@ Adherence to this schema is crucial for maintaining consistency across the knowl
 
 For rules regarding the syntax of YAML frontmatter itself (e.g., the use of `---` delimiters), refer to `[[SF-SYNTAX-YAML-FRONTMATTER]]`. For requirements related to file encoding, line endings, and other file hygiene aspects, see `[[SF-FORMATTING-FILE-HYGIENE]]`.
 
+## Single Source of Truth Architecture
+
+**This document is maintained using the JSON-LD SST workflow**:
+
+- **Authoritative Source**: JSON-LD files in `standards/registry/` (schema-registry.jsonld, contexts/fields.jsonld)
+- **Human-Readable Views**: Generated using `tools/view_generator.py` from JSON-LD SST
+- **Change Process**: Submit YAML change requests to `change-requests/` directory
+- **Updates**: Changes are applied to JSON-LD SST via Scribe workflow automation
+- **Documentation**: This document reflects current JSON-LD schema definitions
+
 ## Overall Structure and Key Order
 
 The YAML frontmatter block MUST contain the following keys in the specified order. This order integrates the original 10 keys and the 7 new extension keys.
@@ -285,113 +308,144 @@ This order is **mandatory**.
 
 ## Detailed Key Definitions
 
+## Detailed Key Definitions
+
 ### `title`
-*   **Description/Purpose:** The official title of the document.
+*   **Description/Purpose:** The official title of the document
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Must not be empty.
+*   **Validation Rules & Constraints:** Must not be empty
 
 ### `standard_id`
-*   **Description/Purpose:** A unique identifier for a standard document.
-*   **Mandatory/Optional:** Mandatory for `info-type` values such as `standard-definition`, `policy-document`. Optional for other document types, but recommended if the document has a canonical identifier.
+*   **Description/Purpose:** A unique identifier for a standard document
+*   **Mandatory/Optional:** Conditional.
+    - Required for info-type: standard-definition, policy-document
+    - Optional for other document types, but recommended if document has canonical identifier
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** MUST follow the regex pattern: `^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$`. The filename of the document (excluding the `.md` extension) SHOULD be identical to the `standard_id`.
+*   **Validation Rules & Constraints:**
+    - MUST follow regex pattern: ^[A-Z]{2}-[A-Z]{2,6}-[A-Z0-9\-]+$
+    - Filename (excluding .md extension) SHOULD be identical to standard_id
 
 ### `aliases`
-*   **Description/Purpose:** A list of alternative names or titles by which the document might be known.
+*   **Description/Purpose:** A list of alternative names or titles by which the document might be known
 *   **Mandatory/Optional:** Optional.
 *   **Data Type:** List of Strings.
-*   **Validation Rules & Constraints:** None beyond being a list of strings.
+*   **Validation Rules & Constraints:** None beyond being a list of strings
 
 ### `tags`
-*   **Description/Purpose:** A list of keywords or labels used to categorize the document. Tags help in searching, filtering, and understanding the document's context.
+*   **Description/Purpose:** A list of keywords or labels used to categorize the document
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** List of Strings.
-*   **Validation Rules & Constraints:** All tags MUST be in kebab-case. The list MUST include tags from specific categories, such as `status/*`, `content-type/*`, and `topic/*`. For a comprehensive list of allowed tags and their meanings, refer to `[[MT-REGISTRY-TAG-GLOSSARY]]`.
+*   **Validation Rules & Constraints:**
+    - All tags MUST be in kebab-case
+    - MUST include tags from specific categories: status/*, content-type/*, topic/*
+    - Refer to mt-registry-tag-glossary.yaml for comprehensive list
 
 ### `kb-id`
-*   **Description/Purpose:** An identifier for the knowledge base this document belongs to.
+*   **Description/Purpose:** An identifier for the knowledge base this document belongs to
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Must be in kebab-case. Value must come from a controlled vocabulary defined in `[[MT-REGISTRY-TAG-GLOSSARY]]` or a dedicated knowledge base registry.
+*   **Validation Rules & Constraints:**
+    - Must be in kebab-case
+    - Value must come from controlled vocabulary in mt-registry-tag-glossary.yaml
 
 ### `info-type`
-*   **Description/Purpose:** Specifies the type or category of information the document represents (e.g., a standard, a policy, a guide). This is critical for automation and consistent processing.
+*   **Description/Purpose:** Specifies the type or category of information the document represents
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Must be in kebab-case. The value MUST be one of the predefined values in the Controlled Vocabularies section below.
+*   **Validation Rules & Constraints:**
+    - Must be in kebab-case
+    - MUST be one of the predefined values in controlled_vocabularies.info_type
 
 ### `primary-topic`
-*   **Description/Purpose:** A concise statement (typically a sentence) describing the main subject or purpose of the document.
+*   **Description/Purpose:** A concise statement describing the main subject or purpose of the document
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Must not be empty.
+*   **Validation Rules & Constraints:** Must not be empty
 
 ### `related-standards`
-*   **Description/Purpose:** A list of other standards that are related to this document.
+*   **Description/Purpose:** A list of other standards that are related to this document
 *   **Mandatory/Optional:** Optional.
 *   **Data Type:** List of Strings.
-*   **Validation Rules & Constraints:** Each string in the list MUST be a valid `standard_id` of another document or a valid internal link in the format `[[STANDARD_ID]]`.
+*   **Validation Rules & Constraints:** Each string MUST be a valid standard_id or valid internal link format [[STANDARD_ID]]
 
 ### `version`
-*   **Description/Purpose:** The version number of the document.
+*   **Description/Purpose:** The version number of the document
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Semantic versioning (e.g., `'1.0.0'`, `'0.2.1-alpha'`) is preferred.
+*   **Validation Rules & Constraints:** Semantic versioning preferred (e.g., '1.0.0', '0.2.1-alpha')
 
 ### `date-created`
-*   **Description/Purpose:** The date and time when the document was originally created.
+*   **Description/Purpose:** The date and time when the document was originally created
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** MUST be in ISO-8601 date-time format: `YYYY-MM-DDTHH:MM:SSZ`.
+*   **Validation Rules & Constraints:** MUST be in ISO-8601 date-time format: YYYY-MM-DDTHH:MM:SSZ
 
 ### `date-modified`
-*   **Description/Purpose:** The date and time when the document was last modified.
+*   **Description/Purpose:** The date and time when the document was last modified
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** MUST be in ISO-8601 date-time format: `YYYY-MM-DDTHH:MM:SSZ`.
+*   **Validation Rules & Constraints:** MUST be in ISO-8601 date-time format: YYYY-MM-DDTHH:MM:SSZ
 
 ### `primary_domain`
-*   **Description/Purpose:** The primary domain code (e.g., "IT", "HR", "MT" for Meta).
-*   **Mandatory/Optional:** Mandatory for standards documents; optional otherwise.
+*   **Description/Purpose:** The primary domain code (e.g., IT, HR, MT for Meta)
+*   **Mandatory/Optional:** Conditional.
+    - Mandatory for standards documents
+    - Optional otherwise
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Must be 2 uppercase letters. The value MUST exist in `[[domain_codes.yaml]]`.
+*   **Validation Rules & Constraints:**
+    - Must be 2 uppercase letters
+    - Value MUST exist in controlled_vocabularies.primary_domain
 
 ### `sub_domain`
-*   **Description/Purpose:** The sub-domain code (e.g., "SECURITY", "NETWORK", "SCHEMA").
-*   **Mandatory/Optional:** Mandatory for standards documents; optional otherwise.
+*   **Description/Purpose:** The sub-domain code (e.g., SECURITY, NETWORK, SCHEMA)
+*   **Mandatory/Optional:** Conditional.
+    - Mandatory for standards documents
+    - Optional otherwise
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Must be 2-6 uppercase letters. The value MUST exist in `[[subdomain_registry.yaml]]` for the given `primary_domain`.
+*   **Validation Rules & Constraints:**
+    - Must be 2-6 uppercase letters
+    - Value MUST exist in controlled_vocabularies.sub_domain for the given primary_domain
 
 ### `scope_application`
-*   **Description/Purpose:** Defines the scope to which this document applies (e.g., "All backend services", "Frontend components in Project X").
+*   **Description/Purpose:** Defines the scope to which this document applies
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Must not be empty.
+*   **Validation Rules & Constraints:** Must not be empty
 
 ### `criticality`
-*   **Description/Purpose:** The criticality level of the document or the standard it defines.
+*   **Description/Purpose:** The criticality level of the document or the standard it defines
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Value MUST come from the controlled vocabulary (e.g., `P0-Critical`, `P1-High`, `P2-Medium`). Refer to `[[MT-REGISTRY-TAG-GLOSSARY]]`.
+*   **Validation Rules & Constraints:**
+    - Value MUST come from controlled_vocabularies.criticality
+    - Valid values: P0-Critical, P1-High, P2-Medium, P3-Low, P4-Informational
 
 ### `lifecycle_gatekeeper`
-*   **Description/Purpose:** Specifies the role or team responsible for approving transitions in the document's lifecycle (e.g., "Architect-Review", "Security-Team-Approval").
+*   **Description/Purpose:** Specifies the role or team responsible for approving transitions in the document's lifecycle
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** Value MUST come from a controlled vocabulary. Refer to `[[MT-REGISTRY-TAG-GLOSSARY]]`.
+*   **Validation Rules & Constraints:**
+    - Value MUST come from controlled_vocabularies.lifecycle_gatekeeper
+    - Valid values: Architect-Review, Security-Team-Approval, Stakeholder-Review, No-Gatekeeper
 
 ### `impact_areas`
-*   **Description/Purpose:** A list of areas or systems that are affected by this document or standard.
+*   **Description/Purpose:** A list of areas or systems that are affected by this document or standard
 *   **Mandatory/Optional:** Mandatory.
 *   **Data Type:** List of Strings.
-*   **Validation Rules & Constraints:** None beyond being a list of strings.
+*   **Validation Rules & Constraints:** None beyond being a list of strings
 
 ### `change_log_url`
-*   **Description/Purpose:** A URL or relative path pointing to the document's changelog.
-*   **Mandatory/Optional:** Mandatory for standards.
+*   **Description/Purpose:** A URL or relative path pointing to the document's changelog
+*   **Mandatory/Optional:** Conditional.
+    - Mandatory for standards
 *   **Data Type:** String.
-*   **Validation Rules & Constraints:** If a relative path, it MUST start with `./`. A linter SHOULD check for the existence of the linked file if it's a relative path.
+*   **Validation Rules & Constraints:**
+    - If relative path, MUST start with ./
+    - Linter SHOULD check for existence of linked file if relative path
+
+
+## Controlled Vocabularies
 
 ## Controlled Vocabularies
 
@@ -426,15 +480,25 @@ The `info-type` key MUST use one of the following string values (all in kebab-ca
 *   `data-model-definition`
 *   `security-standard`
 *   `compliance-guideline`
+*   `collection-document`
+*   `changelog`
 
 ### Other Controlled Vocabularies
 
-*   **`tags` (categories and specific tags):** See `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-*   **`kb-id`:** See `[[MT-REGISTRY-TAG-GLOSSARY]]` or a dedicated knowledge base registry.
-*   **`criticality`:** See `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-*   **`lifecycle_gatekeeper`:** See `[[MT-REGISTRY-TAG-GLOSSARY]]`.
-*   **`primary_domain`:** Values must exist in `[[domain_codes.yaml]]`.
-*   **`sub_domain`:** Values must exist in `[[subdomain_registry.yaml]]` for the specified `primary_domain`.
+*   **`tags`:** Categories and specific tags for document classification See `[[mt-registry-tag-glossary.md]]`.
+    *   **Main Tag Categories Include:**
+        *   `status/`: Content lifecycle status indicators
+        *   `kb-id/`: Knowledge base identification tags
+        *   `structural`: Structural tags without category prefix
+        *   `topic/`: Topic classification tags
+        *   `content-type/`: Content type classification tags
+        *   `criticality/`: Criticality level tags (align with criticality field values)
+        *   `lifecycle_gatekeeper/`: Lifecycle gatekeeper tags (align with lifecycle_gatekeeper field values)
+        *   `standards-kb/`: Standards KB specific tags
+        *   `utility_process`: Utility and process tags without category prefix
+        *   `kb_specific`: KB-specific tags without category prefix
+
+*   **`kb_id`:** Knowledge base identifiers See `[[mt-registry-tag-glossary.md]]`.
 
 ## Relationship to Filename
 
@@ -471,10 +535,10 @@ The `primary-topic` key serves several functions:
 
 ### 3.2. Relationship to Title and `standard_id`
 *   **For Standards and Policies:**
-    *   If the document has a `standard_id` (e.g., `AS-STRUCTURE-KB-ROOT`, `CS-POLICY-KB-ROOT`), the `primary-topic` can often be derived from the descriptive part of the `standard_id`.
+    *   If the document has a `standard_id` (e.g., `AS-STRUCTURE-KB-ROOT`, `AS-STRUCTURE-DOC-CHAPTER`), the `primary-topic` can often be derived from the descriptive part of the `standard_id`.
     *   To ensure differentiation, especially for related concepts (like a standard defining a structure vs. a policy for that structure), the `primary-topic` should clearly reflect the document's specific intent.
         *   Example for `standard_id: AS-STRUCTURE-KB-ROOT` (`info-type: standard-definition`): `primary-topic: "Knowledge Base Root Structure"`
-        *   Example for `standard_id: CS-POLICY-KB-ROOT` (`info-type: policy-document`): `primary-topic: "Policy for Knowledge Base Root"`
+        *   Example for `standard_id: AS-STRUCTURE-DOC-CHAPTER` (`info-type: standard-definition`): `primary-topic: "Document Chapter Structure"`
     *   It MAY be a slightly more descriptive version of the `standard_id`'s core concept if the `standard_id` is very terse.
 *   **For Other Documents:**
     *   The `primary-topic` should generally be a condensed version or the most significant keyword from the `title`.
@@ -500,7 +564,7 @@ The `primary-topic` key serves several functions:
 
 2.  **Policy Document:**
     *   `title: "Policy: Content Review and Approval for KB Root"`
-    *   `standard_id: "CS-POLICY-KB-ROOT-REVIEW"`
+    *   `standard_id: "AS-STRUCTURE-KB-ROOT-REVIEW"`
     *   `info-type: "policy-document"`
     *   `primary-topic: "Policy for KB Root Review"`
 

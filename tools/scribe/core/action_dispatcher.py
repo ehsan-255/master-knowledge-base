@@ -19,12 +19,9 @@ from .logging_config import get_scribe_logger
 from .plugin_loader import PluginLoader, PluginInfo
 from .rule_processor import RuleMatch
 from .circuit_breaker import CircuitBreakerManager, CircuitBreakerError
-
-# Import action base classes
-from ..actions.base import BaseAction, ActionExecutionError, ValidationError
-# Need these for type hints and passing to plugins
+from tools.scribe.actions.base import BaseAction, ActionExecutionError, ValidationError
 from .config_manager import ConfigManager
-from .security_manager import SecurityManager, SecurityViolation # Added SecurityViolation
+from .security_manager import SecurityManager, SecurityViolation
 
 
 logger = get_scribe_logger(__name__)
@@ -58,7 +55,9 @@ class ActionResult:
                  modified_content: Optional[str] = None,
                  error: Optional[Exception] = None,
                  execution_time: float = 0.0,
-                 metadata: Optional[Dict[str, Any]] = None):
+                 metadata: Optional[Dict[str, Any]] = None,
+                 error_message: Optional[str] = None,  # Backward compatibility
+                 execution_time_ms: Optional[float] = None):  # Backward compatibility
         """
         Initialize action result.
         
@@ -73,8 +72,26 @@ class ActionResult:
         self.action_type = action_type
         self.success = success
         self.modified_content = modified_content
-        self.error = error
-        self.execution_time = execution_time
+        
+        # Handle backward compatibility for error_message parameter
+        if error_message is not None and error is None:
+            self.error = Exception(error_message)
+            self.error_message = error_message
+        elif error is not None:
+            self.error = error
+            self.error_message = str(error)
+        else:
+            self.error = error
+            self.error_message = None
+        
+        # Handle backward compatibility for execution_time_ms parameter
+        if execution_time_ms is not None:
+            self.execution_time = execution_time_ms / 1000.0  # Convert ms to seconds
+            self.execution_time_ms = execution_time_ms
+        else:
+            self.execution_time = execution_time
+            self.execution_time_ms = execution_time * 1000.0  # Convert seconds to ms
+            
         self.metadata = metadata or {}
         self.timestamp = time.time()
     
@@ -162,8 +179,7 @@ class ActionDispatcher:
         # Circuit breaker manager for rule failure isolation
         self.circuit_breaker_manager = CircuitBreakerManager()
         
-        # Action instances are created per execution, so no cache needed here.
-        # self._action_cache: Dict[str, BaseAction] = {} # Removed
+        # Action instances are created per execution for thread safety
         
         # Execution statistics
         self._execution_stats = {
@@ -181,8 +197,6 @@ class ActionDispatcher:
                    circuit_breaker_enabled=True,
                    quarantine_path=self.quarantine_path)
 
-    # get_action_instance method is fully removed.
-    # Action instances are created directly in _execute_actions_internal.
     
     def validate_action_params(self, action: BaseAction, params: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
         """
@@ -213,106 +227,37 @@ class ActionDispatcher:
         except Exception as e:
             return False, f"Parameter validation error: {e}"
     
-    # apply_security_restrictions method is fully removed.
 
-    def execute_action(self, 
-                      action: BaseAction,
-                      file_content: str,
-                      match: re.Match,
-                      file_path: str,
-                      params: Dict[str, Any],
-                      event_id: Optional[str] = None) -> ActionResult:
-        """
-        Execute a single action with error handling and timing.
-        
-        Args:
-            action: The action instance to execute
-            file_content: Current file content
-            match: Regex match that triggered the action
-            file_path: Path to the file being processed
-            params: Action parameters
-            event_id: Unique identifier for the event that triggered this action
-            
-        Returns:
-            ActionResult with execution details
-        """
+    def execute_action(self, action: BaseAction, file_content: str, match: re.Match, file_path: str, params: Dict[str, Any], event_id: Optional[str] = None) -> ActionResult:
         start_time = time.time()
         action_type = action.action_type
-        
-        try:
-            logger.debug("Executing action",
-                        event_id=event_id,
-                        action_type=action_type,
-                        file_path=file_path,
-                        params=params)
-            
-            # Pre-execution hook
-            action.pre_execute(file_content, match, file_path, params)
-            
-            # Execute the action
-            modified_content = action.execute(file_content, match, file_path, params)
-            
-            # Post-execution hook
-            action.post_execute(file_content, modified_content, match, file_path, params)
-            
-            execution_time = time.time() - start_time
-            
-            # Validate that we got a string back
-            if not isinstance(modified_content, str):
-                raise ActionExecutionError(action_type, f"Action returned {type(modified_content)}, expected str")
-            
-            logger.info("Action executed successfully",
-                       event_id=event_id,
-                       action_type=action_type,
-                       file_path=file_path,
-                       execution_time=execution_time,
-                       content_changed=modified_content != file_content)
-            
-            return ActionResult(
-                action_type=action_type,
-                success=True,
-                modified_content=modified_content,
-                execution_time=execution_time,
-                metadata={
-                    'content_changed': modified_content != file_content,
-                    'content_length_before': len(file_content),
-                    'content_length_after': len(modified_content)
-                }
-            )
-            
-        except (ActionExecutionError, ValidationError) as e:
-            execution_time = time.time() - start_time
-            logger.error("Action execution failed",
-                        event_id=event_id,
-                        action_type=action_type,
-                        file_path=file_path,
-                        error=str(e),
-                        execution_time=execution_time)
-            
-            return ActionResult(
-                action_type=action_type,
-                success=False,
-                error=e,
-                execution_time=execution_time
-            )
-            
-        except Exception as e:
-            execution_time = time.time() - start_time
-            logger.error("Unexpected error during action execution",
-                        event_id=event_id,
-                        action_type=action_type,
-                        file_path=file_path,
-                        error=str(e),
-                        execution_time=execution_time,
-                        exc_info=True)
-            
-            wrapped_error = ActionExecutionError(action_type, "Unexpected error", e)
-            return ActionResult(
-                action_type=action_type,
-                success=False,
-                error=wrapped_error,
-                execution_time=execution_time
-            )
+        max_retries = 3
+        for attempt in range(max_retries + 1):
+            try:
+                logger.debug("Executing action", event_id=event_id, action_type=action_type, file_path=file_path, params=params, attempt=attempt)
+                action.pre_execute(file_content, match, file_path, params)
+                modified_content = action.execute(file_content, match, file_path, params)
+                action.post_execute(file_content, modified_content, match, file_path, params)
+                execution_time = time.time() - start_time
+                if not isinstance(modified_content, str):
+                    raise ActionExecutionError(action_type, f"Action returned {type(modified_content)}, expected str")
+                logger.info("Action executed successfully", event_id=event_id, action_type=action_type, file_path=file_path, execution_time=execution_time, content_changed=modified_content != file_content)
+                return ActionResult(action_type=action_type, success=True, modified_content=modified_content, execution_time=execution_time, metadata={'content_changed': modified_content != file_content, 'content_length_before': len(file_content), 'content_length_after': len(modified_content)})
+            except (ActionExecutionError, ValidationError) as e:
+                execution_time = time.time() - start_time
+                logger.error("Action execution failed", event_id=event_id, action_type=action_type, file_path=file_path, error=str(e), execution_time=execution_time, attempt=attempt)
+                if attempt < max_retries:
+                    time.sleep(2 ** attempt)  # Exponential backoff
+                    continue
+                return ActionResult(action_type=action_type, success=False, error=e, execution_time=execution_time)
+            except Exception as e:
+                execution_time = time.time() - start_time
+                logger.error("Unexpected error during action execution", event_id=event_id, action_type=action_type, file_path=file_path, error=str(e), execution_time=execution_time, exc_info=True, attempt=attempt)
+                wrapped_error = ActionExecutionError(action_type, "Unexpected error", e)
+                if attempt < max_retries:
+                    time.sleep(2 ** attempt)
+                    continue
+                return ActionResult(action_type=action_type, success=False, error=wrapped_error, execution_time=execution_time)
     
     def dispatch_actions(self, rule_match: RuleMatch) -> DispatchResult:
         """
@@ -352,7 +297,44 @@ class ActionDispatcher:
             def execute_actions():
                 return self._execute_actions_internal(rule_match, current_content)
             
-            dispatch_result = circuit_breaker.execute(execute_actions)
+            # Define fallback callback for circuit breaker errors
+            def circuit_breaker_fallback(error):
+                """Fallback handler when circuit breaker is open"""
+                self._execution_stats['circuit_breaker_blocks'] += 1
+                self._execution_stats['failed_dispatches'] += 1
+                
+                logger.warning("Circuit breaker fallback triggered",
+                              event_id=event_id,
+                              rule_id=rule_id,
+                              file_path=file_path,
+                              error_type=type(error).__name__,
+                              error_message=str(error))
+                
+                # Quarantine the file when circuit breaker trips
+                quarantine_result = self.quarantine_file(file_path, rule_id, "circuit_breaker_open")
+                
+                # Return a DispatchResult indicating circuit breaker block
+                circuit_breaker_error = ActionResult(
+                    action_type="circuit_breaker",
+                    success=False,
+                    error_message=str(error),
+                    execution_time_ms=0,
+                    metadata={
+                        "blocked_by_circuit_breaker": True,
+                        "circuit_breaker_state": "open",
+                        "fallback_triggered": True,
+                        "quarantine_reason": "circuit_breaker_open"
+                    }
+                )
+                
+                return DispatchResult(
+                    success=False,
+                    rule_id=rule_id,
+                    final_content=current_content,
+                    action_results=[circuit_breaker_error]
+                )
+            
+            dispatch_result = circuit_breaker.execute(execute_actions, circuit_breaker_fallback)
             
             # Update statistics for successful dispatch
             self._execution_stats['successful_dispatches'] += 1
@@ -370,43 +352,6 @@ class ActionDispatcher:
                        content_changed=dispatch_result.final_content != rule_match.file_content)
             
             return dispatch_result
-            
-        except CircuitBreakerError as e:
-            # Circuit breaker is open - block execution and quarantine file
-            self._execution_stats['circuit_breaker_blocks'] += 1
-            self._execution_stats['failed_dispatches'] += 1
-            
-            logger.warning("Action dispatch blocked by circuit breaker",
-                          event_id=event_id,
-                          rule_id=rule_id,
-                          file_path=file_path,
-                          failure_count=e.failure_count,
-                          last_failure_time=e.last_failure_time,
-                          circuit_state="OPEN")
-            
-            # Quarantine the problematic file
-            quarantine_result = self.quarantine_file(file_path, rule_id, "circuit_breaker_open")
-            
-            # Return result with a synthetic failure to indicate circuit breaker block
-            circuit_breaker_error = ActionResult(
-                action_type="circuit_breaker",
-                success=False,
-                error=e,
-                execution_time=0.0,
-                metadata={
-                    "blocked_by_circuit_breaker": True,
-                    "quarantined": quarantine_result["success"],
-                    "quarantine_path": quarantine_result.get("quarantine_path"),
-                    "quarantine_reason": "circuit_breaker_open"
-                }
-            )
-            
-            return DispatchResult(
-                rule_id=rule_id,
-                file_path=file_path,
-                final_content=current_content,
-                action_results=[circuit_breaker_error]
-            )
             
         except Exception as e:
             # Unexpected error during circuit breaker execution
@@ -559,9 +504,7 @@ class ActionDispatcher:
                            error=sec_validation_error)
                 continue
             
-            # The apply_security_restrictions method was removed. Its core responsibility
-            # (checking parameter values against dangerous patterns) is now part of
-            # self.security_manager.validate_action_params(action_type, params).
+            # Security validation handled by security_manager
             # Other checks like whitelisted action types could be added here if needed,
             # based on a configuration setting (e.g., from self.config_manager).
 
@@ -673,7 +616,7 @@ class ActionDispatcher:
                     relative_path = source_path.relative_to(Path.cwd())
                 except ValueError:
                     # If can't make relative, preserve the full path structure
-                    # Remove drive letter and leading slash for Windows compatibility
+                    # Handle Windows drive letters for cross-platform compatibility
                     path_parts = source_path.parts
                     if len(path_parts) > 1 and ':' in path_parts[0]:
                         # Windows path with drive letter
@@ -718,7 +661,7 @@ class ActionDispatcher:
                 import json
                 json.dump(metadata, f, indent=2)
             
-            # Remove original file after successful quarantine
+            # Clean up original file after successful quarantine
             source_path.unlink()
             
             # Update statistics
@@ -756,9 +699,8 @@ class ActionDispatcher:
             }
     
     def clear_action_cache(self) -> None:
-        """Clear the action instance cache."""
-        self._action_cache.clear()
-        logger.debug("Action cache cleared")
+        """Clear action cache - no-op in v2.0 as actions are created per execution."""
+        logger.debug("Action cache cleared (no-op in v2.0)")
     
     def get_execution_stats(self) -> Dict[str, Any]:
         """
@@ -777,7 +719,6 @@ class ActionDispatcher:
             stats['success_rate'] = 0.0
             stats['average_execution_time'] = 0.0
         
-        # stats['cached_actions'] = len(self._action_cache) # Cache removed
         stats['available_action_types'] = list(self.plugin_loader.get_all_plugins().keys())
         
         # Add circuit breaker statistics

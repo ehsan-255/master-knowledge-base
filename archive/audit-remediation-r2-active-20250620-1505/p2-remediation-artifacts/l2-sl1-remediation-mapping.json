@@ -1,0 +1,103 @@
+{
+  "mapping_version": "1.0.0",
+  "created_date": "2025-01-20T20:49:00Z",
+  "description": "Mapping of obsolete collection document references to their new atomic standard counterparts",
+  "mappings": [
+    {
+      "file": "standards/src/AS-STRUCTURE-ASSET-ORGANIZATION.md",
+      "old_reference": "COL-LINKING-UNIVERSAL.md",
+      "old_rule_id": "U-ASSETS-001",
+      "old_text": "*This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 from COL-LINKING-UNIVERSAL.md.*",
+      "new_text": "*This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 (now deprecated and superseded by this standard).*",
+      "rationale": "The AS-STRUCTURE-ASSET-ORGANIZATION standard itself is the atomic replacement for U-ASSETS-001"
+    },
+    {
+      "file": "standards/src/AS-STRUCTURE-TEMPLATES-DIRECTORY.md",
+      "old_reference": "COL-GOVERNANCE-UNIVERSAL.md",
+      "old_rule_id": "U-TEMPLATES-DIR-001",
+      "old_text": "*This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 from COL-GOVERNANCE-UNIVERSAL.md, adapting them for the new directory structure and emphasizing established naming conventions.*",
+      "new_text": "*This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 (now deprecated and superseded by this standard), adapting them for the new directory structure and emphasizing established naming conventions.*",
+      "rationale": "The AS-STRUCTURE-TEMPLATES-DIRECTORY standard itself is the atomic replacement for U-TEMPLATES-DIR-001"
+    },
+    {
+      "file": "standards/src/CS-LINKING-INTERNAL-POLICY.md",
+      "old_reference": "COL-LINKING-UNIVERSAL.md", 
+      "old_rule_id": "U-INTERLINK-001",
+      "old_text": "*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 from COL-LINKING-UNIVERSAL.md. Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*",
+      "new_text": "*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 (now deprecated and superseded by this policy). Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*",
+      "rationale": "The CS-LINKING-INTERNAL-POLICY itself is the atomic replacement for U-INTERLINK-001"
+    },
+    {
+      "file": "standards/src/CS-MODULARITY-TRANSCLUSION-POLICY.md",
+      "old_reference": "COL-LINKING-UNIVERSAL.md",
+      "old_rule_id": "U-MODULAR-001", 
+      "old_text": "*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 from COL-LINKING-UNIVERSAL.md, and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX]].*",
+      "new_text": "*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 (now deprecated and superseded by this policy), and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX]].*",
+      "rationale": "The CS-MODULARITY-TRANSCLUSION-POLICY itself is the atomic replacement for U-MODULAR-001"
+    },
+    {
+      "file": "standards/src/GM-MANDATE-KB-USAGE-GUIDE.md",
+      "old_reference": "COL-GOVERNANCE-UNIVERSAL.md",
+      "old_rule_id": "U-ONBOARDING-001",
+      "old_text": "*This standard (GM-MANDATE-KB-USAGE-GUIDE) is based on rules 1.1 through 1.4 previously defined in U-ONBOARDING-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the guide.*",
+      "new_text": "*This standard (GM-MANDATE-KB-USAGE-GUIDE) is based on rules 1.1 through 1.4 previously defined in U-ONBOARDING-001 (now deprecated and superseded by this standard), rephrasing them as mandates for the existence and content of the guide.*",
+      "rationale": "The GM-MANDATE-KB-USAGE-GUIDE standard itself is the atomic replacement for U-ONBOARDING-001"
+    },
+    {
+      "file": "standards/src/GM-MANDATE-STANDARDS-GLOSSARY.md",
+      "old_reference": "COL-GOVERNANCE-UNIVERSAL.md",
+      "old_rule_id": "U-GLOSSARY-001",
+      "old_text": "*This standard (GM-MANDATE-STANDARDS-GLOSSARY) is based on rules 1.1 and 1.2 previously defined in U-GLOSSARY-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the standards terminology glossary.*",
+      "new_text": "*This standard (GM-MANDATE-STANDARDS-GLOSSARY) is based on rules 1.1 and 1.2 previously defined in U-GLOSSARY-001 (now deprecated and superseded by this standard), rephrasing them as mandates for the existence and content of the standards terminology glossary.*",
+      "rationale": "The GM-MANDATE-STANDARDS-GLOSSARY standard itself is the atomic replacement for U-GLOSSARY-001"
+    },
+    {
+      "file": "standards/src/MT-TAGGING-STRATEGY-POLICY.md",
+      "old_reference": "COL-LINKING-UNIVERSAL.md",
+      "old_rule_id": "U-TAG-001",
+      "old_text": "*This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*",
+      "new_text": "*This policy (MT-TAGGING-STRATEGY-POLICY) is based on rules 1.5, 1.6, 1.7, 1.8, and the conformance aspect of 1.9 previously defined in U-TAG-001 (now deprecated and superseded by [[MT-TAGS-IMPLEMENTATION]] and this policy).*",
+      "rationale": "U-TAG-001 was split into MT-TAGS-IMPLEMENTATION and MT-TAGGING-STRATEGY-POLICY"
+    },
+    {
+      "file": "standards/src/MT-TAGS-IMPLEMENTATION.md",
+      "old_reference": "COL-LINKING-UNIVERSAL.md",
+      "old_rule_id": "U-TAG-001",
+      "old_text": "*This standard (MT-TAGS-IMPLEMENTATION) is based on rules 1.1, 1.2, 1.3, 1.4, and part of 1.9 previously defined in U-TAG-001 from COL-LINKING-UNIVERSAL.md.*",
+      "new_text": "*This standard (MT-TAGS-IMPLEMENTATION) is based on rules 1.1, 1.2, 1.3, 1.4, and part of 1.9 previously defined in U-TAG-001 (now deprecated and superseded by this standard and [[MT-TAGGING-STRATEGY-POLICY]]).*",
+      "rationale": "U-TAG-001 was split into MT-TAGS-IMPLEMENTATION and MT-TAGGING-STRATEGY-POLICY"
+    },
+    {
+      "file": "standards/src/OM-POLICY-STANDARDS-DEPRECATION.md",
+      "old_reference": "COL-GOVERNANCE-UNIVERSAL.md",
+      "old_rule_id": "U-DEPRECATION-001",
+      "old_text": "*This policy (OM-POLICY-STANDARDS-DEPRECATION) is based on rules 1.1 through 1.4 previously defined in U-DEPRECATION-001 from COL-GOVERNANCE-UNIVERSAL.md.*",
+      "new_text": "*This policy (OM-POLICY-STANDARDS-DEPRECATION) is based on rules 1.1 through 1.4 previously defined in U-DEPRECATION-001 (now deprecated and superseded by this policy).*",
+      "rationale": "The OM-POLICY-STANDARDS-DEPRECATION policy itself is the atomic replacement for U-DEPRECATION-001"
+    },
+    {
+      "file": "standards/src/OM-POLICY-STANDARDS-GOVERNANCE.md",
+      "old_reference": "COL-GOVERNANCE-UNIVERSAL.md",
+      "old_rule_id": "U-GOVERNANCE-001",
+      "old_text": "*This policy (OM-POLICY-STANDARDS-GOVERNANCE) is based on rules 1.1 through 1.3 previously defined in U-GOVERNANCE-001 from COL-GOVERNANCE-UNIVERSAL.md.*",
+      "new_text": "*This policy (OM-POLICY-STANDARDS-GOVERNANCE) is based on rules 1.1 through 1.3 previously defined in U-GOVERNANCE-001 (now deprecated and superseded by this policy).*",
+      "rationale": "The OM-POLICY-STANDARDS-GOVERNANCE policy itself is the atomic replacement for U-GOVERNANCE-001"
+    },
+    {
+      "file": "standards/src/OM-VERSIONING-CHANGELOGS.md",
+      "old_reference": "COL-GOVERNANCE-UNIVERSAL.md",
+      "old_rule_id": "U-VERSIONING-001",
+      "old_text": "*This standard (OM-VERSIONING-CHANGELOGS) is based on rules 1.1 through 1.3 previously defined in U-VERSIONING-001 from COL-GOVERNANCE-UNIVERSAL.md.*",
+      "new_text": "*This standard (OM-VERSIONING-CHANGELOGS) is based on rules 1.1 through 1.3 previously defined in U-VERSIONING-001 (now deprecated and superseded by this standard).*",
+      "rationale": "The OM-VERSIONING-CHANGELOGS standard itself is the atomic replacement for U-VERSIONING-001"
+    },
+    {
+      "file": "standards/src/SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md",
+      "old_reference": "COL-LINKING-UNIVERSAL.md",
+      "old_rule_id": "U-ACCESSIBILITY-001",
+      "old_text": "*This standard (SF-ACCESSIBILITY-IMAGE-ALT-TEXT) is based on rules 1.1 and 1.2 previously defined in U-ACCESSIBILITY-001 from COL-LINKING-UNIVERSAL.md.*",
+      "new_text": "*This standard (SF-ACCESSIBILITY-IMAGE-ALT-TEXT) is based on rules 1.1 and 1.2 previously defined in U-ACCESSIBILITY-001 (now deprecated and superseded by this standard).*",
+      "rationale": "The SF-ACCESSIBILITY-IMAGE-ALT-TEXT standard itself is the atomic replacement for U-ACCESSIBILITY-001"
+    }
+  ]
+}

@@ -1,34 +1,38 @@
 ---
-title: 'Standards Changelog'
+title: Standards Changelog
 standard_id: OM-STANDARDS-CHANGELOG
 aliases:
-  - Knowledge Base Standards Change Log
-  - Standards History
+- Knowledge Base Standards Change Log
+- Standards History
 tags:
-  - status/active
-  - content-type/changelog
-  - topic/standards-management
-  - criticality/p4-informational
+- content-type/changelog
+- criticality/p4-informational
+- kb-id/standards
+- status/active
+- topic/lifecycle
+- topic/om
+- topic/standards-management
 kb-id: standards
 info-type: changelog
-primary-topic: 'Tracks changes, decisions, and major updates for all standards in the master knowledge base'
+primary-topic: Tracks changes, decisions, and major updates for all standards in the
+  master knowledge base
 related-standards: []
-version: '1.0.0'
+version: 1.0.0
 date-created: '2025-01-11T00:00:00Z'
-date-modified: '2025-06-03T06:18:44Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
-scope_application: 'Documents changes and decisions affecting standards in standards/ and its subdirectories'
+scope_application: Documents changes and decisions affecting standards in standards/
+  and its subdirectories
 criticality: P4-Informational
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Standards management
-  - Change tracking
-  - Historical record keeping
-  - Standards governance
+- Standards management
+- Change tracking
+- Historical record keeping
+- Standards governance
 change_log_url: ./changelog.md
 ---
-
 # Standards Changelog
 
 This document tracks changes, decisions, and major updates for all standards in the master knowledge base.
@@ -83,4 +87,4 @@ This document tracks changes, decisions, and major updates for all standards in 
 
 ---
 
-*This changelog follows the requirements defined in [[OM-VERSIONING-CHANGELOGS]]* 
+*This changelog follows the requirements defined in [[OM-VERSIONING-CHANGELOGS]]*

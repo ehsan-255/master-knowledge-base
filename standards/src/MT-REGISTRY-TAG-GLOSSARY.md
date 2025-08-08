@@ -1,30 +1,36 @@
 ---
+
 title: Master Tag Glossary and Registry
 standard_id: MT-REGISTRY-TAG-GLOSSARY
 aliases:
 - Tag Glossary
 - Controlled Vocabulary for Tags
 tags:
-- kb-id/standards
-- content-type/registry-document
 - content-type/glossary-document
+- content-type/registry-document
+- criticality/p0-critical
+- kb-id/global
+- kb-id/standards
 - status/draft
-- topic/tagging
 - topic/metadata
+- topic/mt
 - topic/registry
+- topic/tagging
 kb-id: kb-id/standards
 info-type: registry-document
-primary-topic: Defines all official tags, their meanings, hierarchy, and usage guidelines. Serves as the master registry for tags.
+primary-topic: Defines all official tags, their meanings, hierarchy, and usage guidelines.
+  Serves as the master registry for tags.
 related-standards:
 - MT-TAGGING-STRATEGY-POLICY
 - GM-REGISTRY-GOVERNANCE
 - MT-SCHEMA-FRONTMATTER
 version: 1.0.0
 date-created: '2025-05-15T00:00:00Z'
-date-modified: '2025-05-29T16:04:35Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: MT
 sub_domain: REGISTRY
-scope_application: Applies to all knowledge bases and documents for tag usage and frontmatter validation.
+scope_application: Applies to all knowledge bases and documents for tag usage and
+  frontmatter validation.
 criticality: P0-Critical
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -32,9 +38,7 @@ impact_areas:
 - Content discoverability
 - Automation
 - Search accuracy
-change_log_url: ./changelog.md
 ---
-
 # Master Tag Glossary and Registry (MT-REGISTRY-TAG-GLOSSARY)
 
 This document defines all official tags used across knowledge bases, their intended meaning, hierarchy, and usage guidelines. It serves as the master registry for tags. Refer to `[[MT-TAGGING-STRATEGY-POLICY]]` for the core tagging strategy and `[[GM-REGISTRY-GOVERNANCE]]` for how this registry is managed. This glossary is referenced by `[[MT-SCHEMA-FRONTMATTER]]` for validating tags in document frontmatter.

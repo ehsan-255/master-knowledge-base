@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Registry Inventory Report - 20250606-1954
 
 **Generated**: 2025-06-06 19:54  
@@ -286,4 +303,4 @@ generation_info: {...}
 **Report Generated**: 2025-06-06 19:54  
 **Total Analysis Time**: ~30 minutes  
 **Files Analyzed**: 16 files  
-**Ready for**: TASK 1.1.2 - Map Content Relationships and Dependencies 
+**Ready for**: TASK 1.1.2 - Map Content Relationships and Dependencies

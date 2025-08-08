@@ -1,0 +1,1384 @@
+--- Starting frontmatter migration for: C:\Users\E L I A N A\Downloads\_apmdd_vault\master-knowledge-base (Dry Run: True) ---
+Processing file: AS-INDEX-KB-MASTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate AS-INDEX-KB-MASTER.md
+Processing file: comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate comprehensive-standards-analysis-remaining-tasks-20250616-2101.md
+Processing file: frontmatter-analysis.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate frontmatter-analysis.md
+Processing file: README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate README.md
+Processing file: repo-tree.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate repo-tree.md
+Processing file: active-project\current-state.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\current-state.md
+Processing file: active-project\master-analysis-report-creation-guide.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\master-analysis-report-creation-guide.md
+Processing file: active-project\master-roadmap-development-guide.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\master-roadmap-development-guide.md
+Processing file: active-project\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\README.md
+Processing file: active-project\roadmap-checklist-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\roadmap-checklist-template.md
+Processing file: active-project\roadmap-progress-tracker-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\roadmap-progress-tracker-template.md
+Processing file: active-project\roadmap-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\roadmap-template.md
+Processing file: active-project\project-guidelines\project-reminders.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\project-guidelines\project-reminders.md
+Processing file: active-project\project-guidelines\project-work-ethic-guidelines.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate active-project\project-guidelines\project-work-ethic-guidelines.md
+Processing file: archive\comprehensive-standards-analysis-remaining-tasks-20250616-2027.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\comprehensive-standards-analysis-remaining-tasks-20250616-2027.md
+Processing file: archive\current-state-pre-revision-20250616-0548.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\current-state-pre-revision-20250616-0548.md
+Processing file: archive\phase1-completion-report-20250608-0944.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\phase1-completion-report-20250608-0944.md
+Processing file: archive\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\README.md
+Processing file: archive\roadmap-checklist-template-pre-revision-20250612-1721.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\roadmap-checklist-template-pre-revision-20250612-1721.md
+Processing file: archive\roadmap-checklist-template-pre-revision-20250612-1839.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\roadmap-checklist-template-pre-revision-20250612-1839.md
+Processing file: archive\roadmap-progress-tracker-template-pre-revision-20250612-1721.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\roadmap-progress-tracker-template-pre-revision-20250612-1721.md
+Processing file: archive\roadmap-progress-tracker-template-pre-revision-20250612-1839.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\roadmap-progress-tracker-template-pre-revision-20250612-1839.md
+Processing file: archive\roadmap-template-pre-revision-20250612-1721.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\roadmap-template-pre-revision-20250612-1721.md
+Processing file: archive\roadmap-template-pre-revision-20250612-1839.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\roadmap-template-pre-revision-20250612-1839.md
+Processing file: archive\scribe-plugin-enhancements-phase2-.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\scribe-plugin-enhancements-phase2-.md
+Processing file: archive\archive-operation-20250612-0929\reports\action-2-2-3-3-quarantine-logic-completion-20250608-1225.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\action-2-2-3-3-quarantine-logic-completion-20250608-1225.md
+Processing file: archive\archive-operation-20250612-0929\reports\circuit-breaker-integration-test-20250608-1203.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\circuit-breaker-integration-test-20250608-1203.md
+Processing file: archive\archive-operation-20250612-0929\reports\config-folder-relocation-20250609-2315.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\config-folder-relocation-20250609-2315.md
+Processing file: archive\archive-operation-20250612-0929\reports\dependency-analysis-archive-operation-20250609-2305.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\dependency-analysis-archive-operation-20250609-2305.md
+Processing file: archive\archive-operation-20250612-0929\reports\frontmatter-organizer-sst-integration-20250610-0113.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\frontmatter-organizer-sst-integration-20250610-0113.md
+Processing file: archive\archive-operation-20250612-0929\reports\json-ld-roadmap-audit-report-20250611-1216.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\json-ld-roadmap-audit-report-20250611-1216.md
+Processing file: archive\archive-operation-20250612-0929\reports\json-ld-roadmap-audit-report-20250611-1305.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\json-ld-roadmap-audit-report-20250611-1305.md
+Processing file: archive\archive-operation-20250612-0929\reports\json-ld-roadmap-detailed-audit-findings-20250611-1306.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\json-ld-roadmap-detailed-audit-findings-20250611-1306.md
+Processing file: archive\archive-operation-20250612-0929\reports\phase4-circuit-breaker-completion-20250608-2207.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\phase4-circuit-breaker-completion-20250608-2207.md
+Processing file: archive\archive-operation-20250612-0929\reports\phase5-queue-backpressure-completion-20250608-2212.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\phase5-queue-backpressure-completion-20250608-2212.md
+Processing file: archive\archive-operation-20250612-0929\reports\project-completion-scribe-refinements-20250608-2216.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\project-completion-scribe-refinements-20250608-2216.md
+Processing file: archive\archive-operation-20250612-0929\reports\standards-registry-complete-dependency-analysis-20250609-2320.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\standards-registry-complete-dependency-analysis-20250609-2320.md
+Processing file: archive\archive-operation-20250612-0929\reports\tools-readme-revision-migration-scripts-removal-20250609-2310.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\tools-readme-revision-migration-scripts-removal-20250609-2310.md
+Processing file: archive\archive-operation-20250612-0929\reports\vocabulary-remediation-complete-20250612-0743.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\archive-operation-20250612-0929\reports\vocabulary-remediation-complete-20250612-0743.md
+Processing file: archive\completed-projects-20250607-142041\-active-project-organization-initiative-active\master-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-active-project-organization-initiative-active\master-analysis-report.md
+Processing file: archive\completed-projects-20250607-142041\-active-project-organization-initiative-active\master-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-active-project-organization-initiative-active\master-progress.md
+Processing file: archive\completed-projects-20250607-142041\-active-project-organization-initiative-active\master-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-active-project-organization-initiative-active\master-roadmap.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\master-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\master-analysis-report.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\master-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\master-progress.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\master-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\master-roadmap.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-analysis-report.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-progress.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-roadmap.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-analysis-report.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-progress.md
+Processing file: archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-projects-20250607-142041\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-roadmap.md
+Processing file: archive\completed-roadmaps-20250607-0953\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:50Z'
+  Dry run: Would migrate archive\completed-roadmaps-20250607-0953\README.md
+Processing file: archive\completed-roadmaps-20250607-0953\registry-cleanup-progress-tracker.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\completed-roadmaps-20250607-0953\registry-cleanup-progress-tracker.md
+Processing file: archive\completed-roadmaps-20250607-0953\registry-cleanup-roadmap-checklist.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\completed-roadmaps-20250607-0953\registry-cleanup-roadmap-checklist.md
+Processing file: archive\completed-roadmaps-20250607-0953\registry-cleanup-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\completed-roadmaps-20250607-0953\registry-cleanup-roadmap.md
+Processing file: archive\completed-roadmaps-20250607-0953\registry-consolidation-progress-tracker.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\completed-roadmaps-20250607-0953\registry-consolidation-progress-tracker.md
+Processing file: archive\completed-roadmaps-20250607-0953\registry-consolidation-roadmap-checklist.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\completed-roadmaps-20250607-0953\registry-consolidation-roadmap-checklist.md
+Processing file: archive\completed-roadmaps-20250607-0953\registry-consolidation-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\completed-roadmaps-20250607-0953\registry-consolidation-roadmap.md
+Processing file: archive\investigation-reports-20250607-1024\naming-enforcer-summary.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\investigation-reports-20250607-1024\naming-enforcer-summary.md
+Processing file: archive\investigation-reports-20250607-1024\summary-report-20250604-2157.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\investigation-reports-20250607-1024\summary-report-20250604-2157.md
+Processing file: archive\json-ld-roadmap-archive-20250616-0639\json-ld-roadmap-checklist.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\json-ld-roadmap-archive-20250616-0639\json-ld-roadmap-checklist.md
+Processing file: archive\json-ld-roadmap-archive-20250616-0639\json-ld-roadmap-progress-tracker.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\json-ld-roadmap-archive-20250616-0639\json-ld-roadmap-progress-tracker.md
+Processing file: archive\json-ld-roadmap-archive-20250616-0639\json-ld-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\json-ld-roadmap-archive-20250616-0639\json-ld-roadmap.md
+Processing file: archive\legacy-root-content-20250602\kb-directory.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-content-20250602\kb-directory.md
+Processing file: archive\legacy-root-content-20250602\_key_definitions.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-content-20250602\_key_definitions.md
+Processing file: archive\legacy-root-folders-20250603\standards\COL-ARCH-UNIVERSAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\COL-ARCH-UNIVERSAL.md
+Processing file: archive\legacy-root-folders-20250603\standards\COL-CONTENT-UNIVERSAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\COL-CONTENT-UNIVERSAL.md
+Processing file: archive\legacy-root-folders-20250603\standards\COL-GOVERNANCE-UNIVERSAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\COL-GOVERNANCE-UNIVERSAL.md
+Processing file: archive\legacy-root-folders-20250603\standards\COL-LINKING-UNIVERSAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\COL-LINKING-UNIVERSAL.md
+Processing file: archive\legacy-root-folders-20250603\standards\COL-SYNTAX-MARKDOWN.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\COL-SYNTAX-MARKDOWN.md
+Processing file: archive\legacy-root-folders-20250603\standards\COL-TOOLING-OBSIDIAN.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\COL-TOOLING-OBSIDIAN.md
+Processing file: archive\legacy-root-folders-20250603\standards\GLOSSARY-STANDARDS-TERMS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\GLOSSARY-STANDARDS-TERMS.md
+Processing file: archive\legacy-root-folders-20250603\standards\GUIDE-KB-USAGE-AND-STANDARDS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\GUIDE-KB-USAGE-AND-STANDARDS.md
+Processing file: archive\legacy-root-folders-20250603\standards\GUIDE-TASK-BASED.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\GUIDE-TASK-BASED.md
+Processing file: archive\legacy-root-folders-20250603\standards\LLM-AUTOMATION-IO-SCHEMA-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\LLM-AUTOMATION-IO-SCHEMA-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\M-CONDITIONAL-TEXT-SYNTAX-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\M-CONDITIONAL-TEXT-SYNTAX-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\M-SYNTAX-TODO-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\M-SYNTAX-TODO-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\root.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\root.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-ARCH-003-Directory-Structure-Source-Render.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-ARCH-003-Directory-Structure-Source-Render.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-KEYREF-MANAGEMENT-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-KEYREF-MANAGEMENT-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-KEYREF-SYNTAX-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-KEYREF-SYNTAX-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-METADATA-FRONTMATTER-RULES-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-METADATA-FRONTMATTER-RULES-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-METADATA-SLUG-KEY-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-METADATA-SLUG-KEY-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-PUBLISHING-PIPELINE-OVERVIEW-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-PUBLISHING-PIPELINE-OVERVIEW-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-RELTABLE-DEFINITION-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-RELTABLE-DEFINITION-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-SCHEMA-REFERENCE-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-SCHEMA-REFERENCE-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-SCHEMA-TASK-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-SCHEMA-TASK-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\U-VALIDATION-METADATA-001.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\U-VALIDATION-METADATA-001.md
+Processing file: archive\legacy-root-folders-20250603\standards\_kb_definition.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\standards\_kb_definition.md
+Processing file: archive\legacy-root-folders-20250603\templates\canonical-frontmatter-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\templates\canonical-frontmatter-template.md
+Processing file: archive\legacy-root-folders-20250603\templates\chapter-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\templates\chapter-template.md
+Processing file: archive\legacy-root-folders-20250603\templates\concept-schema-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\templates\concept-schema-template.md
+Processing file: archive\legacy-root-folders-20250603\templates\methodology-schema-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\templates\methodology-schema-template.md
+Processing file: archive\legacy-root-folders-20250603\templates\reference-topic-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\templates\reference-topic-template.md
+Processing file: archive\legacy-root-folders-20250603\templates\task-topic-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\legacy-root-folders-20250603\templates\task-topic-template.md
+Processing file: archive\metadata\logging-templates.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\metadata\logging-templates.md
+Processing file: archive\migration-analysis-20250607-142041\master-knowledge-base-to-root-migration-analysis.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-analysis-20250607-142041\master-knowledge-base-to-root-migration-analysis.md
+Processing file: archive\migration-analysis-20250607-142041\migration-dry-run-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-analysis-20250607-142041\migration-dry-run-analysis-report.md
+Processing file: archive\migration-analysis-20250607-142041\migration_scripts_analysis_and_recommendations.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-analysis-20250607-142041\migration_scripts_analysis_and_recommendations.md
+Processing file: archive\migration-analysis-20250607-142041\refactoring-initiative-remaining-tasks.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-analysis-20250607-142041\refactoring-initiative-remaining-tasks.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base-to-root-migration-analysis.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base-to-root-migration-analysis.md
+Processing file: archive\migration-backup-20250607-133124\migration-dry-run-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\migration-dry-run-analysis-report.md
+Processing file: archive\migration-backup-20250607-133124\migration_scripts_analysis_and_recommendations.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\migration_scripts_analysis_and_recommendations.md
+Processing file: archive\migration-backup-20250607-133124\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\README.md
+Processing file: archive\migration-backup-20250607-133124\refactoring-initiative-remaining-tasks.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\refactoring-initiative-remaining-tasks.md
+Processing file: archive\migration-backup-20250607-133124\repo-tree.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\repo-tree.md
+Processing file: archive\migration-backup-20250607-133124\active-project\current-state.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\current-state.md
+Processing file: archive\migration-backup-20250607-133124\active-project\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\README.md
+Processing file: archive\migration-backup-20250607-133124\active-project\roadmap-checklist-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\roadmap-checklist-template.md
+Processing file: archive\migration-backup-20250607-133124\active-project\roadmap-progress-tracker-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\roadmap-progress-tracker-template.md
+Processing file: archive\migration-backup-20250607-133124\active-project\roadmap-template.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\roadmap-template.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-active-project-organization-initiative-active\master-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-active-project-organization-initiative-active\master-analysis-report.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-active-project-organization-initiative-active\master-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-active-project-organization-initiative-active\master-progress.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-active-project-organization-initiative-active\master-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-active-project-organization-initiative-active\master-roadmap.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\master-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\master-analysis-report.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\master-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\master-progress.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\master-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\master-roadmap.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-analysis-report.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-progress.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l2-t1-roadmap.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-analysis-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-analysis-report.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-progress.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-progress.md
+Processing file: archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\-refactoring-initiative-completed\l2-t1-initial-refactoring-and-roadmap-phases-completed\l3-t1-phase-b-completion-completed\l3-t1-roadmap.md
+Processing file: archive\migration-backup-20250607-133124\active-project\project-guidelines\project-reminders.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\project-guidelines\project-reminders.md
+Processing file: archive\migration-backup-20250607-133124\active-project\project-guidelines\project-work-ethic-guidelines.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\active-project\project-guidelines\project-work-ethic-guidelines.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\AS-INDEX-KB-MASTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\AS-INDEX-KB-MASTER.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-architecture-structure.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-architecture-structure.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-content-policies.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-content-policies.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-metadata-tagging.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-metadata-tagging.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-syntax-formatting.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\dist\collections\collection-syntax-formatting.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\changelog.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\changelog.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-KB-DIRECTORY-STRUCTURE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-KB-DIRECTORY-STRUCTURE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-MAP-STANDARDS-KB.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-MAP-STANDARDS-KB.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-ROOT-STANDARDS-KB.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-ROOT-STANDARDS-KB.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-CONCEPT-DEFINITION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-CONCEPT-DEFINITION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-METHODOLOGY-DESCRIPTION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-METHODOLOGY-DESCRIPTION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-REFERENCE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-REFERENCE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-RELTABLE-DEFINITION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-RELTABLE-DEFINITION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-TASK.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-SCHEMA-TASK.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-ASSET-ORGANIZATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-ASSET-ORGANIZATION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-DOC-CHAPTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-DOC-CHAPTER.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-KB-PART.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-KB-PART.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-KB-ROOT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-KB-ROOT.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-MASTER-KB-INDEX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-MASTER-KB-INDEX.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-TEMPLATES-DIRECTORY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\AS-STRUCTURE-TEMPLATES-DIRECTORY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-ADMONITIONS-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-ADMONITIONS-POLICY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-CONTENT-PROFILING-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-CONTENT-PROFILING-POLICY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-LINKING-INTERNAL-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-LINKING-INTERNAL-POLICY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-MODULARITY-TRANSCLUSION-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-MODULARITY-TRANSCLUSION-POLICY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-ACCESSIBILITY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-ACCESSIBILITY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-DIGITAL-ABSTRACTION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-DIGITAL-ABSTRACTION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-DOC-CHAPTER-CONTENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-DOC-CHAPTER-CONTENT.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-KB-IDENTIFICATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-KB-IDENTIFICATION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-KB-PART-CONTENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-KB-PART-CONTENT.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-KB-ROOT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-KB-ROOT.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-LAYERED-INFORMATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-LAYERED-INFORMATION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-PART-OVERVIEW.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-PART-OVERVIEW.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-SCOPE-EXCLUSION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-SCOPE-EXCLUSION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-SCOPE-INCLUSION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-SCOPE-INCLUSION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-TONE-LANGUAGE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-POLICY-TONE-LANGUAGE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-TOC-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\CS-TOC-POLICY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-CONVENTIONS-NAMING.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-CONVENTIONS-NAMING.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-GLOSSARY-STANDARDS-TERMS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-GLOSSARY-STANDARDS-TERMS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-GUIDE-KB-USAGE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-GUIDE-KB-USAGE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-GUIDE-STANDARDS-BY-TASK.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-GUIDE-STANDARDS-BY-TASK.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-MANDATE-KB-USAGE-GUIDE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-MANDATE-KB-USAGE-GUIDE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-MANDATE-STANDARDS-GLOSSARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-MANDATE-STANDARDS-GLOSSARY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-REGISTRY-GOVERNANCE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\GM-REGISTRY-GOVERNANCE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-KEYREF-MANAGEMENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-KEYREF-MANAGEMENT.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-REGISTRY-TAG-GLOSSARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-REGISTRY-TAG-GLOSSARY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-SCHEMA-FRONTMATTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-SCHEMA-FRONTMATTER.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-TAGGING-STRATEGY-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-TAGGING-STRATEGY-POLICY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-TAGS-IMPLEMENTATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\MT-TAGS-IMPLEMENTATION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-AUTOMATION-LLM-IO-SCHEMAS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-AUTOMATION-LLM-IO-SCHEMAS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-OVERVIEW-PUBLISHING-PIPELINE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-OVERVIEW-PUBLISHING-PIPELINE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-POLICY-STANDARDS-DEPRECATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-POLICY-STANDARDS-DEPRECATION.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-POLICY-STANDARDS-GOVERNANCE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-POLICY-STANDARDS-GOVERNANCE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-VERSIONING-CHANGELOGS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\OM-VERSIONING-CHANGELOGS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\QM-VALIDATION-METADATA.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\QM-VALIDATION-METADATA.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-CALLOUTS-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-CALLOUTS-SYNTAX.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-FORMATTING-CITATIONS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-FORMATTING-CITATIONS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-FORMATTING-FILE-HYGIENE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-FORMATTING-FILE-HYGIENE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-FORMATTING-MARKDOWN-GENERAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-FORMATTING-MARKDOWN-GENERAL.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-LINKS-INTERNAL-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-LINKS-INTERNAL-SYNTAX.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-BLOCKQUOTES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-BLOCKQUOTES.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-CODE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-CODE.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-COMMENT-TODO.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-COMMENT-TODO.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-DEFINITION-LISTS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-DEFINITION-LISTS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-DIAGRAMS-MERMAID.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-DIAGRAMS-MERMAID.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-EMPHASIS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-EMPHASIS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-ESCAPING-CHARACTERS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-ESCAPING-CHARACTERS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-FOOTNOTES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-FOOTNOTES.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-HEADINGS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-HEADINGS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-IMAGES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-IMAGES.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-KEYREF.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-KEYREF.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-LINKS-GENERAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-LINKS-GENERAL.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-LISTS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-LISTS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-MATH-EQUATIONS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-MATH-EQUATIONS.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-TABLES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-TABLES.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-YAML-FRONTMATTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-SYNTAX-YAML-FRONTMATTER.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-TOC-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-TOC-SYNTAX.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-TRANSCLUSION-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\SF-TRANSCLUSION-SYNTAX.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\UA-KEYDEFS-GLOBAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\UA-KEYDEFS-GLOBAL.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\UA-SCHEMA-LLM-IO.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\src\UA-SCHEMA-LLM-IO.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\templates\UA-TPL-CANONICAL-FRONTMATTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\templates\UA-TPL-CANONICAL-FRONTMATTER.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\standards\templates\UA-TPL-CHANGELOG-DOCUMENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\standards\templates\UA-TPL-CHANGELOG-DOCUMENT.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\tools\changelog.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\tools\changelog.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\tools\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\tools\README.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\tools\indexer\OM-SPEC-STANDARDS-INDEX-JSONLD.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\tools\indexer\OM-SPEC-STANDARDS-INDEX-JSONLD.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\tools\migration-scripts\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\tools\migration-scripts\README.md
+Processing file: archive\migration-backup-20250607-133124\master-knowledge-base\tools\utilities\README-repository-tree-generator.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\master-knowledge-base\tools\utilities\README-repository-tree-generator.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\naming-enforcer-test-files.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\naming-enforcer-test-files.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\README.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-summary-20250607-091041.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-summary-20250607-091041.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\backup\no-frontmatter.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\backup\no-frontmatter.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\backup\sample1.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\backup\sample1.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\backup\sample2.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\backup\sample2.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\CamelCaseFile.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\CamelCaseFile.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\comprehensive-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:51Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\comprehensive-test.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\file-with-links.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\file-with-links.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\frontmatter-field-violations.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\frontmatter-field-violations.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\locked-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\locked-test.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\simple-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\simple-test.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\test-uppercase.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\test-uppercase.md
+Processing file: archive\migration-backup-20250607-133124\test-environment\test-documents\uppercase-extension-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\migration-backup-20250607-133124\test-environment\test-documents\uppercase-extension-test.md
+Processing file: archive\migration-scripts-archive-20250609-2305\migration-scripts\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\migration-scripts-archive-20250609-2305\migration-scripts\README.md
+Processing file: archive\naming-documentation-archive-20250603\comprehensive-naming-convention.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\naming-documentation-archive-20250603\comprehensive-naming-convention.md
+Processing file: archive\naming-documentation-archive-20250603\naming-enforcer.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\naming-documentation-archive-20250603\naming-enforcer.md
+Processing file: archive\naming-documentation-archive-20250603\NAMING-SOLUTION-SUMMARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\naming-documentation-archive-20250603\NAMING-SOLUTION-SUMMARY.md
+Processing file: archive\naming-enforcer-documentation-20250604\automatic-files.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\naming-enforcer-documentation-20250604\automatic-files.md
+Processing file: archive\naming-enforcer-documentation-20250604\exclude-functionality.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\naming-enforcer-documentation-20250604\exclude-functionality.md
+Processing file: archive\naming-enforcer-documentation-20250604\implementation-summary.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\naming-enforcer-documentation-20250604\implementation-summary.md
+Processing file: archive\naming-enforcer-documentation-20250604\include-functionality.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\naming-enforcer-documentation-20250604\include-functionality.md
+Processing file: archive\old-reports-20250531\archived-linter-final-check-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-final-check-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-missing-frontmatter-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-missing-frontmatter-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-progress-bulk-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-progress-bulk-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-progress-linefix-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-progress-linefix-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-report-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-report-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-report-final-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-report-final-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-report-progress-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-report-progress-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-report-progress2-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-report-progress2-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-report-progress3-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-report-progress3-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter-report-updated-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter-report-updated-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_after_auto_fixes_round1-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_after_auto_fixes_round1-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_after_changelog_link_fixes-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_after_changelog_link_fixes-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_after_final_cleanup-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_after_final_cleanup-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_after_manual_fixes-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_after_manual_fixes-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_baseline-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_baseline-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_current_baseline-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_current_baseline-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_current_baseline_registry-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_current_baseline_registry-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_current_baseline_registry_v2-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_current_baseline_registry_v2-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_current_baseline_root-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_current_baseline_root-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_current_baseline_src_v_no_dummies-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_current_baseline_src_v_no_dummies-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_final_v2-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_final_v2-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_final_v3-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_final_v3-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_final_v4-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_final_v4-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_final_v5-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_final_v5-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_registry_fixed-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_registry_fixed-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_registry_fixed_sleep-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_registry_fixed_sleep-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_src_debug-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_src_debug-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_src_final_attempt-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_src_final_attempt-20250531.md
+Processing file: archive\old-reports-20250531\archived-linter_report_updated-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\old-reports-20250531\archived-linter_report_updated-20250531.md
+Processing file: archive\project-notes-and-progress-20250531\archived-cleanup-instructions-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\project-notes-and-progress-20250531\archived-cleanup-instructions-20250531.md
+Processing file: archive\project-notes-and-progress-20250531\archived-mkb-note-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\project-notes-and-progress-20250531\archived-mkb-note-20250531.md
+Processing file: archive\project-notes-and-progress-20250531\archived-root-todo-master-list-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\project-notes-and-progress-20250531\archived-root-todo-master-list-20250531.md
+Processing file: archive\project-notes-and-progress-20250531\archived-temp-end-of-session-summary-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\project-notes-and-progress-20250531\archived-temp-end-of-session-summary-20250531.md
+Processing file: archive\project-notes-and-progress-20250531\archived-temp-note-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\project-notes-and-progress-20250531\archived-temp-note-20250531.md
+Processing file: archive\project-notes-and-progress-20250531\archived-temp-roadmap-progress-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\project-notes-and-progress-20250531\archived-temp-roadmap-progress-20250531.md
+Processing file: archive\registry-archive-consolidation-20250607-0942\registry-consolidation-deprecated-20250607-050000\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\registry-archive-consolidation-20250607-0942\registry-consolidation-deprecated-20250607-050000\README.md
+Processing file: archive\reports-archive-20250607-1329\auto-generation-completion-report-2025-06-05.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\auto-generation-completion-report-2025-06-05.md
+Processing file: archive\reports-archive-20250607-1329\collection-architecture-structure.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\collection-architecture-structure.md
+Processing file: archive\reports-archive-20250607-1329\collection-content-policies.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\collection-content-policies.md
+Processing file: archive\reports-archive-20250607-1329\collection-metadata-tagging.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\collection-metadata-tagging.md
+Processing file: archive\reports-archive-20250607-1329\collection-syntax-formatting.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\collection-syntax-formatting.md
+Processing file: archive\reports-archive-20250607-1329\collection_fixes_implemented_2025-06-04.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\collection_fixes_implemented_2025-06-04.md
+Processing file: archive\reports-archive-20250607-1329\collection_linter_issue_analysis_2025-06-04.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\collection_linter_issue_analysis_2025-06-04.md
+Processing file: archive\reports-archive-20250607-1329\criticality_fix_summary_2025-06-04.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\criticality_fix_summary_2025-06-04.md
+Processing file: archive\reports-archive-20250607-1329\enhanced-treeicon-implementation-20250606-1520.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\enhanced-treeicon-implementation-20250606-1520.md
+Processing file: archive\reports-archive-20250607-1329\exact_linter_errors_2025-06-04-09-57.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\exact_linter_errors_2025-06-04-09-57.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-04-20-39-16.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-04-20-39-16.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-04-20-39-19.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-04-20-39-19.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-04-22-46-12.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-04-22-46-12.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-10-51.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-10-51.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-10-57.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-10-57.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-11-08.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-11-08.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-14-53.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-14-53.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-33-47.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-33-47.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-33-52.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-33-52.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-53-53.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-53-53.md
+Processing file: archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-55-02.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\frontmatter-registry-summary-2025-06-05-02-55-02.md
+Processing file: archive\reports-archive-20250607-1329\GM-CONVENTIONS-NAMING_preview.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\GM-CONVENTIONS-NAMING_preview.md
+Processing file: archive\reports-archive-20250607-1329\legend-configuration-guide-20250606-1516.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\legend-configuration-guide-20250606-1516.md
+Processing file: archive\reports-archive-20250607-1329\linter_report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\linter_report.md
+Processing file: archive\reports-archive-20250607-1329\linter_report_criticality_fixed.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\linter_report_criticality_fixed.md
+Processing file: archive\reports-archive-20250607-1329\linter_report_fixed.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\linter_report_fixed.md
+Processing file: archive\reports-archive-20250607-1329\MT-SCHEMA-FRONTMATTER_preview.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\MT-SCHEMA-FRONTMATTER_preview.md
+Processing file: archive\reports-archive-20250607-1329\registry-cleanup-checklist-correction-20250607-0906.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\registry-cleanup-checklist-correction-20250607-0906.md
+Processing file: archive\reports-archive-20250607-1329\registry-content-categorization-20250606-2005.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\registry-content-categorization-20250606-2005.md
+Processing file: archive\reports-archive-20250607-1329\registry-content-relationships-20250606-2000.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\registry-content-relationships-20250606-2000.md
+Processing file: archive\reports-archive-20250607-1329\registry-inventory-20250606-1954.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\registry-inventory-20250606-1954.md
+Processing file: archive\reports-archive-20250607-1329\repository-tree-final-cleanup-20250606-1441.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\repository-tree-final-cleanup-20250606-1441.md
+Processing file: archive\reports-archive-20250607-1329\repository-tree-generator-configuration-upgrade-20250606-1411.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\repository-tree-generator-configuration-upgrade-20250606-1411.md
+Processing file: archive\reports-archive-20250607-1329\repository-tree-generator-implementation-20250606-1333.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\repository-tree-generator-implementation-20250606-1333.md
+Processing file: archive\reports-archive-20250607-1329\roadmap-template-compliance-update-20250606-1301.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\roadmap-template-compliance-update-20250606-1301.md
+Processing file: archive\reports-archive-20250607-1329\schema_docs_generation_report_20250604_224621.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\schema_docs_generation_report_20250604_224621.md
+Processing file: archive\reports-archive-20250607-1329\schema_docs_generation_report_20250604_225007.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\schema_docs_generation_report_20250604_225007.md
+Processing file: archive\reports-archive-20250607-1329\schema_docs_generation_report_20250605_021500.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\schema_docs_generation_report_20250605_021500.md
+Processing file: archive\reports-archive-20250607-1329\schema_docs_generation_report_20250605_023537.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\schema_docs_generation_report_20250605_023537.md
+Processing file: archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\AUTOMATIC_FILES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\AUTOMATIC_FILES.md
+Processing file: archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\EXCLUDE_FUNCTIONALITY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\EXCLUDE_FUNCTIONALITY.md
+Processing file: archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\IMPLEMENTATION_SUMMARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\IMPLEMENTATION_SUMMARY.md
+Processing file: archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\INCLUDE_FUNCTIONALITY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\reports-archive-20250607-1329\backups\fix_violations_20250604_090824\INCLUDE_FUNCTIONALITY.md
+Processing file: archive\scribe-files-archive-20250608-0627\md-timestamp-script.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\md-timestamp-script.md
+Processing file: archive\scribe-files-archive-20250608-0627\scribe-automation-engine.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\scribe-automation-engine.md
+Processing file: archive\scribe-files-archive-20250608-0627\scribe-blueprint.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\scribe-blueprint.md
+Processing file: archive\scribe-files-archive-20250608-0627\scribe-enhancements.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\scribe-enhancements.md
+Processing file: archive\scribe-files-archive-20250608-0627\scribe-hexarchitecture.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\scribe-hexarchitecture.md
+Processing file: archive\scribe-files-archive-20250608-0627\scribe-progress-tracker.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\scribe-progress-tracker.md
+Processing file: archive\scribe-files-archive-20250608-0627\scribe-roadmap-checklist.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\scribe-roadmap-checklist.md
+Processing file: archive\scribe-files-archive-20250608-0627\scribe-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-0627\scribe-roadmap.md
+Processing file: archive\scribe-files-archive-20250608-2346\scribe-hma-checklist.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-2346\scribe-hma-checklist.md
+Processing file: archive\scribe-files-archive-20250608-2346\scribe-hma-progress-tracker.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-2346\scribe-hma-progress-tracker.md
+Processing file: archive\scribe-files-archive-20250608-2346\scribe-hma-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-2346\scribe-hma-roadmap.md
+Processing file: archive\scribe-files-archive-20250608-2346\scribe-refinements-progress-tracker.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-2346\scribe-refinements-progress-tracker.md
+Processing file: archive\scribe-files-archive-20250608-2346\scribe-refinements-roadmap-checklist.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-2346\scribe-refinements-roadmap-checklist.md
+Processing file: archive\scribe-files-archive-20250608-2346\scribe-refinements-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250608-2346\scribe-refinements-roadmap.md
+Processing file: archive\scribe-files-archive-20250609-2305\scribe-hma-blueprint.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250609-2305\scribe-hma-blueprint.md
+Processing file: archive\scribe-files-archive-20250609-2305\scribe-refinements-progress-tracker.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250609-2305\scribe-refinements-progress-tracker.md
+Processing file: archive\scribe-files-archive-20250609-2305\scribe-refinements-roadmap-checklist.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250609-2305\scribe-refinements-roadmap-checklist.md
+Processing file: archive\scribe-files-archive-20250609-2305\scribe-refinements-roadmap.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\scribe-files-archive-20250609-2305\scribe-refinements-roadmap.md
+Processing file: archive\standards-analysis-reports-archive-20250616-2027\comprehensive-standards-analysis-20250616-1433.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\standards-analysis-reports-archive-20250616-2027\comprehensive-standards-analysis-20250616-1433.md
+Processing file: archive\standards-analysis-reports-archive-20250616-2027\comprehensive-standards-analysis-20250616-1950.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\standards-analysis-reports-archive-20250616-2027\comprehensive-standards-analysis-20250616-1950.md
+Processing file: archive\standards-analysis-reports-archive-20250616-2027\standards-analysis-report-20250619-1520.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\standards-analysis-reports-archive-20250616-2027\standards-analysis-report-20250619-1520.md
+Processing file: archive\standards-consolidation-20250616-2212\CONSOLIDATION-LOG.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\standards-consolidation-20250616-2212\CONSOLIDATION-LOG.md
+Processing file: archive\standards-consolidation-20250616-2212\CS-POLICY-DOC-CHAPTER-CONTENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\standards-consolidation-20250616-2212\CS-POLICY-DOC-CHAPTER-CONTENT.md
+Processing file: archive\standards-consolidation-20250616-2212\CS-POLICY-KB-ROOT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\standards-consolidation-20250616-2212\CS-POLICY-KB-ROOT.md
+Processing file: archive\standards-redundancy-elimination-20250616-1514\GM-GUIDE-STANDARDS-BY-TASK.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\standards-redundancy-elimination-20250616-1514\GM-GUIDE-STANDARDS-BY-TASK.md
+Processing file: archive\temp-working-files-20250603\archived-temp-project-collab-onboarding-guide-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\temp-working-files-20250603\archived-temp-project-collab-onboarding-guide-20250531.md
+Processing file: archive\temp-working-files-20250603\archived-temp-project-collab-onboarding-single-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\temp-working-files-20250603\archived-temp-project-collab-onboarding-single-20250531.md
+Processing file: archive\temp-working-files-20250603\archived-temp-refactor-prompt-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\temp-working-files-20250603\archived-temp-refactor-prompt-20250531.md
+Processing file: archive\temp-working-files-20250603\archived-temp-system-prompt-v1-4-20250531.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\temp-working-files-20250603\archived-temp-system-prompt-v1-4-20250531.md
+Processing file: archive\temp-working-files-20250603\plan.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\temp-working-files-20250603\plan.md
+Processing file: archive\temp-working-files-20250603\remaining-tasks.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate archive\temp-working-files-20250603\remaining-tasks.md
+Processing file: dist\collections\collection-architecture-structure.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate dist\collections\collection-architecture-structure.md
+Processing file: dist\collections\collection-content-policies.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate dist\collections\collection-content-policies.md
+Processing file: dist\collections\collection-metadata-tagging.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate dist\collections\collection-metadata-tagging.md
+Processing file: dist\collections\collection-syntax-formatting.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate dist\collections\collection-syntax-formatting.md
+Processing file: standards\changelog.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\changelog.md
+Processing file: standards\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\README.md
+Processing file: standards\src\AS-KB-DIRECTORY-STRUCTURE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-KB-DIRECTORY-STRUCTURE.md
+Processing file: standards\src\AS-MAP-STANDARDS-KB.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-MAP-STANDARDS-KB.md
+Processing file: standards\src\AS-ROOT-STANDARDS-KB.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-ROOT-STANDARDS-KB.md
+Processing file: standards\src\AS-SCHEMA-CONCEPT-DEFINITION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-SCHEMA-CONCEPT-DEFINITION.md
+Processing file: standards\src\AS-SCHEMA-METHODOLOGY-DESCRIPTION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-SCHEMA-METHODOLOGY-DESCRIPTION.md
+Processing file: standards\src\AS-SCHEMA-REFERENCE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-SCHEMA-REFERENCE.md
+Processing file: standards\src\AS-SCHEMA-RELTABLE-DEFINITION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-SCHEMA-RELTABLE-DEFINITION.md
+Processing file: standards\src\AS-SCHEMA-TASK.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-SCHEMA-TASK.md
+Processing file: standards\src\AS-STRUCTURE-ASSET-ORGANIZATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-STRUCTURE-ASSET-ORGANIZATION.md
+Processing file: standards\src\AS-STRUCTURE-DOC-CHAPTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-STRUCTURE-DOC-CHAPTER.md
+Processing file: standards\src\AS-STRUCTURE-KB-PART.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-STRUCTURE-KB-PART.md
+Processing file: standards\src\AS-STRUCTURE-KB-ROOT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-STRUCTURE-KB-ROOT.md
+Processing file: standards\src\AS-STRUCTURE-MASTER-KB-INDEX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-STRUCTURE-MASTER-KB-INDEX.md
+Processing file: standards\src\AS-STRUCTURE-TEMPLATES-DIRECTORY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\AS-STRUCTURE-TEMPLATES-DIRECTORY.md
+Processing file: standards\src\CS-ADMONITIONS-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-ADMONITIONS-POLICY.md
+Processing file: standards\src\CS-CONTENT-PROFILING-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-CONTENT-PROFILING-POLICY.md
+Processing file: standards\src\CS-LINKING-INTERNAL-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-LINKING-INTERNAL-POLICY.md
+Processing file: standards\src\CS-MODULARITY-TRANSCLUSION-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-MODULARITY-TRANSCLUSION-POLICY.md
+Processing file: standards\src\CS-POLICY-ACCESSIBILITY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-ACCESSIBILITY.md
+Processing file: standards\src\CS-POLICY-DIGITAL-ABSTRACTION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-DIGITAL-ABSTRACTION.md
+Processing file: standards\src\CS-POLICY-KB-IDENTIFICATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-KB-IDENTIFICATION.md
+Processing file: standards\src\CS-POLICY-KB-PART-CONTENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-KB-PART-CONTENT.md
+Processing file: standards\src\CS-POLICY-LAYERED-INFORMATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-LAYERED-INFORMATION.md
+Processing file: standards\src\CS-POLICY-PART-OVERVIEW.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-PART-OVERVIEW.md
+Processing file: standards\src\CS-POLICY-SCOPE-EXCLUSION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-SCOPE-EXCLUSION.md
+Processing file: standards\src\CS-POLICY-SCOPE-INCLUSION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-SCOPE-INCLUSION.md
+Processing file: standards\src\CS-POLICY-TONE-LANGUAGE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-POLICY-TONE-LANGUAGE.md
+Processing file: standards\src\CS-TOC-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\CS-TOC-POLICY.md
+Processing file: standards\src\GM-CONVENTIONS-NAMING.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\GM-CONVENTIONS-NAMING.md
+Processing file: standards\src\GM-GLOSSARY-STANDARDS-TERMS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\GM-GLOSSARY-STANDARDS-TERMS.md
+Processing file: standards\src\GM-GUIDE-KB-USAGE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\GM-GUIDE-KB-USAGE.md
+Processing file: standards\src\GM-MANDATE-KB-USAGE-GUIDE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\GM-MANDATE-KB-USAGE-GUIDE.md
+Processing file: standards\src\GM-MANDATE-STANDARDS-GLOSSARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\GM-MANDATE-STANDARDS-GLOSSARY.md
+Processing file: standards\src\GM-REGISTRY-GOVERNANCE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\GM-REGISTRY-GOVERNANCE.md
+Processing file: standards\src\MT-KEYREF-MANAGEMENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\MT-KEYREF-MANAGEMENT.md
+Processing file: standards\src\MT-REGISTRY-TAG-GLOSSARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\MT-REGISTRY-TAG-GLOSSARY.md
+Processing file: standards\src\MT-SCHEMA-FRONTMATTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\MT-SCHEMA-FRONTMATTER.md
+Processing file: standards\src\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md
+Processing file: standards\src\MT-TAGGING-STRATEGY-POLICY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\MT-TAGGING-STRATEGY-POLICY.md
+Processing file: standards\src\MT-TAGS-IMPLEMENTATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\MT-TAGS-IMPLEMENTATION.md
+Processing file: standards\src\OM-AUTOMATION-LLM-IO-SCHEMAS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\OM-AUTOMATION-LLM-IO-SCHEMAS.md
+Processing file: standards\src\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md
+Processing file: standards\src\OM-OVERVIEW-PUBLISHING-PIPELINE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\OM-OVERVIEW-PUBLISHING-PIPELINE.md
+Processing file: standards\src\OM-POLICY-STANDARDS-DEPRECATION.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\OM-POLICY-STANDARDS-DEPRECATION.md
+Processing file: standards\src\OM-POLICY-STANDARDS-GOVERNANCE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\OM-POLICY-STANDARDS-GOVERNANCE.md
+Processing file: standards\src\OM-PROCESS-SST-UPDATE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\OM-PROCESS-SST-UPDATE.md
+Processing file: standards\src\OM-VERSIONING-CHANGELOGS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\OM-VERSIONING-CHANGELOGS.md
+Processing file: standards\src\QM-VALIDATION-METADATA.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\QM-VALIDATION-METADATA.md
+Processing file: standards\src\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md
+Processing file: standards\src\SF-CALLOUTS-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-CALLOUTS-SYNTAX.md
+Processing file: standards\src\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md
+Processing file: standards\src\SF-FORMATTING-CITATIONS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-FORMATTING-CITATIONS.md
+Processing file: standards\src\SF-FORMATTING-FILE-HYGIENE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-FORMATTING-FILE-HYGIENE.md
+Processing file: standards\src\SF-FORMATTING-MARKDOWN-GENERAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-FORMATTING-MARKDOWN-GENERAL.md
+Processing file: standards\src\SF-LINKS-INTERNAL-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-LINKS-INTERNAL-SYNTAX.md
+Processing file: standards\src\SF-SYNTAX-BLOCKQUOTES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-BLOCKQUOTES.md
+Processing file: standards\src\SF-SYNTAX-CODE.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-CODE.md
+Processing file: standards\src\SF-SYNTAX-COMMENT-TODO.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-COMMENT-TODO.md
+Processing file: standards\src\SF-SYNTAX-DEFINITION-LISTS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-DEFINITION-LISTS.md
+Processing file: standards\src\SF-SYNTAX-DIAGRAMS-MERMAID.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-DIAGRAMS-MERMAID.md
+Processing file: standards\src\SF-SYNTAX-EMPHASIS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-EMPHASIS.md
+Processing file: standards\src\SF-SYNTAX-ESCAPING-CHARACTERS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-ESCAPING-CHARACTERS.md
+Processing file: standards\src\SF-SYNTAX-FOOTNOTES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-FOOTNOTES.md
+Processing file: standards\src\SF-SYNTAX-HEADINGS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-HEADINGS.md
+Processing file: standards\src\SF-SYNTAX-IMAGES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-IMAGES.md
+Processing file: standards\src\SF-SYNTAX-KEYREF.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-KEYREF.md
+Processing file: standards\src\SF-SYNTAX-LINKS-GENERAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-LINKS-GENERAL.md
+Processing file: standards\src\SF-SYNTAX-LISTS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-LISTS.md
+Processing file: standards\src\SF-SYNTAX-MATH-EQUATIONS.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-MATH-EQUATIONS.md
+Processing file: standards\src\SF-SYNTAX-TABLES.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:52Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-TABLES.md
+Processing file: standards\src\SF-SYNTAX-YAML-FRONTMATTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate standards\src\SF-SYNTAX-YAML-FRONTMATTER.md
+Processing file: standards\src\SF-TOC-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate standards\src\SF-TOC-SYNTAX.md
+Processing file: standards\src\SF-TRANSCLUSION-SYNTAX.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate standards\src\SF-TRANSCLUSION-SYNTAX.md
+Processing file: standards\src\UA-KEYDEFS-GLOBAL.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate standards\src\UA-KEYDEFS-GLOBAL.md
+Processing file: standards\src\UA-SCHEMA-LLM-IO.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate standards\src\UA-SCHEMA-LLM-IO.md
+Processing file: standards\templates\UA-TPL-CANONICAL-FRONTMATTER.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate standards\templates\UA-TPL-CANONICAL-FRONTMATTER.md
+Processing file: standards\templates\UA-TPL-CHANGELOG-DOCUMENT.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate standards\templates\UA-TPL-CHANGELOG-DOCUMENT.md
+Processing file: test-environment\naming-enforcer-test-files.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\naming-enforcer-test-files.md
+Processing file: test-environment\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\README.md
+Processing file: test-environment\test-summary-20250607-091041.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-summary-20250607-091041.md
+Processing file: test-environment\backup\no-frontmatter.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\backup\no-frontmatter.md
+Processing file: test-environment\backup\sample1.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\backup\sample1.md
+Processing file: test-environment\backup\sample2.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\backup\sample2.md
+Processing file: test-environment\scribe-tests\.pytest_cache\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\scribe-tests\.pytest_cache\README.md
+Processing file: test-environment\test-documents\CamelCaseFile.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\CamelCaseFile.md
+Processing file: test-environment\test-documents\comprehensive-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\comprehensive-test.md
+Processing file: test-environment\test-documents\file-with-links.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\file-with-links.md
+Processing file: test-environment\test-documents\frontmatter-field-violations.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\frontmatter-field-violations.md
+Processing file: test-environment\test-documents\locked-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\locked-test.md
+Processing file: test-environment\test-documents\simple-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\simple-test.md
+Processing file: test-environment\test-documents\test-uppercase.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\test-uppercase.md
+Processing file: test-environment\test-documents\uppercase-extension-test.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\test-documents\uppercase-extension-test.md
+Processing file: test-environment\validator-tests\test-data\conforming-shacl-doc.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\validator-tests\test-data\conforming-shacl-doc.md
+Processing file: test-environment\validator-tests\test-data\violating-shacl-doc.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate test-environment\validator-tests\test-data\violating-shacl-doc.md
+Processing file: tools\changelog.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\changelog.md
+Processing file: tools\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\README.md
+Processing file: tools\indexer\OM-SPEC-STANDARDS-INDEX-JSONLD.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\indexer\OM-SPEC-STANDARDS-INDEX-JSONLD.md
+Processing file: tools\reports\architecture-protection-completion-20250616-2321.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\reports\architecture-protection-completion-20250616-2321.md
+Processing file: tools\reports\comprehensive-architecture-audit-20250616-2310.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\reports\comprehensive-architecture-audit-20250616-2310.md
+Processing file: tools\reports\comprehensive-standards-analysis-20250616-1433.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\reports\comprehensive-standards-analysis-20250616-1433.md
+Processing file: tools\reports\critical-architecture-audit-20250616-2304.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\reports\critical-architecture-audit-20250616-2304.md
+Processing file: tools\reports\gm-conventions-naming-reduction-completion-report.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\reports\gm-conventions-naming-reduction-completion-report.md
+Processing file: tools\reports\gm-guide-kb-usage-reduction-completion-report-20250616-2352.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\reports\gm-guide-kb-usage-reduction-completion-report-20250616-2352.md
+Processing file: tools\reports\standards-consolidation-completion-report-20250616-2212.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\reports\standards-consolidation-completion-report-20250616-2212.md
+Processing file: tools\scribe\README.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\scribe\README.md
+Processing file: tools\utilities\README-repo-tree.md
+  Added/Updated field 'date-modified' with value '2025-06-17T02:31:53Z'
+  Dry run: Would migrate tools\utilities\README-repo-tree.md
+--- Migration Finished ---
+Total processed: 460
+Total skipped (no changes/errors): 0

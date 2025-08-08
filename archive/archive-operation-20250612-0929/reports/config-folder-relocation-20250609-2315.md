@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:13Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Config Folder Relocation Report
 
 **Date**: 2025-06-09 23:15:00  
@@ -208,4 +225,4 @@ git checkout HEAD -- tools/scribe/README.md tools/README.md
 **Functionality**: ✅ **FULLY PRESERVED**  
 **Testing**: ✅ **VALIDATED**
 
-The config folder relocation improves repository organization while maintaining full Scribe engine functionality. All configuration data is preserved and accessible at the new location. 
+The config folder relocation improves repository organization while maintaining full Scribe engine functionality. All configuration data is preserved and accessible at the new location.

@@ -241,7 +241,7 @@ class CircuitBreaker:
                 self._success_count = 0
                 self._change_state(CircuitState.OPEN, "Failure during recovery test")
     
-    def execute(self, func: Callable[[], Any]) -> Any:
+    def execute(self, func: Callable[[], Any], fallback_callback: Optional[Callable[[Exception], Any]] = None) -> Any:
         """
         Execute a function with circuit breaker protection.
         
@@ -256,7 +256,10 @@ class CircuitBreaker:
             Exception: Any exception raised by the function
         """
         if not self.can_execute():
-            raise CircuitBreakerError(self.rule_id, self._failure_count, self._last_failure_time)
+            error = CircuitBreakerError(self.rule_id, self._failure_count, self._last_failure_time)
+            if fallback_callback:
+                return fallback_callback(error)
+            raise error
         
         try:
             result = func()
@@ -264,6 +267,8 @@ class CircuitBreaker:
             return result
         except Exception as e:
             self.record_failure(e)
+            if fallback_callback:
+                return fallback_callback(e)
             raise
     
     def force_open(self, reason: str = "Manually opened") -> None:
@@ -457,5 +462,10 @@ class CircuitBreakerManager:
                 'open_breakers': open_count,
                 'half_open_breakers': half_open_count,
                 'closed_breakers': closed_count,
-                'breaker_stats': breaker_stats
+                'breaker_stats': breaker_stats,
+                'breakers_by_state': {
+                    'open': open_count,
+                    'half_open': half_open_count,
+                    'closed': closed_count
+                }
             } 

@@ -6,6 +6,7 @@ aliases:
 - U-ONBOARDING-001 Guide
 tags:
 - content-type/standards-guide
+- criticality/p0-critical
 - kb-id/standards
 - status/deprecated
 - topic/onboarding
@@ -13,14 +14,19 @@ tags:
 - topic/user-documentation
 kb-id: standards
 info-type: standards-guide
-primary-topic: Comprehensive guide for users on how to navigate, understand, apply, and contribute to the knowledge base system and its standards.
+primary-topic: Comprehensive guide for users on how to navigate, understand, apply,
+  and contribute to the knowledge base system and its standards.
 related-standards:
 - U-ONBOARDING-001
 - U-METADATA-FRONTMATTER-RULES-001
 - U-TAG-001
 version: 0.2.0
 date-created: '2025-05-22'
-date-modified: '2025-06-02T00:13:31Z'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[GM-GUIDE-KB-USAGE]].
 

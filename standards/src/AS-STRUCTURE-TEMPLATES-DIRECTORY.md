@@ -1,13 +1,18 @@
 ---
+
 title: 'Standard: Templates Directory Structure and Usage'
 standard_id: AS-STRUCTURE-TEMPLATES-DIRECTORY
 aliases:
 - Templates Directory Standard
 - Document Templates Location
 tags:
-- status/draft
-- criticality/p2-medium
+- content-type/standard-definition
 - content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/structure
 kb-id: standards
 info-type: standard-definition
 primary-topic: Templates Directory and Usage
@@ -18,10 +23,11 @@ related-standards:
 - '[[UA-TPL-CANONICAL-FRONTMATTER]]'
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:26:37Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the mandatory location, naming conventions, and content requirements for the directory housing standard document templates.
+scope_application: Defines the mandatory location, naming conventions, and content
+  requirements for the directory housing standard document templates.
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -30,7 +36,6 @@ impact_areas:
 - Standards adherence
 - Onboarding new authors
 ---
-
 # Standard: Templates Directory Structure and Usage (AS-STRUCTURE-TEMPLATES-DIRECTORY)
 
 ## 1. Standard Statement
@@ -80,4 +85,4 @@ This standard applies to the management of the templates directory and the creat
 - [[UA-TPL-CANONICAL-FRONTMATTER]] - Reference to the existing canonical frontmatter template. (Note: This is a direct reference to a template file, not a standard. It's included as it's a key example of a utility template.)
 
 ---
-*This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 from COL-GOVERNANCE-UNIVERSAL.md, adapting them for the new directory structure and emphasizing established naming conventions.*
+*This standard (AS-STRUCTURE-TEMPLATES-DIRECTORY) is based on rules 1.1 and 1.2 previously defined in U-TEMPLATES-DIR-001 (now deprecated and superseded by this standard), adapting them for the new directory structure and emphasizing established naming conventions.*

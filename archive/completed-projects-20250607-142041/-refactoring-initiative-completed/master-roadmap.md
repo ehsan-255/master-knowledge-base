@@ -1,40 +1,56 @@
 ---
-title: "Master Roadmap - Refactoring Initiative"
-id: "-refactoring-initiative-master-roadmap"
-kb: "refactoring-initiative"
-file_type: "master_roadmap"
-source_path: "active-project/-refactoring-initiative-active/master-roadmap.md"
-description: "Original high-level roadmap for the refactoring initiative."
-linked_documents: ["master-analysis-report.md", "master-progress.md"]
-standard_id: "-refactoring-initiative-master-roadmap"
-aliases: ["Master Project Roadmap", "Refactoring Main Roadmap"]
+title: Master Roadmap - Refactoring Initiative
+id: -refactoring-initiative-master-roadmap
+kb: refactoring-initiative
+file_type: master_roadmap
+source_path: active-project/-refactoring-initiative-active/master-roadmap.md
+description: Original high-level roadmap for the refactoring initiative.
+linked_documents:
+- master-analysis-report.md
+- master-progress.md
+standard_id: -refactoring-initiative-master-roadmap
+aliases:
+- Master Project Roadmap
+- Refactoring Main Roadmap
 tags:
-  - status/active
-  - criticality/P1-High
-  - content-type/roadmap-document
-kb-id: "refactoring-initiative"
-info-type: "roadmap-document"
-primary-topic: "Defines the overall phases and tasks for the refactoring initiative."
+- content-type/roadmap-document
+- criticality/p1-high
+- kb-id/global
+- status/active
+- topic/planning
+- topic/project
+kb-id: refactoring-initiative
+info-type: roadmap-document
+primary-topic: Defines the overall phases and tasks for the refactoring initiative.
 related-standards: []
-version: "1.0.2"
-date-created: "YYYY-MM-DDTHH:MM:SSZ"
-date-modified: "2024-07-16T12:00:00Z"
-primary_domain: "PROJECT"
-sub_domain: "PLANNING"
-scope_application: "Entire refactoring initiative."
-criticality: "P1-High"
-lifecycle_gatekeeper: "TBD"
-impact_areas: ["project-strategy", "historical-context", "phase-planning"]
-change_log_url: "TBD"
-maturity: "Medium"
-lifecycle_stage: "Planning"
-target_audience: ["technical_team", "project_managers"]
-project_phase: "Overall"
-task_type: "Master Planning Document"
-jira_issue: "TBD"
-history_summary: "Content from project-roadmap-original-high-level.md. Parent folder renamed to '-refactoring-initiative-active'. Final review and frontmatter alignment for folder name changes."
-key_takeaways: ["Provides a multi-phase plan for standards refactoring."]
-next_steps: ["Execute Phase 0 and subsequent phases as outlined."]
+version: 1.0.2
+date-created: YYYY-MM-DDTHH:MM:SSZ
+date-modified: '2025-06-17T02:29:13Z'
+primary_domain: PROJECT
+sub_domain: PLANNING
+scope_application: Entire refactoring initiative.
+criticality: P1-High
+lifecycle_gatekeeper: TBD
+impact_areas:
+- project-strategy
+- historical-context
+- phase-planning
+change_log_url: TBD
+maturity: Medium
+lifecycle_stage: Planning
+target_audience:
+- technical_team
+- project_managers
+project_phase: Overall
+task_type: Master Planning Document
+jira_issue: TBD
+history_summary: Content from project-roadmap-original-high-level.md. Parent folder
+  renamed to '-refactoring-initiative-active'. Final review and frontmatter alignment
+  for folder name changes.
+key_takeaways:
+- Provides a multi-phase plan for standards refactoring.
+next_steps:
+- Execute Phase 0 and subsequent phases as outlined.
 ---
 ## Roadmap: Standards Refactoring
 

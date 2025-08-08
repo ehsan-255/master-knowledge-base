@@ -1,20 +1,25 @@
 ---
+
 title: 'Standard: Image Alt Text for Accessibility'
 standard_id: SF-ACCESSIBILITY-IMAGE-ALT-TEXT
 aliases:
-  - Alt Text
-  - Image Accessibility
+- Alt Text
+- Image Accessibility
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Image Alt Text for Accessibility
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: SF
 sub_domain: MARKDOWN
 scope_application: Applies to all images embedded in knowledge base documents to ensure
@@ -22,9 +27,9 @@ scope_application: Applies to all images embedded in knowledge base documents to
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Accessibility compliance
-  - User experience
-  - Legal compliance
+- Accessibility compliance
+- User experience
+- Legal compliance
 ---
 # Standard: Image Accessibility and Alternative Text (SF-ACCESSIBILITY-IMAGE-ALT-TEXT)
 
@@ -84,4 +89,4 @@ This standard applies to all images (e.g., PNG, JPG, SVG, GIF) embedded within a
 - [[SF-SYNTAX-IMAGES]] - (If it exists) Standard defining the precise Markdown syntax for images. If not, refer to a general Markdown syntax guide.
 
 ---
-*This standard (SF-ACCESSIBILITY-IMAGE-ALT-TEXT) is based on rules 1.1 and 1.2 previously defined in U-ACCESSIBILITY-001 from COL-LINKING-UNIVERSAL.md.*
+*This standard (SF-ACCESSIBILITY-IMAGE-ALT-TEXT) is based on rules 1.1 and 1.2 previously defined in U-ACCESSIBILITY-001 (now deprecated and superseded by this standard).*

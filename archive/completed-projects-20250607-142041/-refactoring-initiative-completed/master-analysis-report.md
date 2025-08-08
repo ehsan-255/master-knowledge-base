@@ -1,40 +1,57 @@
 ---
-title: "Master Analysis Report - Refactoring Initiative"
-id: "-refactoring-initiative-master-analysis-report"
-kb: "refactoring-initiative"
-file_type: "master_analysis_report"
-source_path: "active-project/-refactoring-initiative-active/master-analysis-report.md"
-description: "Consolidated analysis defining the multi-view architecture and standards categorization for the refactoring initiative."
-linked_documents: ["master-roadmap.md", "master-progress.md"]
-standard_id: "-refactoring-initiative-master-analysis-report"
-aliases: ["Master Project Analysis", "Refactoring Analysis"]
+title: Master Analysis Report - Refactoring Initiative
+id: -refactoring-initiative-master-analysis-report
+kb: refactoring-initiative
+file_type: master_analysis_report
+source_path: active-project/-refactoring-initiative-active/master-analysis-report.md
+description: Consolidated analysis defining the multi-view architecture and standards
+  categorization for the refactoring initiative.
+linked_documents:
+- master-roadmap.md
+- master-progress.md
+standard_id: -refactoring-initiative-master-analysis-report
+aliases:
+- Master Project Analysis
+- Refactoring Analysis
 tags:
-  - status/active
-  - criticality/P1-High
-  - content-type/analysis-document
-kb-id: "refactoring-initiative"
-info-type: "analysis-document"
-primary-topic: "Overall analysis for the refactoring initiative."
+- content-type/analysis-document
+- criticality/p1-high
+- kb-id/global
+- status/active
+- topic/analysis
+- topic/project
+kb-id: refactoring-initiative
+info-type: analysis-document
+primary-topic: Overall analysis for the refactoring initiative.
 related-standards: []
-version: "1.0.3"
-date-created: "YYYY-MM-DDTHH:MM:SSZ"
-date-modified: "2024-07-16T12:00:00Z"
-primary_domain: "PROJECT"
-sub_domain: "ANALYSIS"
-scope_application: "Refactoring initiative planning and design."
-criticality: "P1-High"
-lifecycle_gatekeeper: "TBD"
-impact_areas: ["project-strategy", "architecture", "categorization"]
-change_log_url: "TBD"
-maturity: "Medium"
-lifecycle_stage: "Planning"
-target_audience: ["technical_team", "project_managers"]
-project_phase: "Initiation"
-task_type: "Consolidated Analysis"
-jira_issue: "TBD"
-history_summary: "Consolidated from project-design-multi-view-architecture.md and project-design-standards-categorization-scheme.md. Parent folder renamed to '-refactoring-initiative-active'. Final review and frontmatter alignment for folder name changes."
-key_takeaways: ["Defines foundational architectural and categorization schemes."]
-next_steps: ["Develop detailed master roadmap based on this analysis."]
+version: 1.0.3
+date-created: YYYY-MM-DDTHH:MM:SSZ
+date-modified: '2025-06-17T02:29:13Z'
+primary_domain: PROJECT
+sub_domain: ANALYSIS
+scope_application: Refactoring initiative planning and design.
+criticality: P1-High
+lifecycle_gatekeeper: TBD
+impact_areas:
+- project-strategy
+- architecture
+- categorization
+change_log_url: TBD
+maturity: Medium
+lifecycle_stage: Planning
+target_audience:
+- technical_team
+- project_managers
+project_phase: Initiation
+task_type: Consolidated Analysis
+jira_issue: TBD
+history_summary: Consolidated from project-design-multi-view-architecture.md and project-design-standards-categorization-scheme.md.
+  Parent folder renamed to '-refactoring-initiative-active'. Final review and frontmatter
+  alignment for folder name changes.
+key_takeaways:
+- Defines foundational architectural and categorization schemes.
+next_steps:
+- Develop detailed master roadmap based on this analysis.
 ---
 ## Summary
 

@@ -1,0 +1,589 @@
+{
+  "migration_summary": {
+    "dry_run": true,
+    "timestamp": "2025-06-17T06:32:47.501289",
+    "total_files_processed": 464,
+    "total_corrections_needed": 57,
+    "corrections_applied": 0,
+    "success_rate": 0.0
+  },
+  "field_statistics": {
+    "kb_ids_generated": 1,
+    "standard_ids_added": 0,
+    "standard_ids_removed": 0
+  },
+  "corrections_by_type": {
+    "update_field": 55,
+    "add_field": 2
+  },
+  "corrections_by_file": {
+    "archive\\reports-archive-20250607-1329\\GM-CONVENTIONS-NAMING_preview.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "GM-CONVENTIONS-NAMING",
+        "new_value": "ST-GEN-STANDARD-UNIVERSAL-N",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\reports-archive-20250607-1329\\GM-CONVENTIONS-NAMING_preview.md"
+      }
+    ],
+    "archive\\completed-projects-20250607-142041\\-active-project-organization-initiative-active\\master-analysis-report.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "-apo-initiative-master-analysis-report",
+        "new_value": "PL-GEN-MASTER-ANALYSIS-REPO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\completed-projects-20250607-142041\\-active-project-organization-initiative-active\\master-analysis-report.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\active-project\\-active-project-organization-initiative-active\\master-analysis-report.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "-apo-initiative-master-analysis-report",
+        "new_value": "PL-GEN-MASTER-ANALYSIS-REPO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\active-project\\-active-project-organization-initiative-active\\master-analysis-report.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-ASSET-ORGANIZATION.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-ASSET-ORGANIZATION",
+        "new_value": "ST-GEN-STANDARD-ASSET-ORGAN",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-ASSET-ORGANIZATION.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-DOC-CHAPTER.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-DOC-CHAPTER",
+        "new_value": "ST-GEN-STANDARD-CONTENT-DOC",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-DOC-CHAPTER.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-KB-PART.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-KB-PART",
+        "new_value": "ST-GEN-STANDARD-KNOWLEDGE-B",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-KB-PART.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-KB-ROOT.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-KB-ROOT",
+        "new_value": "ST-GEN-STANDARD-KNOWLEDGE-B",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-KB-ROOT.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-MASTER-KB-INDEX.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-MASTER-KB-INDEX",
+        "new_value": "ST-GEN-STANDARD-MASTER-KNOW",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-MASTER-KB-INDEX.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-TEMPLATES-DIRECTORY",
+        "new_value": "ST-GEN-STANDARD-TEMPLATES-D",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-ADMONITIONS-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-ADMONITIONS-POLICY",
+        "new_value": "PL-POLICY-POLICY-USAGE-OF-ADMO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-ADMONITIONS-POLICY.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-CONTENT-PROFILING-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-CONTENT-PROFILING-POLICY",
+        "new_value": "PL-POLICY-POLICY-CONTENT-PROFI",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-CONTENT-PROFILING-POLICY.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-LINKING-INTERNAL-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-LINKING-INTERNAL-POLICY",
+        "new_value": "PL-POLICY-POLICY-INTERNAL-KNOW",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-LINKING-INTERNAL-POLICY.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-MODULARITY-TRANSCLUSION-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-MODULARITY-TRANSCLUSION-POLICY",
+        "new_value": "PL-POLICY-POLICY-CONTENT-MODUL",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\CS-MODULARITY-TRANSCLUSION-POLICY.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\GM-CONVENTIONS-NAMING.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "GM-CONVENTIONS-NAMING",
+        "new_value": "ST-GEN-STANDARD-UNIVERSAL-N",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\GM-CONVENTIONS-NAMING.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\GM-REGISTRY-GOVERNANCE.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "GM-REGISTRY-GOVERNANCE",
+        "new_value": "ST-GEN-STANDARD-REGISTRY-GO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\GM-REGISTRY-GOVERNANCE.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "MT-STRATEGY-PRIMARY-TOPIC-KEYWORD",
+        "new_value": "ST-GEN-STANDARD-PRIMARY-TOP",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\MT-TAGGING-STRATEGY-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "MT-TAGGING-STRATEGY-POLICY",
+        "new_value": "PL-POLICY-POLICY-TAGGING-STRAT",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\MT-TAGGING-STRATEGY-POLICY.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-AUTOMATION-LLM-IO-SCHEMAS.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-AUTOMATION-LLM-IO-SCHEMAS",
+        "new_value": "ST-GEN-STANDARD-LLM-AUTOMAT",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-AUTOMATION-LLM-IO-SCHEMAS.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-AUTOMATION-LLM-PROMPT-LIBRARY",
+        "new_value": "ST-GEN-STANDARD-LLM-AUTOMAT",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-OVERVIEW-PUBLISHING-PIPELINE.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-OVERVIEW-PUBLISHING-PIPELINE",
+        "new_value": "ST-GEN-STANDARD-PUBLISHING-",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-OVERVIEW-PUBLISHING-PIPELINE.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-VERSIONING-CHANGELOGS.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-VERSIONING-CHANGELOGS",
+        "new_value": "ST-GEN-STANDARD-VERSIONING-",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\OM-VERSIONING-CHANGELOGS.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\QM-VALIDATION-METADATA.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "QM-VALIDATION-METADATA",
+        "new_value": "ST-DATA-STANDARD-METADATA-VA",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\QM-VALIDATION-METADATA.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-ACCESSIBILITY-IMAGE-ALT-TEXT",
+        "new_value": "ST-GEN-STANDARD-IMAGE-ALT-T",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-CALLOUTS-SYNTAX.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-CALLOUTS-SYNTAX",
+        "new_value": "ST-GEN-STANDARD-CALLOUT-AND",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-CALLOUTS-SYNTAX.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-CONDITIONAL-SYNTAX-ATTRIBUTES",
+        "new_value": "ST-GEN-STANDARD-SYNTAX-FOR-",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-FORMATTING-CITATIONS.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-FORMATTING-CITATIONS",
+        "new_value": "ST-GEN-STANDARD-CITATION-FO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-FORMATTING-CITATIONS.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-FORMATTING-FILE-HYGIENE.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-FORMATTING-FILE-HYGIENE",
+        "new_value": "ST-GEN-STANDARD-FILE-HYGIEN",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-FORMATTING-FILE-HYGIENE.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-FORMATTING-MARKDOWN-GENERAL.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-FORMATTING-MARKDOWN-GENERAL",
+        "new_value": "ST-GEN-STANDARD-GENERAL-MAR",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-FORMATTING-MARKDOWN-GENERAL.md"
+      }
+    ],
+    "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-TRANSCLUSION-SYNTAX.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-TRANSCLUSION-SYNTAX",
+        "new_value": "ST-GEN-STANDARD-TRANSCLUSIO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "archive\\migration-backup-20250607-133124\\master-knowledge-base\\standards\\src\\SF-TRANSCLUSION-SYNTAX.md"
+      }
+    ],
+    "standards\\src\\AS-STRUCTURE-ASSET-ORGANIZATION.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-ASSET-ORGANIZATION",
+        "new_value": "ST-GEN-STANDARD-ASSET-ORGAN",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\AS-STRUCTURE-ASSET-ORGANIZATION.md"
+      }
+    ],
+    "standards\\src\\AS-STRUCTURE-DOC-CHAPTER.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-DOC-CHAPTER",
+        "new_value": "ST-GEN-STANDARD-CONTENT-DOC",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\AS-STRUCTURE-DOC-CHAPTER.md"
+      }
+    ],
+    "standards\\src\\AS-STRUCTURE-KB-PART.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-KB-PART",
+        "new_value": "ST-GEN-STANDARD-KNOWLEDGE-B",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\AS-STRUCTURE-KB-PART.md"
+      }
+    ],
+    "standards\\src\\AS-STRUCTURE-KB-ROOT.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-KB-ROOT",
+        "new_value": "ST-GEN-STANDARD-KNOWLEDGE-B",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\AS-STRUCTURE-KB-ROOT.md"
+      }
+    ],
+    "standards\\src\\AS-STRUCTURE-MASTER-KB-INDEX.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-MASTER-KB-INDEX",
+        "new_value": "ST-GEN-STANDARD-MASTER-KNOW",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\AS-STRUCTURE-MASTER-KB-INDEX.md"
+      }
+    ],
+    "standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "AS-STRUCTURE-TEMPLATES-DIRECTORY",
+        "new_value": "ST-GEN-STANDARD-TEMPLATES-D",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\AS-STRUCTURE-TEMPLATES-DIRECTORY.md"
+      }
+    ],
+    "standards\\src\\CS-ADMONITIONS-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-ADMONITIONS-POLICY",
+        "new_value": "PL-POLICY-POLICY-USAGE-OF-ADMO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\CS-ADMONITIONS-POLICY.md"
+      }
+    ],
+    "standards\\src\\CS-CONTENT-PROFILING-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-CONTENT-PROFILING-POLICY",
+        "new_value": "PL-POLICY-POLICY-CONTENT-PROFI",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\CS-CONTENT-PROFILING-POLICY.md"
+      }
+    ],
+    "standards\\src\\CS-LINKING-INTERNAL-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-LINKING-INTERNAL-POLICY",
+        "new_value": "PL-POLICY-POLICY-INTERNAL-KNOW",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\CS-LINKING-INTERNAL-POLICY.md"
+      }
+    ],
+    "standards\\src\\CS-MODULARITY-TRANSCLUSION-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "CS-MODULARITY-TRANSCLUSION-POLICY",
+        "new_value": "PL-POLICY-POLICY-CONTENT-MODUL",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\CS-MODULARITY-TRANSCLUSION-POLICY.md"
+      }
+    ],
+    "standards\\src\\GM-CONVENTIONS-NAMING.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "GM-CONVENTIONS-NAMING",
+        "new_value": "ST-GEN-STANDARD-UNIVERSAL-N",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\GM-CONVENTIONS-NAMING.md"
+      }
+    ],
+    "standards\\src\\GM-REGISTRY-GOVERNANCE.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "GM-REGISTRY-GOVERNANCE",
+        "new_value": "ST-GEN-STANDARD-REGISTRY-GO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\GM-REGISTRY-GOVERNANCE.md"
+      }
+    ],
+    "standards\\src\\MT-SCHEMA-FRONTMATTER.md": [
+      {
+        "type": "add_field",
+        "field": "kb-id",
+        "value": "DOC-FRONTMATTER-SCHEMA-V-20250617-0632",
+        "reason": "Universal kb-id requirement for all documents",
+        "file_path": "standards\\src\\MT-SCHEMA-FRONTMATTER.md"
+      },
+      {
+        "type": "add_field",
+        "field": "kb-id",
+        "value": "auto-generated-kb-id",
+        "reason": "Mandatory field for technical-reference documents",
+        "file_path": "standards\\src\\MT-SCHEMA-FRONTMATTER.md"
+      }
+    ],
+    "standards\\src\\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "MT-STRATEGY-PRIMARY-TOPIC-KEYWORD",
+        "new_value": "ST-GEN-STANDARD-PRIMARY-TOP",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\MT-STRATEGY-PRIMARY-TOPIC-KEYWORD.md"
+      }
+    ],
+    "standards\\src\\MT-TAGGING-STRATEGY-POLICY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "MT-TAGGING-STRATEGY-POLICY",
+        "new_value": "PL-POLICY-POLICY-TAGGING-STRAT",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\MT-TAGGING-STRATEGY-POLICY.md"
+      }
+    ],
+    "standards\\src\\OM-AUTOMATION-LLM-IO-SCHEMAS.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-AUTOMATION-LLM-IO-SCHEMAS",
+        "new_value": "ST-GEN-STANDARD-LLM-AUTOMAT",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\OM-AUTOMATION-LLM-IO-SCHEMAS.md"
+      }
+    ],
+    "standards\\src\\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-AUTOMATION-LLM-PROMPT-LIBRARY",
+        "new_value": "ST-GEN-STANDARD-LLM-AUTOMAT",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\OM-AUTOMATION-LLM-PROMPT-LIBRARY.md"
+      }
+    ],
+    "standards\\src\\OM-OVERVIEW-PUBLISHING-PIPELINE.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-OVERVIEW-PUBLISHING-PIPELINE",
+        "new_value": "ST-GEN-STANDARD-PUBLISHING-",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\OM-OVERVIEW-PUBLISHING-PIPELINE.md"
+      }
+    ],
+    "standards\\src\\OM-VERSIONING-CHANGELOGS.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "OM-VERSIONING-CHANGELOGS",
+        "new_value": "ST-GEN-STANDARD-VERSIONING-",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\OM-VERSIONING-CHANGELOGS.md"
+      }
+    ],
+    "standards\\src\\QM-VALIDATION-METADATA.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "QM-VALIDATION-METADATA",
+        "new_value": "ST-DATA-STANDARD-METADATA-VA",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\QM-VALIDATION-METADATA.md"
+      }
+    ],
+    "standards\\src\\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-ACCESSIBILITY-IMAGE-ALT-TEXT",
+        "new_value": "ST-GEN-STANDARD-IMAGE-ALT-T",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\SF-ACCESSIBILITY-IMAGE-ALT-TEXT.md"
+      }
+    ],
+    "standards\\src\\SF-CALLOUTS-SYNTAX.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-CALLOUTS-SYNTAX",
+        "new_value": "ST-GEN-STANDARD-CALLOUT-AND",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\SF-CALLOUTS-SYNTAX.md"
+      }
+    ],
+    "standards\\src\\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-CONDITIONAL-SYNTAX-ATTRIBUTES",
+        "new_value": "ST-GEN-STANDARD-SYNTAX-FOR-",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\SF-CONDITIONAL-SYNTAX-ATTRIBUTES.md"
+      }
+    ],
+    "standards\\src\\SF-FORMATTING-CITATIONS.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-FORMATTING-CITATIONS",
+        "new_value": "ST-GEN-STANDARD-CITATION-FO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\SF-FORMATTING-CITATIONS.md"
+      }
+    ],
+    "standards\\src\\SF-FORMATTING-FILE-HYGIENE.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-FORMATTING-FILE-HYGIENE",
+        "new_value": "ST-GEN-STANDARD-FILE-HYGIEN",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\SF-FORMATTING-FILE-HYGIENE.md"
+      }
+    ],
+    "standards\\src\\SF-FORMATTING-MARKDOWN-GENERAL.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-FORMATTING-MARKDOWN-GENERAL",
+        "new_value": "ST-GEN-STANDARD-GENERAL-MAR",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\SF-FORMATTING-MARKDOWN-GENERAL.md"
+      }
+    ],
+    "standards\\src\\SF-TRANSCLUSION-SYNTAX.md": [
+      {
+        "type": "update_field",
+        "field": "standard_id",
+        "old_value": "SF-TRANSCLUSION-SYNTAX",
+        "new_value": "ST-GEN-STANDARD-TRANSCLUSIO",
+        "reason": "Invalid standard_id pattern, regenerating with correct format",
+        "file_path": "standards\\src\\SF-TRANSCLUSION-SYNTAX.md"
+      }
+    ]
+  },
+  "errors_encountered": [],
+  "validation_status": "READY_FOR_EXECUTION"
+}

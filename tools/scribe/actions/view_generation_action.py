@@ -5,8 +5,9 @@ import json
 import yaml # Requires PyYAML
 from datetime import datetime
 import sys
+from typing import Dict, Any, Optional
 
-from .base_action import BaseAction
+from .base import BaseAction, ActionExecutionError
 
 # Core logic adapted from tools/view_generator.py
 # These can be static methods or part of the class.
@@ -93,12 +94,25 @@ def _generate_yaml_view_standard(standard_data: dict, logger: logging.Logger) ->
 
 
 class ViewGenerationAction(BaseAction):
-    def __init__(self, action_config: dict, global_config: dict, logger=None):
-        super().__init__(action_config, global_config, logger)
-        self.schema_registry_path_str = self.action_config.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
-        self.master_index_path_str = self.action_config.get("master_index_path", "standards/registry/master-index.jsonld")
+    def __init__(self, action_type: str, params: Dict[str, Any], plugin_context: 'PluginContextPort'):
+        super().__init__(action_type, params, plugin_context)
+        
+        # HMA v2.2 compliant port-based access
+        config_port = self.context.get_port("configuration")
+        self.log_port = self.context.get_port("logging")
+        
+        self.schema_registry_path_str = self.params.get("schema_registry_path", "standards/registry/schema-registry.jsonld")
+        self.master_index_path_str = self.params.get("master_index_path", "standards/registry/master-index.jsonld")
         self.schema_registry = None
         self.master_index = None
+        
+        # Get repo root through configuration port
+        try:
+            self.repo_root = Path(config_port.get_config_value("repo_root", self.context.get_plugin_id(), "."))
+        except Exception as e:
+            self.log_port.log_warning("Could not get repo_root from config, using current directory", error=str(e))
+            self.repo_root = Path(".")
+
 
     def setup(self):
         if not super().setup():
@@ -120,17 +134,17 @@ class ViewGenerationAction(BaseAction):
         self.logger.info("ViewGenerationAction setup complete.")
         return True
 
-    def execute(self, execution_context: dict) -> dict:
-        self.logger.info(f"Executing ViewGenerationAction. Context: {execution_context}")
+    def execute(self, file_content: str, match, file_path: str, params: Dict[str, Any]) -> str:
+        self.logger.info(f"Executing ViewGenerationAction. Context: {params}")
 
-        entity_id = execution_context.get("entity_id")
-        view_type = execution_context.get("view_type")
-        output_path_str = execution_context.get("output_path") # Relative to repo_root or absolute
+        entity_id = params.get("entity_id")
+        view_type = params.get("view_type")
+        output_path_str = params.get("output_path") # Relative to repo_root or absolute
 
         if not entity_id or not view_type:
-            return {'status': 'failure', 'message': "Missing 'entity_id' or 'view_type' in execution_context."}
+            raise ActionExecutionError(self.action_type, "Missing 'entity_id' or 'view_type' in execution_context.")
         if view_type not in ['md', 'yaml']:
-            return {'status': 'failure', 'message': f"Invalid 'view_type': {view_type}. Must be 'md' or 'yaml'."}
+            raise ActionExecutionError(self.action_type, f"Invalid 'view_type': {view_type}. Must be 'md' or 'yaml'.")
 
         target_standard_data = None
         if self.master_index.get("kb:documents"):
@@ -146,7 +160,7 @@ class ViewGenerationAction(BaseAction):
         if not target_standard_data:
             msg = f"Entity with ID '{entity_id}' not found in master index."
             self.logger.error(msg)
-            return {'status': 'failure', 'message': msg}
+            raise ActionExecutionError(self.action_type, msg)
 
         self.logger.info(f"Found entity: {target_standard_data.get('kb:title', entity_id)}")
 
@@ -166,24 +180,18 @@ class ViewGenerationAction(BaseAction):
                 with open(actual_output_path, 'w', encoding='utf-8') as f:
                     f.write(output_content)
                 self.logger.info(f"View successfully written to: {actual_output_path}")
-                return {
-                    'status': 'success',
-                    'message': f"View generated for {entity_id}.",
-                    'output_path': str(Path(output_path_str)) # Return relative path as passed in context
-                }
+                return file_content
             except IOError as e:
                 self.logger.exception(f"Error writing to output file {actual_output_path}: {e}")
-                return {
-                    'status': 'failure',
-                    'message': f"Error writing file: {e}",
-                    'output_content': output_content # Return content if write failed
-                }
+                raise ActionExecutionError(self.action_type, f"Error writing file: {e}", original_error=e)
         else: # Output to context/stdout
-            return {
-                'status': 'success',
-                'message': f"View generated for {entity_id}.",
-                'output_content': output_content
-            }
+            # This case is tricky in the new model. We can't return arbitrary dicts.
+            # We will log the content and return the original file content.
+            # A more advanced implementation might involve writing to a temp file
+            # or using a different mechanism to pass data between actions.
+            self.logger.info("No output path specified. Logging generated view content.")
+            self.logger.info(f"--- Generated View for {entity_id} ---\n{output_content}")
+            return file_content
 
 # Example usage (for testing)
 if __name__ == '__main__':
@@ -215,19 +223,19 @@ if __name__ == '__main__':
         logger.info("Created dummy master-index.jsonld for test.")
 
 
-    action = ViewGenerationAction(action_config=mock_action_config, global_config=mock_global_config, logger=logger)
+    action = ViewGenerationAction(action_type="view_generation", params=mock_action_config, config_manager=None, security_manager=None) # Mock ConfigManager and SecurityManager
 
     if action.setup():
         logger.info("--- MD View to STDOUT Test ---")
         md_context = {"entity_id": "TEST-SHACL-001", "view_type": "md"}
-        md_result = action.execute(md_context)
+        md_result = action.execute(file_content="", match=None, file_path="", params=md_context)
         logger.info(f"MD Result: {md_result.get('status')}")
         if md_result.get('status') == 'success':
              print("MD Output:\n", md_result.get('output_content'))
 
         logger.info("--- YAML View to File Test ---")
         yaml_context = {"entity_id": "TEST-SHACL-001", "view_type": "yaml", "output_path": "temp_view_output.yaml"}
-        yaml_result = action.execute(yaml_context)
+        yaml_result = action.execute(file_content="", match=None, file_path="", params=yaml_context)
         logger.info(f"YAML Result: {yaml_result.get('status')}, Path: {yaml_result.get('output_path')}")
 
         # Cleanup

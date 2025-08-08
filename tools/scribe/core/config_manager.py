@@ -9,6 +9,8 @@ Implements atomic configuration swapping with JSON Schema validation.
 import json
 import threading
 import time
+import yaml
+import os
 from pathlib import Path
 from typing import Dict, Any, Optional, Callable, List
 import structlog
@@ -17,6 +19,7 @@ from watchdog.events import FileSystemEventHandler
 import jsonschema
 
 from .logging_config import get_scribe_logger
+from .vault_secret_provider import get_vault_provider, configure_vault_from_environment, initialize_vault_provider
 
 logger = get_scribe_logger(__name__)
 
@@ -48,9 +51,11 @@ class ConfigManager:
     when the configuration file changes.
     """
     
+    DEFAULT_CONFIG_PATH = "scribe-config.json"
+    
     def __init__(self, 
                  config_path: str = "tools/scribe/config/config.json",
-                 schema_path: str = "tools/scribe/config/config.schema.json",
+                 schema_path: str = "tools/scribe/schemas/scribe_config.schema.json",
                  auto_reload: bool = True):
         """
         Initialize the configuration manager.
@@ -64,7 +69,8 @@ class ConfigManager:
         self.schema_path = Path(schema_path)
         self.auto_reload = auto_reload
         self.config_filename = self.config_path.name
-        
+        self.repo_root = self._find_repo_root()
+
         # Thread safety
         self._config_lock = threading.RLock()
         self._config: Optional[Dict[str, Any]] = None
@@ -77,6 +83,14 @@ class ConfigManager:
         # Change callbacks
         self._change_callbacks: list[Callable[[Dict[str, Any]], None]] = []
         
+        # Vault integration
+        self._vault_enabled = os.getenv('SCRIBE_VAULT_ENABLED', 'false').lower() == 'true'
+        self._vault_provider = None
+        
+        # Initialize Vault if enabled
+        if self._vault_enabled:
+            self._initialize_vault()
+        
         # Load initial configuration
         self._load_schema()
         self._load_and_validate_config()
@@ -88,8 +102,22 @@ class ConfigManager:
         logger.info("ConfigManager initialized",
                    config_path=str(self.config_path),
                    schema_path=str(self.schema_path),
-                   auto_reload=auto_reload)
+                   auto_reload=auto_reload,
+                   vault_enabled=self._vault_enabled)
     
+    def _find_repo_root(self) -> str:
+        """Find the repository root from the current path."""
+        # A simple way is to look for a known marker, like .git directory
+        current_path = Path.cwd()
+        for parent in [current_path] + list(current_path.parents):
+            if (parent / ".git").exists():
+                return str(parent)
+        return str(current_path) # Fallback to current dir
+
+    def get_repo_root(self) -> str:
+        """Get the repository root path."""
+        return self.repo_root
+
     def _load_schema(self) -> None:
         """Load and parse the JSON schema."""
         try:
@@ -117,7 +145,11 @@ class ConfigManager:
                 raise FileNotFoundError(f"Configuration file not found: {self.config_path}")
             
             with open(self.config_path, 'r', encoding='utf-8') as f:
-                temp_config = json.load(f)
+                # Detect file format based on extension
+                if self.config_path.suffix.lower() in ['.yaml', '.yml']:
+                    temp_config = yaml.safe_load(f)
+                else:
+                    temp_config = json.load(f)
             
             # Validate against schema
             if self._schema:
@@ -215,6 +247,31 @@ class ConfigManager:
             if self._config is None:
                 raise RuntimeError("Configuration not loaded")
             return self._config.copy()
+    
+    def get(self, key: str, default: Any = None) -> Any:
+        """
+        Get a configuration value by key.
+        
+        Args:
+            key: Configuration key (supports dot notation)
+            default: Default value if key not found
+            
+        Returns:
+            Configuration value or default
+        """
+        config = self.get_config()
+        
+        # Support dot notation for nested keys
+        keys = key.split('.')
+        value = config
+        
+        for k in keys:
+            if isinstance(value, dict) and k in value:
+                value = value[k]
+            else:
+                return default
+                
+        return value
     
     def get_engine_settings(self) -> Dict[str, Any]:
         """Get engine settings from configuration."""
@@ -327,6 +384,151 @@ class ConfigManager:
             logger.error("Configuration validation failed",
                         validation_error=str(e))
             return False
+    
+    def _initialize_vault(self) -> None:
+        """Initialize Vault connection and authentication."""
+        try:
+            # Configure Vault from environment variables
+            vault_config = configure_vault_from_environment()
+            if not vault_config:
+                logger.error("Failed to configure Vault from environment variables")
+                self._vault_enabled = False
+                return
+            
+            # Initialize global Vault provider
+            self._vault_provider = initialize_vault_provider(vault_config)
+            
+            # Configure authentication if using AppRole
+            if vault_config.auth_method.value == 'approle':
+                role_id = os.getenv('VAULT_ROLE_ID')
+                secret_id = os.getenv('VAULT_SECRET_ID')
+                if role_id and secret_id:
+                    self._vault_provider.configure_authentication(
+                        role_id=role_id,
+                        secret_id=secret_id
+                    )
+                else:
+                    logger.warning("AppRole credentials not found in environment")
+            
+            elif vault_config.auth_method.value == 'token':
+                token = os.getenv('VAULT_TOKEN')
+                if token:
+                    self._vault_provider.configure_authentication(token=token)
+                else:
+                    logger.warning("Vault token not found in environment")
+            
+            # Authenticate with Vault
+            if self._vault_provider.authenticate():
+                logger.info("Vault authentication successful")
+            else:
+                logger.error("Failed to authenticate with Vault")
+                self._vault_enabled = False
+                
+        except Exception as e:
+            logger.error("Failed to initialize Vault integration",
+                        error=str(e),
+                        exc_info=True)
+            self._vault_enabled = False
+    
+    def get_secret(self, path: str, mount_point: str = "scribe") -> Optional[Dict[str, Any]]:
+        """
+        Retrieve secret from Vault.
+        
+        Args:
+            path: Secret path (e.g., "certificates/mtls")
+            mount_point: Vault mount point
+            
+        Returns:
+            Secret data or None if not found/Vault not available
+        """
+        if not self._vault_enabled or not self._vault_provider:
+            logger.debug("Vault not enabled or provider not available")
+            return None
+        
+        try:
+            return self._vault_provider.get_secret(path, mount_point)
+        except Exception as e:
+            logger.error("Failed to retrieve secret from Vault",
+                        path=path,
+                        mount_point=mount_point,
+                        error=str(e))
+            return None
+    
+    def get_certificate(self, common_name: str, 
+                       alt_names: Optional[List[str]] = None,
+                       ttl: str = "8760h") -> Optional[Dict[str, str]]:
+        """
+        Generate certificate from Vault PKI engine.
+        
+        Args:
+            common_name: Certificate common name
+            alt_names: Alternative names
+            ttl: Certificate TTL
+            
+        Returns:
+            Certificate data or None if failed
+        """
+        if not self._vault_enabled or not self._vault_provider:
+            logger.debug("Vault not enabled or provider not available")
+            return None
+        
+        try:
+            return self._vault_provider.get_certificate(common_name, alt_names, ttl)
+        except Exception as e:
+            logger.error("Failed to generate certificate from Vault",
+                        common_name=common_name,
+                        error=str(e))
+            return None
+    
+    def store_secret(self, path: str, secret_data: Dict[str, Any], 
+                    mount_point: str = "scribe") -> bool:
+        """
+        Store secret in Vault.
+        
+        Args:
+            path: Secret path
+            secret_data: Secret data to store
+            mount_point: Vault mount point
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        if not self._vault_enabled or not self._vault_provider:
+            logger.debug("Vault not enabled or provider not available")
+            return False
+        
+        try:
+            self._vault_provider.write_secret(path, secret_data, mount_point)
+            return True
+        except Exception as e:
+            logger.error("Failed to store secret in Vault",
+                        path=path,
+                        mount_point=mount_point,
+                        error=str(e))
+            return False
+    
+    def is_vault_enabled(self) -> bool:
+        """Check if Vault integration is enabled and functional."""
+        return self._vault_enabled and self._vault_provider is not None
+    
+    def get_vault_health(self) -> Dict[str, Any]:
+        """Get Vault health status."""
+        if not self._vault_enabled or not self._vault_provider:
+            return {
+                'enabled': False,
+                'status': 'disabled'
+            }
+        
+        try:
+            health = self._vault_provider.health_check()
+            health['enabled'] = True
+            return health
+        except Exception as e:
+            return {
+                'enabled': True,
+                'status': 'error',
+                'error': str(e)
+            }
     
     def __enter__(self):
         """Context manager entry."""

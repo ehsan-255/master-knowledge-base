@@ -1,41 +1,57 @@
 ---
-title: "L2-T1 Roadmap - Initial Refactoring and Roadmap Phases" # Updated
-id: "refactoring-l2-t1-initial-refactoring-roadmap" # Updated
-kb: "refactoring-initiative"
-file_type: "sub_task_roadmap"
-source_path: "active-project/refactoring-initiative-active/l2-t1-initial-refactoring-and-roadmap-phases-active/l2-t1-roadmap.md" # Updated
-description: "Contains the roadmap for completion phases A-F."
-status: "active"
-linked_documents: ["l2-t1-analysis-report.md", "l2-t1-progress.md"]
-standard_id: "refactoring-l2-t1-initial-refactoring-roadmap" # Updated to match id
-aliases: ["L2-T1 Roadmap", "Phases A-F Roadmap"]
+title: L2-T1 Roadmap - Initial Refactoring and Roadmap Phases
+id: refactoring-l2-t1-initial-refactoring-roadmap
+kb: refactoring-initiative
+file_type: sub_task_roadmap
+source_path: active-project/refactoring-initiative-active/l2-t1-initial-refactoring-and-roadmap-phases-active/l2-t1-roadmap.md
+description: Contains the roadmap for completion phases A-F.
+status: active
+linked_documents:
+- l2-t1-analysis-report.md
+- l2-t1-progress.md
+standard_id: refactoring-l2-t1-initial-refactoring-roadmap
+aliases:
+- L2-T1 Roadmap
+- Phases A-F Roadmap
 tags:
-  - status/active
-  - criticality/P1-High
-  - content-type/roadmap-document
-kb-id: "refactoring-initiative"
-info-type: "roadmap-document"
-primary-topic: "Roadmap detailing phases A-F for refactoring completion."
+- content-type/roadmap-document
+- criticality/p0-critical
+- criticality/p1-high
+- kb-id/global
+- status/active
+- topic/planning
+- topic/project
+kb-id: refactoring-initiative
+info-type: roadmap-document
+primary-topic: Roadmap detailing phases A-F for refactoring completion.
 related-standards: []
-version: "1.0.1" # Incremented
-date-created: "YYYY-MM-DDTHH:MM:SSZ"
-date-modified: "YYYY-MM-DDTHH:MM:SSZ" # Placeholder for current date
-primary_domain: "PROJECT"
-sub_domain: "PLANNING"
-scope_application: "L2-T1 sub-task of refactoring initiative, covering Phases A-F."
-criticality: "P0-Critical"
-lifecycle_gatekeeper: "TBD"
-impact_areas: ["project-execution", "phase-management"]
-change_log_url: "TBD"
-maturity: "Medium"
-lifecycle_stage: "Planning"
-target_audience: ["technical_team", "project_managers"]
-project_phase: "L2-T1"
-task_type: "Sub-task Roadmap"
-jira_issue: "TBD"
-history_summary: "Content populated from second part of combined analysis report (original project-roadmap-completion-phases-a-f.md). Source path and title updated due to parent folder rename." # Updated
-key_takeaways: ["Defines detailed execution plan for phases A-F."]
-next_steps: ["Execute Phase A as outlined in this roadmap."]
+version: 1.0.1
+date-created: YYYY-MM-DDTHH:MM:SSZ
+date-modified: '2025-06-17T02:29:13Z'
+primary_domain: PROJECT
+sub_domain: PLANNING
+scope_application: L2-T1 sub-task of refactoring initiative, covering Phases A-F.
+criticality: P0-Critical
+lifecycle_gatekeeper: TBD
+impact_areas:
+- project-execution
+- phase-management
+change_log_url: TBD
+maturity: Medium
+lifecycle_stage: Planning
+target_audience:
+- technical_team
+- project_managers
+project_phase: L2-T1
+task_type: Sub-task Roadmap
+jira_issue: TBD
+history_summary: Content populated from second part of combined analysis report (original
+  project-roadmap-completion-phases-a-f.md). Source path and title updated due to
+  parent folder rename.
+key_takeaways:
+- Defines detailed execution plan for phases A-F.
+next_steps:
+- Execute Phase A as outlined in this roadmap.
 ---
 ## Refactoring Completion Roadmap
 

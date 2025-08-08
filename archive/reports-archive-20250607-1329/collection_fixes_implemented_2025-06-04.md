@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Collection Linter Fixes Implementation Report
 
 **Date:** 2025-06-04  
@@ -119,4 +136,4 @@ The following 7 legitimate errors remain and are unrelated to collections:
 - All changes are backward compatible
 - No existing functionality was broken
 - Collection regeneration works correctly with new tag prefixes
-- Linter logic is extensible for future document types 
+- Linter logic is extensible for future document types

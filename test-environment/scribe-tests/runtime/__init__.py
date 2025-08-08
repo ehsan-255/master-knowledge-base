@@ -1,0 +1,1 @@
+# Runtime integration tests for Scribe HMA v2.2

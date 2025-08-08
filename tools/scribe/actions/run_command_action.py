@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Run Command Action Plugin
+Run Command Action Plugin (HMA v2.2 Compliant)
 
-Executes system commands safely using the SecurityManager.
-This action demonstrates the list-based command execution pattern.
+Executes system commands safely using port-based access.
+This action demonstrates the HMA v2.2 ports-and-adapters-only pattern.
 """
 
 import re
@@ -11,36 +11,18 @@ from typing import Dict, Any, List
 from pathlib import Path
 
 from .base import BaseAction, ActionExecutionError, validate_required_params
-from ..core.security_manager import SecurityManager, SecurityViolation
-from ..core.logging_config import get_scribe_logger
-
-logger = get_scribe_logger(__name__)
 
 
 class RunCommandAction(BaseAction):
     """
-    Action plugin that executes system commands safely.
+    Action plugin that executes system commands safely using HMA v2.2 ports.
     
-    This action uses the SecurityManager to execute commands with proper
+    This action uses the CommandExecutionPort to execute commands with proper
     security restrictions and uses list-based command format to prevent
     shell injection attacks.
-    """
     
-    # __init__ is inherited from BaseAction if not defined here.
-    # If we define it, we must call super() correctly.
-    # BaseAction.__init__ is now:
-    # def __init__(self, action_type: str, params: Dict[str, Any], config_manager: 'ConfigManager', security_manager: 'SecurityManager')
-    # The PluginLoader will now pass all these.
-    # RunCommandAction specifically uses self.security_manager. It will be set by BaseAction.
-    # No need to redefine __init__ if it just calls super and does nothing else.
-    # If it had specific logic for security_manager, it would be:
-    # def __init__(self, action_type: str, params: Dict[str, Any], config_manager: 'ConfigManager', security_manager: 'SecurityManager'):
-    #     super().__init__(action_type, params, config_manager, security_manager)
-    #     # self.security_manager is already available from super's init.
-    #     # No need for self.security_manager = security_manager here again unless super doesn't store it, but it does.
-
-    # Let's remove the old __init__ to ensure it uses the new BaseAction.__init__ correctly.
-    # The PluginLoader will now be responsible for providing all necessary arguments.
+    HMA v2.2 Compliance: All functionality accessed through registered ports.
+    """
         
     def get_required_params(self) -> List[str]:
         """Get required parameters for this action."""
@@ -133,13 +115,13 @@ class RunCommandAction(BaseAction):
                 f"Parameter validation failed: {e}"
             )
     
-    def execute(self, 
-                file_content: str, 
-                match: re.Match, 
-                file_path: str, 
-                params: Dict[str, Any]) -> str:
+    async def execute(self, 
+                      file_content: str, 
+                      match: re.Match, 
+                      file_path: str, 
+                      params: Dict[str, Any]) -> str:
         """
-        Execute a system command safely.
+        Execute a system command safely using HMA v2.2 ports.
         
         Args:
             file_content: The full content of the file being processed
@@ -161,18 +143,18 @@ class RunCommandAction(BaseAction):
             command_list = params["command"]
             cwd = params.get("cwd")
             timeout = params.get("timeout", 30)
-            allowed_env_vars = params.get("allowed_env_vars") # Retrieves from params, defaults to None if not present.
-                                                              # get_optional_params provides default [] if not in rule.
+            allowed_env_vars = params.get("allowed_env_vars")
             
-            self.logger.info("Executing command",
-                           command=command_list,
-                           file_path=file_path,
-                           cwd=cwd,
-                           timeout=timeout,
-                           allowed_env_vars=allowed_env_vars)
+            # Log command execution using logging port
+            self.log_port.log_info("Executing command via port",
+                                  command=command_list,
+                                  file_path=file_path,
+                                  cwd=cwd,
+                                  timeout=timeout,
+                                  plugin_id=self.context.get_plugin_id())
             
-            # Execute command safely
-            success, stdout, stderr = self.security_manager.execute_command_safely(
+            # Execute command safely through command execution port
+            success, stdout, stderr = await self.execute_command_safely(
                 command_list=command_list,
                 cwd=cwd,
                 timeout=timeout,
@@ -180,18 +162,40 @@ class RunCommandAction(BaseAction):
             )
             
             if success:
-                self.logger.info("Command executed successfully",
-                               command=command_list,
-                               stdout_length=len(stdout),
-                               stderr_length=len(stderr))
+                self.log_port.log_info("Command executed successfully via port",
+                                      command=command_list,
+                                      stdout_length=len(stdout),
+                                      stderr_length=len(stderr))
+                
+                # Publish success event
+                await self.publish_event(
+                    "command_executed",
+                    {
+                        "command": command_list,
+                        "success": True,
+                        "file_path": file_path,
+                        "plugin_id": self.context.get_plugin_id()
+                    }
+                )
             else:
-                self.logger.warning("Command execution failed",
-                                  command=command_list,
-                                  stdout=stdout,
-                                  stderr=stderr)
+                self.log_port.log_warning("Command execution failed via port",
+                                         command=command_list,
+                                         stdout=stdout,
+                                         stderr=stderr)
+                
+                # Publish failure event
+                await self.publish_event(
+                    "command_failed",
+                    {
+                        "command": command_list,
+                        "success": False,
+                        "error": stderr,
+                        "file_path": file_path,
+                        "plugin_id": self.context.get_plugin_id()
+                    }
+                )
                 
                 # Optionally raise an error on command failure
-                # This can be controlled by a parameter in the future
                 raise ActionExecutionError(
                     self.action_type,
                     f"Command failed with stderr: {stderr}"
@@ -200,24 +204,26 @@ class RunCommandAction(BaseAction):
             # Return original content (this action doesn't modify files)
             return file_content
             
-        except SecurityViolation as e:
-            self.logger.error("Security violation during command execution",
-                            command=params.get("command"),
-                            violation_type=e.violation_type,
-                            error=str(e))
-            raise ActionExecutionError(
-                self.action_type,
-                f"Security violation: {e}"
-            )
-        
         except ActionExecutionError:
             raise
             
         except Exception as e:
-            self.logger.error("Unexpected error during command execution",
-                            command=params.get("command"),
-                            error=str(e),
-                            exc_info=True)
+            self.log_port.log_error("Unexpected error during command execution",
+                                   command=params.get("command"),
+                                   error=str(e),
+                                   plugin_id=self.context.get_plugin_id())
+            
+            # Publish error event
+            await self.publish_event(
+                "command_error",
+                {
+                    "command": params.get("command"),
+                    "error": str(e),
+                    "file_path": file_path,
+                    "plugin_id": self.context.get_plugin_id()
+                }
+            )
+            
             raise ActionExecutionError(
                 self.action_type,
                 f"Unexpected error: {e}"

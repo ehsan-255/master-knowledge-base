@@ -2,25 +2,26 @@
 title: Glossary of Standards Terminology
 standard_id: GM-GLOSSARY-STANDARDS-TERMS
 aliases:
-  - Standards Glossary
-  - KB Governance Terms
+- Standards Glossary
+- KB Governance Terms
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/glossary-document
-  - topic/glossary
-  - topic/standards-governance
-  - kb-id/standards
+- content-type/glossary-document
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/glossary
+- topic/gm
+- topic/standards-governance
 kb-id: standards
 info-type: glossary-document
 primary-topic: Provides definitions for key terms, acronyms, and concepts used throughout
   the Knowledge Base standards and governance documentation.
 related-standards:
-  - GM-MANDATE-STANDARDS-GLOSSARY
-  - MT-SCHEMA-FRONTMATTER
+- GM-MANDATE-STANDARDS-GLOSSARY
+- MT-SCHEMA-FRONTMATTER
 version: 0.1.0
 date-created: '2025-05-29T16:04:35Z'
-date-modified: '2025-05-30T14:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: GM
 sub_domain: GLOSSARY
 scope_application: Applies to all users and contributors of the knowledge base ecosystem
@@ -28,10 +29,10 @@ scope_application: Applies to all users and contributors of the knowledge base e
 criticality: P1-High
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
-  - User understanding
-  - Communication clarity
-  - Standards adoption
-  - Onboarding
+- User understanding
+- Communication clarity
+- Standards adoption
+- Onboarding
 ---
 # Glossary of Standards Terminology (GM-GLOSSARY-STANDARDS-TERMS)
 

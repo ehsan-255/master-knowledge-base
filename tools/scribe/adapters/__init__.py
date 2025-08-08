@@ -1,0 +1,1 @@
+# HMA v2.2 Compliance Adapters for Tier 3 Technologies

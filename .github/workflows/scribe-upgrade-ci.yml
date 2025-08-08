@@ -1,0 +1,38 @@
+name: scribe-upgrade-ci
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: conda-kb
+          python-version: "3.11"
+          auto-activate-base: false
+      - name: Install deps (pyproject → lock)
+        shell: bash -l {0}
+        run: |
+          conda activate conda-kb
+          pip install pip-tools==7.4.1
+          pip-compile tools/scribe/pyproject.toml --extra dev -o tools/scribe/requirements.lock.txt
+          pip install -r tools/scribe/requirements.lock.txt
+      - name: Lint
+        shell: bash -l {0}
+        run: |
+          conda activate conda-kb
+          ruff check tools/scribe
+      - name: Run tests (forced path)
+        shell: bash -l {0}
+        run: |
+          conda activate conda-kb
+          pytest -q --cov=tools/scribe --cov-report=term-missing
+      - name: Archive reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scribe-reports
+          path: tools/reports/**

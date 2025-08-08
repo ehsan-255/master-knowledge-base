@@ -4,19 +4,26 @@ aliases:
 - Standards Glossary
 - Terminology for Standards
 tags:
+- content-type/standards-glossary
 - content-type/standards-guide
+- criticality/p0-critical
 - kb-id/standards
 - status/deprecated
 - topic/glossary
 - topic/standards-governance
 kb-id: standards
 info-type: standards-glossary
-primary-topic: Defines key terms used within the Universal Knowledge Base Standards documents themselves to ensure consistent understanding.
+primary-topic: Defines key terms used within the Universal Knowledge Base Standards
+  documents themselves to ensure consistent understanding.
 related-standards:
 - GM-GLOSSARY-STANDARDS-TERMS
 version: 0.2.0
 date-created: '2025-05-22T00:00:00Z'
-date-modified: '2025-06-02T00:02:06Z'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
 **DEPRECATED:** This document is superseded. Its content has been refactored into the new atomic standard: [[GM-GLOSSARY-STANDARDS-TERMS]].
 

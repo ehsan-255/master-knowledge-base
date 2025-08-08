@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scribe-config
+  namespace: default
+  labels:
+    app: scribe
+    component: config
+    hma.version: "2.2"
+data:
+  security_policy.yaml: |
+    # HMA v2.2 Security Policy Configuration
+    hma:
+      version: "2.2"
+      compliance:
+        mandatory_technologies:
+          - json_schema
+          - opentelemetry
+          - otel_boundary
+          - mtls
+          - event_bus
+          - circuit_breaker
+    
+    mtls:
+      enabled: true
+      ca_path: /etc/ssl/scribe/ca.crt
+      cert_path: /etc/ssl/scribe/server.crt
+      key_path: /etc/ssl/scribe/server.key
+      verify_client: true
+      require_client_cert: true
+    
+    security:
+      boundary_validation:
+        enabled: true
+        strict_mode: true
+        dlq_enabled: true
+      
+      audit_logging:
+        enabled: true
+        include_sensitive_data: false
+        
+      rate_limiting:
+        enabled: true
+        requests_per_minute: 100
+    
+    observability:
+      telemetry:
+        endpoint: "http://otel-collector:4317"
+        sampling_rate: 1.0
+        boundary_tracing: true
+      
+      metrics:
+        prometheus_port: 8000
+        include_boundary_metrics: true

@@ -5,6 +5,9 @@ Scribe BaseAction - Abstract Base Class for Action Plugins
 This module defines the Port contract that all Scribe action plugins must implement.
 It follows the Hexagonal Architecture pattern where this abstract class serves as
 the Port interface for L3 Capability Plugins.
+
+HMA v2.2 Update: Now uses ports-and-adapters-only interaction policy.
+All plugins must access core functionality through registered ports.
 """
 
 import re
@@ -14,11 +17,10 @@ import structlog
 
 # Import for type hinting only to avoid circular dependency
 if TYPE_CHECKING:
-    from ..core.config_manager import ConfigManager
-    from ..core.security_manager import SecurityManager
+    from tools.scribe.core.hma_ports import PluginContextPort
 
 # Import logging from the core module
-from ..core.logging_config import get_scribe_logger
+from tools.scribe.core.logging_config import get_scribe_logger
 
 logger = get_scribe_logger(__name__)
 
@@ -43,25 +45,27 @@ class BaseAction(ABC):
     def __init__(self,
                  action_type: str,
                  params: Dict[str, Any],
-                 config_manager: 'ConfigManager',
-                 security_manager: 'SecurityManager'
+                 plugin_context: 'PluginContextPort'
                 ):
         """
-        Initialize the base action.
+        Initialize the base action with HMA v2.2 ports-only access.
         
         Args:
             action_type: The type identifier for this action
             params: Action-specific parameters from the rule configuration
-            config_manager: Instance of ConfigManager
-            security_manager: Instance of SecurityManager
+            plugin_context: HMA v2.2 plugin context providing port access
         """
         self.action_type = action_type
         self.params = params
-        self.config_manager = config_manager
-        self.security_manager = security_manager
-        self.logger = get_scribe_logger(f"{__name__}.{self.__class__.__name__}")
+        self.context = plugin_context
         
-        self.logger.debug("Action plugin initialized", action_type=action_type, params=params)
+        # Get logging port for structured logging
+        self.log_port = self.context.get_port("logging")
+        
+        self.log_port.log_debug("Action plugin initialized", 
+                               action_type=action_type, 
+                               plugin_id=self.context.get_plugin_id(),
+                               params=params)
     
     @abstractmethod
     def execute(self, 
@@ -188,6 +192,53 @@ class BaseAction(ABC):
     def __repr__(self) -> str:
         """Detailed string representation of the action."""
         return f"{self.__class__.__name__}(action_type='{self.action_type}')"
+    
+    # HMA v2.2 Port Access Methods
+    def get_config_port(self):
+        """Get configuration port for config access"""
+        return self.context.get_port("configuration")
+    
+    def get_command_port(self):
+        """Get command execution port for running commands"""
+        return self.context.get_port("command_execution")
+    
+    def get_file_port(self):
+        """Get file system port for file operations"""
+        return self.context.get_port("file_system")
+    
+    def get_event_bus_port(self):
+        """Get event bus port for event publishing/subscribing"""
+        return self.context.get_port("event_bus")
+    
+    def get_observability_port(self):
+        """Get observability port for telemetry"""
+        return self.context.get_port("observability")
+    
+    # Convenience methods for common operations
+    async def execute_command_safely(self, command_list: list, **kwargs):
+        """Execute command through command port"""
+        command_port = self.get_command_port()
+        return await command_port.execute_command_safely(command_list, **kwargs)
+    
+    async def read_file_safely(self, file_path: str):
+        """Read file through file system port"""
+        file_port = self.get_file_port()
+        return await file_port.read_file_safely(file_path)
+    
+    async def write_file_safely(self, file_path: str, content: str):
+        """Write file through file system port"""
+        file_port = self.get_file_port()
+        return await file_port.write_file_safely(file_path, content)
+    
+    async def get_config_value(self, key: str, default=None):
+        """Get configuration value through config port"""
+        config_port = self.get_config_port()
+        return await config_port.get_config_value(key, self.context.get_plugin_id(), default)
+    
+    async def publish_event(self, event_type: str, event_data: dict, **kwargs):
+        """Publish event through event bus port"""
+        event_port = self.get_event_bus_port()
+        return await event_port.publish_event(event_type, event_data, **kwargs)
 
 
 class ActionExecutionError(Exception):

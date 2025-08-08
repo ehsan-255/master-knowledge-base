@@ -1,13 +1,18 @@
 ---
+
 title: 'Standard: Content Schema for Methodology/Technique Descriptions'
 standard_id: AS-SCHEMA-METHODOLOGY-DESCRIPTION
 aliases:
 - Methodology Schema
 - Technique Description Schema
 tags:
-- status/draft
-- criticality/p1-high
+- content-type/standard-definition
 - content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/schema
 kb-id: standards
 info-type: standard-definition
 primary-topic: Schema for Methodology/Technique Descriptions
@@ -16,10 +21,11 @@ related-standards:
 - CS-POLICY-LAYERED-INFORMATION
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:21:22Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: SCHEMA
-scope_application: Defines the mandatory content structure (schema) for documents that describe specific methodologies, techniques, or detailed processes.
+scope_application: Defines the mandatory content structure (schema) for documents
+  that describe specific methodologies, techniques, or detailed processes.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -28,7 +34,6 @@ impact_areas:
 - User understanding of complex processes
 - Information reusability
 ---
-
 # Standard: Content Schema for Methodology/Technique Descriptions (AS-SCHEMA-METHODOLOGY-DESCRIPTION)
 
 This standard defines the mandatory content structure (schema) for documents whose primary purpose is to describe a specific methodology, technique, or detailed process. Adherence to this schema ensures consistency, clarity, and comprehensive coverage of essential aspects.

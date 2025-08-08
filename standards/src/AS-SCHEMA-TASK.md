@@ -2,29 +2,31 @@
 title: 'Standard: Task Document Schema'
 standard_id: AS-SCHEMA-TASK
 aliases:
-  - Schema for Task-Oriented Documents
-  - Procedural Document Structure
-  - How-To Guide Schema
+- Schema for Task-Oriented Documents
+- Procedural Document Structure
+- How-To Guide Schema
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/schema-document
-  - topic/schemas
-  - topic/documentation-standards
-  - topic/procedures
-  - kb-id/standards
+- content-type/schema-document
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/documentation-standards
+- topic/procedures
+- topic/schema
+- topic/schemas
 kb-id: standards
 info-type: schema-document
 primary-topic: Defines the standard structure and core elements for task-oriented
   documents, such as tutorials, how-to guides, and standard operating procedures (SOPs).
 related-standards:
-  - MT-SCHEMA-FRONTMATTER
-  - AS-STRUCTURE-DOC-CHAPTER
-  - SF-SYNTAX-HEADINGS
-  - SF-SYNTAX-LISTS
+- MT-SCHEMA-FRONTMATTER
+- AS-STRUCTURE-DOC-CHAPTER
+- SF-SYNTAX-HEADINGS
+- SF-SYNTAX-LISTS
 version: 0.1.0
 date-created: '2025-05-29T15:49:24Z'
-date-modified: '2025-05-30T16:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: SCHEMA
 scope_application: Applies to all documents designed to guide users through a sequence
@@ -32,10 +34,10 @@ scope_application: Applies to all documents designed to guide users through a se
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Procedural consistency
-  - User training
-  - Operational efficiency
-  - Task success rates
+- Procedural consistency
+- User training
+- Operational efficiency
+- Task success rates
 ---
 # Standard: Task Document Schema (AS-SCHEMA-TASK)
 

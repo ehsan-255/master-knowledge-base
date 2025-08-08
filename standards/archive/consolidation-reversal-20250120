@@ -1,0 +1,169 @@
+---
+title: 'Standard: Markdown Text Syntax'
+standard_id: SF-SYNTAX-MARKDOWN-TEXT
+aliases:
+- Text Markdown Syntax
+- Headings and Emphasis
+- Text Formatting
+- Link Syntax
+tags:
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/active
+- topic/markdown
+- topic/sf
+kb-id: standards
+info-type: standard-definition
+primary-topic: Markdown Text Syntax
+related-standards:
+- SF-SYNTAX-MARKDOWN-STRUCTURED
+- SF-FORMATTING-MARKDOWN-GENERAL
+- CS-LINKING-INTERNAL-POLICY
+version: 1.0.0
+date-created: '2025-06-18T02:30:00Z'
+date-modified: '2025-06-18T02:30:00Z'
+primary_domain: SF
+sub_domain: MARKDOWN
+scope_application: Defines comprehensive Markdown syntax for text-focused elements (headings, emphasis, links, blockquotes).
+criticality: P1-High
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- Document structure
+- Text formatting
+- Link integrity
+- Content readability
+change_log_url: '[MISSING_CHANGE_LOG_URL]'
+---
+# Standard: Markdown Text Syntax (SF-SYNTAX-MARKDOWN-TEXT)
+
+## 1. Standard Statement
+
+This standard **MANDATES** the comprehensive Markdown syntax for all text-focused elements: headings, emphasis, links, and blockquotes. This consolidated standard ensures universal consistency for text presentation and navigation across the Knowledge Base.
+
+## 2. Heading Syntax
+
+### Rule 2.1: ATX Style Headings
+Headings **MUST** be created exclusively using ATX style with hash symbols (`#`). The number of hash symbols **MUST** correspond to the heading level.
+*   **Mandatory Syntax:**
+    ```markdown
+    # H1 Heading
+    ## H2 Heading  
+    ### H3 Heading
+    #### H4 Heading
+    ##### H5 Heading
+    ###### H6 Heading
+    ```
+*   **Prohibited:** Setext style headings (using `=` or `-` below text)
+
+### Rule 2.2: Single Space After Hash Symbols
+There **MUST** be a single space character immediately following the hash symbol(s) and preceding the heading text.
+*   **Correct:** `# My Heading`
+*   **Prohibited:** `#My Heading`, ` # My Heading`
+
+### Rule 2.3: Blank Lines Around Headings
+A single blank line **MUST** precede and follow every heading.
+*   **Exceptions:**
+    *   H1 heading at document beginning (after YAML frontmatter) **MUST NOT** have a blank line before it
+    *   Heading at document end **MUST NOT** have a blank line after it
+
+### Rule 2.4: Single H1 Heading for Document Title
+Each document **MUST** contain **exactly one** H1 heading as the first content element after YAML frontmatter.
+
+### Rule 2.5: Strict Hierarchical Heading Progression
+Heading levels **MUST** be used in strict hierarchical order without skipping levels.
+*   **Correct:** H1 → H2 → H3 → H3 → H2 → H3 → H4
+*   **Prohibited:** H1 → H3 (skips H2), H2 → H4 (skips H3)
+
+## 3. Emphasis Syntax
+
+### Rule 3.1: Italic Emphasis
+Italic emphasis **MUST** be created exclusively using single asterisks (`*`).
+*   **Mandatory Syntax:** `*italic text*`
+*   **Prohibited:** Single underscores (`_italic text_`)
+
+### Rule 3.2: Bold Emphasis
+Bold emphasis **MUST** be created exclusively using double asterisks (`**`).
+*   **Mandatory Syntax:** `**bold text**`
+*   **Prohibited:** Double underscores (`__bold text__`)
+
+### Rule 3.3: Combined Bold and Italic Emphasis
+Combined bold and italic emphasis **MUST** be created using triple asterisks (`***`).
+*   **Mandatory Syntax:** `***bold and italic text***`
+*   **Prohibited:** Any combination of underscores and asterisks
+
+## 4. Link Syntax
+
+### Rule 4.1: External Links
+External links **MUST** use standard Markdown inline link format.
+*   **Mandatory Syntax:** `[Link Display Text](URL)`
+*   **Example:** `[Official W3C Website](https://www.w3.org/)`
+
+### Rule 4.2: Internal Links to Standard Documents
+Internal links to documents with `standard_id` **MUST** use the `[[STANDARD_ID]]` syntax.
+*   **Mandatory Syntax:** `[[STANDARD_ID]]` or `[[STANDARD_ID|Display Text]]`
+*   **Examples:**
+    ```markdown
+    See [[AS-STRUCTURE-KB-ROOT]]
+    Refer to [[SF-SYNTAX-EMPHASIS|Text Emphasis Standard]]
+    ```
+
+### Rule 4.3: Section Links
+To link to specific headings within documents, append the heading text with `#`.
+*   **Mandatory Syntax:** `[[STANDARD_ID#Heading Text]]` or `[[STANDARD_ID#Heading Text|Display Text]]`
+*   **Example:** `[[AS-STRUCTURE-KB-ROOT#Master Table of Contents]]`
+
+### Rule 4.4: Internal Links to Non-Standard Documents
+Links to documents without `standard_id` **MUST** use relative paths from repository root.
+*   **Mandatory Syntax:** `[Link Text](./path/from/repo/root/to/document.md)`
+*   **Example:** `[Project Guidelines](./active-project/project-guidelines/project-reminders.md)`
+
+### Rule 4.5: Autolinks
+Raw URLs and email addresses **MUST** be enclosed in angle brackets for automatic linking.
+*   **Syntax:** `<https://www.example.com>` or `<contact@example.com>`
+
+### Rule 4.6: Prohibited Link Formats
+*   **Reference-style links** are **PROHIBITED**
+*   **Direct file paths to standard documents** are **PROHIBITED** (use `[[STANDARD_ID]]` instead)
+
+### Rule 4.7: Descriptive Link Text
+Link display text **MUST** clearly indicate the content or purpose of the destination. Generic text like "click here" is **PROHIBITED**.
+
+## 5. Blockquote Syntax
+
+### Rule 5.1: Blockquote Marker
+All blockquote lines **MUST** be prefixed with `> ` (greater-than symbol followed by single space).
+*   **Example:**
+    ```markdown
+    > This is a blockquote.
+    > It can span multiple lines.
+    ```
+
+### Rule 5.2: Nested Blockquotes
+Nested blockquotes **MUST** use additional `>` symbols for each nesting level.
+*   **Example:**
+    ```markdown
+    > First level quote.
+    >
+    > > Second level nested quote.
+    > > Continues on multiple lines.
+    >
+    > Back to first level.
+    ```
+
+### Rule 5.3: Blank Lines Around Blockquotes
+Single blank lines **MUST** precede and follow every blockquote element.
+
+## 6. Scope of Application
+
+This standard applies to **ALL** Markdown documents within the Knowledge Base repository. Adherence is **MANDATORY** for all content creators, automated systems, and tooling.
+
+## 7. Cross-References
+*   [[SF-SYNTAX-MARKDOWN-STRUCTURED]]
+*   [[SF-FORMATTING-MARKDOWN-GENERAL]]
+*   [[CS-POLICY-TONE-LANGUAGE]]
+*   [[CS-LINKING-INTERNAL-POLICY]]
+
+---
+*This standard (SF-SYNTAX-MARKDOWN-TEXT) consolidates text-focused Markdown syntax into a comprehensive standard, ensuring universal consistency for the Knowledge Base.* 

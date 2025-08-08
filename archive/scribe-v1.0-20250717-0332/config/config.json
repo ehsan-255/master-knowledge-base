@@ -1,0 +1,87 @@
+{
+  "config_version": "1.0",
+  "engine_settings": {
+    "log_level": "INFO",
+    "quarantine_path": "archive/scribe/quarantine/",
+    "pause_file": ".engine-pause"
+  },
+  "plugins": {
+    "directories": ["actions", "custom_plugins"],
+    "auto_reload": true,
+    "load_order": ["actions", "custom_plugins"]
+  },
+  "security": {
+    "allowed_commands": [
+      "git",
+      "make",
+      "npm"
+    ],
+    "restricted_paths": [
+      ".git/",
+      ".vscode/",
+      "node_modules/"
+    ]
+  },
+  "rules": [
+    {
+      "id": "RULE-001",
+      "name": "Update Task Timestamp on State Change",
+      "enabled": true,
+      "file_glob": "**/tasks/*.md",
+      "trigger_pattern": "^(> \\[!TASK\\].*?\\| state: (\\w+).*)$",
+      "actions": [
+        {
+          "type": "update_structured_field",
+          "params": {
+            "field": "updated",
+            "value_template": "{timestamp_utc_iso}"
+          }
+        }
+      ],
+      "error_handling": {
+        "circuit_breaker": {
+          "failure_threshold": 3,
+          "recovery_timeout_seconds": 60
+        }
+      }
+    },
+    {
+      "id": "RULE-002",
+      "name": "Log File Modifications",
+      "enabled": true,
+      "file_glob": "*.md",
+      "trigger_pattern": ".*",
+      "actions": [
+        {
+          "type": "log_event",
+          "params": {
+            "message": "File modified",
+            "level": "info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RULE-003",
+      "name": "Run Git Status on Repository Changes",
+      "enabled": true,
+      "file_glob": "*.md",
+      "trigger_pattern": ".*",
+      "actions": [
+        {
+          "type": "run_command",
+          "params": {
+            "command": ["git", "status"],
+            "timeout": 10
+          }
+        }
+      ],
+      "error_handling": {
+        "circuit_breaker": {
+          "failure_threshold": 3,
+          "recovery_timeout_seconds": 60
+        }
+      }
+    }
+  ]
+} 

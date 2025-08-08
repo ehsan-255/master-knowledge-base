@@ -1,0 +1,67 @@
+engine:
+  watch_paths:
+    - "/app/test-environment/runtime-workspace"
+    - "/app/tools/scribe/actions"
+  file_patterns:
+    - "*.md"
+    - "*.txt"
+    - "*.json"
+    - "*.yaml"
+  queue_maxsize: 100
+  health_port: 9469
+  worker_count: 4
+  retry_attempts: 3
+  retry_delay_seconds: 1.0
+
+logging:
+  level: "DEBUG"
+  format: "structured"
+  output_file: "/app/tools/reports/scribe-runtime.log"
+  max_file_size_mb: 10
+  backup_count: 5
+
+rules:
+  - name: "runtime_integration_test"
+    description: "Test rule for runtime integration testing"
+    patterns:
+      - "*.md"
+      - "*.txt"
+    actions:
+      - type: "enhanced_frontmatter_action"
+        params:
+          add_timestamp: true
+          validate_schema: true
+        enabled: true
+        priority: 5
+    enabled: true
+    circuit_breaker:
+      enabled: true
+      failure_threshold: 5
+      recovery_timeout_seconds: 60
+      success_threshold: 3
+
+security:
+  allowed_paths:
+    - "/app/test-environment/runtime-workspace"
+    - "/app/tools/reports"
+    - "/app/tools/scribe/actions"
+  blocked_commands:
+    - "rm"
+    - "sudo"
+    - "chmod"
+    - "chown"
+  max_file_size_mb: 50
+  enable_sandbox: true
+
+telemetry:
+  enabled: true
+  endpoint: "http://otel-collector:4317"
+  service_name: "scribe-engine"
+  sampling_rate: 1.0
+
+performance:
+  max_concurrent_actions: 10
+  action_timeout_seconds: 300
+  memory_limit_mb: 1024
+  enable_caching: true
+  cache_ttl_seconds: 3600

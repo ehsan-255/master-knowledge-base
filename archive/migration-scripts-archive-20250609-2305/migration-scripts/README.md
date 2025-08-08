@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:14Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Master Knowledge Base to Root Migration Scripts
 
 **⚠️ CRITICAL WARNING: These scripts perform extensive repository modifications. ALWAYS run dry-run tests first!**
@@ -243,4 +260,4 @@ After successful migration:
 
 ---
 
-**Remember: This migration is a one-time operation that fundamentally changes the repository structure. Proceed with extreme caution and always validate with dry-run first!** 
+**Remember: This migration is a one-time operation that fundamentally changes the repository structure. Proceed with extreme caution and always validate with dry-run first!**

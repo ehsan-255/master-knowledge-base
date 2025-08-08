@@ -1,31 +1,37 @@
 ---
+
 title: 'Standard: Versioning and Changelogs for Standard Files'
 standard_id: OM-VERSIONING-CHANGELOGS
 aliases:
-  - Standard Versioning
-  - Changelog Standard
+- Standard Versioning
+- Changelog Standard
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/lifecycle
+- topic/om
 kb-id: standards
 info-type: standard-definition
 primary-topic: Standard File Versioning and Changelogs
 related-standards:
-  - MT-SCHEMA-FRONTMATTER
+- MT-SCHEMA-FRONTMATTER
 version: 2.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-01-11T00:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
-scope_application: All standard documents and changelog approaches (individual, separate files, and folder-level) within the knowledge base repository.
+scope_application: All standard documents and changelog approaches (individual, separate
+  files, and folder-level) within the knowledge base repository.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Standards management
-  - Change tracking
-  - Historical record keeping
-  - User awareness of changes
+- Standards management
+- Change tracking
+- Historical record keeping
+- User awareness of changes
 ---
 # Standard: Versioning and Changelogs for Standard Files (OM-VERSIONING-CHANGELOGS)
 
@@ -122,4 +128,4 @@ The changelog MUST record, at a minimum:
 - [[MT-SCHEMA-FRONTMATTER]] - Defines the mandatory frontmatter keys (`version`, `date-created`, `date-modified`, `change_log_url`) and their formats.
 
 ---
-*This standard (OM-VERSIONING-CHANGELOGS) is based on rules 1.1 through 1.3 previously defined in U-VERSIONING-001 from COL-GOVERNANCE-UNIVERSAL.md.*
+*This standard (OM-VERSIONING-CHANGELOGS) is based on rules 1.1 through 1.3 previously defined in U-VERSIONING-001 (now deprecated and superseded by this standard).*

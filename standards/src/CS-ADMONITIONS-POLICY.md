@@ -1,13 +1,17 @@
 ---
+
 title: 'Policy: Usage of Admonitions and Callouts'
 standard_id: CS-ADMONITIONS-POLICY
 aliases:
 - Callout Usage Policy
 - Admonition Policy
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Admonition and Callout Usage Policy
@@ -15,10 +19,11 @@ related-standards:
 - SF-CALLOUTS-SYNTAX
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:26:37Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Governs the appropriate and semantic use of admonition/callout blocks (as defined in SF-CALLOUTS-SYNTAX) across all knowledge base documents.
+scope_application: Governs the appropriate and semantic use of admonition/callout
+  blocks (as defined in SF-CALLOUTS-SYNTAX) across all knowledge base documents.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -27,7 +32,6 @@ impact_areas:
 - Consistent highlighting of information
 - Authoring practices
 ---
-
 # Policy: Usage of Admonitions and Callouts (CS-ADMONITIONS-POLICY)
 
 ## 1. Policy Statement

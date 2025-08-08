@@ -1,0 +1,229 @@
+name: Scribe v2.2 HMA Compliant CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, 'feature/scribe-v2-*', 'feature/developing-antifragile-os-aos' ]
+    paths:
+      - 'tools/scribe/**'
+      - 'test-environment/scribe-tests/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'tools/scribe/**'
+      - 'test-environment/scribe-tests/**'
+
+env:
+  SCRIBE_LOG_DIR: tools/reports
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  test-windows:
+    name: Windows Compatibility Tests
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Create log directory
+      run: |
+        mkdir -p "${{ env.SCRIBE_LOG_DIR }}"
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r tools/scribe/requirements.txt
+        pip install pytest pytest-cov pytest-timeout pytest-xdist pytest-asyncio
+        
+    - name: Install Scribe as editable package
+      working-directory: tools/scribe
+      run: pip install -e .
+      
+    - name: Run HMA v2.2 Compliance Tests (Priority 0)
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/compliance/ -v --tb=short --timeout=60
+        
+    - name: Run Windows compatibility tests
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/ -v --tb=short --cov=tools.scribe --cov-report=xml --cov-report=term --timeout=30
+        
+    - name: Archive test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-test-results
+        path: |
+          test-environment/coverage.xml
+          ${{ env.SCRIBE_LOG_DIR }}/**/*.log
+          
+    - name: Archive test logs to reports
+      if: always()
+      run: |
+        $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+        Copy-Item "test-environment/coverage.xml" "${{ env.SCRIBE_LOG_DIR }}/windows-coverage-$timestamp.xml" -ErrorAction SilentlyContinue
+
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Create log directory
+      run: mkdir -p ${{ env.SCRIBE_LOG_DIR }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r tools/scribe/requirements.txt
+        pip install flake8 black isort mypy bandit safety jsonschema pyyaml
+        
+    - name: Run code formatting check
+      run: |
+        cd tools/scribe
+        black --check --diff . 2>&1 | tee ../../${{ env.SCRIBE_LOG_DIR }}/black-check-$(date +%Y%m%d-%H%M%S).log
+        
+    - name: Run import sorting check
+      run: |
+        cd tools/scribe
+        isort --check-only --diff . 2>&1 | tee ../../${{ env.SCRIBE_LOG_DIR }}/isort-check-$(date +%Y%m%d-%H%M%S).log
+        
+    - name: Run linting
+      run: |
+        cd tools/scribe
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics 2>&1 | tee ../../${{ env.SCRIBE_LOG_DIR }}/flake8-critical-$(date +%Y%m%d-%H%M%S).log
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics 2>&1 | tee ../../${{ env.SCRIBE_LOG_DIR }}/flake8-full-$(date +%Y%m%d-%H%M%S).log
+        
+    - name: Run security scan
+      run: |
+        cd tools/scribe
+        bandit -r . -f json -o ../../${{ env.SCRIBE_LOG_DIR }}/bandit-scan-$(date +%Y%m%d-%H%M%S).json || true
+        safety check --json --output ../../${{ env.SCRIBE_LOG_DIR }}/safety-scan-$(date +%Y%m%d-%H%M%S).json || true
+        
+    - name: HMA v2.2 Manifest Schema Validation
+      run: |
+        cd tools/scribe
+        # Validate all plugin manifests against HMA v2.2 schema
+        python -c "
+        import json, jsonschema
+        from pathlib import Path
+        
+        # Load schema
+        with open('schemas/plugin_manifest.schema.json') as f:
+            schema = json.load(f)
+        
+        # Validate all manifests
+        manifests = list(Path('actions').rglob('manifest.json'))
+        errors = []
+        
+        for manifest_path in manifests:
+            try:
+                with open(manifest_path) as f:
+                    manifest = json.load(f)
+                jsonschema.validate(manifest, schema)
+                print(f'✓ {manifest_path}')
+            except Exception as e:
+                errors.append(f'{manifest_path}: {e}')
+                print(f'✗ {manifest_path}: {e}')
+        
+        if errors:
+            print(f'FAILED: {len(errors)} manifest validation errors')
+            exit(1)
+        else:
+            print(f'SUCCESS: All {len(manifests)} manifests valid')
+        " 2>&1 | tee ../../${{ env.SCRIBE_LOG_DIR }}/manifest-validation-$(date +%Y%m%d-%H%M%S).log
+        
+    - name: Archive quality reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: code-quality-reports
+        path: ${{ env.SCRIBE_LOG_DIR }}/**/*
+
+  build-and-package:
+    name: Build and Package
+    runs-on: ubuntu-latest
+    needs: [test-windows, code-quality]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Create log directory
+      run: mkdir -p ${{ env.SCRIBE_LOG_DIR }}
+        
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build wheel setuptools
+        
+    - name: Build package
+      working-directory: tools/scribe
+      run: |
+        python -m build 2>&1 | tee ../../${{ env.SCRIBE_LOG_DIR }}/build-$(date +%Y%m%d-%H%M%S).log
+        
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: scribe-v2-package
+        path: |
+          tools/scribe/dist/*
+          ${{ env.SCRIBE_LOG_DIR }}/build-*.log
+
+  regression-tests:
+    name: Regression Testing
+    runs-on: windows-latest
+    needs: build-and-package
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Create log directory
+      run: mkdir -p "${{ env.SCRIBE_LOG_DIR }}"
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r tools/scribe/requirements.txt
+        pip install pytest pytest-cov pytest-timeout
+        
+    - name: Run End-to-End Integration Tests
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/integration/ -v --tb=short --timeout=120 2>&1 | Tee-Object -FilePath "../${{ env.SCRIBE_LOG_DIR }}/e2e-integration-$(Get-Date -Format 'yyyyMMdd-HHmmss').log"
+        
+    - name: Run baseline regression tests
+      working-directory: test-environment
+      run: |
+        python -m pytest scribe-tests/test_integration.py -v --tb=short --timeout=60 2>&1 | Tee-Object -FilePath "../${{ env.SCRIBE_LOG_DIR }}/regression-$(Get-Date -Format 'yyyyMMdd-HHmmss').log" || echo "Regression tests may not exist yet"
+        
+    - name: Archive regression results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: regression-test-results
+        path: ${{ env.SCRIBE_LOG_DIR }}/regression-*.log

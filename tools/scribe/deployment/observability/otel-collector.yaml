@@ -1,0 +1,87 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+exporters:
+  debug:
+    verbosity: detailed
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+    namespace: "scribe"
+    const_labels:
+      environment: "production"
+      service_name: "scribe-hma-v2.2"
+    send_timestamps: true
+    metric_expiration: 180m
+    enable_open_metrics: true
+  otlp/jaeger:
+    endpoint: "jaeger:14250"
+    tls:
+      insecure: true
+
+processors:
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+    send_batch_max_size: 2048
+  
+  resource:
+    attributes:
+      - key: service.name
+        value: "scribe-vault"
+        action: upsert
+      - key: service.version
+        value: "2.2.0"
+        action: upsert
+      - key: deployment.environment
+        value: "production"
+        action: upsert
+      - key: vault.integration
+        value: "enterprise"
+        action: upsert
+  
+  filter/vault:
+    metrics:
+      include:
+        match_type: regexp
+        metric_names:
+          - "scribe_vault_.*"
+          - "vault_.*"
+  
+  metricstransform/vault:
+    transforms:
+      - include: "scribe_vault_.*"
+        match_type: regexp
+        action: update
+        operations:
+          - action: add_label
+            new_label: component
+            new_value: vault
+          - action: add_label
+            new_label: system
+            new_value: scribe-hma
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  zpages:
+    endpoint: 0.0.0.0:55679
+service:
+  extensions: [health_check, zpages]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [resource, batch]
+      exporters: [otlp/jaeger, debug]
+    metrics:
+      receivers: [otlp]
+      processors: [resource, filter/vault, metricstransform/vault, batch]
+      exporters: [prometheus, debug]
+    metrics/vault:
+      receivers: [otlp]
+      processors: [resource, batch]
+      exporters: [prometheus]

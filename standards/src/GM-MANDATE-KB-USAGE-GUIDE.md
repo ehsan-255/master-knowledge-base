@@ -2,19 +2,22 @@
 title: 'Mandate: Knowledge Base Usage Guide'
 standard_id: GM-MANDATE-KB-USAGE-GUIDE
 aliases:
-  - KB Usage Mandate
-  - Usage Requirements
+- KB Usage Mandate
+- Usage Requirements
 tags:
-  - status/draft
-  - criticality/p1-high
-  - content-type/mandate-document
+- content-type/mandate-document
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/gm
+- topic/guide
 kb-id: standards
 info-type: mandate-document
 primary-topic: Knowledge Base Usage Guide
 related-standards: []
 version: 1.0.0
 date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: GM
 sub_domain: GUIDE
 scope_application: Defines mandatory requirements for knowledge base usage across
@@ -22,9 +25,9 @@ scope_application: Defines mandatory requirements for knowledge base usage acros
 criticality: P1-High
 lifecycle_gatekeeper: Governance-Board-Approval
 impact_areas:
-  - Knowledge base adoption
-  - Compliance
-  - User training
+- Knowledge base adoption
+- Compliance
+- User training
 ---
 # Standard: Mandate for Knowledge Base Usage Guide (GM-MANDATE-KB-USAGE-GUIDE)
 
@@ -81,4 +84,4 @@ This standard applies to the governance body responsible for the knowledge base 
 - [[AS-STRUCTURE-MASTER-KB-INDEX]] - Relevant for explaining navigation via `kb-directory.md`.
 
 ---
-*This standard (GM-MANDATE-KB-USAGE-GUIDE) is based on rules 1.1 through 1.4 previously defined in U-ONBOARDING-001 from COL-GOVERNANCE-UNIVERSAL.md, rephrasing them as mandates for the existence and content of the guide.*
+*This standard (GM-MANDATE-KB-USAGE-GUIDE) is based on rules 1.1 through 1.4 previously defined in U-ONBOARDING-001 (now deprecated and superseded by this standard), rephrasing them as mandates for the existence and content of the guide.*

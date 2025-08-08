@@ -1,13 +1,18 @@
 ---
+
 title: 'Standard: Asset Organization and Naming'
 standard_id: AS-STRUCTURE-ASSET-ORGANIZATION
 aliases:
 - Asset Management Standard
 - Static File Organization
 tags:
-- status/draft
-- criticality/p2-medium
+- content-type/standard-definition
 - content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/structure
 kb-id: standards
 info-type: standard-definition
 primary-topic: Asset File Organization
@@ -17,10 +22,11 @@ related-standards:
 - AS-KB-DIRECTORY-STRUCTURE
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:24:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
-scope_application: Defines the standards for organizing, naming, and formatting non-Markdown assets (e.g., images, diagrams, PDFs, code snippets) within any Knowledge Base.
+scope_application: Defines the standards for organizing, naming, and formatting non-Markdown
+  assets (e.g., images, diagrams, PDFs, code snippets) within any Knowledge Base.
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
@@ -30,7 +36,6 @@ impact_areas:
 - Authoring consistency
 - Build processes
 ---
-
 # Standard: Asset Organization and Naming (AS-STRUCTURE-ASSET-ORGANIZATION)
 
 ## 1. Standard Statement
@@ -100,4 +105,4 @@ This standard applies to all non-Markdown files that are part of a Knowledge Bas
 - [[AS-KB-DIRECTORY-STRUCTURE]] - For the overall KB directory structure, including the location of the KB-specific `assets` folder.
 
 ---
-*This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 from COL-LINKING-UNIVERSAL.md.*
+*This standard (AS-STRUCTURE-ASSET-ORGANIZATION) is based on rules 1.1 through 1.4 previously defined in U-ASSETS-001 (now deprecated and superseded by this standard).*

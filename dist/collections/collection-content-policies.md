@@ -1,15 +1,28 @@
 ---
-title: "Content Style & Policies"
-description: "A collection of key policies and standards related to content authoring, tone, language, accessibility, and specific content behaviors from the CS (Content Standards) domain."
-date_generated: "2025-06-04T22:19:33.657410+00:00"
-source_collection_definition_id: "coll_cs_content_policies"
+title: Content Style & Policies
+description: A collection of key policies and standards related to content authoring,
+  tone, language, accessibility, and specific content behaviors from the CS (Content
+  Standards) domain.
+date_generated: '2025-06-17T05:20:09.441461+00:00'
+source_collection_definition_id: coll_cs_content_policies
 number_of_standards: 16
-tags: ["content-type/collection-document", "status/published", "topic/derived-view"] 
-info-type: "collection-document" 
-# Consider adding a standard_id for the collection itself, e.g.:
-# standard_id: "COLL-COLL-CS-CONTENT-POLICIES" 
+tags:
+- content-type/collection-document
+- criticality/p0-critical
+- kb-id/global
+- status/published
+- topic/derived-view
+info-type: collection-document
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+kb-id: dist
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
 ---
-
 ## Table of Contents
 - [Policy: Usage of Admonitions and Callouts (`CS-ADMONITIONS-POLICY`)](#policy-usage-of-admonitions-and-callouts-cs-admonitions-policy)
 - [Policy: Content Profiling and Conditional Text (`CS-CONTENT-PROFILING-POLICY`)](#policy-content-profiling-and-conditional-text-cs-content-profiling-policy)
@@ -478,58 +491,7 @@ This policy applies to all content creators and subject matter experts when docu
 
 ## Policy: Content Organization and Heading Usage in Chapters (CS-POLICY-DOC-CHAPTER-CONTENT)
 
-# Policy: Content Organization and Heading Usage in Chapters (CS-POLICY-DOC-CHAPTER-CONTENT)
-
-## 1. Policy Statement
-
-This policy mandates the correct hierarchical use of Markdown headings (H2-H6) for structuring content within "Chapter" documents and requires that each H2 section represents a major sub-topic. This ensures content is organized logically, semantically structured, accessible, and easily processable by automated tools.
-
-## 2. Core Requirements
-
-### Rule 2.1: Hierarchical Markdown Headings (Derived from U-STRUC-002, Rule 2.4)
-Content within a "Chapter" document MUST be organized using hierarchical Markdown headings (H2 through H6). Heading levels MUST NOT be skipped.
-*   **Example:** An H2 heading may be followed by an H3, but not directly by an H4.
-    ```markdown
-    ## Section 1 (H2)
-    ### Subsection 1.1 (H3)
-    #### Detail A (H4)
-    ### Subsection 1.2 (H3)
-    ## Section 2 (H2)
-    ```
-*   **Notes:**
-    *   The H1 heading is reserved for the document title as per [[AS-STRUCTURE-DOC-CHAPTER]].
-    *   Adherence to the specific Markdown syntax for headings defined in [[SF-SYNTAX-HEADINGS]] is mandatory.
-
-### Rule 2.2: H2 Sections as Major Sub-Topics (Derived from U-STRUC-002, Rule 2.5)
-Each H2 section within a "Chapter" document MUST represent a major sub-topic of that chapter.
-*   **Guidance:**
-    *   H2 sections break down the chapter's primary subject (defined by the H1/title) into its core components or logical divisions.
-    *   If an H2 section becomes too long or covers too many distinct ideas, it should be further subdivided using H3 headings, or potentially split into a separate chapter if the sub-topic is substantial enough.
-
-## 3. Rationale and Importance
-
-Adherence to this policy is crucial for:
-
-*   **Readability and Scannability:** A clear and consistent heading hierarchy allows readers to easily scan the document, understand its structure, and locate specific information.
-*   **Accessibility:** Screen readers and other assistive technologies rely on proper heading structures to provide navigation and context to users with disabilities. Skipping heading levels or using them non-semantically can create significant accessibility barriers.
-*   **Semantic Structure and Machine Processing:** Correct heading hierarchy provides a clear semantic structure that can be understood by machines. This is vital for:
-    *   Automated generation of accurate Tables of Contents.
-    *   Content indexing and search engine optimization.
-    *   AI-driven content summarization, analysis, or repurposing.
-    *   Automated quality checks and validation.
-*   **Authoring Consistency:** Clear rules on heading usage simplify the authoring process and ensure a uniform look and feel across all documents.
-*   **Maintainability:** Well-structured documents are easier to understand, update, and maintain over time.
-
-## 4. Scope of Application
-
-This policy applies to all "Chapter" documents (as defined in [[AS-STRUCTURE-DOC-CHAPTER]]) across all Knowledge Bases.
-
-## 5. Cross-References
-- [[AS-STRUCTURE-DOC-CHAPTER]] - Defines the overall internal structure for Chapter documents.
-- [[SF-SYNTAX-HEADINGS]] - Standard for Markdown Heading Syntax.
-
----
-*This policy (CS-POLICY-DOC-CHAPTER-CONTENT) is based on rules 2.4 and 2.5 previously defined in U-STRUC-002 from COL-ARCH-UNIVERSAL.md.*
+*Error: Content for 'Policy: Content Organization and Heading Usage in Chapters' (`CS-POLICY-DOC-CHAPTER-CONTENT`) could not be loaded. File not found.* 
 
 ---
 
@@ -632,49 +594,7 @@ This policy applies to the organization of "Chapters" within all "Parts" of all 
 
 ## Policy: Consistent Application of Knowledge Base Root Structure (CS-POLICY-KB-ROOT)
 
-# Policy: Consistent Application of Knowledge Base Root Structure (CS-POLICY-KB-ROOT)
-
-## 1. Policy Statement
-
-This policy mandates the consistent application of structural choices for Knowledge Base (KB) root organization, as defined in standard [[AS-STRUCTURE-KB-ROOT]]. Specifically, it pertains to the organization of top-level "Parts" (primary sections) within a KB.
-
-## 2. Core Requirement
-
-### Rule 2.1: Consistent Structure for "Parts" (Derived from U-ARCH-001, Rule 1.6)
-The chosen method for organizing top-level "Parts" — either as distinct sub-folders (for larger KBs) or as major H1 sections within the `root.md` file (for smaller KBs) — MUST be consistently applied throughout a single Knowledge Base.
-*   **Reference:** See [[AS-STRUCTURE-KB-ROOT#Rule 1.4: Top-Level "Parts" in Larger KBs (Sub-folders)]] and [[AS-STRUCTURE-KB-ROOT#Rule 1.5: Top-Level "Parts" in Smaller KBs (`root.md` Sections)]].
-*   **Guidance:** A KB should not mix these two approaches. For instance, one Part should not be a sub-folder while another Part in the same KB is an H1 section in `root.md`.
-
-## 3. Rationale and Importance
-
-Adherence to this policy is crucial for several reasons:
-
-*   **User Experience & Navigability:** A consistent structure makes it easier for users to understand, navigate, and predict how content is organized within any given KB. Inconsistent structures can lead to confusion and difficulty in locating information.
-*   **Authoring Consistency:** Clear rules on KB structure simplify the authoring process, as contributors do not have to guess how to organize new top-level sections.
-*   **Maintainability:** Uniformity in structure reduces complexity when performing maintenance tasks, refactoring content, or applying batch updates.
-*   **Automation & Tooling:** Automated tools for validation, indexing, or building KB views rely on predictable structures. Inconsistencies can break these tools or lead to incorrect outputs.
-*   **Scalability:** While [[AS-STRUCTURE-KB-ROOT]] provides options for different KB sizes, this policy ensures that the chosen option is applied uniformly, supporting clearer growth paths for KBs. If a "smaller" KB grows, a decision to refactor its Part structure to sub-folders should be applied to all Parts.
-
-## 4. Scope of Application
-
-This policy applies to all Knowledge Bases developed and maintained within the organization.
-
-## 5. Decision Criteria for "Larger" vs. "Smaller" KBs
-
-While [[AS-STRUCTURE-KB-ROOT]] outlines the two structural options for Parts based on KB size, the decision to classify a KB as "larger" (requiring sub-folders for Parts) versus "smaller" (allowing H1 sections in `root.md` for Parts) should be guided by the following considerations:
-
-*   **Number of Top-Level Parts:** If a KB is anticipated to have more than 5-7 top-level Parts, using sub-folders is generally recommended.
-*   **Depth of Content within Parts:** If individual Parts are expected to contain a large number of "Chapters" or deep sub-sections, sub-folders provide better organization from the outset.
-*   **Complexity of `root.md`:** If the `root.md` file becomes excessively long or difficult to manage due to numerous H1 sections and their inline ToCs, transitioning to sub-folders for Parts is advisable.
-*   **Team Size and Collaboration:** Larger teams or more complex collaborative environments may benefit from the clearer separation provided by sub-folders.
-
-The final decision rests with the KB owners or architects, but it should be made with long-term scalability and user experience in mind, and once made, applied consistently as per Rule 2.1.
-
-## 6. Cross-References
-- [[AS-STRUCTURE-KB-ROOT]] - Defines the technical structure for KB root organization.
-
----
-*This policy (CS-POLICY-KB-ROOT) supports rule 1.6 previously defined in U-ARCH-001 from COL-ARCH-UNIVERSAL.md.*
+*Error: Content for 'Policy: Consistent Application of Knowledge Base Root Structure' (`CS-POLICY-KB-ROOT`) could not be loaded. File not found.* 
 
 ---
 
@@ -945,11 +865,24 @@ This policy applies to all textual content within all Knowledge Bases, including
 *   Descriptive texts within schemas and templates
 *   Content of `primary-topic`, `scope_application`, and similar metadata fields
 
-## 4. Cross-References
+## 4. Semantic Use of Mandating Keywords
+
+To ensure unambiguous interpretation and consistent enforcement, the following keywords MUST be used strictly according to these definitions across all Knowledge Base documents, especially within standards and policies:
+
+### Rule 3.1: "MUST" / "SHALL" / "REQUIRED"
+These terms are **MANDATORY**. They indicate an absolute requirement. If a statement contains "MUST", "SHALL", or "REQUIRED", there is no permissible alternative and no circumstances under which the requirement can be waived, unless explicitly stated otherwise via a formal exception process (which should be defined in a separate standard). Failure to comply constitutes a critical violation.
+
+### Rule 3.2: "SHOULD" / "RECOMMENDED" / "ADVISED"
+These terms are **RECOMMENDED**. They indicate that among several possibilities, one is preferred, or that a certain course of action is suggested. There may be valid reasons in particular circumstances to ignore a "SHOULD" but the full implications must be understood and carefully weighed. Non-compliance is considered a deviation from best practice and may lead to reduced quality or efficiency.
+
+### Rule 3.3: "MAY" / "OPTIONAL" / "CAN"
+These terms are **OPTIONAL**. They indicate that an item is truly optional. An item or course of action is entirely permissible and left to the discretion of the implementer. There is no implication of preference or recommendation.
+
+## 5. Cross-References
 - [[GM-GLOSSARY-STANDARDS-TERMS]] - For definitions of standard terms used across the knowledge base (if such a glossary exists).
 
 ---
-*This policy (CS-POLICY-TONE-LANGUAGE) is based on rules 1.1 through 1.5 previously defined in U-TONE-LANG-001 from COL-CONTENT-UNIVERSAL.md.*
+*This policy (CS-POLICY-TONE-LANGUAGE) is based on rules 1.1 through 1.5 previously defined in U-TONE-LANG-001 from COL-CONTENT-UNIVERSAL.md. This revision also incorporates and formalizes the definitions of mandating keywords for strict interpretation.*
 
 ---
 

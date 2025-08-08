@@ -1,51 +1,59 @@
 ---
 title: Global Key Definitions
 aliases:
-  - Keyrefs
-  - Key Definitions Store
-  - _key_definitions
+- Keyrefs
+- Key Definitions Store
+- _key_definitions
 tags:
-  - kb-id/global
-  - content-type/key-definition-set
-  - status/live
-  - topic/automation
-  - topic/content-management
+- content-type/key-definition-set
+- criticality/p1-high
+- kb-id/global
+- status/live
+- topic/automation
+- topic/content-management
+- topic/keydefs
+- topic/ua
 standard_id: UA-KEYDEFS-GLOBAL
 kb-id: global
 info-type: key-definition-set
-primary-topic: Central repository for globally reusable key-value pairs (keyrefs) used for content consistency and automation.
+primary-topic: Central repository for globally reusable key-value pairs (keyrefs)
+  used for content consistency and automation.
 primary_domain: UA
 sub_domain: KEYDEFS
 related-standards:
-  - MT-KEYREF-MANAGEMENT
-  - SF-SYNTAX-KEYREF
-  - MT-SCHEMA-FRONTMATTER
+- MT-KEYREF-MANAGEMENT
+- SF-SYNTAX-KEYREF
+- MT-SCHEMA-FRONTMATTER
 version: 0.2.4
-date-created: "2025-05-19T00:00:00Z"
-date-modified: "2025-05-30T00:00:00Z"
-scope_application: "Global key definitions for use across all knowledge bases to ensure content consistency and support automation."
+date-created: '2025-05-19T00:00:00Z'
+date-modified: '2025-06-17T02:29:13Z'
+scope_application: Global key definitions for use across all knowledge bases to ensure
+  content consistency and support automation.
 criticality: P1-High
 lifecycle_gatekeeper: Architect-Review
-impact_areas: ["Content consistency", "Automation", "Branding", "Link management"]
+impact_areas:
+- Content consistency
+- Automation
+- Branding
+- Link management
 change_log_url: ./UA-KEYDEFS-GLOBAL-changelog.md
 keys:
   productName: Knowledge Base System X
-  productVersionMajor: "1"
-  productVersionMinor: "0"
-  productVersionPatch: "0"
+  productVersionMajor: '1'
+  productVersionMinor: '0'
+  productVersionPatch: '0'
   productReleaseName: Orion
   officialCompanyName: Ehsan Solutions Inc.
   companyWebsiteUrl: https://www.example.com
-  mainDocsUrl: "[[AS-INDEX-KB-MASTER]]"
+  mainDocsUrl: '[[AS-INDEX-KB-MASTER]]'
   supportPageUrl: https://support.example.com
-  apiReferenceUrl: "[[AS-SCHEMA-REFERENCE]]"
+  apiReferenceUrl: '[[AS-SCHEMA-REFERENCE]]'
   betaFeatureDisclaimer: This feature is currently in beta and subject to change.
   confidentialityNotice: This document contains confidential information.
   defaultStatusDraft: status/draft
   defaultKbIdStandards: kb-id/standards
   defaultKbIdCookbook: kb-id/llm-cookbook
 ---
-
 # Key Definitions (`_key_definitions.md`)
 
 This file serves as the central repository for all globally reusable key-value pairs (keyrefs) used throughout the `master-knowledge-base` and its rendered outputs. It adheres to standard [[MT-KEYREF-MANAGEMENT]].

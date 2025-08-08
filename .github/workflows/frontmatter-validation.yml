@@ -1,0 +1,49 @@
+name: Frontmatter SHACL Validation
+
+# CURRENTLY DISABLED - Set ENABLE_FRONTMATTER_VALIDATION to true to activate
+on:
+  workflow_dispatch:
+    inputs:
+      enable_validation:
+        description: 'Enable frontmatter validation'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+env:
+  ENABLE_FRONTMATTER_VALIDATION: ${{ github.event.inputs.enable_validation || 'false' }}
+
+jobs:
+  validate-frontmatter:
+    if: ${{ env.ENABLE_FRONTMATTER_VALIDATION == 'true' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Install dependencies
+        run: pip install -r tools/requirements.txt
+      
+      - name: Run SHACL Validation
+        run: python tools/validators/graph_validator.py --full-repository --fail-on-error
+        
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontmatter-validation-report
+          path: tools/reports/validation-*.log
+
+# MANUAL ACTIVATION INSTRUCTIONS:
+# 1. Go to Actions tab in GitHub
+# 2. Select "Frontmatter SHACL Validation" workflow
+# 3. Click "Run workflow"
+# 4. Set "Enable frontmatter validation" to "true"
+# 5. Click "Run workflow"

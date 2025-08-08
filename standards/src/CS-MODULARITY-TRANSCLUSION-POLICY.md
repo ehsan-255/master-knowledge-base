@@ -1,4 +1,5 @@
 ---
+
 title: 'Policy: Content Modularity and Use of Transclusion'
 standard_id: CS-MODULARITY-TRANSCLUSION-POLICY
 aliases:
@@ -6,9 +7,12 @@ aliases:
 - Transclusion Usage Policy
 - Content Reuse Policy
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Content Modularity and Transclusion
@@ -19,10 +23,11 @@ related-standards:
 - CS-LINKING-INTERNAL-POLICY
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:30:16Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Governs the design of content for modularity and the appropriate use of transclusion (content embedding) within the knowledge base.
+scope_application: Governs the design of content for modularity and the appropriate
+  use of transclusion (content embedding) within the knowledge base.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -32,7 +37,6 @@ impact_areas:
 - Consistency
 - Single-sourcing
 ---
-
 # Policy: Content Modularity and Use of Transclusion (CS-MODULARITY-TRANSCLUSION-POLICY)
 
 ## 1. Policy Statement
@@ -100,4 +104,4 @@ This policy applies to all content creators and editors within the knowledge bas
 - [[AS-SCHEMA-CONCEPT-DEFINITION]] - Another example of a content type that can be designed for modularity.
 
 ---
-*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 from COL-LINKING-UNIVERSAL.md, and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX]].*
+*This policy (CS-MODULARITY-TRANSCLUSION-POLICY) is based on rules 1.1, 1.2, and 1.3 previously defined in U-MODULAR-001 (now deprecated and superseded by this policy), and provides guidance on applying the syntax defined in [[SF-TRANSCLUSION-SYNTAX]].*

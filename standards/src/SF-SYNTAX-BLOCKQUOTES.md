@@ -1,96 +1,69 @@
 ---
+
 title: 'Standard: Blockquote Syntax'
 standard_id: SF-SYNTAX-BLOCKQUOTES
 aliases:
-  - Blockquotes
-  - Quote Blocks
+- Blockquote Syntax
+- Quote Formatting
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/technical-standard
+- content-type/standard-definition
+- content-type/technical-standard
+- criticality/p2-medium
+- kb-id/standards
+- status/active
+- topic/markdown
+- topic/sf
 kb-id: standards
 info-type: standard-definition
 primary-topic: Blockquote Syntax
-related-standards: []
+related-standards:
+- SF-SYNTAX-HEADINGS
+- SF-SYNTAX-EMPHASIS
 version: 1.0.0
-date-created: '2025-05-29T13:24:53Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-created: '2025-01-20T00:00:00Z'
+date-modified: '2025-01-20T00:00:00Z'
 primary_domain: SF
 sub_domain: MARKDOWN
-scope_application: Defines the syntax and usage rules for blockquotes in knowledge
-  base documents.
+scope_application: Defines blockquote syntax for all Markdown documents.
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content presentation
-  - Citation formatting
-  - Text emphasis
+- Quote formatting
+- Content attribution
 ---
-# Standard: Markdown Syntax for Blockquotes (SF-SYNTAX-BLOCKQUOTES)
+# Standard: Blockquote Syntax (SF-SYNTAX-BLOCKQUOTES)
 
 ## 1. Standard Statement
 
-This standard defines the mandatory Markdown syntax for creating blockquotes within all knowledge base documents. Consistent use of blockquote syntax is important for visually distinguishing quoted text, ensuring correct rendering, and maintaining readability. Adherence to [[SF-FORMATTING-FILE-HYGIENE]] regarding blank lines around block elements is also critical.
+This standard **MANDATES** blockquote syntax for all Markdown documents.
 
-## 2. Core Blockquote Syntax Rules
+## 2. Mandatory Rules
 
-### Rule 2.1: Blockquote Marker (Derived from M-SYNTAX-BLOCKQUOTE-001, Rule 1.1)
-Blockquotes MUST be created by prefixing each line of the quoted text with a greater-than symbol (`>`) followed by a single space.
-*   **Syntax:** `> Quoted text`
-*   **Example:**
-    ```markdown
-    > This is a single-line blockquote.
-    ```
-*   **Multi-line Blockquotes:** For blockquotes spanning multiple lines, each line of the quoted text MUST be prefixed with `> `. Blank lines within a multi-line blockquote (to separate paragraphs within the quote) MUST also be prefixed with `> `.
-    ```markdown
-    > This is the first paragraph of a blockquote.
-    >
-    > This is the second paragraph within the same blockquote.
-    ```
-*   **Rationale:** The `> ` prefix is the standard Markdown indicator for blockquotes, universally recognized by parsers.
+### Rule 2.1: Greater-Than Marker
+**MUST** prefix each line with `> ` (greater-than plus space).
 
-### Rule 2.2: Nested Blockquotes (Derived from M-SYNTAX-BLOCKQUOTE-001, Rule 1.2)
-Nested blockquotes (a blockquote within another blockquote) MUST be created by using additional greater-than symbols (`>`) for each level of nesting.
-*   **Syntax:** `>> Nested quoted text`
-*   **Example:**
-    ```markdown
-    > This is the first level of quoting.
-    >
-    > > This is a nested blockquote (second level).
-    > > It can also span multiple lines.
-    >
-    > Back to the first level of quoting.
-    >
-    > > > This is a third level of nesting!
-    ```
-*   **Rationale:** Provides a clear and standard way to represent multiple levels of quotation or attribution.
+**Syntax:** `> Quote text`
 
-### Rule 2.3: Blank Lines Around Blockquotes (Derived from M-SYNTAX-BLOCKQUOTE-001, Rule 1.3)
-A single blank line MUST precede and a single blank line MUST follow every blockquote element.
-*   **Example:**
-    ```markdown
-    This is a paragraph before the blockquote.
+### Rule 2.2: Nested Blockquotes
+**MUST** use additional `>` symbols for each nesting level.
 
-    > This is the blockquote content.
-    > It might have multiple lines.
+**Syntax:** `> > Nested quote`
 
-    This is a paragraph after the blockquote.
-    ```
-*   **Rationale:** Ensures correct parsing and rendering of the blockquote as a distinct block element, separating it visually and structurally from surrounding content. This aligns with general file hygiene rules for block elements (see [[SF-FORMATTING-FILE-HYGIENE]]).
+### Rule 2.3: Blank Line Separation
+**MUST** surround blockquotes with blank lines.
 
-## 3. Importance of Correct Blockquote Syntax
+## 3. Examples
 
-*   **Readability:** Clearly distinguishes quoted material from the author's own text, improving comprehension.
-*   **Visual Distinction:** Most renderers style blockquotes uniquely (e.g., with an indent and/or a vertical line), aiding visual organization.
-*   **Semantic Meaning:** Indicates that the enclosed text is a quotation from another source.
-*   **Authoring Consistency:** Ensures all authors use the same method for quoting text.
+```markdown
+> This is a blockquote.
+> It spans multiple lines.
+
+> > This is nested.
+> > Second nested line.
+>
+> Back to first level.
+```
 
 ## 4. Scope of Application
 
-This standard applies to all Markdown documents within the knowledge base repository where text is quoted from external sources or other documents.
-
-## 5. Cross-References
-- [[SF-FORMATTING-FILE-HYGIENE]] - For rules on blank lines and file formatting that apply to block elements.
-
----
-*This standard (SF-SYNTAX-BLOCKQUOTES) is based on rules 1.1 through 1.3 previously defined in M-SYNTAX-BLOCKQUOTE-001 from COL-SYNTAX-MARKDOWN.md.*
+**MANDATORY** for all Markdown documents in the Knowledge Base. 

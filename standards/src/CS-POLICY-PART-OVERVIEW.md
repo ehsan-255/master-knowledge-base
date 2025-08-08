@@ -1,22 +1,26 @@
 ---
+
 title: 'Policy: Knowledge Base Part Overviews'
 standard_id: CS-POLICY-PART-OVERVIEW
 aliases:
-  - Part Overview Policy
-  - KB Section Overview Policy
+- Part Overview Policy
+- KB Section Overview Policy
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/policy-document
+- content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Policy for KB Part Overviews
 related-standards:
-  - AS-STRUCTURE-KB-PART
-  - AS-STRUCTURE-KB-ROOT
+- AS-STRUCTURE-KB-PART
+- AS-STRUCTURE-KB-ROOT
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-05-30T18:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
 scope_application: Governs the mandatory use and purpose of overview documents for
@@ -24,11 +28,11 @@ scope_application: Governs the mandatory use and purpose of overview documents f
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
-  - KB navigability
-  - User experience
-  - Content discoverability
-  - Clarity of KB structure
-  - Authoring consistency
+- KB navigability
+- User experience
+- Content discoverability
+- Clarity of KB structure
+- Authoring consistency
 ---
 # Policy: Knowledge Base Part Overviews (CS-POLICY-PART-OVERVIEW)
 

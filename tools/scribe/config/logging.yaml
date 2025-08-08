@@ -1,0 +1,28 @@
+version: 1
+disable_existing_loggers: False
+formatters:
+  json:
+    format: '{"ts":"%(asctime)s","lvl":"%(levelname)s","logger":"%(name)s","msg":"%(message)s","extra":%(extra)s}'
+handlers:
+  upgrade_file:
+    class: logging.FileHandler
+    formatter: json
+    filename: tools/reports/upgrade.log
+    mode: a
+  runtime_file:
+    class: logging.FileHandler
+    formatter: json
+    filename: tools/reports/runtime.log
+    mode: a
+loggers:
+  scribe.upgrade:
+    level: INFO
+    handlers: [upgrade_file]
+    propagate: False
+  scribe.runtime:
+    level: INFO
+    handlers: [runtime_file]
+    propagate: False
+root:
+  level: WARNING
+  handlers: [runtime_file]

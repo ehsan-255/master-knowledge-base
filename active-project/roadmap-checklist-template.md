@@ -1,10 +1,40 @@
+---
+title: PROJECT EXECUTION ROADMAP CHECKLIST TEMPLATE
+description: MANDATORY template for creating project execution roadmap checklists
+  with standardized structure and terminology
+version: '2.0'
+created: '2025-06-12'
+last_modified: '2025-06-12'
+template_type: checklist
+status: active
+compliance_level: mandatory
+author: Master Knowledge Base System
+tags:
+- checklist
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+- mandatory
+- progress-tracking
+- roadmap
+- template
+info-type: general
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:12Z'
+kb-id: active-project
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # PROJECT EXECUTION ROADMAP CHECKLIST TEMPLATE
 
->**THIS TEMPLATE IS TO BE GENERATED FROM AN EXISTING PROJECT EXECUTION ROADMAP TO CREATE A SEPARATE PROGRESS CHECKLIST FILE**
+>**THIS TEMPLATE **MUST** BE GENERATED FROM AN EXISTING PROJECT EXECUTION ROADMAP TO CREATE A SEPARATE PROGRESS CHECKLIST FILE**
 
->**TO POPULATE THE *1. TEMPLATE*, FOLLOW THE *2. TEMPLATE-POPULATION GUIDELINES* BELOW**
+>**TO POPULATE THE *1. TEMPLATE*, **FOLLOW** THE *2. TEMPLATE-POPULATION GUIDELINES* BELOW**
 
->**THIS CHECKLIST IS USED FOR OPTION B: SEPARATE PROGRESS CHECKLIST (for longer roadmaps) MENTIONED IN THE ROADMAP TEMPLATE**
+>**THIS CHECKLIST IS **MANDATORY** FOR ALL ROADMAPS AND IS USED FOR QUICK STATUS UPDATES AND BRIEF NOTES**
 
 ---
 
@@ -16,44 +46,43 @@
 ## **📋 PROJECT**: [Project Name]
 
 ⬜ **PROJECT OVERVIEW**: [Brief Project Description]
-- *Note: [🔤]*
-
----
-
-⬜ **PHASE P**: [Phase Title] (P=0)
-- *Note: [🔤]*
-
-⬜ **🏁 PHASE P EXIT CONDITIONS**: [Brief Exit Criteria Summary]
-⬜ **CONDITION C**: [Very Concise Completion Criteria] (C=1)
-- *Note: [🔤]*
-
----
-
-⬜ **STEP P.S**: [Step Title] (S=1)
-- *Note: [🔤]*
-
-⬜ **🏁 STEP P.S EXIT CONDITIONS**: [Brief Exit Criteria Summary]
-⬜ **CONDITION C**: [Very Concise Completion Criteria] (C=1)
-- *Note: [🔤]*
-
----
-
-⬜ **TASK P.S.T**: [Task Title] (T=1)
-- *Note: [🔤]*
-
-⬜ **SUBTASK P.S.T.U**: [Subtask Title] (U=1)
-- *Note: [🔤]*
-
-⬜ **ACTION P.S.T.U.A**: [Action Title] (A=1)
-- *Note: [🔤]*
-
----
-
-⬜ **🏁 PROJECT EXIT CONDITIONS**: [Final Completion Criteria Summary]
-⬜ **CONDITION C**: [Very Concise Completion Criteria] (C=1)
-- *Note: [🔤]*
-
----
+│   *Note: [🔤]*
+│
+├── ⬜ **PHASE P1**: [Phase Title]
+│   │   *Note: [🔤]*
+│   │
+│   ├── ⬜ **🏁 PHASE P1 EXIT CONDITIONS**: [Brief Exit Criteria Summary]
+│   │   ├── ⬜ **CONDITION C1**: [Very Concise Completion Criteria]
+│   │   │       *Note: [🔤]*
+│   │   └── ... (additional conditions as needed)
+│   │
+│   ├── ⬜ **P1.1**: [Title]
+│   │   │   *Note: [🔤]*
+│   │   │
+│   │   ├── ⬜ **🏁 P1.1 EXIT CONDITIONS**: [Brief Exit Criteria Summary]
+│   │   │   ├── ⬜ **CONDITION C1**: [Very Concise Completion Criteria]
+│   │   │   │       *Note: [🔤]*
+│   │   │   └── ... (additional conditions as needed)
+│   │   │
+│   │   ├── ⬜ **P1.1.1**: [Title]
+│   │   │   │   *Note: [🔤]*
+│   │   │   │
+│   │   │   ├── ⬜ **P1.1.1.1**: [Title]
+│   │   │   │   │   *Note: [🔤]*
+│   │   │   │   │
+│   │   │   │   └── ⬜ **P1.1.1.1.1**: [Title]
+│   │   │   │           *Note: [🔤]*
+│   │   │   │
+│   │   │   └── ... (additional P1.1.1.x items as needed)
+│   │   │
+│   │   └── ... (additional P1.1.x items as needed)
+│   │
+│   └── ... (additional P1.x items as needed)
+│
+└── ⬜ **🏁 PROJECT EXIT CONDITIONS**: [Final Completion Criteria Summary]
+    ├── ⬜ **CONDITION C1**: [Very Concise Completion Criteria]
+    │       *Note: [🔤]*
+    └── ... (additional final conditions as needed)
 
 ```
 
@@ -61,74 +90,137 @@
 
 ## **2. TEMPLATE-POPULATION GUIDELINES**
 
->**BELOW ARE THE GUIDELINES TO POPULATE THE "1. TEMPLATE"**
+>**BELOW ARE THE **MANDATORY** GUIDELINES TO POPULATE THE "1. TEMPLATE"**
 
-### **📂 CHECKLIST NAMING CONVENTION**
+### **📂 CHECKLIST NAMING CONVENTION — STRICT COMPLIANCE**
 
 **FILE NAME FORMAT**: `[job-description]-roadmap-checklist.md`
-- **Use same 1-2 words** from the corresponding roadmap filename
-- **Examples**: `database-migration-roadmap-checklist.md`, `api-redesign-roadmap-checklist.md`, `user-auth-roadmap-checklist.md`
-- **Always end with** `-roadmap-checklist.md`
+- **USE SAME 1-2 WORDS** from the corresponding roadmap filename
+- **EXAMPLES**: `database-migration-roadmap-checklist.md`, `api-redesign-roadmap-checklist.md`, `user-auth-roadmap-checklist.md`
+- **ALWAYS END WITH** `-roadmap-checklist.md`
 
 ---
 
-### **🎯 CHECKLIST GENERATION STRATEGY**
+### **🎯 CHECKLIST GENERATION STRATEGY — MANDATORY IMPLEMENTATION**
 
->**THE CHECKLIST IS GENERATED BY EXTRACTING THE HIERARCHICAL STRUCTURE FROM AN EXISTING ROADMAP AND CONVERTING IT TO A STATUS TRACKING FORMAT**
+>**THE CHECKLIST **MUST** BE GENERATED BY EXTRACTING THE HIERARCHICAL STRUCTURE FROM AN EXISTING ROADMAP AND CONVERTING IT TO A STATUS TRACKING FORMAT**
 
 ---
 
-#### **🔍 EXTRACTION PROCESS**
+### **🌳 TREE STRUCTURE USAGE GUIDE — MANDATORY IMPLEMENTATION**
+
+>**THE NEW TREE STRUCTURE FORMAT **MUST** BE APPLIED CONSISTENTLY TO ALL CHECKLISTS FOR VISUAL HIERARCHY AND CLEAR PARENT-CHILD RELATIONSHIPS**
+
+#### **TREE CHARACTER RULES — STRICT COMPLIANCE**
+
+##### **PRIMARY TREE CHARACTERS**
+- **`├──`** : Use for non-terminal branches (items that have siblings below them)
+- **`└──`** : Use for terminal branches (last item in a group or final item)
+- **`│`** : Use for vertical connectors to show continuation of parent branches
+
+##### **INDENTATION REQUIREMENTS**
+- **ROOT LEVEL**: Project overview starts with no tree characters, only vertical connector
+- **LEVEL 1**: Main phases use `├──` or `└──` with no indentation
+- **LEVEL 2+**: Sub-items use proper tree characters with 4-space increments per level
+- **NOTE ALIGNMENT**: Notes should align with their parent item's indentation plus additional spacing
+
+##### **TREE STRUCTURE EXAMPLES**
+```
+⬜ **PROJECT OVERVIEW**: [Description]
+│   *Note: [🔤]*
+│
+├── ⬜ **PHASE P1**: [Title]        # Non-terminal (has siblings)
+│   │   *Note: [🔤]*
+│   │
+│   ├── ⬜ **P1.1**: [Title]        # Non-terminal sub-item
+│   │   │   *Note: [🔤]*
+│   │   │
+│   │   └── ⬜ **P1.1.1**: [Title]  # Terminal sub-item
+│   │           *Note: [🔤]*
+│   │
+│   └── ⬜ **P1.2**: [Title]        # Terminal (last in P1 group)
+│       │   *Note: [🔤]*
+│
+└── ⬜ **PHASE P2**: [Title]        # Terminal (last main phase)
+    └── ⬜ **P2.1**: [Title]        # Terminal sub-item
+            *Note: [🔤]*
+```
+
+##### **COMMON TREE FORMATTING ERRORS TO AVOID**
+- **INCONSISTENT INDENTATION**: All tree levels must use 4-space increments
+- **WRONG TERMINAL CHARACTERS**: Last items in groups must use `└──`, not `├──`
+- **MISSING VERTICAL CONNECTORS**: Parent continuations must show `│` properly
+- **MISALIGNED NOTES**: Note placeholders must align with their parent item formatting
+
+---
+
+#### **🔍 EXTRACTION PROCESS — STRICT REQUIREMENTS**
 
 ##### **REQUIRED ELEMENTS TO EXTRACT**
-- **Project title** and brief overview
-- **All hierarchy levels** present in the roadmap (Phase/Step/Task/Subtask/Action)
-- **Exit conditions** titles and concise criteria
-- **Numbering scheme** (P.S.T.U.A format)
+- **PROJECT TITLE** and brief overview
+- **ALL HIERARCHY LEVELS** present in the roadmap (Phase and numerical sub-levels)
+- **EXIT CONDITIONS** titles and concise criteria
+- **NUMBERING SCHEME** (P1.1.1.1 format)
+- **HIERARCHICAL RELATIONSHIPS** and dependencies between tasks
 
 ##### **ELEMENTS TO EXCLUDE**
-- **Detailed descriptions** (Purpose, Scope, and Outcome)
-- **Actionable instructions** (🎬 content)
-- **Implementation details**
-- **Conditional logic statements**
+- **DETAILED DESCRIPTIONS** (Purpose, Scope, and Outcome)
+- **ACTIONABLE INSTRUCTIONS** (🎬 content)
+- **IMPLEMENTATION DETAILS**
+- **CONDITIONAL LOGIC STATEMENTS**
 
 ##### **ELEMENTS TO ADD**
-- **Status checkboxes** (⬜) for each item
-- **One-liner note placeholders** (*Note: [🔤]*) for each item
-- **Very concise summaries** of exit conditions instead of full criteria
+- **STATUS CHECKBOXES** (⬜) for each item
+- **ONE-LINER NOTE PLACEHOLDERS** (*Note: [🔤]*) for each item
+- **TREE STRUCTURE CHARACTERS** (├──, │, └──) to show visual hierarchy
+- **PROPER INDENTATION** to maintain parent-child relationships
+- **VERY CONCISE SUMMARIES** of exit conditions instead of full criteria
 
 ---
 
-#### **🏗️ STRUCTURE ADAPTATION**
+#### **🏗️ STRUCTURE ADAPTATION — MANDATORY COMPLIANCE**
 
 ##### **HIERARCHY MATCHING**
-- **Mirror exact structure** of the source roadmap
-- **Maintain numbering** (P=0, S=1, T=1, U=1, A=1)
-- **Include only levels** present in the source roadmap
-- **Preserve sequence** and dependencies
+- **MIRROR EXACT STRUCTURE** of the source roadmap
+- **MAINTAIN NUMBERING** (P1, P1.1, P1.1.1, P1.1.1.1, P1.1.1.1.1)
+- **INCLUDE ONLY LEVELS** present in the source roadmap
+- **PRESERVE SEQUENCE** and dependencies
+- **APPLY TREE STRUCTURE FORMATTING** to show visual hierarchy
+
+##### **TREE STRUCTURE FORMATTING — CRITICAL REQUIREMENTS**
+- **USE `├──` for non-terminal branches** (items that have siblings below)
+- **USE `└──` for terminal branches** (last item in a group)
+- **USE `│` for vertical connectors** to show continuation
+- **MAINTAIN PROPER INDENTATION** with 4-space increments per level
+- **ALIGN CHECKBOXES** consistently within the tree structure
+- **NEST EXIT CONDITIONS** under their respective phases/tasks
 
 ##### **CONDENSED FORMAT**
-- **Single line titles** instead of full descriptions
-- **Very concise exit criteria** instead of detailed conditions
-- **Consistent checkbox placement** for all trackable items
-- **Uniform note placeholders** for important execution updates only
+- **SINGLE LINE TITLES** instead of full descriptions
+- **VERY CONCISE EXIT CRITERIA** instead of detailed conditions
+- **CONSISTENT CHECKBOX PLACEMENT** for all trackable items
+- **UNIFORM NOTE PLACEHOLDERS** for important execution updates only
+- **TREE-COMPATIBLE FORMATTING** that maintains readability
 
 ---
 
-### **👍🏼 BEST PRACTICES**
+### **👍🏼 BEST PRACTICES — MANDATORY COMPLIANCE**
 
-- **Generate from completed roadmap** - don't create standalone
-- **Match decomposition level** of source roadmap exactly
-- **Use consistent formatting** for all hierarchy levels
-- **Ensure every trackable item** has checkbox and note placeholder
-- **Maintain parent-child relationships** clearly
-- **Keep titles concise** but descriptive enough for identification
+- **GENERATE FROM COMPLETED ROADMAP** - **DO NOT** create standalone
+- **MATCH DECOMPOSITION LEVEL** of source roadmap exactly
+- **USE CONSISTENT TREE FORMATTING** for all hierarchy levels
+- **ENSURE EVERY TRACKABLE ITEM** has checkbox and note placeholder
+- **MAINTAIN PARENT-CHILD RELATIONSHIPS** clearly through tree structure
+- **KEEP TITLES CONCISE** but descriptive enough for identification
+- **VERIFY TREE CHARACTERS** align properly in the final output
+- **TEST VISUAL HIERARCHY** by reviewing the tree structure readability
+- **USE PLACEHOLDER EXPANSIONS** (`... (additional items as needed)`) appropriately
 
 ---
 
-### **📋 CHECKLIST-SPECIFIC TEXT BLOCKS**
+### **📋 CHECKLIST-SPECIFIC TEXT BLOCKS — MANDATORY IMPLEMENTATION**
 
->**BELOW ARE THE TEXT BLOCKS REQUIRED FOR EACH CHECKLIST DURING THE EXECUTION STAGE. THEY ARE INSTRUCTIONS WHICH ARE NEEDED TO BE FOLLOWED DURING THE EXECUTION STAGE. ADD THEM TO THE END OF EVERY POPULATED CHECKLIST**
+>**BELOW ARE THE TEXT BLOCKS **REQUIRED** FOR EACH CHECKLIST DURING THE EXECUTION STAGE. THEY ARE INSTRUCTIONS WHICH **MUST** BE FOLLOWED DURING THE EXECUTION STAGE. ADD THEM TO THE END OF EVERY POPULATED CHECKLIST**
 
 **ADD THIS SECTION (which is delimited by '```') TO THE END OF EVERY POPULATED CHECKLIST (without '```')**
 
@@ -144,30 +236,31 @@
 ❌ **BLOCKED**
 *Note: [🔤]* **ONE-LINER NOTE PLACEHOLDER: REPLACE 🔤 WITH A ONE-LINER NOTE *ONLY IF NEEDED*, OTHERWISE DELETE THE WHOLE PLACEHOLDER**
 
-**NOTE:** ***🔄 IN PROGRESS and ❌ BLOCKED statuses must be applied to all the affected parent branches all the way up to the project level***
+**NOTE:** ***🔄 IN PROGRESS and ❌ BLOCKED statuses **MUST** be applied to all the affected parent branches all the way up to the project level following the tree hierarchy structure***
 
 ---
 
-## CHECKLIST USAGE PROTOCOL
+## CHECKLIST USAGE PROTOCOL — MANDATORY COMPLIANCE
 
-### **STATUS TRACKING**
-- **Update checkboxes** continuously during execution **at all times**
-- **Add one-liner notes** *only* for important execution points, decisions, or issues. *NOT REQUIRED; ADD ONLY IF NEEDED*
-- **Apply cascading status** to parent branches when items are blocked or in progress
-- **Reference main roadmap** for detailed instructions and context
+### **STATUS TRACKING — CONTINUOUS REQUIREMENT**
+- **UPDATE CHECKBOXES** continuously during execution **AT ALL TIMES**
+- **ADD ONE-LINER NOTES** *only* for important execution points, decisions, or issues. *NOT REQUIRED; ADD ONLY IF NEEDED*
+- **APPLY CASCADING STATUS** to parent branches when items are blocked or in progress (follow tree hierarchy upward)
+- **MAINTAIN TREE STRUCTURE** when updating status - do not alter tree characters
+- **REFERENCE MAIN ROADMAP** for detailed instructions and context
 
-### **NOTE MANAGEMENT**
+### **NOTE MANAGEMENT — STRICT GUIDELINES**
 - **NOTES ARE NOT REQUIRED; ADD ONLY FOR VERY IMPORTANT EXECUTION POINTS, DECISIONS, OR ISSUES**
-- **Replace 🔤 with a one-liner note *only if needed*, otherwise delete the whole placeholder**
-- **Keep notes brief** - maximum 1-2 lines per item
-- **Focus on execution highlights** - important decisions, issues, changes, outcomes
-- **Use timestamps** when helpful for critical notes
-- **Avoid duplicating** information already in progress tracker
+- **REPLACE 🔤 WITH A ONE-LINER NOTE *ONLY IF NEEDED*, OTHERWISE DELETE THE WHOLE PLACEHOLDER**
+- **KEEP NOTES BRIEF** - maximum 1-2 lines per item
+- **FOCUS ON EXECUTION HIGHLIGHTS** - important decisions, issues, changes, outcomes
+- **USE TIMESTAMPS** when helpful for critical notes
+- **AVOID DUPLICATING** information already in progress tracker
 
-### **COORDINATION**
-- **This checklist** is for quick status updates and brief notes
-- **Progress tracker** is for detailed completion documentation
-- **Main roadmap** remains the authoritative source for execution instructions
+### **COORDINATION — STRICT PROTOCOL**
+- **THIS CHECKLIST** is for quick status updates and brief notes
+- **PROGRESS TRACKER** is for detailed completion documentation
+- **MAIN ROADMAP** remains the authoritative source for execution instructions
 
 >**NO OTHER REPORTING, TRACKING, OR DOCUMENTATION IS REQUIRED FOR A ROADMAP**
 

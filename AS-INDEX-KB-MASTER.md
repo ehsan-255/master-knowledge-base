@@ -1,24 +1,41 @@
 ---
-title: "Master Knowledge Base Index"
-standard_id: "AS-INDEX-KB-MASTER" # This is the ID of this specific index document
-aliases: ["KB Directory", "Knowledge Base Master List", "Index of KBs"]
-tags: ["status/live", "criticality/p0-critical", "content-type/navigation-document", "topic/indexing", "topic/architecture"]
-kb-id: "kb-id/global" # This file is global, indexing multiple KBs
-info-type: "navigation-document"
-primary-topic: "Provides a master directory and entry points to all active Knowledge Bases (KBs) within the ecosystem."
-related-standards: ["AS-STRUCTURE-MASTER-KB-INDEX", "AS-ROOT-STANDARDS-KB"] # Links to the standard defining this type of file, and the root of the standards KB.
-version: "1.0.0" # Initial version
-date-created: "2025-05-29T16:10:25Z"
-date-modified: "2025-05-30T00:00:00Z" # Updated to current date
-primary_domain: "AS"
-sub_domain: "INDEXING" # Changed from STRUCTURE
-scope_application: "Serves as the primary navigational entry point to all distinct Knowledge Bases."
-criticality: "P0-Critical" # Essential for navigating the entire KB ecosystem.
-lifecycle_gatekeeper: "Architect-Review"
-impact_areas: ["KB navigation", "Content discoverability", "User orientation", "Onboarding"]
-change_log_url: "./AS-INDEX-KB-MASTER-CHANGELOG.MD" # Corrected casing
+title: Master Knowledge Base Index
+standard_id: AS-INDEX-KB-MASTER
+aliases:
+- KB Directory
+- Knowledge Base Master List
+- Index of KBs
+tags:
+- content-type/navigation-document
+- criticality/p0-critical
+- kb-id/global
+- status/live
+- topic/architecture
+- topic/as
+- topic/indexing
+kb-id: kb-id/global
+info-type: navigation-document
+primary-topic: Provides a master directory and entry points to all active Knowledge
+  Bases (KBs) within the ecosystem.
+related-standards:
+- AS-STRUCTURE-MASTER-KB-INDEX
+- AS-ROOT-STANDARDS-KB
+version: 1.0.0
+date-created: '2025-05-29T16:10:25Z'
+date-modified: '2025-06-17T02:29:12Z'
+primary_domain: AS
+sub_domain: INDEXING
+scope_application: Serves as the primary navigational entry point to all distinct
+  Knowledge Bases.
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas:
+- KB navigation
+- Content discoverability
+- User orientation
+- Onboarding
+change_log_url: ./AS-INDEX-KB-MASTER-CHANGELOG.MD
 ---
-
 # Master Knowledge Base Index
 
 This document provides a centralized directory to all active Knowledge Bases (KBs) within this ecosystem. For the standard defining how this index file should be structured, see `[[AS-STRUCTURE-MASTER-KB-INDEX]]`.

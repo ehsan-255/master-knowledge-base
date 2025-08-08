@@ -1,20 +1,25 @@
 ---
+
 title: Knowledge Base Directory Structure Standard
 standard_id: AS-KB-DIRECTORY-STRUCTURE
 aliases:
 - Directory Structure
 - Folder Organization
 tags:
-- status/draft
-- criticality/p1-high
+- content-type/standard-definition
 - content-type/technical-standard
+- criticality/p1-high
+- kb-id/standards
+- status/draft
+- topic/as
+- topic/structure
 kb-id: standards
 info-type: standard-definition
 primary-topic: Directory Structure
 related-standards: []
 version: 0.1.0
 date-created: '2024-07-15T10:00:00Z'
-date-modified: '2025-06-01T23:21:22Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: AS
 sub_domain: STRUCTURE
 scope_application: Overall repository and knowledge base file organization.
@@ -25,12 +30,20 @@ impact_areas:
 - Build process
 - Navigation
 ---
-
 # AS-KB-DIRECTORY-STRUCTURE: Knowledge Base Directory Structure Standard
 
 ## 1. Overview
 
-This standard defines the official directory structure for the master knowledge base. A consistent directory structure is crucial for organization, navigability, and automation.
+This standard defines the official directory structure for the master knowledge base as part of a **sophisticated three-layer enterprise architecture**. This document represents the **Physical Layer** of the architecture, focusing on file system organization and storage structures.
+
+**🏗️ ARCHITECTURAL CONTEXT:**
+- **Physical Layer (This Document):** File system organization, directory structures, storage patterns
+- **Logical/Semantic Layer:** `AS-MAP-STANDARDS-KB.md` (DITA map + ontological structure)
+- **Presentation Layer:** `AS-ROOT-STANDARDS-KB.md` (navigation interface)
+
+**⚠️ CRITICAL:** This three-layer separation is **INTENTIONAL SOPHISTICATED DESIGN** inspired by DITA and RDF/OWL principles. Do not consolidate these files.
+
+A consistent directory structure is crucial for organization, navigability, and automation while supporting the broader semantic web and topic-based architecture capabilities.
 
 ## 2. Top-Level Organization
 

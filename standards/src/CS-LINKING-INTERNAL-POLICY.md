@@ -1,13 +1,17 @@
 ---
+
 title: 'Policy: Internal Knowledge Base Linking Strategy'
 standard_id: CS-LINKING-INTERNAL-POLICY
 aliases:
 - Internal Linking Policy
 - KB Linking Strategy
 tags:
-- status/draft
-- criticality/p2-medium
 - content-type/policy-document
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/cs
+- topic/policy
 kb-id: standards
 info-type: policy-document
 primary-topic: Internal Linking Strategy and Best Practices
@@ -16,10 +20,11 @@ related-standards:
 - AS-STRUCTURE-DOC-CHAPTER
 version: 1.0.0
 date-created: '2024-07-15T12:00:00Z'
-date-modified: '2025-06-01T23:30:16Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: CS
 sub_domain: POLICY
-scope_application: Governs the strategy and best practices for creating internal links within and between documents in all Knowledge Bases.
+scope_application: Governs the strategy and best practices for creating internal links
+  within and between documents in all Knowledge Bases.
 criticality: P2-Medium
 lifecycle_gatekeeper: Editorial-Board-Approval
 impact_areas:
@@ -29,7 +34,6 @@ impact_areas:
 - User experience
 - Information architecture
 ---
-
 # Policy: Internal Knowledge Base Linking Strategy (CS-LINKING-INTERNAL-POLICY)
 
 ## 1. Policy Statement
@@ -83,4 +87,4 @@ This policy applies to all content creators, editors, and curators working withi
 - [[AS-STRUCTURE-DOC-CHAPTER]] - Defines the requirement for "See Also" sections in documents.
 
 ---
-*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 from COL-LINKING-UNIVERSAL.md. Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*
+*This policy (CS-LINKING-INTERNAL-POLICY) is based on rules 1.1, 1.3, 1.4, and 1.5 previously defined in U-INTERLINK-001 (now deprecated and superseded by this policy). Rule 1.2 regarding syntax is now covered by [[SF-LINKS-INTERNAL-SYNTAX]].*

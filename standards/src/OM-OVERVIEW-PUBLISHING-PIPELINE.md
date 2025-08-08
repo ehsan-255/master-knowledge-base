@@ -1,28 +1,31 @@
 ---
+
 title: 'Standard: Publishing Pipeline Overview'
 standard_id: OM-OVERVIEW-PUBLISHING-PIPELINE
 aliases:
-  - Content Publishing Process
-  - KB Deployment Pipeline
+- Content Publishing Process
+- KB Deployment Pipeline
 tags:
-  - status/draft
-  - criticality/p2-medium
-  - content-type/standard-definition
-  - topic/publishing
-  - topic/automation
-  - topic/workflow
-  - kb-id/standards
+- content-type/standard-definition
+- criticality/p2-medium
+- kb-id/standards
+- status/draft
+- topic/automation
+- topic/lifecycle
+- topic/om
+- topic/publishing
+- topic/workflow
 kb-id: standards
 info-type: standard-definition
 primary-topic: Provides a high-level overview of the automated publishing pipeline
   for the knowledge base ecosystem, from source content to rendered output.
 related-standards:
-  - AS-KB-DIRECTORY-STRUCTURE
-  - QM-VALIDATION-METADATA
-  - UA-SCHEMA-LLM-IO
+- AS-KB-DIRECTORY-STRUCTURE
+- QM-VALIDATION-METADATA
+- UA-SCHEMA-LLM-IO
 version: 0.1.0
 date-created: '2025-05-29T15:55:50Z'
-date-modified: '2025-05-30T12:00:00Z'
+date-modified: '2025-06-17T02:29:15Z'
 primary_domain: OM
 sub_domain: LIFECYCLE
 scope_application: Describes the general publishing pipeline applicable to all knowledge
@@ -30,10 +33,10 @@ scope_application: Describes the general publishing pipeline applicable to all k
 criticality: P2-Medium
 lifecycle_gatekeeper: Architect-Review
 impact_areas:
-  - Content deployment
-  - Automation
-  - Knowledge base accessibility
-  - Operational efficiency
+- Content deployment
+- Automation
+- Knowledge base accessibility
+- Operational efficiency
 ---
 # Standard: Publishing Pipeline Overview (OM-OVERVIEW-PUBLISHING-PIPELINE)
 

@@ -12,6 +12,8 @@ from pathlib import Path
 from typing import Union, BinaryIO, TextIO
 import structlog
 from .logging_config import get_scribe_logger
+import time
+import portalocker
 
 logger = get_scribe_logger(__name__)
 
@@ -70,27 +72,56 @@ def atomic_write(filepath: Union[str, Path], data: Union[str, bytes],
                     data_size=len(data),
                     mode=mode)
         
-        # Write data to temporary file
-        if is_binary:
-            if isinstance(data, str):
-                data = data.encode(encoding)
-            os.write(temp_fd, data)
-        else:
-            if isinstance(data, bytes):
-                data = data.decode(encoding)
-            os.write(temp_fd, data.encode(encoding))
+        # Write data to temporary file with proper Windows file handle management
+        try:
+            if is_binary:
+                if isinstance(data, str):
+                    data = data.encode(encoding)
+                # Use low-level file operations for binary mode
+                os.write(temp_fd, data)
+            else:
+                if isinstance(data, bytes):
+                    data = data.decode(encoding)
+                # Use low-level file operations for text mode
+                os.write(temp_fd, data.encode(encoding))
+            
+            # Force write to disk
+            os.fsync(temp_fd)
+            
+        except Exception as write_error:
+            logger.error("temp_file_write_failed",
+                        temp_file=str(temp_path),
+                        error=str(write_error))
+            raise
         
-        # Force write to disk (fsync)
-        os.fsync(temp_fd)
-        
-        # Close the file descriptor before rename
+        # Close the file descriptor before rename (Windows requirement)
         os.close(temp_fd)
         temp_fd = None
         
-        # Atomic rename - this is the critical operation
-        # On POSIX systems, this is guaranteed to be atomic
-        temp_path.rename(filepath)
-        
+        # Atomic rename with simple retry logic for Windows
+        max_retries = 5
+        for retry in range(max_retries):
+            try:
+                # Perform atomic rename
+                os.replace(str(temp_path), str(filepath))
+                break
+                
+            except (OSError, PermissionError) as e:
+                if retry == max_retries - 1:
+                    logger.error("atomic_rename_failed_final",
+                               temp_file=str(temp_path),
+                               target_file=str(filepath),
+                               retry_count=retry + 1,
+                               error=str(e))
+                    raise
+                
+                logger.debug("atomic_rename_retry",
+                            temp_file=str(temp_path),
+                            target_file=str(filepath),
+                            retry_count=retry + 1,
+                            error=str(e))
+                time.sleep(min(1, 0.1 * (2 ** retry)))  # Exponential backoff
+
         logger.info("atomic_write_completed",
                    target_file=str(filepath),
                    data_size=len(data),
@@ -174,4 +205,34 @@ def atomic_write_yaml(filepath: Union[str, Path], data: dict) -> bool:
         logger.error("yaml_serialization_failed",
                     target_file=str(filepath),
                     error=str(e))
-        return False 
+        return False
+
+
+class AtomicWriteTestHelper:
+    """Test helper class for simulating atomic write failures and interruptions"""
+    
+    def __init__(self):
+        self.simulate_interruption = False
+        self.simulate_fsync_failure = False
+        self.simulate_rename_failure = False
+        self.interruption_point = None
+    
+    def simulate_interruption_during_write(self, interruption_point='write'):
+        """Simulate interruption at different points during write operation
+        
+        Args:
+            interruption_point: Where to simulate failure ('write', 'fsync', 'rename')
+        """
+        self.simulate_interruption = True
+        self.interruption_point = interruption_point
+    
+    def reset_simulation(self):
+        """Reset all simulation flags"""
+        self.simulate_interruption = False
+        self.simulate_fsync_failure = False
+        self.simulate_rename_failure = False
+        self.interruption_point = None
+    
+    def should_fail_at_point(self, point):
+        """Check if we should simulate failure at given point"""
+        return self.simulate_interruption and self.interruption_point == point 

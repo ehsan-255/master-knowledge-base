@@ -1,3 +1,20 @@
+---
+title: Untitled Document
+info-type: general
+version: 0.0.1
+date-created: '2025-06-17'
+date-modified: '2025-06-17T02:29:15Z'
+tags:
+- content-type/general
+- criticality/p0-critical
+- kb-id/global
+kb-id: archive
+primary-topic: '[MISSING_PRIMARY_TOPIC]'
+scope_application: '[MISSING_SCOPE_APPLICATION]'
+criticality: P0-Critical
+lifecycle_gatekeeper: Architect-Review
+impact_areas: []
+---
 # Registry Content Categorization and Target File Assignment - 20250606-2005
 
 **Generated**: 2025-06-06 20:05  
@@ -667,4 +684,4 @@ fields:
 **Categorization Complete**: 2025-06-06 20:05  
 **Content Mappings**: 7 source files → 2 target files  
 **Complexity Assessment**: 3 low, 2 medium, 2 high  
-**Ready for**: STEP 1.2 - Design mt-registry-tag-glossary.yaml Architecture 
+**Ready for**: STEP 1.2 - Design mt-registry-tag-glossary.yaml Architecture
